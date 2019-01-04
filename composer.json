@@ -1,12 +1,29 @@
 {
     "name": "daguilarm/belich",
     "description": "Laravel-vuejs admin dashboard",
+    "keywords": ["framework", "laravel","dashboard","vuejs", "admin"],
+    "type": "project",
+    "license": "MIT",
     "authors": [
         {
             "name": "daguilarm",
             "email": "damian.aguilarm@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "Daguilarm\\Belich\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Daguilarm\\Belich\\BelichServiceProvider"
+            ]
+        }
+    },
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "phpunit/phpunit": "^7.4@dev"
+    }
 }
