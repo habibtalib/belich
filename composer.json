@@ -1,0 +1,12 @@
+{
+    "name": "daguilarm/belich",
+    "description": "Laravel-vuejs admin dashboard",
+    "authors": [
+        {
+            "name": "daguilarm",
+            "email": "damian.aguilarm@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
