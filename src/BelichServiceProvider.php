@@ -15,8 +15,15 @@ class BelichServiceProvider extends ServiceProvider {
         /**
         * Include the package classmap autoloader
         */
-        if (\File::exists(__DIR__.'/../vendor/autoload.php')) {
-            include __DIR__.'/../vendor/autoload.php';
+        if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+            include __DIR__ . '/../vendor/autoload.php';
+        }
+
+        /**
+        * Load the helpers
+        */
+        if (file_exists(__DIR__ . '/app/Http/helpers.php')) {
+            require_once __DIR__ . '/app/Http/helpers.php';
         }
 
         /**
@@ -24,38 +31,33 @@ class BelichServiceProvider extends ServiceProvider {
         */
         $this->publishes([
             //Set the resources
-            __DIR__.'/../routes/Routes.php' => base_path('app/Belich/Routes.php'),
+            __DIR__ . '/../routes/Routes.php' => base_path('app/Belich/Routes.php'),
         ]);
 
         /**
         * Generate the dashboard routes
         */
-        require __DIR__.'/../routes/ResolveRoutes.php';
-
-        /**
-        * Load the helpers
-        */
-        if (file_exists(__DIR__.'/app/Http/helpers.php')) {
-            require_once __DIR__.'/app/Http/helpers.php';
+        if (file_exists(__DIR__ . '/../routes/ResolveRoutes.php')) {
+            require __DIR__ . '/../routes/ResolveRoutes.php';
         }
 
         /**
         * Load the views
         */
-        $this->loadViewsFrom(__DIR__.'/resources/views', 'belich');
+        $this->loadViewsFrom(__DIR__ . '/resources/views', 'belich');
 
         /**
         * Publish the views
         */
         // $this->publishes([
-        //     __DIR__.'/resources/views' => base_path('resources/views/vendor/belich'),
+        //     __DIR__ . '/resources/views' => base_path('resources/views/vendor/belich'),
         // ]);
 
         /**
         * Publish the assets
         */
         // $this->publishes(
-        //     [__DIR__.'/public' => public_path('vendor/belich')],
+        //     [__DIR__ . '/public' => public_path('vendor/belich')],
         //     'public'
         // );
 
@@ -63,7 +65,7 @@ class BelichServiceProvider extends ServiceProvider {
         * Publish the config file
         */
         $this->publishes([
-            __DIR__.'/../config/belich.php' => config_path('belich.php')
+            __DIR__ . '/../config/belich.php' => config_path('belich.php')
         ]);
 
         /**
@@ -90,10 +92,10 @@ class BelichServiceProvider extends ServiceProvider {
     {
         //Register default class
         $this->app->bind('BelichClass', function() {
-            return $this->app->make('Daguilarm\Belich\BelichClass');
+            return $this->app->make(namespace_path('BelichClass'));
         });
 
         //Register the controller
-        $this->app->make('Daguilarm\Belich\App\Http\Controllers\RestfullController');
+        // $this->app->make(namespace_path('App\Http\Controllers\RestfullController'));
     }
 }

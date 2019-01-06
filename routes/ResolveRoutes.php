@@ -1,19 +1,14 @@
 <?php
 
-$files = collect(scandir(app_path('Belich/Resources')))
-    ->map(function($file) {
-        return $file;
-    })->filter(function($value, $key) {
-        return $value !== '.' && $value !== '..';
-    })->map(function($file) {
-        return str_plural(strtolower(explode('.', $file)[0]));
-    });
-
-foreach($files as $route) {
-    if($route) {
-        Route::resource($route, 'Daguilarm\Belich\App\Http\Controllers\RestfullController')
-            ->middleware(config('belich.middleware') ?? ['web', 'auth', 'https']);
-    }
+//Load all the custom routes
+if (file_exists(app_path('/Belich/Routes.php'))) {
+    require_once(app_path('/Belich/Routes.php'));
 }
 
-require_once(app_path('/Belich/Routes.php'));
+//Generate routes from resources
+//The middleware can be setter from the config file
+return getAllTheResourcesFromFolder()->map(function($route) {
+    $middleware = config('belich.middleware') ?? ['web', 'auth', 'https'];
+    return Route::resource($route, namespace_path('App\Http\Controllers\RestfullController'))
+            ->middleware($middleware);
+});
