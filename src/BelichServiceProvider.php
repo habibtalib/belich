@@ -30,11 +30,7 @@ class BelichServiceProvider extends ServiceProvider {
         /**
         * Generate the dashboard routes
         */
-        $this->app->router->group(['namespace' => 'Daguilarm\Belich\App\Http\Controllers'],
-            function() {
-                require __DIR__.'/../routes/ResolveRoutes.php';
-            }
-        );
+        require __DIR__.'/../routes/ResolveRoutes.php';
 
         /**
         * Load the helpers
@@ -76,11 +72,6 @@ class BelichServiceProvider extends ServiceProvider {
         $this->app['router']->middleware('https', \Daguilarm\Belich\App\Http\Middleware\HttpsMiddleware::class);
 
         /**
-        * Migrations
-        */
-        //$this->loadMigrationsFrom(__DIR__.'/database/migrations');
-
-        /**
          * Console comands
          */
         // if ($this->app->runningInConsole()) {
@@ -97,8 +88,12 @@ class BelichServiceProvider extends ServiceProvider {
      */
     public function register()
     {
+        //Register default class
         $this->app->bind('BelichClass', function() {
             return $this->app->make('Daguilarm\Belich\BelichClass');
         });
+
+        //Register the controller
+        $this->app->make('Daguilarm\Belich\App\Http\Controllers\RestfullController');
     }
 }
