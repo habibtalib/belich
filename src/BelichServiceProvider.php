@@ -20,50 +20,60 @@ class BelichServiceProvider extends ServiceProvider {
         }
 
         /**
+        * Publish the belich directory and the dashboard constructor
+        */
+        $this->publishes([
+            //Set the resources
+            __DIR__.'/../routes/Routes.php' => base_path('app/Belich/Routes.php'),
+        ]);
+
+        /**
         * Generate the dashboard routes
         */
         $this->app->router->group(['namespace' => 'Daguilarm\Belich\App\Http\Controllers'],
             function() {
-                require __DIR__.'/routes/dashboard.php';
+                require __DIR__.'/../routes/ResolveRoutes.php';
             }
         );
 
         /**
         * Load the helpers
         */
-        if (file_exists(__DIR__.'/helpers.php')) {
-            require_once __DIR__.'/helpers.php';
+        if (file_exists(__DIR__.'/app/Http/helpers.php')) {
+            require_once __DIR__.'/app/Http/helpers.php';
         }
 
         /**
         * Load the views
         */
         $this->loadViewsFrom(__DIR__.'/resources/views', 'belich');
+
         /**
         * Publish the views
         */
-        $this->publishes([
-            __DIR__.'/resources/views' => base_path('resources/views/vendor/belich'),
-        ]);
+        // $this->publishes([
+        //     __DIR__.'/resources/views' => base_path('resources/views/vendor/belich'),
+        // ]);
 
         /**
         * Publish the assets
         */
-        $this->publishes(
-            [__DIR__.'/public' => public_path('vendor/belich')],
-            'public'
-        );
+        // $this->publishes(
+        //     [__DIR__.'/public' => public_path('vendor/belich')],
+        //     'public'
+        // );
 
         /**
         * Publish the config file
         */
-        $this->publishes([__DIR__.'/config' => config_path('vendor/belich')]);
+        $this->publishes([
+            __DIR__.'/../config/belich.php' => config_path('belich.php')
+        ]);
 
         /**
         * Middleware
         */
-        // $kernel = $this->app['Illuminate\Contracts\Http\Kernel'];
-        // $kernel->pushMiddleware('Daguilarm\Laragoes\App\Http\Middleware\BelichMiddleware');
+        $this->app['router']->middleware('https', \Daguilarm\Belich\App\Http\Middleware\HttpsMiddleware::class);
 
         /**
         * Migrations
