@@ -44,7 +44,7 @@ class BelichServiceProvider extends ServiceProvider {
         /**
         * Load the views
         */
-        $this->loadViewsFrom(__DIR__ . '/resources/views', 'belich');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'belich');
 
         /**
         * Publish the views

@@ -3,6 +3,7 @@
 namespace Daguilarm\Belich\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Daguilarm\Belich\Constructor\Belich;
 use Illuminate\Http\Request;
 
 class RestfullController extends Controller
@@ -14,11 +15,16 @@ class RestfullController extends Controller
      */
     public function index(Request $request)
     {
-        $data         = getResourceQueryBuilder($request);
-        $resource     = getResource();
-        $resourceName = getResourceName();
+        list($request['action'], $request['data'], $request['resource'], $request['resourceName']) = [
+            __FUNCTION__,
+            Belich::getResourceQueryBuilder($request),
+            Belich::getResource(),
+            Belich::getResourceName(),
+        ];
 
-        return $data;
+        $request['fields'] = Belich::getFields($request);
+
+        return view('belich::dashboard.index', compact('request'));
     }
 
     /**
