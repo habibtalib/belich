@@ -9,6 +9,6 @@ if (file_exists(app_path('/Belich/Routes.php'))) {
 //The middleware can be setter from the config file
 return getAllTheResourcesFromFolder()->map(function($route) {
     $middleware = config('belich.middleware') ?? ['web', 'auth', 'https'];
-    return Route::resource($route, namespace_path('App\Http\Controllers\RestfullController'))
+    return Route::resource(route_path($route), namespace_path('App\Http\Controllers\RestfullController'))
             ->middleware($middleware);
 });

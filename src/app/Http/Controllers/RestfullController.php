@@ -8,23 +8,14 @@ use Illuminate\Http\Request;
 class RestfullController extends Controller
 {
     /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //$this->middleware('auth');
-    }
-
-    /**
-     * Index.
+     * List the resources for administration.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return;
+        $sql = resourceQueryBuilder($request);
+        dd($sql);
     }
 
     /**
