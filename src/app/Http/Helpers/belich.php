@@ -12,12 +12,12 @@
  * @param string $file
  * @return string
  */
-if (!function_exists('getResourceName')) {
-    function getResourceName() : string
+if (!function_exists('getResource')) {
+    function getResource() : string
     {
         $getResource = explode('/', request()->route()->uri);
 
-        return stringSingularUpper($getResource[1]);
+        return $getResource[1];
     }
 }
 
@@ -27,8 +27,21 @@ if (!function_exists('getResourceName')) {
  * @param string $file
  * @return string
  */
-if (!function_exists('resourceQueryBuilder')) {
-    function resourceQueryBuilder(Illuminate\Http\Request $request)
+if (!function_exists('getResourceName')) {
+    function getResourceName() : string
+    {
+        return stringSingularUpper(getResource());
+    }
+}
+
+/**
+ * Get the resource name
+ *
+ * @param string $file
+ * @return string
+ */
+if (!function_exists('getResourceQueryBuilder')) {
+    function getResourceQueryBuilder(Illuminate\Http\Request $request)
     {
         $class = sprintf('\\App\\Belich\\Resources\\%s', getResourceName());
 

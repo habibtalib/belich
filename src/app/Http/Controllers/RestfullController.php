@@ -14,8 +14,11 @@ class RestfullController extends Controller
      */
     public function index(Request $request)
     {
-        $sql = resourceQueryBuilder($request);
-        dd($sql);
+        $data         = getResourceQueryBuilder($request);
+        $resource     = getResource();
+        $resourceName = getResourceName();
+
+        return $data;
     }
 
     /**
