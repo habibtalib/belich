@@ -2,9 +2,11 @@
 
 <table>
     <thead>
-        @foreach($request['fields'] as $label => $attribute)
-            <th>{{ $label }}</th>
-        @endforeach
+        <tr>
+            @foreach($request['fields'] as $label => $attribute)
+                <th>{{ $label }}</th>
+            @endforeach
+        </tr>
     </thead>
     <tbody>
         @foreach($request['data'] as $data)

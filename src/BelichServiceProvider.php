@@ -56,10 +56,12 @@ class BelichServiceProvider extends ServiceProvider {
         /**
         * Publish the assets
         */
-        // $this->publishes(
-        //     [__DIR__ . '/public' => public_path('vendor/belich')],
-        //     'public'
-        // );
+        $this->publishes(
+            [
+                __DIR__ . '/../public/css/tailwind.min.css' => public_path('vendor/belich/css')
+            ],
+            'public'
+        );
 
         /**
         * Publish the config file
