@@ -13,9 +13,10 @@ class Belich {
      *
      * @param Illuminate\Http\Request $request
      * @param string $action
+     * @param int $id
      * @return Illuminate\Http\Request
      */
-    public static function updateRequest(Request $request, $action) : Request
+    public static function updateRequest(Request $request, string $action, int $id = 0) : Request
     {
         //Set default value
         $data = null;
@@ -31,9 +32,10 @@ class Belich {
         }
 
         //Fill the request with the new data
-        list($request['action'], $request['data'], $request['resource'], $request['resourceName'], $request['fields']) = [
+        list($request['action'], $request['data'], $request['id'], $request['resource'], $request['resourceName'], $request['fields']) = [
             $action,
             $data,
+            $id,
             SELF::getResource(),
             SELF::getResourceName(),
             SELF::getFields($request, $action),

@@ -43,7 +43,9 @@ class RestfullController extends Controller
      */
     public function show(Request $request, $id)
     {
-        return;
+        //Get all the data
+        //The default action is the function name (__FUNCTION__)
+        return view('belich::dashboard.show')->withRequest(Belich::updateRequest($request, __FUNCTION__, $id));
     }
 
     /**
