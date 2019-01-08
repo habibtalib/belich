@@ -1,3 +1,38 @@
+.table {
+  margin: 1rem;
+  font-size: .875rem;
+}
+
+.table thead {
+  text-transform: uppercase;
+  text-align: left;
+  color: #606f7b;
+}
+
+.table thead tr {
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-style: solid;
+  border-color: #dae1e7;
+  background-color: #f1f5f8;
+}
+
+.table thead tr th {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.table tbody tr td {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  border-bottom-width: 1px;
+  border-style: solid;
+  border-color: #dae1e7;
+}
 /**
  * This injects Tailwind's base styles, which is a combination of
  * Normalize.css and some additional base styles.
