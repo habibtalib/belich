@@ -35,7 +35,7 @@ class RestfullController extends Controller
     }
 
     /**
-     * Show.
+     * Show the detailed resource.
      *
      * @param Illuminate\Http\Request $request
      * @param int $id

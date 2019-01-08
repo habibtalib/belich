@@ -1,5 +1,5 @@
 .table {
-    @apply m-4 text-sm;
+    @apply w-full text-sm;
 }
 
     .table thead {

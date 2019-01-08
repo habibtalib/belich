@@ -18,17 +18,20 @@ class Belich {
      */
     public static function updateRequest(Request $request, string $action, int $id = 0) : Request
     {
-        //Set default value
-        $data = null;
+        //Get the resource class from App\Belich\Resources\...
+        $resourceClass = SELF::getResourceClass();
 
         //List of resources from storage
         if($action === 'index') {
-            $data = SELF::getResourceQueryBuilder($request);
-        }
+            $data = $resourceClass->indexQuery($request);
 
         //Get resource from storage
-        if($action === 'show' || $action === 'update') {
-            $data = '';
+        } elseif($action === 'show' || $action === 'update' && $id > 0) {
+            $data = $resourceClass->findOrFail($id);
+
+        //Set default value
+        } else {
+            $data = collect([]);
         }
 
         //Fill the request with the new data
@@ -38,7 +41,7 @@ class Belich {
             $id,
             SELF::getResource(),
             SELF::getResourceName(),
-            SELF::getFields($request, $action),
+            SELF::getFields($request, $action, $resourceClass),
         ];
 
         return $request;
@@ -81,25 +84,17 @@ class Belich {
     }
 
     /**
-     * Get the resource query from the \App\Belich\Resources\...
-     *
-     * @param Illuminate\Http\Request $request
-     * @return Illuminate\Database\Eloquent\Collection
-     */
-    public static function getResourceQueryBuilder(Request $request) : Collection
-    {
-        return SELF::getResourceClass()->indexQuery($request);
-    }
-
-    /**
      * Get the resource fields from the \App\Belich\Resources\...
      *
+     * @param Illuminate\Http\Request $request
+     * @param string $action
+     * @param App\Belich\Resources $resourceClass
      * @return array
      */
-    public static function getFields(Request $request, $action) : array
+    public static function getFields(Request $request, string $action, $resourceClass) : array
     {
         //Get all the fields from the Class
-        $fields = SELF::getResourceClass()->fields($request);
+        $fields = $resourceClass->fields($request);
 
         //Index case: Return only the name and the attribute for each field.
         if($action === 'index') {

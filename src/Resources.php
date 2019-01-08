@@ -61,6 +61,17 @@ abstract class Resources {
     public function __construct()
     {
         $this->settings = collect($this->settings);
-        $this->model    = $this->settings->get('model')::with($this->settings->get('relationships'));
+        $this->model = $this->settings->get('model')::with($this->settings->get('relationships'));
+    }
+
+    /**
+     * Get the storage data for a given resource.
+     *
+     * @param  int  $id
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public function findOrFail(int $id)
+    {
+        return $this->model->findOrFail($id);
     }
 }

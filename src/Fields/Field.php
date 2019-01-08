@@ -119,7 +119,7 @@ class Field {
      * @param  string|null  $attributes
      * @return object
      */
-    public function defatulValue($value = null) {
+    public function defaultValue($value = null) {
         //Check the value for conditional cases...
         if(!is_null($value)) {
             $this->value = $value;
