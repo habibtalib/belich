@@ -29,3 +29,15 @@ if (!function_exists('stringSingularUpper')) {
         return str_singular(ucfirst($string));
     }
 }
+
+/**
+ * Set the default value for a empty string or result
+ *
+ * @return string
+ */
+if (!function_exists('emptyResults')) {
+    function emptyResults() : string
+    {
+        return '&#8212;';
+    }
+}

@@ -9,30 +9,39 @@ use Illuminate\Http\Request;
 class RestfullController extends Controller
 {
     /**
-     * List the resources for administration.
+     * List the resources.
      *
+     * @param Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request)
     {
-        list($request['action'], $request['data'], $request['resource'], $request['resourceName']) = [
-            __FUNCTION__,
-            Belich::getResourceQueryBuilder($request),
-            Belich::getResource(),
-            Belich::getResourceName(),
-        ];
+        //Get all the data
+        //The default action is the function name (__FUNCTION__)
+        return view('belich::dashboard.index')->withRequest(Belich::setData($request, __FUNCTION__));
+    }
 
-        $request['fields'] = Belich::getFields($request);
-
-        return view('belich::dashboard.index', compact('request'));
+    /**
+     * Create a new resource.
+     *
+     * @param Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function create(Request $request)
+    {
+        //Get all the data
+        //The default action is the function name (__FUNCTION__)
+        return view('belich::dashboard.create')->withRequest(Belich::setData($request, __FUNCTION__));
     }
 
     /**
      * Show.
      *
+     * @param Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         return;
     }
@@ -40,6 +49,7 @@ class RestfullController extends Controller
     /**
      * Store.
      *
+     * @param Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -50,6 +60,8 @@ class RestfullController extends Controller
     /**
      * Update.
      *
+     * @param Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -60,6 +72,8 @@ class RestfullController extends Controller
     /**
      * Delete.
      *
+     * @param Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function delete(Request $request, $id)

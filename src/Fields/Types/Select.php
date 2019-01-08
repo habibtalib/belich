@@ -6,4 +6,6 @@ use Daguilarm\Belich\Fields\Field;
 
 class Select extends Field {
 
+    public $type = 'select';
+
 }

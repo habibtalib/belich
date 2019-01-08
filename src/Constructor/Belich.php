@@ -9,6 +9,40 @@ use Illuminate\Support\Str;
 class Belich {
 
     /**
+     * Get the list of resources for the controller
+     *
+     * @param Illuminate\Http\Request $request
+     * @param string $action
+     * @return Illuminate\Http\Request
+     */
+    public static function setData(Request $request, $action) : Request
+    {
+        //Set default value
+        $data = null;
+
+        //List of resources from storage
+        if($action === 'index') {
+            $data = SELF::getResourceQueryBuilder($request);
+        }
+
+        //Get resource from storage
+        if($action === 'show' || $action === 'update') {
+            $data = '';
+        }
+
+        //Fill the request with the new data
+        list($request['action'], $request['data'], $request['resource'], $request['resourceName'], $request['fields']) = [
+            $action,
+            $data,
+            SELF::getResource(),
+            SELF::getResourceName(),
+            SELF::getFields($request, $action),
+        ];
+
+        return $request;
+    }
+
+    /**
      * Get the resource name with lowercase and plural
      *
      * @return string
@@ -47,6 +81,7 @@ class Belich {
     /**
      * Get the resource query from the \App\Belich\Resources\...
      *
+     * @param Illuminate\Http\Request $request
      * @return Illuminate\Database\Eloquent\Collection
      */
     public static function getResourceQueryBuilder(Request $request) : Collection
@@ -59,17 +94,19 @@ class Belich {
      *
      * @return array
      */
-    public static function getFields(Request $request) : array
+    public static function getFields(Request $request, $action) : array
     {
         //Get all the fields from the Class
         $fields = SELF::getResourceClass()->fields($request);
 
         //Index case: Return only the name and the attribute for each field.
-        if($request->action === 'index') {
+        if($action === 'index') {
             return collect($fields)->mapWithKeys(function($field, $key) {
                 return [$field->name => $field->attribute];
             })
             ->all();
         }
+
+        return $fields ?? [];
     }
 }

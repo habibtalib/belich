@@ -42,6 +42,13 @@ class BelichServiceProvider extends ServiceProvider {
         }
 
         /**
+        * Generate the blade directives
+        */
+        if (file_exists(__DIR__ . '/BladeDirectives.php')) {
+            require __DIR__ . '/BladeDirectives.php';
+        }
+
+        /**
         * Load the views
         */
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'belich');
