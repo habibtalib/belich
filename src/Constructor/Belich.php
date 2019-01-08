@@ -26,7 +26,7 @@ class Belich {
             $data = $resourceClass->indexQuery($request);
 
         //Get resource from storage
-        } elseif($action === 'show' || $action === 'update' && $id > 0) {
+        } elseif($id > 0) {
             $data = $resourceClass->findOrFail($id);
 
         //Set default value
