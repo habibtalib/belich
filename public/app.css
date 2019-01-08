@@ -33,6 +33,34 @@
   border-style: solid;
   border-color: #dae1e7;
 }
+.form {
+  width: 100%;
+  max-width: 20rem;
+}
+
+.form input {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-width: 1px;
+  border-color: #b8c2cc;
+  border-radius: .25rem;
+  width: 100%;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  color: #606f7b;
+  line-height: 1.25;
+}
+
+.form input:focus {
+  outline: 0;
+  border-color: #3490dc;
+  background-color: #fff;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+}
 /**
  * This injects Tailwind's base styles, which is a combination of
  * Normalize.css and some additional base styles.

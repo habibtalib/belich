@@ -1,0 +1,11 @@
+.form {
+    @apply w-full max-w-xs;
+}
+
+    .form input {
+        @apply appearance-none border border-grey rounded w-full py-2 px-4 text-grey-darker leading-tight;
+    }
+
+    .form input:focus {
+        @apply outline-none border-blue bg-white shadow;
+    }

@@ -2,18 +2,18 @@
     @apply m-4 text-sm;
 }
 
-    .table thead{
+    .table thead {
         @apply uppercase text-left text-grey-darker;
     }
 
-        .table thead tr{
+        .table thead tr {
             @apply border-t border-b border-solid border-grey-light bg-grey-lighter;
         }
 
-            .table thead tr th{
+            .table thead tr th {
                 @apply py-4 px-6;
             }
 
-    .table tbody tr td{
+    .table tbody tr td {
         @apply py-4 px-6 border-b border-solid border-grey-light;
     }
