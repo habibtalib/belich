@@ -9,13 +9,13 @@ use Illuminate\Support\Str;
 class Belich {
 
     /**
-     * Get the list of resources for the controller
+     * Set the Request values
      *
      * @param Illuminate\Http\Request $request
      * @param string $action
      * @return Illuminate\Http\Request
      */
-    public static function setData(Request $request, $action) : Request
+    public static function updateRequest(Request $request, $action) : Request
     {
         //Set default value
         $data = null;

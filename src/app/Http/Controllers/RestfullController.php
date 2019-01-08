@@ -18,7 +18,7 @@ class RestfullController extends Controller
     {
         //Get all the data
         //The default action is the function name (__FUNCTION__)
-        return view('belich::dashboard.index')->withRequest(Belich::setData($request, __FUNCTION__));
+        return view('belich::dashboard.index')->withRequest(Belich::updateRequest($request, __FUNCTION__));
     }
 
     /**
@@ -31,7 +31,7 @@ class RestfullController extends Controller
     {
         //Get all the data
         //The default action is the function name (__FUNCTION__)
-        return view('belich::dashboard.create')->withRequest(Belich::setData($request, __FUNCTION__));
+        return view('belich::dashboard.create')->withRequest(Belich::updateRequest($request, __FUNCTION__));
     }
 
     /**

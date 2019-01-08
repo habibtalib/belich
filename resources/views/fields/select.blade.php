@@ -10,8 +10,8 @@
                     name="{{ getFieldName($request) }}"
                     dusk="{{ getFieldName($request) }}"
                 >
-                    @foreach($request->options as $key => $value)
-                        <option value="{{ $value }}">{{ $key }}</option>
+                    @foreach($request->options as $value => $text)
+                        <option value="{{ $value }}" {{ $request->value === $value ? 'selected="selected"' : '' }}>{{ $text }}</option>
                     @endforeach
                 </select>
                 <div class="icon">
