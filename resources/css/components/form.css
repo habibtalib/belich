@@ -2,10 +2,40 @@
     @apply w-full max-w-xs;
 }
 
-    .form input {
-        @apply appearance-none border border-grey rounded w-full py-2 px-4 text-grey-darker leading-tight;
+    .form .container {
+        @apply flex items-center my-4 mx-6 text-left;
     }
 
-    .form input:focus {
-        @apply outline-none border-blue bg-white shadow;
+        .form .container label {
+            @apply block text-grey-darker font-bold my-2 mx-4;
+        }
+
+        .form .select-container {
+            @apply inline-block relative w-full;
+        }
+
+            .form .select-container .icon {
+                @apply pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker;
+            }
+
+    .form input,
+    .form select {
+        @apply appearance-none border border-grey w-full text-grey-darker leading-tight rounded shadow;
+    }
+
+    .form input{
+        @apply py-2 px-4;
+    }
+
+        .form input:focus,
+        .form select:focus {
+            @apply outline-none border-blue bg-white shadow-md;
+        }
+
+    .form select{
+        @apply block px-4 py-2 pr-8;
+    }
+
+    .form select{
+        @apply;
     }

@@ -102,15 +102,57 @@ class Field {
         $this->attribute = $attribute ?? str_replace(' ', '_', Str::lower($name));
     }
 
+    /**
+     * Set the field attributes
+     *
+     * @param  string|null  $attributes
+     * @return object
+     */
     public static function make(...$attributes) {
         //Set the field values
         return new static(...$attributes);
     }
 
-    public function help($text)
-    {
-        $this->help = $text;
+    /**
+     * Set the field attributes
+     *
+     * @param  string|null  $attributes
+     * @return object
+     */
+    public function defatulValue($value = null) {
+        //Check the value for conditional cases...
+        if(!is_null($value)) {
+            $this->value = $value;
+        }
 
         return $this;
+    }
+
+    /**
+     * Set a help text for the field
+     *
+     * @param  string  $text
+     * @return void
+     */
+    public function help($text = null)
+    {
+        //Check the text for conditional cases...
+        if(!is_null($text)) {
+            $this->help = $text;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Hydrate the given attribute on the model based on the incoming request.
+     *
+     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
+     * @param  object  $model
+     * @return mixed
+     */
+    public function fill(Request $request, $model)
+    {
+        return;
     }
 }

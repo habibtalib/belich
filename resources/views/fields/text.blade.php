@@ -9,7 +9,8 @@
                 name="{{ getFieldName($request) }}"
                 dusk="{{ getFieldName($request) }}"
                 type="text"
-                value="Jane Doe">
+                value="{{ $request->value ?? null }}"
+            >
         @endslot
     @endcomponent
 @endif
