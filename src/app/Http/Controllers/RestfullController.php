@@ -49,48 +49,47 @@ class RestfullController extends Controller
      * Show the a resource.
      *
      * @param Illuminate\Http\Request $request
+     * @param Daguilarm\Belich\Fields\FieldsConstructor $fields
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $id)
+    public function show(Request $request, Fields $fields, $id)
     {
-        //Get all the data
-        //The default action is the function name (__FUNCTION__)
-        return view('belich::dashboard.show')->withRequest(Belich::updateRequest($request, $id));
+        //Load the view with the data
+        return view('belich::dashboard.show')->withRequest($fields->handle());
     }
 
     /**
      * Edit a resource.
      *
      * @param Illuminate\Http\Request $request
+     * @param Daguilarm\Belich\Fields\FieldsConstructor $fields
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id)
+    public function edit(Request $request, Fields $fields, $id)
     {
-        //Get all the data
-        //The default action is the function name (__FUNCTION__)
-        return view('belich::dashboard.edit')->withRequest(Belich::updateRequest($request, $id));
+        //Load the view with the data
+        return view('belich::dashboard.edit')->withRequest($fields->handle());
     }
 
     /**
      * Update a resource.
      *
      * @param Illuminate\Http\Request $request
+     * @param Daguilarm\Belich\Fields\FieldsConstructor $fields
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Fields $fields, $id)
     {
-        //Get all the data
-        //The default action is the function name (__FUNCTION__)
-        return view('belich::dashboard.update')->withRequest(Belich::updateRequest($request, $id));
+        //Load the view with the data
+        return view('belich::dashboard.update')->withRequest($fields->handle());
     }
 
     /**
      * Delete a resource.
      *
-     * @param Illuminate\Http\Request $request
      * @param int $id
      * @return \Illuminate\Http\Response
      */

@@ -1,5 +1,5 @@
 .form-group {
-    @apply w-full flex items-center p-6 border-b border-grey-light text-grey-darker text-sm;
+    @apply w-full flex items-center py-8 px-6 border-b border-grey-lighter text-grey-darker text-sm;
 }
 
     /*Inline form*/
@@ -13,7 +13,7 @@
 
     /*Default label*/
     .form-group label {
-        @apply font-bold
+        @apply capitalize font-bold;
     }
 
     /*Default form fields*/

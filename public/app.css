@@ -1,3 +1,5 @@
+/* Base container */
+
 .wrap-container {
   width: 100%;
 }
@@ -9,9 +11,12 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 1.5rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
   border-bottom-width: 1px;
-  border-color: #dae1e7;
+  border-color: #f1f5f8;
   color: #606f7b;
   font-size: .875rem;
 }
@@ -29,6 +34,7 @@
 /*Default label*/
 
 .form-group label {
+  text-transform: capitalize;
   font-weight: 700;
 }
 
