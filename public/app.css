@@ -1,42 +1,89 @@
 .wrap-container {
   width: 100%;
 }
-.form {
+.form-group {
   width: 100%;
-  max-width: 20rem;
-}
-
-.form .container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
-  text-align: left;
-}
-
-.form .container label {
-  display: block;
+  padding: 1.5rem;
+  border-bottom-width: 1px;
+  border-color: #dae1e7;
   color: #606f7b;
-  font-weight: 700;
-  margin-top: .5rem;
-  margin-bottom: .5rem;
-  margin-left: 1rem;
-  margin-right: 1rem;
+  font-size: .875rem;
 }
 
-.form .select-container {
+/*Inline form*/
+
+.form-group .form-inline-label {
+  width: 33.33333%;
+}
+
+.form-group .form-inline-field {
+  width: 66.66667%;
+}
+
+/*Default label*/
+
+.form-group label {
+  font-weight: 700;
+}
+
+/*Default form fields*/
+
+form input,
+form select {
+  width: 100%;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-width: 1px;
+  border-color: #b8c2cc;
+  line-height: 1.25;
+  border-radius: .25rem;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+}
+
+form input:focus,
+form select:focus {
+  outline: 0;
+  border-color: #3490dc;
+  background-color: #fff;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
+}
+
+/*Input fields*/
+
+form input {
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/*Select fields*/
+
+form select {
+  display: block;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  padding-right: 2rem;
+}
+
+form .select-container {
   display: inline-block;
   position: relative;
   width: 100%;
 }
 
-.form .select-container .icon {
+form .select-container .icon {
   pointer-events: none;
   position: absolute;
   top: 0;
@@ -51,49 +98,6 @@
   padding-left: .5rem;
   padding-right: .5rem;
   color: #606f7b;
-}
-
-.form input,
-.form select {
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  border-width: 1px;
-  border-color: #b8c2cc;
-  width: 100%;
-  color: #606f7b;
-  line-height: 1.25;
-  border-radius: .25rem;
-  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
-          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
-}
-
-.form input {
-  padding-top: .5rem;
-  padding-bottom: .5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-.form input:focus,
-.form select:focus {
-  outline: 0;
-  border-color: #3490dc;
-  background-color: #fff;
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
-}
-
-.form select {
-  display: block;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-top: .5rem;
-  padding-bottom: .5rem;
-  padding-right: 2rem;
-}
-
-.form select {
 }
 .table {
   width: 100%;

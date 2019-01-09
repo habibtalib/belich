@@ -1,41 +1,46 @@
-.form {
-    @apply w-full max-w-xs;
+.form-group {
+    @apply w-full flex items-center p-6 border-b border-grey-light text-grey-darker text-sm;
 }
 
-    .form .container {
-        @apply flex items-center my-4 mx-6 text-left;
+    /*Inline form*/
+    .form-group .form-inline-label {
+        @apply w-1/3;
     }
 
-        .form .container label {
-            @apply block text-grey-darker font-bold my-2 mx-4;
-        }
-
-        .form .select-container {
-            @apply inline-block relative w-full;
-        }
-
-            .form .select-container .icon {
-                @apply pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker;
-            }
-
-    .form input,
-    .form select {
-        @apply appearance-none border border-grey w-full text-grey-darker leading-tight rounded shadow;
+    .form-group .form-inline-field {
+        @apply w-2/3;
     }
 
-    .form input{
+    /*Default label*/
+    .form-group label {
+        @apply font-bold
+    }
+
+    /*Default form fields*/
+    form input,
+    form select {
+        @apply w-full appearance-none border border-grey leading-tight rounded shadow;
+    }
+
+    form input:focus,
+    form select:focus {
+        @apply outline-none border-blue bg-white shadow-md;
+    }
+
+    /*Input fields*/
+    form input{
         @apply py-2 px-4;
     }
 
-        .form input:focus,
-        .form select:focus {
-            @apply outline-none border-blue bg-white shadow-md;
-        }
-
-    .form select{
+    /*Select fields*/
+    form select{
         @apply block px-4 py-2 pr-8;
     }
 
-    .form select{
-        @apply;
+    form .select-container {
+        @apply inline-block relative w-full;
+    }
+
+    form .select-container .icon {
+        @apply pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker;
     }

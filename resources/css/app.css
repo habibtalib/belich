@@ -35,7 +35,7 @@
  * @import "components/buttons";
  * @import "components/forms";
  */
- @import "components/detail.css";
+ @import "components/base.css";
  @import "components/form.css";
  @import "components/table.css";
 
