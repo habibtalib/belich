@@ -74,4 +74,14 @@ abstract class Resources {
     {
         return $this->model->findOrFail($id);
     }
+
+    /**
+     * Get the relationships from the resource.
+     *
+     * @return array
+     */
+    public function getRelationships()
+    {
+        return $this->settings['relationships'];
+    }
 }

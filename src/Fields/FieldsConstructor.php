@@ -69,7 +69,7 @@ class FieldsConstructor {
         $this->request = request();
 
         //Set model
-        $this->model = $this->setModel();
+        $this->model = SELF::setModel();
     }
 
     /**
@@ -79,23 +79,29 @@ class FieldsConstructor {
      */
     public function handle() {
         //Get all the fields from the Class
-        $fields = $this->resourceClass->fields($this->request);
+        $this->fields = $this->resourceClass->fields($this->request);
 
         //Index case: Return only the name and the attribute for each field.
         if($this->action === 'index') {
-            $fields = collect($fields)->mapWithKeys(function($field, $key) {
+            $this->fields = collect($this->fields)->mapWithKeys(function($field, $key) {
                 return [$field->name => $field->attribute];
             })
             ->all();
 
             return collect([
-                'attributes' => array_values($fields),
+                'attributes' => array_values($this->fields),
                 'data' => $this->model,
-                'labels' => array_keys($fields),
+                'labels' => array_keys($this->fields),
             ]);
         }
 
-        return $fields;
+        //Edit and Show case
+        if($this->routeId > 0) {
+            //Fill the field value with the model
+            return SELF::fillValue();
+        }
+
+        return $this->fields;
     }
 
     /**
@@ -112,5 +118,101 @@ class FieldsConstructor {
         if($this->action ==='show' || $this->action === 'edit' && $this->routeId > 0) {
             return $this->resourceClass->findOrFail($this->routeId);
         }
+    }
+
+    /**
+     * Fill the field value with the model
+     *
+     * @return object
+     */
+    private function fillValue()
+    {
+        return collect($this->fields)->map(function($field) {
+            //Get the attribute value
+            $attribute = $field->attribute;
+
+            //Relationship case
+            if(SELF::countRelationship($attribute) === 2) {
+                $field->value = SELF::fillValueFromRelationship($attribute);
+
+            //Regular case
+            } else {
+                $field->value = optional($this->model)->{$field->attribute};
+            }
+
+            return $field;
+        });
+    }
+
+    /**
+     * Hydrate the field value with the model
+     *
+     * @return object
+     */
+    private function fillValueFromRelationship($attribute)
+    {
+        //Set default values
+        $relationship = SELF::getRelationshipMethod($attribute);
+        $relationshipAttribute = SELF::getRelationshipAttribute($attribute);
+
+        //Verify if the current resource has a relationship defined...
+        $relationshipFromModel = $this->resourceClass->getRelationships();
+
+        if(in_array($relationship, $relationshipFromModel)) {
+            $result = optional($this->model)->{$relationship};
+
+            //If more than one results... return the collection with all the results
+            if($result->count() > 1) {
+                //In the future will create a new field to show all the values...
+                return $result;
+            }
+
+            //Only one result
+            if($result->count() === 1) {
+                return $result->first()->{$relationshipAttribute};
+            }
+        }
+
+        return emptyResults();
+    }
+
+    /**
+     * Get relationship
+     *
+     * @return string
+     */
+    private function getRelationship($attribute)
+    {
+        return explode('.', $attribute);
+    }
+
+    /**
+     * Get the array count from the relationship
+     *
+     * @return string
+     */
+    private function countRelationship($attribute)
+    {
+        return count(SELF::getRelationship($attribute));
+    }
+
+    /**
+     * Get relationship method
+     *
+     * @return string
+     */
+    private function getRelationshipMethod($attribute)
+    {
+        return SELF::getRelationship($attribute)[0];
+    }
+
+    /**
+     * Get relationship attribute
+     *
+     * @return string
+     */
+    private function getRelationshipAttribute($attribute)
+    {
+        return SELF::getRelationship($attribute)[1];
     }
 }
