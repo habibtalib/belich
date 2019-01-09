@@ -6,15 +6,58 @@ use Illuminate\Http\Request;
 
 class FieldsConstructor {
 
+    /**
+     * Set the controller action
+     *
+     * @var string
+     */
     protected $action;
-    protected $indexData;
+
+    /**
+     * List of fields
+     *
+     * @var object
+     */
     protected $fields;
+
+    /**
+     * Set the resource model
+     *
+     * @var Illuminate\Database\Eloquent\Collection
+     */
     protected $model;
+
+    /**
+     * Resource name
+     *
+     * @var string
+     */
     protected $resource;
+
+    /**
+     * Resource class
+     *
+     * @var string
+     */
     protected $resourceClass;
+
+    /**
+     * Request
+     *
+     * @var Illuminate\Http\Request
+     */
     protected $request;
+
+    /**
+     * URL id parameter
+     *
+     * @var int
+     */
     protected $routeId;
 
+    /**
+     * Initialize the constructor
+     */
     public function __construct() {
         //Default values
         $this->action = getRouteAction();
@@ -29,6 +72,11 @@ class FieldsConstructor {
         $this->model = $this->setModel();
     }
 
+    /**
+     * Handle the resource fields
+     *
+     * @return object
+     */
     public function handle() {
         //Get all the fields from the Class
         $fields = $this->resourceClass->fields($this->request);
@@ -50,6 +98,11 @@ class FieldsConstructor {
         return $fields;
     }
 
+    /**
+     * Set the model object
+     *
+     * @return Illuminate\Database\Eloquent\Collection
+     */
     private function setModel()
     {
         if($this->action === 'index') {

@@ -44,8 +44,8 @@ class BelichServiceProvider extends ServiceProvider {
         /**
         * Generate the blade directives
         */
-        if (file_exists(__DIR__ . '/BladeDirectives.php')) {
-            require __DIR__ . '/BladeDirectives.php';
+        if (file_exists(__DIR__ . '/../Providers/BladeProvider.php')) {
+            require __DIR__ . '/../Providers/BladeProvider.php';
         }
 
         /**
