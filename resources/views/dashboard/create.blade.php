@@ -2,7 +2,7 @@
 
 <form name="form-create" id="form-create" method="POST" action="">
     @csrf
-    @foreach($request['fields'] as $value)
-        @includeIf('belich::fields.' . $value->type, ['request' => $value])
+    @foreach($request as $field)
+        @includeIf('belich::fields.' . $field->type, ['field' => $field])
     @endforeach
 </form>

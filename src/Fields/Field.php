@@ -11,6 +11,13 @@ class Field {
     use Macroable;
 
     /**
+     * Set the controller action
+     *
+     * @var string
+     */
+    public $action;
+
+    /**
      * The displayable name of the field.
      *
      * @var string
@@ -30,27 +37,6 @@ class Field {
      * @var mixed
      */
     public $value;
-
-    /**
-     * The callback to be used to resolve the field's display value.
-     *
-     * @var \Closure
-     */
-    public $displayCallback;
-
-    /**
-     * The callback to be used to resolve the field's value.
-     *
-     * @var \Closure
-     */
-    public $resolveCallback;
-
-    /**
-     * The callback to be used to hydrate the model attribute.
-     *
-     * @var callable
-     */
-    public $fillCallback;
 
     /**
      * The validation rules for creation and updates.
@@ -92,14 +78,13 @@ class Field {
      *
      * @param  string  $name
      * @param  string|null  $attribute
-     * @param  mixed|null  $resolveCallback
      * @return void
      */
-    public function __construct($name, $attribute = null, $resolveCallback = null)
+    public function __construct($name, $attribute = null)
     {
         $this->name = $name;
-        $this->resolveCallback = $resolveCallback;
         $this->attribute = $attribute ?? str_replace(' ', '_', Str::lower($name));
+        $this->action = getRouteAction();
     }
 
     /**

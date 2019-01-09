@@ -1,17 +1,17 @@
-@if(isset($request->formType) && $request->formType === 'grid')
+@if(isset($field->formType) && $field->formType === 'grid')
 
 @else
     @component('belich::fields.components.inlineForm')
-        @slot('label', $request->name)
+        @slot('label', $field->name)
         @slot('field')
             <div class="select-container">
                 <select
-                    id="{{ getFieldName($request) }}"
-                    name="{{ getFieldName($request) }}"
-                    dusk="{{ getFieldName($request) }}"
+                    id="{{ getFieldName($field) }}"
+                    name="{{ getFieldName($field) }}"
+                    dusk="{{ getFieldName($field) }}"
                 >
-                    @foreach($request->options as $value => $text)
-                        <option value="{{ $value }}" {{ $request->value === $value ? 'selected="selected"' : '' }}>{{ $text }}</option>
+                    @foreach($field->options as $value => $text)
+                        <option value="{{ $value }}" {{ $field->value === $value ? 'selected="selected"' : '' }}>{{ $text }}</option>
                     @endforeach
                 </select>
                 <div class="icon">

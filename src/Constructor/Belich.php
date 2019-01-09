@@ -16,13 +16,14 @@ class Belich {
      * @param int $id
      * @return Illuminate\Http\Request
      */
-    public static function updateRequest(Request $request, string $action, int $id = 0) : Request
+    public static function updateRequest(Request $request, int $id = 0) : Request
     {
+        dd(getRouteId());
         //Get the resource class from App\Belich\Resources\...
         $resourceClass = SELF::getResourceClass();
 
         //List of resources from storage
-        if($action === 'index') {
+        if(getRouteAction() === 'index') {
             $data = $resourceClass->indexQuery($request);
 
         //Get resource from storage
@@ -35,13 +36,12 @@ class Belich {
         }
 
         //Fill the request with the new data
-        list($request['action'], $request['data'], $request['id'], $request['resource'], $request['resourceName'], $request['fields']) = [
-            $action,
+        list($request['data'], $request['id'], $request['resource'], $request['resourceName'], $request['fields']) = [
             $data,
             $id,
             SELF::getResource(),
             SELF::getResourceName(),
-            SELF::getFields($request, $action, $resourceClass),
+            SELF::getFields($request, $resourceClass),
         ];
 
         return $request;
@@ -91,13 +91,13 @@ class Belich {
      * @param App\Belich\Resources $resourceClass
      * @return array
      */
-    public static function getFields(Request $request, string $action, $resourceClass) : array
+    public static function getFields(Request $request, $resourceClass) : array
     {
         //Get all the fields from the Class
         $fields = $resourceClass->fields($request);
 
         //Index case: Return only the name and the attribute for each field.
-        if($action === 'index') {
+        if(getRouteAction() === 'index') {
             return collect($fields)->mapWithKeys(function($field, $key) {
                 return [$field->name => $field->attribute];
             })

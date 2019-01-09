@@ -8,6 +8,7 @@
 
 /**
  * Get all the resource names from folder
+ * For auto route generation
  *
  * @return Illuminate\Support\Collection
  */
@@ -25,5 +26,61 @@ if (!function_exists('getAllTheResourcesFromFolder')) {
             })->map(function($file) {
                 return stringPluralLower(getFileName($file));
             });
+    }
+}
+
+/**
+ * Get the route action: index, edit, update...
+ *
+ * @return Illuminate\Http\Request
+ */
+if (!function_exists('getRouteAction')) {
+    function getRouteAction() : string
+    {
+        //Get route name
+        $routeName = explode('.', request()->route()->getName());
+
+        //Return last item from the array
+        return end($routeName);
+    }
+}
+
+/**
+ * Get the resource: users
+ *
+ * @return Illuminate\Http\Request
+ */
+if (!function_exists('getResourceName')) {
+    function getResourceName() : string
+    {
+        $resource = explode('/', request()->route()->uri);
+
+        return $resource[1];
+    }
+}
+
+/**
+ * Get the resource name: User
+ *
+ * @return Illuminate\Http\Request
+ */
+if (!function_exists('getResourceClass')) {
+    function getResourceClass() : string
+    {
+        return title_case(str_singular(getResourceName()));
+    }
+}
+
+/**
+ * Get the route id
+ *
+ * @return Illuminate\Http\Request
+ */
+if (!function_exists('getRouteId')) {
+    function getRouteId($resource = null)
+    {
+        $parameter = str_singular($resource ?? getResourceName());
+
+        return request()->route($parameter) ?? null;
     }
 }

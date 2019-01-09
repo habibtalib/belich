@@ -31,7 +31,7 @@ class Select extends Field {
     {
         //Check the text for conditional cases...
         if(!empty($options)) {
-            $this->options = $options;
+            $this->options = ['' => ''] + $options;
         }
 
         return $this;

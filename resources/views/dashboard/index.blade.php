@@ -4,16 +4,16 @@
     <table class="table">
         <thead>
             <tr>
-                @foreach($request['fields'] as $label => $attribute)
+                @foreach($request->get('labels') as $label)
                     <th>{{ $label }}</th>
                 @endforeach
             </tr>
         </thead>
         <tbody>
-            @foreach($request['data'] as $data)
+            @foreach($request->get('data') as $item)
                 <tr>
-                    @foreach($request['fields'] as $label => $attribute)
-                        <td>{{ $data->{$attribute} }}</td>
+                    @foreach($request->get('attributes') as $attribute)
+                        <td>{{ optional($item)->{$attribute} ?? emptyResults() }}</td>
                     @endforeach
                 </tr>
             @endforeach

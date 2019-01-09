@@ -1,15 +1,15 @@
-@if(isset($request->formType) && $request->formType === 'grid')
+@if(isset($field->formType) && $field->formType === 'grid')
 
 @else
     @component('belich::fields.components.inlineForm')
-        @slot('label', $request->name)
+        @slot('label', $field->name)
         @slot('field')
             <input
-                id="{{ getFieldName($request) }}"
-                name="{{ getFieldName($request) }}"
-                dusk="{{ getFieldName($request) }}"
+                id="{{ getFieldName($field) }}"
+                name="{{ getFieldName($field) }}"
+                dusk="{{ getFieldName($field) }}"
                 type="text"
-                value="{{ $request->value ?? null }}"
+                value="{{ $field->value }}"
             >
         @endslot
     @endcomponent
