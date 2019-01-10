@@ -6,7 +6,9 @@
                 url: $( '#form-:resource-:action' ).attr( 'action' ),
                 method: 'post',
                 data: {
-                    :values
+                    :values,
+                    validationRules::validationRules,
+                    validationAttributes::validationAttributes
                 },
                 success: function(data) {
                     $( ".validation-error" ).html( '' );

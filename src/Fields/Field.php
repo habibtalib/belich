@@ -40,21 +40,21 @@ class Field {
      *
      * @var array
      */
-    public $rules = [];
+    public $rules;
 
     /**
      * The validation rules for creation.
      *
      * @var array
      */
-    public $creationRules = [];
+    public $creationRules;
 
     /**
      * The validation rules for updates.
      *
      * @var array
      */
-    public $updateRules = [];
+    public $updateRules;
 
     /**
      * Indicates if the field should be sortable.
@@ -136,5 +136,49 @@ class Field {
     public function fill(Request $request, $model)
     {
         return;
+    }
+
+    /**
+     * Set a general rules for validation
+     *
+     * @param  array  $rules
+     * @return void
+     */
+    public function rules(...$rules)
+    {
+        //Check the text for conditional cases...
+        $this->rules = $rules;
+        $this->creationRules = null;
+        $this->updateRules = null;
+
+        return $this;
+    }
+
+    /**
+     * Set a creation rules for validation
+     *
+     * @param  array  $rules
+     * @return void
+     */
+    public function creationRules(...$rules)
+    {
+        //Check the text for conditional cases...
+        $this->creationRules = $rules;
+
+        return $this;
+    }
+
+    /**
+     * Set a update rules for validation
+     *
+     * @param  array  $rules
+     * @return void
+     */
+    public function updateRules(...$rules)
+    {
+        //Check the text for conditional cases...
+        $this->updateRules = $rules;
+
+        return $this;
     }
 }

@@ -14,5 +14,5 @@
 @endsection
 
 @section('javascript')
-    {!! $javascript !!}
+    {!! $javascript->get('javascript') !!}
 @endsection

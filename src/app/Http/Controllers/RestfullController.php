@@ -48,14 +48,8 @@ class RestfullController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = \Validator::make($request->all(), [
-            'name' => 'required',
-            'email' => 'required|email',
-            'locale' => 'required'
-        ]);
-        $validator->setAttributeNames([
-            'name' => 'nombre'
-        ]);
+        $validator = \Validator::make($request->except(['validationRules', 'validationAttributes']), $request->validationRules);
+        $validator->setAttributeNames($request->validationAttributes);
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()]);
