@@ -20,6 +20,7 @@
                     </svg>
                 </div>
             </div>
+            <p id="error-{{ getFieldName($field) }}" class="validation-error">&nbsp;</p>
         @endslot
     @endcomponent
 @endif

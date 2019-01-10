@@ -1,4 +1,4 @@
-@extends('belich::layout')
+@extends(Request::ajax() ? 'belich::layout-ajax' : 'belich::layout')
 
 @section('content')
     @foreach($request as $field)

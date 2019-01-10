@@ -1,20 +1,32 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}" class="h-full font-sans antialiased">
     <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=1280">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+        {{-- Meta-tags --}}
+        @include('belich::layout.metatags')
 
+        {{-- Title --}}
         <title>{{ config('app.name') }}</title>
 
-        {{-- Fonts --}}
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,800,800i,900,900i" rel="stylesheet">
         {{-- Styles --}}
-        <link href="{{ mix('app.css', 'vendor/belich') }}" rel="stylesheet">
+        @include('belich::layout.styles')
     </head>
     <body>
-        <div class="wrap-container">
+        {{-- Navbar --}}
+        <header>
+            @include('belich::partials.navbar')
+        </header>
+
+        {{-- Include the sidebar if exists... --}}
+        @includeIf('belich::partials.sidebar')
+
+        <section id="app" class="wrap-container">
             @yield('content')
-        </div>
+        </section>
+
+        {{-- Include footer --}}
+        @includeIf('belich::partials.footer')
+
+        {{-- Javascript and libs --}}
+        @include('belich::layout.scripts')
     </body>
 </html>

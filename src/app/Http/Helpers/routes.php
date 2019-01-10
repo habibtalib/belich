@@ -84,3 +84,27 @@ if (!function_exists('getRouteId')) {
         return request()->route($parameter) ?? null;
     }
 }
+
+/**
+ * Return the route base path: dashboard or else...
+ *
+ * @return string
+ */
+if (!function_exists('getRouteBasePath')) {
+    function getRouteBasePath() : string
+    {
+        return str_replace('/', '', config('belich.path'));
+    }
+}
+
+/**
+ * Return the route for the form action
+ *
+ * @return string
+ */
+if (!function_exists('getRouteForm')) {
+    function getRouteForm($settings, $action = null) : string
+    {
+        return sprintf('%s.%s.%s', getRouteBasePath(), $settings->get('resource'), $action ?? $settings->get('action'));
+    }
+}

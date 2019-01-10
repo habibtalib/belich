@@ -76,6 +76,16 @@ abstract class Resources {
     }
 
     /**
+     * Get all the settings variables
+     *
+     * @return array
+     */
+    public function getSettings()
+    {
+        return $this->settings;
+    }
+
+    /**
      * Get the relationships from the resource.
      *
      * @return array

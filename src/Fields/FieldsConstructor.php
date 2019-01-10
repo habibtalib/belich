@@ -105,6 +105,21 @@ class FieldsConstructor {
     }
 
     /**
+     * Get the resource settings
+     *
+     * @return array
+     */
+    public function settings()
+    {
+        return $this
+            ->resourceClass
+            ->getSettings()
+            ->prepend(getResourceName(), 'resource')
+            ->prepend(getResourceClass(), 'resourceClass')
+            ->prepend(getRouteAction(), 'action');
+    }
+
+    /**
      * Set the model object
      *
      * @return Illuminate\Database\Eloquent\Collection

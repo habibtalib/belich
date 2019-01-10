@@ -18,7 +18,9 @@ class RestfullController extends Controller
     public function index(Request $request, Fields $fields)
     {
         //Load the view with the data
-        return view('belich::dashboard.index')->withRequest($fields->handle());
+        return view('belich::dashboard.index')
+            ->withRequest($fields->handle())
+            ->withSettings($fields->settings());
     }
 
     /**
@@ -31,7 +33,9 @@ class RestfullController extends Controller
     public function create(Request $request, Fields $fields)
     {
         //Load the view with the data
-        return view('belich::dashboard.create')->withRequest($fields->handle());
+        return view('belich::dashboard.create')
+            ->withRequest($fields->handle())
+            ->withSettings($fields->settings());
     }
 
     /**
@@ -42,7 +46,17 @@ class RestfullController extends Controller
      */
     public function store(Request $request)
     {
-        return;
+        $validator = \Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required|email',
+            'locale' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->errors()]);
+        } else {
+            return response()->json(['success']);
+        }
     }
 
     /**
@@ -56,7 +70,9 @@ class RestfullController extends Controller
     public function show(Request $request, Fields $fields, $id)
     {
         //Load the view with the data
-        return view('belich::dashboard.show')->withRequest($fields->handle());
+        return view('belich::dashboard.show')
+            ->withRequest($fields->handle())
+            ->withSettings($fields->settings());
     }
 
     /**
@@ -70,7 +86,9 @@ class RestfullController extends Controller
     public function edit(Request $request, Fields $fields, $id)
     {
         //Load the view with the data
-        return view('belich::dashboard.edit')->withRequest($fields->handle());
+        return view('belich::dashboard.edit')
+            ->withRequest($fields->handle())
+            ->withSettings($fields->settings());
     }
 
     /**
@@ -84,7 +102,9 @@ class RestfullController extends Controller
     public function update(Request $request, Fields $fields, $id)
     {
         //Load the view with the data
-        return view('belich::dashboard.update')->withRequest($fields->handle());
+        return view('belich::dashboard.update')
+            ->withRequest($fields->handle())
+            ->withSettings($fields->settings());
     }
 
     /**

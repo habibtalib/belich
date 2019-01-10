@@ -13,7 +13,8 @@
   },
   "dependencies": {
     "jquery-mask-plugin": "*",
-    "easy-autocomplete": "*"
+    "easy-autocomplete": "*",
+    "jquery-validation": "1.19.0"
   },
   "devDependencies": {
     "purify-css": "^1.2.5",

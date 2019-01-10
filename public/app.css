@@ -12,7 +12,7 @@
       -ms-flex-align: center;
           align-items: center;
   padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-bottom: .75rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   border-bottom-width: 1px;
@@ -40,8 +40,8 @@
 
 /*Default form fields*/
 
-form input,
-form select {
+.form-group input,
+.form-group select {
   width: 100%;
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -54,8 +54,8 @@ form select {
           box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
 }
 
-form input:focus,
-form select:focus {
+.form-group input:focus,
+.form-group select:focus {
   outline: 0;
   border-color: #3490dc;
   background-color: #fff;
@@ -65,7 +65,7 @@ form select:focus {
 
 /*Input fields*/
 
-form input {
+.form-group input {
   padding-top: .5rem;
   padding-bottom: .5rem;
   padding-left: 1rem;
@@ -74,7 +74,7 @@ form input {
 
 /*Select fields*/
 
-form select {
+.form-group select {
   display: block;
   padding-left: 1rem;
   padding-right: 1rem;
@@ -83,13 +83,13 @@ form select {
   padding-right: 2rem;
 }
 
-form .select-container {
+.form-group .select-container {
   display: inline-block;
   position: relative;
   width: 100%;
 }
 
-form .select-container .icon {
+.form-group .select-container .icon {
   pointer-events: none;
   position: absolute;
   top: 0;
@@ -104,6 +104,12 @@ form .select-container .icon {
   padding-left: .5rem;
   padding-right: .5rem;
   color: #606f7b;
+}
+
+.form-group p.validation-error {
+  color: #e3342f;
+  font-weight: 400;
+  margin-top: .5rem;
 }
 .table {
   width: 100%;

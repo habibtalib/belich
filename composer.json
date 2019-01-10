@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "spatie/laravel-blade-x": "^2.0.0"
+        "proengsoft/laravel-jsvalidation": ">2.2.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.4@dev"
@@ -20,6 +20,11 @@
         "psr-4": {
             "Daguilarm\\Belich\\": "src/"
         }
+    },
+    "scripts": {
+        "post-update-cmd": [
+            "php artisan vendor:publish --provider=\"Proengsoft\\JsValidation\\JsValidationServiceProvider\" --tag=public --force"
+        ]
     },
     "extra": {
         "laravel": {

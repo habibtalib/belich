@@ -12,6 +12,12 @@ class BelichServiceProvider extends ServiceProvider {
      */
     public function boot()
     {
+        /*
+        |--------------------------------------------------------------------------
+        | Bootstrap
+        |--------------------------------------------------------------------------
+        */
+
         /**
         * Include the package classmap autoloader
         */
@@ -27,14 +33,6 @@ class BelichServiceProvider extends ServiceProvider {
         }
 
         /**
-        * Publish the belich directory and the dashboard constructor
-        */
-        $this->publishes([
-            //Set the resources
-            __DIR__ . '/../routes/Routes.php' => base_path('app/Belich/Routes.php'),
-        ]);
-
-        /**
         * Generate the dashboard routes
         */
         if (file_exists(__DIR__ . '/../routes/ResolveRoutes.php')) {
@@ -42,40 +40,9 @@ class BelichServiceProvider extends ServiceProvider {
         }
 
         /**
-        * Generate the blade directives
-        */
-        if (file_exists(__DIR__ . '/../Providers/BladeProvider.php')) {
-            require __DIR__ . '/../Providers/BladeProvider.php';
-        }
-
-        /**
         * Load the views
         */
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'belich');
-
-        /**
-        * Publish the views
-        */
-        // $this->publishes([
-        //     __DIR__ . '/resources/views' => base_path('resources/views/vendor/belich'),
-        // ]);
-
-        /**
-        * Publish the assets
-        */
-        $this->publishes(
-            [
-                __DIR__ . '/../public/css/tailwind.min.css' => public_path('vendor/belich/css')
-            ],
-            'public'
-        );
-
-        /**
-        * Publish the config file
-        */
-        $this->publishes([
-            __DIR__ . '/../config/belich.php' => config_path('belich.php')
-        ]);
 
         /**
         * Middleware
@@ -90,6 +57,51 @@ class BelichServiceProvider extends ServiceProvider {
         //         \Daguilarm\Belich\App\Console\Commands\Hello::class,
         //     ]);
         // }
+
+        // /**
+        // * Generate the blade directives
+        // */
+        // if (file_exists(__DIR__ . '/../Providers/BladeProvider.php')) {
+        //     require __DIR__ . '/../Providers/BladeProvider.php';
+        // }
+
+        /*
+        |--------------------------------------------------------------------------
+        | Publish...
+        |--------------------------------------------------------------------------
+        */
+
+        /**
+        * Publish the config file
+        */
+        $this->publishes([
+            __DIR__ . '/../config/belich.php' => config_path('belich.php')
+        ]);
+
+        /**
+        * Publish the belich directory and the dashboard constructor
+        */
+        $this->publishes([
+            //Set the resources
+            __DIR__ . '/../routes/Routes.php' => base_path('app/Belich/Routes.php'),
+        ]);
+
+        /**
+        * Publish the views
+        */
+        $this->publishes([
+            __DIR__ . '/resources/views/partials' => base_path('resources/views/vendor/belich/partials'),
+        ]);
+
+        // /**
+        // * Publish the assets
+        // */
+        // $this->publishes(
+        //     [
+        //         __DIR__ . '/../public/css/tailwind.min.css' => public_path('vendor/belich/css')
+        //     ],
+        //     'public'
+        // );
     }
 
     /**
