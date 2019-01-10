@@ -39,7 +39,10 @@ return [
     */
     'middleware' => [
         'web',
-        'auth',
-        'https'
     ],
+    // 'middleware' => [
+    //     'web',
+    //     'auth',
+    //     'https',
+    // ],
 ];

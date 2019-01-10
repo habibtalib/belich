@@ -3,6 +3,29 @@
 .wrap-container {
   width: 100%;
 }
+.btn-container {
+  width: 100%;
+  text-align: right;
+  padding: 1.5rem;
+}
+
+.btn {
+  font-weight: 700;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: .25rem;
+}
+
+.btn-primary {
+  background-color: #3490dc;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #2779bd;
+}
 .form-group {
   width: 100%;
   display: -webkit-box;
@@ -12,7 +35,7 @@
       -ms-flex-align: center;
           align-items: center;
   padding-top: 2rem;
-  padding-bottom: .75rem;
+  padding-bottom: 1.5rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   border-bottom-width: 1px;

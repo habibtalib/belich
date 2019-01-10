@@ -11,7 +11,7 @@
                 type="text"
                 value="{{ $field->value }}"
             >
-            <p id="error-{{ getFieldName($field) }}" class="validation-error">&nbsp;</p>
+            <p id="error-{{ getFieldName($field) }}" class="validation-error"></p>
         @endslot
     @endcomponent
 @endif

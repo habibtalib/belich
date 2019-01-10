@@ -15,10 +15,17 @@ class Validation {
 
     public function make()
     {
+        //Default values
+        $stub = \File::get(config_path('belich/stubs/validate-form.stub'));
         $fields = $this->field->fieldListByAttribute();
-        $stub = file_get_contents(__DIR__ . '/javascript.stub');
         $settings = $this->field->settings();
 
-        dd($settings);
+        //Generate fields for JS
+        $values = collect($fields)->map(function($field) {
+            return sprintf("%s: $('#%s').val()", $field, $field);
+        })->implode(',');
+
+        //Generate the JS
+        return str_replace([':resource', ':action', ':values'], [$settings['resource'], $settings['action'], $values], $stub);
     }
 }

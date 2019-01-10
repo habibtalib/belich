@@ -54,7 +54,7 @@ class BelichServiceProvider extends ServiceProvider {
         */
         app()->config["filesystems.disks.belich"] = [
             'driver' => 'local',
-            'root' => base_path('path'),
+            'root' => public_path('path'),
         ];
 
         /**
@@ -83,7 +83,8 @@ class BelichServiceProvider extends ServiceProvider {
         * Publish the config file
         */
         $this->publishes([
-            __DIR__ . '/../config/belich.php' => config_path('belich.php')
+            __DIR__ . '/../config/belich.php' => config_path('belich.php'),
+            __DIR__ . '/../src/Stubs/validate-form.stub' => config_path('belich/stubs/validate-form.stub'),
         ]);
 
         /**
@@ -98,7 +99,7 @@ class BelichServiceProvider extends ServiceProvider {
         * Publish the views
         */
         $this->publishes([
-            __DIR__ . '/resources/views/partials' => base_path('resources/views/vendor/belich/partials'),
+            __DIR__ . '/../resources/views/partials' => base_path('resources/views/vendor/belich/partials'),
         ]);
 
         // /**

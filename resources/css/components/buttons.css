@@ -1,0 +1,15 @@
+.btn-container {
+    @apply w-full text-right p-6
+}
+
+.btn {
+    @apply font-bold py-2 px-4 rounded
+}
+
+    .btn-primary {
+        @apply bg-blue text-white
+    }
+
+    .btn-primary:hover {
+        @apply bg-blue-dark
+    }
