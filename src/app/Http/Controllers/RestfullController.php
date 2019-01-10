@@ -51,6 +51,9 @@ class RestfullController extends Controller
             'email' => 'required|email',
             'locale' => 'required'
         ]);
+        $validator->setAttributeNames([
+            'name' => 'nombre'
+        ]);
 
         if ($validator->fails()) {
             return response()->json(['errors' => $validator->errors()]);
