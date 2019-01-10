@@ -50,6 +50,14 @@ class BelichServiceProvider extends ServiceProvider {
         $this->app['router']->middleware('https', \Daguilarm\Belich\App\Http\Middleware\HttpsMiddleware::class);
 
         /**
+        * Configure a disk for the package
+        */
+        app()->config["filesystems.disks.belich"] = [
+            'driver' => 'local',
+            'root' => base_path('path'),
+        ];
+
+        /**
          * Console comands
          */
         // if ($this->app->runningInConsole()) {

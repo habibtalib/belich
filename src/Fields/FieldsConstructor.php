@@ -120,6 +120,21 @@ class FieldsConstructor {
     }
 
     /**
+     * Get the fields list by attribute
+     *
+     * @return array
+     */
+    public function fieldListByAttribute()
+    {
+        $fields = $this->resourceClass->fields($this->request);
+
+        return collect($fields)->map(function($field) {
+            return $field->attribute;
+        })
+        ->all();
+    }
+
+    /**
      * Set the model object
      *
      * @return Illuminate\Database\Eloquent\Collection

@@ -4,6 +4,7 @@ namespace Daguilarm\Belich\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Daguilarm\Belich\Fields\FieldsConstructor as Fields;
+use Daguilarm\Belich\Validations\Validation;
 use Illuminate\Http\Request;
 
 class RestfullController extends Controller
@@ -30,8 +31,10 @@ class RestfullController extends Controller
      * @param Daguilarm\Belich\Fields\FieldsConstructor $fields
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, Fields $fields)
+    public function create(Request $request, Fields $fields, Validation $validation)
     {
+        dd($validation->make());
+
         //Load the view with the data
         return view('belich::dashboard.create')
             ->withRequest($fields->handle())

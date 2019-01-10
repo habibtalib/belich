@@ -3,12 +3,9 @@
 namespace Daguilarm\Belich\Fields;
 
 use Illuminate\Contracts\Validation\Rule;
-use Illuminate\Support\Traits\Macroable;
 use Illuminate\Support\Str;
 
 class Field {
-
-    use Macroable;
 
     /**
      * Set the controller action
