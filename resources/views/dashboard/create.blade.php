@@ -8,7 +8,7 @@
         @endforeach
 
         <div class="btn-container">
-            <button id="button-form-create" type="submit" class="btn btn-primary">Button</button>
+            <button id="button-form-create" type="submit" class="btn btn-primary">@trans('buttons.crud.create')</button>
         </div>
     </form>
 @endsection
