@@ -9,6 +9,13 @@ trait Visibility {
      *
      * @var array
      */
+    private $alowedActions = ['index', 'create', 'edit', 'show'];
+
+    /**
+     * Field visibility base on the action
+     *
+     * @var array
+     */
     public $showOn = [
         'index' => true,
         'create' => true,
@@ -72,7 +79,7 @@ trait Visibility {
     public function exceptOnForms()
     {
         //Reset the values
-        $this->hideAll();
+        $this->hideAllActions();
 
         $this->showOn['index'] = true;
         $this->showOn['show'] = true;
@@ -88,7 +95,7 @@ trait Visibility {
     public function onlyOnForms()
     {
         //Reset the values
-        $this->hideAll();
+        $this->hideAllActions();
 
         $this->showOn['create'] = true;
         $this->showOn['edit'] = true;
@@ -104,7 +111,7 @@ trait Visibility {
     public function onlyOnIndex()
     {
         //Reset the values
-        $this->hideAll();
+        $this->hideAllActions();
 
         $this->showOn['index'] = true;
 
@@ -119,7 +126,7 @@ trait Visibility {
     public function onlyOnDetail()
     {
         //Reset the values
-        $this->hideAll();
+        $this->hideAllActions();
 
         $this->showOn['show'] = true;
 
@@ -134,10 +141,12 @@ trait Visibility {
     public function showOn(...$attributes)
     {
         //Reset the values
-        $this->hideAll();
+        $this->hideAllActions();
 
         foreach($attributes as $attribute) {
-            $this->showOn[$attribute] = true;
+            if(in_array($attribute, $this->alowedActions)) {
+                $this->showOn[$attribute] = true;
+            }
         }
 
         return $this;
@@ -158,11 +167,23 @@ trait Visibility {
     }
 
     /**
-     * Hide field for all...
+     * Show field on all actions
      *
      * @var void
      */
-    private function hideAll()
+    private function ShowAllActions()
+    {
+        foreach($this->showOn as $attribute => $value) {
+            $this->showOn[$attribute] = true;
+        }
+    }
+
+    /**
+     * Hide field for all actions
+     *
+     * @var void
+     */
+    private function hideAllActions()
     {
         foreach($this->showOn as $attribute => $value) {
             $this->showOn[$attribute] = false;

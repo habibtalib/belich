@@ -69,7 +69,7 @@ class RenderFields {
         $this->request = request();
 
         //Set model
-        $this->model = SELF::setModel();
+        $this->model = $this->setModel();
     }
 
     /**
@@ -81,12 +81,18 @@ class RenderFields {
         //Get all the fields from the Class
         $this->fields = $this->resourceClass->fields($this->request);
 
+        //Show or hide fields base on action
+        $this->fields = collect($this->fields)->map(function($field) {
+            return $field->showOn[$this->action] ? $field : null;
+        })->filter();
+
+
         //Index case: Return only the name and the attribute for each field.
         if($this->action === 'index') {
-            $this->fields = collect($this->fields)->mapWithKeys(function($field, $key) {
-                return [$field->name => $field->attribute];
-            })
-            ->all();
+            $this->fields = collect($this->fields)
+                ->mapWithKeys(function($field, $key) {
+                    return [$field->name => $field->attribute];
+                })->all();
 
             return collect([
                 'attributes' => array_values($this->fields),
@@ -98,7 +104,7 @@ class RenderFields {
         //Edit and Show case
         if($this->routeId > 0) {
             //Fill the field value with the model
-            return SELF::fillValue();
+            return $this->fillValue();
         }
 
         return $this->fields;
@@ -162,8 +168,8 @@ class RenderFields {
             $attribute = $field->attribute;
 
             //Relationship case
-            if(SELF::countRelationship($attribute) === 2) {
-                $field->value = SELF::fillValueFromRelationship($attribute);
+            if($this->countRelationship($attribute) === 2) {
+                $field->value = $this->fillValueFromRelationship($attribute);
 
             //Regular case
             } else {
@@ -182,8 +188,8 @@ class RenderFields {
     private function fillValueFromRelationship($attribute)
     {
         //Set default values
-        $relationship = SELF::getRelationshipMethod($attribute);
-        $relationshipAttribute = SELF::getRelationshipAttribute($attribute);
+        $relationship = $this->getRelationshipMethod($attribute);
+        $relationshipAttribute = $this->getRelationshipAttribute($attribute);
 
         //Verify if the current resource has a relationship defined...
         $relationshipFromModel = $this->resourceClass->getRelationships();
@@ -223,7 +229,7 @@ class RenderFields {
      */
     private function countRelationship($attribute)
     {
-        return count(SELF::getRelationship($attribute));
+        return count($this->getRelationship($attribute));
     }
 
     /**
@@ -233,7 +239,7 @@ class RenderFields {
      */
     private function getRelationshipMethod($attribute)
     {
-        return SELF::getRelationship($attribute)[0];
+        return $this->getRelationship($attribute)[0];
     }
 
     /**
@@ -243,6 +249,6 @@ class RenderFields {
      */
     private function getRelationshipAttribute($attribute)
     {
-        return SELF::getRelationship($attribute)[1];
+        return $this->getRelationship($attribute)[1];
     }
 }
