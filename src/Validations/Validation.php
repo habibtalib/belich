@@ -3,6 +3,7 @@
 namespace Daguilarm\Belich\Validations;
 
 use Daguilarm\Belich\Fields\FieldsConstructor as Fields;
+use Illuminate\Support\Facades\File;
 use MatthiasMullie\Minify;
 
 class Validation {
@@ -29,17 +30,31 @@ class Validation {
     private $settings;
 
     /**
+     * Stub replace values
+     *
+     * @var array
+     */
+    private static $stubReplace = [
+        ':resource',
+        ':action',
+        ':values',
+        ':validationRules',
+        ':validationAttributes',
+        ':validationRuoute'
+    ];
+
+    /**
      * Initialize the constructor
      *
      * @return void
      */
     public function __construct()
     {
-        $newFields = (new Fields());
+        $newFields = new Fields();
 
         $this->fields = $newFields->handle();
-        $this->settings = $newFields->settings();
-        $this->action = $this->settings['action'];
+        $this->settings = collect($newFields->settings());
+        $this->action = $this->settings->get('action');
     }
 
     /**
@@ -71,7 +86,8 @@ class Validation {
     }
 
     /**
-     * Set the values from the fields
+     * Set the values from the fields.
+     * This is only to store all the data in one place...
      *
      * @return object
      */
@@ -109,7 +125,8 @@ class Validation {
     }
 
     /**
-     * Set javascript form values
+     * Set javascript form values.
+     * Just completing the javascript code with the vales from the form fields
      *
      * @param array $values
      * @return string
@@ -125,6 +142,7 @@ class Validation {
 
     /**
      * Set form validation rules
+     * Generate an array with the validation rules for each field
      *
      * @param array $values
      * @return json
@@ -133,6 +151,7 @@ class Validation {
     {
         return collect($values)
             ->map(function($value) {
+                //Get the current rule
                 return collect($value)->last();
             })
             //Remove the empty rules
@@ -143,6 +162,7 @@ class Validation {
 
     /**
      * Set form validation attributes
+     * This is helpful for project with localization
      *
      * @param array $values
      * @return json
@@ -164,17 +184,22 @@ class Validation {
     private function javascript($values, $rules, $attributes) : string
     {
         //Get the javascript stub
-        $stub = \File::get(config_path('belich/stubs/validate-form.stub'));
+        $stub = File::get(config_path('belich/stubs/validate-form.stub'));
 
         //Set the route for validation
-        $route = '../../../../../' . getRouteBasePath() . '/ajax/form/validation';
+        $route = route(getRouteBasePath() .'.ajax.form.validation');
+
+        //Stub values
+        $stubValues = [
+            $this->settings->get('resource'),
+            $this->settings->get('action'),
+            $values,
+            $rules,
+            $attributes, $route
+        ];
 
         //Get the javascript code
-        $javascript = str_replace(
-            [':resource', ':action', ':values', ':validationRules', ':validationAttributes', ':validationRuoute'],
-            [$this->settings['resource'], $this->settings['action'], $values, $rules, $attributes, $route],
-            $stub
-        );
+        $javascript = str_replace(static::$stubReplace, $stubValues, $stub);
 
         //Minify the javascript code
         $minifier = new Minify\Js($javascript);

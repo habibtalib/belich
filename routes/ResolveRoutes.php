@@ -20,8 +20,9 @@ Route::group([
 
         //Generate routes from resources
         //The middleware can be setter from the config file
-        return getAllTheResourcesFromFolder()->map(function($route) use ($middleware) {
-            return Route::resource(route_path($route), namespace_path('App\Http\Controllers\RestfullController'))
-                    ->middleware($middleware);
-        });
+        return getAllTheResourcesFromFolder()
+            ->map(function($route) use ($middleware) {
+                return Route::resource(route_path($route), namespace_path('App\Http\Controllers\RestfullController'))
+                        ->middleware($middleware);
+            });
 });
