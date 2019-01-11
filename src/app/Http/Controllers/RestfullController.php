@@ -3,7 +3,7 @@
 namespace Daguilarm\Belich\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Daguilarm\Belich\Fields\FieldsConstructor as Fields;
+use Daguilarm\Belich\Fields\RenderFields;
 use Daguilarm\Belich\Validations\Validation;
 use Illuminate\Http\Request;
 
@@ -13,10 +13,10 @@ class RestfullController extends Controller
      * List the resources.
      *
      * @param Illuminate\Http\Request $request
-     * @param Daguilarm\Belich\Fields\FieldsConstructor $fields
+     * @param Daguilarm\Belich\Fields\RenderFields $fields
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, Fields $fields)
+    public function index(Request $request, RenderFields $fields)
     {
         //Load the view with the data
         return view('belich::dashboard.index')
@@ -27,10 +27,10 @@ class RestfullController extends Controller
     /**
      * Create a new resource.
      *
-     * @param Daguilarm\Belich\Fields\FieldsConstructor $fields
+     * @param Daguilarm\Belich\Fields\RenderFields $fields
      * @return \Illuminate\Http\Response
      */
-    public function create(Fields $fields, Validation $validation)
+    public function create(RenderFields $fields, Validation $validation)
     {
         //Load the view with the data
         return view('belich::dashboard.create')
@@ -53,11 +53,11 @@ class RestfullController extends Controller
     /**
      * Show the a resource.
      *
-     * @param Daguilarm\Belich\Fields\FieldsConstructor $fields
+     * @param Daguilarm\Belich\Fields\RenderFields $fields
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Fields $fields, $id)
+    public function show(RenderFields $fields, $id)
     {
         //Load the view with the data
         return view('belich::dashboard.show')
@@ -68,11 +68,11 @@ class RestfullController extends Controller
     /**
      * Edit a resource.
      *
-     * @param Daguilarm\Belich\Fields\FieldsConstructor $fields
+     * @param Daguilarm\Belich\Fields\RenderFields $fields
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Fields $fields, Validation $validation, $id)
+    public function edit(RenderFields $fields, Validation $validation, $id)
     {
         //Load the view with the data
         return view('belich::dashboard.edit')

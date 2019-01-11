@@ -2,7 +2,7 @@
 
 namespace Daguilarm\Belich\Validations;
 
-use Daguilarm\Belich\Fields\FieldsConstructor as Fields;
+use Daguilarm\Belich\Fields\RenderFields;
 use Illuminate\Support\Facades\File;
 use MatthiasMullie\Minify;
 
@@ -50,10 +50,10 @@ class Validation {
      */
     public function __construct()
     {
-        $newFields = new Fields();
+        $renderFields = new RenderFields();
 
-        $this->fields = $newFields->handle();
-        $this->settings = collect($newFields->settings());
+        $this->fields = $renderFields->handle();
+        $this->settings = collect($renderFields->settings());
         $this->action = $this->settings->get('action');
     }
 

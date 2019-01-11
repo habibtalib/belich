@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Fields;
 
 use Illuminate\Http\Request;
 
-class FieldsConstructor {
+class RenderFields {
 
     /**
      * Set the controller action

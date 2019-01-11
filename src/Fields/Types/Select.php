@@ -16,17 +16,16 @@ class Select extends Field {
     /**
      * Field options
      *
-     * @var string
+     * @var array
      */
-    public $options = [];
+    public $options;
 
-    // /**
-    //  * Display value as label
-    //  *
-    //  * @var string
-    //  */
-    // public $displayUsingLabels = false;
-
+    /**
+     * Add option values to the select
+     *
+     * @param array $options
+     * @var void
+     */
     public function options(array $options = [])
     {
         //Check the text for conditional cases...
@@ -36,9 +35,4 @@ class Select extends Field {
 
         return $this;
     }
-
-    // public function displayUsingLabels()
-    // {
-    //     $this->displayUsingLabels = true;
-    // }
 }

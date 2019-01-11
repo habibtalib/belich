@@ -2,10 +2,14 @@
 
 namespace Daguilarm\Belich\Fields;
 
-use Illuminate\Contracts\Validation\Rule;
+use Daguilarm\Belich\Fields\Traits\Methods;
+use Daguilarm\Belich\Fields\Traits\Rules;
+use Daguilarm\Belich\Fields\Traits\Visibility;
 use Illuminate\Support\Str;
 
 class Field {
+
+    use Methods, Rules, Visibility;
 
     /**
      * Set the controller action
@@ -15,13 +19,6 @@ class Field {
     public $action;
 
     /**
-     * The displayable name of the field.
-     *
-     * @var string
-     */
-    public $name;
-
-    /**
      * The attribute / column name of the field.
      *
      * @var string
@@ -29,32 +26,11 @@ class Field {
     public $attribute;
 
     /**
-     * The field's resolved value.
+     * The displayable name of the field.
      *
-     * @var mixed
+     * @var string
      */
-    public $value;
-
-    /**
-     * The validation rules for creation and updates.
-     *
-     * @var array
-     */
-    public $rules;
-
-    /**
-     * The validation rules for creation.
-     *
-     * @var array
-     */
-    public $creationRules;
-
-    /**
-     * The validation rules for updates.
-     *
-     * @var array
-     */
-    public $updateRules;
+    public $name;
 
     /**
      * Indicates if the field should be sortable.
@@ -64,14 +40,7 @@ class Field {
     public $sortable = false;
 
     /**
-     * Help text
-     *
-     * @var string
-     */
-    public $help;
-
-    /**
-     * Create a new field.
+     * Create a new field
      *
      * @param  string  $name
      * @param  string|null  $attribute
@@ -93,92 +62,5 @@ class Field {
     public static function make(...$attributes) {
         //Set the field values
         return new static(...$attributes);
-    }
-
-    /**
-     * Set the field attributes
-     *
-     * @param  string|null  $attributes
-     * @return object
-     */
-    public function defaultValue($value = null) {
-        //Check the value for conditional cases...
-        if(!is_null($value)) {
-            $this->value = $value;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Set a help text for the field
-     *
-     * @param  string  $text
-     * @return void
-     */
-    public function help($text = null)
-    {
-        //Check the text for conditional cases...
-        if(!is_null($text)) {
-            $this->help = $text;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Hydrate the given attribute on the model based on the incoming request.
-     *
-     * @param  \Laravel\Nova\Http\Requests\NovaRequest  $request
-     * @param  object  $model
-     * @return mixed
-     */
-    public function fill(Request $request, $model)
-    {
-        return;
-    }
-
-    /**
-     * Set a general rules for validation
-     *
-     * @param  array  $rules
-     * @return void
-     */
-    public function rules(...$rules)
-    {
-        //Check the text for conditional cases...
-        $this->rules = $rules;
-        $this->creationRules = null;
-        $this->updateRules = null;
-
-        return $this;
-    }
-
-    /**
-     * Set a creation rules for validation
-     *
-     * @param  array  $rules
-     * @return void
-     */
-    public function creationRules(...$rules)
-    {
-        //Check the text for conditional cases...
-        $this->creationRules = $rules;
-
-        return $this;
-    }
-
-    /**
-     * Set a update rules for validation
-     *
-     * @param  array  $rules
-     * @return void
-     */
-    public function updateRules(...$rules)
-    {
-        //Check the text for conditional cases...
-        $this->updateRules = $rules;
-
-        return $this;
     }
 }

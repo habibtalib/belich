@@ -5,13 +5,13 @@
         @slot('label', $field->name)
         @slot('field')
             <input
-                id="{{ getFieldName($field) }}"
-                name="{{ getFieldName($field) }}"
-                dusk="{{ getFieldName($field) }}"
+                id="{{ setFieldName($field) }}"
+                name="{{ setFieldName($field) }}"
+                dusk="{{ setFieldName($field) }}"
                 type="text"
                 value="{{ $field->value }}"
             >
-            <p id="error-{{ getFieldName($field) }}" class="validation-error"></p>
+            <p id="error-{{ setFieldName($field) }}" class="validation-error"></p>
         @endslot
     @endcomponent
 @endif

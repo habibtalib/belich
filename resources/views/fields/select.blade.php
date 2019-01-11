@@ -6,9 +6,9 @@
         @slot('field')
             <div class="select-container">
                 <select
-                    id="{{ getFieldName($field) }}"
-                    name="{{ getFieldName($field) }}"
-                    dusk="{{ getFieldName($field) }}"
+                    id="{{ setFieldName($field) }}"
+                    name="{{ setFieldName($field) }}"
+                    dusk="{{ setFieldName($field) }}"
                 >
                     @foreach($field->options as $value => $text)
                         <option value="{{ $value }}" {{ $field->value === $value ? 'selected="selected"' : '' }}>{{ $text }}</option>
@@ -20,7 +20,7 @@
                     </svg>
                 </div>
             </div>
-            <p id="error-{{ getFieldName($field) }}" class="validation-error"></p>
+            <p id="error-{{ setFieldName($field) }}" class="validation-error"></p>
         @endslot
     @endcomponent
 @endif
