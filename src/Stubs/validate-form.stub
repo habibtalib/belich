@@ -3,12 +3,10 @@
         $( '#form-:resource-:action #button-form-:action' ).on( 'click', function( event ) {
             event.preventDefault();
             $.ajax({
-                url: $( '#form-:resource-:action' ).attr( 'action' ),
+                url: ':validationRuoute',
                 method: 'post',
                 data: {
-                    :values,
-                    validationRules::validationRules,
-                    validationAttributes::validationAttributes
+                    :values, validationRules::validationRules, validationAttributes::validationAttributes
                 },
                 success: function(data) {
                     $( ".validation-error" ).html( '' );

@@ -27,11 +27,10 @@ class RestfullController extends Controller
     /**
      * Create a new resource.
      *
-     * @param Illuminate\Http\Request $request
      * @param Daguilarm\Belich\Fields\FieldsConstructor $fields
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, Fields $fields, Validation $validation)
+    public function create(Fields $fields, Validation $validation)
     {
         //Load the view with the data
         return view('belich::dashboard.create')
@@ -48,25 +47,17 @@ class RestfullController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = \Validator::make($request->except(['validationRules', 'validationAttributes']), $request->validationRules);
-        $validator->setAttributeNames($request->validationAttributes);
-
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()]);
-        } else {
-            return response()->json(['success']);
-        }
+        return 'stored!';
     }
 
     /**
      * Show the a resource.
      *
-     * @param Illuminate\Http\Request $request
      * @param Daguilarm\Belich\Fields\FieldsConstructor $fields
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, Fields $fields, $id)
+    public function show(Fields $fields, $id)
     {
         //Load the view with the data
         return view('belich::dashboard.show')
@@ -77,33 +68,30 @@ class RestfullController extends Controller
     /**
      * Edit a resource.
      *
-     * @param Illuminate\Http\Request $request
      * @param Daguilarm\Belich\Fields\FieldsConstructor $fields
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, Fields $fields, $id)
+    public function edit(Fields $fields, Validation $validation, $id)
     {
         //Load the view with the data
         return view('belich::dashboard.edit')
             ->withRequest($fields->handle())
-            ->withSettings($fields->settings());
+            ->withSettings($fields->settings())
+            ->withJavascript($validation->make());
     }
 
     /**
      * Update a resource.
      *
      * @param Illuminate\Http\Request $request
-     * @param Daguilarm\Belich\Fields\FieldsConstructor $fields
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Fields $fields, $id)
+    public function update(Request $request, $id)
     {
-        //Load the view with the data
-        return view('belich::dashboard.update')
-            ->withRequest($fields->handle())
-            ->withSettings($fields->settings());
+        //Update the storage...
+        return;
     }
 
     /**
