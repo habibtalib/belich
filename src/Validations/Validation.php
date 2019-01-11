@@ -97,12 +97,12 @@ class Validation {
      */
     private function setRules($field)
     {
-        if($this->action === 'create' && !empty($field->creationRules)) {
-            return $field->creationRules;
+        if($this->action === 'create') {
+            return $field->creationRules ?? $field->rules ?? '';
         }
 
-        if($this->action === 'update' && !empty($field->updateRules)) {
-            return $field->updateRules;
+        if($this->action === 'edit') {
+            return $field->updateRules ?? $field->rules ?? '';
         }
 
         return $field->rules ?? '';
