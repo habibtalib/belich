@@ -32,6 +32,8 @@ class RestfullController extends Controller
      */
     public function create(RenderFields $fields, Validation $validation)
     {
+        dd($fields->handle());
+
         //Load the view with the data
         return view('belich::dashboard.create')
             ->withRequest($fields->handle())
