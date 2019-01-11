@@ -1,7 +1,7 @@
 @extends(Request::ajax() ? 'belich::layout-ajax' : 'belich::layout')
 
 @section('content')
-    <form name="form-edit" id="form-edit" method="POST" action="{{ route(getRouteForm($settings, 'update'), getRouteId()) }}">
+    <form name="form-{{ $settings['resource'] }}-edit" id="form-{{ $settings['resource'] }}-edit" method="POST" action="{{ route(getRouteForm($settings, 'store')) }}">
         @csrf
         @method('PATCH')
         @foreach($request as $field)
@@ -9,11 +9,11 @@
         @endforeach
 
         <div class="btn-container">
-            <button id="button-form-update" type="submit" class="btn btn-primary">@trans('buttons.crud.update')</button>
+            <button id="button-form-edit" type="submit" class="btn btn-primary">@trans('buttons.crud.update')</button>
         </div>
     </form>
 @endsection
 
 @section('javascript')
-
+    {!! $javascript->get('javascript') !!}
 @endsection
