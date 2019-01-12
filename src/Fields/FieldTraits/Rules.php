@@ -1,6 +1,6 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Traits;
+namespace Daguilarm\Belich\Fields\FieldTraits;
 
 trait Rules {
 

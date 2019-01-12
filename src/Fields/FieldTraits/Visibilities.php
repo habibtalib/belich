@@ -1,8 +1,8 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Traits;
+namespace Daguilarm\Belich\Fields\FieldTraits;
 
-trait Visibility {
+trait Visibilities {
 
     /**
      * Field visibility base on the action

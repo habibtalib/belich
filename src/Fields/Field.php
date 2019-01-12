@@ -2,14 +2,14 @@
 
 namespace Daguilarm\Belich\Fields;
 
-use Daguilarm\Belich\Fields\Traits\Methods;
-use Daguilarm\Belich\Fields\Traits\Rules;
-use Daguilarm\Belich\Fields\Traits\Visibility;
+use Daguilarm\Belich\Fields\FieldTraits\Methods;
+use Daguilarm\Belich\Fields\FieldTraits\Rules;
+use Daguilarm\Belich\Fields\FieldTraits\Visibilities;
 use Illuminate\Support\Str;
 
 class Field {
 
-    use Methods, Rules, Visibility;
+    use Methods, Rules, Visibilities;
 
     /**
      * Set the controller action
