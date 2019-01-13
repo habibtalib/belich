@@ -13,6 +13,10 @@
     </form>
 @endsection
 
+{{-- Javascript user custom configuration --}}
+@include('belich::dashboard.components.form-javascript-settings')
+
+{{-- Javascript from packages --}}
 @section('javascript')
     {!! $javascript->get('javascript') !!}
 @endsection

@@ -24,6 +24,11 @@ window.jMaskGlobals = require( 'jquery-mask-plugin' );
 window.autoComplete = require( 'easy-autocomplete' );
 
 /**
+ * Dashboard jquery components
+ */
+require( './components/jquery-components/bootstrap' );
+
+/**
  * Now we will load the JavaScript Vue dependency.
  * It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
