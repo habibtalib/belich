@@ -26,6 +26,7 @@ abstract class ResolveFieldsAbstract {
      */
     public function getFields() : Collection
     {
+        //Application resource
         $fields = $this->resourceClass->fields($this->request);
 
         return self::handleFieldsVisibility($fields);
@@ -41,7 +42,9 @@ abstract class ResolveFieldsAbstract {
     {
         return collect($fields)
             ->map(function($field) {
-                return $field->showOn[$this->action] ? $field : null;
+                return $field->showOn[$this->action]
+                    ? $field
+                    : null;
             })
             ->filter();
     }
@@ -90,8 +93,8 @@ abstract class ResolveFieldsAbstract {
 
         return collect([
             'attributes' => $fields->values(),
-            'data' => $this->model,
-            'labels' => $fields->keys(),
+            'labels'     => $fields->keys(),
+            'data'       => $this->model,
         ]);
     }
 
@@ -109,11 +112,13 @@ abstract class ResolveFieldsAbstract {
    protected function setModel()
    {
        if($this->action === 'index') {
-           return $this->resourceClass->indexQuery($this->request);
+            //Application resource
+            return $this->resourceClass->indexQuery($this->request);
        }
 
        if($this->action ==='show' || $this->action === 'edit' && $this->routeId > 0) {
-           return $this->resourceClass->findOrFail($this->routeId);
+            //Application resource
+            return $this->resourceClass->findOrFail($this->routeId);
        }
    }
 
@@ -124,7 +129,7 @@ abstract class ResolveFieldsAbstract {
     */
     private function getRelationship($attribute) : array
     {
-       return explode('.', $attribute) ?? [];
+        return explode('.', $attribute) ?? [];
     }
 
     /**
@@ -134,7 +139,7 @@ abstract class ResolveFieldsAbstract {
     */
     private function countRelationship($attribute) : int
     {
-       return count(self::getRelationship($attribute)) ?? 1;
+        return count(self::getRelationship($attribute)) ?? 1;
     }
 
     /**
@@ -144,7 +149,7 @@ abstract class ResolveFieldsAbstract {
     */
     private function getRelationshipMethod($attribute)
     {
-       return self::getRelationship($attribute)[0];
+        return self::getRelationship($attribute)[0];
     }
 
     /**
@@ -154,7 +159,7 @@ abstract class ResolveFieldsAbstract {
     */
     private function getRelationshipAttribute($attribute)
     {
-       return self::getRelationship($attribute)[1];
+        return self::getRelationship($attribute)[1];
     }
 
     /*
@@ -197,8 +202,13 @@ abstract class ResolveFieldsAbstract {
     private function fillValueFromRelationship($attribute)
     {
         //Set default values
-        $relationship = self::getRelationshipMethod($attribute);
+        $relationship          = self::getRelationshipMethod($attribute);
         $relationshipAttribute = self::getRelationshipAttribute($attribute);
+
+        //Not enough attributes
+        if(empty($relationship) || empty($relationshipAttribute)) {
+            return null;
+        }
 
         //Verify if the current resource has a relationship defined...
         //Application resource
