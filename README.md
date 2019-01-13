@@ -3,6 +3,10 @@ Laravel admin dashboard totaly inspired by Nova, but with all the features and v
 
 The project is based on tailwindcss and jquery, eliminating Vuejs from the equation, since it impeded, from my point of view, the versatility of the project.
 
+## Status 
+
+Proyecto en desarrollo. Aún en las primeras fases...
+
 ## Instalation
 
 `composer require daguilarm/belich`
