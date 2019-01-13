@@ -1,10 +1,10 @@
 # belich
 Laravel vuejs dashboard
 
-#Instalation
+# Instalation
 
 `composer require daguilarm/belich`
 
-#Configuration 
+# Configuration 
 
 `php artisan vendor:publish --provider="Daguilarm\Belich\BelichServiceProvider" --force`
