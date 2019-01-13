@@ -1,65 +1,8 @@
-/* Navbar container */
-nav.navbar {
-    @apply relative bg-teal select-none w-full;
+/* Navbar */
+.navbar-item {
+    @apply flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-white no-underline flex items-center;
 }
 
-    /* Navbar brand */
-    nav.navbar > .navbar-brand {
-        @apply flex flex-no-shrink items-stretch h-12;
-    }
-        nav.navbar > .navbar-brand > a {
-            @apply flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-white no-underline flex items-center;
-        }
-        nav.navbar > .navbar-brand > a:hover {
-            @apply bg-teal-dark;
-        }
-
-        /* Navbar collapse button */
-        nav.navbar > .navbar-brand > button.navbar-button {
-            @apply block cursor-pointer ml-auto relative w-12 h-12 p-4;
-        }
-            nav.navbar > .navbar-brand > button.navbar-button > .collapse-button {
-                @apply fill-current text-white;
-            }
-            nav.navbar > .navbar-brand > button.navbar-button > .collapse-button:hover {
-                @apply text-yellow;
-            }
-
-    nav.navbar > .navbar-items {
-        @apply hidden;
-    }
-
-        /* Navbar items list */
-        nav.navbar > .navbar-items > .navbar-items-list {
-            @apply ml-auto;
-        }
-
-    /* Navbar items list item */
-    nav.navbar > .navbar-items > .navbar-items-list > .item {
-        @apply flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-white no-underline flex items-center;
-    }
-        nav.navbar > .navbar-items > .navbar-items-list > .item:hover {
-            @apply bg-teal-dark;
-        }
-
-/* Responsive version for mobile */
-@screen lg {
-    /* Navbar container */
-    nav.navbar {
-        @apply flex items-stretch;
-    }
-
-        /* Navbar collapse button and items */
-        nav.navbar > .navbar-brand > button.navbar-button {
-            @apply hidden;
-        }
-
-        /* Navbar items */
-        nav.navbar > .navbar-items {
-            @apply block flex items-stretch flex-no-shrink flex-grow;
-        }
-            /* Navbar items list */
-            nav.navbar > .navbar-items > .navbar-items-list {
-                @apply flex items-stretch justify-end;
-            }
+.navbar-item:hover {
+    @apply bg-teal-dark;
 }

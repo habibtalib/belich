@@ -3,161 +3,14 @@
 .wrap-container {
   width: 100%;
 }
-/* Navbar container */
 
-nav.navbar {
-  position: relative;
-  background-color: #4dc0b5;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  width: 100%;
-}
-
-/* Navbar brand */
-
-nav.navbar > .navbar-brand {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
-  height: 3rem;
-}
-
-nav.navbar > .navbar-brand > a {
-  -webkit-box-flex: 0;
-      -ms-flex-positive: 0;
-          flex-grow: 0;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
-  position: relative;
-  padding-top: .5rem;
-  padding-bottom: .5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  line-height: 1.5;
-  color: #fff;
+a,
+a:visited,
+a:hover,
+a:active,
+a:focus {
   text-decoration: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-nav.navbar > .navbar-brand > a:hover {
-  background-color: #38a89d;
-}
-
-/* Navbar collapse button */
-
-nav.navbar > .navbar-brand > button.navbar-button {
-  display: block;
-  cursor: pointer;
-  margin-left: auto;
-  position: relative;
-  width: 3rem;
-  height: 3rem;
-  padding: 1rem;
-}
-
-nav.navbar > .navbar-brand > button.navbar-button > .collapse-button {
-  fill: currentColor;
-  color: #fff;
-}
-
-nav.navbar > .navbar-brand > button.navbar-button > .collapse-button:hover {
-  color: #ffed4a;
-}
-
-nav.navbar > .navbar-items {
-  display: none;
-}
-
-/* Navbar items list */
-
-nav.navbar > .navbar-items > .navbar-items-list {
-  margin-left: auto;
-}
-
-/* Navbar items list item */
-
-nav.navbar > .navbar-items > .navbar-items-list > .item {
-  -webkit-box-flex: 0;
-      -ms-flex-positive: 0;
-          flex-grow: 0;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
-  position: relative;
-  padding-top: .5rem;
-  padding-bottom: .5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  line-height: 1.5;
-  color: #fff;
-  text-decoration: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-}
-
-nav.navbar > .navbar-items > .navbar-items-list > .item:hover {
-  background-color: #38a89d;
-}
-
-/* Responsive version for mobile */
-
-@media (min-width: 992px) {
-  /* Navbar container */
-
-  nav.navbar {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: stretch;
-        -ms-flex-align: stretch;
-            align-items: stretch;
-  }/* Navbar collapse button and items */
-
-  nav.navbar > .navbar-brand > button.navbar-button {
-    display: none;
-  }/* Navbar items */
-
-  nav.navbar > .navbar-items {
-    display: block;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: stretch;
-        -ms-flex-align: stretch;
-            align-items: stretch;
-    -ms-flex-negative: 0;
-        flex-shrink: 0;
-    -webkit-box-flex: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1;
-  }/* Navbar items list */
-
-  nav.navbar > .navbar-items > .navbar-items-list {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: stretch;
-        -ms-flex-align: stretch;
-            align-items: stretch;
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
-  }
+  outline: 0;
 }
 .btn-container {
   width: 100%;
@@ -289,6 +142,33 @@ nav.navbar > .navbar-items > .navbar-items-list > .item:hover {
   color: #e3342f;
   font-weight: 400;
   margin-top: .5rem;
+}
+/* Navbar */
+
+.navbar-item {
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  position: relative;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  line-height: 1.5;
+  color: #fff;
+  text-decoration: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.navbar-item:hover {
+  background-color: #38a89d;
 }
 .table {
   width: 100%;

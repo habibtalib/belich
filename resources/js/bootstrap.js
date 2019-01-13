@@ -18,17 +18,6 @@ try {
  });
 
 /**
- * Dashboard jquery libraries
- */
-window.jMaskGlobals = require( 'jquery-mask-plugin' );
-window.autoComplete = require( 'easy-autocomplete' );
-
-/**
- * Dashboard jquery components
- */
-require( './components/jquery-components/bootstrap' );
-
-/**
  * Now we will load the JavaScript Vue dependency.
  * It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
@@ -43,7 +32,7 @@ window.Vue = require('vue');
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
- // Vue.component('Toogle', require('./components/toogle.vue').default);
+Vue.component('navbar-component', require('./components/navbar-component.vue'));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

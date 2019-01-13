@@ -65,2247 +65,45 @@
 /************************************************************************/
 /******/ ({
 
-/***/ "./node_modules/easy-autocomplete/dist/jquery.easy-autocomplete.js":
-/***/ (function(module, exports) {
-
-/*
- * easy-autocomplete
- * jQuery plugin for autocompletion
- * 
- * @author Łukasz Pawełczak (http://github.com/pawelczak)
- * @version 1.3.5
- * Copyright  License: 
- */
-
-/*
- * EasyAutocomplete - Configuration 
- */
-var EasyAutocomplete = (function(scope){
-
-	scope.Configuration = function Configuration(options) {
-		var defaults = {
-			data: "list-required",
-			url: "list-required",
-			dataType: "json",
-
-			listLocation: function(data) {
-				return data;
-			},
-
-			xmlElementName: "",
-
-			getValue: function(element) {
-				return element;
-			},
-
-			autocompleteOff: true,
-
-			placeholder: false,
-
-			ajaxCallback: function() {},
-
-			matchResponseProperty: false,
-
-			list: {
-				sort: {
-					enabled: false,
-					method: function(a, b) {
-						a = defaults.getValue(a);
-						b = defaults.getValue(b);
-						if (a < b) {
-							return -1;
-						}
-						if (a > b) {
-							return 1;
-						}
-						return 0;
-					}
-				},
-
-				maxNumberOfElements: 6,
-
-				hideOnEmptyPhrase: true,
-
-				match: {
-					enabled: false,
-					caseSensitive: false,
-					method: function(element, phrase) {
-
-						if (element.search(phrase) > -1) {
-							return true;
-						} else {
-							return false;
-						}
-					}
-				},
-
-				showAnimation: {
-					type: "normal", //normal|slide|fade
-					time: 400,
-					callback: function() {}
-				},
-
-				hideAnimation: {
-					type: "normal",
-					time: 400,
-					callback: function() {}
-				},
-
-				/* Events */
-				onClickEvent: function() {},
-				onSelectItemEvent: function() {},
-				onLoadEvent: function() {},
-				onChooseEvent: function() {},
-				onKeyEnterEvent: function() {},
-				onMouseOverEvent: function() {},
-				onMouseOutEvent: function() {},	
-				onShowListEvent: function() {},
-				onHideListEvent: function() {}
-			},
-
-			highlightPhrase: true,
-
-			theme: "",
-
-			cssClasses: "",
-
-			minCharNumber: 0,
-
-			requestDelay: 0,
-
-			adjustWidth: true,
-
-			ajaxSettings: {},
-
-			preparePostData: function(data, inputPhrase) {return data;},
-
-			loggerEnabled: true,
-
-			template: "",
-
-			categoriesAssigned: false,
-
-			categories: [{
-				maxNumberOfElements: 4
-			}]
-
-		};
-		
-		var externalObjects = ["ajaxSettings", "template"];
-
-		this.get = function(propertyName) {
-			return defaults[propertyName];
-		};
-
-		this.equals = function(name, value) {
-			if (isAssigned(name)) {
-				if (defaults[name] === value) {
-					return true;
-				}
-			} 
-			
-			return false;
-		};
-
-		this.checkDataUrlProperties = function() {
-			if (defaults.url === "list-required" && defaults.data === "list-required") {
-				return false;
-			}
-			return true;
-		};
-		this.checkRequiredProperties = function() {
-			for (var propertyName in defaults) {
-				if (defaults[propertyName] === "required") {
-					logger.error("Option " + propertyName + " must be defined");
-					return false;
-				}
-			}
-			return true;
-		};
-
-		this.printPropertiesThatDoesntExist = function(consol, optionsToCheck) {
-			printPropertiesThatDoesntExist(consol, optionsToCheck);
-		};
-
-
-		prepareDefaults();
-
-		mergeOptions();
-
-		if (defaults.loggerEnabled === true) {
-			printPropertiesThatDoesntExist(console, options);	
-		}
-
-		addAjaxSettings();
-
-		processAfterMerge();
-		function prepareDefaults() {
-
-			if (options.dataType === "xml") {
-				
-				if (!options.getValue) {
-
-					options.getValue = function(element) {
-						return $(element).text();
-					};
-				}
-
-				
-				if (!options.list) {
-
-					options.list = {};
-				} 
-
-				if (!options.list.sort) {
-					options.list.sort = {};
-				}
-
-
-				options.list.sort.method = function(a, b) {
-					a = options.getValue(a);
-					b = options.getValue(b);
-					if (a < b) {
-						return -1;
-					}
-					if (a > b) {
-						return 1;
-					}
-					return 0;
-				};
-
-				if (!options.list.match) {
-					options.list.match = {};
-				}
-
-				options.list.match.method = function(element, phrase) {
-
-					if (element.search(phrase) > -1) {
-						return true;
-					} else {
-						return false;
-					}
-				};
-
-			}
-			if (options.categories !== undefined && options.categories instanceof Array) {
-
-				var categories = [];
-
-				for (var i = 0, length = options.categories.length; i < length; i += 1) { 
-
-					var category = options.categories[i];
-
-					for (var property in defaults.categories[0]) {
-
-						if (category[property] === undefined) {
-							category[property] = defaults.categories[0][property];
-						}
-					}
-
-					categories.push(category);
-				}
-
-				options.categories = categories;
-			}
-		}
-
-		function mergeOptions() {
-
-			defaults = mergeObjects(defaults, options);
-
-			function mergeObjects(source, target) {
-				var mergedObject = source || {};
-
-				for (var propertyName in source) {
-					if (target[propertyName] !== undefined && target[propertyName] !== null) {
-
-						if (typeof target[propertyName] !== "object" || 
-								target[propertyName] instanceof Array) {
-							mergedObject[propertyName] = target[propertyName];
-						} else {
-							mergeObjects(source[propertyName], target[propertyName]);
-						}
-					}
-				}
-			
-				/* If data is an object */
-				if (target.data !== undefined && target.data !== null && typeof target.data === "object") {
-					mergedObject.data = target.data;
-				}
-
-				return mergedObject;
-			}
-		}	
-
-
-		function processAfterMerge() {
-			
-			if (defaults.url !== "list-required" && typeof defaults.url !== "function") {
-				var defaultUrl = defaults.url;
-				defaults.url = function() {
-					return defaultUrl;
-				};
-			}
-
-			if (defaults.ajaxSettings.url !== undefined && typeof defaults.ajaxSettings.url !== "function") {
-				var defaultUrl = defaults.ajaxSettings.url;
-				defaults.ajaxSettings.url = function() {
-					return defaultUrl;
-				};
-			}
-
-			if (typeof defaults.listLocation === "string") {
-				var defaultlistLocation = defaults.listLocation;
-
-				if (defaults.dataType.toUpperCase() === "XML") {
-					defaults.listLocation = function(data) {
-						return $(data).find(defaultlistLocation);
-					};
-				} else {
-					defaults.listLocation = function(data) {
-						return data[defaultlistLocation];
-					};	
-				}
-			}
-
-			if (typeof defaults.getValue === "string") {
-				var defaultsGetValue = defaults.getValue;
-				defaults.getValue = function(element) {
-					return element[defaultsGetValue];
-				};
-			}
-
-			if (options.categories !== undefined) {
-				defaults.categoriesAssigned = true;
-			}
-
-		}
-
-		function addAjaxSettings() {
-
-			if (options.ajaxSettings !== undefined && typeof options.ajaxSettings === "object") {
-				defaults.ajaxSettings = options.ajaxSettings;
-			} else {
-				defaults.ajaxSettings = {};	
-			}
-			
-		}
-
-		function isAssigned(name) {
-			if (defaults[name] !== undefined && defaults[name] !== null) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-		function printPropertiesThatDoesntExist(consol, optionsToCheck) {
-			
-			checkPropertiesIfExist(defaults, optionsToCheck);
-
-			function checkPropertiesIfExist(source, target) {
-				for(var property in target) {
-					if (source[property] === undefined) {
-						consol.log("Property '" + property + "' does not exist in EasyAutocomplete options API.");		
-					}
-
-					if (typeof source[property] === "object" && $.inArray(property, externalObjects) === -1) {
-						checkPropertiesIfExist(source[property], target[property]);
-					}
-				}	
-			}
-		}
-	};
-
-	return scope;
-
-})(EasyAutocomplete || {});
-
-
-/*
- * EasyAutocomplete - Logger 
- */
-var EasyAutocomplete = (function(scope){
-	
-	scope.Logger = function Logger() {
-
-		this.error = function(message) {
-			console.log("ERROR: " + message);
-		};
-
-		this.warning = function(message) {
-			console.log("WARNING: " + message);
-		};
-	};
-
-	return scope;
-
-})(EasyAutocomplete || {});
-	
-
-/*
- * EasyAutocomplete - Constans
- */
-var EasyAutocomplete = (function(scope){	
-	
-	scope.Constans = function Constans() {
-		var constants = {
-			CONTAINER_CLASS: "easy-autocomplete-container",
-			CONTAINER_ID: "eac-container-",
-
-			WRAPPER_CSS_CLASS: "easy-autocomplete"
-		};
-
-		this.getValue = function(propertyName) {
-			return constants[propertyName];
-		};
-
-	};
-
-	return scope;
-
-})(EasyAutocomplete || {});
-
-/*
- * EasyAutocomplete - ListBuilderService 
- *
- * @author Łukasz Pawełczak 
- *
- */
-var EasyAutocomplete = (function(scope) {
-
-	scope.ListBuilderService = function ListBuilderService(configuration, proccessResponseData) {
-
-
-		this.init = function(data) {
-			var listBuilder = [],
-				builder = {};
-
-			builder.data = configuration.get("listLocation")(data);
-			builder.getValue = configuration.get("getValue");
-			builder.maxListSize = configuration.get("list").maxNumberOfElements;
-
-				
-			listBuilder.push(builder);
-
-			return listBuilder;
-		};
-
-		this.updateCategories = function(listBuilder, data) {
-			
-			if (configuration.get("categoriesAssigned")) {
-
-				listBuilder = [];
-
-				for(var i = 0; i < configuration.get("categories").length; i += 1) {
-
-					var builder = convertToListBuilder(configuration.get("categories")[i], data);
-
-					listBuilder.push(builder);
-				}
-
-			} 
-
-			return listBuilder;
-		};
-
-		this.convertXml = function(listBuilder) {
-			if(configuration.get("dataType").toUpperCase() === "XML") {
-
-				for(var i = 0; i < listBuilder.length; i += 1) {
-					listBuilder[i].data = convertXmlToList(listBuilder[i]);
-				}
-			}
-
-			return listBuilder;
-		};
-
-		this.processData = function(listBuilder, inputPhrase) {
-
-			for(var i = 0, length = listBuilder.length; i < length; i+=1) {
-				listBuilder[i].data = proccessResponseData(configuration, listBuilder[i], inputPhrase);
-			}
-
-			return listBuilder;
-		};
-
-		this.checkIfDataExists = function(listBuilders) {
-
-			for(var i = 0, length = listBuilders.length; i < length; i += 1) {
-
-				if (listBuilders[i].data !== undefined && listBuilders[i].data instanceof Array) {
-					if (listBuilders[i].data.length > 0) {
-						return true;
-					}
-				} 
-			}
-
-			return false;
-		};
-
-
-		function convertToListBuilder(category, data) {
-
-			var builder = {};
-
-			if(configuration.get("dataType").toUpperCase() === "XML") {
-
-				builder = convertXmlToListBuilder();
-			} else {
-
-				builder = convertDataToListBuilder();
-			}
-			
-
-			if (category.header !== undefined) {
-				builder.header = category.header;
-			}
-
-			if (category.maxNumberOfElements !== undefined) {
-				builder.maxNumberOfElements = category.maxNumberOfElements;
-			}
-
-			if (configuration.get("list").maxNumberOfElements !== undefined) {
-
-				builder.maxListSize = configuration.get("list").maxNumberOfElements;
-			}
-
-			if (category.getValue !== undefined) {
-
-				if (typeof category.getValue === "string") {
-					var defaultsGetValue = category.getValue;
-					builder.getValue = function(element) {
-						return element[defaultsGetValue];
-					};
-				} else if (typeof category.getValue === "function") {
-					builder.getValue = category.getValue;
-				}
-
-			} else {
-				builder.getValue = configuration.get("getValue");	
-			}
-			
-
-			return builder;
-
-
-			function convertXmlToListBuilder() {
-
-				var builder = {},
-					listLocation;
-
-				if (category.xmlElementName !== undefined) {
-					builder.xmlElementName = category.xmlElementName;
-				}
-
-				if (category.listLocation !== undefined) {
-
-					listLocation = category.listLocation;
-				} else if (configuration.get("listLocation") !== undefined) {
-
-					listLocation = configuration.get("listLocation");
-				}
-
-				if (listLocation !== undefined) {
-					if (typeof listLocation === "string") {
-						builder.data = $(data).find(listLocation);
-					} else if (typeof listLocation === "function") {
-
-						builder.data = listLocation(data);
-					}
-				} else {
-
-					builder.data = data;
-				}
-
-				return builder;
-			}
-
-
-			function convertDataToListBuilder() {
-
-				var builder = {};
-
-				if (category.listLocation !== undefined) {
-
-					if (typeof category.listLocation === "string") {
-						builder.data = data[category.listLocation];
-					} else if (typeof category.listLocation === "function") {
-						builder.data = category.listLocation(data);
-					}
-				} else {
-					builder.data = data;
-				}
-
-				return builder;
-			}
-		}
-
-		function convertXmlToList(builder) {
-			var simpleList = [];
-
-			if (builder.xmlElementName === undefined) {
-				builder.xmlElementName = configuration.get("xmlElementName");
-			}
-
-
-			$(builder.data).find(builder.xmlElementName).each(function() {
-				simpleList.push(this);
-			});
-
-			return simpleList;
-		}
-
-	};
-
-	return scope;
-
-})(EasyAutocomplete || {});
-
-
-/*
- * EasyAutocomplete - Data proccess module
- *
- * Process list to display:
- * - sort 
- * - decrease number to specific number
- * - show only matching list
- *
- */
-var EasyAutocomplete = (function(scope) {
-
-	scope.proccess = function proccessData(config, listBuilder, phrase) {
-
-		scope.proccess.match = match;
-
-		var list = listBuilder.data,
-			inputPhrase = phrase;//TODO REFACTOR
-
-		list = findMatch(list, inputPhrase);
-		list = reduceElementsInList(list);
-		list = sort(list);
-
-		return list;
-
-
-		function findMatch(list, phrase) {
-			var preparedList = [],
-				value = "";
-
-			if (config.get("list").match.enabled) {
-
-				for(var i = 0, length = list.length; i < length; i += 1) {
-
-					value = config.get("getValue")(list[i]);
-					
-					if (match(value, phrase)) {
-						preparedList.push(list[i]);	
-					}
-					
-				}
-
-			} else {
-				preparedList = list;
-			}
-
-			return preparedList;
-		}
-
-		function match(value, phrase) {
-
-			if (!config.get("list").match.caseSensitive) {
-
-				if (typeof value === "string") {
-					value = value.toLowerCase();	
-				}
-				
-				phrase = phrase.toLowerCase();
-			}
-			if (config.get("list").match.method(value, phrase)) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-
-		function reduceElementsInList(list) {
-			if (listBuilder.maxNumberOfElements !== undefined && list.length > listBuilder.maxNumberOfElements) {
-				list = list.slice(0, listBuilder.maxNumberOfElements);
-			}
-
-			return list;
-		}
-
-		function sort(list) {
-			if (config.get("list").sort.enabled) {
-				list.sort(config.get("list").sort.method);
-			}
-
-			return list;
-		}
-		
-	};
-
-
-	return scope;
-
-
-})(EasyAutocomplete || {});
-
-
-/*
- * EasyAutocomplete - Template 
- *
- * 
- *
- */
-var EasyAutocomplete = (function(scope){
-
-	scope.Template = function Template(options) {
-
-
-		var genericTemplates = {
-			basic: {
-				type: "basic",
-				method: function(element) { return element; },
-				cssClass: ""
-			},
-			description: {
-				type: "description",
-				fields: {
-					description: "description"
-				},
-				method: function(element) {	return element + " - description"; },
-				cssClass: "eac-description"
-			},
-			iconLeft: {
-				type: "iconLeft",
-				fields: {
-					icon: ""
-				},
-				method: function(element) {
-					return element;
-				},
-				cssClass: "eac-icon-left"
-			},
-			iconRight: {
-				type: "iconRight",
-				fields: {
-					iconSrc: ""
-				},
-				method: function(element) {
-					return element;
-				},
-				cssClass: "eac-icon-right"
-			},
-			links: {
-				type: "links",
-				fields: {
-					link: ""
-				},
-				method: function(element) {
-					return element;
-				},
-				cssClass: ""
-			},
-			custom: {
-				type: "custom",
-				method: function() {},
-				cssClass: ""
-			}
-		},
-
-
-
-		/*
-		 * Converts method with {{text}} to function
-		 */
-		convertTemplateToMethod = function(template) {
-
-
-			var _fields = template.fields,
-				buildMethod;
-
-			if (template.type === "description") {
-
-				buildMethod = genericTemplates.description.method; 
-
-				if (typeof _fields.description === "string") {
-					buildMethod = function(elementValue, element) {
-						return elementValue + " - <span>" + element[_fields.description] + "</span>";
-					};					
-				} else if (typeof _fields.description === "function") {
-					buildMethod = function(elementValue, element) {
-						return elementValue + " - <span>" + _fields.description(element) + "</span>";
-					};	
-				}
-
-				return buildMethod;
-			}
-
-			if (template.type === "iconRight") {
-
-				if (typeof _fields.iconSrc === "string") {
-					buildMethod = function(elementValue, element) {
-						return elementValue + "<img class='eac-icon' src='" + element[_fields.iconSrc] + "' />" ;
-					};					
-				} else if (typeof _fields.iconSrc === "function") {
-					buildMethod = function(elementValue, element) {
-						return elementValue + "<img class='eac-icon' src='" + _fields.iconSrc(element) + "' />" ;
-					};
-				}
-
-				return buildMethod;
-			}
-
-
-			if (template.type === "iconLeft") {
-
-				if (typeof _fields.iconSrc === "string") {
-					buildMethod = function(elementValue, element) {
-						return "<img class='eac-icon' src='" + element[_fields.iconSrc] + "' />" + elementValue;
-					};					
-				} else if (typeof _fields.iconSrc === "function") {
-					buildMethod = function(elementValue, element) {
-						return "<img class='eac-icon' src='" + _fields.iconSrc(element) + "' />" + elementValue;
-					};
-				}
-
-				return buildMethod;
-			}
-
-			if(template.type === "links") {
-
-				if (typeof _fields.link === "string") {
-					buildMethod = function(elementValue, element) {
-						return "<a href='" + element[_fields.link] + "' >" + elementValue + "</a>";
-					};					
-				} else if (typeof _fields.link === "function") {
-					buildMethod = function(elementValue, element) {
-						return "<a href='" + _fields.link(element) + "' >" + elementValue + "</a>";
-					};
-				}
-
-				return buildMethod;
-			}
-
-
-			if (template.type === "custom") {
-
-				return template.method;
-			}
-
-			return genericTemplates.basic.method;
-
-		},
-
-
-		prepareBuildMethod = function(options) {
-			if (!options || !options.type) {
-
-				return genericTemplates.basic.method;
-			}
-
-			if (options.type && genericTemplates[options.type]) {
-
-				return convertTemplateToMethod(options);
-			} else {
-
-				return genericTemplates.basic.method;
-			}
-
-		},
-
-		templateClass = function(options) {
-			var emptyStringFunction = function() {return "";};
-
-			if (!options || !options.type) {
-
-				return emptyStringFunction;
-			}
-
-			if (options.type && genericTemplates[options.type]) {
-				return (function () { 
-					var _cssClass = genericTemplates[options.type].cssClass;
-					return function() { return _cssClass;};
-				})();
-			} else {
-				return emptyStringFunction;
-			}
-		};
-
-
-		this.getTemplateClass = templateClass(options);
-
-		this.build = prepareBuildMethod(options);
-
-
-	};
-
-	return scope;
-
-})(EasyAutocomplete || {});
-
-
-/*
- * EasyAutocomplete - jQuery plugin for autocompletion
- *
- */
-var EasyAutocomplete = (function(scope) {
-
-	
-	scope.main = function Core($input, options) {
-				
-		var module = {
-				name: "EasyAutocomplete",
-				shortcut: "eac"
-			};
-
-		var consts = new scope.Constans(),
-			config = new scope.Configuration(options),
-			logger = new scope.Logger(),
-			template = new scope.Template(options.template),
-			listBuilderService = new scope.ListBuilderService(config, scope.proccess),
-			checkParam = config.equals,
-
-			$field = $input, 
-			$container = "",
-			elementsList = [],
-			selectedElement = -1,
-			requestDelayTimeoutId;
-
-		scope.consts = consts;
-
-		this.getConstants = function() {
-			return consts;
-		};
-
-		this.getConfiguration = function() {
-			return config;
-		};
-
-		this.getContainer = function() {
-			return $container;
-		};
-
-		this.getSelectedItemIndex = function() {
-			return selectedElement;
-		};
-
-		this.getItems = function () {
-			return elementsList;
-		};
-
-		this.getItemData = function(index) {
-
-			if (elementsList.length < index || elementsList[index] === undefined) {
-				return -1;
-			} else {
-				return elementsList[index];
-			}
-		};
-
-		this.getSelectedItemData = function() {
-			return this.getItemData(selectedElement);
-		};
-
-		this.build = function() {
-			prepareField();
-		};
-
-		this.init = function() {
-			init();
-		};
-		function init() {
-
-			if ($field.length === 0) {
-				logger.error("Input field doesn't exist.");
-				return;
-			}
-
-			if (!config.checkDataUrlProperties()) {
-				logger.error("One of options variables 'data' or 'url' must be defined.");
-				return;
-			}
-
-			if (!config.checkRequiredProperties()) {
-				logger.error("Will not work without mentioned properties.");
-				return;
-			}
-
-
-			prepareField();
-			bindEvents();	
-
-		}
-		function prepareField() {
-
-				
-			if ($field.parent().hasClass(consts.getValue("WRAPPER_CSS_CLASS"))) {
-				removeContainer();
-				removeWrapper();
-			} 
-			
-			createWrapper();
-			createContainer();	
-
-			$container = $("#" + getContainerId());
-			if (config.get("placeholder")) {
-				$field.attr("placeholder", config.get("placeholder"));
-			}
-
-
-			function createWrapper() {
-				var $wrapper = $("<div>"),
-					classes = consts.getValue("WRAPPER_CSS_CLASS");
-
-			
-				if (config.get("theme") && config.get("theme") !== "") {
-					classes += " eac-" + config.get("theme");
-				}
-
-				if (config.get("cssClasses") && config.get("cssClasses") !== "") {
-					classes += " " + config.get("cssClasses");
-				}
-
-				if (template.getTemplateClass() !== "") {
-					classes += " " + template.getTemplateClass();
-				}
-				
-
-				$wrapper
-					.addClass(classes);
-				$field.wrap($wrapper);
-
-
-				if (config.get("adjustWidth") === true) {
-					adjustWrapperWidth();	
-				}
-				
-
-			}
-
-			function adjustWrapperWidth() {
-				var fieldWidth = $field.outerWidth();
-
-				$field.parent().css("width", fieldWidth);				
-			}
-
-			function removeWrapper() {
-				$field.unwrap();
-			}
-
-			function createContainer() {
-				var $elements_container = $("<div>").addClass(consts.getValue("CONTAINER_CLASS"));
-
-				$elements_container
-						.attr("id", getContainerId())
-						.prepend($("<ul>"));
-
-
-				(function() {
-
-					$elements_container
-						/* List show animation */
-						.on("show.eac", function() {
-
-							switch(config.get("list").showAnimation.type) {
-
-								case "slide":
-									var animationTime = config.get("list").showAnimation.time,
-										callback = config.get("list").showAnimation.callback;
-
-									$elements_container.find("ul").slideDown(animationTime, callback);
-								break;
-
-								case "fade":
-									var animationTime = config.get("list").showAnimation.time,
-										callback = config.get("list").showAnimation.callback;
-
-									$elements_container.find("ul").fadeIn(animationTime), callback;
-								break;
-
-								default:
-									$elements_container.find("ul").show();
-								break;
-							}
-
-							config.get("list").onShowListEvent();
-							
-						})
-						/* List hide animation */
-						.on("hide.eac", function() {
-
-							switch(config.get("list").hideAnimation.type) {
-
-								case "slide":
-									var animationTime = config.get("list").hideAnimation.time,
-										callback = config.get("list").hideAnimation.callback;
-
-									$elements_container.find("ul").slideUp(animationTime, callback);
-								break;
-
-								case "fade":
-									var animationTime = config.get("list").hideAnimation.time,
-										callback = config.get("list").hideAnimation.callback;
-
-									$elements_container.find("ul").fadeOut(animationTime, callback);
-								break;
-
-								default:
-									$elements_container.find("ul").hide();
-								break;
-							}
-
-							config.get("list").onHideListEvent();
-
-						})
-						.on("selectElement.eac", function() {
-							$elements_container.find("ul li").removeClass("selected");
-							$elements_container.find("ul li").eq(selectedElement).addClass("selected");
-
-							config.get("list").onSelectItemEvent();
-						})
-						.on("loadElements.eac", function(event, listBuilders, phrase) {
-			
-
-							var $item = "",
-								$listContainer = $elements_container.find("ul");
-
-							$listContainer
-								.empty()
-								.detach();
-
-							elementsList = [];
-							var counter = 0;
-							for(var builderIndex = 0, listBuildersLength = listBuilders.length; builderIndex < listBuildersLength; builderIndex += 1) {
-
-								var listData = listBuilders[builderIndex].data;
-
-								if (listData.length === 0) {
-									continue;
-								}
-
-								if (listBuilders[builderIndex].header !== undefined && listBuilders[builderIndex].header.length > 0) {
-									$listContainer.append("<div class='eac-category' >" + listBuilders[builderIndex].header + "</div>");
-								}
-
-								for(var i = 0, listDataLength = listData.length; i < listDataLength && counter < listBuilders[builderIndex].maxListSize; i += 1) {
-									$item = $("<li><div class='eac-item'></div></li>");
-									
-
-									(function() {
-										var j = i,
-											itemCounter = counter,
-											elementsValue = listBuilders[builderIndex].getValue(listData[j]);
-
-										$item.find(" > div")
-											.on("click", function() {
-
-												$field.val(elementsValue).trigger("change");
-
-												selectedElement = itemCounter;
-												selectElement(itemCounter);
-
-												config.get("list").onClickEvent();
-												config.get("list").onChooseEvent();
-											})
-											.mouseover(function() {
-
-												selectedElement = itemCounter;
-												selectElement(itemCounter);	
-
-												config.get("list").onMouseOverEvent();
-											})
-											.mouseout(function() {
-												config.get("list").onMouseOutEvent();
-											})
-											.html(template.build(highlight(elementsValue, phrase), listData[j]));
-									})();
-
-									$listContainer.append($item);
-									elementsList.push(listData[i]);
-									counter += 1;
-								}
-							}
-
-							$elements_container.append($listContainer);
-
-							config.get("list").onLoadEvent();
-						});
-
-				})();
-
-				$field.after($elements_container);
-			}
-
-			function removeContainer() {
-				$field.next("." + consts.getValue("CONTAINER_CLASS")).remove();
-			}
-
-			function highlight(string, phrase) {
-
-				if(config.get("highlightPhrase") && phrase !== "") {
-					return highlightPhrase(string, phrase);	
-				} else {
-					return string;
-				}
-					
-			}
-
-			function escapeRegExp(str) {
-				return str.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&");
- 			}
-
-			function highlightPhrase(string, phrase) {
-				var escapedPhrase = escapeRegExp(phrase);
-				return (string + "").replace(new RegExp("(" + escapedPhrase + ")", "gi") , "<b>$1</b>");
-			}
-
-
-
-		}
-		function getContainerId() {
-			
-			var elementId = $field.attr("id");
-
-			elementId = consts.getValue("CONTAINER_ID") + elementId;
-
-			return elementId;
-		}
-		function bindEvents() {
-
-			bindAllEvents();
-			
-
-			function bindAllEvents() {
-				if (checkParam("autocompleteOff", true)) {
-					removeAutocomplete();
-				}
-
-				bindFocusOut();
-				bindKeyup();
-				bindKeydown();
-				bindKeypress();
-				bindFocus();
-				bindBlur();
-			}
-
-			function bindFocusOut() {
-				$field.focusout(function () {
-
-					var fieldValue = $field.val(),
-						phrase;
-
-					if (!config.get("list").match.caseSensitive) {
-						fieldValue = fieldValue.toLowerCase();
-					}
-
-					for (var i = 0, length = elementsList.length; i < length; i += 1) {
-
-						phrase = config.get("getValue")(elementsList[i]);
-						if (!config.get("list").match.caseSensitive) {
-							phrase = phrase.toLowerCase();
-						}
-
-						if (phrase === fieldValue) {
-							selectedElement = i;
-							selectElement(selectedElement);
-							return;
-						}
-					}
-				});
-			}
-
-			function bindKeyup() {
-				$field
-				.off("keyup")
-				.keyup(function(event) {
-
-					switch(event.keyCode) {
-
-						case 27:
-
-							hideContainer();
-							loseFieldFocus();
-						break;
-
-						case 38:
-
-							event.preventDefault();
-
-							if(elementsList.length > 0 && selectedElement > 0) {
-
-								selectedElement -= 1;
-
-								$field.val(config.get("getValue")(elementsList[selectedElement]));
-
-								selectElement(selectedElement);
-
-							}						
-						break;
-
-						case 40:
-
-							event.preventDefault();
-
-							if(elementsList.length > 0 && selectedElement < elementsList.length - 1) {
-
-								selectedElement += 1;
-
-								$field.val(config.get("getValue")(elementsList[selectedElement]));
-
-								selectElement(selectedElement);
-								
-							}
-
-						break;
-
-						default:
-
-							if (event.keyCode > 40 || event.keyCode === 8) {
-
-								var inputPhrase = $field.val();
-
-								if (!(config.get("list").hideOnEmptyPhrase === true && event.keyCode === 8 && inputPhrase === "")) {
-
-									if (config.get("requestDelay") > 0) {
-										if (requestDelayTimeoutId !== undefined) {
-											clearTimeout(requestDelayTimeoutId);
-										}
-
-										requestDelayTimeoutId = setTimeout(function () { loadData(inputPhrase);}, config.get("requestDelay"));
-									} else {
-										loadData(inputPhrase);
-									}
-
-								} else {
-									hideContainer();
-								}
-								
-							}
-
-
-						break;
-					}
-				
-
-					function loadData(inputPhrase) {
-
-
-						if (inputPhrase.length < config.get("minCharNumber")) {
-							return;
-						}
-
-
-						if (config.get("data") !== "list-required") {
-
-							var data = config.get("data");
-
-							var listBuilders = listBuilderService.init(data);
-
-							listBuilders = listBuilderService.updateCategories(listBuilders, data);
-							
-							listBuilders = listBuilderService.processData(listBuilders, inputPhrase);
-
-							loadElements(listBuilders, inputPhrase);
-
-							if ($field.parent().find("li").length > 0) {
-								showContainer();	
-							} else {
-								hideContainer();
-							}
-
-						}
-
-						var settings = createAjaxSettings();
-
-						if (settings.url === undefined || settings.url === "") {
-							settings.url = config.get("url");
-						}
-
-						if (settings.dataType === undefined || settings.dataType === "") {
-							settings.dataType = config.get("dataType");
-						}
-
-
-						if (settings.url !== undefined && settings.url !== "list-required") {
-
-							settings.url = settings.url(inputPhrase);
-
-							settings.data = config.get("preparePostData")(settings.data, inputPhrase);
-
-							$.ajax(settings) 
-								.done(function(data) {
-
-									var listBuilders = listBuilderService.init(data);
-
-									listBuilders = listBuilderService.updateCategories(listBuilders, data);
-									
-									listBuilders = listBuilderService.convertXml(listBuilders);
-									if (checkInputPhraseMatchResponse(inputPhrase, data)) {
-
-										listBuilders = listBuilderService.processData(listBuilders, inputPhrase);
-
-										loadElements(listBuilders, inputPhrase);	
-																				
-									}
-
-									if (listBuilderService.checkIfDataExists(listBuilders) && $field.parent().find("li").length > 0) {
-										showContainer();	
-									} else {
-										hideContainer();
-									}
-
-									config.get("ajaxCallback")();
-
-								})
-								.fail(function() {
-									logger.warning("Fail to load response data");
-								})
-								.always(function() {
-
-								});
-						}
-
-						
-
-						function createAjaxSettings() {
-
-							var settings = {},
-								ajaxSettings = config.get("ajaxSettings") || {};
-
-							for (var set in ajaxSettings) {
-								settings[set] = ajaxSettings[set];
-							}
-
-							return settings;
-						}
-
-						function checkInputPhraseMatchResponse(inputPhrase, data) {
-
-							if (config.get("matchResponseProperty") !== false) {
-								if (typeof config.get("matchResponseProperty") === "string") {
-									return (data[config.get("matchResponseProperty")] === inputPhrase);
-								}
-
-								if (typeof config.get("matchResponseProperty") === "function") {
-									return (config.get("matchResponseProperty")(data) === inputPhrase);
-								}
-
-								return true;
-							} else {
-								return true;
-							}
-
-						}
-
-					}
-
-
-				});
-			}
-
-			function bindKeydown() {
-				$field
-					.on("keydown", function(evt) {
-	        		    evt = evt || window.event;
-	        		    var keyCode = evt.keyCode;
-	        		    if (keyCode === 38) {
-	        		        suppressKeypress = true; 
-	        		        return false;
-	        		    }
-		        	})
-					.keydown(function(event) {
-
-						if (event.keyCode === 13 && selectedElement > -1) {
-
-							$field.val(config.get("getValue")(elementsList[selectedElement]));
-
-							config.get("list").onKeyEnterEvent();
-							config.get("list").onChooseEvent();
-
-							selectedElement = -1;
-							hideContainer();
-
-							event.preventDefault();
-						}
-					});
-			}
-
-			function bindKeypress() {
-				$field
-				.off("keypress");
-			}
-
-			function bindFocus() {
-				$field.focus(function() {
-
-					if ($field.val() !== "" && elementsList.length > 0) {
-						
-						selectedElement = -1;
-						showContainer();	
-					}
-									
-				});
-			}
-
-			function bindBlur() {
-				$field.blur(function() {
-					setTimeout(function() { 
-						
-						selectedElement = -1;
-						hideContainer();
-					}, 250);
-				});
-			}
-
-			function removeAutocomplete() {
-				$field.attr("autocomplete","off");
-			}
-
-		}
-
-		function showContainer() {
-			$container.trigger("show.eac");
-		}
-
-		function hideContainer() {
-			$container.trigger("hide.eac");
-		}
-
-		function selectElement(index) {
-			
-			$container.trigger("selectElement.eac", index);
-		}
-
-		function loadElements(list, phrase) {
-			$container.trigger("loadElements.eac", [list, phrase]);
-		}
-
-		function loseFieldFocus() {
-			$field.trigger("blur");
-		}
-
-
-	};
-	scope.eacHandles = [];
-
-	scope.getHandle = function(id) {
-		return scope.eacHandles[id];
-	};
-
-	scope.inputHasId = function(input) {
-
-		if($(input).attr("id") !== undefined && $(input).attr("id").length > 0) {
-			return true;
-		} else {
-			return false;
-		}
-
-	};
-
-	scope.assignRandomId = function(input) {
-
-		var fieldId = "";
-
-		do {
-			fieldId = "eac-" + Math.floor(Math.random() * 10000);		
-		} while ($("#" + fieldId).length !== 0);
-		
-		elementId = scope.consts.getValue("CONTAINER_ID") + fieldId;
-
-		$(input).attr("id", fieldId);
- 
-	};
-
-	scope.setHandle = function(handle, id) {
-		scope.eacHandles[id] = handle;
-	};
-
-
-	return scope;
-
-})(EasyAutocomplete || {});
-
-(function($) {
-
-	$.fn.easyAutocomplete = function(options) {
-
-		return this.each(function() {
-			var $this = $(this),
-				eacHandle = new EasyAutocomplete.main($this, options);
-
-			if (!EasyAutocomplete.inputHasId($this)) {
-				EasyAutocomplete.assignRandomId($this);
-			}
-
-			eacHandle.init();
-
-			EasyAutocomplete.setHandle(eacHandle, $this.attr("id"));
-
-		});
-	};
-
-	$.fn.getSelectedItemIndex = function() {
-
-		var inputId = $(this).attr("id");
-
-		if (inputId !== undefined) {
-			return EasyAutocomplete.getHandle(inputId).getSelectedItemIndex();
-		}
-
-		return -1;
-	};
-
-	$.fn.getItems = function () {
-
-		var inputId = $(this).attr("id");
-
-		if (inputId !== undefined) {
-			return EasyAutocomplete.getHandle(inputId).getItems();
-		}
-
-		return -1;
-	};
-
-	$.fn.getItemData = function(index) {
-
-		var inputId = $(this).attr("id");
-
-		if (inputId !== undefined && index > -1) {
-			return EasyAutocomplete.getHandle(inputId).getItemData(index);
-		}
-
-		return -1;
-	};
-
-	$.fn.getSelectedItemData = function() {
-
-		var inputId = $(this).attr("id");
-
-		if (inputId !== undefined) {
-			return EasyAutocomplete.getHandle(inputId).getSelectedItemData();
-		}
-
-		return -1;
-	};
-
-})(jQuery);
-
-
-/***/ }),
-
-/***/ "./node_modules/jquery-mask-plugin/dist/jquery.mask.js":
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/**
- * jquery.mask.js
- * @version: v1.14.15
- * @author: Igor Escobar
- *
- * Created by Igor Escobar on 2012-03-10. Please report any bug at github.com/igorescobar/jQuery-Mask-Plugin
- *
- * Copyright (c) 2012 Igor Escobar http://igorescobar.com
- *
- * The MIT License (http://www.opensource.org/licenses/mit-license.php)
- *
- * Permission is hereby granted, free of charge, to any person
- * obtaining a copy of this software and associated documentation
- * files (the "Software"), to deal in the Software without
- * restriction, including without limitation the rights to use,
- * copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the
- * Software is furnished to do so, subject to the following
- * conditions:
- *
- * The above copyright notice and this permission notice shall be
- * included in all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
- * EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
- * OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
- * NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
- * HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
- * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- * FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
- * OTHER DEALINGS IN THE SOFTWARE.
- */
-
-/* jshint laxbreak: true */
-/* jshint maxcomplexity:17 */
-/* global define */
-
-// UMD (Universal Module Definition) patterns for JavaScript modules that work everywhere.
-// https://github.com/umdjs/umd/blob/master/templates/jqueryPlugin.js
-(function (factory, jQuery, Zepto) {
-
-    if (true) {
-        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__("./node_modules/jquery/dist/jquery.js")], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
-				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
-				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-    } else if (typeof exports === 'object') {
-        module.exports = factory(require('jquery'));
-    } else {
-        factory(jQuery || Zepto);
-    }
-
-}(function ($) {
-    'use strict';
-
-    var Mask = function (el, mask, options) {
-
-        var p = {
-            invalid: [],
-            getCaret: function () {
-                try {
-                    var sel,
-                        pos = 0,
-                        ctrl = el.get(0),
-                        dSel = document.selection,
-                        cSelStart = ctrl.selectionStart;
-
-                    // IE Support
-                    if (dSel && navigator.appVersion.indexOf('MSIE 10') === -1) {
-                        sel = dSel.createRange();
-                        sel.moveStart('character', -p.val().length);
-                        pos = sel.text.length;
-                    }
-                    // Firefox support
-                    else if (cSelStart || cSelStart === '0') {
-                        pos = cSelStart;
-                    }
-
-                    return pos;
-                } catch (e) {}
-            },
-            setCaret: function(pos) {
-                try {
-                    if (el.is(':focus')) {
-                        var range, ctrl = el.get(0);
-
-                        // Firefox, WebKit, etc..
-                        if (ctrl.setSelectionRange) {
-                            ctrl.setSelectionRange(pos, pos);
-                        } else { // IE
-                            range = ctrl.createTextRange();
-                            range.collapse(true);
-                            range.moveEnd('character', pos);
-                            range.moveStart('character', pos);
-                            range.select();
-                        }
-                    }
-                } catch (e) {}
-            },
-            events: function() {
-                el
-                .on('keydown.mask', function(e) {
-                    el.data('mask-keycode', e.keyCode || e.which);
-                    el.data('mask-previus-value', el.val());
-                    el.data('mask-previus-caret-pos', p.getCaret());
-                    p.maskDigitPosMapOld = p.maskDigitPosMap;
-                })
-                .on($.jMaskGlobals.useInput ? 'input.mask' : 'keyup.mask', p.behaviour)
-                .on('paste.mask drop.mask', function() {
-                    setTimeout(function() {
-                        el.keydown().keyup();
-                    }, 100);
-                })
-                .on('change.mask', function(){
-                    el.data('changed', true);
-                })
-                .on('blur.mask', function(){
-                    if (oldValue !== p.val() && !el.data('changed')) {
-                        el.trigger('change');
-                    }
-                    el.data('changed', false);
-                })
-                // it's very important that this callback remains in this position
-                // otherwhise oldValue it's going to work buggy
-                .on('blur.mask', function() {
-                    oldValue = p.val();
-                })
-                // select all text on focus
-                .on('focus.mask', function (e) {
-                    if (options.selectOnFocus === true) {
-                        $(e.target).select();
-                    }
-                })
-                // clear the value if it not complete the mask
-                .on('focusout.mask', function() {
-                    if (options.clearIfNotMatch && !regexMask.test(p.val())) {
-                       p.val('');
-                   }
-                });
-            },
-            getRegexMask: function() {
-                var maskChunks = [], translation, pattern, optional, recursive, oRecursive, r;
-
-                for (var i = 0; i < mask.length; i++) {
-                    translation = jMask.translation[mask.charAt(i)];
-
-                    if (translation) {
-
-                        pattern = translation.pattern.toString().replace(/.{1}$|^.{1}/g, '');
-                        optional = translation.optional;
-                        recursive = translation.recursive;
-
-                        if (recursive) {
-                            maskChunks.push(mask.charAt(i));
-                            oRecursive = {digit: mask.charAt(i), pattern: pattern};
-                        } else {
-                            maskChunks.push(!optional && !recursive ? pattern : (pattern + '?'));
-                        }
-
-                    } else {
-                        maskChunks.push(mask.charAt(i).replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'));
-                    }
-                }
-
-                r = maskChunks.join('');
-
-                if (oRecursive) {
-                    r = r.replace(new RegExp('(' + oRecursive.digit + '(.*' + oRecursive.digit + ')?)'), '($1)?')
-                         .replace(new RegExp(oRecursive.digit, 'g'), oRecursive.pattern);
-                }
-
-                return new RegExp(r);
-            },
-            destroyEvents: function() {
-                el.off(['input', 'keydown', 'keyup', 'paste', 'drop', 'blur', 'focusout', ''].join('.mask '));
-            },
-            val: function(v) {
-                var isInput = el.is('input'),
-                    method = isInput ? 'val' : 'text',
-                    r;
-
-                if (arguments.length > 0) {
-                    if (el[method]() !== v) {
-                        el[method](v);
-                    }
-                    r = el;
-                } else {
-                    r = el[method]();
-                }
-
-                return r;
-            },
-            calculateCaretPosition: function() {
-                var oldVal = el.data('mask-previus-value') || '',
-                    newVal = p.getMasked(),
-                    caretPosNew = p.getCaret();
-                if (oldVal !== newVal) {
-                    var caretPosOld = el.data('mask-previus-caret-pos') || 0,
-                        newValL = newVal.length,
-                        oldValL = oldVal.length,
-                        maskDigitsBeforeCaret = 0,
-                        maskDigitsAfterCaret = 0,
-                        maskDigitsBeforeCaretAll = 0,
-                        maskDigitsBeforeCaretAllOld = 0,
-                        i = 0;
-
-                    for (i = caretPosNew; i < newValL; i++) {
-                        if (!p.maskDigitPosMap[i]) {
-                            break;
-                        }
-                        maskDigitsAfterCaret++;
-                    }
-
-                    for (i = caretPosNew - 1; i >= 0; i--) {
-                        if (!p.maskDigitPosMap[i]) {
-                            break;
-                        }
-                        maskDigitsBeforeCaret++;
-                    }
-
-                    for (i = caretPosNew - 1; i >= 0; i--) {
-                        if (p.maskDigitPosMap[i]) {
-                            maskDigitsBeforeCaretAll++;
-                        }
-                    }
-
-                    for (i = caretPosOld - 1; i >= 0; i--) {
-                        if (p.maskDigitPosMapOld[i]) {
-                            maskDigitsBeforeCaretAllOld++;
-                        }
-                    }
-
-                    // if the cursor is at the end keep it there
-                    if (caretPosNew > oldValL) {
-                      caretPosNew = newValL * 10;
-                    } else if (caretPosOld >= caretPosNew && caretPosOld !== oldValL) {
-                        if (!p.maskDigitPosMapOld[caretPosNew])  {
-                          var caretPos = caretPosNew;
-                          caretPosNew -= maskDigitsBeforeCaretAllOld - maskDigitsBeforeCaretAll;
-                          caretPosNew -= maskDigitsBeforeCaret;
-                          if (p.maskDigitPosMap[caretPosNew])  {
-                            caretPosNew = caretPos;
-                          }
-                        }
-                    }
-                    else if (caretPosNew > caretPosOld) {
-                        caretPosNew += maskDigitsBeforeCaretAll - maskDigitsBeforeCaretAllOld;
-                        caretPosNew += maskDigitsAfterCaret;
-                    }
-                }
-                return caretPosNew;
-            },
-            behaviour: function(e) {
-                e = e || window.event;
-                p.invalid = [];
-
-                var keyCode = el.data('mask-keycode');
-
-                if ($.inArray(keyCode, jMask.byPassKeys) === -1) {
-                    var newVal = p.getMasked(),
-                        caretPos = p.getCaret();
-
-                    // this is a compensation to devices/browsers that don't compensate
-                    // caret positioning the right way
-                    setTimeout(function() {
-                      p.setCaret(p.calculateCaretPosition());
-                    }, $.jMaskGlobals.keyStrokeCompensation);
-
-                    p.val(newVal);
-                    p.setCaret(caretPos);
-                    return p.callbacks(e);
-                }
-            },
-            getMasked: function(skipMaskChars, val) {
-                var buf = [],
-                    value = val === undefined ? p.val() : val + '',
-                    m = 0, maskLen = mask.length,
-                    v = 0, valLen = value.length,
-                    offset = 1, addMethod = 'push',
-                    resetPos = -1,
-                    maskDigitCount = 0,
-                    maskDigitPosArr = [],
-                    lastMaskChar,
-                    check;
-
-                if (options.reverse) {
-                    addMethod = 'unshift';
-                    offset = -1;
-                    lastMaskChar = 0;
-                    m = maskLen - 1;
-                    v = valLen - 1;
-                    check = function () {
-                        return m > -1 && v > -1;
-                    };
-                } else {
-                    lastMaskChar = maskLen - 1;
-                    check = function () {
-                        return m < maskLen && v < valLen;
-                    };
-                }
-
-                var lastUntranslatedMaskChar;
-                while (check()) {
-                    var maskDigit = mask.charAt(m),
-                        valDigit = value.charAt(v),
-                        translation = jMask.translation[maskDigit];
-
-                    if (translation) {
-                        if (valDigit.match(translation.pattern)) {
-                            buf[addMethod](valDigit);
-                             if (translation.recursive) {
-                                if (resetPos === -1) {
-                                    resetPos = m;
-                                } else if (m === lastMaskChar && m !== resetPos) {
-                                    m = resetPos - offset;
-                                }
-
-                                if (lastMaskChar === resetPos) {
-                                    m -= offset;
-                                }
-                            }
-                            m += offset;
-                        } else if (valDigit === lastUntranslatedMaskChar) {
-                            // matched the last untranslated (raw) mask character that we encountered
-                            // likely an insert offset the mask character from the last entry; fall
-                            // through and only increment v
-                            maskDigitCount--;
-                            lastUntranslatedMaskChar = undefined;
-                        } else if (translation.optional) {
-                            m += offset;
-                            v -= offset;
-                        } else if (translation.fallback) {
-                            buf[addMethod](translation.fallback);
-                            m += offset;
-                            v -= offset;
-                        } else {
-                          p.invalid.push({p: v, v: valDigit, e: translation.pattern});
-                        }
-                        v += offset;
-                    } else {
-                        if (!skipMaskChars) {
-                            buf[addMethod](maskDigit);
-                        }
-
-                        if (valDigit === maskDigit) {
-                            maskDigitPosArr.push(v);
-                            v += offset;
-                        } else {
-                            lastUntranslatedMaskChar = maskDigit;
-                            maskDigitPosArr.push(v + maskDigitCount);
-                            maskDigitCount++;
-                        }
-
-                        m += offset;
-                    }
-                }
-
-                var lastMaskCharDigit = mask.charAt(lastMaskChar);
-                if (maskLen === valLen + 1 && !jMask.translation[lastMaskCharDigit]) {
-                    buf.push(lastMaskCharDigit);
-                }
-
-                var newVal = buf.join('');
-                p.mapMaskdigitPositions(newVal, maskDigitPosArr, valLen);
-                return newVal;
-            },
-            mapMaskdigitPositions: function(newVal, maskDigitPosArr, valLen) {
-              var maskDiff = options.reverse ? newVal.length - valLen : 0;
-              p.maskDigitPosMap = {};
-              for (var i = 0; i < maskDigitPosArr.length; i++) {
-                p.maskDigitPosMap[maskDigitPosArr[i] + maskDiff] = 1;
-              }
-            },
-            callbacks: function (e) {
-                var val = p.val(),
-                    changed = val !== oldValue,
-                    defaultArgs = [val, e, el, options],
-                    callback = function(name, criteria, args) {
-                        if (typeof options[name] === 'function' && criteria) {
-                            options[name].apply(this, args);
-                        }
-                    };
-
-                callback('onChange', changed === true, defaultArgs);
-                callback('onKeyPress', changed === true, defaultArgs);
-                callback('onComplete', val.length === mask.length, defaultArgs);
-                callback('onInvalid', p.invalid.length > 0, [val, e, el, p.invalid, options]);
-            }
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/navbar-component.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            isMobile: false
         };
-
-        el = $(el);
-        var jMask = this, oldValue = p.val(), regexMask;
-
-        mask = typeof mask === 'function' ? mask(p.val(), undefined, el,  options) : mask;
-
-        // public methods
-        jMask.mask = mask;
-        jMask.options = options;
-        jMask.remove = function() {
-            var caret = p.getCaret();
-            if (jMask.options.placeholder) {
-                el.removeAttr('placeholder');
-            }
-            if (el.data('mask-maxlength')) {
-                el.removeAttr('maxlength');
-            }
-            p.destroyEvents();
-            p.val(jMask.getCleanVal());
-            p.setCaret(caret);
-            return el;
-        };
-
-        // get value without mask
-        jMask.getCleanVal = function() {
-           return p.getMasked(true);
-        };
-
-        // get masked value without the value being in the input or element
-        jMask.getMaskedVal = function(val) {
-           return p.getMasked(false, val);
-        };
-
-       jMask.init = function(onlyMask) {
-            onlyMask = onlyMask || false;
-            options = options || {};
-
-            jMask.clearIfNotMatch  = $.jMaskGlobals.clearIfNotMatch;
-            jMask.byPassKeys       = $.jMaskGlobals.byPassKeys;
-            jMask.translation      = $.extend({}, $.jMaskGlobals.translation, options.translation);
-
-            jMask = $.extend(true, {}, jMask, options);
-
-            regexMask = p.getRegexMask();
-
-            if (onlyMask) {
-                p.events();
-                p.val(p.getMasked());
-            } else {
-                if (options.placeholder) {
-                    el.attr('placeholder' , options.placeholder);
-                }
-
-                // this is necessary, otherwise if the user submit the form
-                // and then press the "back" button, the autocomplete will erase
-                // the data. Works fine on IE9+, FF, Opera, Safari.
-                if (el.data('mask')) {
-                  el.attr('autocomplete', 'off');
-                }
-
-                // detect if is necessary let the user type freely.
-                // for is a lot faster than forEach.
-                for (var i = 0, maxlength = true; i < mask.length; i++) {
-                    var translation = jMask.translation[mask.charAt(i)];
-                    if (translation && translation.recursive) {
-                        maxlength = false;
-                        break;
-                    }
-                }
-
-                if (maxlength) {
-                    el.attr('maxlength', mask.length).data('mask-maxlength', true);
-                }
-
-                p.destroyEvents();
-                p.events();
-
-                var caret = p.getCaret();
-                p.val(p.getMasked());
-                p.setCaret(caret);
-            }
-        };
-
-        jMask.init(!el.is('input'));
-    };
-
-    $.maskWatchers = {};
-    var HTMLAttributes = function () {
-        var input = $(this),
-            options = {},
-            prefix = 'data-mask-',
-            mask = input.attr('data-mask');
-
-        if (input.attr(prefix + 'reverse')) {
-            options.reverse = true;
-        }
-
-        if (input.attr(prefix + 'clearifnotmatch')) {
-            options.clearIfNotMatch = true;
-        }
-
-        if (input.attr(prefix + 'selectonfocus') === 'true') {
-           options.selectOnFocus = true;
-        }
-
-        if (notSameMaskObject(input, mask, options)) {
-            return input.data('mask', new Mask(this, mask, options));
-        }
     },
-    notSameMaskObject = function(field, mask, options) {
-        options = options || {};
-        var maskObject = $(field).data('mask'),
-            stringify = JSON.stringify,
-            value = $(field).val() || $(field).text();
-        try {
-            if (typeof mask === 'function') {
-                mask = mask(value);
-            }
-            return typeof maskObject !== 'object' || stringify(maskObject.options) !== stringify(options) || maskObject.mask !== mask;
-        } catch (e) {}
-    },
-    eventSupported = function(eventName) {
-        var el = document.createElement('div'), isSupported;
-
-        eventName = 'on' + eventName;
-        isSupported = (eventName in el);
-
-        if ( !isSupported ) {
-            el.setAttribute(eventName, 'return;');
-            isSupported = typeof el[eventName] === 'function';
+    methods: {
+        menuToggle: function menuToggle() {
+            this.isMobile = !this.isMobile;
         }
-        el = null;
-
-        return isSupported;
-    };
-
-    $.fn.mask = function(mask, options) {
-        options = options || {};
-        var selector = this.selector,
-            globals = $.jMaskGlobals,
-            interval = globals.watchInterval,
-            watchInputs = options.watchInputs || globals.watchInputs,
-            maskFunction = function() {
-                if (notSameMaskObject(this, mask, options)) {
-                    return $(this).data('mask', new Mask(this, mask, options));
-                }
-            };
-
-        $(this).each(maskFunction);
-
-        if (selector && selector !== '' && watchInputs) {
-            clearInterval($.maskWatchers[selector]);
-            $.maskWatchers[selector] = setInterval(function(){
-                $(document).find(selector).each(maskFunction);
-            }, interval);
-        }
-        return this;
-    };
-
-    $.fn.masked = function(val) {
-        return this.data('mask').getMaskedVal(val);
-    };
-
-    $.fn.unmask = function() {
-        clearInterval($.maskWatchers[this.selector]);
-        delete $.maskWatchers[this.selector];
-        return this.each(function() {
-            var dataMask = $(this).data('mask');
-            if (dataMask) {
-                dataMask.remove().removeData('mask');
-            }
-        });
-    };
-
-    $.fn.cleanVal = function() {
-        return this.data('mask').getCleanVal();
-    };
-
-    $.applyDataMask = function(selector) {
-        selector = selector || $.jMaskGlobals.maskElements;
-        var $selector = (selector instanceof $) ? selector : $(selector);
-        $selector.filter($.jMaskGlobals.dataMaskAttr).each(HTMLAttributes);
-    };
-
-    var globals = {
-        maskElements: 'input,td,span,div',
-        dataMaskAttr: '*[data-mask]',
-        dataMask: true,
-        watchInterval: 300,
-        watchInputs: true,
-        keyStrokeCompensation: 10,
-        // old versions of chrome dont work great with input event
-        useInput: !/Chrome\/[2-4][0-9]|SamsungBrowser/.test(window.navigator.userAgent) && eventSupported('input'),
-        watchDataMask: false,
-        byPassKeys: [9, 16, 17, 18, 36, 37, 38, 39, 40, 91],
-        translation: {
-            '0': {pattern: /\d/},
-            '9': {pattern: /\d/, optional: true},
-            '#': {pattern: /\d/, recursive: true},
-            'A': {pattern: /[a-zA-Z0-9]/},
-            'S': {pattern: /[a-zA-Z]/}
-        }
-    };
-
-    $.jMaskGlobals = $.jMaskGlobals || {};
-    globals = $.jMaskGlobals = $.extend(true, {}, globals, $.jMaskGlobals);
-
-    // looking for inputs with data-mask attribute
-    if (globals.dataMask) {
-        $.applyDataMask();
     }
-
-    setInterval(function() {
-        if ($.jMaskGlobals.watchDataMask) {
-            $.applyDataMask();
-        }
-    }, globals.watchInterval);
-}, window.jQuery, window.Zepto));
-
+});
 
 /***/ }),
 
@@ -13134,6 +10932,218 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (this && this.clearImmediate);
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__("./node_modules/webpack/buildin/global.js")))
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/component-normalizer.js":
+/***/ (function(module, exports) {
+
+/* globals __VUE_SSR_CONTEXT__ */
+
+// IMPORTANT: Do NOT use ES2015 features in this file.
+// This module is a runtime utility for cleaner component module output and will
+// be included in the final webpack user bundle.
+
+module.exports = function normalizeComponent (
+  rawScriptExports,
+  compiledTemplate,
+  functionalTemplate,
+  injectStyles,
+  scopeId,
+  moduleIdentifier /* server only */
+) {
+  var esModule
+  var scriptExports = rawScriptExports = rawScriptExports || {}
+
+  // ES6 modules interop
+  var type = typeof rawScriptExports.default
+  if (type === 'object' || type === 'function') {
+    esModule = rawScriptExports
+    scriptExports = rawScriptExports.default
+  }
+
+  // Vue.extend constructor export interop
+  var options = typeof scriptExports === 'function'
+    ? scriptExports.options
+    : scriptExports
+
+  // render functions
+  if (compiledTemplate) {
+    options.render = compiledTemplate.render
+    options.staticRenderFns = compiledTemplate.staticRenderFns
+    options._compiled = true
+  }
+
+  // functional template
+  if (functionalTemplate) {
+    options.functional = true
+  }
+
+  // scopedId
+  if (scopeId) {
+    options._scopeId = scopeId
+  }
+
+  var hook
+  if (moduleIdentifier) { // server build
+    hook = function (context) {
+      // 2.3 injection
+      context =
+        context || // cached call
+        (this.$vnode && this.$vnode.ssrContext) || // stateful
+        (this.parent && this.parent.$vnode && this.parent.$vnode.ssrContext) // functional
+      // 2.2 with runInNewContext: true
+      if (!context && typeof __VUE_SSR_CONTEXT__ !== 'undefined') {
+        context = __VUE_SSR_CONTEXT__
+      }
+      // inject component styles
+      if (injectStyles) {
+        injectStyles.call(this, context)
+      }
+      // register component module identifier for async chunk inferrence
+      if (context && context._registeredComponents) {
+        context._registeredComponents.add(moduleIdentifier)
+      }
+    }
+    // used by ssr in case component is cached and beforeCreate
+    // never gets called
+    options._ssrRegister = hook
+  } else if (injectStyles) {
+    hook = injectStyles
+  }
+
+  if (hook) {
+    var functional = options.functional
+    var existing = functional
+      ? options.render
+      : options.beforeCreate
+
+    if (!functional) {
+      // inject component registration as beforeCreate hook
+      options.beforeCreate = existing
+        ? [].concat(existing, hook)
+        : [hook]
+    } else {
+      // for template-only hot-reload because in that case the render fn doesn't
+      // go through the normalizer
+      options._injectStyles = hook
+      // register for functioal component in vue file
+      options.render = function renderWithStyleInjection (h, context) {
+        hook.call(context)
+        return existing(h, context)
+      }
+    }
+  }
+
+  return {
+    esModule: esModule,
+    exports: scriptExports,
+    options: options
+  }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-874a346a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/components/navbar-component.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "nav",
+    {
+      staticClass:
+        "relative w-full select-none bg-teal lg:flex lg:items-stretch",
+      attrs: { id: "nav-navbar" }
+    },
+    [
+      _c("div", { staticClass: "flex flex-no-shrink items-stretch h-12" }, [
+        _c(
+          "a",
+          {
+            staticClass:
+              "relative flex items-center flex-no-grow flex-no-shrink py-2 px-4 leading-normal text-white no-underline hover:bg-teal-dark",
+            attrs: { href: "/" }
+          },
+          [_vm._v("Belich Dashboard")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass:
+              "relative block text-white hover:text-yellow cursor-pointer ml-auto w-12 h-12 p-4 outline-none lg:hidden",
+            on: { click: _vm.menuToggle }
+          },
+          [
+            _c(
+              "svg",
+              {
+                staticClass: "fill-current h-3 w-3",
+                attrs: {
+                  viewBox: "0 0 20 20",
+                  xmlns: "http://www.w3.org/2000/svg"
+                }
+              },
+              [
+                _c("title", [_vm._v("Menu")]),
+                _vm._v(" "),
+                _c("path", {
+                  attrs: { d: "M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" }
+                })
+              ]
+            )
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          staticClass:
+            "lg:flex lg:items-stretch lg:flex-no-shrink lg:flex-grow",
+          class: _vm.isMobile ? "block" : "hidden"
+        },
+        [_vm._m(0)]
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "lg:flex lg:items-stretch lg:justify-end ml-auto" },
+      [
+        _c("a", { staticClass: "navbar-item", attrs: { href: "#" } }, [
+          _vm._v("Item 1")
+        ]),
+        _vm._v(" "),
+        _c("a", { staticClass: "navbar-item", attrs: { href: "#" } }, [
+          _vm._v("Item 2")
+        ]),
+        _vm._v(" "),
+        _c("a", { staticClass: "navbar-item", attrs: { href: "#" } }, [
+          _vm._v("Item 3")
+        ])
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-874a346a", module.exports)
+  }
+}
 
 /***/ }),
 
@@ -24293,17 +22303,6 @@ $.ajaxSetup({
 });
 
 /**
- * Dashboard jquery libraries
- */
-window.jMaskGlobals = __webpack_require__("./node_modules/jquery-mask-plugin/dist/jquery.mask.js");
-window.autoComplete = __webpack_require__("./node_modules/easy-autocomplete/dist/jquery.easy-autocomplete.js");
-
-/**
- * Dashboard jquery components
- */
-__webpack_require__("./resources/js/components/jquery-components/bootstrap.js");
-
-/**
  * Now we will load the JavaScript Vue dependency.
  * It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
@@ -24318,7 +22317,7 @@ window.Vue = __webpack_require__("./node_modules/vue/dist/vue.common.js");
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-// Vue.component('Toogle', require('./components/toogle.vue').default);
+Vue.component('navbar-component', __webpack_require__("./resources/js/components/navbar-component.vue"));
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -24332,56 +22331,51 @@ var app = new Vue({
 
 /***/ }),
 
-/***/ "./resources/js/components/jquery-components/bootstrap.js":
-/***/ (function(module, exports) {
+/***/ "./resources/js/components/navbar-component.vue":
+/***/ (function(module, exports, __webpack_require__) {
 
-// //flatpickr
-// import flatpickr from "flatpickr"
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/js/components/navbar-component.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-874a346a\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/js/components/navbar-component.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/navbar-component.vue"
 
-(function () {
-	"use strict";
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-874a346a", Component.options)
+  } else {
+    hotAPI.reload("data-v-874a346a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
 
-	//Scroll to top
+module.exports = Component.exports
 
-	var viewPortWidth = $(window).width();
-
-	$(window).scroll(function (event) {
-		event.preventDefault();
-		if (viewPortWidth > 480) {
-			if ($(this).scrollTop() > 180) {
-				$('.scrollTop').fadeIn();
-			} else {
-				$('.scrollTop').fadeOut();
-			}
-		}
-	});
-
-	$('.scrollTop').click(function (event) {
-		$('html, body').animate({ scrollTop: 0 }, 600);
-		event.preventDefault();
-	});
-
-	/**
- * Configure the maska: date,...
- */
-	if ($.jMaskGlobals) {
-		if (dateFormat == null) {
-			var dateFormat = ['00/00/0000', '__/__/___'];
-		}
-
-		if ($('.mask-date')) {
-			$('.mask-date').mask(dateFormat[0], { placeholder: dateFormat[1] });
-		}
-	}
-
-	/**
- * Responsive navbar collapse
- */
-	$('.collapse-button').click(function (event) {
-		$('#navbar-collapse-button-open,#navbar-collapse-button-close').toggle();
-		$('.navbar-items').toggle();
-	});
-})();
 
 /***/ }),
 

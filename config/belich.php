@@ -4,30 +4,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Application Name
+    | Application settings
     |--------------------------------------------------------------------------
-    |
-    | This value is the name of your application.
     */
-    'name' => 'Belich',
+    'name' => 'Belich', //Application name
+    'path' => '/dashboard', //This is the URI path where application will be accessible from
+    'url'  => env('APP_URL', '/'), //Application url
 
     /*
     |--------------------------------------------------------------------------
-    | Application URL
+    | Layout options
     |--------------------------------------------------------------------------
-    |
-    | Set the application URL. You can change this value as your request.
     */
-    'url' => env('APP_URL', '/'),
-
-    /*
-    |--------------------------------------------------------------------------
-    | Application path
-    |--------------------------------------------------------------------------
-    |
-    | This is the URI path where application will be accessible from.
-    */
-    'path' => '/dashboard',
+    'navbar'  => true,
+    'sidebar' => false,
 
     /*
     |--------------------------------------------------------------------------

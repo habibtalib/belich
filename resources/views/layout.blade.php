@@ -11,20 +11,21 @@
         @include('belich::layout.styles')
     </head>
     <body>
-        {{-- Navbar --}}
-        <header>
-            @include('belich::partials.navbar')
-        </header>
+        <div id="app">
+            {{-- Navbar --}}
+            @includeWhen(config('belich.navbar'), 'belich::partials.navbar')
 
-        {{-- Include the sidebar if exists... --}}
-        @includeIf('belich::partials.sidebar')
+            {{-- Sidebar --}}
+            @includeWhen(config('belich.sidebar'), 'belich::partials.sidebar')
 
-        <section id="app" class="wrap-container">
-            @yield('content')
-        </section>
+            {{-- Application --}}
+            <section class="wrap-container">
+                @yield('content')
+            </section>
 
-        {{-- Include footer --}}
-        @includeIf('belich::partials.footer')
+            {{-- Include footer --}}
+            @includeIf('belich::partials.footer')
+        </div>
 
         {{-- Javascript and libs --}}
         @include('belich::layout.scripts')

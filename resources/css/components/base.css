@@ -2,3 +2,11 @@
 .wrap-container {
     @apply w-full;
 }
+
+a,
+a:visited,
+a:hover,
+a:active,
+a:focus {
+    @apply no-underline outline-none;
+}
