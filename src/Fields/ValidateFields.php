@@ -51,8 +51,10 @@ class ValidateFields {
      */
     public function __construct()
     {
-        $this->fields   = (new Fields())->handle();
-        $this->settings = collect($renderFields->settings());
+        $ResolveFields = new Fields();
+
+        $this->fields   = $ResolveFields->handle();
+        $this->settings = collect($ResolveFields->settings());
         $this->action   = $this->settings->get('action');
     }
 

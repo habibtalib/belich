@@ -86,12 +86,12 @@ abstract class ResolveFieldsAbstract {
         $fields = collect($fields)
             ->mapWithKeys(function($field, $key) {
                 return [$field->name => $field->attribute];
-            })->all();
+            });
 
         return collect([
-            'attributes' => array_values($fields),
+            'attributes' => $fields->values(),
             'data' => $this->model,
-            'labels' => array_keys($fields),
+            'labels' => $fields->keys(),
         ]);
     }
 
