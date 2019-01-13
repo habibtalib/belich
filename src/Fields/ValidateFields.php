@@ -1,12 +1,13 @@
 <?php
 
-namespace Daguilarm\Belich\Validations;
+namespace Daguilarm\Belich\Fields;
 
-use Daguilarm\Belich\Fields\RenderFields;
+use Daguilarm\Belich\Fields\ResolveFields as Fields;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use MatthiasMullie\Minify;
 
-class Validation {
+class ValidateFields {
 
     /**
      * Resource action
@@ -50,11 +51,11 @@ class Validation {
      */
     public function __construct()
     {
-        $renderFields = new RenderFields();
+        $renderFields = new Fields();
 
-        $this->fields = $renderFields->handle();
+        $this->fields   = $renderFields->handle();
         $this->settings = collect($renderFields->settings());
-        $this->action = $this->settings->get('action');
+        $this->action   = $this->settings->get('action');
     }
 
     /**
@@ -62,7 +63,7 @@ class Validation {
      *
      * @return void
      */
-    public function make()
+    public function make() : Collection
     {
         //Get the data from the fields
         $fields = $this->setValues();
@@ -91,7 +92,7 @@ class Validation {
      *
      * @return object
      */
-    private function setValues() : object
+    private function setValues() : Collection
     {
         return collect($this->fields)
             ->mapWithKeys(function($field, $key) {
@@ -179,7 +180,7 @@ class Validation {
      * Render the javascript code
      *
      * @param array $values
-     * @return json
+     * @return string
      */
     private function javascript($values, $rules, $attributes) : string
     {
@@ -199,10 +200,22 @@ class Validation {
         ];
 
         //Get the javascript code
-        $javascript = str_replace(static::$stubReplace, $stubValues, $stub);
+        $script = str_replace(static::$stubReplace, $stubValues, $stub);
 
         //Minify the javascript code
-        $minifier = new Minify\Js($javascript);
+        return self::javascriptMinify($script);
+    }
+
+    /**
+     * Minify the javascript
+     *
+     * @param string $script
+     * @return string
+     */
+    private function javascriptMinify($script) : string
+    {
+        //Minify the javascript code
+        $minifier = new Minify\Js($script);
 
         return $minifier->minify();
     }

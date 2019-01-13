@@ -2,15 +2,11 @@
 
 namespace Daguilarm\Belich\Fields;
 
-use Daguilarm\Belich\Fields\RenderFieldsTraits\Actions;
-use Daguilarm\Belich\Fields\RenderFieldsTraits\Methods;
-use Daguilarm\Belich\Fields\RenderFieldsTraits\Models;
-use Daguilarm\Belich\Fields\RenderFieldsTraits\Values;
+use Daguilarm\Belich\Contracts\Handler;
+use Daguilarm\Belich\Fields\ResolveFieldsAbstract;
 use Illuminate\Http\Request;
 
-class RenderFields {
-
-    use Actions, Methods, Models, Values;
+class ResolveFields extends ResolveFieldsAbstract implements Handler {
 
     /**
      * Set the controller action
@@ -25,13 +21,6 @@ class RenderFields {
      * @var object
      */
     protected $fields;
-
-    /**
-     * Set the resource model
-     *
-     * @var Illuminate\Database\Eloquent\Collection
-     */
-    protected $model;
 
     /**
      * Resource name
@@ -62,21 +51,14 @@ class RenderFields {
     protected $routeId;
 
     /**
-     * This values is only for determine the trait... has no real value
-     *
-     * @var int
-     */
-    protected $trait;
-
-    /**
      * Initialize the constructor
      */
     public function __construct() {
         //Default values
-        $this->action = getRouteAction();
-        $this->resource = getResourceClass();
+        $this->action        = getRouteAction();
+        $this->resource      = getResourceClass();
         $this->resourceClass = app(sprintf('\\App\\Belich\\Resources\\%s', $this->resource));
-        $this->routeId = getRouteId();
+        $this->routeId       = getRouteId();
 
         //Request values
         $this->request = request();
@@ -92,8 +74,9 @@ class RenderFields {
      */
     public function handle() {
         //Get all the fields from the Class
-        return $this->basePath('Fields\RenderFieldsTrait\Actions')
-            ->action(self::getFields());
+        $fields = parent::getFields();
+
+        return parent::action($fields);
     }
 
     /**

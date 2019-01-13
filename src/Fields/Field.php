@@ -2,14 +2,11 @@
 
 namespace Daguilarm\Belich\Fields;
 
-use Daguilarm\Belich\Fields\FieldTraits\Methods;
-use Daguilarm\Belich\Fields\FieldTraits\Rules;
-use Daguilarm\Belich\Fields\FieldTraits\Visibilities;
+use Daguilarm\Belich\Contracts\Maker;
+use Daguilarm\Belich\Fields\FieldAbstract;
 use Illuminate\Support\Str;
 
-class Field {
-
-    use Methods, Rules, Visibilities;
+class Field extends FieldAbstract implements Maker {
 
     /**
      * Set the controller action
@@ -48,9 +45,9 @@ class Field {
      */
     public function __construct($name, $attribute = null)
     {
-        $this->name = $name;
+        $this->name      = $name;
         $this->attribute = $attribute ?? str_replace(' ', '_', Str::lower($name));
-        $this->action = getRouteAction();
+        $this->action    = getRouteAction();
     }
 
     /**
@@ -59,7 +56,8 @@ class Field {
      * @param  string|null  $attributes
      * @return object
      */
-    public static function make(...$attributes) {
+    public static function make(...$attributes) : Field
+    {
         //Set the field values
         return new static(...$attributes);
     }
