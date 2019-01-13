@@ -5,7 +5,7 @@ The project is based on tailwindcss and jquery, eliminating Vuejs from the equat
 
 ## Status 
 
-Proyecto en desarrollo. Aún en las primeras fases...
+Project in development. Still in the early stages..
 
 ## Instalation
 
