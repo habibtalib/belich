@@ -1,7 +1,7 @@
 # belich
 Laravel admin dashboard totaly inspired by Nova, but with all the features and versatility that it does not have. 
 
-The project is based on tailwindcss and jquery, eliminating Vuejs from the equation, since it impeded, from my point of view, the versatility of the project.
+The project is based on tailwindcss, vuejs and jquery. The objective of the project is to follow the Laravel Nova line, but without its the great dependence on Vuejs. This dependency is supplied by Jquery, giving the application greater versatility and customization.
 
 ## Status 
 

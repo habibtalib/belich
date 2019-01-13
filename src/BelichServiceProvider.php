@@ -117,15 +117,12 @@ class BelichServiceProvider extends ServiceProvider {
             __DIR__ . '/../resources/lang/en' => base_path('resources/lang/vendor/belich/en'),
         ]);
 
-        // /**
-        // * Publish the assets
-        // */
-        // $this->publishes(
-        //     [
-        //         __DIR__ . '/../public/css/tailwind.min.css' => public_path('vendor/belich/css')
-        //     ],
-        //     'public'
-        // );
+        /**
+        * Publish the javascript
+        */
+        $this->publishes([
+            __DIR__ . '/../resources/js/custom.js' => public_path('public/js/vendor/belich')
+        ]);
     }
 
     /**
