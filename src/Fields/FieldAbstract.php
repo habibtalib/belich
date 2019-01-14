@@ -2,63 +2,35 @@
 
 namespace Daguilarm\Belich\Fields;
 
-use Illuminate\Support\Str;
-
 abstract class FieldAbstract {
 
-    /**
-     * Help text
-     *
-     * @var string
-     */
-    public $help;
-
-    /**
-     * The field value (Resolved and updated...).
-     *
-     * @var mixed
-     */
-    public $value;
-
-    /**
-     * The validation rules for creation and updates.
-     *
-     * @var array
-     */
+    /** @var array [The validation rules for creation and updates] */
     public $rules;
 
-    /**
-     * The validation rules for creation.
-     *
-     * @var array
-     */
+    /** @var array [The validation rules for creation] */
     public $creationRules;
 
-    /**
-     * The validation rules for updates.
-     *
-     * @var array
-     */
+    /** @var array [The validation rules for updates] */
     public $updateRules;
 
-    /**
-     * Field visibility base on the action
-     *
-     * @var array
-     */
-    public $showOn = [
+    /////////////////////
+
+    /** @var array [List of allowed controller actions] */
+    private $alowedControllerActions = ['index', 'create', 'edit', 'show'];
+
+    /** @var string [Field help text] */
+    public $help;
+
+    /** @var mixed [The field value (Resolved and updated...)] */
+    public $value;
+
+    /** @var array [Field visibility base on the action] */
+    public $visibility = [
         'index' => true,
         'create' => true,
         'edit' => true,
         'show' => true
     ];
-
-    /**
-     * List of allowed actions
-     *
-     * @var array
-     */
-    private $alowedActions = ['index', 'create', 'edit', 'show'];
 
     /*
     |--------------------------------------------------------------------------
@@ -94,6 +66,18 @@ abstract class FieldAbstract {
         if(!is_null($value)) {
             $this->value = $value;
         }
+
+        return $this;
+    }
+
+    /**
+     * Set the field sortable
+     *
+     * @return self
+     */
+    public function sortable() : self
+    {
+        $this->sortable = true;
 
         return $this;
     }
@@ -161,7 +145,7 @@ abstract class FieldAbstract {
      */
     public function hideFromIndex() : self
     {
-        $this->showOn['index'] = false;
+        $this->visibility['index'] = false;
 
         return $this;
     }
@@ -173,7 +157,7 @@ abstract class FieldAbstract {
      */
     public function hideFromDetail() : self
     {
-        $this->showOn['show'] = false;
+        $this->visibility['show'] = false;
 
         return $this;
     }
@@ -185,7 +169,7 @@ abstract class FieldAbstract {
      */
     public function hideWhenCreating() : self
     {
-        $this->showOn['create'] = false;
+        $this->visibility['create'] = false;
 
         return $this;
     }
@@ -197,7 +181,7 @@ abstract class FieldAbstract {
      */
     public function hideWhenUpdating() : self
     {
-        $this->showOn['edit'] = false;
+        $this->visibility['edit'] = false;
 
         return $this;
     }
@@ -212,8 +196,8 @@ abstract class FieldAbstract {
         //Reset the values
         self::hideAllActions();
 
-        $this->showOn['index'] = true;
-        $this->showOn['show'] = true;
+        $this->visibility['index'] = true;
+        $this->visibility['show'] = true;
 
         return $this;
     }
@@ -228,8 +212,8 @@ abstract class FieldAbstract {
         //Reset the values
         self::hideAllActions();
 
-        $this->showOn['create'] = true;
-        $this->showOn['edit'] = true;
+        $this->visibility['create'] = true;
+        $this->visibility['edit'] = true;
 
         return $this;
     }
@@ -244,7 +228,7 @@ abstract class FieldAbstract {
         //Reset the values
         self::hideAllActions();
 
-        $this->showOn['index'] = true;
+        $this->visibility['index'] = true;
 
         return $this;
     }
@@ -259,7 +243,7 @@ abstract class FieldAbstract {
         //Reset the values
         self::hideAllActions();
 
-        $this->showOn['show'] = true;
+        $this->visibility['show'] = true;
 
         return $this;
     }
@@ -269,14 +253,14 @@ abstract class FieldAbstract {
      *
      * @var self
      */
-    public function showOn(...$attributes) : self
+    public function visibility(...$attributes) : self
     {
         //Reset the values
         self::hideAllActions();
 
         foreach($attributes as $attribute) {
-            if(in_array($attribute, $this->alowedActions)) {
-                $this->showOn[$attribute] = true;
+            if(in_array($attribute, $this->alowedControllerActions)) {
+                $this->visibility[$attribute] = true;
             }
         }
 
@@ -291,7 +275,7 @@ abstract class FieldAbstract {
     public function hideFrom(...$attributes) : self
     {
         foreach($attributes as $attribute) {
-            $this->showOn[$attribute] = false;
+            $this->visibility[$attribute] = false;
         }
 
         return $this;
@@ -310,8 +294,8 @@ abstract class FieldAbstract {
      */
     private function hideAllActions()
     {
-        foreach($this->showOn as $attribute => $value) {
-            $this->showOn[$attribute] = false;
+        foreach($this->visibility as $attribute => $value) {
+            $this->visibility[$attribute] = false;
         }
     }
 }

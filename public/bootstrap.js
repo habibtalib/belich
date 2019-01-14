@@ -90,7 +90,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -11075,7 +11074,7 @@ var render = function() {
           "button",
           {
             staticClass:
-              "relative block text-white hover:text-yellow cursor-pointer ml-auto w-12 h-12 p-4 outline-none lg:hidden",
+              "relative block text-white hover:text-yellow cursor-pointer ml-auto w-12 h-12 p-4 lg:hidden",
             on: { click: _vm.menuToggle }
           },
           [
@@ -11089,8 +11088,6 @@ var render = function() {
                 }
               },
               [
-                _c("title", [_vm._v("Menu")]),
-                _vm._v(" "),
                 _c("path", {
                   attrs: { d: "M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" }
                 })
@@ -11104,8 +11101,8 @@ var render = function() {
         "div",
         {
           staticClass:
-            "lg:flex lg:items-stretch lg:flex-no-shrink lg:flex-grow",
-          class: _vm.isMobile ? "block" : "hidden"
+            "bg-teal-dark lg:bg-teal lg:flex lg:items-stretch lg:flex-no-shrink lg:flex-grow",
+          class: _vm.isMobile ? "block fade-in" : "hidden"
         },
         [_vm._m(0)]
       )

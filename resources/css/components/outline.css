@@ -1,0 +1,19 @@
+.no-outline:focus {
+  outline:0;
+}
+
+.outline-color-white {
+    outline-color: #ffffff;
+}
+
+.outline-color-black {
+    outline-color: #22292f;
+}
+
+.outline-color-teal {
+    outline-color: #4dc0b5;
+}
+
+.outline-color-teal-dark {
+    outline-color: #38a89d;
+}

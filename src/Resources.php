@@ -2,96 +2,122 @@
 
 namespace Daguilarm\Belich;
 
+use Illuminate\Http\Request;
+
 abstract class Resources {
 
-    /**
-     * The resource settings
-     *
-     * @var Illuminate\Support\Collection
-     */
-    protected $settings;
+    /** @var Illuminate\Support\Collection */
+    public static $actions;
+
+    /** @var Illuminate\Support\Collection */
+    public static $breadcrumb;
+
+    /** @var Illuminate\Support\Collection */
+    public static $cards;
+
+    /** @var Illuminate\Support\Collection */
+    public static $fields;
+
+    /** @var Illuminate\Support\Collection */
+    public static $metrics;
+
+    /** @var string [Model path] */
+    public static $model;
+
+    /** @var array */
+    public static $relationships;
+
+    /** @var array */
+    public static $softDeletes = false;
+
+    /** @var bool [Show the resource on navigation] */
+    public static $availableForNavigation = true;
 
     /**
-     * The model object
+     * Determine if this resource is available for navigation.
      *
-     * @var Illuminate\Database\Eloquent\Model
+     * @return bool
      */
-    protected $model;
-
-    /**
-     * The breadcrumb
-     *
-     * @var Illuminate\Support\Collection
-     */
-    protected $breadcrumb;
-
-    /**
-     * The actions
-     *
-     * @var Illuminate\Support\Collection
-     */
-    protected $actions;
-
-    /**
-     * The metrics
-     *
-     * @var Illuminate\Support\Collection
-     */
-    protected $metrics;
-
-    /**
-     * The cards
-     *
-     * @var Illuminate\Support\Collection
-     */
-    protected $cards;
-
-    /**
-     * The fields
-     *
-     * @var Illuminate\Support\Collection
-     */
-    protected $fields;
-
-    /**
-     * Create a new resource instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    private static function resource()
     {
-        $this->settings = collect($this->settings);
-        $this->model = $this->settings->get('model')::with($this->settings->get('relationships'));
+        return getResourceClass();
     }
 
     /**
-     * Get the storage data for a given resource.
+     * Get the fields displayed by the resource.
      *
-     * @param  int  $id
-     * @return Illuminate\Database\Eloquent\Collection
-     */
-    public function findOrFail(int $id)
-    {
-        return $this->model->findOrFail($id);
-    }
-
-    /**
-     * Get all the settings variables
-     *
+     * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    public function getSettings()
+    abstract public function fields(Request $request);
+
+    /*
+    |--------------------------------------------------------------------------
+    | Static methods
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Get the logical group associated with the resource.
+     *
+     * @return string
+     */
+    // public static function navigation()
+    // {
+    //     return static::$navigation;
+    // }
+
+    /**
+     * Get the displayable plural label of the resource.
+     *
+     * @return string
+     */
+    public static function pluralLabel()
     {
-        return $this->settings;
+        return Str::plural(class_basename(get_called_class()));
     }
 
     /**
-     * Get the relationships from the resource.
+     * Determine if this resource is searchable.
      *
-     * @return array
+     * @return bool
      */
-    public function getRelationships()
+    public static function searchable()
     {
-        return $this->settings['relationships'];
+        return true;
+    }
+
+    /**
+     * Get the displayable singular label of the resource.
+     *
+     * @return string
+     */
+    public static function singularLabel()
+    {
+        return Str::singular(static::label());
+    }
+
+    /**
+     * Determine if this resource uses soft deletes.
+     *
+     * @return bool
+     */
+    // public static function softDeletes()
+    // {
+    // }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Methods
+    |--------------------------------------------------------------------------
+    */
+    public function model()
+    {
+        return app(static::$model);
+    }
+
+    public function modelWithRelationships()
+    {
+        return self::model()->with(static::$relationships);
     }
 }

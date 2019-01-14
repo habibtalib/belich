@@ -3,6 +3,7 @@
 namespace Daguilarm\Belich\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Daguilarm\Belich\Belich;
 use Daguilarm\Belich\Fields\ResolveFields as Fields;
 use Daguilarm\Belich\Fields\ValidateFields as Validate;
 use Illuminate\Http\Request;
@@ -16,12 +17,10 @@ class RestfullController extends Controller
      * @param Daguilarm\Belich\Fields\ResolveFields $fields
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, Fields $fields)
+    public function index(Request $request, Belich $belich)
     {
         //Load the view with the data
-        return view('belich::dashboard.index')
-            ->withRequest($fields->handle())
-            ->withSettings($fields->settings());
+        return view('belich::dashboard.index')->withRequest($belich->create());
     }
 
     /**

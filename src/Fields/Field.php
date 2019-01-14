@@ -6,14 +6,7 @@ use Daguilarm\Belich\Contracts\Maker;
 use Daguilarm\Belich\Fields\FieldAbstract;
 use Illuminate\Support\Str;
 
-class Field extends FieldAbstract implements Maker {
-
-    /**
-     * Set the controller action
-     *
-     * @var string
-     */
-    public $action;
+class Field extends FieldAbstract {
 
     /**
      * The attribute / column name of the field.
@@ -47,7 +40,6 @@ class Field extends FieldAbstract implements Maker {
     {
         $this->name      = $name;
         $this->attribute = $attribute ?? str_replace(' ', '_', Str::lower($name));
-        $this->action    = getRouteAction();
     }
 
     /**

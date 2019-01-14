@@ -5,19 +5,21 @@
         <table class="table">
             <thead>
                 <tr>
-                    @foreach($request->get('labels') as $label)
+                    @foreach(data_get($request, 'fields.labels') as $label)
                         <th>{{ $label }}</th>
                     @endforeach
                 </tr>
             </thead>
             <tbody>
-                @foreach($request->get('data') as $item)
+                @forelse($request->get('sqlConection') as $item)
                     <tr>
-                        @foreach($request->get('attributes') as $attribute)
+                        @foreach(data_get($request, 'fields.attributes') as $attribute)
                             <td>{{ optional($item)->{$attribute} ?? emptyResults() }}</td>
                         @endforeach
                     </tr>
-                @endforeach
+                @empty
+                    <tr><td colspan="{{ data_get($request, 'fields.labels')->count() }}" class="text-center">No hay resultados...</td></tr>
+                @endforelse
             </tbody>
         </table>
     </form>
