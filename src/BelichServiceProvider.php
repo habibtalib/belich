@@ -60,11 +60,10 @@ class BelichServiceProvider extends ServiceProvider {
         ];
 
         /**
-        * Generate the blade directives
+        * Load the service providers
         */
-        if (file_exists(__DIR__ . '/../src/app/Providers/BladeProvider.php')) {
-            require_once(__DIR__ . '/../src/app/Providers/BladeProvider.php');
-        }
+        require_once(__DIR__ . '/../src/app/Providers/BladeProvider.php');
+        require_once(__DIR__ . '/../src/app/Providers/CollectionProvider.php');
 
         /**
         * Load translations from...

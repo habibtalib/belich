@@ -7,34 +7,12 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use MatthiasMullie\Minify;
 
-class ValidateFields {
+class FieldValidate {
 
-    /**
-     * Resource action
-     *
-     * @var array
-     */
-    private $action;
+    /** @var string */
+    private $controllerAction;
 
-    /**
-     * Fields values
-     *
-     * @var object
-     */
-    private $fields;
-
-    /**
-     * Fields settings
-     *
-     * @var array
-     */
-    private $settings;
-
-    /**
-     * Stub replace values
-     *
-     * @var array
-     */
+    /** @var array [Stub replace values] */
     private static $stubReplace = [
         ':resource',
         ':action',
@@ -45,28 +23,20 @@ class ValidateFields {
     ];
 
     /**
-     * Initialize the constructor
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $ResolveFields = new Fields();
-
-        $this->fields   = $ResolveFields->handle();
-        $this->settings = collect($ResolveFields->settings());
-        $this->action   = $this->settings->get('action');
-    }
-
-    /**
      * Return the javascript
      *
      * @return void
      */
-    public function make() : Collection
+    public function create($resource) : Collection
     {
+        //Set the controller action
+        $this->controllerAction = $resource->get('controllerAction');
+
+        //Set the resource name
+        $this->resource = $resource->get('resource');
+
         //Get the data from the fields
-        $fields = $this->setValues();
+        $fields = $this->setValues($resource);
 
         //Generate the javascript code to get the current
         //value of each field and pass it to the validation
@@ -92,9 +62,9 @@ class ValidateFields {
      *
      * @return object
      */
-    private function setValues() : Collection
+    private function setValues($resource) : Collection
     {
-        return collect($this->fields)
+        return $resource->get('fields')
             ->mapWithKeys(function($field, $key) {
                 return [
                     $field->attribute => [
@@ -114,11 +84,11 @@ class ValidateFields {
      */
     private function setRules($field)
     {
-        if($this->action === 'create') {
+        if($this->controllerAction === 'create') {
             return $field->creationRules ?? $field->rules ?? '';
         }
 
-        if($this->action === 'edit') {
+        if($this->controllerAction === 'edit') {
             return $field->updateRules ?? $field->rules ?? '';
         }
 
@@ -177,6 +147,20 @@ class ValidateFields {
     }
 
     /**
+     * Minify the javascript
+     *
+     * @param string $script
+     * @return string
+     */
+    private function javascriptMinify($script) : string
+    {
+        //Minify the javascript code
+        $minifier = new Minify\Js($script);
+
+        return $minifier->minify();
+    }
+
+    /**
      * Render the javascript code
      *
      * @param array $values
@@ -192,8 +176,8 @@ class ValidateFields {
 
         //Stub values
         $stubValues = [
-            $this->settings->get('resource'),
-            $this->settings->get('action'),
+            $this->resource,
+            $this->controllerAction,
             $values,
             $rules,
             $attributes, $route
@@ -204,19 +188,5 @@ class ValidateFields {
 
         //Minify the javascript code
         return self::javascriptMinify($script);
-    }
-
-    /**
-     * Minify the javascript
-     *
-     * @param string $script
-     * @return string
-     */
-    private function javascriptMinify($script) : string
-    {
-        //Minify the javascript code
-        $minifier = new Minify\Js($script);
-
-        return $minifier->minify();
     }
 }

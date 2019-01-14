@@ -10,12 +10,14 @@ class Belich {
     private $controllerAction;
     private $resourceClass;
     private $request;
+    private $resource;
 
     public function __construct()
     {
         $this->resourceClass    = app(sprintf('\\App\\Belich\\Resources\\%s', getResourceClass()));
         $this->request          = request();
         $this->controllerAction = getRouteAction();
+        $this->resource         = getResourceName();
     }
 
     public function create()
@@ -24,15 +26,18 @@ class Belich {
             // Configuration //
             'availableForNavigation' => $this->resourceClass::$availableForNavigation,
             'controllerAction'       => $this->controllerAction,
-            'sqlResponse'            => self::sqlResponse(),
             'model'                  => $this->resourceClass::$model,
             'relationships'          => $this->resourceClass::$relationships,
+            'resource'               => $this->resource,
             'softDeletes'            => $this->resourceClass::$softDeletes,
+            'sqlResponse'            => self::sqlResponse(),
+
             // Operations //
             'actions'                => $this->resourceClass::$actions,
             'breadcrumb'             => $this->resourceClass::$breadcrumb,
             'cards'                  => $this->resourceClass::$cards,
             'metrics'                => $this->resourceClass::$metrics,
+
             // Fields //
             'fields'                 => $this->resolveFields(),
         ]);
