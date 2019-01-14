@@ -7,13 +7,15 @@ use Illuminate\Support\Collection;
 
 class FieldResolve {
 
-    private $fields;
     private $controllerAction;
+    private $fields;
+    private $model;
 
-    public function __construct(Collection $fields, string $controllerAction)
+    public function __construct(string $controllerAction, Collection $fields, $model)
     {
-        $this->fields           = $fields;
         $this->controllerAction = $controllerAction;
+        $this->fields           = $fields;
+        $this->model            = $model;
     }
 
     /**

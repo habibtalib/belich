@@ -11,6 +11,7 @@ class Belich {
     private $resourceClass;
     private $request;
     private $resource;
+    private $sqlResponse;
 
     public function __construct()
     {
@@ -18,6 +19,7 @@ class Belich {
         $this->request          = request();
         $this->controllerAction = getRouteAction();
         $this->resource         = getResourceName();
+        $this->sqlResponse      = $this->sqlResponse();
     }
 
     public function create()
@@ -30,7 +32,7 @@ class Belich {
             'relationships'          => $this->resourceClass::$relationships,
             'resource'               => $this->resource,
             'softDeletes'            => $this->resourceClass::$softDeletes,
-            'sqlResponse'            => self::sqlResponse(),
+            'sqlResponse'            => $this->sqlResponse,
 
             // Operations //
             'actions'                => $this->resourceClass::$actions,
@@ -58,8 +60,9 @@ class Belich {
 
     private function resolveFields()
     {
-        $fields = $this->resourceClass->fields($this->request);
+        $fields  = collect($this->resourceClass->fields($this->request));
+        $resolve = new FieldResolve($this->controllerAction, $fields, $this->sqlResponse);
 
-        return (new FieldResolve(collect($fields), $this->controllerAction))->make();
+        return $resolve->make();
     }
 }

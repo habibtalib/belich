@@ -1,7 +1,11 @@
 @extends(Request::ajax() ? 'belich::layout-ajax' : 'belich::layout')
 
 @section('content')
-    <form name="form-index" id="form-index" method="POST" action="">
+    <form name="form-index"
+        id="form-index"
+        method="POST"
+        action=""
+    >
         <table class="table">
             <thead>
                 <tr>

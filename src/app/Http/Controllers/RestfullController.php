@@ -61,9 +61,7 @@ class RestfullController extends Controller
     public function show(Belich $belich, $id)
     {
         //Load the view with the data
-        return view('belich::dashboard.show')
-            ->withRequest($fields->handle())
-            ->withSettings($fields->settings());
+        return view('belich::dashboard.show')->withRequest($belich->create());
     }
 
     /**
@@ -76,11 +74,14 @@ class RestfullController extends Controller
      */
     public function edit(Belich $belich, Validate $validate, $id)
     {
+        //Set the resource values
+        $resource = $belich->create();
+
         //Load the view with the data
         return view('belich::dashboard.edit')
-            ->withRequest($fields->handle())
-            ->withSettings($fields->settings())
-            ->withJavascript($validate->make());
+            ->withRequest($belich->create())
+            ->withJavascript($validate->create($resource))
+            ->withResourceId($id);
     }
 
     /**
