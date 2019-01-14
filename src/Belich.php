@@ -24,7 +24,7 @@ class Belich {
             // Configuration //
             'availableForNavigation' => $this->resourceClass::$availableForNavigation,
             'controllerAction'       => $this->controllerAction,
-            'sqlConection'           => self::sqlConection(),
+            'sqlResponse'            => self::sqlResponse(),
             'model'                  => $this->resourceClass::$model,
             'relationships'          => $this->resourceClass::$relationships,
             'softDeletes'            => $this->resourceClass::$softDeletes,
@@ -38,7 +38,7 @@ class Belich {
         ]);
     }
 
-    private function sqlConection()
+    private function sqlResponse()
     {
         if($this->controllerAction === 'index') {
             return $this->resourceClass->indexQuery($this->request);
