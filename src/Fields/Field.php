@@ -8,25 +8,13 @@ use Illuminate\Support\Str;
 
 class Field extends FieldAbstract {
 
-    /**
-     * The attribute / column name of the field.
-     *
-     * @var string
-     */
+    /** @var string [The attribute / column name of the field] */
     public $attribute;
 
-    /**
-     * The displayable name of the field.
-     *
-     * @var string
-     */
+    /** @var string [The displayable name of the field] */
     public $name;
 
-    /**
-     * Indicates if the field should be sortable.
-     *
-     * @var bool
-     */
+    /** @var bool [Indicates if the field should be sortable] */
     public $sortable = false;
 
     /**

@@ -25,7 +25,7 @@ class FieldValidate {
     /**
      * Return the javascript
      *
-     * @return void
+     * @return Illuminate\Support\Collection
      */
     public function create($resource) : Collection
     {
@@ -60,7 +60,7 @@ class FieldValidate {
      * Set the values from the fields.
      * This is only to store all the data in one place...
      *
-     * @return object
+     * @return Illuminate\Support\Collection
      */
     private function setValues($resource) : Collection
     {
@@ -116,7 +116,7 @@ class FieldValidate {
      * Generate an array with the validation rules for each field
      *
      * @param array $values
-     * @return json
+     * @return string|json
      */
     private function formValidationRules($values) : string
     {
@@ -136,7 +136,7 @@ class FieldValidate {
      * This is helpful for project with localization
      *
      * @param array $values
-     * @return json
+     * @return string|json
      */
     private function formValidationAttributes($values) : string
     {

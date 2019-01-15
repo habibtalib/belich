@@ -7,10 +7,23 @@ use Illuminate\Support\Collection;
 
 class FieldResolve {
 
+    /** @var string [The controller action name] */
     private $controllerAction;
+
+    /** @var Illuminate\Support\Collection [The field attributes] */
     private $fields;
+
+    /** @var object [The resource model] */
     private $model;
 
+    /**
+     * Resolve the field
+     *
+     * @param  string  $controllerAction
+     * @param  Collection  $fields
+     * @param  object  $model
+     * @return void
+     */
     public function __construct(string $controllerAction, Collection $fields, $model)
     {
         $this->controllerAction = $controllerAction;
@@ -89,6 +102,12 @@ class FieldResolve {
         ]);
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Private methods
+    |--------------------------------------------------------------------------
+    */
+
     /**
      * When the action is update or show
      * We hace to update the field value
@@ -118,9 +137,9 @@ class FieldResolve {
      * Fill the field value with a model relationship
      *
      * @param string $attribute
-     * @return string|null
+     * @return string
      */
-    private function fillValueFromRelationship($attribute)
+    private function fillValueFromRelationship($attribute) : string
     {
         //Set default values
         $relationship          = $this->getRelationshipMethod($attribute);
@@ -128,7 +147,7 @@ class FieldResolve {
 
         //Not enough attributes
         if(empty($relationship) || empty($relationshipAttribute)) {
-            return null;
+            return emptyResults();
         }
 
         //Verify if the current resource has a relationship defined...
@@ -145,17 +164,17 @@ class FieldResolve {
             }
 
             //Only one result
-            if($result->count() === 1) {
+            if($result->count() === 1 && !empty($relationshipAttribute)) {
                 return $result->first()->{$relationshipAttribute};
             }
         }
 
-        return null;
+        return emptyResults();
     }
 
     /*
     |--------------------------------------------------------------------------
-    | Relationship helpers
+    | Relationship private methods
     |--------------------------------------------------------------------------
     */
 
@@ -184,9 +203,9 @@ class FieldResolve {
      *
      * @return string
      */
-     private function getRelationshipMethod($attribute)
+     private function getRelationshipMethod($attribute) : string
      {
-         return $this->getRelationship($attribute)[0];
+         return $this->getRelationship($attribute)[0] ?? '';
      }
 
      /**
@@ -194,8 +213,8 @@ class FieldResolve {
      *
      * @return string
      */
-     private function getRelationshipAttribute($attribute)
+     private function getRelationshipAttribute($attribute) : string
      {
-         return $this->getRelationship($attribute)[1];
+         return $this->getRelationship($attribute)[1] ?? '';
      }
 }
