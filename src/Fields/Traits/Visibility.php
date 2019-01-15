@@ -1,8 +1,8 @@
 <?php
 
-namespace Daguilarm\Belich\Fields;
+namespace Daguilarm\Belich\Fields\Traits;
 
-trait FieldVisibility {
+trait Visibility {
 
     /** @var array [Field visibility base on the action] */
     public $visibility = [

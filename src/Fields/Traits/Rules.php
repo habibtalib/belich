@@ -1,8 +1,8 @@
 <?php
 
-namespace Daguilarm\Belich\Fields;
+namespace Daguilarm\Belich\Fields\Traits;
 
-trait FieldRules {
+trait Rules {
 
     /** @var array [The validation rules for creation and updates] */
     public $rules;

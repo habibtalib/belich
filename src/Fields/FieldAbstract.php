@@ -36,11 +36,11 @@ abstract class FieldAbstract {
      * @param  string  $text
      * @return self
      */
-    public function help($text = null) : self
+    public function help($value = null) : self
     {
-        //Check the text for conditional cases...
-        if(!empty($text)) {
-            $this->help = $text;
+        //Check the value for conditional cases...
+        if(!empty($value)) {
+            $this->help = $value;
         }
 
         return $this;

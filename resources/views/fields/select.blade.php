@@ -2,13 +2,13 @@
 
 @else
     @component('belich::fields.components.inlineForm')
-        @slot('label', $field->name)
+        @slot('label', $field->label)
         @slot('field')
             <div class="select-container">
                 <select
-                    id="{{ setFieldName($field) }}"
-                    name="{{ setFieldName($field) }}"
-                    dusk="{{ setFieldName($field) }}"
+                    id="{{ $field->id }}"
+                    name="{{ $field->name }}"
+                    dusk="{{ $field->dusk }}"
                 >
                     @foreach($field->options as $value => $text)
                         <option value="{{ $value }}" {{ $field->value === $value ? 'selected="selected"' : '' }}>{{ $text }}</option>
@@ -20,7 +20,7 @@
                     </svg>
                 </div>
             </div>
-            <p id="error-{{ setFieldName($field) }}" class="validation-error"></p>
+            <p id="error-{{ $field->attribute }}" class="validation-error"></p>
         @endslot
     @endcomponent
 @endif

@@ -56,6 +56,27 @@ class FieldValidate {
         ]);
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Private methods
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Remove realtionship validation fields
+     *
+     * @param string $attribute
+     * @return bool
+     */
+    private function hasValidAttribute(string $attribute) : bool
+    {
+        $split = explode('.', $attribute);
+
+        return count($split) === 1
+            ? true
+            : false;
+    }
+
     /**
      * Set the values from the fields.
      * This is only to store all the data in one place...
@@ -73,6 +94,10 @@ class FieldValidate {
                         $this->setRules($field)
                     ]
                 ];
+        })
+        //Ignore validation for relationship on regular fields like: text, select,...
+        ->filter(function($item) {
+            return $this->hasValidAttribute($item[0]);
         });
     }
 

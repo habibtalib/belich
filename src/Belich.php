@@ -86,7 +86,7 @@ class Belich {
             return $this->resourceClass->model()->findOrFail(getRouteId());
         }
 
-        return new Illuminate\Database\Eloquent\Collection;
+        return new \Illuminate\Database\Eloquent\Collection;
     }
 
     /**

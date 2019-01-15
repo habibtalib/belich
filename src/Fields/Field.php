@@ -4,16 +4,25 @@ namespace Daguilarm\Belich\Fields;
 
 use Daguilarm\Belich\Contracts\Maker;
 use Daguilarm\Belich\Fields\FieldAbstract;
-use Daguilarm\Belich\Fields\FieldRules;
-use Daguilarm\Belich\Fields\FieldSettings;
-use Daguilarm\Belich\Fields\FieldVisibility;
+use Daguilarm\Belich\Fields\Traits\Rules;
+use Daguilarm\Belich\Fields\Traits\Settings;
+use Daguilarm\Belich\Fields\Traits\Visibility;
 use Illuminate\Support\Str;
 
 class Field extends FieldAbstract {
 
-    use FieldRules,
-        FieldSettings,
-        FieldVisibility;
+    use Rules,
+        Settings,
+        Visibility;
+
+    /** @var string [The attribute / column name of the field] */
+    public $attribute;
+
+    /** @var string [Set the dusk value] */
+    public $dusk;
+
+    /** @var string [Set the field label tag] */
+    public $label;
 
     /**
      * Create a new field
@@ -22,10 +31,17 @@ class Field extends FieldAbstract {
      * @param  string|null  $attribute
      * @return void
      */
-    public function __construct($name, $attribute = null)
+    public function __construct($label, $attribute = null)
     {
-        $this->name      = $name;
-        $this->attribute = $attribute ?? str_replace(' ', '_', Str::lower($name));
+        //Set the default value
+        $title = str_replace(' ', '_', Str::lower($attribute));
+
+        //Set the values
+        $this->label     = $label;
+        $this->attribute = $attribute ?? $title;
+        $this->dusk      = $this->dusk ?? 'dusk-' . $title;
+        $this->id        = $this->name ?? $title;
+        $this->name      = $this->name ?? $title;
     }
 
     /**
