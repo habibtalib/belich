@@ -1,10 +1,10 @@
 @extends(Request::ajax() ? 'belich::layout-ajax' : 'belich::layout')
 
 @section('content')
-    <form name="form-{{ $settings['resource'] }}-edit" id="form-{{ $settings['resource'] }}-edit" method="POST" action="{{ route(getRouteForm($settings, 'store')) }}">
+    <form name="form-{{ $request->get('resource') }}-edit" id="form-{{ $request->get('resource') }}-edit" method="POST" action="{{ route(getRouteForm($request->get('resource'), 'store')) }}">
         @csrf
         @method('PATCH')
-        @foreach($request as $field)
+        @foreach($request->get('fields') as $field)
             @includeIf('belich::fields.' . $field->type, ['field' => $field])
         @endforeach
 

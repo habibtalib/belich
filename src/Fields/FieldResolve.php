@@ -120,9 +120,12 @@ class FieldResolve {
             //Get the attribute value
             $attribute = $field->attribute;
 
+            //Get the render relationship value. Only for no relational fields, like: text or select...
+            $renderRelationships = $field->renderRelationships;
+
             //Relationship case
             if($this->countRelationship($attribute) === 2) {
-                $field->value = $this->fillValueFromRelationship($attribute);
+                $field->value = $this->fillValueFromRelationship($attribute, $renderRelationships);
 
             //Regular case
             } else {
@@ -137,9 +140,10 @@ class FieldResolve {
      * Fill the field value with a model relationship
      *
      * @param string $attribute
+     * @param bool $renderRelationships [For no relational field will return a readOnly attribute for the field]
      * @return string
      */
-    private function fillValueFromRelationship($attribute) : string
+    private function fillValueFromRelationship(string $attribute, bool $renderRelationships) : string
     {
         //Set default values
         $relationship          = $this->getRelationshipMethod($attribute);
@@ -150,23 +154,19 @@ class FieldResolve {
             return emptyResults();
         }
 
-        //Verify if the current resource has a relationship defined...
-        //Application resource
-        $relationshipFromModel = $this->resourceClass->getRelationships();
+        //Get value from the relationship
+        $result = optional($this->model)->{$relationship};
 
-        if(in_array($relationship, $relationshipFromModel)) {
-            $result = optional($this->model)->{$relationship};
+        //If more than one results... return the collection with all the results
+        //Only if the field support this type of relationship
+        if($result->count() > 1 && $renderRelationships) {
+            //In the future will create a new field to show all the values...
+            return $result;
+        }
 
-            //If more than one results... return the collection with all the results
-            if($result->count() > 1) {
-                //In the future will create a new field to show all the values...
-                return $result;
-            }
-
-            //Only one result
-            if($result->count() === 1 && !empty($relationshipAttribute)) {
-                return $result->first()->{$relationshipAttribute};
-            }
+        //Only one result
+        if($result->count() === 1 && !empty($relationshipAttribute) && !$renderRelationships) {
+            return $result->first()->{$relationshipAttribute};
         }
 
         return emptyResults();

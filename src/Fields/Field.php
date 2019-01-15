@@ -4,18 +4,16 @@ namespace Daguilarm\Belich\Fields;
 
 use Daguilarm\Belich\Contracts\Maker;
 use Daguilarm\Belich\Fields\FieldAbstract;
+use Daguilarm\Belich\Fields\FieldRules;
+use Daguilarm\Belich\Fields\FieldSettings;
+use Daguilarm\Belich\Fields\FieldVisibility;
 use Illuminate\Support\Str;
 
 class Field extends FieldAbstract {
 
-    /** @var string [The attribute / column name of the field] */
-    public $attribute;
-
-    /** @var string [The displayable name of the field] */
-    public $name;
-
-    /** @var bool [Indicates if the field should be sortable] */
-    public $sortable = false;
+    use FieldRules,
+        FieldSettings,
+        FieldVisibility;
 
     /**
      * Create a new field
