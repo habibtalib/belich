@@ -3,14 +3,14 @@
 namespace Daguilarm\Belich\Fields;
 
 use Daguilarm\Belich\Fields\ResolveFields as Fields;
-use Daguilarm\Belich\Fields\Traits\Relationships\hasRelationship;
+use Daguilarm\Belich\Fields\Traits\Filters;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use MatthiasMullie\Minify;
 
 class FieldValidate {
 
-    use hasRelationship;
+    use Filters;
 
     /** @var string */
     private $controllerAction;
@@ -83,9 +83,9 @@ class FieldValidate {
                     ]
                 ];
         })
-        //Ignore validation for relationship on regular fields like: text, select,...
+        //Ignore for validation incorrect value names
         ->filter(function($item) {
-            return !$this->fieldHasRelationship($item[0]);
+            return $this->stringHasValidPhpStructure($item[0]);
         });
     }
 

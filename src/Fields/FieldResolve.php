@@ -43,17 +43,23 @@ class FieldResolve {
         //Show or hide fields base on Resource settings
         $fields = $this->visibility($this->fields);
 
-        //Update the fields values base on the Controller action
-        return $this->values($fields);
+        //Resolve the field base on the Controller action
+        return $this->resolveField($fields);
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Private methods
+    |--------------------------------------------------------------------------
+    */
 
     /**
      * Show or Hide field base on actions
      *
      * @param array $fields
-     * @return array
+     * @return array|null
      */
-    public function visibility($fields)
+    private function visibility($fields)
     {
         return $fields->map(function($field) {
             return $field->visibility[$this->controllerAction]
@@ -64,22 +70,25 @@ class FieldResolve {
     }
 
     /**
-     * values the fields values base on the Controller action
+     * Resolve the fields values base on the Controller action
      *
      * @return object
      */
-    public function values($fields) : Collection
+    private function resolveField($fields) : Collection
     {
         //Index action: Return only the name and the attribute for each field.
         if($this->controllerAction === 'index') {
             return $this->indexValues($fields);
         }
 
+        // Createing all the render attributes before added to the field
+        $fields = $this->renderAttributes($fields);
+
         //Edit action
         //Show action
         if($this->controllerAction === 'edit' || $this->controllerAction === 'show') {
             //Fill the field value with the model
-            return $this->formValues($fields);
+            return $this->setValue($fields);
         }
 
         return $fields;
@@ -90,7 +99,7 @@ class FieldResolve {
      *
      * @return object
      */
-    public function indexValues($fields) : Collection
+    private function indexValues($fields) : Collection
     {
         $results = $fields->mapWithKeys(function($field, $key) {
             return [$field->name => $field->attribute];
@@ -102,119 +111,72 @@ class FieldResolve {
         ]);
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Private methods
-    |--------------------------------------------------------------------------
-    */
-
     /**
      * When the action is update or show
      * We hace to update the field value
      *
      * @return string|null
      */
-    private function formValues($fields)
+    private function setValue($fields)
     {
         return $fields->map(function($field) {
             //Get the attribute value
             $attribute = $field->attribute;
 
-            //Get the render relationship value. Only for no relational fields, like: text or select...
-            $renderRelationships = $field->renderRelationships;
-
-            //Relationship case
-            if($this->countRelationship($attribute) === 2) {
-                $field->value = $this->fillValueFromRelationship($attribute, $renderRelationships);
-
-            //Regular case
-            } else {
-                $field->value = optional($this->model)->{$field->attribute};
-            }
+            //Set new value
+            $field->value = optional($this->model)->{$field->attribute};
 
             return $field;
         });
     }
 
     /**
-     * Fill the field value with a model relationship
+     * When the action is update or show
+     * We hace to update the field value
      *
-     * @param string $attribute
-     * @param bool $renderRelationships [For no relational field will return a readOnly attribute for the field]
-     * @return string
+     * @param Illuminate\Support\Collection $fields
+     * @return string|null
      */
-    private function fillValueFromRelationship(string $attribute, bool $renderRelationships) : string
+    private function renderAttributes($fields)
     {
-        //Set default values
-        $relationship          = $this->getRelationshipMethod($attribute);
-        $relationshipAttribute = $this->getRelationshipAttribute($attribute);
+        return $fields->map(function($field) {
 
-        //Not enough attributes
-        if(empty($relationship) || empty($relationshipAttribute)) {
-            return emptyResults();
-        }
+            //Add attributes dynamically from the list
+            $field->render = collect($field)
+                ->map(function($value, $attribute) use ($field) {
+                    if(in_array($attribute, $field->renderAttributes)) {
+                        return sprintf('%s=%s', $attribute, $value);
+                    }
+                })
+                ->filter(function($value) {
+                    return $value;
+                });
 
-        //Get value from the relationship
-        $result = optional($this->model)->{$relationship};
+            //Add the data attributes
+            if($field->data) {
+                $data = collect($field->data)
+                    ->map(function($value) {
+                        return sprintf('data-%s=%s', $value[0], $value[1]);
+                    })
+                    ->implode(' ');
 
-        //If more than one results... return the collection with all the results
-        //Only if the field support this type of relationship
-        if($result->count() > 1 && $renderRelationships) {
-            //In the future will create a new field to show all the values...
-            return $result;
-        }
+                $field->render->push($data);
+            }
 
-        //Only one result
-        if($result->count() === 1 && !empty($relationshipAttribute) && !$renderRelationships) {
-            return $result->first()->{$relationshipAttribute};
-        }
+            //Add readonly attribute
+            if($field->readonly) {
+                $field->render->push('readonly');
+            }
 
-        return emptyResults();
+            //Add disabled attribute
+            if($field->disabled) {
+                $field->render->push('disabled');
+            }
+
+            //To string...
+            $field->render = $field->render->implode(' ');
+
+            return $field;
+        });
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Relationship private methods
-    |--------------------------------------------------------------------------
-    */
-
-    /**
-     * Get relationship
-     *
-     * @return array
-     */
-     private function getRelationship($attribute) : array
-     {
-         return explode('.', $attribute) ?? [];
-     }
-
-     /**
-     * Get the array count from the relationship
-     *
-     * @return int
-     */
-     private function countRelationship($attribute) : int
-     {
-         return count($this->getRelationship($attribute)) ?? 1;
-     }
-
-     /**
-     * Get relationship method
-     *
-     * @return string
-     */
-     private function getRelationshipMethod($attribute) : string
-     {
-         return $this->getRelationship($attribute)[0] ?? '';
-     }
-
-     /**
-     * Get relationship attribute
-     *
-     * @return string
-     */
-     private function getRelationshipAttribute($attribute) : string
-     {
-         return $this->getRelationship($attribute)[1] ?? '';
-     }
 }

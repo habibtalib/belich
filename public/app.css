@@ -144,6 +144,16 @@
   font-style: italic;
   margin-top: .5rem;
 }
+
+.form-group .disabled,
+.form-group input:disabled,
+.form-group textarea:disabled,
+.form-group select:disabled,
+.form-group option:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+  background-color: #dae1e7;
+}
 /* Navbar */
 
 .navbar-item {

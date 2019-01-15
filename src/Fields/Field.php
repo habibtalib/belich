@@ -4,26 +4,36 @@ namespace Daguilarm\Belich\Fields;
 
 use Daguilarm\Belich\Contracts\Maker;
 use Daguilarm\Belich\Fields\FieldAbstract;
-use Daguilarm\Belich\Fields\Traits\Render;
 use Daguilarm\Belich\Fields\Traits\Rules;
 use Daguilarm\Belich\Fields\Traits\Settings;
 use Daguilarm\Belich\Fields\Traits\Visibility;
-use Daguilarm\Belich\Fields\Traits\Relationships\hasRelationship;
 use Illuminate\Support\Str;
 
 class Field extends FieldAbstract {
 
-    use hasRelationship,
-        Render,
-        Rules,
+    use Rules,
         Settings,
         Visibility;
+
+    /** @var array [List of attributes to be dynamically render] */
+    public $renderAttributes = ['id', 'dusk'];
+
+    /** @var string [All the render attributes must be stored here...] */
+    public $render;
 
     /** @var string [The attribute / column name of the field] */
     public $attribute;
 
     /** @var string [Set the field label tag] */
     public $label;
+
+    /** @var array [List of allowed controller actions] */
+    private $allowedControllerActions = [
+        'index',
+        'create',
+        'edit',
+        'show'
+    ];
 
     /**
      * Create a new field
@@ -43,7 +53,6 @@ class Field extends FieldAbstract {
         $this->dusk      = $this->dusk ?? 'dusk-' . $title;
         $this->id        = $this->name ?? $title;
         $this->name      = $this->name ?? $title;
-        $this->render    = $this->renderFieldAttributes('id', 'name', 'dusk');
     }
 
     /**

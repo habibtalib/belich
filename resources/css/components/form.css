@@ -53,3 +53,11 @@
     .form-group p.validation-error {
         @apply text-red font-normal italic mt-2;
     }
+
+    .form-group .disabled,
+    .form-group input:disabled,
+    .form-group textarea:disabled,
+    .form-group select:disabled,
+    .form-group option:disabled {
+        @apply opacity-50 cursor-not-allowed bg-grey-light;
+    }
