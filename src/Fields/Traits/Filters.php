@@ -18,7 +18,7 @@ trait Filters {
     }
 
     /**
-     * String has a validad php structure
+     * Remove stuff that may bother to Mr. php
      *
      * @param  string $string
      * @return bool

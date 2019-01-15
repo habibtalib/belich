@@ -34,17 +34,31 @@ class FieldResolve {
     /**
      * Show or Hide field base on actions
      *
-     * @param array $fields
-     * @param string $controllerAction
-     * @return object
+     * @return Illuminate\Support\Collection
      */
-    public function make()
+    public function make() : Collection
     {
         //Show or hide fields base on Resource settings
-        $fields = $this->visibility($this->fields);
+        $fields = $this->setVisibilities($this->fields);
 
-        //Resolve the field base on the Controller action
-        return $this->resolveField($fields);
+        //Index action: Return only the name and the attribute for each field.
+        if($this->controllerAction === 'index') {
+            return $this->setIndexValues($fields);
+        }
+
+        //Form actions: Create or Edit
+        if($this->controllerAction === 'create' || $this->controllerAction === 'edit') {
+            // Creating all the render attributes for the forms
+            $fields = $this->setAttributes($fields);
+        }
+
+        //Add values to fields: Only in Edit or Show actions
+        if($this->controllerAction === 'edit' || $this->controllerAction === 'show') {
+            //Fill the field value with the model
+            return $this->setValues($fields);
+        }
+
+        return $fields;
     }
 
     /*
@@ -56,10 +70,10 @@ class FieldResolve {
     /**
      * Show or Hide field base on actions
      *
-     * @param array $fields
+     * @param Illuminate\Support\Collection $fields
      * @return array|null
      */
-    private function visibility($fields)
+    private function setVisibilities(Collection $fields) : Collection
     {
         return $fields->map(function($field) {
             return $field->visibility[$this->controllerAction]
@@ -70,39 +84,15 @@ class FieldResolve {
     }
 
     /**
-     * Resolve the fields values base on the Controller action
-     *
-     * @return object
-     */
-    private function resolveField($fields) : Collection
-    {
-        //Index action: Return only the name and the attribute for each field.
-        if($this->controllerAction === 'index') {
-            return $this->indexValues($fields);
-        }
-
-        // Createing all the render attributes before added to the field
-        $fields = $this->renderAttributes($fields);
-
-        //Edit action
-        //Show action
-        if($this->controllerAction === 'edit' || $this->controllerAction === 'show') {
-            //Fill the field value with the model
-            return $this->setValue($fields);
-        }
-
-        return $fields;
-    }
-
-    /**
      * Set the values base on the index controller action
      *
-     * @return object
+     * @param Illuminate\Support\Collection $fields
+     * @return Illuminate\Support\Collection
      */
-    private function indexValues($fields) : Collection
+    private function setIndexValues(Collection $fields) : Collection
     {
         $results = $fields->mapWithKeys(function($field, $key) {
-            return [$field->name => $field->attribute];
+            return [$field->label => $field->attribute];
         });
 
         return collect([
@@ -115,9 +105,10 @@ class FieldResolve {
      * When the action is update or show
      * We hace to update the field value
      *
-     * @return string|null
+     * @param Illuminate\Support\Collection $fields
+     * @return Illuminate\Support\Collection
      */
-    private function setValue($fields)
+    private function setValues(Collection $fields) : Collection
     {
         return $fields->map(function($field) {
             //Get the attribute value
@@ -131,13 +122,12 @@ class FieldResolve {
     }
 
     /**
-     * When the action is update or show
-     * We hace to update the field value
+     * Generate the attributes for the fields
      *
      * @param Illuminate\Support\Collection $fields
-     * @return string|null
+     * @return \Illuminate\Support\Collection
      */
-    private function renderAttributes($fields)
+    private function setAttributes($fields) : Collection
     {
         return $fields->map(function($field) {
 
