@@ -16,4 +16,17 @@ trait Filters {
             ? true
             : false;
     }
+
+    /**
+     * String has a validad php structure
+     *
+     * @param  string $string
+     * @return bool
+     */
+    private function stringSanitizeForPhpStructure(string $string) : string
+    {
+        $replace = ['!', '"', '/', '@', '#', '$', '%', '&', '(', ')', '€', '^', '*', '{', '}', '-', '.', ',', ';', ' '];
+
+        return str_replace($replace, '_', $string);
+    }
 }
