@@ -15,15 +15,6 @@ abstract class FieldAbstract {
     /** @var string [Field help text] */
     public $help;
 
-    /**
-     * By default, the regular fields like: text, select,... cannot operate with relationships
-     * When a regular field has a belongTo or hasOne relationship, the field will has the attribute readOnly
-     * Other relationships will return an empty field
-     *
-     * @var bool
-     */
-    public $renderRelationships = false;
-
     /** @var bool [Indicates if the field should be sortable] */
     public $sortable = false;
 
@@ -36,7 +27,7 @@ abstract class FieldAbstract {
      * @param  string  $text
      * @return self
      */
-    public function help($value = null) : self
+    public function help(string $value = '') : self
     {
         //Check the value for conditional cases...
         if(!empty($value)) {
@@ -52,7 +43,7 @@ abstract class FieldAbstract {
      * @param  string|null  $value
      * @return self
      */
-    public function defaultValue($value = null) : self
+    public function defaultValue(string $value = '') : self
     {
         //Check the value for conditional cases...
         if(!is_null($value)) {

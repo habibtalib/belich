@@ -5,11 +5,7 @@
         @slot('label', $field->label)
         @slot('field')
             <div class="select-container">
-                <select
-                    id="{{ $field->id }}"
-                    name="{{ $field->name }}"
-                    dusk="{{ $field->dusk }}"
-                >
+                <select {{ $field->render }}>
                     @foreach($field->options as $value => $text)
                         <option value="{{ $value }}" {{ $field->value === $value ? 'selected="selected"' : '' }}>{{ $text }}</option>
                     @endforeach
@@ -20,6 +16,11 @@
                     </svg>
                 </div>
             </div>
+
+            @if($field->help)
+                <div class="help-text">{{ $field->help }}</div>
+            @endif
+
             <p id="error-{{ $field->attribute }}" class="validation-error"></p>
         @endslot
     @endcomponent

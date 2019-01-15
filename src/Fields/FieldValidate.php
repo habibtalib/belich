@@ -3,11 +3,14 @@
 namespace Daguilarm\Belich\Fields;
 
 use Daguilarm\Belich\Fields\ResolveFields as Fields;
+use Daguilarm\Belich\Fields\Traits\Relationships\hasRelationship;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use MatthiasMullie\Minify;
 
 class FieldValidate {
+
+    use hasRelationship;
 
     /** @var string */
     private $controllerAction;
@@ -63,21 +66,6 @@ class FieldValidate {
     */
 
     /**
-     * Remove realtionship validation fields
-     *
-     * @param string $attribute
-     * @return bool
-     */
-    private function hasValidAttribute(string $attribute) : bool
-    {
-        $split = explode('.', $attribute);
-
-        return count($split) === 1
-            ? true
-            : false;
-    }
-
-    /**
      * Set the values from the fields.
      * This is only to store all the data in one place...
      *
@@ -89,7 +77,7 @@ class FieldValidate {
             ->mapWithKeys(function($field, $key) {
                 return [
                     $field->attribute => [
-                        $field->name ?? null,
+                        $field->attribute ?? null,
                         //Define the rules base on the action
                         $this->setRules($field)
                     ]
@@ -97,7 +85,7 @@ class FieldValidate {
         })
         //Ignore validation for relationship on regular fields like: text, select,...
         ->filter(function($item) {
-            return $this->hasValidAttribute($item[0]);
+            return !$this->fieldHasRelationship($item[0]);
         });
     }
 

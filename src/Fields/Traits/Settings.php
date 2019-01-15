@@ -4,19 +4,38 @@ namespace Daguilarm\Belich\Fields\Traits;
 
 trait Settings {
 
-    /** @var string [Set field id] */
+    /** @var string [Set the dusk value] */
+    public $dusk;
+
+    /** @var string [Set attribute id] */
     public $id;
 
-    /** @var string [Set field name] */
+    /** @var string [Set attribute name] */
     public $name;
 
     /**
-     * Set the field id
+     * Set the attribute dusk
      *
      * @param  string|null  $value
      * @return self
      */
-    public function id($value = null)
+    public function dusk(string $value = '')
+    {
+        //Check the value for conditional cases...
+        if(!empty($value)) {
+            $this->dusk = $value;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set the attribute id
+     *
+     * @param  string|null  $value
+     * @return self
+     */
+    public function id(string $value = '')
     {
         //Check the value for conditional cases...
         if(!empty($value)) {
@@ -27,12 +46,12 @@ trait Settings {
     }
 
     /**
-     * Set the field name
+     * Set the attribute name
      *
      * @param  string|null  $value
      * @return self
      */
-    public function name($value = null)
+    public function name(string $value = '')
     {
         //Check the value for conditional cases...
         if(!empty($value)) {
