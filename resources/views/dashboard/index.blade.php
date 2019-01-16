@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- Breadcrumbs --}}
-    @include('belich::dashboard.components.breadcrumbs')
+    @include('belich::partials.breadcrumbs')
 
     {{-- Table --}}
     <form name="form-index" id="form-index" method="POST" action="">
@@ -24,7 +24,7 @@
                 @empty
                     <tr>
                         <td colspan="{{ $request->getValue('fields.labels')->count() }}" class="text-center">
-                            {{ trans('belich::resources.no_results') }}
+                            {{ trans('belich::messages.resources.no_results') }}
                         </td>
                     </tr>
                 @endforelse

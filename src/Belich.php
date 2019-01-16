@@ -2,11 +2,14 @@
 
 namespace Daguilarm\Belich;
 
+use Daguilarm\Belich\Components\Breadcrumbs;
 use Daguilarm\Belich\Fields\FieldResolve;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
 class Belich {
+
+    use Breadcrumbs;
 
     /** @var string [The controller action name] */
     private $controllerAction;
@@ -104,9 +107,9 @@ class Belich {
     /**
      * Generate the resource settings
      *
-     * @return array
+     * @return Illuminate\Support\Collection
      */
-    private function getSettings() : array
+    private function getSettings() : Collection
     {
         //Get the basic setting and capitalize the string values
         $settings = collect($this->resourceClass::$settings)
@@ -114,40 +117,23 @@ class Belich {
                 if(is_string($item)) {
                     return ucfirst($item);
                 }
-            })
-            ->toArray();
+            });
 
         //Set the displayInNavigation value
-        $settings['displayInNavigation'] = $settings['displayInNavigation'] ?? true;
+        $settings->displayInNavigation = $settings->get('displayInNavigation') ?? true;
 
         //Set the label value
-        $settings['label'] = $settings['label'] ?? ucfirst(str_singular(getResourceName()));
+        $settings->label = $settings->get('label') ?? ucfirst(str_singular(getResourceName()));
 
         //Set the labels value
-        $settings['labels'] = $settings['labels'] ?? str_plural($settings['label']);
+        $settings->labels = $settings->get('labels') ?? str_plural($settings['label']);
 
         //Set the group value
-        $settings['group'] = $settings['group'] ?? $settings['labels'];
+        $settings->group = $settings->get('group') ?? $settings->get('labels');
 
         //Add the breadcrumbs to the settings
-        $settings['breadcrumbs'] = $this->getBreadcrumbs();
+        $settings->breadcrumbs = $this->breadcrumbsCreate($settings);
 
         return $settings;
-    }
-
-    /**
-     * Generate the resource breadcrumbs
-     *
-     * @return array
-     */
-    private function getBreadcrumbs() : array
-    {
-        //Custom breadcrumbs from the resource
-        if($this->resourceClass::$breadcrumbs) {
-            return $this->resourceClass::$breadcrumbs;
-        }
-
-        //Default breadcrumbs
-        return [];
     }
 }

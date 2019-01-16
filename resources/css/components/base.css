@@ -2,3 +2,7 @@
 .wrap-container {
     @apply w-full;
 }
+
+a {
+    @apply no-underline;
+}

@@ -2,9 +2,19 @@
 
 return [
     'crud' => [
-        'create' => 'New',
-        'read'   => 'Detail',
-        'update' => 'Edit',
-        'delete' => 'Delete',
+        'create'  => 'New',
+        'delete'  => 'Delete',
+        'read'    => 'Detail',
+        'restore' => 'Restore',
+        'update'  => 'Edit',
+        'upgrade' => 'Upgrade',
     ],
+    'positions' => [
+        'bottom'  => 'Bottom',
+        'left'    => 'Left',
+        'next'    => 'Next',
+        'previus' => 'Previus',
+        'right'   => 'Right',
+        'top'     => 'Top',
+    ]
 ];

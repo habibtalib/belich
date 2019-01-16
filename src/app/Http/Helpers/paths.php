@@ -31,3 +31,15 @@ if (!function_exists('route_path')) {
         return sprintf('%s/%s', config('belich.path'), $file);
     }
 }
+
+/**
+ * Built belich urls
+ *
+ * @return string
+ */
+if (!function_exists('belich_path')) {
+    function belich_path($resource = null) : string
+    {
+        return sprintf('%s%s/%s', config('belich.url'), config('belich.path'), $resource);
+    }
+}
