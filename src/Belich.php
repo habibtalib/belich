@@ -46,17 +46,16 @@ class Belich {
     {
         return collect([
             // Configuration //
-            'availableForNavigation' => $this->resourceClass::$availableForNavigation,
             'controllerAction'       => $this->controllerAction,
             'model'                  => $this->resourceClass::$model,
             'relationships'          => $this->resourceClass::$relationships,
             'resource'               => $this->resource,
+            'settings'               => $this->getSettings(),
             'softDeletes'            => $this->resourceClass::$softDeletes,
             'sqlResponse'            => $this->sqlResponse,
 
             // Operations //
             'actions'                => $this->resourceClass::$actions,
-            'breadcrumb'             => $this->resourceClass::$breadcrumb,
             'cards'                  => $this->resourceClass::$cards,
             'metrics'                => $this->resourceClass::$metrics,
 
@@ -100,5 +99,55 @@ class Belich {
         $resolve = new FieldResolve($this->controllerAction, $fields, $this->sqlResponse);
 
         return $resolve->make();
+    }
+
+    /**
+     * Generate the resource settings
+     *
+     * @return array
+     */
+    private function getSettings() : array
+    {
+        //Get the basic setting and capitalize the string values
+        $settings = collect($this->resourceClass::$settings)
+            ->map(function($item) {
+                if(is_string($item)) {
+                    return ucfirst($item);
+                }
+            })
+            ->toArray();
+
+        //Set the displayInNavigation value
+        $settings['displayInNavigation'] = $settings['displayInNavigation'] ?? true;
+
+        //Set the label value
+        $settings['label'] = $settings['label'] ?? ucfirst(str_singular(getResourceName()));
+
+        //Set the labels value
+        $settings['labels'] = $settings['labels'] ?? str_plural($settings['label']);
+
+        //Set the group value
+        $settings['group'] = $settings['group'] ?? $settings['labels'];
+
+        //Add the breadcrumbs to the settings
+        $settings['breadcrumbs'] = $this->getBreadcrumbs();
+
+        return $settings;
+    }
+
+    /**
+     * Generate the resource breadcrumbs
+     *
+     * @return array
+     */
+    private function getBreadcrumbs() : array
+    {
+        //Custom breadcrumbs from the resource
+        if($this->resourceClass::$breadcrumbs) {
+            return $this->resourceClass::$breadcrumbs;
+        }
+
+        //Default breadcrumbs
+        return [];
     }
 }

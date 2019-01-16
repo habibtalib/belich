@@ -9,30 +9,44 @@ use Illuminate\Http\Request;
 
 class RestfullController extends Controller
 {
+    /** @var Daguilarm\Belich\Belich */
+    private $belich;
+
+    /**
+     * Generate crud controllers
+     *
+     * @param Daguilarm\Belich\Belich $belich
+     */
+    public function __construct(Belich $belich)
+    {
+        //Initialize the packges
+        $this->belich = $belich->create();
+
+        //Share the setting to all the views
+        view()->share('settings', $this->belich->get('settings'));
+    }
+
     /**
      * List the resources.
      *
-     * @param Illuminate\Http\Request $request
-     * @param Daguilarm\Belich\Belich $fields
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, Belich $belich)
+    public function index()
     {
         //Load the view with the data
-        return view('belich::dashboard.index')->withRequest($belich->create());
+        return view('belich::dashboard.index')->withRequest($this->belich);
     }
 
     /**
      * Create a new resource.
      *
-     * @param Daguilarm\Belich\Belich $belich
      * @param Daguilarm\Belich\Fields\FieldValidate $validate
      * @return \Illuminate\Http\Response
      */
-    public function create(Belich $belich, Validate $validate)
+    public function create(Validate $validate)
     {
         //Set the resource values
-        $resource = $belich->create();
+        $resource = $this->belich->create();
 
         //Load the view with the data
         return view('belich::dashboard.create')
@@ -67,20 +81,15 @@ class RestfullController extends Controller
     /**
      * Edit a resource.
      *
-     * @param Daguilarm\Belich\Belich $belich
      * @param Daguilarm\Belich\Fields\ValidateFields $validate
      * @param int $id
-     * @return \Illuminate\Http\Response
      */
-    public function edit(Belich $belich, Validate $validate, $id)
+    public function edit(Validate $validate, $id)
     {
-        //Set the resource values
-        $resource = $belich->create();
-
         //Load the view with the data
         return view('belich::dashboard.edit')
-            ->withRequest($belich->create())
-            ->withJavascript($validate->create($resource))
+            ->withRequest($this->belich)
+            ->withJavascript($validate->create($this->belich))
             ->withResourceId($id);
     }
 

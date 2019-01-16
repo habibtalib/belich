@@ -1,6 +1,10 @@
 @extends(Request::ajax() ? 'belich::layout-ajax' : 'belich::layout')
 
 @section('content')
+    {{-- Breadcrumbs --}}
+    @include('belich::dashboard.components.breadcrumbs')
+
+    {{-- Table --}}
     <form name="form-index" id="form-index" method="POST" action="">
         <table class="table">
             <thead>
