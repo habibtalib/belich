@@ -27,8 +27,11 @@ class Field extends FieldAbstract {
     /** @var string [Set the field label tag] */
     public $label;
 
-    /** @var string [The model relationship] */
-    public $relationship;
+    /** @var string [The field relationship. Mostly for text fields wich want to show a relationship] */
+    public $fieldRelationship;
+
+    /** @var string [The model relationships] */
+    public $relationships;
 
     /** @var array [List of allowed controller actions] */
     private $allowedControllerActions = [
@@ -45,18 +48,17 @@ class Field extends FieldAbstract {
      * @param  string|null  $attribute
      * @return void
      */
-    public function __construct($label, $attribute = null, $relationship = null)
+    public function __construct($label, $attribute = null)
     {
         //Set the default value
         $title = str_replace(' ', '_', Str::lower($attribute));
 
         //Set the values
-        $this->label        = $label;
-        $this->attribute    = $attribute ?? $title;
-        $this->dusk         = $this->dusk ?? 'dusk-' . $title;
-        $this->id           = $this->name ?? $title;
-        $this->name         = $this->name ?? $title;
-        $this->relationship = $relationship;
+        $this->label             = $label;
+        $this->attribute         = $attribute ?? $title;
+        $this->dusk              = $this->dusk ?? 'dusk-' . $title;
+        $this->id                = $this->name ?? $title;
+        $this->name              = $this->name ?? $title;
     }
 
     /**

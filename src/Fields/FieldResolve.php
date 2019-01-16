@@ -92,10 +92,10 @@ class FieldResolve {
     private function setIndexValues(Collection $fields) : Collection
     {
         $results = $fields->mapWithKeys(function($field, $key) {
-            //Showing relationship in index
+            //Showing field relationship in index
             //See blade template: dashboard.index
-            $attribute = $field->relationship
-                ? [$field->relationship, $field->attribute]
+            $attribute = $field->fieldRelationship
+                ? [$field->fieldRelationship, $field->attribute]
                 : $field->attribute;
 
             return [$field->label => $attribute];
@@ -120,10 +120,10 @@ class FieldResolve {
             //Get the attribute value
             $attribute = $field->attribute;
 
-            //Set new value with or without relationship
+            //Set new value for the fields, even if has a fieldRelationship value
             //This relationship method is only on forms
             //Index has its own way in blade template
-            $field->value = $this->setValuesWithRelationship($this->model, $field);
+            $field->value = $this->setValuesWithFieldRelationship($this->model, $field);
 
             return $field;
         });
@@ -135,10 +135,10 @@ class FieldResolve {
      * @param Illuminate\Support\Collection $fields
      * @return Illuminate\Support\Collection
      */
-    private function setValuesWithRelationship($model, $field)
+    private function setValuesWithFieldRelationship($model, $field)
     {
-        if($field->relationship) {
-            return $model->{$field->relationship}->{$field->attribute} ?? null;
+        if($field->fieldRelationship) {
+            return $model->{$field->fieldRelationship}->{$field->attribute} ?? null;
         }
 
         return $model->{$field->attribute} ?? null;

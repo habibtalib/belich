@@ -29,7 +29,7 @@ trait Visibility {
      *
      * @var self
      */
-    public function hideFromDetail() : self
+    public function hideFromShow() : self
     {
         $this->visibility['show'] = false;
 
@@ -53,7 +53,7 @@ trait Visibility {
      *
      * @var self
      */
-    public function hideWhenUpdating() : self
+    public function hideWhenEditing() : self
     {
         $this->visibility['edit'] = false;
 
@@ -108,16 +108,46 @@ trait Visibility {
     }
 
     /**
-     * Show field only on detail
+     * Show field only on show
      *
      * @var self
      */
-    public function onlyOnDetail() : self
+    public function onlyOnShow() : self
     {
         //Reset the values
         self::hideAllActions();
 
         $this->visibility['show'] = true;
+
+        return $this;
+    }
+
+    /**
+     * Show field only on editing
+     *
+     * @var self
+     */
+    public function onlyOnEditing() : self
+    {
+        //Reset the values
+        self::hideAllActions();
+
+        $this->visibility['edit'] = true;
+
+        return $this;
+    }
+
+    /**
+     * Show field only on creating
+     *
+     * @var self
+     */
+    public function onlyOnCreating() : self
+    {
+        //Reset the values
+        self::hideAllActions();
+
+        $this->visibility['create'] = true;
 
         return $this;
     }
