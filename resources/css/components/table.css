@@ -1,13 +1,13 @@
 .table {
-    @apply w-full text-sm;
+    @apply w-full text-sm bg-white mb-16 shadow-md;
 }
 
     .table thead {
-        @apply uppercase text-left text-grey-darker;
+        @apply uppercase text-left;
     }
 
         .table thead tr {
-            @apply border-t border-b border-solid border-grey-light bg-grey-lighter;
+            @apply border-t border-b border-solid border-grey-light bg-grey text-white;
         }
 
             .table thead tr th {
@@ -16,4 +16,8 @@
 
     .table tbody tr td {
         @apply py-4 px-6 border-b border-solid border-grey-light;
+    }
+
+    .table tbody tr:hover {
+        @apply bg-yellow-light;
     }

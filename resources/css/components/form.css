@@ -1,3 +1,7 @@
+form#form-group {
+    @apply shadow-md bg-white;
+}
+
 .form-group {
     @apply w-full flex items-center pt-8 pb-6 px-6 border-b border-grey-lighter text-grey-darker text-sm;
 }

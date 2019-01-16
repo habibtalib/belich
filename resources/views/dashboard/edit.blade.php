@@ -1,7 +1,10 @@
 @extends(Request::ajax() ? 'belich::layout-ajax' : 'belich::layout')
 
 @section('content')
-    <form method="POST" name="form-{{ $request->get('resource') }}-edit" id="form-{{ $request->get('resource') }}-edit" action="{{ route(getRouteForm($request->get('resource'), 'store')) }}">
+    {{-- Breadcrumbs --}}
+    @include('belich::partials.breadcrumbs')
+
+    <form method="POST" name="form-{{ $request->get('resource') }}-edit" id="form-group" action="{{ route(getRouteForm($request->get('resource'), 'store')) }}">
         @csrf
         @method('PATCH')
 

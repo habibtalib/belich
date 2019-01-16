@@ -1,7 +1,10 @@
 @extends(Request::ajax() ? 'belich::layout-ajax' : 'belich::layout')
 
 @section('content')
-    <form method="POST" name="form-{{ $request->get('resource') }}-create" id="form-{{ $request->get('resource') }}-create" action="{{ route(getRouteForm($request->get('resource'), 'store')) }}">
+    {{-- Breadcrumbs --}}
+    @include('belich::partials.breadcrumbs')
+
+    <form method="POST" name="form-{{ $request->get('resource') }}-create" id="form-group" action="{{ route(getRouteForm($request->get('resource'), 'store')) }}">
         @csrf
 
         @foreach($request->get('fields') as $field)

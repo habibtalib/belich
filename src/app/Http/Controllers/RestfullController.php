@@ -46,7 +46,7 @@ class RestfullController extends Controller
     public function create(Validate $validate)
     {
         //Set the resource values
-        $resource = $this->belich->create();
+        $resource = $this->belich;
 
         //Load the view with the data
         return view('belich::dashboard.create')

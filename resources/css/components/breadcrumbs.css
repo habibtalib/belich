@@ -1,5 +1,5 @@
 .nav-breadcrumbs {
-    @apply w-full mb-8;
+    @apply w-full mb-8 bg-white;
 }
 
     .nav-breadcrumbs > ul {

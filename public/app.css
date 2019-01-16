@@ -29,18 +29,25 @@
   -webkit-animation-duration: .2s;
           animation-duration: .2s;
 }
-/* Base container */
+/* General values */
 
-.wrap-container {
-  margin: 2rem;
+body {
+  background-color: #f1f5f8;
 }
 
 a {
   text-decoration: none;
 }
+
+/* Base container */
+
+.wrap-container {
+  margin: 2rem;
+}
 .nav-breadcrumbs {
   width: 100%;
   margin-bottom: 2rem;
+  background-color: #fff;
 }
 
 .nav-breadcrumbs > ul {
@@ -98,6 +105,12 @@ a {
 .btn-primary:hover {
   background-color: #2779bd;
 }
+form#form-group {
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
+  background-color: #fff;
+}
+
 .form-group {
   width: 100%;
   display: -webkit-box;
@@ -228,6 +241,9 @@ a {
 }
 /* Navbar */
 
+#nav-navbar {
+}
+
 .navbar-item {
   -webkit-box-flex: 0;
       -ms-flex-positive: 0;
@@ -256,12 +272,15 @@ a {
 .table {
   width: 100%;
   font-size: .875rem;
+  background-color: #fff;
+  margin-bottom: 4rem;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
 }
 
 .table thead {
   text-transform: uppercase;
   text-align: left;
-  color: #606f7b;
 }
 
 .table thead tr {
@@ -269,7 +288,8 @@ a {
   border-bottom-width: 1px;
   border-style: solid;
   border-color: #dae1e7;
-  background-color: #f1f5f8;
+  background-color: #b8c2cc;
+  color: #fff;
 }
 
 .table thead tr th {
@@ -287,6 +307,10 @@ a {
   border-bottom-width: 1px;
   border-style: solid;
   border-color: #dae1e7;
+}
+
+.table tbody tr:hover {
+  background-color: #fff382;
 }
 /**
  * This injects Tailwind's base styles, which is a combination of

@@ -1,8 +1,13 @@
-/* Base container */
-.wrap-container {
-    @apply m-8;
+/* General values */
+body {
+    @apply bg-grey-lighter;
 }
 
 a {
     @apply no-underline;
+}
+
+/* Base container */
+.wrap-container {
+    @apply m-8;
 }
