@@ -1,6 +1,6 @@
 /* Base container */
 .wrap-container {
-    @apply w-full;
+    @apply m-8;
 }
 
 a {
