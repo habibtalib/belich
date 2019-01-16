@@ -92,7 +92,13 @@ class FieldResolve {
     private function setIndexValues(Collection $fields) : Collection
     {
         $results = $fields->mapWithKeys(function($field, $key) {
-            return [$field->label => $field->attribute];
+            //Showing relationship in index
+            //See blade template: dashboard.index
+            $attribute = $field->relationship
+                ? [$field->relationship, $field->attribute]
+                : $field->attribute;
+
+            return [$field->label => $attribute];
         });
 
         return collect([
@@ -114,11 +120,28 @@ class FieldResolve {
             //Get the attribute value
             $attribute = $field->attribute;
 
-            //Set new value
-            $field->value = optional($this->model)->{$field->attribute};
+            //Set new value with or without relationship
+            //This relationship method is only on forms
+            //Index has its own way in blade template
+            $field->value = $this->setValuesWithRelationship($this->model, $field);
 
             return $field;
         });
+    }
+
+    /**
+     * Determine value with relationship if exists...
+     *
+     * @param Illuminate\Support\Collection $fields
+     * @return Illuminate\Support\Collection
+     */
+    private function setValuesWithRelationship($model, $field)
+    {
+        if($field->relationship) {
+            return $model->{$field->relationship}->{$field->attribute} ?? null;
+        }
+
+        return $model->{$field->attribute} ?? null;
     }
 
     /**
@@ -127,8 +150,9 @@ class FieldResolve {
      * @param Illuminate\Support\Collection $fields
      * @return \Illuminate\Support\Collection
      */
-    private function setAttributes($fields) : Collection
+    private function setAttributes(Collection $fields) : Collection
     {
+        //Set attributes for each field
         return $fields->map(function($field) {
 
             //Add attributes dynamically from the list

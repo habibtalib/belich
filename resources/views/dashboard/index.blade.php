@@ -14,13 +14,13 @@
                 @forelse($request->get('sqlResponse') as $item)
                     <tr>
                         @foreach($request->getValue('fields.attributes') as $attribute)
-                            <td>{{ optional($item)->{$attribute} ?? emptyResults() }}</td>
+                            <td>{{ evalue($item, $attribute) }}</td>
                         @endforeach
                     </tr>
                 @empty
                     <tr>
                         <td colspan="{{ $request->getValue('fields.labels')->count() }}" class="text-center">
-                            No hay resultados...
+                            {{ trans('belich::resources.no_results') }}
                         </td>
                     </tr>
                 @endforelse

@@ -31,7 +31,7 @@ abstract class FieldAbstract {
     public $sortable = false;
 
     /**
-     * Set the data attribute
+     * Set data attributes
      *
      * @return self
      */
@@ -60,7 +60,7 @@ abstract class FieldAbstract {
      * @param  string  $text
      * @return self
      */
-    public function help(string $value = '') : self
+    public function help($value = null) : self
     {
         //Check the value for conditional cases...
         if(!empty($value)) {
@@ -76,10 +76,10 @@ abstract class FieldAbstract {
      * @param  string|null  $value
      * @return self
      */
-    public function defaultValue(string $value = '') : self
+    public function defaultValue($value = null) : self
     {
         //Check the value for conditional cases...
-        if(!is_null($value)) {
+        if(!empty($value)) {
             $this->value = $value;
         }
 

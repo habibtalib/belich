@@ -19,7 +19,7 @@ trait Settings {
      * @param  string|null  $value
      * @return self
      */
-    public function dusk(string $value = '')
+    public function dusk($value = null)
     {
         //Check the value for conditional cases...
         if(!empty($value)) {
@@ -35,7 +35,7 @@ trait Settings {
      * @param  string|null  $value
      * @return self
      */
-    public function id(string $value = '')
+    public function id($value = null)
     {
         //Check the value for conditional cases...
         if(!empty($value)) {
@@ -51,7 +51,7 @@ trait Settings {
      * @param  string|null  $value
      * @return self
      */
-    public function name(string $value = '')
+    public function name($value = null)
     {
         //Check the value for conditional cases...
         if(!empty($value)) {
