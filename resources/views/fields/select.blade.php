@@ -5,7 +5,7 @@
         @slot('label', $field->label)
         @slot('field')
             <div class="select-container">
-                <select {{ $field->render }}>
+                <select {{ $field->render }}  class="{{ $field->addClass }}">
                     @foreach($field->options as $value => $text)
                         <option value="{{ $value }}" {{ $field->value === $value ? 'selected="selected"' : '' }}>{{ $text }}</option>
                     @endforeach

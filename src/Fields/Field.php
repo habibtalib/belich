@@ -4,6 +4,8 @@ namespace Daguilarm\Belich\Fields;
 
 use Daguilarm\Belich\Contracts\Maker;
 use Daguilarm\Belich\Fields\FieldAbstract;
+use Daguilarm\Belich\Fields\Traits\Attributes;
+use Daguilarm\Belich\Fields\Traits\Messages;
 use Daguilarm\Belich\Fields\Traits\Rules;
 use Daguilarm\Belich\Fields\Traits\Settings;
 use Daguilarm\Belich\Fields\Traits\Visibility;
@@ -11,35 +13,11 @@ use Illuminate\Support\Str;
 
 class Field extends FieldAbstract {
 
-    use Rules,
+    use Attributes,
+        Messages,
+        Rules,
         Settings,
         Visibility;
-
-    /** @var array [List of attributes to be dynamically render] */
-    public $renderAttributes = ['id', 'dusk'];
-
-    /** @var string [All the render attributes must be stored here...] */
-    public $render;
-
-    /** @var string [The attribute / column name of the field] */
-    public $attribute;
-
-    /** @var string [Set the field label tag] */
-    public $label;
-
-    /** @var string [The field relationship. Mostly for text fields wich want to show a relationship] */
-    public $fieldRelationship;
-
-    /** @var string [The model relationships] */
-    public $relationships;
-
-    /** @var array [List of allowed controller actions] */
-    private $allowedControllerActions = [
-        'index',
-        'create',
-        'edit',
-        'show'
-    ];
 
     /**
      * Create a new field

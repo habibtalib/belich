@@ -12,100 +12,40 @@ abstract class FieldAbstract {
         'show'
     ];
 
-    /** @var array [Generate de data attributes] */
-    public $data;
+    /** @var string [The attribute / column name of the field] */
+    public $attribute;
 
-    /** @var bool [Disabled field] */
-    public $disabled = false;
+    /** @var string [Set the field label tag] */
+    public $label;
 
-    /** @var string [Field help text] */
-    public $help;
+    /** @var string [The field relationship. Mostly for text fields wich want to show a relationship] */
+    public $fieldRelationship;
 
-    /** @var mixed [The field value (Resolved and updated...)] */
-    public $value;
+    /** @var string [The model relationships] */
+    public $relationships;
 
-    /** @var bool [Read only field] */
-    public $readonly = false;
+    /** @var array [List of attributes to be dynamically render] */
+    public $renderAttributes = ['id', 'dusk'];
+
+    /** @var string [All the render attributes must be stored here...] */
+    public $render;
 
     /** @var bool [Indicates if the field should be sortable] */
     public $sortable = false;
 
-    /**
-     * Set data attributes
-     *
-     * @return self
-     */
-    public function data($attribute, $value) : self
-    {
-        $this->data[] = [$attribute, $value];
-
-        return $this;
-    }
-
-    /**
-     * Set the field with the attribute 'disabled'
-     *
-     * @return self
-     */
-    public function disabled() : self
-    {
-        $this->disabled = true;
-
-        return $this;
-    }
-
-    /**
-     * Set a help text for the field
-     *
-     * @param  string  $text
-     * @return self
-     */
-    public function help($value = null) : self
-    {
-        //Check the value for conditional cases...
-        if(!empty($value)) {
-            $this->help = $value;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Set the field default value
-     *
-     * @param  string|null  $value
-     * @return self
-     */
-    public function defaultValue($value = null) : self
-    {
-        //Check the value for conditional cases...
-        if(!empty($value)) {
-            $this->value = $value;
-        }
-
-        return $this;
-    }
-
-    /**
-     * Set the field with the attribute 'readonly'
-     *
-     * @return self
-     */
-    public function readOnly() : self
-    {
-        $this->readonly = true;
-
-        return $this;
-    }
+    /** @var mixed [The field value (Resolved and updated...)] */
+    public $value;
 
     /**
      * Set the field sortable
-     *
+     *@param  bool  $value
      * @return self
      */
-    public function sortable() : self
+    public function sortable(bool $value = true) : self
     {
-        $this->sortable = true;
+        if(!empty($value)) {
+            $this->sortable = true;
+        }
 
         return $this;
     }

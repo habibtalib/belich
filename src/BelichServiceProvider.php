@@ -113,14 +113,14 @@ class BelichServiceProvider extends ServiceProvider {
         * Publish the localization files
         */
         $this->publishes([
-            __DIR__ . '/../resources/lang/en' => base_path('resources/lang/vendor/belich/en'),
+            __DIR__ . '/../resources/lang' => base_path('resources/lang/vendor/belich'),
         ]);
 
         /**
-        * Publish the javascript
+        * Publish the public
         */
         $this->publishes([
-            __DIR__ . '/../resources/js/custom.js' => public_path('public/js/vendor/belich')
+            __DIR__ . '/../public/' => public_path('vendor/belich')
         ]);
     }
 
