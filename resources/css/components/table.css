@@ -3,7 +3,7 @@
 }
 
     .table thead {
-        @apply uppercase text-left;
+        @apply uppercase;
     }
 
         .table thead tr {

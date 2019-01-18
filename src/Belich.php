@@ -2,138 +2,241 @@
 
 namespace Daguilarm\Belich;
 
-use Daguilarm\Belich\Components\Breadcrumbs;
-use Daguilarm\Belich\Fields\FieldResolve;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class Belich {
 
-    use Breadcrumbs;
+    /** @var string */
+    public static $version = '1.0.0';
 
-    /** @var string [The controller action name] */
-    private $controllerAction;
-
-    /** @var object [The resource class] */
-    private $resourceClass;
-
-    /** @var Illuminate\Http\Request */
-    private $request;
-
-    /** @var string [The resource name in migration format] */
-    private $resource;
-
-    /** @var object [The resource sql response] */
-    private $sqlResponse;
+    /*
+    |--------------------------------------------------------------------------
+    | Application Getters
+    |--------------------------------------------------------------------------
+    */
 
     /**
-     * Instantiate the belich admin
+     * Get the app name.
      *
-     * @return void
+     * @return string
      */
-    public function __construct()
+    public static function name() : string
     {
-        $this->resourceClass    = app(sprintf('\\App\\Belich\\Resources\\%s', getResourceClass()));
-        $this->request          = request();
-        $this->controllerAction = getRouteAction();
-        $this->resource         = getResourceName();
-        $this->sqlResponse      = $this->sqlResponse();
+        return config('belich.name', 'Belich Dashboard');
     }
 
     /**
-     * Create the belich admin
+     * Get the app path.
+     *
+     * @return string
+     */
+    public static function path() : string
+    {
+        return config('belich.path', '/dashboard');
+    }
+
+    /**
+     * Set the app url.
+     *
+     * @return string
+     */
+    public static function url() : string
+    {
+        return \Request::root() . static::path();
+    }
+
+    /**
+     * Get route divided in arrays
+     *
+     * @return array
+     */
+    public static function route() : array
+    {
+        //Get route name
+        return explode('.', \Request::route()->getName());
+    }
+
+    /**
+     * Get route action ['index', 'edit', 'create' or 'show']
+     *
+     * @return string
+     */
+    public static function routeAction() : string
+    {
+        $route = self::route();
+
+        //Return last item from the array
+        return end($route);
+    }
+
+    /**
+     * Get the route resource name ['users', 'billings',...]
+     *
+     * @return string
+     */
+    public static function routeResource() : string
+    {
+        $route = self::route();
+
+        //Return last item from the array
+        return $route[1];
+    }
+
+    /**
+     * Get the route numeric id
+     *
+     * @return int
+     */
+    public static function routeId()
+    {
+        $resource = Str::singular(self::routeResource());
+
+        return \Request::route($resource);
+    }
+
+    /**
+     * Get the current resource class: User
+     *
+     * @return string
+     */
+    public static function resourceClassName() : string
+    {
+        $className = Str::singular(self::routeResource());
+
+        return Str::title($className);
+    }
+
+    /**
+     * Get the current resource class path
+     *
+     * @return string
+     */
+    public static function resourceClass($className = null) : string
+    {
+        if($className) {
+            $className = Str::title(Str::singular($className));
+        }
+
+        return '\\App\\Belich\\Resources\\' . ($className ?? self::resourceClassName());
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Init resource class
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Init the current class
+     *
+     * @return object
+     */
+    public static function initResourceClass($className = null) : object
+    {
+        $class = self::resourceClass($className);
+
+        return new $class;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Get all the resources
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Get all the Belich resources for send globaly to the views
      *
      * @return Illuminate\Support\Collection
      */
-    public function create() : Collection
+    public static function resourcesAll() : Collection
     {
+        return self::getResourceFiles()
+            ->map(function($file) {
+                return $file;
+            })->filter(function($value, $key) {
+                return $value !== '.' && $value !== '..';
+            })->mapWithKeys(function($file, $key) {
+
+                //Define the current class name
+                $className = Str::title(explode('.', $file)[0]);
+                $resource  = Str::plural(Str::lower($className));
+
+                return [$resource => self::getResourcesValue($className)];
+            });
+    }
+
+    /**
+     * Get all the files from the resources folder
+     *
+     * @return Illuminate\Support\Collection
+     */
+    private static function getResourceFiles() : Collection
+    {
+        $filePath = app_path('Belich/Resources');
+
+        return collect(scandir($filePath));
+    }
+
+    /**
+     * Get all the items from a resource
+     *
+     * @param string $className
+     * @return array
+     */
+    private static function getResourcesValue($className)
+    {
+        $class = self::resourceClass($className);
+
         return collect([
-            // Configuration //
-            'controllerAction'       => $this->controllerAction,
-            'model'                  => $this->resourceClass::$model,
-            'relationships'          => $this->resourceClass::$relationships,
-            'resource'               => $this->resource,
-            'settings'               => $this->getSettings(),
-            'softDeletes'            => $this->resourceClass::$softDeletes,
-            'sqlResponse'            => $this->sqlResponse,
-
-            // Operations //
-            'actions'                => $this->resourceClass::$actions,
-            'cards'                  => $this->resourceClass::$cards,
-            'metrics'                => $this->resourceClass::$metrics,
-
-            // Fields //
-            'fields'                 => $this->resolveFields(),
+            'class'               => $className,
+            'key'                 => Str::plural(Str::lower($className)),
+            'displayInNavigation' => $class::$displayInNavigation,
+            'group'               => $class::$group,
+            'label'               => $class::$label,
+            'pluralLabel'         => $class::$pluralLabel,
         ]);
     }
 
     /*
     |--------------------------------------------------------------------------
-    | Private methods
+    | Resource
     |--------------------------------------------------------------------------
     */
+    public static function resource($resource = null)
+    {
+        //Default values
+        $class   = self::initResourceClass();
+        $request = request();
+
+        //Update the fields
+        $updateFields = collect($class->fields($request));
+
+        return collect([
+            'name'             => self::routeResource(),
+            'controllerAction' => self::routeAction(),
+            'fields'           => \Daguilarm\Belich\Fields\FieldResolve::make($class, $updateFields),
+            'sqlResponse'      => self::sqlResponse($class, $request),
+        ]);
+    }
 
     /**
      * Create the belich admin
      *
      * @return object
      */
-    private function sqlResponse() : object
+    private static function sqlResponse($class, $request) : object
     {
-        if($this->controllerAction === 'index') {
-            return $this->resourceClass->indexQuery($this->request);
+        if(self::routeAction() === 'index') {
+            return $class->indexQuery($request);
         }
 
-        if($this->controllerAction === 'edit' || $this->controllerAction === 'show') {
-            return $this->resourceClass->model()->findOrFail(getRouteId());
+        if(self::routeAction() === 'edit' || self::routeAction() === 'show') {
+            return $class->model()->findOrFail(self::routeId());
         }
 
         return new \Illuminate\Database\Eloquent\Collection;
-    }
-
-    /**
-     * Resolve the fields
-     *
-     * @return Illuminate\Support\Collection
-     */
-    private function resolveFields() : Collection
-    {
-        $fields  = collect($this->resourceClass->fields($this->request));
-        $resolve = new FieldResolve($this->controllerAction, $fields, $this->sqlResponse);
-
-        return $resolve->make();
-    }
-
-    /**
-     * Generate the resource settings
-     *
-     * @return Illuminate\Support\Collection
-     */
-    private function getSettings() : Collection
-    {
-        //Get the basic setting and capitalize the string values
-        $settings = collect($this->resourceClass::$settings)
-            ->map(function($item) {
-                if(is_string($item)) {
-                    return ucfirst($item);
-                }
-            });
-
-        //Set the displayInNavigation value
-        $settings->displayInNavigation = $settings->get('displayInNavigation') ?? true;
-
-        //Set the label value
-        $settings->label = $settings->get('label') ?? ucfirst(str_singular(getResourceName()));
-
-        //Set the labels value
-        $settings->labels = $settings->get('labels') ?? str_plural($settings['label']);
-
-        //Set the group value
-        $settings->group = $settings->get('group') ?? $settings->get('labels');
-
-        //Add the breadcrumbs to the settings
-        $settings->breadcrumbs = $this->breadcrumbsCreate($settings);
-
-        return $settings;
     }
 }

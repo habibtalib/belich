@@ -32,11 +32,11 @@ class FieldValidate {
      */
     public function create($resource) : Collection
     {
-        //Set the controller action
-        $this->controllerAction = $resource->get('controllerAction');
-
         //Set the resource name
-        $this->resource = $resource->get('resource');
+        $this->resource = $resource['name'];
+
+        //Set the controller action
+        $this->controllerAction = $resource['controllerAction'];
 
         //Get the data from the fields
         $fields = $this->setValues($resource);
@@ -73,7 +73,7 @@ class FieldValidate {
      */
     private function setValues($resource) : Collection
     {
-        return $resource->get('fields')
+        return $resource['fields']
             ->mapWithKeys(function($field, $key) {
                 return [
                     $field->attribute => [

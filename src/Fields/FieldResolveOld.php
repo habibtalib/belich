@@ -2,40 +2,60 @@
 
 namespace Daguilarm\Belich\Fields;
 
-use Daguilarm\Belich\Belich;
 use Daguilarm\Belich\Fields\Field;
 use Illuminate\Support\Collection;
 
 class FieldResolve {
+
+    /** @var string [The controller action name] */
+    private $controllerAction;
+
+    /** @var Illuminate\Support\Collection [The field attributes] */
+    private $fields;
+
+    /** @var object [The resource model] */
+    private $model;
+
+    /**
+     * Resolve the field
+     *
+     * @param  string  $controllerAction
+     * @param  Collection  $fields
+     * @param  object  $model
+     * @return void
+     */
+    public function __construct(string $controllerAction, Collection $fields, $model)
+    {
+        $this->controllerAction = $controllerAction;
+        $this->fields           = $fields;
+        $this->model            = $model;
+    }
 
     /**
      * Show or Hide field base on actions
      *
      * @return Illuminate\Support\Collection
      */
-    public static function make($class, $fields) : Collection
+    public function make() : Collection
     {
-        //Set the current controller action
-        $controllerAction = Belich::routeAction();
-
         //Show or hide fields base on Resource settings
-        $fields = static::setVisibilities($fields, $controllerAction);
+        $fields = $this->setVisibilities($this->fields);
 
         //Index action: Return only the name and the attribute for each field.
-        if($controllerAction === 'index') {
-            return static::setIndexValues($fields);
+        if($this->controllerAction === 'index') {
+            return $this->setIndexValues($fields);
         }
 
         //Form actions: Create or Edit
-        if($controllerAction === 'create' || $controllerAction === 'edit') {
+        if($this->controllerAction === 'create' || $this->controllerAction === 'edit') {
             // Creating all the render attributes for the forms
-            $fields = static::setAttributes($fields);
+            $fields = $this->setAttributes($fields);
         }
 
         //Add values to fields: Only in Edit or Show actions
-        if($controllerAction === 'edit' || $controllerAction === 'show') {
+        if($this->controllerAction === 'edit' || $this->controllerAction === 'show') {
             //Fill the field value with the model
-            return self::setValues($class, $fields);
+            return $this->setValues($fields);
         }
 
         return $fields;
@@ -48,16 +68,15 @@ class FieldResolve {
     */
 
     /**
-     * Show or Hide field base on the controller action
+     * Show or Hide field base on actions
      *
      * @param Illuminate\Support\Collection $fields
-     * @param string $controllerAction
      * @return array|null
      */
-    private static function setVisibilities(Collection $fields, string $controllerAction) : Collection
+    private function setVisibilities(Collection $fields) : Collection
     {
-        return $fields->map(function($field) use ($controllerAction) {
-            return $field->visibility[$controllerAction]
+        return $fields->map(function($field) {
+            return $field->visibility[$this->controllerAction]
                 ? $field
                 : null;
         })
@@ -70,7 +89,7 @@ class FieldResolve {
      * @param Illuminate\Support\Collection $fields
      * @return Illuminate\Support\Collection
      */
-    private static function setIndexValues(Collection $fields) : Collection
+    private function setIndexValues(Collection $fields) : Collection
     {
         $results = $fields->mapWithKeys(function($field, $key) {
             //Showing field relationship in index
@@ -83,9 +102,46 @@ class FieldResolve {
         });
 
         return collect([
-            'attributes' => $results->values()->toArray(),
-            'labels'     => $results->keys()->toArray(),
+            'attributes' => $results->values(),
+            'labels'     => $results->keys(),
         ]);
+    }
+
+    /**
+     * When the action is update or show
+     * We hace to update the field value
+     *
+     * @param Illuminate\Support\Collection $fields
+     * @return Illuminate\Support\Collection
+     */
+    private function setValues(Collection $fields) : Collection
+    {
+        return $fields->map(function($field) {
+            //Get the attribute value
+            $attribute = $field->attribute;
+
+            //Set new value for the fields, even if has a fieldRelationship value
+            //This relationship method is only on forms
+            //Index has its own way in blade template
+            $field->value = $this->setValuesWithFieldRelationship($this->model, $field);
+
+            return $field;
+        });
+    }
+
+    /**
+     * Determine value with relationship if exists...
+     *
+     * @param Illuminate\Support\Collection $fields
+     * @return Illuminate\Support\Collection
+     */
+    private function setValuesWithFieldRelationship($model, $field)
+    {
+        if($field->fieldRelationship) {
+            return $model->{$field->fieldRelationship}->{$field->attribute} ?? null;
+        }
+
+        return $model->{$field->attribute} ?? null;
     }
 
     /**
@@ -94,7 +150,7 @@ class FieldResolve {
      * @param Illuminate\Support\Collection $fields
      * @return \Illuminate\Support\Collection
      */
-    private static function setAttributes(Collection $fields) : Collection
+    private function setAttributes(Collection $fields) : Collection
     {
         //Set attributes for each field
         return $fields->map(function($field) {
@@ -136,41 +192,5 @@ class FieldResolve {
 
             return $field;
         });
-    }
-
-    /**
-     * When the action is update or show
-     * We have to update the field value
-     *
-     * @param Illuminate\Support\Collection $fields
-     * @return Illuminate\Support\Collection
-     */
-    private static function setValues($class, Collection $fields) : Collection
-    {
-        $model = $class->model();
-
-        return $fields->map(function($field) use ($model) {
-            //Set new value for the fields, even if has a fieldRelationship value
-            //This relationship method is only on forms
-            //Index has its own way in blade template
-            $field->value = self::setValuesWithFieldRelationship($model, $field);
-
-            return $field;
-        });
-    }
-
-    /**
-     * Determine value with relationship if exists...
-     *
-     * @param Illuminate\Support\Collection $fields
-     * @return Illuminate\Support\Collection
-     */
-    private static function setValuesWithFieldRelationship($model, $field)
-    {
-        if($field->fieldRelationship) {
-            return $model->{$field->fieldRelationship}->{$field->attribute} ?? null;
-        }
-
-        return $model->{$field->attribute} ?? null;
     }
 }

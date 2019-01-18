@@ -1,67 +1,71 @@
-form#form-group {
+form.form-container {
     @apply shadow-md bg-white;
 }
 
-.form-group {
+form.form-container > .form-group {
     @apply w-full flex items-center pt-8 pb-6 px-6 border-b border-grey-lighter text-grey-darker text-sm;
 }
 
     /*Help text*/
-    .form-group .help-text {
-        @apply text-grey-dark font-normal italic mt-2;
+    form.form-container > .form-group .help-text {
+        @apply text-grey-dark font-normal lowercase italic mt-2;
     }
 
+        form.form-container > .form-group .help-text::first-letter {
+            @apply uppercase;
+        }
+
     /*Inline form*/
-    .form-group .form-inline-label {
+    form.form-container > .form-group .form-inline-label {
         @apply w-1/3;
     }
 
-    .form-group .form-inline-field {
+    form.form-container > .form-group .form-inline-field {
         @apply w-2/3;
     }
 
     /*Default label*/
-    .form-group label {
+    form.form-container > .form-group label {
         @apply capitalize font-bold;
     }
 
     /*Default form fields*/
-    .form-group input,
-    .form-group select {
+    form.form-container > .form-group input,
+    form.form-container > .form-group select {
         @apply w-full appearance-none border border-grey leading-tight rounded shadow;
     }
 
-    .form-group input:focus,
-    .form-group select:focus {
+    form.form-container > .form-group input:focus,
+    form.form-container > .form-group select:focus {
         @apply outline-none border-blue bg-white shadow-md;
     }
 
     /*Input fields*/
-    .form-group input{
+    form.form-container > .form-group input{
         @apply py-2 px-4;
     }
 
     /*Select fields*/
-    .form-group select{
+    form.form-container > .form-group select{
         @apply block px-4 py-2 pr-8;
     }
 
-    .form-group .select-container {
+    form.form-container > .form-group .select-container {
         @apply inline-block relative w-full;
     }
 
-    .form-group .select-container .icon {
+    form.form-container > .form-group .select-container .icon {
         @apply pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker;
     }
 
-    .form-group p.validation-error {
+    form.form-container > .form-group p.validation-error {
         @apply text-red font-normal italic mt-2;
     }
 
-    .form-group .disabled,
-    .form-group input:disabled,
-    .form-group textarea:disabled,
-    .form-group select:disabled,
-    .form-group option:disabled {
+    form.form-container > .form-group .disabled,
+    form.form-container > .form-group input:disabled,
+    form.form-container > .form-group textarea:disabled,
+    form.form-container > .form-group select:disabled,
+    form.form-container > .form-group option:disabled {
         @apply opacity-50 cursor-not-allowed bg-grey-light;
     }

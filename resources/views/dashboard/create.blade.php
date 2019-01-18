@@ -4,10 +4,10 @@
     {{-- Breadcrumbs --}}
     @include('belich::partials.breadcrumbs')
 
-    <form method="POST" name="form-{{ $request->get('resource') }}-create" id="form-group" action="{{ route(getRouteForm($request->get('resource'), 'store')) }}">
+    <form method="POST" name="form-{{ $resource['name'] }}-create" id="form-{{ $resource['name'] }}-create" action="{{ route(getRouteForm($resource['name'], 'store')) }}" class="form-container">
         @csrf
 
-        @foreach($request->get('fields') as $field)
+        @foreach($resource['fields'] as $field)
             @includeIf('belich::fields.' . $field->type, ['field' => $field])
         @endforeach
 

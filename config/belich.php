@@ -7,9 +7,15 @@ return [
     | Application settings
     |--------------------------------------------------------------------------
     */
-    'name' => 'Belich', //Application name
-    'path' => '/dashboard', //This is the URI path where application will be accessible from
-    'url'  => env('APP_URL', '/'), //Application url
+
+    //Application name
+    'name' => 'Belich Dashboard',
+
+    //This is the URI path where application will be accessible from
+    'path' => '/dashboard',
+
+    //Application url
+    'url'  => env('APP_URL', '/'),
 
     /*
     |--------------------------------------------------------------------------

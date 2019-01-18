@@ -10560,8 +10560,8 @@ $(function () {
     /**
     * Navbar collapse
     */
-    $('#nav-navbar-button-collapse').on('click', function () {
-        $('#nav-navbar-content').toggle();
+    $('#belich-navbar-button-collapse').on('click', function () {
+        $('#belich-navbar-items').toggle();
     });
 });
 

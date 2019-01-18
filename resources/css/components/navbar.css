@@ -1,12 +1,56 @@
 /* Navbar */
-#nav-navbar {
-
+nav#belich-navbar {
+    @apply relative w-full select-none bg-teal;
 }
 
-.navbar-item {
-    @apply flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-white no-underline flex items-center;
-}
+    nav#belich-navbar > .brand-container {
+        @apply flex flex-no-shrink items-stretch h-12;
+    }
 
-.navbar-item:hover {
-    @apply bg-teal-dark;
+        nav#belich-navbar > .brand-container > .brand {
+            @apply relative flex items-center flex-no-grow flex-no-shrink py-2 px-4 leading-normal bg-blue text-white no-underline;
+        }
+
+        nav#belich-navbar > .brand-container > .brand:hover {
+            @apply bg-teal-dark;
+        }
+
+        nav#belich-navbar > .brand-container > .collapse {
+            @apply relative block text-white cursor-pointer ml-auto w-12 h-12 p-4;
+        }
+
+
+        nav#belich-navbar > .navbar-items {
+            @apply hidden bg-teal-dark;
+        }
+
+            nav#belich-navbar > #belich-navbar-items > .container {
+                @apply ml-auto;
+            }
+
+                nav#belich-navbar > #belich-navbar-items > .container > .navbar-item {
+                    @apply flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-white no-underline flex items-center;
+                }
+
+                    nav#belich-navbar > #belich-navbar-items > .container > .navbar-item:hover {
+                        @apply bg-teal-dark;
+                    }
+
+/* Responsive lg */
+@media (min-width: 868px) {
+    nav#belich-navbar {
+        @apply flex items-stretch;
+    }
+
+        nav#belich-navbar > .brand-container > .collapse {
+            @apply hidden text-yellow;
+        }
+
+        nav#belich-navbar > .navbar-items {
+            @apply block bg-teal flex items-stretch flex-no-shrink flex-grow;
+        }
+
+            nav#belich-navbar > #belich-navbar-items > .container {
+                @apply flex items-stretch justify-end;
+            }
 }

@@ -15,6 +15,9 @@ abstract class FieldAbstract {
     /** @var string [The attribute / column name of the field] */
     public $attribute;
 
+    /** @var string [The custom breadcrumbs for the field] */
+    public $breadcrumbs;
+
     /** @var string [Set the field label tag] */
     public $label;
 
@@ -33,11 +36,15 @@ abstract class FieldAbstract {
     /** @var bool [Indicates if the field should be sortable] */
     public $sortable = false;
 
+    /** @var string [Table text align. Only on controller action: index] */
+    public $textAlign = 'left';
+
     /** @var mixed [The field value (Resolved and updated...)] */
     public $value;
 
     /**
      * Set the field sortable
+     *
      *@param  bool  $value
      * @return self
      */
@@ -45,6 +52,20 @@ abstract class FieldAbstract {
     {
         if(!empty($value)) {
             $this->sortable = true;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set the field sortable
+     *@param  bool  $value
+     * @return self
+     */
+    public function textAlign(string $value = 'left') : self
+    {
+        if(!empty($value)) {
+            $this->textAlign = $value;
         }
 
         return $this;

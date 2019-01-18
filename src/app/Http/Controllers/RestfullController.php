@@ -9,21 +9,24 @@ use Illuminate\Http\Request;
 
 class RestfullController extends Controller
 {
-    /** @var Daguilarm\Belich\Belich */
-    private $belich;
+    /** @var Illuminate\Support\Collection */
+    private $resource;
+
+    /** @var Illuminate\Support\Collection */
+    private $resources;
 
     /**
      * Generate crud controllers
      *
      * @param Daguilarm\Belich\Belich $belich
      */
-    public function __construct(Belich $belich)
+    public function __construct()
     {
         //Initialize the packges
-        $this->belich = $belich->create();
+        $this->resource = Belich::resource();
 
         //Share the setting to all the views
-        view()->share('settings', $this->belich->get('settings'));
+        view()->share(['resources' => Belich::resourcesAll()]);
     }
 
     /**
@@ -34,7 +37,8 @@ class RestfullController extends Controller
     public function index()
     {
         //Load the view with the data
-        return view('belich::dashboard.index')->withRequest($this->belich);
+        return view('belich::dashboard.index')
+            ->withResource($this->resource);
     }
 
     /**
@@ -46,12 +50,12 @@ class RestfullController extends Controller
     public function create(Validate $validate)
     {
         //Set the resource values
-        $resource = $this->belich;
+        $resource = $this->resource;
 
         //Load the view with the data
         return view('belich::dashboard.create')
-            ->withRequest($resource)
-            ->withJavascript($validate->create($resource));
+            ->withJavascript($validate->create($resource))
+            ->withResource($resource);
     }
 
     /**
@@ -75,7 +79,9 @@ class RestfullController extends Controller
     public function show(Belich $belich, $id)
     {
         //Load the view with the data
-        return view('belich::dashboard.show')->withRequest($belich->create());
+        return view('belich::dashboard.show')
+            ->withResource($this->resource)
+            ->withResourceId($id);
     }
 
     /**
@@ -86,10 +92,13 @@ class RestfullController extends Controller
      */
     public function edit(Validate $validate, $id)
     {
+        //Set the resource values
+        $resource = $this->resource;
+
         //Load the view with the data
         return view('belich::dashboard.edit')
-            ->withRequest($this->belich)
-            ->withJavascript($validate->create($this->belich))
+            ->withResource($resource)
+            ->withJavascript($validate->create($resource))
             ->withResourceId($id);
     }
 

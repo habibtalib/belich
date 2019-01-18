@@ -27,12 +27,26 @@ abstract class Resources {
     /** @var array */
     public static $relationships;
 
+    /** @var array [Resource settings] */
+    public static $settings = [];
+
     /** @var array */
     public static $softDeletes = false;
 
     /**
+     * Determine if this resource is available for navigation.
+     *
+     * @return bool
+     */
+    private static function resource()
+    {
+        return getResourceClass();
+    }
+
+    /**
      * Get the fields displayed by the resource.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return array
      */
     abstract public function fields(Request $request);
@@ -50,11 +64,16 @@ abstract class Resources {
      */
     public function model() : object
     {
-        $model         = static::$model;
-        $relationships = static::$relationships;
+        return app(static::$model);
+    }
 
-        return $relationships
-            ? app($model)::with($relationships)
-            : app($model);
+    /**
+     * Set the resource model with relationships. This is the default method for index.
+     *
+     * @return object
+     */
+    public function modelWithRelationships() : object
+    {
+        return self::model()->with(static::$relationships);
     }
 }

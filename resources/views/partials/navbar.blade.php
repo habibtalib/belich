@@ -1,15 +1,15 @@
 {{-- This section is segregate in case you want to customize --}}
-<nav id="nav-navbar" class="relative w-full select-none bg-teal lg:flex lg:items-stretch">
-    <div class="flex flex-no-shrink items-stretch h-12">
-        <a href="/" class="relative flex items-center flex-no-grow flex-no-shrink py-2 px-4 leading-normal text-white no-underline hover:bg-teal-dark">Belich Dashboard</a>
-        <button id="nav-navbar-button-collapse" class="relative block text-white hover:text-yellow cursor-pointer ml-auto w-12 h-12 p-4 lg:hidden">
+<nav id="belich-navbar">
+    <div class="brand-container">
+        <a href="/" class="brand">Belich Dashboard</a>
+        <button id="belich-navbar-button-collapse" class="collapse">
             <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/>
             </svg>
         </button>
     </div>
-    <div id="nav-navbar-content" class="hidden bg-teal-dark lg:bg-teal lg:flex lg:items-stretch lg:flex-no-shrink lg:flex-grow lg:block">
-        <div class="lg:flex lg:items-stretch lg:justify-end ml-auto">
+    <div id="belich-navbar-items" class="navbar-items">
+        <div class="container">
             <a href="#" class="navbar-item">Item 1</a>
             <a href="#" class="navbar-item">Item 2</a>
             <a href="#" class="navbar-item">Item 3</a>

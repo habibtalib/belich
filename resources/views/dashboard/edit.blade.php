@@ -4,11 +4,11 @@
     {{-- Breadcrumbs --}}
     @include('belich::partials.breadcrumbs')
 
-    <form method="POST" name="form-{{ $request->get('resource') }}-edit" id="form-group" action="{{ route(getRouteForm($request->get('resource'), 'store')) }}">
+    <form method="POST" name="form-{{ $resource['name'] }}-edit" id="form-{{ $resource['name'] }}-edit" action="{{ route(getRouteForm($resource['name'], 'store')) }}" class="form-container">
         @csrf
         @method('PATCH')
 
-        @foreach($request->get('fields') as $field)
+        @foreach($resource['fields'] as $field)
             @includeIf('belich::fields.' . $field->type, ['field' => $field])
         @endforeach
 
