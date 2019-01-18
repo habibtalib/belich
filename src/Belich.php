@@ -159,12 +159,13 @@ class Belich {
             })->filter(function($value, $key) {
                 return $value !== '.' && $value !== '..';
             })->mapWithKeys(function($file, $key) {
+                if($file) {
+                    //Define the current class name
+                    $className = Str::title(explode('.', $file)[0]);
+                    $resource  = Str::plural(Str::lower($className));
 
-                //Define the current class name
-                $className = Str::title(explode('.', $file)[0]);
-                $resource  = Str::plural(Str::lower($className));
-
-                return [$resource => self::getResourcesValue($className)];
+                    return [$resource => self::getResourcesValue($className)];
+                }
             });
     }
 
@@ -205,7 +206,14 @@ class Belich {
     | Resource
     |--------------------------------------------------------------------------
     */
-    public static function resource($resource = null)
+
+    /**
+     * Get the current a resource or (by default) the current resource
+     *
+     * @param string $resource
+     * @return Illuminate\Support\Collection
+     */
+    public static function resource($resource = null) : Collection
     {
         //Default values
         $class   = self::initResourceClass();
@@ -214,20 +222,25 @@ class Belich {
         //Update the fields
         $updateFields = collect($class->fields($request));
 
+        //Sql Response
+        $sqlResponse = self::sqlResponse($class, $request);
+
         return collect([
             'name'             => self::routeResource(),
             'controllerAction' => self::routeAction(),
-            'fields'           => \Daguilarm\Belich\Fields\FieldResolve::make($class, $updateFields),
-            'sqlResponse'      => self::sqlResponse($class, $request),
+            'fields'           => \Daguilarm\Belich\Fields\FieldResolve::make($class, $updateFields, $sqlResponse),
+            'results'          => self::sqlResponse($class, $request),
         ]);
     }
 
     /**
      * Create the belich admin
      *
+     * @param string $class
+     * @param Illuminate\Http\Request $request
      * @return object
      */
-    private static function sqlResponse($class, $request) : object
+    private static function sqlResponse(object $class, \Illuminate\Http\Request $request) : object
     {
         if(self::routeAction() === 'index') {
             return $class->indexQuery($request);

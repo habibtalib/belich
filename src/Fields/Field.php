@@ -43,7 +43,7 @@ class Field extends FieldAbstract {
      * Set the field attributes
      *
      * @param  string|null  $attributes
-     * @return object
+     * @return Daguilarm\Belich\Fields\Field
      */
     public static function make(...$attributes) : Field
     {

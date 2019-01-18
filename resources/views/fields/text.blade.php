@@ -10,7 +10,7 @@
                 <div class="help-text">{{ $field->help }}</div>
             @endif
 
-            <p id="error-{{ $field->attribute }}" class="validation-error"></p>
+            <p id="error-{{ $field->id }}" class="validation-error"></p>
         @endslot
     @endcomponent
 @endif

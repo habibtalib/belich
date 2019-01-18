@@ -33,6 +33,7 @@ abstract class Resources {
     /**
      * Get the fields displayed by the resource.
      *
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     abstract public function fields(Request $request);
@@ -46,9 +47,9 @@ abstract class Resources {
     /**
      * Set the resource model
      *
-     * @return object
+     * @return Illuminate\Database\Eloquent\Builder
      */
-    public function model() : object
+    public function model() : \Illuminate\Database\Eloquent\Builder
     {
         $model         = static::$model;
         $relationships = static::$relationships;

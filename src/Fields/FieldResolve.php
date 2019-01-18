@@ -11,9 +11,11 @@ class FieldResolve {
     /**
      * Show or Hide field base on actions
      *
+     * @param object $class
+     * @param object $fields
      * @return Illuminate\Support\Collection
      */
-    public static function make($class, $fields) : Collection
+    public static function make(object $class, object $fields, $sqlResponse) : Collection
     {
         //Set the current controller action
         $controllerAction = Belich::routeAction();
@@ -35,7 +37,7 @@ class FieldResolve {
         //Add values to fields: Only in Edit or Show actions
         if($controllerAction === 'edit' || $controllerAction === 'show') {
             //Fill the field value with the model
-            return self::setValues($class, $fields);
+            return self::setValues($sqlResponse, $fields);
         }
 
         return $fields;
@@ -142,18 +144,16 @@ class FieldResolve {
      * When the action is update or show
      * We have to update the field value
      *
-     * @param Illuminate\Support\Collection $fields
+     * @param Illuminate\Support\Collection $sqlResponse
      * @return Illuminate\Support\Collection
      */
-    private static function setValues($class, Collection $fields) : Collection
+    private static function setValues(object $sqlResponse, Collection $fields) : Collection
     {
-        $model = $class->model();
-
-        return $fields->map(function($field) use ($model) {
+        return $fields->map(function($field) use ($sqlResponse) {
             //Set new value for the fields, even if has a fieldRelationship value
             //This relationship method is only on forms
             //Index has its own way in blade template
-            $field->value = self::setValuesWithFieldRelationship($model, $field);
+            $field->value = self::setValuesWithFieldRelationship($sqlResponse, $field);
 
             return $field;
         });
@@ -162,15 +162,16 @@ class FieldResolve {
     /**
      * Determine value with relationship if exists...
      *
+     * @param Illuminate\Support\Collection $sqlResponse
      * @param Illuminate\Support\Collection $fields
      * @return Illuminate\Support\Collection
      */
-    private static function setValuesWithFieldRelationship($model, $field)
+    private static function setValuesWithFieldRelationship(object $sqlResponse, object $field)
     {
         if($field->fieldRelationship) {
-            return $model->{$field->fieldRelationship}->{$field->attribute} ?? null;
+            return $sqlResponse->{$field->fieldRelationship}->{$field->attribute} ?? null;
         }
 
-        return $model->{$field->attribute} ?? null;
+        return $sqlResponse->{$field->attribute} ?? null;
     }
 }

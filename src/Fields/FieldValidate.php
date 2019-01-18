@@ -76,8 +76,9 @@ class FieldValidate {
         return $resource['fields']
             ->mapWithKeys(function($field, $key) {
                 return [
-                    $field->attribute => [
-                        $field->attribute ?? null,
+                    $field->id => [
+                        $field->label,
+                        $field->id ?? null,
                         //Define the rules base on the action
                         $this->setRules($field)
                     ]
