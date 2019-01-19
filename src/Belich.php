@@ -241,20 +241,21 @@ class Belich {
     /**
      * Get the current a resource or (by default) the current resource
      *
-     * @param string $resource
+     * @param bool $withSqlConection [Enable or disable the sql conection. When you need only the resource values and no the sql]
      * @return Illuminate\Support\Collection
      */
-    public static function resource() : Collection
+    public static function resource($withSqlConection = true) : Collection
     {
         //Default values
         $class   = self::initResourceClass();
 
         //Update the fields
         $updateFields = collect($class->fields(request()));
-        dd($updateFields);
 
         //Sql Response
-        $sqlResponse = self::sqlResponse($class, request());
+        $sqlResponse = $withSqlConection
+            ? self::sqlResponse($class, request())
+            : new \Illuminate\Database\Eloquent\Collection;
 
         return collect([
             'name'             => self::routeResource(),

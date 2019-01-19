@@ -14,9 +14,9 @@ trait Breadcrumbs {
 
     public static function breadcrumbs()
     {
-        $breadcrumbs = self::resource()['breadcrumbs'];
+        $resource = self::resource($withSqlConection = false);
 
-        $items =  collect($breadcrumbs)
+        $items =  collect($resource['breadcrumbs'])
             ->map(function($item) {
                 if($item['url']) {
                     return sprintf('<li nav-breadcrumbs-items><a href="%s" class="text-blue font-bold">%s</a></li>', $item['url'], $item['title']);
