@@ -64,7 +64,6 @@ class BelichServiceProvider extends ServiceProvider {
         * Load the service providers
         */
         require_once(__DIR__ . '/../src/app/Providers/BladeProvider.php');
-        require_once(__DIR__ . '/../src/app/Providers/CollectionProvider.php');
 
         /**
         * Load translations from...

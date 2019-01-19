@@ -2,14 +2,16 @@
 
 namespace Daguilarm\Belich;
 
-use Daguilarm\Belich\BelichOperations;
+use Daguilarm\Belich\Components\Breadcrumbs;
+use Daguilarm\Belich\Components\Navbar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class Belich {
 
-    use BelichOperations;
+    use Breadcrumbs,
+        Navbar;
 
     /** @var string */
     private static $version = '1.0.0';
@@ -246,19 +248,19 @@ class Belich {
     {
         //Default values
         $class   = self::initResourceClass();
-        $request = request();
 
         //Update the fields
-        $updateFields = collect($class->fields($request));
+        $updateFields = collect($class->fields(request()));
+        dd($updateFields);
 
         //Sql Response
-        $sqlResponse = self::sqlResponse($class, $request);
+        $sqlResponse = self::sqlResponse($class, request());
 
         return collect([
             'name'             => self::routeResource(),
             'controllerAction' => self::routeAction(),
             'fields'           => \Daguilarm\Belich\Fields\FieldResolve::make($class, $updateFields, $sqlResponse),
-            'results'          => self::sqlResponse($class, $request),
+            'results'          => $sqlResponse,
             'breadcrumbs'      => self::filterBreadcrumbs($class),
         ]);
     }
@@ -270,7 +272,7 @@ class Belich {
      * @param Illuminate\Http\Request $request
      * @return object
      */
-    private static function sqlResponse(object $class, \Illuminate\Http\Request $request) : object
+    private static function sqlResponse(object $class, Request $request) : object
     {
         if(self::routeAction() === 'index') {
             return $class->indexQuery($request);

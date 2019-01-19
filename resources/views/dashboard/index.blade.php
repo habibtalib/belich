@@ -9,15 +9,15 @@
         <table class="table">
             <thead>
                 <tr>
-                    @foreach($resource->getValue('fields.labels') as $label)
+                    @foreach($resource['fields']['labels'] as $label)
                         <th>{{ $label }}</th>
                     @endforeach
                 </tr>
             </thead>
             <tbody>
-                @forelse($resource->getValue('results') as $item)
+                @forelse($resource['results'] as $item)
                     <tr>
-                        @foreach($resource->getValue('fields.attributes') as $attribute)
+                        @foreach($resource['fields']['attributes'] as $attribute)
                             <td>{{ evalue($item, $attribute) }}</td>
                         @endforeach
                     </tr>
