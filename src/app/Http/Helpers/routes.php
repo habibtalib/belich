@@ -102,9 +102,9 @@ if (!function_exists('getRouteBasePath')) {
  *
  * @return string
  */
-if (!function_exists('getRouteForm')) {
-    function getRouteForm($resource, $action) : string
+if (!function_exists('routeForm')) {
+    function routeForm($resource, $action) : string
     {
-        return sprintf('%s.%s.%s', getRouteBasePath(), $resource, $action);
+        return route(sprintf('%s.%s.%s', getRouteBasePath(), $resource, $action));
     }
 }
