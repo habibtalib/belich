@@ -23,7 +23,7 @@
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="{{ $resource->getValue('fields.labels')->count() }}" class="text-center">
+                        <td colspan="{{ countResults($resource['fields']['labels']) }}" class="text-center">
                             {{ trans('belich::messages.resources.no_results') }}
                         </td>
                     </tr>
