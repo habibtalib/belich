@@ -12,13 +12,29 @@ trait BelichOperations {
     |--------------------------------------------------------------------------
     */
 
+    public static function breadcrumbs()
+    {
+        $breadcrumbs = self::resource()['breadcrumbs'];
+
+        $items =  collect($breadcrumbs)
+            ->map(function($item) {
+                if($item['url']) {
+                    return sprintf('<li nav-breadcrumbs-items><a href="%s" class="text-blue font-bold">%s</a></li>', $item['url'], $item['title']);
+                }
+                return sprintf('<li nav-breadcrumbs-items-current>%s</li>', $item['title']);
+            })
+            ->implode('<li class="separator"></li>');
+
+        return sprintf('<nav class="nav-breadcrumbs"><ul class="nav-breadcrumbs-list">%s</ul></nav>', $items);
+    }
+
     /**
      * Generate the breadcrumb
      *
      * @param object $resource
      * @return string
      */
-    public static function breadcrumbs($resource)
+    private static function filterBreadcrumbs($resource)
     {
         //Default values
         $breadcrumbs = $resource::$breadcrumbs;

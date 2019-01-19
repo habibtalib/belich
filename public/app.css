@@ -69,10 +69,6 @@ a {
   color: #606f7b;
 }
 
-.nav-breadcrumbs > ul > li.separator {
-  color: #b8c2cc;
-}
-
 .nav-breadcrumbs > ul > li > a {
   font-weight: 500;
   color: #8795a1;
@@ -81,6 +77,11 @@ a {
 
 .nav-breadcrumbs > ul > li > a:hover {
   color: #3490dc;
+}
+
+.nav-breadcrumbs > ul > li.separator:after {
+  color: #b8c2cc;
+  content: '/\A0';
 }
 .btn-container {
   width: 100%;

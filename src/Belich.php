@@ -254,15 +254,12 @@ class Belich {
         //Sql Response
         $sqlResponse = self::sqlResponse($class, $request);
 
-        //Breadcrumbs
-        $breadcrumbs = self::breadcrumbs($class);
-
         return collect([
             'name'             => self::routeResource(),
             'controllerAction' => self::routeAction(),
             'fields'           => \Daguilarm\Belich\Fields\FieldResolve::make($class, $updateFields, $sqlResponse),
             'results'          => self::sqlResponse($class, $request),
-            'breadcrumbs'      => $breadcrumbs,
+            'breadcrumbs'      => self::filterBreadcrumbs($class),
         ]);
     }
 

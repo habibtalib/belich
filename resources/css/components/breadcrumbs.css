@@ -10,14 +10,15 @@
         @apply mr-2 font-semibold text-grey-darker;
     }
 
-    .nav-breadcrumbs > ul > li.separator {
-        @apply text-grey;
-    }
-
     .nav-breadcrumbs > ul > li > a {
         @apply font-medium text-grey-dark underline;
     }
 
     .nav-breadcrumbs > ul > li > a:hover {
         @apply text-blue;
+    }
+
+    .nav-breadcrumbs > ul > li.separator:after {
+        @apply text-grey;
+        content: '/\00a0';
     }
