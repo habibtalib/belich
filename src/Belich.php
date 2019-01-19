@@ -2,11 +2,14 @@
 
 namespace Daguilarm\Belich;
 
+use Daguilarm\Belich\BelichOperations;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class Belich {
+
+    use BelichOperations;
 
     /** @var string */
     private static $version = '1.0.0';
@@ -236,7 +239,7 @@ class Belich {
         $sqlResponse = self::sqlResponse($class, $request);
 
         //Breadcrumbs
-        $breadcrumbs = $class::$breadcrumbs;
+        $breadcrumbs = self::breadcrumbs($class);
 
         return collect([
             'name'             => self::routeResource(),
