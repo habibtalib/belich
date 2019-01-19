@@ -10,7 +10,9 @@ abstract class Resources {
     public static $actions;
 
     /** @var Illuminate\Support\Collection */
-    public static $breadcrumbs;
+    public static $breadcrumbs = [
+
+    ];
 
     /** @var Illuminate\Support\Collection */
     public static $cards;

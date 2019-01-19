@@ -3,6 +3,7 @@
 @section('content')
     {{-- Breadcrumbs --}}
     @include('belich::partials.breadcrumbs')
+
     {{-- Table --}}
     <form name="form-index" id="form-index" method="POST" action="">
         <table class="table">
@@ -14,7 +15,7 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($resource->getValue('sqlResponse') as $item)
+                @forelse($resource->getValue('results') as $item)
                     <tr>
                         @foreach($resource->getValue('fields.attributes') as $attribute)
                             <td>{{ evalue($item, $attribute) }}</td>

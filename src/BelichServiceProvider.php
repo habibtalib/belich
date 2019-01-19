@@ -3,6 +3,7 @@
 namespace Daguilarm\Belich;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Foundation\AliasLoader;
 
 class BelichServiceProvider extends ServiceProvider {
     /**
@@ -131,12 +132,13 @@ class BelichServiceProvider extends ServiceProvider {
      */
     public function register()
     {
-        //Register default class
-        // $this->app->bind('BelichClass', function() {
-        //     return $this->app->make(namespace_path('BelichClass'));
-        // });
+        //Belich Facade
+        $this->app->register(\Daguilarm\Belich\BelichFacadeProvider::class);
 
-        //Register the controller
-        // $this->app->make(namespace_path('App\Http\Controllers\RestfullController'));
+        $this->app->bind('Belich', function() {
+            return new \Daguilarm\Belich\Belich;
+        });
+
+        AliasLoader::getInstance()->alias('Belich', \Daguilarm\Belich\BelichFacade::class);
     }
 }

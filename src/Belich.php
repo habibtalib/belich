@@ -9,13 +9,23 @@ use Illuminate\Support\Str;
 class Belich {
 
     /** @var string */
-    public static $version = '1.0.0';
+    private static $version = '1.0.0';
 
     /*
     |--------------------------------------------------------------------------
     | Application Getters
     |--------------------------------------------------------------------------
     */
+
+    /**
+     * Get the app name.
+     *
+     * @return string
+     */
+    public static function version() : string
+    {
+        return static::$version;
+    }
 
     /**
      * Get the app name.
@@ -93,7 +103,7 @@ class Belich {
     {
         $resource = Str::singular(self::routeResource());
 
-        return \Request::route($resource);
+        return \Request::route($resource) ?? null;
     }
 
     /**
@@ -133,7 +143,7 @@ class Belich {
      *
      * @return object
      */
-    public static function initResourceClass($className = null) : object
+    private static function initResourceClass($className = null) : object
     {
         $class = self::resourceClass($className);
 
@@ -213,7 +223,7 @@ class Belich {
      * @param string $resource
      * @return Illuminate\Support\Collection
      */
-    public static function resource($resource = null) : Collection
+    public static function resource() : Collection
     {
         //Default values
         $class   = self::initResourceClass();
@@ -225,11 +235,15 @@ class Belich {
         //Sql Response
         $sqlResponse = self::sqlResponse($class, $request);
 
+        //Breadcrumbs
+        $breadcrumbs = $class::$breadcrumbs;
+
         return collect([
             'name'             => self::routeResource(),
             'controllerAction' => self::routeAction(),
             'fields'           => \Daguilarm\Belich\Fields\FieldResolve::make($class, $updateFields, $sqlResponse),
             'results'          => self::sqlResponse($class, $request),
+            'breadcrumbs'      => $breadcrumbs,
         ]);
     }
 
