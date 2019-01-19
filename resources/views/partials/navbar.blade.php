@@ -1,4 +1,5 @@
 {{-- This section is segregate in case you want to customize --}}
+{!! Belich::navbar() !!}
 <nav id="belich-navbar">
     <div class="brand-container">
         <a href="/" class="brand">Belich Dashboard</a>

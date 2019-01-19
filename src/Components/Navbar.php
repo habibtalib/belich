@@ -14,7 +14,9 @@ trait Navbar {
 
     public static function navbar()
     {
-        $breadcrumbs = self::resource()['breadcrumbs'];
+        $resources = self::resourcesAll();
+
+        dd($resources);
 
         $items =  collect($breadcrumbs)
             ->map(function($item) {
