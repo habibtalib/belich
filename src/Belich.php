@@ -135,6 +135,22 @@ class Belich {
         return '\\App\\Belich\\Resources\\' . ($className ?? self::resourceClassName());
     }
 
+    /**
+     * Get the current label for each controller action
+     *
+     * @return string
+     */
+    public static function currentLabel($class) : string
+    {
+        $initializedClass = is_object($class)
+            ? $class
+            : self::initResourceClass($class);
+
+        return (self::routeAction() === 'index')
+            ? $initializedClass::$pluralLabel
+            : $initializedClass::$label;
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Init resource class
