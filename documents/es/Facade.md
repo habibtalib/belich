@@ -63,6 +63,16 @@ Este método nos devuelve el segundo térmido de la ruta. El que pertenece al re
 En las acciones `edit` y `show`, nos mostrará el ID del recurso actual.
 
 
+#### currentLabel($class) 
+
+Devolverá la etiqueta del recurso en función de la acción del controlador. El valor devuelto ser el `$label` o `$pluralLabel`, a continuación se determinan los valores para cada acción del controlador.
+
+- index: `$pluralLabel`
+- edit: `$label`
+- create: `$label`
+- show: `$label`
+
+
 #### resourceClassName()
 
 Nos devuelve el nombre de la clase del recurso actual, por ejemplo: `User`.
