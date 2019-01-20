@@ -63,14 +63,14 @@ abstract class Navigation {
     {
         //New menu with the brand
         $menu =  Menu::new()
-            ->add(self::brand());
+            ->add(Self::brand());
 
         //Get the menu from the groups
-        foreach(self::getGroups($resources) as $group) {
+        foreach(Self::getGroups($resources) as $group) {
             //Generate new submenu for each group
             $submenu = Menu::new();
             //Get the submenus from the resources
-            foreach(self::getItems($resources)->where('group', $group) as $value) {
+            foreach(Self::getItems($resources)->where('group', $group) as $value) {
                 if(!empty($value['pluralLabel'])) {
                     $submenu->link('/about', $value['pluralLabel']);
                 }
