@@ -11,6 +11,12 @@ use Spatie\Menu\Menu;
 
 abstract class Navigation {
 
+    /*
+    |--------------------------------------------------------------------------
+    | Navigation methods
+    |--------------------------------------------------------------------------
+    */
+
     /**
      * Generate the navbar brand
      *
@@ -31,6 +37,7 @@ abstract class Navigation {
      */
     public static function resource(string $resource, Collection $resources)
     {
+        //Default values
         $resource = Str::plural(Str::lower($resource));
         $label    = $resources[$resource]['pluralLabel'] ?? null;
         $url      = sprintf('%s/%s', Belich::url(), $resource);
@@ -40,6 +47,12 @@ abstract class Navigation {
             : abort(403, trans('belich::exceptions.no_resource'));
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Generate navbar from resources
+    |--------------------------------------------------------------------------
+    */
+
     /**
      * Get all the resources from the project
      *
@@ -48,31 +61,61 @@ abstract class Navigation {
      */
     public static function resourcesForNavigation(Collection $resources)
     {
-        $menu =  Menu::new()->add(self::brand());
+        //New menu with the brand
+        $menu =  Menu::new()
+            ->add(self::brand());
 
-        $groups = collect($resources)
-            ->map(function ($item, $key) {
-                return $item['group'];
-            })
-            ->unique()
-            ->values();
-
-        $items = collect($resources)
-            ->map(function ($items) {
-                return $items->toArray();
-            })
-            ->values();
-
-        foreach($groups as $group) {
+        //Get the menu from the groups
+        foreach(self::getGroups($resources) as $group) {
+            //Generate new submenu for each group
             $submenu = Menu::new();
-            foreach($items->where('group', $group) as $value) {
+            //Get the submenus from the resources
+            foreach(self::getItems($resources)->where('group', $group) as $value) {
                 if(!empty($value['pluralLabel'])) {
                     $submenu->link('/about', $value['pluralLabel']);
                 }
             }
+            //Add the submenu
             $menu->submenu(Link::to('#', $group), $submenu);
         }
 
         return $menu;
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Helpers
+    |--------------------------------------------------------------------------
+    */
+
+   /**
+    * Get all the resources from the project
+    *
+    * @param Illuminate\Support\Collection $resources
+    * @return string
+    */
+   public static function getGroups(Collection $resources)
+   {
+        return collect($resources)
+            ->map(function ($item, $key) {
+                return $item['group'];
+            })
+            ->unique()
+            ->values();
+   }
+
+   /**
+    * Get all the resources from the project
+    *
+    * @param Illuminate\Support\Collection $resources
+    * @return string
+    */
+   public static function getItems(Collection $resources)
+   {
+        return collect($resources)
+            ->map(function ($items) {
+                return $items->toArray();
+            })
+            ->values();
+   }
 }
