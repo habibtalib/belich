@@ -1,56 +1,65 @@
+/* Base on https://codepen.io/andornagy/pen/xhiJH */
+
 /* Navbar */
-nav#belich-navbar {
-    @apply relative w-full select-none bg-teal;
+nav#navbar {
+    @apply h-12 bg-teal;
 }
 
-    nav#belich-navbar > .brand-container {
-        @apply flex flex-no-shrink items-stretch h-12;
-    }
-
-        nav#belich-navbar > .brand-container > .brand {
-            @apply relative flex items-center flex-no-grow flex-no-shrink py-2 px-4 leading-normal bg-blue text-white no-underline;
-        }
-
-        nav#belich-navbar > .brand-container > .brand:hover {
-            @apply bg-teal-dark;
-        }
-
-        nav#belich-navbar > .brand-container > .collapse {
-            @apply relative block text-white cursor-pointer ml-auto w-12 h-12 p-4;
-        }
-
-
-        nav#belich-navbar > .navbar-items {
-            @apply hidden bg-teal-dark;
-        }
-
-            nav#belich-navbar > #belich-navbar-items > .container {
-                @apply ml-auto;
-            }
-
-                nav#belich-navbar > #belich-navbar-items > .container > .navbar-item {
-                    @apply flex-no-grow flex-no-shrink relative py-2 px-4 leading-normal text-white no-underline flex items-center;
-                }
-
-                    nav#belich-navbar > #belich-navbar-items > .container > .navbar-item:hover {
-                        @apply bg-teal-dark;
-                    }
-
-/* Responsive lg */
-@media (min-width: 868px) {
-    nav#belich-navbar {
-        @apply flex items-stretch;
-    }
-
-        nav#belich-navbar > .brand-container > .collapse {
-            @apply hidden text-yellow;
-        }
-
-        nav#belich-navbar > .navbar-items {
-            @apply block bg-teal flex items-stretch flex-no-shrink flex-grow;
-        }
-
-            nav#belich-navbar > #belich-navbar-items > .container {
-                @apply flex items-stretch justify-end;
-            }
+nav#navbar ul {
+    @apply p-0 m-0 list-reset relative;
 }
+
+nav#navbar li.brand {
+    @apply inline-block bg-blue font-semibold;
+    margin-right: -4px;
+}
+
+nav#navbar li.brand:hover {
+    @apply bg-blue;
+}
+
+nav#navbar li.brand a:hover {
+    @apply text-yellow;
+}
+
+nav#navbar li.brand .collapse {
+    @apply hidden;
+}
+
+nav#navbar ul li {
+    @apply inline-block bg-teal;
+}
+
+nav#navbar ul li:hover {
+    @apply bg-teal-dark;
+}
+
+nav#navbar a {
+    @apply block h-12 px-6 py-4 text-white text-base leading-tight no-underline;
+}
+
+/* Hide Dropdowns by Default */
+nav#navbar ul ul {
+    @apply hidden absolute w-48 h-12/* the height of the main nav */
+}
+
+/* Display Dropdowns on Hover */
+nav#navbar ul li:hover > ul {
+    @apply block;
+}
+
+/* Fisrt Tier Dropdown */
+nav#navbar ul ul li {
+    @apply relative block;
+}
+
+/* Second, Third and more Tiers */
+nav#navbar ul ul ul li {
+    @apply relative;
+    top: -3rem;
+    left: 12rem;
+}
+
+/* Change this in order to change the Dropdown symbol */
+li > a:after {content:  ' +';}
+li > a:only-child:after { content: ''; }

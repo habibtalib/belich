@@ -3,15 +3,13 @@
 namespace Daguilarm\Belich;
 
 use Daguilarm\Belich\Components\Breadcrumbs;
-use Daguilarm\Belich\Components\Navbar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class Belich {
 
-    use Breadcrumbs,
-        Navbar;
+    use Breadcrumbs;
 
     /** @var string */
     private static $version = '1.0.0';
@@ -284,5 +282,14 @@ class Belich {
         }
 
         return new \Illuminate\Database\Eloquent\Collection;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Navbar and Sidebar
+    |--------------------------------------------------------------------------
+    */
+    public static function navbar() {
+        return (new \App\Belich\Navbar)::make(static::resourcesAll());
     }
 }

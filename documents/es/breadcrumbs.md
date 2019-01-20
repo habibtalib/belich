@@ -37,15 +37,37 @@ La forma nativa para inicializar el template será:
 
 ## Customización
 
-Las clases CSS que podemos sobreescribir:
+A continuación, se puede ver el código completo CSS de los breadcrumbs:
 
-- **nav-breadcrumbs**, clase de la etiqueta `nav`.
-- **nav-breadcrumbs-list**, clase de las etiquetas `ul` o `ol`.
-- **nav-breadcrumbs-items**, clase para las etiquetas `li` con enlace.
-- **nav-breadcrumbs-items-current**, clase para las etiquetas `li` sin enlace, es decir, la página actual.
-- **separator**, clase para el separador del breadcrumb. Por defecto utiliza `/`.
+~~~
+.nav-breadcrumbs {
+    @apply w-full mb-8 bg-white;
+}
 
-### Configuración de la clase `separator`:
+    .nav-breadcrumbs > ul {
+        @apply list-reset flex shadow-md my-4 p-4;
+    }
+
+    .nav-breadcrumbs > ul > li {
+        @apply mr-2 font-semibold text-grey-darker;
+    }
+
+    .nav-breadcrumbs > ul > li > a {
+        @apply font-medium text-grey-dark underline;
+    }
+
+    .nav-breadcrumbs > ul > li > a:hover {
+        @apply text-blue;
+    }
+
+    .nav-breadcrumbs > ul > li.separator:after {
+        @apply text-grey;
+        content: '/\00a0';
+    }
+~~~
+
+
+### Personalización de la clase `separator`:
 
 El código CSS por defecto utilizado es:
 
@@ -56,6 +78,18 @@ El código CSS por defecto utilizado es:
 }
 ~~~
 
-Para personalizar el código CSS, consulte la sección sobre customización de CSS y Javascript, y sobreescriba los estilos basados en https://tailwindcss.com/.
 
+Modifíquelo según sus necesidades.
+
+
+### Sobreescribir los estilos del breadcrumb:
+
+Para personalizar el código CSS, deberá sobreescribir los estilos CSS. Para ello, tiene dos opciones:
+
+1. Modificar el archivo `./public/vendor/belich/app.class`
+2. Crear un archivo nuevo, por ejemplo: customCss, usando la extensión que prefiramos: `.css`, `.less`, `.scss`,...y guardarla en `./resources/vendor/belich/customCss.scss`. Ahora solo tenemos que ir, al archivo `webpack.mix.js`, y añadir el siguiente código:
+
+~~~
+mix.sass('resources/vendor/belich/customCss.scss', '/public/vendor/belich/app.class');
+~~~
 

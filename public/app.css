@@ -245,147 +245,102 @@ form.form-container > .form-group option:disabled {
   cursor: not-allowed;
   background-color: #dae1e7;
 }
+/* Base on https://codepen.io/andornagy/pen/xhiJH */
+
 /* Navbar */
 
-nav#belich-navbar {
-  position: relative;
-  width: 100%;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+nav#navbar {
+  height: 3rem;
   background-color: #4dc0b5;
 }
 
-nav#belich-navbar > .brand-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
-  -webkit-box-align: stretch;
-      -ms-flex-align: stretch;
-          align-items: stretch;
-  height: 3rem;
-}
-
-nav#belich-navbar > .brand-container > .brand {
+nav#navbar ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  padding: 0;
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-flex: 0;
-      -ms-flex-positive: 0;
-          flex-grow: 0;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
-  padding-top: .5rem;
-  padding-bottom: .5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  line-height: 1.5;
-  background-color: #3490dc;
-  color: #fff;
-  text-decoration: none;
 }
 
-nav#belich-navbar > .brand-container > .brand:hover {
+nav#navbar li.brand {
+  display: inline-block;
+  background-color: #3490dc;
+  font-weight: 600;
+  margin-right: -4px;
+}
+
+nav#navbar li.brand:hover {
+  background-color: #3490dc;
+}
+
+nav#navbar li.brand a:hover {
+  color: #ffed4a;
+}
+
+nav#navbar li.brand .collapse {
+  display: none;
+}
+
+nav#navbar ul li {
+  display: inline-block;
+  background-color: #4dc0b5;
+}
+
+nav#navbar ul li:hover {
   background-color: #38a89d;
 }
 
-nav#belich-navbar > .brand-container > .collapse {
+nav#navbar a {
+  display: block;
+  height: 3rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.25;
+  text-decoration: none;
+}
+
+/* Hide Dropdowns by Default */
+
+nav#navbar ul ul {
+  display: none;
+  position: absolute;
+  width: 12rem;
+  height: 3rem;
+}
+
+/* Display Dropdowns on Hover */
+
+nav#navbar ul li:hover > ul {
+  display: block;
+}
+
+/* Fisrt Tier Dropdown */
+
+nav#navbar ul ul li {
   position: relative;
   display: block;
-  color: #fff;
-  cursor: pointer;
-  margin-left: auto;
-  width: 3rem;
-  height: 3rem;
-  padding: 1rem;
 }
 
-nav#belich-navbar > .navbar-items {
-  display: none;
-  background-color: #38a89d;
-}
+/* Second, Third and more Tiers */
 
-nav#belich-navbar > #belich-navbar-items > .container {
-  margin-left: auto;
-}
-
-nav#belich-navbar > #belich-navbar-items > .container > .navbar-item {
-  -webkit-box-flex: 0;
-      -ms-flex-positive: 0;
-          flex-grow: 0;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
+nav#navbar ul ul ul li {
   position: relative;
-  padding-top: .5rem;
-  padding-bottom: .5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  line-height: 1.5;
-  color: #fff;
-  text-decoration: none;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  top: -3rem;
+  left: 12rem;
 }
 
-nav#belich-navbar > #belich-navbar-items > .container > .navbar-item:hover {
-  background-color: #38a89d;
+/* Change this in order to change the Dropdown symbol */
+
+li > a:after {
+  content: ' +';
 }
 
-/* Responsive lg */
-
-@media (min-width: 868px) {
-  nav#belich-navbar {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: stretch;
-        -ms-flex-align: stretch;
-            align-items: stretch;
-  }
-
-  nav#belich-navbar > .brand-container > .collapse {
-    display: none;
-    color: #ffed4a;
-  }
-
-  nav#belich-navbar > .navbar-items {
-    display: block;
-    background-color: #4dc0b5;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: stretch;
-        -ms-flex-align: stretch;
-            align-items: stretch;
-    -ms-flex-negative: 0;
-        flex-shrink: 0;
-    -webkit-box-flex: 1;
-        -ms-flex-positive: 1;
-            flex-grow: 1;
-  }
-
-  nav#belich-navbar > #belich-navbar-items > .container {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: stretch;
-        -ms-flex-align: stretch;
-            align-items: stretch;
-    -webkit-box-pack: end;
-        -ms-flex-pack: end;
-            justify-content: flex-end;
-  }
+li > a:only-child:after {
+  content: '';
 }
 .table {
   width: 100%;
