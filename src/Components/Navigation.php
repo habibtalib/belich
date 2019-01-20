@@ -11,12 +11,24 @@ use Spatie\Menu\Menu;
 
 abstract class Navigation {
 
+    /**
+     * Generate the navbar brand
+     *
+     * @return string
+     */
     public static function brand()
     {
         return Link::to(Belich::url(), Belich::name())
             ->addParentClass('brand');
     }
 
+    /**
+     * Generate link for resource
+     *
+     * @param string $resource
+     * @param Illuminate\Support\Collection $resources
+     * @return string
+     */
     public static function resource(string $resource, Collection $resources)
     {
         $resource = Str::plural(Str::lower($resource));
@@ -28,6 +40,12 @@ abstract class Navigation {
             : abort(403, trans('belich::exceptions.no_resource'));
     }
 
+    /**
+     * Get all the resources from the project
+     *
+     * @param Illuminate\Support\Collection $resources
+     * @return string
+     */
     public static function resourcesForNavigation(Collection $resources)
     {
         $menu =  Menu::new()->add(self::brand());

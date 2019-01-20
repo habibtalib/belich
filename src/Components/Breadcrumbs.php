@@ -12,6 +12,11 @@ trait Breadcrumbs {
     |--------------------------------------------------------------------------
     */
 
+    /**
+     * Generate the breadcrumb
+     *
+     * @return string
+     */
     public static function breadcrumbs()
     {
         $resource = self::resource($withSqlConection = false);
@@ -29,7 +34,7 @@ trait Breadcrumbs {
     }
 
     /**
-     * Generate the breadcrumb
+     * Filter the breadcrumb
      *
      * @param object $resource
      * @return string
