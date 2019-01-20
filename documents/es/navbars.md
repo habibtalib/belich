@@ -125,7 +125,32 @@ El resultado de esto será (recuerde actualizar el archivo de configuración, pa
 </li>
 ~~~
 
-Por lo que un ejemplo de menu, utilizando los dos métodos anteriores, podría quedar así:
+
+### logout()
+
+La método, tiene el siguiente aspecto:
+
+~~~
+/**
+ * Generate logout link
+ *
+ * @return string
+ */
+public static function logout()
+{
+    $url = Belich::url() . '/logout';
+    $text = trans('belich::buttons.base.logout');
+
+    return Link::to($url, $text)->addParentClass('float-right');
+}
+~~~
+
+Podemos sobreescribirlo, y adaptarlo a nuestras necesidades desde el archivo: `App\Belich\Navbar.php`
+
+
+### Resumen
+
+Uun ejemplo de menu, utilizando los métodos anteriores, podría quedar así:
 
 
 ~~~
@@ -143,7 +168,8 @@ public static function make(Collection $resources)
         Menu::new()
             ->add(Parent::brand())
             ->add(Parent::resource('user', $resources))
-            ->add(Parent::resource('billings', $resources));
+            ->add(Parent::resource('billings', $resources))
+            ->add(Parent::logout());
 }
 ~~~
 

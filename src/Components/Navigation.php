@@ -47,6 +47,19 @@ abstract class Navigation {
             : abort(403, trans('belich::exceptions.no_resource'));
     }
 
+    /**
+     * Generate logout link
+     *
+     * @return string
+     */
+    public static function logout()
+    {
+        $url = Belich::url() . '/logout';
+        $text = trans('belich::buttons.base.logout');
+
+        return Link::to($url, $text)->addParentClass('float-right');
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Generate navbar from resources
@@ -79,7 +92,7 @@ abstract class Navigation {
             $menu->submenu(Link::to('#', $group), $submenu);
         }
 
-        return $menu;
+        return $menu->add(Self::logout());
     }
 
     /*

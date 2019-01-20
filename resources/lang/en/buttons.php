@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'base' => [
+        'logout'  => 'Desconectar',
+    ],
     'crud' => [
         'create'  => 'New',
         'delete'  => 'Delete',
