@@ -345,6 +345,7 @@ li > a:only-child:after {
 .table {
   width: 100%;
   font-size: .875rem;
+  text-align: left;
   background-color: #fff;
   margin-bottom: 4rem;
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);

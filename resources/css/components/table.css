@@ -1,5 +1,5 @@
 .table {
-    @apply w-full text-sm bg-white mb-16 shadow-md;
+    @apply w-full text-sm text-left bg-white mb-16 shadow-md;
 }
 
     .table thead {
