@@ -80,10 +80,71 @@ public static function make(Collection $resources)
 }
 ~~~
 
-Por lo que siguiendo el esquema anterior, podemos crear el menú personalizado que deseemos, de forma rápida y sencilla. Pero Belich, también dispone de unos helpers, que nos facilitarán la tarea de personalizar nuestro menu.
-
+Por lo que siguiendo el esquema anterior, podemos crear el menú personalizado que deseemos, de forma rápida y sencilla. 
 
 ### Métodos para la creación de menus
 
-El primero de todos, y que puede verse en el ejemplo anterior, es el
+Belich, incorpora de unos métodos, que nos facilitarán la tarea de personalizar nuestro menu.
 
+### brand()
+
+El primero de todos, y que puede verse en el ejemplo anterior, es el del método `brand()`. Por defecto, tiene el siguiente aspecto:
+
+~~~
+public static function brand()
+{
+    return Link::to(Belich::url(), Belich::name())
+        ->addParentClass('brand');
+}
+~~~
+
+Devolviendo los valores de nuestro archivo de configuración. Para personalizarlo, solo tenemos que añadirlo a nuestro archivo `App\Belich\Navbar.php` para sobreescribirlo, y así, poder añadir los valores que necesitemos.
+
+### resource()
+
+Este método nos permite añadir directamente una recurso a partir de su nombre. 
+
+~~~
+public static function resource(string $resource, Collection $resources)
+{
+    
+}
+~~~
+
+Para utilizarlo, podemos llamarlo de la siguiente forma:
+
+~~~
+Link::to(Parent::resource('users', $resources))
+~~~
+
+El resultado de esto será (recuerde actualizar el archivo de configuración, para que la URL se genere de forma adecuada):
+
+~~~
+<li>
+    <a href="http://domain.com/dashboard/users">Users</a>
+</li>
+~~~
+
+Por lo que un ejemplo de menu, utilizando los dos métodos anteriores, podría quedar así:
+
+
+~~~
+/**
+ * Generate the navbar
+ *
+ * @param Illuminate\Support\Collection $resources
+ * @return void
+ */
+public static function make(Collection $resources)
+{
+    //Belich use https://docs.spatie.be/menu/v2
+    //This will be an example for custom menu with 3 level depths
+    return
+        Menu::new()
+            ->add(Parent::brand())
+            ->add(Parent::resource('user', $resources))
+            ->add(Parent::resource('billings', $resources));
+}
+~~~
+
+El método permite utilizar el nombre del recurso en singular, plural, minúcula o mayúscula. Automáticamente, lo convertirá en el formato adecuado.
