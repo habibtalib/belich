@@ -15,9 +15,6 @@
             {{-- Navbar --}}
             @includeWhen(config('belich.navbar'), 'belich::partials.navbar')
 
-            {{-- Sidebar --}}
-            @includeWhen(config('belich.sidebar'), 'belich::partials.sidebar')
-
             {{-- Application --}}
             <section class="wrap-container">
                 @yield('content')
