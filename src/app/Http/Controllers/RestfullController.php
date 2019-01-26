@@ -20,13 +20,15 @@ class RestfullController extends Controller
      *
      * @param Daguilarm\Belich\Belich $belich
      */
-    public function __construct()
+    public function __construct(Belich $belich)
     {
         //Initialize the packges
-        $this->resource = Belich::resource();
+        $this->resource = $belich->resource();
 
         //Share the setting to all the views
-        view()->share(['resources' => Belich::resourcesAll()]);
+        view()->share([
+            'resources' => $belich->resourcesAll()
+        ]);
     }
 
     /**

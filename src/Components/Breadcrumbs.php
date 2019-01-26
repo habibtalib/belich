@@ -17,9 +17,9 @@ trait Breadcrumbs {
      *
      * @return string
      */
-    public static function breadcrumbs()
+    public function breadcrumbs()
     {
-        $resource = self::resource($withSqlConection = false);
+        $resource = $this->resource($withSqlConection = false);
 
         $items =  collect($resource['breadcrumbs'])
             ->map(function($item) {
@@ -39,12 +39,9 @@ trait Breadcrumbs {
      * @param object $resource
      * @return string
      */
-    private static function filterBreadcrumbs($resource)
+    private function filterBreadcrumbs()
     {
-        //Default values
-        $breadcrumbs = $resource::$breadcrumbs;
-
-        if(empty($breadcrumbs)) {
+        if(empty($this->breadcrumbs())) {
             $breadcrumbs = [
                 trans('belich::belich.navigation.home') => self::url(),
                 trans('belich::belich.actions.' . self::routeAction()) . ' ' . self::currentLabel($resource),
@@ -54,7 +51,7 @@ trait Breadcrumbs {
         return collect($breadcrumbs)
             ->flip()
             ->map(function($title, $url) {
-                return self::breadcrumbsFilter($title, $url);
+                return $this->breadcrumbsFilter($title, $url);
             })
             ->values()
             ->toArray();
@@ -66,7 +63,7 @@ trait Breadcrumbs {
      * @param object $resource
      * @return string
      */
-    private static function breadcrumbsFilter($title, $url)
+    private function breadcrumbsFilter($title, $url)
     {
         //current item
         if(empty($title)) {

@@ -3,6 +3,7 @@
 namespace Daguilarm\Belich;
 
 use Daguilarm\Belich\Components\Breadcrumbs;
+use Daguilarm\Belich\Fields\FieldResolve;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -14,9 +15,22 @@ class Belich {
     /** @var string */
     private static $version = '1.0.0';
 
+    /** @var string */
+    private $request;
+
+    /**
+     * Init the constuctor
+     *
+     * @return string
+     */
+    public function __construct()
+    {
+        $this->request = request();
+    }
+
     /*
     |--------------------------------------------------------------------------
-    | Application Getters
+    | Static Methods
     |--------------------------------------------------------------------------
     */
 
@@ -25,17 +39,23 @@ class Belich {
      *
      * @return string
      */
-    public static function version() : string
+    public function version() : string
     {
         return static::$version;
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Regular Methods
+    |--------------------------------------------------------------------------
+    */
 
     /**
      * Get the app name.
      *
      * @return string
      */
-    public static function name() : string
+    public function name() : string
     {
         return config('belich.name', 'Belich Dashboard');
     }
@@ -45,7 +65,7 @@ class Belich {
      *
      * @return string
      */
-    public static function path() : string
+    public function path() : string
     {
         return config('belich.path', '/dashboard');
     }
@@ -55,9 +75,9 @@ class Belich {
      *
      * @return string
      */
-    public static function url() : string
+    public function url() : string
     {
-        return \Request::root() . static::path();
+        return $this->request->root() . $this->path();
     }
 
     /**
@@ -65,10 +85,12 @@ class Belich {
      *
      * @return array
      */
-    public static function route() : array
+    public function route() : array
     {
+        $routeName = $this->request->route()->getName();
+
         //Get route name
-        return explode('.', \Request::route()->getName());
+        return explode('.', $routeName);
     }
 
     /**
@@ -76,9 +98,9 @@ class Belich {
      *
      * @return string
      */
-    public static function routeAction() : string
+    public function routeAction() : string
     {
-        $route = self::route();
+        $route = $this->route();
 
         //Return last item from the array
         return end($route);
@@ -89,9 +111,9 @@ class Belich {
      *
      * @return string
      */
-    public static function routeResource() : string
+    public function routeResource() : string
     {
-        $route = self::route();
+        $route = $this->route();
 
         //Return last item from the array
         return $route[1];
@@ -104,9 +126,9 @@ class Belich {
      */
     public static function routeId()
     {
-        $resource = Str::singular(self::routeResource());
+        $resource = Str::singular($this->routeResource());
 
-        return \Request::route($resource) ?? null;
+        return $this->request->route($resource) ?? null;
     }
 
     /**
@@ -114,9 +136,9 @@ class Belich {
      *
      * @return string
      */
-    public static function resourceClassName() : string
+    public function resourceClassName() : string
     {
-        $className = Str::singular(self::routeResource());
+        $className = Str::singular($this->routeResource());
 
         return Str::title($className);
     }
@@ -126,13 +148,13 @@ class Belich {
      *
      * @return string
      */
-    public static function resourceClass($className = null) : string
+    public function resourceClass($className = null) : string
     {
         if($className) {
             $className = Str::title(Str::singular($className));
         }
 
-        return '\\App\\Belich\\Resources\\' . ($className ?? self::resourceClassName());
+        return '\\App\\Belich\\Resources\\' . ($className ?? $this->resourceClassName());
     }
 
     /**
@@ -140,15 +162,22 @@ class Belich {
      *
      * @return string
      */
-    public static function currentLabel($class) : string
+    public function currentLabel($class) : string
     {
         $initializedClass = is_object($class)
             ? $class
-            : self::initResourceClass($class);
+            : $this->initResourceClass($class);
 
-        return (self::routeAction() === 'index')
+        return ($this->routeAction() === 'index')
             ? $initializedClass::$pluralLabel
             : $initializedClass::$label;
+    }
+
+    public function settings()
+    {
+        return collect([
+            'controllerAction' => ''
+        ]);
     }
 
     /*
@@ -162,9 +191,9 @@ class Belich {
      *
      * @return object
      */
-    private static function initResourceClass($className = null) : object
+    private function initResourceClass($className = null) : object
     {
-        $class = self::resourceClass($className);
+        $class = $this->resourceClass($className);
 
         return new $class;
     }
@@ -180,7 +209,7 @@ class Belich {
      *
      * @return Illuminate\Support\Collection
      */
-    public static function resourcesAll() : Collection
+    public function resourcesAll() : Collection
     {
         return self::getResourceFiles()
             ->map(function($file) {
@@ -193,7 +222,9 @@ class Belich {
                     $className = Str::title(explode('.', $file)[0]);
                     $resource  = Str::plural(Str::lower($className));
 
-                    return [$resource => self::getResourcesValue($className)];
+                    return [
+                        $resource => $this->getResourcesValue($className)
+                    ];
                 }
             });
     }
@@ -203,7 +234,7 @@ class Belich {
      *
      * @return Illuminate\Support\Collection
      */
-    private static function getResourceFiles() : Collection
+    private function getResourceFiles() : Collection
     {
         $filePath = app_path('Belich/Resources');
 
@@ -216,9 +247,9 @@ class Belich {
      * @param string $className
      * @return array
      */
-    private static function getResourcesValue($className)
+    private function getResourcesValue($className)
     {
-        $class = self::resourceClass($className);
+        $class = $this->resourceClass($className);
 
         return collect([
             'class'               => $className,
@@ -237,30 +268,31 @@ class Belich {
     */
 
     /**
-     * Get the current a resource or (by default) the current resource
+     * Get the current a resource
      *
      * @param bool $withSqlConection [Enable or disable the sql conection. When you need only the resource values and no the sql]
      * @return Illuminate\Support\Collection
      */
-    public static function resource($withSqlConection = true) : Collection
+    public function resource($withSqlConection = true) : Collection
     {
         //Default values
-        $class   = self::initResourceClass();
+        $class = $this->initResourceClass();
 
         //Update the fields
         $updateFields = collect($class->fields(request()));
 
         //Sql Response
         $sqlResponse = $withSqlConection
-            ? self::sqlResponse($class, request())
+            ? $this->sqlResponse($class, request())
             : new \Illuminate\Database\Eloquent\Collection;
 
         return collect([
-            'name'             => self::routeResource(),
-            'controllerAction' => self::routeAction(),
-            'fields'           => \Daguilarm\Belich\Fields\FieldResolve::make($class, $updateFields, $sqlResponse),
+            'name'             => $this->routeResource(),
+            'controllerAction' => $this->routeAction(),
+            'fields'           => FieldResolve::make($class, $this->routeAction(), $updateFields, $sqlResponse),
             'results'          => $sqlResponse,
-            'breadcrumbs'      => self::filterBreadcrumbs($class),
+            'breadcrumbs'      => collect([]),
+            //'breadcrumbs'      => $this->filterBreadcrumbs($class),
         ]);
     }
 
@@ -271,14 +303,14 @@ class Belich {
      * @param Illuminate\Http\Request $request
      * @return object
      */
-    private static function sqlResponse(object $class, Request $request) : object
+    private function sqlResponse(object $class) : object
     {
-        if(self::routeAction() === 'index') {
-            return $class->indexQuery($request);
+        if($this->routeAction() === 'index') {
+            return $class->indexQuery($this->request);
         }
 
-        if(self::routeAction() === 'edit' || self::routeAction() === 'show') {
-            return $class->model()->findOrFail(self::routeId());
+        if($this->routeAction() === 'edit' || $this->routeAction() === 'show') {
+            return $class->model()->findOrFail($this->routeId());
         }
 
         return new \Illuminate\Database\Eloquent\Collection;
@@ -289,7 +321,7 @@ class Belich {
     | Navbar and Sidebar
     |--------------------------------------------------------------------------
     */
-    public static function navbar() {
-        return (new \App\Belich\Navbar)::make(static::resourcesAll());
+    public function navbar() {
+        return (new \App\Belich\Navbar)::make($this->resourcesAll());
     }
 }

@@ -12,14 +12,12 @@ class FieldResolve {
      * Show or Hide field base on actions
      *
      * @param object $class
+     * @param string $controllerAction
      * @param object $fields
      * @return Illuminate\Support\Collection
      */
-    public static function make(object $class, object $fields, $sqlResponse) : Collection
+    public static function make(object $class, string $controllerAction, object $fields, $sqlResponse) : Collection
     {
-        //Set the current controller action
-        $controllerAction = Belich::routeAction();
-
         //Show or hide fields base on Resource settings
         $fields = static::setVisibilities($fields, $controllerAction);
 
