@@ -2,7 +2,7 @@
 
 namespace Daguilarm\Belich\Components;
 
-use Belich;
+use Daguilarm\Belich\Core\Helpers;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Spatie\Menu\Html;
@@ -24,7 +24,7 @@ abstract class Navigation {
      */
     public static function brand()
     {
-        return Link::to(Belich::url(), Belich::name())
+        return Link::to(Helpers::url(), Helpers::name())
             ->addParentClass('brand');
     }
 
@@ -40,7 +40,7 @@ abstract class Navigation {
         //Default values
         $resource = Str::plural(Str::lower($resource));
         $label    = $resources[$resource]['pluralLabel'] ?? null;
-        $url      = sprintf('%s/%s', Belich::url(), $resource);
+        $url      = sprintf('%s/%s', Helpers::url(), $resource);
 
         return $label
             ? Link::to($url, $label)
@@ -54,7 +54,7 @@ abstract class Navigation {
      */
     public static function logout()
     {
-        $url = Belich::url() . '/logout';
+        $url = Helpers::url() . '/logout';
         $text = trans('belich::buttons.base.logout');
 
         return Link::to($url, $text)->addParentClass('float-right');
@@ -75,7 +75,7 @@ abstract class Navigation {
     public static function resourcesForNavigation(Collection $resources)
     {
         //New menu with the brand
-        $menu =  Menu::new()
+        $menu = Menu::new()
             ->add(Self::brand());
 
         //Get the menu from the groups
@@ -85,7 +85,7 @@ abstract class Navigation {
             //Get the submenus from the resources
             foreach(Self::getItems($resources)->where('group', $group) as $value) {
                 if(!empty($value['pluralLabel'])) {
-                    $submenu->link('/about', $value['pluralLabel']);
+                    $submenu->link(Helpers::url() . '/' . $value['resource'], $value['pluralLabel']);
                 }
             }
             //Add the submenu

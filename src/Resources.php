@@ -49,7 +49,7 @@ abstract class Resources {
      *
      * @return Illuminate\Database\Eloquent\Builder
      */
-    public function model() : \Illuminate\Database\Eloquent\Builder
+    public function model() : object
     {
         $model         = static::$model;
         $relationships = static::$relationships;
