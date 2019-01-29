@@ -2,11 +2,24 @@
 
 namespace Daguilarm\Belich\Fields;
 
-use Daguilarm\Belich\Belich;
+use Daguilarm\Belich\Core\Helpers;
 use Daguilarm\Belich\Fields\Field;
 use Illuminate\Support\Collection;
 
 class FieldResolve {
+
+    /** @var string */
+    private $action;
+
+    /**
+     * Get controller action
+     *
+     * @return string
+     */
+    public function __construct()
+    {
+        $this->action = Helpers::action();
+    }
 
     /**
      * Show or Hide field base on actions
@@ -16,24 +29,24 @@ class FieldResolve {
      * @param object $fields
      * @return Illuminate\Support\Collection
      */
-    public static function make(object $class, string $controllerAction, object $fields, $sqlResponse) : Collection
+    public function make(object $class, object $fields, $sqlResponse) : Collection
     {
         //Show or hide fields base on Resource settings
-        $fields = static::setVisibilities($fields, $controllerAction);
+        $fields = $this->setVisibilities($fields);
 
         //Index action: Return only the name and the attribute for each field.
-        if($controllerAction === 'index') {
-            return static::setIndexValues($fields);
+        if($this->action === 'index') {
+            return $this->setIndexValues($fields);
         }
 
         //Form actions: Create or Edit
-        if($controllerAction === 'create' || $controllerAction === 'edit') {
+        if($this->action === 'create' || $this->action === 'edit') {
             // Creating all the render attributes for the forms
-            $fields = static::setAttributes($fields);
+            $fields = $this->setAttributes($fields);
         }
 
         //Add values to fields: Only in Edit or Show actions
-        if($controllerAction === 'edit' || $controllerAction === 'show') {
+        if($this->action === 'edit' || $this->action === 'show') {
             //Fill the field value with the model
             return self::setValues($sqlResponse, $fields);
         }
@@ -51,13 +64,12 @@ class FieldResolve {
      * Show or Hide field base on the controller action
      *
      * @param Illuminate\Support\Collection $fields
-     * @param string $controllerAction
      * @return array|null
      */
-    private static function setVisibilities(Collection $fields, string $controllerAction) : Collection
+    private function setVisibilities(Collection $fields) : Collection
     {
-        return $fields->map(function($field) use ($controllerAction) {
-            return $field->visibility[$controllerAction]
+        return $fields->map(function($field) {
+            return $field->visibility[$this->action]
                 ? $field
                 : null;
         })
@@ -70,7 +82,7 @@ class FieldResolve {
      * @param Illuminate\Support\Collection $fields
      * @return Illuminate\Support\Collection
      */
-    private static function setIndexValues(Collection $fields) : Collection
+    private function setIndexValues(Collection $fields) : Collection
     {
         $results = $fields->mapWithKeys(function($field, $key) {
             //Showing field relationship in index
@@ -94,7 +106,7 @@ class FieldResolve {
      * @param Illuminate\Support\Collection $fields
      * @return \Illuminate\Support\Collection
      */
-    private static function setAttributes(Collection $fields) : Collection
+    private function setAttributes(Collection $fields) : Collection
     {
         //Set attributes for each field
         return $fields->map(function($field) {
@@ -145,7 +157,7 @@ class FieldResolve {
      * @param Illuminate\Support\Collection $sqlResponse
      * @return Illuminate\Support\Collection
      */
-    private static function setValues(object $sqlResponse, Collection $fields) : Collection
+    private function setValues(object $sqlResponse, Collection $fields) : Collection
     {
         return $fields->map(function($field) use ($sqlResponse) {
             //Set new value for the fields, even if has a fieldRelationship value
@@ -164,7 +176,7 @@ class FieldResolve {
      * @param Illuminate\Support\Collection $fields
      * @return Illuminate\Support\Collection
      */
-    private static function setValuesWithFieldRelationship(object $sqlResponse, object $field)
+    private function setValuesWithFieldRelationship(object $sqlResponse, object $field)
     {
         if($field->fieldRelationship) {
             return $sqlResponse->{$field->fieldRelationship}->{$field->attribute} ?? null;

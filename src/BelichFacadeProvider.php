@@ -25,7 +25,7 @@ class BelichFacadeProvider extends ServiceProvider
     {
         $this->app->singleton('Belich',function()
         {
-            return new \Daguilarm\Belich\Belich;
+            return new \Daguilarm\Belich\Core\Builder;
         });
     }
 }
