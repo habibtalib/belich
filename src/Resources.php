@@ -66,26 +66,26 @@ abstract class Resources {
         //Default value
         $home  = [trans('belich::belich.navigation.home') => Helpers::url()];
 
-        switch(Helpers::action()) {
-            case 'index':
-                return array_merge($home,
-                    [static::$pluralLabel => null]
-                );
-
-            case 'edit':
-                return array_merge($home,
-                    [static::$pluralLabel => Helpers::resourceUrl()],
-                    [trans('belich::buttons.crud.update') => null]
-                );
-
-            case 'create':
-                array_merge($home,
-                    [static::$pluralLabel => Helpers::resourceUrl()],
-                    [trans('belich::buttons.crud.create') => null]
-                );
-
-            default:
-                return $home;
+        if(Helpers::action() === 'index') {
+            return array_merge($home,
+                [static::$pluralLabel => null]
+            );
         }
+
+        if(Helpers::action() === 'edit') {
+            return array_merge($home,
+                [static::$pluralLabel => Helpers::resourceUrl()],
+                [trans('belich::buttons.crud.update') => null]
+            );
+        }
+
+        if(Helpers::action() === 'create') {
+            return array_merge($home,
+                [static::$pluralLabel => Helpers::resourceUrl()],
+                [trans('belich::buttons.crud.create') => null]
+            );
+        }
+
+        return $home;
     }
 }

@@ -4,6 +4,8 @@
     {{-- Breadcrumbs --}}
     @include('belich::partials.breadcrumbs')
 
+    @dd(urlBuilder())
+
     {{-- Table --}}
     <form name="form-index" id="form-index" method="POST" action="">
         <table class="table">

@@ -5,12 +5,25 @@ namespace Daguilarm\Belich\Core;
 use App\Belich\Navbar;
 use Daguilarm\Belich\Components\Breadcrumbs;
 use Daguilarm\Belich\Core\Helpers;
+use Daguilarm\Belich\Core\Settings;
 use Daguilarm\Belich\Fields\FieldResolve;
-use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class Builder {
+
+    /** @var string */
+    private $request;
+
+    /**
+     * Init the constuctor
+     *
+     * @return string
+     */
+    public function __construct()
+    {
+        $this->request = request();
+    }
 
     /**
      * Access to the static methods from Helper
@@ -25,19 +38,6 @@ class Builder {
         if(method_exists(Helpers::class, $method)) {
             return Helpers::$method();
         }
-    }
-
-    /** @var string */
-    private $request;
-
-    /**
-     * Init the constuctor
-     *
-     * @return string
-     */
-    public function __construct()
-    {
-        $this->request = new Request;
     }
 
     /*
@@ -211,5 +211,16 @@ class Builder {
     */
     public function breadcrumbs($resource) {
         return Breadcrumbs::make($resource);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Breadcrumbs
+    |--------------------------------------------------------------------------
+    */
+    public function settings($key = null) {
+        return $key
+            ? $this->settings[$key]
+            : $this->settings;
     }
 }
