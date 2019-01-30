@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Core;
 
+use App\Belich\Navbar;
 use Daguilarm\Belich\Components\Breadcrumbs;
 use Daguilarm\Belich\Core\Helpers;
 use Daguilarm\Belich\Fields\FieldResolve;
@@ -10,8 +11,6 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class Builder {
-
-    use Breadcrumbs;
 
     /**
      * Access to the static methods from Helper
@@ -68,10 +67,10 @@ class Builder {
     /**
      * Get the current resource
      *
-     * @param bool $withSqlConection [Enable or disable the sql conection. When you need only the resource values and no the sql]
-     * @return Illuminate\Support\Collection
+
+     *      * @return Illuminate\Support\Collection
      */
-    public function resource($withSqlConection = true) : Collection
+    public function resource() : Collection
     {
         //Default values
         $class = $this->initResourceClass();
@@ -80,17 +79,17 @@ class Builder {
         $updateFields = collect($class->fields($this->request));
 
         //Sql Response
-        $sqlResponse = $withSqlConection
-            ? $this->sqlResponse($class, $this->request)
-            : new \Illuminate\Database\Eloquent\Collection;
+        $sqlResponse = $this->sqlResponse($class, $this->request);
+
+        //ClassName
+        $className = Helpers::resource();
 
         return collect([
-            'name'             => Helpers::resource(),
+            'name'             => $className,
             'controllerAction' => Helpers::action(),
             'fields'           => (new FieldResolve)->make($class, $updateFields, $sqlResponse),
             'results'          => $sqlResponse,
-            'breadcrumbs'      => collect([]),
-            //'breadcrumbs'      => $this->filterBreadcrumbs($class),
+            'values'           => $this->resourceValues($className),//From resource
         ]);
     }
 
@@ -163,6 +162,7 @@ class Builder {
             'group'               => $class::$group,
             'label'               => $class::$label,
             'pluralLabel'         => $class::$pluralLabel,
+            'breadcrumbs'         => $class::breadcrumbs(),
         ]);
     }
 
@@ -201,6 +201,15 @@ class Builder {
     |--------------------------------------------------------------------------
     */
     public function navbar() {
-        return (new \App\Belich\Navbar)::make($this->resourcesAll());
+        return Navbar::make($this->resourcesAll());
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Breadcrumbs
+    |--------------------------------------------------------------------------
+    */
+    public function breadcrumbs($resource) {
+        return Breadcrumbs::make($resource);
     }
 }

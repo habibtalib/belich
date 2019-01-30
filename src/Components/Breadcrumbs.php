@@ -2,9 +2,9 @@
 
 namespace Daguilarm\Belich\Components;
 
-use Illuminate\Support\Str;
+use Daguilarm\Belich\Core\Helpers;
 
-trait Breadcrumbs {
+class Breadcrumbs {
 
     /*
     |--------------------------------------------------------------------------
@@ -17,13 +17,13 @@ trait Breadcrumbs {
      *
      * @return string
      */
-    public function breadcrumbs()
+    public static function make($resource)
     {
-        $resource = $this->resource($withSqlConection = false);
+        $breadcrumbs = static::createBreadcrumbs($resource);
 
-        $items =  collect($resource['breadcrumbs'])
+        $items =  collect($breadcrumbs)
             ->map(function($item) {
-                if($item['url']) {
+                if(!empty($item['url'])) {
                     return sprintf('<li nav-breadcrumbs-items><a href="%s" class="text-blue font-bold">%s</a></li>', $item['url'], $item['title']);
                 }
                 return sprintf('<li nav-breadcrumbs-items-current>%s</li>', $item['title']);
@@ -34,46 +34,28 @@ trait Breadcrumbs {
     }
 
     /**
-     * Filter the breadcrumb
+     * Create the breadcrumb
      *
      * @param object $resource
      * @return string
      */
-    private function filterBreadcrumbs()
+    private static function createBreadcrumbs($resource)
     {
-        if(empty($this->breadcrumbs())) {
-            $breadcrumbs = [
-                trans('belich::belich.navigation.home') => self::url(),
-                trans('belich::belich.actions.' . self::routeAction()) . ' ' . self::currentLabel($resource),
+        //User configuration
+        $breadcrumbs = $resource->get('values')->get('breadcrumbs');
+
+        return collect($breadcrumbs)->map(function($url, $title) {
+            //Default value -> empty url
+            if(empty($title)) {
+                return [
+                    'title' => $url,
+                    'url'   => null,
+                ];
+            }
+            return [
+                'title' => $title,
+                'url'   => $url,
             ];
-        }
-
-        return collect($breadcrumbs)
-            ->flip()
-            ->map(function($title, $url) {
-                return $this->breadcrumbsFilter($title, $url);
-            })
-            ->values()
-            ->toArray();
-    }
-
-    /**
-     * Populate the breadcrumb
-     *
-     * @param object $resource
-     * @return string
-     */
-    private function breadcrumbsFilter($title, $url)
-    {
-        //current item
-        if(empty($title)) {
-            list($title, $url) = [$url, null];
-        }
-
-        //List items
-        return [
-            'title' => $title,
-            'url'   => $url,
-        ];
+        });
     }
 }

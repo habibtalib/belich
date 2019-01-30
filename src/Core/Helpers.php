@@ -57,6 +57,16 @@ class Helpers {
     }
 
     /**
+     * Set the app url.
+     *
+     * @return string
+     */
+    public static function resourceUrl() : string
+    {
+        return static::url() . '/' . resource();
+    }
+
+    /**
      * Get Controller action ['index', 'edit', 'create' or 'show'] from the route
      *
      * @return string
