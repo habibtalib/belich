@@ -75,13 +75,13 @@ abstract class Resources {
             case 'edit':
                 return array_merge($home,
                     [static::$pluralLabel => Helpers::resourceUrl()],
-                    [trans('belich::belich.buttons.edit') => null]
+                    [trans('belich::buttons.crud.update') => null]
                 );
 
             case 'create':
                 array_merge($home,
                     [static::$pluralLabel => Helpers::resourceUrl()],
-                    [trans('belich::belich.buttons.create') => null]
+                    [trans('belich::buttons.crud.create') => null]
                 );
 
             default:

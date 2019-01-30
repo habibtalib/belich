@@ -63,7 +63,7 @@ class Helpers {
      */
     public static function resourceUrl() : string
     {
-        return static::url() . '/' . resource();
+        return static::url() . '/' . static::resource();
     }
 
     /**
