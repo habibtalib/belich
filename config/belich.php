@@ -17,6 +17,9 @@ return [
     //Application url
     'url'  => env('APP_URL', '/'),
 
+    //Fontawesome
+    'fontAwesome' => true,
+
     /*
     |--------------------------------------------------------------------------
     | Navbar options

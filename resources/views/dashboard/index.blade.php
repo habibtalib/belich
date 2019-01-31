@@ -11,7 +11,7 @@
                 <tr>
                     @foreach($resource['fields'] as $field)
                         <th>
-                            {!! urlBuilderForTableHead($field) !!}
+                            {!! Html::tableHeadLink($field) !!}
                         </th>
                     @endforeach
                 </tr>
@@ -20,12 +20,12 @@
                 @forelse($resource['results'] as $item)
                     <tr>
                         @foreach($resource['fields'] as $field)
-                            <td>{{ evalue($item, $field->attribute) }}</td>
+                            <td>{{ Html::value($item, $field->attribute) }}</td>
                         @endforeach
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="{{ countResults($resource['fields']['labels']) }}" class="text-center">
+                        <td colspan="{{ Html::count($resource['fields']['labels']) }}" class="text-center">
                             {{ trans('belich::messages.resources.no_results') }}
                         </td>
                     </tr>
@@ -34,7 +34,7 @@
             @if($pagination = $resource['results']->links())
                 <tfoot>
                     <tr>
-                        <td colspan="{{ countResults($resource['fields']) }}" class="text-center">{{ $pagination }}</td>
+                        <td colspan="{{ Html::count($resource['fields']) }}" class="text-center">{{ $pagination }}</td>
                     </tr>
                 </tfoot>
             @endif

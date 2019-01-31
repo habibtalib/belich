@@ -133,11 +133,10 @@ class BelichServiceProvider extends ServiceProvider {
     {
         //Belich Facade
         $this->app->register(\Daguilarm\Belich\BelichFacadeProvider::class);
-
-        $this->app->bind('Belich', function() {
-            return new \Daguilarm\Belich\Core\Builder;
-        });
-
         AliasLoader::getInstance()->alias('Belich', \Daguilarm\Belich\BelichFacade::class);
+
+        //Html Facade
+        $this->app->register(\Daguilarm\Belich\HtmlFacadeProvider::class);
+        AliasLoader::getInstance()->alias('Html', \Daguilarm\Belich\HtmlFacade::class);
     }
 }

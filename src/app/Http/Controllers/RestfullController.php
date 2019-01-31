@@ -3,7 +3,7 @@
 namespace Daguilarm\Belich\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Daguilarm\Belich\Core\Builder;
+use Daguilarm\Belich\Core\Belich;
 use Daguilarm\Belich\Fields\FieldValidate as Validate;
 use Illuminate\Http\Request;
 
@@ -18,16 +18,16 @@ class RestfullController extends Controller
     /**
      * Generate crud controllers
      *
-     * @param Daguilarm\Belich\Core\Builder $builder
+     * @param Daguilarm\Belich\Core\Belich $belich
      */
-    public function __construct(Builder $builder)
+    public function __construct(Belich $belich)
     {
         //Initialize the packges
-        $this->resource = $builder->resource();
+        $this->resource = $belich->resource();
 
         //Share the setting to all the views
         view()->share([
-            'resources' => $builder->resourcesAll()
+            'resources' => $belich->resourcesAll()
         ]);
     }
 

@@ -10,7 +10,7 @@ use Daguilarm\Belich\Fields\FieldResolve;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
-class Builder {
+class Belich {
 
     /** @var string */
     private $request;
@@ -192,6 +192,10 @@ class Builder {
         if(Helpers::action() === 'index') {
             return $class
                 ->indexQuery($this->request)
+                //Order query
+                ->when(request()->query('order') && request()->query('direction'), function ($query) {
+                    return $query->orderBy(request()->query('order'), request()->query('direction'));
+                })
                 ->simplePaginate($this->perPage)
                 //Add all the url variables
                 ->appends(request()->query());
@@ -223,15 +227,4 @@ class Builder {
     public function breadcrumbs($resource) {
         return Breadcrumbs::make($resource);
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Settings
-    |--------------------------------------------------------------------------
-    */
-    // public function settings($key = null) {
-    //     return $key
-    //         ? $this->settings[$key]
-    //         : $this->settings;
-    // }
 }

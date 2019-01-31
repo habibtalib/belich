@@ -4,7 +4,7 @@ namespace Daguilarm\Belich;
 
 use Illuminate\Support\ServiceProvider;
 
-class BelichFacadeProvider extends ServiceProvider
+class HtmlFacadeProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -23,9 +23,9 @@ class BelichFacadeProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('Belich',function()
+        $this->app->singleton('Html',function()
         {
-            return new \Daguilarm\Belich\Core\Belich;
+            return new \Daguilarm\Belich\Core\Html;
         });
     }
 }

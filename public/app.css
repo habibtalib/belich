@@ -55,6 +55,7 @@
   --table-bg: var(--white);
   --table-color: var(--80);
   --table-head-bg: var(--40);
+  --table-head-link: var(--white);
   --table-body-tr-hover: var(--info-10);
   --table-footer-bg: var(--info-10);
   /*Pagination*/
@@ -424,6 +425,10 @@ li > a:only-child:after {
 
 .table thead {
   text-transform: uppercase;
+}
+
+.table thead a {
+  color: var(--table-head-link);
 }
 
 .table thead tr {

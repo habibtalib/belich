@@ -3,6 +3,7 @@
 namespace Daguilarm\Belich\Components;
 
 use Daguilarm\Belich\Core\Helpers;
+use Html;
 
 class Breadcrumbs {
 
@@ -54,7 +55,7 @@ class Breadcrumbs {
             }
             return [
                 'title' => $title,
-                'url'   => $url ? urlBuilder($url) : null,
+                'url'   => $url ? Html::urlBuilder($url) : null,
             ];
         })
         ->values()

@@ -8,6 +8,10 @@
         @apply uppercase;
     }
 
+        .table thead a {
+            color: var(--table-head-link);
+        }
+
         .table thead tr {
             @apply border-t border-b border-solid border-grey-light text-white;
             background-color: var(--table-head-bg);
