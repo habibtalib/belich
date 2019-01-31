@@ -1,0 +1,70 @@
+:root {
+    /*Colors*/
+    --black: rgb(34, 41, 47);
+    --white: rgb(255, 255, 255);
+    --5: rgba(34, 41, 47, 0.05);
+    --10: rgba(34, 41, 47, 0.1);
+    --20: rgba(34, 41, 47, 0.2);
+    --30: rgba(34, 41, 47, 0.3);
+    --40: rgba(34, 41, 47, 0.4);
+    --50: rgba(34, 41, 47, 0.5);
+    --60: rgba(34, 41, 47, 0.6);
+    --70: rgba(34, 41, 47, 0.7);
+    --80: rgba(34, 41, 47, 0.8);
+    --90: rgba(34, 41, 47, 0.9);
+    --primary: rgb(77, 192, 180);
+    --primary-10: rgba(77, 192, 180, 0.1);
+    --primary-30: rgba(77, 192, 180, 0.3);
+    --primary-50: rgba(77, 192, 180, 0.5);
+    --primary-70: rgba(77, 192, 180, 0.7);
+    --primary-dark: rgb(0, 128, 128);
+    --danger: rgb(231, 68, 68);
+    --info: rgb(52, 144, 220);
+    --info-10: rgba(52, 144, 220, .10);
+    --info-dark: rgb(39, 121, 189);
+    --succes: rgb(33, 185, 119);
+    --warning: rgb(255, 235, 59);
+    --warning-30: rgba(255, 235, 59, 0.3);
+    --warning: rgb(255, 235, 59);
+
+    /*Html*/
+    --body-bg: var(--5);
+
+    /*Navbar*/
+    --navbar-bg: var(--primary);
+    --navbar-bg-hover: var(--primary-dark);
+    --navbar-link: var(--white);
+    --navbar-brand-bg: var(--info);
+    --navbar-brand-link-hover: var(--warning);
+
+    /*Breadcrumbs*/
+    --breadcrumbs-bg: var(--white);
+    --breadcrumbs-current: var(--70);
+    --breadcrumbs-link: var(--50);
+    --breadcrumbs-link-hover: var(--info);
+    --breadcrumbs-separator: var(--20);
+
+    /*Forms*/
+    --form-bg: var(--white);
+    --form-color: var(--80);
+    --form-help: var(--50);
+    --form-input-bg: var(--white);
+    --form-input-border: var(--50);
+    --form-input-focus-bg: var(--warning-30);
+    --form-input-focus-border: var(--80);
+    --form-input-focus-color: var(--black);
+    --form-select-dropdown-icon: var(--80);
+    --form-disabled-bg: var(--20);
+
+    /*Table*/
+    --table-bg: var(--white);
+    --table-color: var(--80);
+    --table-head-bg: var(--40);
+    --table-body-tr-hover: var(--info-10);
+    --table-footer-bg: var(--info-10);
+
+    /*Pagination*/
+    --pagination-disabled: var(--30);
+    --pagination-link: var(--info);
+    --pagination-link-hover: var(--info-dark);
+}

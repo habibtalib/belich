@@ -1,14 +1,17 @@
 form.form-container {
-    @apply shadow-md bg-white;
+    @apply shadow-md;
+    background-color: var(--form-bg);
 }
 
 form.form-container > .form-group {
-    @apply w-full flex items-center pt-8 pb-6 px-6 border-b border-grey-lighter text-grey-darker text-sm;
+    @apply w-full flex items-center pt-8 pb-6 px-6 border-b border-grey-lighter text-sm;
+    color: var(--form-color);
 }
 
     /*Help text*/
     form.form-container > .form-group .help-text {
-        @apply text-grey-dark font-normal lowercase italic mt-2;
+        @apply font-normal lowercase italic mt-2;
+        color: var(--form-help);
     }
 
         form.form-container > .form-group .help-text::first-letter {
@@ -32,12 +35,17 @@ form.form-container > .form-group {
     /*Default form fields*/
     form.form-container > .form-group input,
     form.form-container > .form-group select {
-        @apply w-full appearance-none border border-grey leading-tight rounded shadow;
+        @apply w-full appearance-none border leading-tight rounded shadow;
+        border-color: var(--form-input-border);
+        background-color: var(--form-input-bg);
     }
 
     form.form-container > .form-group input:focus,
     form.form-container > .form-group select:focus {
-        @apply outline-none border-blue bg-white shadow-md;
+        @apply outline-none shadow-md;
+        background-color: var(--form-input-focus-bg);
+        border-color: var(--form-input-focus-border);
+        color: var(--form-input-focus-color);
     }
 
     /*Input fields*/
@@ -55,7 +63,8 @@ form.form-container > .form-group {
     }
 
     form.form-container > .form-group .select-container .icon {
-        @apply pointer-events-none absolute pin-y pin-r flex items-center px-2 text-grey-darker;
+        @apply pointer-events-none absolute pin-y pin-r flex items-center px-2;
+        color: var(--form-select-dropdown-icon);
     }
 
     form.form-container > .form-group p.validation-error {
@@ -67,5 +76,6 @@ form.form-container > .form-group {
     form.form-container > .form-group textarea:disabled,
     form.form-container > .form-group select:disabled,
     form.form-container > .form-group option:disabled {
-        @apply opacity-50 cursor-not-allowed bg-grey-light;
+        @apply opacity-50 cursor-not-allowed;
+        background-color: var(--form-disabled-bg);
     }

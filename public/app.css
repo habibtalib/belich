@@ -1,38 +1,71 @@
-/* make keyframes that tell the start state and the end state of our object */
-
-@-webkit-keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-.fade-in {
-  opacity: 0; /* make things invisible upon start */
-  -webkit-animation: fadeIn ease-in 1; /* call our keyframe named fadeIn, use animattion ease-in and repeat it only 1 time */
-          animation: fadeIn ease-in 1;
-  -webkit-animation-fill-mode: forwards; /* this makes sure that after animation is done we remain at the last keyframe value (opacity: 1)*/
-          animation-fill-mode: forwards;
-  -webkit-animation-duration: .2s;
-          animation-duration: .2s;
+:root {
+  /*Colors*/
+  --black: rgb(34, 41, 47);
+  --white: rgb(255, 255, 255);
+  --5: rgba(34, 41, 47, .05);
+  --10: rgba(34, 41, 47, .1);
+  --20: rgba(34, 41, 47, .2);
+  --30: rgba(34, 41, 47, .3);
+  --40: rgba(34, 41, 47, .4);
+  --50: rgba(34, 41, 47, .5);
+  --60: rgba(34, 41, 47, .6);
+  --70: rgba(34, 41, 47, .7);
+  --80: rgba(34, 41, 47, .8);
+  --90: rgba(34, 41, 47, .9);
+  --primary: rgb(77, 192, 180);
+  --primary-10: rgba(77, 192, 180, .1);
+  --primary-30: rgba(77, 192, 180, .3);
+  --primary-50: rgba(77, 192, 180, .5);
+  --primary-70: rgba(77, 192, 180, .7);
+  --primary-dark: rgb(0, 128, 128);
+  --danger: rgb(231, 68, 68);
+  --info: rgb(52, 144, 220);
+  --info-10: rgba(52, 144, 220, .1);
+  --info-dark: rgb(39, 121, 189);
+  --succes: rgb(33, 185, 119);
+  --warning: rgb(255, 235, 59);
+  --warning-30: rgba(255, 235, 59, .3);
+  --warning: rgb(255, 235, 59);
+  /*Html*/
+  --body-bg: var(--5);
+  /*Navbar*/
+  --navbar-bg: var(--primary);
+  --navbar-bg-hover: var(--primary-dark);
+  --navbar-link: var(--white);
+  --navbar-brand-bg: var(--info);
+  --navbar-brand-link-hover: var(--warning);
+  /*Breadcrumbs*/
+  --breadcrumbs-bg: var(--white);
+  --breadcrumbs-current: var(--70);
+  --breadcrumbs-link: var(--50);
+  --breadcrumbs-link-hover: var(--info);
+  --breadcrumbs-separator: var(--20);
+  /*Forms*/
+  --form-bg: var(--white);
+  --form-color: var(--80);
+  --form-help: var(--50);
+  --form-input-bg: var(--white);
+  --form-input-border: var(--50);
+  --form-input-focus-bg: var(--warning-30);
+  --form-input-focus-border: var(--80);
+  --form-input-focus-color: var(--black);
+  --form-select-dropdown-icon: var(--80);
+  --form-disabled-bg: var(--20);
+  /*Table*/
+  --table-bg: var(--white);
+  --table-color: var(--80);
+  --table-head-bg: var(--40);
+  --table-body-tr-hover: var(--info-10);
+  --table-footer-bg: var(--info-10);
+  /*Pagination*/
+  --pagination-disabled: var(--30);
+  --pagination-link: var(--info);
+  --pagination-link-hover: var(--info-dark);
 }
 /* General values */
 
 body {
-  background-color: #f1f5f8;
+  background-color: var(--body-bg);
 }
 
 a {
@@ -47,7 +80,7 @@ a {
 .nav-breadcrumbs {
   width: 100%;
   margin-bottom: 2rem;
-  background-color: #fff;
+  background-color: var(--breadcrumbs-bg);
 }
 
 .nav-breadcrumbs > ul {
@@ -66,21 +99,21 @@ a {
 .nav-breadcrumbs > ul > li {
   margin-right: .5rem;
   font-weight: 600;
-  color: #606f7b;
+  color: var(--breadcrumbs-current);
 }
 
 .nav-breadcrumbs > ul > li > a {
   font-weight: 500;
-  color: #8795a1;
   text-decoration: underline;
+  color: var(--breadcrumbs-link);
 }
 
 .nav-breadcrumbs > ul > li > a:hover {
-  color: #3490dc;
+  color: var(--breadcrumbs-link-hover);
 }
 
 .nav-breadcrumbs > ul > li.separator:after {
-  color: #b8c2cc;
+  color: var(--breadcrumbs-separator);
   content: '/\A0';
 }
 .btn-container {
@@ -109,7 +142,7 @@ a {
 form.form-container {
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
-  background-color: #fff;
+  background-color: var(--form-bg);
 }
 
 form.form-container > .form-group {
@@ -126,18 +159,18 @@ form.form-container > .form-group {
   padding-right: 1.5rem;
   border-bottom-width: 1px;
   border-color: #f1f5f8;
-  color: #606f7b;
   font-size: .875rem;
+  color: var(--form-color);
 }
 
 /*Help text*/
 
 form.form-container > .form-group .help-text {
-  color: #8795a1;
   font-weight: 400;
   text-transform: lowercase;
   font-style: italic;
   margin-top: .5rem;
+  color: var(--form-help);
 }
 
 form.form-container > .form-group .help-text::first-letter {
@@ -170,20 +203,22 @@ form.form-container > .form-group select {
      -moz-appearance: none;
           appearance: none;
   border-width: 1px;
-  border-color: #b8c2cc;
   line-height: 1.25;
   border-radius: .25rem;
   -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
           box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+  border-color: var(--form-input-border);
+  background-color: var(--form-input-bg);
 }
 
 form.form-container > .form-group input:focus,
 form.form-container > .form-group select:focus {
   outline: 0;
-  border-color: #3490dc;
-  background-color: #fff;
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
+  background-color: var(--form-input-focus-bg);
+  border-color: var(--form-input-focus-border);
+  color: var(--form-input-focus-color);
 }
 
 /*Input fields*/
@@ -226,7 +261,7 @@ form.form-container > .form-group .select-container .icon {
           align-items: center;
   padding-left: .5rem;
   padding-right: .5rem;
-  color: #606f7b;
+  color: var(--form-select-dropdown-icon);
 }
 
 form.form-container > .form-group p.validation-error {
@@ -243,7 +278,7 @@ form.form-container > .form-group select:disabled,
 form.form-container > .form-group option:disabled {
   opacity: .5;
   cursor: not-allowed;
-  background-color: #dae1e7;
+  background-color: var(--form-disabled-bg);
 }
 /* Base on https://codepen.io/andornagy/pen/xhiJH */
 
@@ -251,7 +286,7 @@ form.form-container > .form-group option:disabled {
 
 nav#navbar {
   height: 3rem;
-  background-color: #4dc0b5;
+  background-color: var(--navbar-bg);
 }
 
 nav#navbar ul {
@@ -264,17 +299,17 @@ nav#navbar ul {
 
 nav#navbar li.brand {
   display: inline-block;
-  background-color: #3490dc;
   font-weight: 600;
   margin-right: -4px;
+  background-color: var(--navbar-brand-bg);
 }
 
 nav#navbar li.brand:hover {
-  background-color: #3490dc;
+  background-color: var(--navbar-brand-bg);
 }
 
 nav#navbar li.brand a:hover {
-  color: #ffed4a;
+  color: var(--navbar-brand-link-hover);
 }
 
 nav#navbar li.brand .collapse {
@@ -283,11 +318,11 @@ nav#navbar li.brand .collapse {
 
 nav#navbar ul li {
   display: inline-block;
-  background-color: #4dc0b5;
+  background-color: var(--navbar-bg);
 }
 
 nav#navbar ul li:hover {
-  background-color: #38a89d;
+  background-color: var(--navbar-bg-hover);
 }
 
 nav#navbar a {
@@ -297,10 +332,10 @@ nav#navbar a {
   padding-right: 1.5rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  color: #fff;
   font-size: 1rem;
   line-height: 1.25;
   text-decoration: none;
+  color: var(--navbar-link);
 }
 
 /* Hide Dropdowns by Default */
@@ -342,14 +377,49 @@ li > a:after {
 li > a:only-child:after {
   content: '';
 }
+/*Pagination*/
+
+.pagination {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  list-style: none;
+  padding: 0;
+  width: auto;
+}
+
+.pagination li.page-item {
+  display: block;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  font-size: 1.125rem;
+  color: var(--pagination-disabled);
+}
+
+.pagination li.page-item a.page-link {
+  color: var(--pagination-link);
+}
+
+.pagination li.page-item a.page-link:hover {
+  color: var(--pagination-link-hover);
+}
 .table {
   width: 100%;
   font-size: .875rem;
   text-align: left;
-  background-color: #fff;
   margin-bottom: 4rem;
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
+  background-color: var(--table-bg);
+  color: var(--table-color);
 }
 
 .table thead {
@@ -361,8 +431,12 @@ li > a:only-child:after {
   border-bottom-width: 1px;
   border-style: solid;
   border-color: #dae1e7;
-  background-color: #b8c2cc;
   color: #fff;
+  background-color: var(--table-head-bg);
+}
+
+.table tbody tr:hover {
+  background-color: var(--table-body-tr-hover);
 }
 
 .table thead tr th {
@@ -379,11 +453,11 @@ li > a:only-child:after {
   padding-right: 1.5rem;
   border-bottom-width: 1px;
   border-style: solid;
-  border-color: #dae1e7;
+  border-color: var(--10);
 }
 
-.table tbody tr:hover {
-  background-color: #fff382;
+.table tfoot {
+  background-color: var(--table-footer-bg);
 }
 /**
  * This injects Tailwind's base styles, which is a combination of

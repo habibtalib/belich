@@ -1,0 +1,17 @@
+/*Pagination*/
+.pagination {
+    @apply flex justify-between items-center list-reset w-auto;
+}
+
+    .pagination li.page-item {
+        @apply block px-4 py-4 text-lg;
+        color: var(--pagination-disabled);
+    }
+
+        .pagination li.page-item a.page-link {
+            color: var(--pagination-link);
+        }
+
+        .pagination li.page-item a.page-link:hover {
+            color: var(--pagination-link-hover);
+        }

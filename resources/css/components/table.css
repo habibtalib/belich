@@ -1,5 +1,7 @@
 .table {
-    @apply w-full text-sm text-left bg-white mb-16 shadow-md;
+    @apply w-full text-sm text-left mb-16 shadow-md;
+    background-color: var(--table-bg);
+    color: var(--table-color);
 }
 
     .table thead {
@@ -7,17 +9,23 @@
     }
 
         .table thead tr {
-            @apply border-t border-b border-solid border-grey-light bg-grey text-white;
+            @apply border-t border-b border-solid border-grey-light text-white;
+            background-color: var(--table-head-bg);
         }
+
+            .table tbody tr:hover {
+                background-color: var(--table-body-tr-hover);
+            }
 
             .table thead tr th {
                 @apply py-4 px-6;
             }
 
-    .table tbody tr td {
-        @apply py-4 px-6 border-b border-solid border-grey-light;
-    }
+            .table tbody tr td {
+                @apply py-4 px-6 border-b border-solid;
+                border-color: var(--10);
+            }
 
-    .table tbody tr:hover {
-        @apply bg-yellow-light;
+    .table tfoot {
+        background-color: var(--table-footer-bg);
     }

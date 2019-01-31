@@ -1,6 +1,6 @@
 /* General values */
 body {
-    @apply bg-grey-lighter;
+    background-color: var(--body-bg);
 }
 
 a {

@@ -1,5 +1,6 @@
 .nav-breadcrumbs {
-    @apply w-full mb-8 bg-white;
+    @apply w-full mb-8;
+    background-color: var(--breadcrumbs-bg);
 }
 
     .nav-breadcrumbs > ul {
@@ -7,18 +8,20 @@
     }
 
     .nav-breadcrumbs > ul > li {
-        @apply mr-2 font-semibold text-grey-darker;
+        @apply mr-2 font-semibold;
+        color: var(--breadcrumbs-current);
     }
 
     .nav-breadcrumbs > ul > li > a {
-        @apply font-medium text-grey-dark underline;
+        @apply font-medium underline;
+        color: var(--breadcrumbs-link);
     }
 
     .nav-breadcrumbs > ul > li > a:hover {
-        @apply text-blue;
+        color: var(--breadcrumbs-link-hover);
     }
 
     .nav-breadcrumbs > ul > li.separator:after {
-        @apply text-grey;
+        color: var(--breadcrumbs-separator);
         content: '/\00a0';
     }

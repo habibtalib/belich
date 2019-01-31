@@ -2,7 +2,8 @@
 
 /* Navbar */
 nav#navbar {
-    @apply h-12 bg-teal;
+    @apply h-12;
+    background-color: var(--navbar-bg);
 }
 
 nav#navbar ul {
@@ -10,16 +11,17 @@ nav#navbar ul {
 }
 
 nav#navbar li.brand {
-    @apply inline-block bg-blue font-semibold;
+    @apply inline-block font-semibold;
     margin-right: -4px;
+    background-color: var(--navbar-brand-bg);
 }
 
 nav#navbar li.brand:hover {
-    @apply bg-blue;
+    background-color: var(--navbar-brand-bg);
 }
 
 nav#navbar li.brand a:hover {
-    @apply text-yellow;
+    color: var(--navbar-brand-link-hover);
 }
 
 nav#navbar li.brand .collapse {
@@ -27,15 +29,17 @@ nav#navbar li.brand .collapse {
 }
 
 nav#navbar ul li {
-    @apply inline-block bg-teal;
+    @apply inline-block;
+    background-color: var(--navbar-bg);
 }
 
 nav#navbar ul li:hover {
-    @apply bg-teal-dark;
+    background-color: var(--navbar-bg-hover);
 }
 
 nav#navbar a {
-    @apply block h-12 px-6 py-4 text-white text-base leading-tight no-underline;
+    @apply block h-12 px-6 py-4 text-base leading-tight no-underline;
+    color: var(--navbar-link);
 }
 
 /* Hide Dropdowns by Default */
