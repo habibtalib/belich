@@ -431,6 +431,12 @@ li > a:only-child:after {
   color: var(--table-head-link);
 }
 
+.table thead a:after {
+  content: "\F0DC";
+  font-family: 'Font Awesome 5 Free';
+  margin-left: .5rem;
+}
+
 .table thead tr {
   border-top-width: 1px;
   border-bottom-width: 1px;
