@@ -16,7 +16,7 @@ class Builder {
     private $request;
 
     /** @var string */
-    private $pagination = 20;
+    private $perPage = 20;
 
     /**
      * Init the constuctor
@@ -28,8 +28,8 @@ class Builder {
         $this->request = request();
 
         //Set pagination
-        if($this->request->has('pagination')) {
-            $this->pagination = $this->request->pagination;
+        if($this->request->has('perPage')) {
+            $this->perPage = $this->request->perPage;
         }
     }
 
@@ -192,7 +192,9 @@ class Builder {
         if(Helpers::action() === 'index') {
             return $class
                 ->indexQuery($this->request)
-                ->simplePaginate($this->pagination);
+                ->simplePaginate($this->perPage)
+                //Add all the url variables
+                ->appends(request()->query());
         }
 
         if(Helpers::action() === 'edit' || Helpers::action() === 'show' && is_numeric(Helpers::resourceId())) {
@@ -224,12 +226,12 @@ class Builder {
 
     /*
     |--------------------------------------------------------------------------
-    | Breadcrumbs
+    | Settings
     |--------------------------------------------------------------------------
     */
-    public function settings($key = null) {
-        return $key
-            ? $this->settings[$key]
-            : $this->settings;
-    }
+    // public function settings($key = null) {
+    //     return $key
+    //         ? $this->settings[$key]
+    //         : $this->settings;
+    // }
 }

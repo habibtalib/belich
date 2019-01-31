@@ -9,16 +9,18 @@
         <table class="table">
             <thead>
                 <tr>
-                    @foreach($resource['fields']['labels'] as $label)
-                        <th>{{ $label }}</th>
+                    @foreach($resource['fields'] as $field)
+                        <th>
+                            {!! urlBuilderForTableHead($field) !!}
+                        </th>
                     @endforeach
                 </tr>
             </thead>
             <tbody>
                 @forelse($resource['results'] as $item)
                     <tr>
-                        @foreach($resource['fields']['attributes'] as $attribute)
-                            <td>{{ evalue($item, $attribute) }}</td>
+                        @foreach($resource['fields'] as $field)
+                            <td>{{ evalue($item, $field->attribute) }}</td>
                         @endforeach
                     </tr>
                 @empty
@@ -32,7 +34,7 @@
             @if($pagination = $resource['results']->links())
                 <tfoot>
                     <tr>
-                        <td colspan="{{ countResults($resource['fields']['labels']) }}" class="text-center">{{ $pagination }}</td>
+                        <td colspan="{{ countResults($resource['fields']) }}" class="text-center">{{ $pagination }}</td>
                     </tr>
                 </tfoot>
             @endif

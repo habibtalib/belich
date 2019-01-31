@@ -38,7 +38,6 @@ if (!function_exists('stringSingularUpper')) {
 if (!function_exists('emptyResults')) {
     function emptyResults() : string
     {
-        //—
-        return '&#8212;';
+        return '—';
     }
 }

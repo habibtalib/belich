@@ -84,20 +84,14 @@ class FieldResolve {
      */
     private function setIndexValues(Collection $fields) : Collection
     {
-        $results = $fields->mapWithKeys(function($field, $key) {
+        return $fields->map(function($field) {
             //Showing field relationship in index
             //See blade template: dashboard.index
-            $attribute = $field->fieldRelationship
+            $field->attribute = $field->fieldRelationship
                 ? [$field->fieldRelationship, $field->attribute]
                 : $field->attribute;
-
-            return [$field->label => $attribute];
+            return $field;
         });
-
-        return collect([
-            'attributes' => $results->values()->toArray(),
-            'labels'     => $results->keys()->toArray(),
-        ]);
     }
 
     /**
