@@ -23,7 +23,7 @@ class Breadcrumbs {
 
         $items =  collect($breadcrumbs)
             ->map(function($item) {
-                if(!empty($item['url'])) {
+                if(!is_null($item['url'])) {
                     return sprintf('<li nav-breadcrumbs-items><a href="%s" class="text-blue font-bold">%s</a></li>', $item['url'], $item['title']);
                 }
                 return sprintf('<li nav-breadcrumbs-items-current>%s</li>', $item['title']);
@@ -45,7 +45,7 @@ class Breadcrumbs {
         $breadcrumbs = $resource->get('values')->get('breadcrumbs');
 
         return collect($breadcrumbs)->map(function($url, $title) {
-            //Default value -> empty url
+            //Current value -> empty url
             if(empty($title)) {
                 return [
                     'title' => $url,
@@ -54,8 +54,10 @@ class Breadcrumbs {
             }
             return [
                 'title' => $title,
-                'url'   => $url,
+                'url'   => $url ? urlBuilder($url) : null,
             ];
-        });
+        })
+        ->values()
+        ->toArray();
     }
 }

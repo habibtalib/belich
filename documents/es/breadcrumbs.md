@@ -1,6 +1,8 @@
 # Breadcrumbs
 
-Los breadcrumbs pueden ser configurados desde la vista situada en `resources/views/vendor/belich/partials/breadcrumbs.blade.php`. El template básico tiene el siguiente formato:
+Los breadcrumbs pueden ser configurados desde la vista situada en `resources/views/vendor/belich/partials/breadcrumbs.blade.php`. 
+
+El template básico tiene el siguiente formato:
 
 ~~~
 <nav class="nav-breadcrumbs">
@@ -93,3 +95,24 @@ Para personalizar el código CSS, deberá sobreescribir los estilos CSS. Para el
 mix.sass('resources/vendor/belich/customCss.scss', '/public/vendor/belich/app.class');
 ~~~
 
+### Crear un breadcrumb personalizado:
+
+En el archivo del recurso, ubicado en: `\App\Belich\Resources\...`, podrá añadir un método personalizado para añadir los parámetros del breadcrumb customizados. A modo de ejemplo:
+
+~~~
+/**
+ * Set the breadcrumbs for the given resource.
+ *
+ * @return array
+ */
+public static function breadcrumbs()
+{
+    return [
+        'text1' => 'http://url1.com',
+        'text2' => 'http://url2.com',
+        'text3',
+    ];
+}
+~~~
+
+El ejemplo anterior, mostrá un breadcrumb con el texto y enlace indicado. Dejando para el final el 'text3', que no tiene enlace y que será la página actual, aunque es libre de añadir un enlace si lo desea... pero, ¿Tiene sentido poner un enlace a la página actual?
