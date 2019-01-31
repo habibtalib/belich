@@ -53,7 +53,7 @@ abstract class Resources {
         $relationships = static::$relationships;
 
         return $relationships
-            ? app($model)::with($relationships)
+            ? app($model)->with($relationships)
             : app($model);
     }
 

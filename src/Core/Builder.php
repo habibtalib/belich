@@ -15,6 +15,9 @@ class Builder {
     /** @var string */
     private $request;
 
+    /** @var string */
+    private $pagination = 20;
+
     /**
      * Init the constuctor
      *
@@ -23,6 +26,11 @@ class Builder {
     public function __construct()
     {
         $this->request = request();
+
+        //Set pagination
+        if($this->request->has('pagination')) {
+            $this->pagination = $this->request->pagination;
+        }
     }
 
     /**
@@ -183,7 +191,8 @@ class Builder {
     {
         if(Helpers::action() === 'index') {
             return $class
-                ->indexQuery($this->request);
+                ->indexQuery($this->request)
+                ->simplePaginate($this->pagination);
         }
 
         if(Helpers::action() === 'edit' || Helpers::action() === 'show' && is_numeric(Helpers::resourceId())) {
