@@ -74,14 +74,14 @@ abstract class Resources {
 
         if(Helpers::action() === 'edit') {
             return array_merge($home,
-                [static::$pluralLabel => Helpers::resourceUrl()],
+                [static::$label => Helpers::resourceUrl()],
                 [trans('belich::buttons.crud.update') => null]
             );
         }
 
         if(Helpers::action() === 'create') {
             return array_merge($home,
-                [static::$pluralLabel => Helpers::resourceUrl()],
+                [static::$label => Helpers::resourceUrl()],
                 [trans('belich::buttons.crud.create') => null]
             );
         }

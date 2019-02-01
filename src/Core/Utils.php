@@ -87,20 +87,20 @@ class Utils {
     /**
      * Get value from object and attribute
      *
-     * @param  object $item
+     * @param  object $data
      * @param  mixed $attribute
      *
      * @return string
      */
-    private function value(object $item, $attribute) : string
+    private function value(object $data, $attribute) : string
     {
         //Relationship
         if(is_array($attribute) && count($attribute) === 2) {
-            return $item->{$attribute[0]}->{$attribute[1]} ?? emptyResults();
+            return $data->{$attribute[0]}->{$attribute[1]} ?? emptyResults();
         }
 
         //Regular value
-        return $item->{$attribute} ?? emptyResults();
+        return $data->{$attribute} ?? emptyResults();
     }
 
     /**

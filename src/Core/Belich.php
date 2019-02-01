@@ -75,10 +75,9 @@ class Belich {
     /**
      * Get the current resource
      *
-
-     *      * @return Illuminate\Support\Collection
+     * @return Illuminate\Support\Collection
      */
-    public function resource() : Collection
+    public function currentResource() : Collection
     {
         //Default values
         $class = $this->initResourceClass();

@@ -23,7 +23,7 @@ class RestfullController extends Controller
     public function __construct(Belich $belich)
     {
         //Initialize the packges
-        $this->resource = $belich->resource();
+        $this->resource = $belich->currentResource();
 
         //Share the setting to all the views
         view()->share([

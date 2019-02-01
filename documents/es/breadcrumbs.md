@@ -115,4 +115,4 @@ public static function breadcrumbs()
 }
 ~~~
 
-El ejemplo anterior, mostrá un breadcrumb con el texto y enlace indicado. Dejando para el final el 'text3', que no tiene enlace y que será la página actual, aunque es libre de añadir un enlace si lo desea... pero, ¿Tiene sentido poner un enlace a la página actual?
+El ejemplo anterior, mostrá un breadcrumb con los textos y enlaces indicados. El último item, no tiene url, eso es debido a que es la página actual... en cualquier caso, es libre de poner una url si lo desea, pero: ¿Tiene sentido poner un enlace a la página actual?

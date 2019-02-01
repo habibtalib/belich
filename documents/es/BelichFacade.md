@@ -31,6 +31,11 @@ Es el path de la aplicación. Se obtiene del archivo de configuración: `.\confi
 Es la url base de la aplicación. Se obtiene del archivo de configuración: `.\config\belich.php`.
 
 
+#### resourceUrl()
+
+Nos da la url completa del recurso actual: `http://url.com/dashboard/resource`
+
+
 #### route()
 
 Las rutas del package se generan automáticamente con el siguiente formato: `dashboard.resource.action`. Ahora imaginemos que nuestra ruta actual es `dashboard.users.index`. El método `route()` nos devolverá un array con los tres valores de la ruta:
@@ -44,33 +49,24 @@ Las rutas del package se generan automáticamente con el siguiente formato: `das
 ~~~
 
 
-#### routeAction()
+#### action()
 
 Nos devolverá el último valor de la función `route`, es decir, la acción que se está producciendo en el Controlador del package. Devolverá cuatro estados por defecto:
 
 `index`, `edit`, `create` y `show`.
 
 
-#### routeResource()
+#### resource()
 
 Este método nos devuelve el segundo térmido de la ruta. El que pertenece al recurso actual.
 
->El recurso es mostrado en singular y en minúscula.
+>El recurso es mostrado en plural y en minúscula. Usando el ejemplo anterior: users.
 
 
-#### routeId()
+#### resourceId()
 
 En las acciones `edit` y `show`, nos mostrará el ID del recurso actual.
 
-
-#### currentLabel($class) 
-
-Devolverá la etiqueta del recurso en función de la acción del controlador. El valor devuelto ser el `$label` o `$pluralLabel`, a continuación se determinan los valores para cada acción del controlador.
-
-- index: `$pluralLabel`
-- edit: `$label`
-- create: `$label`
-- show: `$label`
 
 
 #### resourceClassName()
@@ -78,7 +74,7 @@ Devolverá la etiqueta del recurso en función de la acción del controlador. El
 Nos devuelve el nombre de la clase del recurso actual, por ejemplo: `User`.
 
 
-#### resourceClass($className = null)
+#### resourceClassPath($className = null)
 
 Lo mismo que `resourceClassName()` pero con el path completo de la clase. Usando el ejemplo anterior: `\App\Belich\Resources\User`.
 
@@ -97,7 +93,7 @@ Nos devuelve el listado completo de recursos que se encuentra en el directorio: 
 - **pluralLabel**: La etiqueta en plural que hemos asignado al recurso.
 
 
-#### resource()
+#### currentResource()
 
 Nos devuelve la información del recurso actual, mediante una colección. Los datos que ofrece son:
 
