@@ -4,7 +4,7 @@
     {{-- Breadcrumbs --}}
     @include('belich::partials.breadcrumbs')
 
-    <form method="POST" name="form-{{ $resource['name'] }}-edit" id="form-{{ $resource['name'] }}-edit" action="{{ routeForm($resource['name'], 'store') }}" class="form-container">
+    <form method="POST" name="form-{{ $resource['name'] }}-edit" id="form-{{ $resource['name'] }}-edit" action="{{ Utils::formRedirectTo('update') }}" class="form-container">
         @csrf
         @method('PATCH')
 

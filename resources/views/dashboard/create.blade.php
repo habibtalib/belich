@@ -4,7 +4,7 @@
     {{-- Breadcrumbs --}}
     @include('belich::partials.breadcrumbs')
 
-    <form method="POST" name="form-{{ $resource['name'] }}-create" id="form-{{ $resource['name'] }}-create" action="{{ routeForm($resource['name'], 'store') }}" class="form-container">
+    <form method="POST" name="form-{{ $resource['name'] }}-create" id="form-{{ $resource['name'] }}-create" action="{{ Utils::formRedirectTo('store') }}" class="form-container">
         @csrf
 
         @foreach($resource['fields'] as $field)

@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Core;
 
+use Daguilarm\Belich\Core\Helpers;
 use Daguilarm\Belich\Fields\Field;
 
 class Utils {
@@ -125,5 +126,31 @@ class Utils {
             })
             ->values()
             ->implode('&');
+    }
+
+    /**
+     * Get the base path for the package
+     *
+     * @return string
+     */
+    private function basePath() : string
+    {
+        return basePath();
+    }
+
+    /**
+     * Generate the form route for the action attribute
+     *
+     * @param string $redirectTo ['index', 'edit', 'update', 'show']
+     * @return string
+     */
+    private function formRedirectTo(string $redirectTo) : string
+    {
+        $route = sprintf('%s.%s.%s', $this->basePath(), Helpers::resource(), $redirectTo);
+        $id    = Helpers::resourceId() ?? 0;
+
+        return ($id > 0)
+            ? route($route, $id)
+            : route($route);
     }
 }

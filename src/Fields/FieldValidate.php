@@ -186,7 +186,7 @@ class FieldValidate {
         $stub = File::get(config_path('belich/stubs/validate-form.stub'));
 
         //Set the route for validation
-        $route = route(getRouteBasePath() .'.ajax.form.validation');
+        $route = route(\Utils::basePath() .'.ajax.form.validation');
 
         //Stub values
         $stubValues = [

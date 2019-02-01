@@ -62,3 +62,25 @@ Devuelve un array con todas los parámetros de la url. Usando el ejemplo anterio
 ]
 ~~~
 
+
+#### basePath()
+
+Devuelve el nombre del directorio raiz sobre el que esta instalado Belich. Por defecto: `dashboard`.
+
+#### formRedirectTo(string $redirectTo)
+
+Genera la ruta para ser utilizada como attributo `action` en un formulario. Automáticamente determina todos los parámetros necesarios en función de la situación... Sólo tenemos que indicar hacia que acción se envia el formulario: index, update, create,...
+
+Si nos encontramos editando un formulario, nos podríamos encontrar el siguiente código:
+
+~~~
+<form method="POST" action="{{ Utils::formRedirectTo('update') }}">
+~~~
+
+Automáticamente, generaría el siguiente código html:
+
+~~~
+<form method="POST" action="https://url.com/dashboard/users/2">
+~~~
+
+El sistema automáticamente determina el `id`, y lo añade por defecto.

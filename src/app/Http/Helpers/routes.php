@@ -30,81 +30,13 @@ if (!function_exists('getAllTheResourcesFromFolder')) {
 }
 
 /**
- * Get the route action: index, edit, update...
- *
- * @return Illuminate\Http\Request
- */
-if (!function_exists('getRouteAction')) {
-    function getRouteAction() : string
-    {
-        //Get route name
-        $routeName = explode('.', request()->route()->getName());
-
-        //Return last item from the array
-        return end($routeName);
-    }
-}
-
-/**
- * Get the resource: users
- *
- * @return Illuminate\Http\Request
- */
-if (!function_exists('getResourceName')) {
-    function getResourceName() : string
-    {
-        $resource = explode('/', request()->route()->uri);
-
-        return $resource[1];
-    }
-}
-
-/**
- * Get the resource name: User
- *
- * @return Illuminate\Http\Request
- */
-if (!function_exists('getResourceClass')) {
-    function getResourceClass() : string
-    {
-        return title_case(str_singular(getResourceName()));
-    }
-}
-
-/**
- * Get the route id
- *
- * @return Illuminate\Http\Request
- */
-if (!function_exists('getRouteId')) {
-    function getRouteId($resource = null)
-    {
-        $parameter = str_singular($resource ?? getResourceName());
-
-        return request()->route($parameter) ?? null;
-    }
-}
-
-/**
  * Return the route base path: dashboard or else...
  *
  * @return string
  */
-if (!function_exists('getRouteBasePath')) {
-    function getRouteBasePath() : string
+if (!function_exists('basePath')) {
+    function basePath() : string
     {
         return str_replace('/', '', config('belich.path'));
-    }
-}
-
-/**
- * Return the route for the form action
- *
- * @return string
- */
-if (!function_exists('routeForm')) {
-    function routeForm($resource, $action) : string
-    {
-        return route(sprintf('%s.%s.%s', getRouteBasePath(), $resource, $action));
     }
 }
