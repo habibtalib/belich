@@ -20,6 +20,7 @@
     --primary-70: rgba(77, 192, 180, 0.7);
     --primary-dark: rgb(0, 128, 128);
     --danger: rgb(231, 68, 68);
+    --danger-dark: rgb(204, 31, 26);
     --info: rgb(52, 144, 220);
     --info-50: rgba(52, 144, 220, 0.5);
     --info-20: rgb(239, 248, 255);
@@ -38,6 +39,8 @@
     --navbar-link: var(--white);
     --navbar-brand-bg: var(--info);
     --navbar-brand-link-hover: var(--warning);
+    --navbar-logout-bg: var(--danger);
+    --navbar-logout-bg-hover: var(--danger-dark);
 
     /*Breadcrumbs*/
     --breadcrumbs-bg: var(--white);

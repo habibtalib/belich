@@ -55,9 +55,9 @@ abstract class Navigation {
     public static function logout()
     {
         $url = Helpers::url() . '/logout';
-        $text = trans('belich::buttons.base.logout');
+        $text = sprintf('<i class="fas fa-sign-out-alt"></i> %s', trans('belich::buttons.base.logout'));
 
-        return Link::to($url, $text)->addParentClass('float-right');
+        return Link::to($url, $text)->addParentClass('float-right logout');
     }
 
     /*

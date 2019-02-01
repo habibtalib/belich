@@ -37,6 +37,14 @@ nav#navbar ul li:hover {
     background-color: var(--navbar-bg-hover);
 }
 
+nav#navbar ul li.logout {
+    background-color: var(--navbar-logout-bg);
+}
+
+nav#navbar ul li.logout:hover {
+    background-color: var(--navbar-logout-bg-hover);
+}
+
 nav#navbar a {
     @apply block h-12 px-6 py-4 text-base leading-tight no-underline;
     color: var(--navbar-link);
@@ -65,5 +73,12 @@ nav#navbar ul ul ul li {
 }
 
 /* Change this in order to change the Dropdown symbol */
-li > a:after {content:  ' +';}
-li > a:only-child:after { content: ''; }
+li > a:after {
+    content:  ' \f0d7';
+    font-family: 'Font Awesome 5 Free';
+    @apply font-bold;
+}
+
+li > a:only-child:after {
+    content: '';
+}
