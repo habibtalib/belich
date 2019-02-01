@@ -82,3 +82,10 @@ li > a:after {
 li > a:only-child:after {
     content: '';
 }
+
+/* Change this in order to change the logout symbol */
+li.logout a:before {
+    content:  ' \f2f5';
+    font-family: 'Font Awesome 5 Free';
+    @apply font-bold mr-1;
+}

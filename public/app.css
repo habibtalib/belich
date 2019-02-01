@@ -401,6 +401,15 @@ li > a:after {
 li > a:only-child:after {
   content: '';
 }
+
+/* Change this in order to change the logout symbol */
+
+li.logout a:before {
+  content: ' \F2F5';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 700;
+  margin-right: .25rem;
+}
 /*Pagination*/
 
 .pagination {

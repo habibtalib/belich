@@ -10,7 +10,6 @@ use Spatie\Menu\Link;
 use Spatie\Menu\Menu;
 
 abstract class Navigation {
-
     /*
     |--------------------------------------------------------------------------
     | Navigation methods
@@ -55,7 +54,7 @@ abstract class Navigation {
     public static function logout()
     {
         $url = Helpers::url() . '/logout';
-        $text = sprintf('<i class="fas fa-sign-out-alt"></i> %s', trans('belich::buttons.base.logout'));
+        $text = trans('belich::buttons.base.logout');
 
         return Link::to($url, $text)->addParentClass('float-right logout');
     }
