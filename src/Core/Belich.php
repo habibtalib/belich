@@ -3,6 +3,7 @@
 namespace Daguilarm\Belich\Core;
 
 use App\Belich\Navbar;
+use Daguilarm\Belich\Components\Actions;
 use Daguilarm\Belich\Components\Breadcrumbs;
 use Daguilarm\Belich\Core\Helpers;
 use Daguilarm\Belich\Core\Settings;
@@ -227,5 +228,14 @@ class Belich {
     */
     public function breadcrumbs($resource) {
         return Breadcrumbs::make($resource);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Actions
+    |--------------------------------------------------------------------------
+    */
+    public function actions($resource) {
+        return Actions::make($resource);
     }
 }

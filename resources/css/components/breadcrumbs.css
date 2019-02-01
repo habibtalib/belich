@@ -1,10 +1,10 @@
 .nav-breadcrumbs {
-    @apply w-full mb-8;
+    @apply w-full mb-8 rounded shadow-md;
     background-color: var(--breadcrumbs-bg);
 }
 
     .nav-breadcrumbs > ul {
-        @apply list-reset flex shadow-md my-4 p-4;
+        @apply list-reset flex my-4 p-4;
     }
 
     .nav-breadcrumbs > ul > li {

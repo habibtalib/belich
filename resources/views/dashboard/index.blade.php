@@ -6,6 +6,7 @@
 
     {{-- Table --}}
     <form name="form-index" id="form-index" method="POST" action="">
+        <div class="table-head rounded-t-lg h-1"></div>
         <table class="table">
             <thead>
                 <tr>
@@ -15,6 +16,7 @@
                             {!! Utils::urlWithOrder($field) !!}
                         </th>
                     @endforeach
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -26,10 +28,13 @@
                                 {{ Utils::value($item, $field->attribute) }}
                             </td>
                         @endforeach
+                        <td>
+                            {{ Belich::actions($resource) }}
+                        </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="{{ Utils::count($resource['fields']['labels']) }}" class="text-center">
+                        <td colspan="{{ Utils::count($resource['fields']['labels']) + 2 }}" class="text-center">
                             {{ trans('belich::messages.resources.no_results') }}
                         </td>
                     </tr>
@@ -38,11 +43,12 @@
             @if($pagination = $resource['results']->links())
                 <tfoot>
                     <tr>
-                        <td colspan="{{ Utils::count($resource['fields']) }}" class="text-center">{{ $pagination }}</td>
+                        <td colspan="{{ Utils::count($resource['fields']) + 2 }}" class="text-center">{{ $pagination }}</td>
                     </tr>
                 </tfoot>
             @endif
         </table>
+        <div class="table-footer rounded-b-lg h-1 mb-16 shadow-md"></div>
     </form>
 @endsection
 

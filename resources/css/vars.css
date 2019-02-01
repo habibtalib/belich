@@ -2,6 +2,7 @@
     /*Colors*/
     --black: rgb(34, 41, 47);
     --white: rgb(255, 255, 255);
+    --grey: rgb(135, 149, 161);
     --5: rgba(34, 41, 47, 0.05);
     --10: rgba(34, 41, 47, 0.1);
     --20: rgba(34, 41, 47, 0.2);
@@ -20,7 +21,7 @@
     --primary-dark: rgb(0, 128, 128);
     --danger: rgb(231, 68, 68);
     --info: rgb(52, 144, 220);
-    --info-10: rgba(52, 144, 220, .10);
+    --info-light: rgb(239, 248, 255);
     --info-dark: rgb(39, 121, 189);
     --succes: rgb(33, 185, 119);
     --warning: rgb(255, 235, 59);
@@ -28,7 +29,7 @@
     --warning: rgb(255, 235, 59);
 
     /*Html*/
-    --body-bg: var(--5);
+    --body-bg: var(--10);
 
     /*Navbar*/
     --navbar-bg: var(--primary);
@@ -49,7 +50,7 @@
     --form-color: var(--80);
     --form-help: var(--50);
     --form-input-bg: var(--white);
-    --form-input-border: var(--50);
+    --form-input-border: var(--30);
     --form-input-focus-bg: var(--warning-30);
     --form-input-focus-border: var(--80);
     --form-input-focus-color: var(--black);
@@ -59,10 +60,11 @@
     /*Table*/
     --table-bg: var(--white);
     --table-color: var(--80);
-    --table-head-bg: var(--40);
+    --table-head-bg: var(--grey);
+    --table-head-color: var(--white);
     --table-head-link: var(--white);
     --table-body-tr-hover: var(--info-10);
-    --table-footer-bg: var(--info-10);
+    --table-footer-bg: var(--info-light);
 
     /*Pagination*/
     --pagination-disabled: var(--30);

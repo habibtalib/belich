@@ -1,5 +1,5 @@
 .table {
-    @apply w-full text-sm text-left mb-16 shadow-md;
+    @apply w-full text-sm text-left shadow-md;
     background-color: var(--table-bg);
     color: var(--table-color);
 }
@@ -18,9 +18,13 @@
             @apply ml-2;
         }
 
-        .table thead tr {
-            @apply border-t border-b border-solid border-grey-light text-white;
+        .table-head {
             background-color: var(--table-head-bg);
+        }
+        .table thead tr {
+            @apply border-b border-solid border-grey-light;
+            background-color: var(--table-head-bg);
+            color: var(--table-head-color);
         }
 
             .table tbody tr:hover {
@@ -28,7 +32,7 @@
             }
 
             .table thead tr th {
-                @apply py-4 px-6;
+                @apply pt-4 pb-5 px-6;
             }
 
             .table tbody tr td {
@@ -36,6 +40,7 @@
                 border-color: var(--10);
             }
 
-    .table tfoot {
+    .table tfoot,
+    .table-footer {
         background-color: var(--table-footer-bg);
     }

@@ -10,28 +10,6 @@ $(function() {
     "use strict";
 
     /**
-    * Scroll to top
-    */
-    $( window ).scroll(function(event) {
-        event.preventDefault();
-        if ( viewPortWidth > 480 ) {
-            if ( $( this ).scrollTop() > 180 ) {
-                $( '.scroll-to-top' )
-                    .fadeIn();
-            } else {
-                $( '.scroll-to-top' )
-                    .fadeOut();
-            }
-        }
-    });
-
-    $( '.scroll-to-top' ).click( function( event ) {
-        event.preventDefault();
-        $( 'html, body' )
-            .animate( {scrollTop : 0 }, 600 );
-    });
-
-    /**
     * Configure the date
     */
     if ( $.jMaskGlobals ) {
@@ -40,12 +18,4 @@ $(function() {
                 .mask( '00/00/0000', { placeholder: '__/__/____' } );
         }
     }
-
-    /**
-    * Navbar collapse
-    */
-    $( '#belich-navbar-button-collapse' ).on( 'click', function() {
-        $( '#belich-navbar-items' )
-            .toggle();
-    });
 });

@@ -2,6 +2,7 @@
   /*Colors*/
   --black: rgb(34, 41, 47);
   --white: rgb(255, 255, 255);
+  --grey: rgb(135, 149, 161);
   --5: rgba(34, 41, 47, .05);
   --10: rgba(34, 41, 47, .1);
   --20: rgba(34, 41, 47, .2);
@@ -20,14 +21,14 @@
   --primary-dark: rgb(0, 128, 128);
   --danger: rgb(231, 68, 68);
   --info: rgb(52, 144, 220);
-  --info-10: rgba(52, 144, 220, .1);
+  --info-light: rgb(239, 248, 255);
   --info-dark: rgb(39, 121, 189);
   --succes: rgb(33, 185, 119);
   --warning: rgb(255, 235, 59);
   --warning-30: rgba(255, 235, 59, .3);
   --warning: rgb(255, 235, 59);
   /*Html*/
-  --body-bg: var(--5);
+  --body-bg: var(--10);
   /*Navbar*/
   --navbar-bg: var(--primary);
   --navbar-bg-hover: var(--primary-dark);
@@ -45,7 +46,7 @@
   --form-color: var(--80);
   --form-help: var(--50);
   --form-input-bg: var(--white);
-  --form-input-border: var(--50);
+  --form-input-border: var(--30);
   --form-input-focus-bg: var(--warning-30);
   --form-input-focus-border: var(--80);
   --form-input-focus-color: var(--black);
@@ -54,10 +55,11 @@
   /*Table*/
   --table-bg: var(--white);
   --table-color: var(--80);
-  --table-head-bg: var(--40);
+  --table-head-bg: var(--grey);
+  --table-head-color: var(--white);
   --table-head-link: var(--white);
   --table-body-tr-hover: var(--info-10);
-  --table-footer-bg: var(--info-10);
+  --table-footer-bg: var(--info-light);
   /*Pagination*/
   --pagination-disabled: var(--30);
   --pagination-link: var(--info);
@@ -81,6 +83,9 @@ a {
 .nav-breadcrumbs {
   width: 100%;
   margin-bottom: 2rem;
+  border-radius: .25rem;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
   background-color: var(--breadcrumbs-bg);
 }
 
@@ -90,8 +95,6 @@ a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
   margin-top: 1rem;
   margin-bottom: 1rem;
   padding: 1rem;
@@ -143,6 +146,7 @@ a {
 form.form-container {
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
+  border-radius: .25rem;
   background-color: var(--form-bg);
 }
 
@@ -416,7 +420,6 @@ li > a:only-child:after {
   width: 100%;
   font-size: .875rem;
   text-align: left;
-  margin-bottom: 4rem;
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
   background-color: var(--table-bg);
@@ -437,13 +440,16 @@ li > a:only-child:after {
   margin-left: .5rem;
 }
 
+.table-head {
+  background-color: var(--table-head-bg);
+}
+
 .table thead tr {
-  border-top-width: 1px;
   border-bottom-width: 1px;
   border-style: solid;
   border-color: #dae1e7;
-  color: #fff;
   background-color: var(--table-head-bg);
+  color: var(--table-head-color);
 }
 
 .table tbody tr:hover {
@@ -452,7 +458,7 @@ li > a:only-child:after {
 
 .table thead tr th {
   padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-bottom: 1.25rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
 }
@@ -467,7 +473,8 @@ li > a:only-child:after {
   border-color: var(--10);
 }
 
-.table tfoot {
+.table tfoot,
+.table-footer {
   background-color: var(--table-footer-bg);
 }
 /**
