@@ -12,7 +12,7 @@
         @endforeach
 
         <div class="btn-container">
-            <button id="button-form-create" type="submit" class="btn btn-primary">@trans('buttons.crud.create')</button>
+            <button id="button-form-create" type="submit" class="btn btn-primary">{!! icon('plus-square', trans('belich::buttons.crud.create')) !!}</button>
         </div>
     </form>
 @endsection

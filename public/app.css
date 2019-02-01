@@ -148,6 +148,15 @@ a {
 .btn-primary:hover {
   background-color: #2779bd;
 }
+
+.btn-danger {
+  background-color: #e3342f;
+  color: #fff;
+}
+
+.btn-danger:hover {
+  background-color: #cc1f1a;
+}
 form.form-container {
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);

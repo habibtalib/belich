@@ -13,7 +13,7 @@
         @endforeach
 
         <div class="btn-container">
-            <button id="button-form-edit" type="submit" class="btn btn-primary">@trans('buttons.crud.update')</button>
+            <button id="button-form-edit" type="submit" class="btn btn-primary">{!! icon('pen-square', trans('belich::buttons.crud.update')) !!}</button>
         </div>
     </form>
 @endsection

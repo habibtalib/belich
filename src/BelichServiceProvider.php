@@ -29,11 +29,9 @@ class BelichServiceProvider extends ServiceProvider {
         /**
         * Load the helpers
         */
-        foreach(glob(__DIR__ . '/app/Http/Helpers/*.php') as $file) {
-            if($file) {
-                require_once($file);
-            }
-        }
+       if(file_exists(__DIR__ . '/app/Http/helpers.php')) {
+           require_once(__DIR__ . '/app/Http/helpers.php');
+       }
 
         /**
         * Generate the dashboard routes
