@@ -12,9 +12,8 @@
                 <i class="fas fa-times-circle text-grey cursor-pointer" onclick="resetSearch()"></i>
             </span>
         </div>
-        <div class="flex w-full justify-end items-center"></div>
-        <div>
-            <button class="btn btn-primary">Hellow</button>
+        <div class="flex w-full justify-end">
+            <a href="#" class="btn btn-primary">{!! icon('plus-square', trans('belich::buttons.crud.create')) !!}</a>
         </div>
     </div>
 
@@ -41,7 +40,10 @@
                                 {{ Utils::value($item, $field->attribute) }}
                             </td>
                         @endforeach
-                        <td>
+                        <td class="text-right">
+                            <a href="#" class="text-grey text-lg p-2">{!! icon('eye') !!}</a>
+                            <a href="#" class="text-grey text-lg p-2">{!! icon('edit') !!}</a>
+                            <a href="#" class="text-grey text-lg p-2">{!! icon('trash') !!}</a>
                             {{ Belich::actions($resource) }}
                         </td>
                     </tr>

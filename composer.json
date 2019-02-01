@@ -11,8 +11,8 @@
         }
     ],
     "require": {
-        "nothingworks/blade-svg": "dev-master",
         "matthiasmullie/minify": "dev-master",
+        "spatie/laravel-permission": "^2.30",
         "spatie/menu": "^2.8"
     },
     "require-dev": {
