@@ -4,10 +4,10 @@ namespace Daguilarm\Belich;
 
 use Illuminate\Support\Facades\Facade;
 
-class HtmlFacade extends Facade {
+class UtilsFacade extends Facade {
 
     protected static function getFacadeAccessor()
     {
-        return 'Html';
+        return 'Utils';
     }
 }

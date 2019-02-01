@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Core;
 
 use Daguilarm\Belich\Fields\Field;
 
-class Html {
+class Utils {
 
     /**
      * Generate the methods
@@ -28,9 +28,9 @@ class Html {
      *
      * @return string
      */
-    private function urlBuilder($urlParameters = null) : string
+    private function url($urlParameters = null) : string
     {
-        $parameters = $urlParameters ?? request()->query();
+        $parameters = $urlParameters ?? $this->urlParameters();
 
         $query = collect($parameters)
             ->map(function($value, $key) {
@@ -49,30 +49,19 @@ class Html {
      *
      * @return string
      */
-    private function tableHeadLink(Field $field) : string
+    private function urlWithOrder(Field $field) : string
     {
         //Filter if attribute is a relationship or is not sortable
         if(is_array($field->attribute) || $field->sortable === false) {
             return $field->label;
         }
 
-        //Get url parameters
-        $urlParameters = request()->query();
+        $parameters = array_merge($this->urlParameters(), [
+            'order'     => $field->attribute,
+            'direction' => $this->urlParameters('direction') === 'DESC' ? 'ASC' : 'DESC',
+        ]);
 
-        //Get order
-        if(isset($urlParameters['direction']) && $urlParameters['direction'] === 'DESC') {
-            $urlParameters = array_merge($urlParameters, [
-                'order'     => $field->attribute,
-                'direction' => 'ASC'
-            ]);
-        } else {
-            $urlParameters = array_merge($urlParameters, [
-                'order'     => $field->attribute,
-                'direction' => 'DESC'
-            ]);
-        }
-
-        return sprintf('<a href="%s">%s</a>', $this->urlBuilder($urlParameters), $field->label);
+        return sprintf('<a href="%s">%s</a>', $this->url($parameters), $field->label);
     }
 
     /**
@@ -103,7 +92,7 @@ class Html {
      *
      * @return string
      */
-    function value(object $item, $attribute) : string
+    private function value(object $item, $attribute) : string
     {
         //Relationship
         if(is_array($attribute) && count($attribute) === 2) {
@@ -112,5 +101,18 @@ class Html {
 
         //Regular value
         return $item->{$attribute} ?? emptyResults();
+    }
+
+    /**
+     * Get all the url parameters in an array or a selected one
+     *
+     * @param string $key
+     * @return array|string
+     */
+    private function urlParameters($key = null)
+    {
+        return $key
+            ? request()->query($key)
+            : request()->query();
     }
 }
