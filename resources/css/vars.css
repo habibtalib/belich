@@ -21,9 +21,10 @@
     --primary-dark: rgb(0, 128, 128);
     --danger: rgb(231, 68, 68);
     --info: rgb(52, 144, 220);
-    --info-light: rgb(239, 248, 255);
+    --info-50: rgba(52, 144, 220, 0.5);
+    --info-20: rgb(239, 248, 255);
     --info-dark: rgb(39, 121, 189);
-    --succes: rgb(33, 185, 119);
+    --success: rgb(33, 185, 119);
     --warning: rgb(255, 235, 59);
     --warning-30: rgba(255, 235, 59, 0.3);
     --warning: rgb(255, 235, 59);
@@ -61,10 +62,11 @@
     --table-bg: var(--white);
     --table-color: var(--80);
     --table-head-bg: var(--grey);
+    --table-search-bg: var(--info-20);
     --table-head-color: var(--white);
     --table-head-link: var(--white);
-    --table-body-tr-hover: var(--info-10);
-    --table-footer-bg: var(--info-light);
+    --table-body-tr-hover: var(--info-20);
+    --table-footer-bg: var(--info-20);
 
     /*Pagination*/
     --pagination-disabled: var(--30);

@@ -43,6 +43,8 @@
  @import "components/navbar.css";
  @import "components/pagination.css";
  @import "components/table.css";
+ @import "components/table-search.css";
+
 
 /**
  * This injects all of Tailwind's utility classes, generated based on your

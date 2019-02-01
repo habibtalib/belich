@@ -21,9 +21,10 @@
   --primary-dark: rgb(0, 128, 128);
   --danger: rgb(231, 68, 68);
   --info: rgb(52, 144, 220);
-  --info-light: rgb(239, 248, 255);
+  --info-50: rgba(52, 144, 220, .5);
+  --info-20: rgb(239, 248, 255);
   --info-dark: rgb(39, 121, 189);
-  --succes: rgb(33, 185, 119);
+  --success: rgb(33, 185, 119);
   --warning: rgb(255, 235, 59);
   --warning-30: rgba(255, 235, 59, .3);
   --warning: rgb(255, 235, 59);
@@ -56,10 +57,11 @@
   --table-bg: var(--white);
   --table-color: var(--80);
   --table-head-bg: var(--grey);
+  --table-search-bg: var(--info-20);
   --table-head-color: var(--white);
   --table-head-link: var(--white);
-  --table-body-tr-hover: var(--info-10);
-  --table-footer-bg: var(--info-light);
+  --table-body-tr-hover: var(--info-20);
+  --table-footer-bg: var(--info-20);
   /*Pagination*/
   --pagination-disabled: var(--30);
   --pagination-link: var(--info);
@@ -217,7 +219,11 @@ form.form-container > .form-group select {
 }
 
 form.form-container > .form-group input:focus,
-form.form-container > .form-group select:focus {
+form.form-container > .form-group select:focus,
+form.form-container > .form-group textarea:focus,
+input:focus,
+select:focus,
+textarea:focus {
   outline: 0;
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
@@ -440,10 +446,6 @@ li > a:only-child:after {
   margin-left: .5rem;
 }
 
-.table-head {
-  background-color: var(--table-head-bg);
-}
-
 .table thead tr {
   border-bottom-width: 1px;
   border-style: solid;
@@ -476,6 +478,39 @@ li > a:only-child:after {
 .table tfoot,
 .table-footer {
   background-color: var(--table-footer-bg);
+}
+.table-search {
+  border-top-left-radius: .25rem;
+  border-top-right-radius: .25rem;
+  padding: 1rem;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
+  width: 100%;
+  background-color: var(--table-search-bg);
+}
+
+.table-search input {
+  padding: .5rem;
+  padding-left: 2rem;
+  margin-top: .5rem;
+  margin-bottom: .5rem;
+  border-radius: .25rem;
+  border-width: 1px;
+  border-color: #dae1e7;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
+  width: 16rem;
+}
+
+.table-search .icon-search:before {
+  content: "\F002";
+  font-family: 'Font Awesome 5 Free';
+  position: absolute;
+  margin-left: .5rem;
+  margin-top: 1rem;
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #b8c2cc;
 }
 /**
  * This injects Tailwind's base styles, which is a combination of

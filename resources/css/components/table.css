@@ -18,9 +18,6 @@
             @apply ml-2;
         }
 
-        .table-head {
-            background-color: var(--table-head-bg);
-        }
         .table thead tr {
             @apply border-b border-solid border-grey-light;
             background-color: var(--table-head-bg);

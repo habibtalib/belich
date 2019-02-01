@@ -1,0 +1,14 @@
+.table-search {
+    @apply rounded-t p-4 shadow-md w-full;
+    background-color: var(--table-search-bg);
+}
+
+    .table-search input {
+        @apply p-2 pl-8 my-2 rounded border border-grey-light shadow-md w-64;
+    }
+
+    .table-search .icon-search:before {
+        content: "\f002";
+        font-family: 'Font Awesome 5 Free';
+        @apply absolute ml-2 mt-4 font-bold text-xl text-grey;
+    }
