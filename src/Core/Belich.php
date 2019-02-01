@@ -46,6 +46,8 @@ class Belich {
         if(method_exists(Helpers::class, $method)) {
             return Helpers::$method();
         }
+
+        return abort(404);
     }
 
     /*

@@ -19,6 +19,8 @@ class Utils {
         if(method_exists($this, $method)) {
             return call_user_func_array([$this, $method], $parameters);
         }
+
+        return abort(404);
     }
 
     /**
@@ -32,14 +34,7 @@ class Utils {
     {
         $parameters = $urlParameters ?? $this->urlParameters();
 
-        $query = collect($parameters)
-            ->map(function($value, $key) {
-                return sprintf('%s=%s', $key, $value);
-            })
-            ->values()
-            ->implode('&');
-
-        return sprintf('%s/?%s', url()->current(), $query);
+        return sprintf('%s/?%s', url()->current(), $this->serializeParameters($parameters));
     }
 
     /**
@@ -114,5 +109,21 @@ class Utils {
         return $key
             ? request()->query($key)
             : request()->query();
+    }
+
+    /**
+     * Serialize all the url parameters
+     *
+     * @param array $parameters
+     * @return string
+     */
+    private function serializeParameters($parameters = null)
+    {
+        return collect($parameters ?? $this->urlParameters())
+            ->map(function($value, $key) {
+                return sprintf('%s=%s', $key, $value);
+            })
+            ->values()
+            ->implode('&');
     }
 }

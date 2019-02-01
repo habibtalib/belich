@@ -9,6 +9,7 @@
         <table class="table">
             <thead>
                 <tr>
+                    <th><input type="checkbox" name="item_selection" onclick="checkAll('form-index', this)"></th>
                     @foreach($resource['fields'] as $field)
                         <th>
                             {!! Utils::urlWithOrder($field) !!}
@@ -19,8 +20,11 @@
             <tbody>
                 @forelse($resource['results'] as $item)
                     <tr>
+                        <td><input type="checkbox" name="item_selection[]" value="{{ $item->id }}"></td>
                         @foreach($resource['fields'] as $field)
-                            <td>{{ Utils::value($item, $field->attribute) }}</td>
+                            <td>
+                                {{ Utils::value($item, $field->attribute) }}
+                            </td>
                         @endforeach
                     </tr>
                 @empty
@@ -40,4 +44,17 @@
             @endif
         </table>
     </form>
+@endsection
+
+@section('javascript')
+    <script type="text/javascript" language="javascript">
+        function checkAll(formName, selector) {
+            var checkboxes = document[formName].getElementsByTagName('input');
+            for (var i=0; i < checkboxes.length; i++)  {
+                if (checkboxes[i].type == 'checkbox')   {
+                    checkboxes[i].checked = (selector.checked === true) ? true : false;
+                }
+            }
+        }
+    </script>
 @endsection

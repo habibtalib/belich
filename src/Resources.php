@@ -58,7 +58,7 @@ abstract class Resources {
     }
 
     /**
-     * Rewriting the default breadcrumb
+     * Default breadcrumb
      *
      * @return Illuminate\Support\Collection
      */

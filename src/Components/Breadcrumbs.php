@@ -55,7 +55,7 @@ class Breadcrumbs {
             }
             return [
                 'title' => $title,
-                'url'   => $url ? Utils::url($url) : null,
+                'url'   => $url ?? null,
             ];
         })
         ->values()
