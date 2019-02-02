@@ -84,3 +84,33 @@ Automáticamente, generaría el siguiente código html:
 ~~~
 
 El sistema automáticamente determina el `id`, y lo añade por defecto.
+
+#### getFileAttributes($fileName, $extension = false)
+
+Get the name or extension from a file. If we have something like: `file.ext`, el método, nos devolverá `file`, y se le añadimos como segundo parámetro `true`o cualquier valor diferente a `false, nos devolverá la extensión en vez del nombre.
+
+#### icon($icon, $text)
+
+Este método generará un icono de Fontawesome 5, junto a un texto optativo. Por ejemplo: 
+
+~~~
+Utils::icon('plus-square', 'New')
+~~~
+
+Generará el siguiente código:
+
+~~~
+<i class="fas fa-plus-square mr-1"></i> New
+~~~
+
+Si se desean añadir clases adicionales, se puede hacer así:
+
+~~~
+Utils::icon('plus-square text-lg', 'New')
+~~~
+
+Generando:
+
+~~~
+<i class="fas fa-plus-square text-lg mr-1"></i> New
+~~~
