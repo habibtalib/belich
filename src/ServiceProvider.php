@@ -2,10 +2,10 @@
 
 namespace Daguilarm\Belich;
 
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider as Provider;
 use Illuminate\Foundation\AliasLoader;
 
-class BelichServiceProvider extends ServiceProvider {
+class ServiceProvider extends Provider {
     /**
      * Bootstrap the application services.
      *
@@ -130,11 +130,11 @@ class BelichServiceProvider extends ServiceProvider {
     public function register()
     {
         //Belich Facade
-        $this->app->register(\Daguilarm\Belich\BelichFacadeProvider::class);
-        AliasLoader::getInstance()->alias('Belich', \Daguilarm\Belich\BelichFacade::class);
+        $this->app->register(\Daguilarm\Belich\Facades\BelichProvider::class);
+        AliasLoader::getInstance()->alias('Belich', \Daguilarm\Belich\Facades\Belich::class);
 
         //Utils Facade
-        $this->app->register(\Daguilarm\Belich\UtilsFacadeProvider::class);
-        AliasLoader::getInstance()->alias('Utils', \Daguilarm\Belich\UtilsFacade::class);
+        $this->app->register(\Daguilarm\Belich\Facades\UtilsProvider::class);
+        AliasLoader::getInstance()->alias('Utils', \Daguilarm\Belich\Facades\Utils::class);
     }
 }

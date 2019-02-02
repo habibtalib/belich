@@ -1,13 +1,13 @@
 <?php
 
-namespace Daguilarm\Belich;
+namespace Daguilarm\Belich\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class UtilsFacade extends Facade {
+class Belich extends Facade {
 
     protected static function getFacadeAccessor()
     {
-        return 'Utils';
+        return 'Belich';
     }
 }

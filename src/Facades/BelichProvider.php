@@ -1,10 +1,10 @@
 <?php
 
-namespace Daguilarm\Belich;
+namespace Daguilarm\Belich\Facades;
 
 use Illuminate\Support\ServiceProvider;
 
-class UtilsFacadeProvider extends ServiceProvider
+class BelichProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -23,9 +23,9 @@ class UtilsFacadeProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('Utils',function()
+        $this->app->singleton('Belich',function()
         {
-            return new \Daguilarm\Belich\Core\Utils;
+            return new \Daguilarm\Belich\Core\Belich;
         });
     }
 }

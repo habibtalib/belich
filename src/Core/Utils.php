@@ -64,17 +64,18 @@ class Utils {
      * Count the total results
      *
      * @param  array|object $value
+     * @param  int $initialValue
      *
      * @return integer
      */
-    private function count($value) : int
+    private function count($value, int $initialValue = 0) : int
     {
         if(is_array($value)) {
-            return count($value);
+            return count($value) + $initialValue;
         }
 
         if(is_object($value)) {
-            return $value->count();
+            return $value->count() + $initialValue;
         }
 
         return 0;

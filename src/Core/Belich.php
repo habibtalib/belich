@@ -5,13 +5,15 @@ namespace Daguilarm\Belich\Core;
 use App\Belich\Navbar;
 use Daguilarm\Belich\Components\Actions;
 use Daguilarm\Belich\Components\Breadcrumbs;
-use Daguilarm\Belich\Core\BelichHelpers as Helpers;
+use Daguilarm\Belich\Core\BelichHelpers;
 use Daguilarm\Belich\Core\Settings;
 use Daguilarm\Belich\Fields\FieldResolve;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 class Belich {
+
+    use BelichHelpers;
 
     /** @var string */
     private $request;
@@ -34,23 +36,6 @@ class Belich {
         }
     }
 
-    /**
-     * Access to the static methods from Helper
-     *
-     * @param  string $method
-     * @param  array $parameters
-     *
-     * @return Boolean
-     */
-    public function __call($method, $parameters)
-    {
-        if(method_exists(Helpers::class, $method)) {
-            return Helpers::$method();
-        }
-
-        return abort(404);
-    }
-
     /*
     |--------------------------------------------------------------------------
     | Init resource class
@@ -64,7 +49,7 @@ class Belich {
      */
     private function initResourceClass() : object
     {
-        $class = Helpers::resourceClassPath();
+        $class = static::resourceClassPath();
 
         return new $class;
     }
@@ -92,11 +77,11 @@ class Belich {
         $sqlResponse = $this->sqlResponse($class, $this->request);
 
         //ClassName
-        $className = Helpers::resource();
+        $className = static::resource();
 
         return collect([
             'name'             => $className,
-            'controllerAction' => Helpers::action(),
+            'controllerAction' => static::action(),
             'fields'           => (new FieldResolve)->make($class, $updateFields, $sqlResponse),
             'results'          => $sqlResponse,
             'values'           => $this->resourceValues($className),//From resource
@@ -150,7 +135,7 @@ class Belich {
     {
         $initializedClass = $this->initResourceClass();
 
-        return (Helpers::action() === 'index')
+        return (static::action() === 'index')
             ? $initializedClass::$pluralLabel
             : $initializedClass::$label;
     }
@@ -163,7 +148,7 @@ class Belich {
      */
     private function resourceValues($className)
     {
-        $class = Helpers::resourceClassPath($className);
+        $class = static::resourceClassPath($className);
 
         return collect([
             'class'               => $className,
@@ -191,7 +176,7 @@ class Belich {
     */
     private function sqlResponse(object $class) : object
     {
-        if(Helpers::action() === 'index') {
+        if(static::action() === 'index') {
             return $class
                 ->indexQuery($this->request)
                 //Order query
@@ -203,10 +188,10 @@ class Belich {
                 ->appends(request()->query());
         }
 
-        if(Helpers::action() === 'edit' || Helpers::action() === 'show' && is_numeric(Helpers::resourceId())) {
+        if(static::action() === 'edit' || static::action() === 'show' && is_numeric(static::resourceId())) {
             return $class
                 ->model()
-                ->findOrFail(Helpers::resourceId());
+                ->findOrFail(static::resourceId());
         }
 
         return new \Illuminate\Database\Eloquent\Collection;
