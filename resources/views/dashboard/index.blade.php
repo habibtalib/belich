@@ -6,7 +6,7 @@
 
     {{-- Search --}}
     <div class="table-search flex items-center">
-        <div class="icon-search">
+        <div class="icon-search w-full">
             <input type="text" name="_search" id="_search" placeholder="search..." onkeydown="showResetSearch()">
             <span class="hidden" id="icon-search-reset">
                 <i class="fas fa-times-circle text-grey cursor-pointer" onclick="resetSearch()"></i>
