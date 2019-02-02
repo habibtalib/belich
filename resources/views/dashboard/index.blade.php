@@ -41,15 +41,12 @@
                             </td>
                         @endforeach
                         <td class="text-right">
-                            <a href="#" class="text-grey text-lg p-2">{!! Utils::icon('eye') !!}</a>
-                            <a href="#" class="text-grey text-lg p-2">{!! Utils::icon('edit') !!}</a>
-                            <a href="#" class="text-grey text-lg p-2">{!! Utils::icon('trash') !!}</a>
-                            {{ Belich::actions($resource) }}
+                            {!! Belich::actions($resource) !!}
                         </td>
                     </tr>
                 @empty
                     <tr>
-                        <td colspan="{{ Utils::count($resource['fields']['labels']) + 2 }}" class="text-center">
+                        <td colspan="{{ Utils::count($resource['fields']['labels'], 2) }}" class="text-center">
                             {{ trans('belich::messages.resources.no_results') }}
                         </td>
                     </tr>
@@ -58,7 +55,7 @@
             @if($pagination = $resource['results']->links())
                 <tfoot>
                     <tr>
-                        <td colspan="{{ Utils::count($resource['fields']) + 2 }}" class="text-center">{{ $pagination }}</td>
+                        <td colspan="{{ Utils::count($resource['fields'], 2) }}" class="text-center">{{ $pagination }}</td>
                     </tr>
                 </tfoot>
             @endif

@@ -28,9 +28,11 @@ Quedando algo así:
 
 `http://www.url.com/?perPage=20&page=2&relationship=billings&order=users&direction=DESC`
 
-#### count($value)
+#### count($value, $initialValue)
 
 Nos devuelve el númeor total de items que tiene una variable. El sistema distingue entre arrays, objectos y strings... por lo que devolverá el valor correcto en función del formato.
+
+La variable `$initialValue`, nos permite añadir un valor de cuenta inicial al que sumar la cantidad de items. Por defecto, está a 0.
 
 #### value($data, $attribute)
 
