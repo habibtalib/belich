@@ -2,7 +2,7 @@
 
 namespace Daguilarm\Belich;
 
-use Daguilarm\Belich\Core\Helpers;
+use Daguilarm\Belich\Core\BelichHelpers as Helpers;
 use Illuminate\Http\Request;
 
 abstract class Resources {

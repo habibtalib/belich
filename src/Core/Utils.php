@@ -2,7 +2,7 @@
 
 namespace Daguilarm\Belich\Core;
 
-use Daguilarm\Belich\Core\Helpers;
+use Daguilarm\Belich\Core\BelichHelpers as Helpers;
 use Daguilarm\Belich\Fields\Field;
 
 class Utils {
@@ -135,7 +135,7 @@ class Utils {
      */
     private function basePath() : string
     {
-        return basePath();
+        return str_replace('/', '', config('belich.path'));
     }
 
     /**
@@ -152,5 +152,37 @@ class Utils {
         return ($id > 0)
             ? route($route, $id)
             : route($route);
+    }
+
+    /**
+     * Get the name from a file string [file.ext]
+     *
+     * @param string $fileName
+     * @param bool $extension
+     * @return string
+     */
+    private function getFileAttributes(string $fileName, $extension = false) : string
+    {
+        $str = explode('.', $fileName);
+
+        return (!empty($str) && count($str) === 2)
+            ? ($extension ? $str[1] : $str[0])
+            : emptyResults();
+    }
+
+    /**
+     * Render the icons
+     *
+     * @param string $icon
+     * @param string $text
+     * @return string
+     */
+    private function icon(string $icon, string $text = '') : string
+    {
+        $icon = sprintf('<i class="fas fa-%s mr-1"></i>', $icon);
+
+        return $text
+            ? $icon . ' ' . $text
+            : $icon;
     }
 }

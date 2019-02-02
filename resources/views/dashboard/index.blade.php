@@ -13,7 +13,7 @@
             </span>
         </div>
         <div class="flex w-full justify-end">
-            <a href="#" class="btn btn-primary">{!! icon('plus-square', trans('belich::buttons.crud.create')) !!}</a>
+            <a href="#" class="btn btn-primary">{!! Utils::icon('plus-square', trans('belich::buttons.crud.create')) !!}</a>
         </div>
     </div>
 
@@ -41,9 +41,9 @@
                             </td>
                         @endforeach
                         <td class="text-right">
-                            <a href="#" class="text-grey text-lg p-2">{!! icon('eye') !!}</a>
-                            <a href="#" class="text-grey text-lg p-2">{!! icon('edit') !!}</a>
-                            <a href="#" class="text-grey text-lg p-2">{!! icon('trash') !!}</a>
+                            <a href="#" class="text-grey text-lg p-2">{!! Utils::icon('eye') !!}</a>
+                            <a href="#" class="text-grey text-lg p-2">{!! Utils::icon('edit') !!}</a>
+                            <a href="#" class="text-grey text-lg p-2">{!! Utils::icon('trash') !!}</a>
                             {{ Belich::actions($resource) }}
                         </td>
                     </tr>

@@ -5,7 +5,7 @@ namespace Daguilarm\Belich\Core;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
 
-class Helpers {
+class BelichHelpers {
 
     /** @var string */
     private static $version = '1.0.0';

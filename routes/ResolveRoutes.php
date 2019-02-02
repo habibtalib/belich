@@ -2,14 +2,14 @@
 
 /** Belich Routes */
 Route::group([
-        'as' => basePath(). '.',
+        'as' => Utils::basePath(). '.',
     ], function () {
 
         //Define middleware
         $middleware = config('belich.middleware') ?? ['web', 'auth', 'https'];
 
         //Validation routes
-        Route::post(basePath(). '/ajax/form/validation', namespace_path('App\Http\Controllers\ValidationController'))
+        Route::post(Utils::basePath(). '/ajax/form/validation', namespace_path('App\Http\Controllers\ValidationController'))
             ->middleware($middleware)
             ->name('ajax.form.validation');
 

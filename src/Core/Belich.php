@@ -5,7 +5,7 @@ namespace Daguilarm\Belich\Core;
 use App\Belich\Navbar;
 use Daguilarm\Belich\Components\Actions;
 use Daguilarm\Belich\Components\Breadcrumbs;
-use Daguilarm\Belich\Core\Helpers;
+use Daguilarm\Belich\Core\BelichHelpers as Helpers;
 use Daguilarm\Belich\Core\Settings;
 use Daguilarm\Belich\Fields\FieldResolve;
 use Illuminate\Support\Collection;

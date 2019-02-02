@@ -1,26 +1,6 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Files
-|--------------------------------------------------------------------------
-*/
-
-/**
- * Get the name from a file string [file.ext]
- *
- * @param string $file
- * @param int $position
- * @return string
- */
-if (!function_exists('getFileName')) {
-    function getFileName($file, $position = 0) : string
-    {
-        $str = explode('.', $file);
-
-        return !empty($str) ? $str[$position] : '';
-    }
-}
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -90,20 +70,8 @@ if (!function_exists('getAllTheResourcesFromFolder')) {
             })->filter(function($value, $key) {
                 return $value !== '.' && $value !== '..';
             })->map(function($file) {
-                return stringPluralLower(getFileName($file));
+                return stringPluralLower(Utils::getFileAttributes($file));
             });
-    }
-}
-
-/**
- * Return the route base path: dashboard or else...
- *
- * @return string
- */
-if (!function_exists('basePath')) {
-    function basePath() : string
-    {
-        return str_replace('/', '', config('belich.path'));
     }
 }
 
@@ -121,7 +89,7 @@ if (!function_exists('basePath')) {
 if (!function_exists('stringPluralLower')) {
     function stringPluralLower($string) : string
     {
-        return str_plural(strtolower($string));
+        return Str::plural(strtolower($string));
     }
 }
 
@@ -133,7 +101,7 @@ if (!function_exists('stringPluralLower')) {
 if (!function_exists('stringSingularUpper')) {
     function stringSingularUpper($string) : string
     {
-        return str_singular(ucfirst($string));
+        return Str::singular(ucfirst($string));
     }
 }
 
@@ -146,27 +114,5 @@ if (!function_exists('emptyResults')) {
     function emptyResults() : string
     {
         return '—';
-    }
-}
-
-/*
-|--------------------------------------------------------------------------
-| icons
-|--------------------------------------------------------------------------
-*/
-
-/**
- * Render the icons
- *
- * @return string
- */
-if (!function_exists('icon')) {
-    function icon(string $icon, $text = null) : string
-    {
-        $icon = sprintf('<i class="fas fa-%s"></i>', $icon);
-
-        return $text
-            ? $icon . ' ' . $text
-            : $icon;
     }
 }

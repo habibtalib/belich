@@ -2,9 +2,6 @@
 
 namespace Daguilarm\Belich\Components;
 
-use Daguilarm\Belich\Core\Helpers;
-use Utils;
-
 class Breadcrumbs {
 
     /*

@@ -2,7 +2,7 @@
 
 namespace Daguilarm\Belich\Components;
 
-use Daguilarm\Belich\Core\Helpers;
+use Daguilarm\Belich\Core\BelichHelpers as Helpers;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Spatie\Menu\Html;

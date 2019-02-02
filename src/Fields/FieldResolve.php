@@ -2,7 +2,7 @@
 
 namespace Daguilarm\Belich\Fields;
 
-use Daguilarm\Belich\Core\Helpers;
+use Daguilarm\Belich\Core\BelichHelpers as Helpers;
 use Daguilarm\Belich\Fields\Field;
 use Illuminate\Support\Collection;
 
