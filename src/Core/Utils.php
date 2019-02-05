@@ -89,14 +89,19 @@ class Utils {
      *
      * @return string
      */
-    private function value(object $data, Field $field) : string
+    private function value(Field $field, object $data = null) : string
     {
         //Relationship
-        if(is_array($field->attribute) && count($field->attribute) === 2) {
+        if(is_array($field->attribute) && count($field->attribute) === 2 && !empty($data)) {
             $value = $data->{$field->attribute[0]}->{$field->attribute[1]} ?? emptyResults();
-        //Regular value
-        } else {
+
+        //Edit value
+        } elseif(!empty($data)) {
             $value = $data->{$field->attribute} ?? emptyResults();
+
+        //Show value
+        } else {
+            $value = $field->value;
         }
 
         //Callable

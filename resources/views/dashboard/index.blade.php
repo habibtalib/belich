@@ -44,7 +44,7 @@
                         @foreach($fields as $field)
                             <td>
                                 {{-- Somethimes we need to get the relationship... --}}
-                                {{ Utils::value($result, $field) }}
+                                {{ Utils::value($field, $result) }}
                             </td>
                         @endforeach
                         <td class="text-right">

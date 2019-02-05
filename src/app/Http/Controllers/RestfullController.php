@@ -94,7 +94,9 @@ class RestfullController extends Controller
     {
         //Load the view with the data
         return view('belich::dashboard.show')
-            ->withResource($this->resource)
+            ->withBreadcrumbs($this->breadcrumbs)
+            ->withFields($this->fields)
+            ->withResource($this->name)
             ->withResourceId($id);
     }
 

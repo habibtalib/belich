@@ -4,11 +4,11 @@
     {{-- Breadcrumbs --}}
     @include('belich::partials.breadcrumbs')
 
-    @foreach($request as $field)
-        @if(!empty($field->name))
+    @foreach($fields as $field)
+        @if(!empty($field->label))
             @component('belich::fields.components.inlineForm')
-                @slot('label', $field->name)
-                @slot('field', $field->value)
+                @slot('label', $field->label)
+                @slot('field', Utils::value($field))
             @endcomponent
         @endif
     @endforeach
