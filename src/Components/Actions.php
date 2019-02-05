@@ -17,7 +17,7 @@ class Actions {
      *
      * @return string
      */
-    public static function make()
+    public static function make($data)
     {
         $show = sprintf('<a href="#" class="action">%s</a>', Utils::icon('eye'));
         $edit = sprintf('<a href="#" class="action">%s</a>', Utils::icon('edit'));

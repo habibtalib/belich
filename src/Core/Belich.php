@@ -220,7 +220,7 @@ class Belich {
     | Actions
     |--------------------------------------------------------------------------
     */
-    public function actions() {
-        return Actions::make();
+    public function actions($data) {
+        return Actions::make($data);
     }
 }

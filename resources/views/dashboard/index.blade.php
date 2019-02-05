@@ -49,7 +49,7 @@
                         @endforeach
                         <td class="text-right">
                             {{-- Load the button actions --}}
-                            {!! Belich::actions() !!}
+                            {!! Belich::actions($result) !!}
                         </td>
                     </tr>
                 {{-- No results --}}

@@ -30,7 +30,7 @@ class RestfullController extends Controller
     public function __construct(Belich $belich)
     {
         //Get the current resource values
-        $this->resource    = $belich->currentResource();
+        $this->resource = $belich->currentResource();
 
         $this->breadcrumbs = $this->resource->get('values')->get('breadcrumbs');
         $this->fields      = $this->resource->get('fields');

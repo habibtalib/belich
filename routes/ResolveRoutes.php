@@ -22,7 +22,9 @@ Route::group([
         //The middleware can be setter from the config file
         return getAllTheResourcesFromFolder()
             ->map(function($route) use ($middleware) {
-                return Route::resource(route_path($route), namespace_path('App\Http\Controllers\RestfullController'))
-                        ->middleware($middleware);
+                if($route) {
+                    return Route::resource(route_path($route), namespace_path('App\Http\Controllers\RestfullController'))
+                            ->middleware($middleware);
+                }
             });
 });

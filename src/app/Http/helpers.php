@@ -36,6 +36,19 @@ if (!function_exists('route_path')) {
 }
 
 /**
+ * Get the resource path
+ *
+ * @param object $data
+ * @return string
+ */
+// if (!function_exists('route_show')) {
+//     function route_show($data) : string
+//     {
+//         //return route(sprintf('%s.%s'));
+//     }
+// }
+
+/**
  * Built belich urls
  *
  * @return string

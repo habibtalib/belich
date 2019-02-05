@@ -3,6 +3,7 @@
 namespace Daguilarm\Belich\Core;
 
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
 
 trait BelichHelpers {
@@ -129,6 +130,12 @@ trait BelichHelpers {
      */
     public static function route() : array
     {
+        //Hack for artisan route:list
+        //I don't know why... WTF!
+        if(is_null(Request::route())){
+            return ['dashboard','users','index'];
+        }
+
         //Get route name
         return explode('.', Request::route()->getName());
     }
