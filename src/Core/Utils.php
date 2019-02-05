@@ -85,19 +85,26 @@ class Utils {
      * Get value from object and attribute
      *
      * @param  object $data
-     * @param  mixed $attribute
+     * @param  Daguilarm\Belich\Fields\Field $attribute
      *
      * @return string
      */
-    private function value(object $data, $attribute) : string
+    private function value(object $data, Field $field) : string
     {
         //Relationship
-        if(is_array($attribute) && count($attribute) === 2) {
-            return $data->{$attribute[0]}->{$attribute[1]} ?? emptyResults();
+        if(is_array($field->attribute) && count($field->attribute) === 2) {
+            $value = $data->{$field->attribute[0]}->{$field->attribute[1]} ?? emptyResults();
+        //Regular value
+        } else {
+            $value = $data->{$field->attribute} ?? emptyResults();
         }
 
-        //Regular value
-        return $data->{$attribute} ?? emptyResults();
+        //Callable
+        if(is_callable($field->resolveCallback)) {
+            $value = call_user_func($field->resolveCallback, $value);
+        }
+
+        return $value;
     }
 
     /**

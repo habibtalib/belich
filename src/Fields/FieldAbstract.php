@@ -18,6 +18,9 @@ abstract class FieldAbstract {
     /** @var string [The custom breadcrumbs for the field] */
     public $breadcrumbs;
 
+    /** @var object */
+    public $resolveCallback;
+
     /** @var string [Set the field label tag] */
     public $label;
 
@@ -66,6 +69,20 @@ abstract class FieldAbstract {
     {
         if(!empty($value)) {
             $this->textAlign = $value;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Resolving field value
+     *@param  object  $resolveCallback
+     * @return self
+     */
+    public function resolveUsing(callable $resolveCallback) : self
+    {
+        if(!empty($resolveCallback)) {
+            $this->resolveCallback = $resolveCallback;
         }
 
         return $this;

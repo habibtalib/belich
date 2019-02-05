@@ -137,6 +137,7 @@ En este apartado, veremos como modificar los diferentes atributos de un campo de
 - `id`
 - `name`
 - `readonly`
+- `resolveUsing`
 - `sortable`
 
 Veamos un ejemplo completo
@@ -172,7 +173,7 @@ Debería mostrar:
 <div class="help">Introduzca su email</div>
 ~~~
 
-Faltaría el campo `sortable. Este campo indica que en la vista `index`, la columna de la tabla correspondiente a este campo, puede ser ordenada de mayor a menor o a la inversa.
+Faltaría el campo `sortable`. Este campo indica que en la vista `index`, la columna de la tabla correspondiente a este campo, puede ser ordenada de mayor a menor o a la inversa.
 
 Los campos `sortable`, `readonly`, `disabled`, soportan valores boleanos, es decir, podemos añadir condiciones para que se muestren. Eso si, si el valor no es boleano, dará error. A modo de ejemplo:
 
@@ -191,6 +192,28 @@ public function fields(Request $request) {
 }
 ~~~
 
+
+Por último, disponemos de un método, llamado `resolveUsing()`, que nos permitirá formatear el valor de nuestro campo en las vistas: `index` y `detail`, para ello, nos permite realizar un `callback` de modo que podemos manipular el valor del campo. Se usaría de la siguiente forma:
+
+~~~
+/**
+ * Get the fields displayed by the resource.
+ *
+ * @param  \Illuminate\Http\Request  $request
+ * @return Illuminate\Support\Collection
+ */
+public function fields(Request $request) {
+    return [
+        Text::make('Email', 'email')
+            ->resolveUsing(function($value) {
+                return strtolower($value);
+            })
+    ]
+}
+~~~
+
+
+Devolviendo el resultado en minúsculas, permitiéndonos formatear el resultado del campo.
 
 ### Tipos de campo
 

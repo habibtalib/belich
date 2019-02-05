@@ -90,6 +90,7 @@ class FieldResolve {
             $field->attribute = $field->fieldRelationship
                 ? [$field->fieldRelationship, $field->attribute]
                 : $field->attribute;
+
             return $field;
         });
     }
