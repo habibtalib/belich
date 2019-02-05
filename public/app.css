@@ -70,6 +70,17 @@
   --pagination-link: var(--info);
   --pagination-link-hover: var(--info-dark);
 }
+.table a.action {
+  color: #b8c2cc;
+  font-size: 1.125rem;
+  padding: .5rem;
+}
+
+.table a.action:hover {
+  color: #606f7b;
+  font-size: 1.125rem;
+  padding: .5rem;
+}
 /* General values */
 
 body {

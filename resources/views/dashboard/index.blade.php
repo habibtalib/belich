@@ -12,8 +12,12 @@
                 <i class="fas fa-times-circle text-grey cursor-pointer" onclick="resetSearch()"></i>
             </span>
         </div>
+
+        {{-- Buttons --}}
         <div class="flex w-full justify-end">
-            <a href="#" class="btn btn-primary">{!! Utils::icon('plus-square', trans('belich::buttons.crud.create')) !!}</a>
+            <a href="#" class="btn btn-primary">
+                {!! Utils::icon('plus-square', trans('belich::buttons.crud.create')) !!}
+            </a>
         </div>
     </div>
 
@@ -23,8 +27,9 @@
             <thead>
                 <tr>
                     <th><input type="checkbox" name="item_selection" onclick="checkAll('form-index', this)"></th>
-                    @foreach($resource['fields'] as $field)
+                    @foreach($fields as $field)
                         <th>
+                            {{-- Get URL with ASC or DESC order --}}
                             {!! Utils::urlWithOrder($field) !!}
                         </th>
                     @endforeach
@@ -32,37 +37,44 @@
                 </tr>
             </thead>
             <tbody>
-                @forelse($resource['results'] as $item)
+                {{-- Get the results --}}
+                @forelse($results as $result)
                     <tr>
-                        <td><input type="checkbox" name="item_selection[]" value="{{ $item->id }}"></td>
-                        @foreach($resource['fields'] as $field)
+                        <td><input type="checkbox" name="item_selection[]" value="{{ $result->id }}"></td>
+                        @foreach($fields as $field)
                             <td>
-                                {{ Utils::value($item, $field->attribute) }}
+                                {{-- Somethimes we need to get the relationship... --}}
+                                {{ Utils::value($result, $field->attribute) }}
                             </td>
                         @endforeach
                         <td class="text-right">
-                            {!! Belich::actions($resource) !!}
+                            {{-- Load the button actions --}}
+                            {!! Belich::actions() !!}
                         </td>
                     </tr>
+                {{-- No results --}}
                 @empty
                     <tr>
-                        <td colspan="{{ Utils::count($resource['fields']['labels'], 2) }}" class="text-center">
+                        <td colspan="{{ $totalResults }}" class="text-center">
                             {{ trans('belich::messages.resources.no_results') }}
                         </td>
                     </tr>
                 @endforelse
             </tbody>
-            @if($pagination = $resource['results']->links())
+
+            {{-- Pagination --}}
+            @if($pagination = $results->links())
                 <tfoot>
                     <tr>
-                        <td colspan="{{ Utils::count($resource['fields'], 2) }}" class="text-center">{{ $pagination }}</td>
+                        <td colspan="{{ $totalResults }}" class="text-center">{{ $pagination }}</td>
                     </tr>
                 </tfoot>
             @endif
+
         </table>
     </form>
     {{-- End / Table --}}
-    {{-- Table footer --}}
+    {{-- Table footer (bordered) --}}
     <div class="table-footer rounded-b-lg h-1 mb-16 shadow-md"></div>
 @endsection
 

@@ -211,8 +211,8 @@ class Belich {
     | Breadcrumbs
     |--------------------------------------------------------------------------
     */
-    public function breadcrumbs($resource) {
-        return Breadcrumbs::make($resource);
+    public function breadcrumbs($breadcrumbs) {
+        return Breadcrumbs::make($breadcrumbs);
     }
 
     /*
@@ -220,7 +220,7 @@ class Belich {
     | Actions
     |--------------------------------------------------------------------------
     */
-    public function actions($resource) {
-        return Actions::make($resource);
+    public function actions() {
+        return Actions::make();
     }
 }

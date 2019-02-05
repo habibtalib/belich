@@ -37,11 +37,8 @@ class Breadcrumbs {
      * @param object $resource
      * @return string
      */
-    private static function createBreadcrumbs($resource)
+    private static function createBreadcrumbs($breadcrumbs)
     {
-        //User configuration
-        $breadcrumbs = $resource->get('values')->get('breadcrumbs');
-
         return collect($breadcrumbs)->map(function($url, $title) {
             //Current value -> empty url
             if(empty($title)) {

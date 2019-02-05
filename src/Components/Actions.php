@@ -17,11 +17,11 @@ class Actions {
      *
      * @return string
      */
-    public static function make($resource)
+    public static function make()
     {
-        $show = sprintf('<a href="#" class="text-grey text-lg p-2">%s</a>', Utils::icon('eye'));
-        $edit = sprintf('<a href="#" class="text-grey text-lg p-2">%s</a>', Utils::icon('edit'));
-        $delete = sprintf('<a href="#" class="text-grey text-lg p-2">%s</a>', Utils::icon('trash'));
+        $show = sprintf('<a href="#" class="action">%s</a>', Utils::icon('eye'));
+        $edit = sprintf('<a href="#" class="action">%s</a>', Utils::icon('edit'));
+        $delete = sprintf('<a href="#" class="action">%s</a>', Utils::icon('trash'));
 
         return $show . $edit . $delete;
     }

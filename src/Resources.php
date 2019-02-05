@@ -2,10 +2,12 @@
 
 namespace Daguilarm\Belich;
 
-use Daguilarm\Belich\Core\BelichHelpers as Helpers;
+use Daguilarm\Belich\Core\BelichHelpers;
 use Illuminate\Http\Request;
 
 abstract class Resources {
+
+    use BelichHelpers;
 
     /** @var Illuminate\Support\Collection */
     public static $actions;
@@ -60,32 +62,51 @@ abstract class Resources {
     /**
      * Default breadcrumb
      *
-     * @return Illuminate\Support\Collection
+     * @return array
      */
-    public static function breadcrumbs() {
-        //Default value
-        $home  = [trans('belich::belich.navigation.home') => Helpers::url()];
+    public static function breadcrumbs()
+    {
+        //Default home value
+        $home  = [trans('belich::belich.navigation.home') => static::url()];
 
-        if(Helpers::action() === 'index') {
+        //Set index
+        if(static::action() === 'index') {
             return array_merge($home,
                 [static::$pluralLabel => null]
             );
         }
 
-        if(Helpers::action() === 'edit') {
+        //Set edit
+        if(static::action() === 'edit') {
             return array_merge($home,
-                [static::$label => Helpers::resourceUrl()],
+                [static::$label => static::resourceUrl()],
                 [trans('belich::buttons.crud.update') => null]
             );
         }
 
-        if(Helpers::action() === 'create') {
+        //Set create
+        if(static::action() === 'create') {
             return array_merge($home,
-                [static::$label => Helpers::resourceUrl()],
+                [static::$label => static::resourceUrl()],
                 [trans('belich::buttons.crud.create') => null]
             );
         }
 
         return $home;
+    }
+
+    /**
+     * Default actions
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return array
+     */
+    public static function actions(Request $request)
+    {
+        // return [
+        //     Utils::icon('eye')   => routeShow(),
+        //     Utils::icon('edit')  => routeEdit(),
+        //     Utils::icon('trash') => routeDelete(),
+        // ];
     }
 }

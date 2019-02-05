@@ -1,4 +1,4 @@
-{!! Belich::breadcrumbs($resource) !!}
+{!! Belich::breadcrumbs($breadcrumbs) !!}
 {{--
 <nav class="nav-breadcrumbs">
     <ul class="nav-breadcrumbs-list">

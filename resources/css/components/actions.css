@@ -1,0 +1,7 @@
+.table a.action {
+    @apply text-grey text-lg p-2;
+}
+
+.table a.action:hover {
+    @apply text-grey-darker text-lg p-2;
+}
