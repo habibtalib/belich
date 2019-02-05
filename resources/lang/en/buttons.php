@@ -7,7 +7,7 @@ return [
     'crud' => [
         'create'  => 'New',
         'delete'  => 'Delete',
-        'read'    => 'Detail',
+        'show'    => 'Detail',
         'restore' => 'Restore',
         'update'  => 'Edit',
         'upgrade' => 'Upgrade',

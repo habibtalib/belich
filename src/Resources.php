@@ -92,6 +92,14 @@ abstract class Resources {
             );
         }
 
+        //Set create
+        if(static::action() === 'show') {
+            return array_merge($home,
+                [static::$label => static::resourceUrl()],
+                [trans('belich::buttons.crud.show') => null]
+            );
+        }
+
         return $home;
     }
 

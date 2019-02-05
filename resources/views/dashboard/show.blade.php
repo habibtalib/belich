@@ -6,10 +6,12 @@
 
     @foreach($fields as $field)
         @if(!empty($field->label))
-            @component('belich::fields.components.inlineForm')
-                @slot('label', $field->label)
-                @slot('field', Utils::value($field))
-            @endcomponent
+            <div class="form-container">
+                @component('belich::fields.components.inlineForm')
+                    @slot('label', $field->label)
+                    @slot('field', Utils::value($field))
+                @endcomponent
+            </div>
         @endif
     @endforeach
 @endsection
