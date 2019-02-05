@@ -9,7 +9,7 @@
             <div class="form-container">
                 @component('belich::fields.components.inlineForm')
                     @slot('label', $field->label)
-                    @slot('field', Utils::value($field))
+                    @slot('field', resolveFieldValue($field))
                 @endcomponent
             </div>
         @endif

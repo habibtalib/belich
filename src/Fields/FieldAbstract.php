@@ -18,8 +18,11 @@ abstract class FieldAbstract {
     /** @var string [The custom breadcrumbs for the field] */
     public $breadcrumbs;
 
-    /** @var object */
-    public $resolveCallback;
+    /** @var object model data */
+    public $data;
+
+    /** @var object for manipulate data */
+    public $displayCallback;
 
     /** @var string [Set the field label tag] */
     public $label;
@@ -35,6 +38,9 @@ abstract class FieldAbstract {
 
     /** @var string [All the render attributes must be stored here...] */
     public $render;
+
+    /** @var object for manipulate data */
+    public $resolveCallback;
 
     /** @var bool [Indicates if the field should be sortable] */
     public $sortable = false;
@@ -75,7 +81,21 @@ abstract class FieldAbstract {
     }
 
     /**
-     * Resolving field value
+     * Resolving field value in index and detailed
+     *@param  object  $displayCallback
+     * @return self
+     */
+    public function displayUsing(callable $displayCallback) : self
+    {
+        if(!empty($displayCallback)) {
+            $this->displayCallback = $displayCallback;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Resolving field value (before processing) in all the fields
      *@param  object  $resolveCallback
      * @return self
      */

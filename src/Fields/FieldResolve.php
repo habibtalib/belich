@@ -159,6 +159,10 @@ class FieldResolve {
             //This relationship method is only on forms
             //Index has its own way in blade template
             $field->value = self::setValuesWithFieldRelationship($sqlResponse, $field);
+            //Add the data for the show view
+            if($this->action === 'show') {
+                $field->data = $sqlResponse;
+            }
 
             return $field;
         });

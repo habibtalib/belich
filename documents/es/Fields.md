@@ -132,6 +132,7 @@ En este apartado, veremos como modificar los diferentes atributos de un campo de
 - `data`
 - `defaultValue`
 - `disabled`
+- `displayUsing`
 - `dusk`
 - `help`
 - `id`
@@ -193,7 +194,7 @@ public function fields(Request $request) {
 ~~~
 
 
-Por último, disponemos de un método, llamado `resolveUsing()`, que nos permitirá formatear el valor de nuestro campo en las vistas: `index` y `detail`, para ello, nos permite realizar un `callback` de modo que podemos manipular el valor del campo. Se usaría de la siguiente forma:
+Disponemos también de un método llamado: `displayUsing()`, el cual nos permitirá formatear el valor de nuestro campo (en las vistas `index` y `detail`), realizando un `callback` y permitiéndonos manipular el valor del campo. Se método se usaría de la siguiente forma:
 
 ~~~
 /**
@@ -205,7 +206,7 @@ Por último, disponemos de un método, llamado `resolveUsing()`, que nos permiti
 public function fields(Request $request) {
     return [
         Text::make('Email', 'email')
-            ->resolveUsing(function($value) {
+            ->displayUsing(function($value) {
                 return strtolower($value);
             })
     ]
@@ -213,7 +214,26 @@ public function fields(Request $request) {
 ~~~
 
 
-Devolviendo el resultado en minúsculas, permitiéndonos formatear el resultado del campo.
+Devolviendo el resultado en minúsculas, permitiéndonos formatear el resultado del campo. **Es decir, podemos acceder al valor del campo y manipularlo**. Si lo que queremos es acceder al modelo, debemos usar el método: `resolveUsing()`. La sintaxis es idéntica a `displayUsing()`:
+
+~~~
+/**
+ * Get the fields displayed by the resource.
+ *
+ * @param  \Illuminate\Http\Request  $request
+ * @return Illuminate\Support\Collection
+ */
+public function fields(Request $request) {
+    return [
+        Text::make('Email', 'email')
+            ->resolveUsing(function($model) {
+                return $model->relationship->item;
+            })
+    ]
+}
+~~~
+
+>Recuerda que tanto `displayUsing()` como `resolveUsing()`, solo afectan a las vistas: `index` y `detail`. El resto de vistas no se ven afectadas por estos métodos.
 
 ### Tipos de campo
 

@@ -82,37 +82,6 @@ class Utils {
     }
 
     /**
-     * Get value from object and attribute
-     *
-     * @param  object $data
-     * @param  Daguilarm\Belich\Fields\Field $attribute
-     *
-     * @return string
-     */
-    private function value(Field $field, object $data = null) : string
-    {
-        //Relationship
-        if(is_array($field->attribute) && count($field->attribute) === 2 && !empty($data)) {
-            $value = $data->{$field->attribute[0]}->{$field->attribute[1]} ?? emptyResults();
-
-        //Edit value
-        } elseif(!empty($data)) {
-            $value = $data->{$field->attribute} ?? emptyResults();
-
-        //Show value
-        } else {
-            $value = $field->value;
-        }
-
-        //Callable
-        if(is_callable($field->resolveCallback)) {
-            $value = call_user_func($field->resolveCallback, $value);
-        }
-
-        return $value;
-    }
-
-    /**
      * Get all the url parameters in an array or a selected one
      *
      * @param string $key

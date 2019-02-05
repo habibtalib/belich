@@ -34,36 +34,6 @@ Nos devuelve el númeor total de items que tiene una variable. El sistema distin
 
 La variable `$initialValue`, nos permite añadir un valor de cuenta inicial al que sumar la cantidad de items. Por defecto, está a 0.
 
-#### value($data, $attribute)
-
-Es similar al helper de Laravel `data_get(), pero con la salvedad de que los atributos soportados por Belich, incluyen arrays con la relationship. tipo:
-
-~~~
-[
-    'billings',
-    'billing_name'
-]
-~~~
-
-Es decir, estaríamos en un caso del tipo:
-
-~~~
-$data->billings->billing_name
-~~~
-
-Algo que `data_get()` no soporta.
-
-#### urlParameters()
-
-Devuelve un array con todas los parámetros de la url. Usando el ejemplo anterior:
-
-~~~
-[
-    'perPage': 20,
-    'page': 2
-]
-~~~
-
 
 #### basePath()
 
