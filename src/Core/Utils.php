@@ -167,4 +167,17 @@ class Utils {
             ? $icon . ' ' . $text
             : $icon;
     }
+
+    /**
+     * Render the icons
+     *
+     * @param string $controllerAction
+     * @return string
+     */
+    private function route(string $controllerAction) : string
+    {
+        $route = sprintf('%s.%s.%s', Utils::basePath(), Belich::resource(), $controllerAction);
+
+        return route($route, Belich::resourceId());
+    }
 }

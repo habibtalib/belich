@@ -8,6 +8,7 @@ use Daguilarm\Belich\Components\Breadcrumbs;
 use Daguilarm\Belich\Core\BelichHelpers;
 use Daguilarm\Belich\Core\Settings;
 use Daguilarm\Belich\Fields\FieldResolve;
+use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
@@ -220,7 +221,7 @@ class Belich {
     | Actions
     |--------------------------------------------------------------------------
     */
-    public function actions($data) {
-        return Actions::make($data);
+    public function actions() {
+        return Actions::make();
     }
 }

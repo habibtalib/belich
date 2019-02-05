@@ -109,12 +109,12 @@ abstract class Resources {
      * @param  \Illuminate\Http\Request  $request
      * @return array
      */
-    public static function actions(Request $request)
+    public static function actions()
     {
-        // return [
-        //     Utils::icon('eye')   => routeShow(),
-        //     Utils::icon('edit')  => routeEdit(),
-        //     Utils::icon('trash') => routeDelete(),
-        // ];
+        return [
+            Utils::icon('eye')   => Utils::route('show'),
+            Utils::icon('edit')  => Utils::route('edit'),
+            Utils::icon('trash') => Utils::route('destroy'),
+        ];
     }
 }
