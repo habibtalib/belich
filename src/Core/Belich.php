@@ -159,6 +159,7 @@ class Belich {
             'label'               => $class::$label,
             'pluralLabel'         => $class::$pluralLabel,
             'breadcrumbs'         => $class::breadcrumbs(),
+            'actions'             => $class::$actions,
         ]);
     }
 
@@ -203,7 +204,8 @@ class Belich {
     | Navbar and Sidebar
     |--------------------------------------------------------------------------
     */
-    public function navbar() {
+    public function navbar()
+    {
         return Navbar::make($this->resourcesAll());
     }
 
@@ -212,7 +214,8 @@ class Belich {
     | Breadcrumbs
     |--------------------------------------------------------------------------
     */
-    public function breadcrumbs($breadcrumbs) {
+    public function breadcrumbs($breadcrumbs)
+    {
         return Breadcrumbs::make($breadcrumbs);
     }
 
@@ -221,7 +224,17 @@ class Belich {
     | Actions
     |--------------------------------------------------------------------------
     */
-    public function actions() {
-        return Actions::make();
+    public function actions($data, $view)
+    {
+        //Set view path
+        $actionView = 'belich::actions.' . $view;
+
+        //Custom action
+        if(view()->exists($actionView)) {
+            return view($actionView, ['data' => $data]);
+        }
+
+        //Default action
+        return view('belich::actions.default', ['data' => $data]);
     }
 }

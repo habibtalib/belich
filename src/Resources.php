@@ -9,8 +9,8 @@ abstract class Resources {
 
     use BelichHelpers;
 
-    /** @var Illuminate\Support\Collection */
-    public static $actions;
+    /** @var string */
+    public static $actions = 'default';
 
     /** @var Illuminate\Support\Collection */
     public static $cards;

@@ -32,6 +32,7 @@ class RestfullController extends Controller
         //Get the current resource values
         $this->resource = $belich->currentResource();
 
+        $this->actions     = $this->resource->get('values')->get('actions');
         $this->breadcrumbs = $this->resource->get('values')->get('breadcrumbs');
         $this->fields      = $this->resource->get('fields');
         $this->name        = $this->resource->get('name');
@@ -51,6 +52,7 @@ class RestfullController extends Controller
     {
         //Load the view with the data
         return view('belich::dashboard.index')
+            ->withActions($this->actions)
             ->withBreadcrumbs($this->breadcrumbs)
             ->withFields($this->fields)
             ->withResults($this->resource->get('results'))

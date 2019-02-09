@@ -172,12 +172,13 @@ class Utils {
      * Render the icons
      *
      * @param string $controllerAction
+     * @param object $data
      * @return string
      */
-    private function route(string $controllerAction) : string
+    private function route(string $controllerAction, $data) : string
     {
         $route = sprintf('%s.%s.%s', Utils::basePath(), Belich::resource(), $controllerAction);
 
-        return route($route, Belich::resourceId());
+        return route($route, $data->id);
     }
 }
