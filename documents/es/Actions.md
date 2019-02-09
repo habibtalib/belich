@@ -28,3 +28,5 @@ Al hacer esto, indicamos al sistema que utilice el archivo:
 `resources/views/vendor/belich/actions/newActionFile.blade.php`
 
 Si el archivo no existe, el sistema cargará el archivo por defecto.
+
+>La variable `$data`, será automáticamente incluida en la vista, por lo que podrá utilizar los datos directamente en su archivo personalizado.
