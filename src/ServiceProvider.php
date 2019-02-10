@@ -13,114 +13,127 @@ class ServiceProvider extends Provider {
      */
     public function boot()
     {
-        /*
-        |--------------------------------------------------------------------------
-        | Bootstrap
-        |--------------------------------------------------------------------------
-        */
+        if ($this->app->runningInConsole()) {
+            $this->registerPublishing();
+        }
 
-        /**
-        * Include the package classmap autoloader
-        */
+        $this->registerBootstrap();
+        $this->registerRoutes();
+        $this->registerResources();
+        $this->registerConsole();
+    }
+
+    /**
+     * Register the package bootstrap
+     *
+     * @return void
+     */
+    protected function registerBootstrap()
+    {
+        //Include the package classmap autoloader
         if(file_exists(__DIR__ . '/../vendor/autoload.php')) {
             require_once(__DIR__ . '/../vendor/autoload.php');
         }
 
-        /**
-        * Load the helpers
-        */
-       if(file_exists(__DIR__ . '/app/Http/helpers.php')) {
-           require_once(__DIR__ . '/app/Http/helpers.php');
-       }
-
-        /**
-        * Generate the dashboard routes
-        */
-        if(file_exists(__DIR__ . '/../routes/ResolveRoutes.php')) {
-            require_once(__DIR__ . '/../routes/ResolveRoutes.php');
+        // Load the helper functions
+        if(file_exists(__DIR__ . '/app/Http/helpers.php')) {
+            require_once(__DIR__ . '/app/Http/helpers.php');
         }
 
-        /**
-        * Load the views
-        */
-        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'belich');
-
-        /**
-        * Middleware
-        */
+        // Middleware
         $this->app['router']->middleware('https', \Daguilarm\Belich\App\Http\Middleware\HttpsMiddleware::class);
 
-        /**
-        * Configure a disk for the package
-        */
+        //Configure a disk for the package
         app()->config["filesystems.disks.belich"] = [
             'driver' => 'local',
             'root' => public_path('path'),
         ];
+    }
 
-        /**
-        * Load the service providers
-        */
+    /**
+     * Register the package routes
+     *
+     * @return void
+     */
+    protected function registerRoutes()
+    {
+        //Auth routes
+        if(file_exists(__DIR__ . '/../routes/AuthRoutes.php')) {
+            require_once(__DIR__ . '/../routes/AuthRoutes.php');
+        }
+
+        //Dashboard routes
+        if(file_exists(__DIR__ . '/../routes/ResolveRoutes.php')) {
+            require_once(__DIR__ . '/../routes/ResolveRoutes.php');
+        }
+    }
+
+    /**
+     * Register the package resources
+     *
+     * @return void
+     */
+    protected function registerResources()
+    {
+        //Load the views
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'belich');
+
+        //Load the blade service provider
         require_once(__DIR__ . '/../src/app/Providers/BladeProvider.php');
 
-        /**
-        * Load translations from...
-        */
+        //Load language translations...
         $this->loadTranslationsFrom(resource_path('lang/vendor/belich'), 'belich');
         $this->loadJsonTranslationsFrom(resource_path('lang/vendor/belich'), 'belich');
+    }
 
-        /**
-         * Console comands
-         */
-        // if ($this->app->runningInConsole()) {
-        //     $this->commands([
-        //         \Daguilarm\Belich\App\Console\Commands\Hello::class,
-        //     ]);
-        // }
-
-        /*
-        |--------------------------------------------------------------------------
-        | Publish...
-        |--------------------------------------------------------------------------
-        */
-
-        /**
-        * Publish the config file
-        */
+    /**
+     * Register the package's publishable resources.
+     *
+     * @return void
+     */
+    protected function registerPublishing()
+    {
+        //Publish the config file
         $this->publishes([
             __DIR__ . '/../config/belich.php' => config_path('belich.php'),
             __DIR__ . '/../src/Stubs/validate-form.stub' => config_path('belich/stubs/validate-form.stub'),
         ]);
 
-        /**
-        * Publish the belich directory and the dashboard constructor
-        */
+        //Publish the belich directory and the dashboard constructor
         $this->publishes([
             //Set the resources
             __DIR__ . '/../routes/Routes.php' => base_path('app/Belich/Routes.php'),
         ]);
 
-        /**
-        * Publish the views
-        */
+        //Publish the views
         $this->publishes([
             __DIR__ . '/../resources/views/partials' => base_path('resources/views/vendor/belich/partials'),
             __DIR__ . '/../resources/views/actions' => base_path('resources/views/vendor/belich/actions'),
         ]);
 
-        /**
-        * Publish the localization files
-        */
+        //Publish the localization files
         $this->publishes([
             __DIR__ . '/../resources/lang' => base_path('resources/lang/vendor/belich'),
         ]);
 
-        /**
-        * Publish the public
-        */
+        //Publish the public folder
         $this->publishes([
             __DIR__ . '/../public/' => public_path('vendor/belich')
         ]);
+    }
+
+    /**
+     * Register the package console commands
+     *
+     * @return void
+     */
+    protected function registerConsole()
+    {
+        // if ($this->app->runningInConsole()) {
+        //     $this->commands([
+        //         \Daguilarm\Belich\App\Console\Commands\Hello::class,
+        //     ]);
+        // }
     }
 
     /**
