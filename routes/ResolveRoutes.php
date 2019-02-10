@@ -2,7 +2,7 @@
 
 /** Belich Routes */
 Route::group([
-        'as' => Utils::basePath(). '.',
+        'as' => Utils::basePath() . '.',
     ], function () {
 
         //Define middleware

@@ -21,6 +21,7 @@ class ServiceProvider extends Provider {
         $this->registerRoutes();
         $this->registerResources();
         $this->registerConsole();
+        $this->registerMigrations();
     }
 
     /**
@@ -35,13 +36,13 @@ class ServiceProvider extends Provider {
             require_once(__DIR__ . '/../vendor/autoload.php');
         }
 
+        // Middleware
+        $this->app['router']->pushMiddlewareToGroup('https', \Daguilarm\Belich\App\Http\Middleware\HttpsMiddleware::class);
+
         // Load the helper functions
         if(file_exists(__DIR__ . '/app/Http/helpers.php')) {
             require_once(__DIR__ . '/app/Http/helpers.php');
         }
-
-        // Middleware
-        $this->app['router']->middleware('https', \Daguilarm\Belich\App\Http\Middleware\HttpsMiddleware::class);
 
         //Configure a disk for the package
         app()->config["filesystems.disks.belich"] = [
@@ -134,6 +135,16 @@ class ServiceProvider extends Provider {
         //         \Daguilarm\Belich\App\Console\Commands\Hello::class,
         //     ]);
         // }
+    }
+
+    /**
+     * Register the package migrations
+     *
+     * @return void
+     */
+    protected function registerMigrations()
+    {
+        //$this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 
     /**

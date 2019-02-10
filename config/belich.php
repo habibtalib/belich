@@ -44,4 +44,16 @@ return [
     //     'auth',
     //     'https',
     // ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Belich Authentication Guard
+    |--------------------------------------------------------------------------
+    |
+    | This configuration option defines the authentication guard that will
+    | be used to protect your Belich routes. This option should match one
+    | of the authentication guards defined in the "auth" config file.
+    |
+    */
+    'guard' => env('BELICH_GUARD', null),
 ];
