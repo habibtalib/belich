@@ -36,4 +36,9 @@ class LoginController extends Controller
         //Redirect to...
         $this->redirectTo = Belich::url();
     }
+
+    public function showLoginForm()
+    {
+        return view('belich::auth.login');
+    }
 }
