@@ -15,6 +15,9 @@ Los métodos soportados son:
 
 Nos devuelve la versión action del package.
 
+#### middleware() 
+
+Nos devuelve un `array` con todos los middlewares configurados en `config\belich.php`
 
 #### name()
 

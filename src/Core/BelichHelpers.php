@@ -18,6 +18,16 @@ trait BelichHelpers {
     */
 
     /**
+     * Get the config middleware
+     *
+     * @return array
+     */
+    public static function middleware() : array
+    {
+        return config('belich.middleware') ?? ['web', 'auth', 'https'];
+    }
+
+    /**
      * Get the app name.
      *
      * @return string
