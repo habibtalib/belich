@@ -1,79 +1,60 @@
 @extends('belich::layout')
 
 @section('content')
-
-
-{{-- <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
-
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
-
-                                @if ($errors->has('name'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+    <form method="POST" action="{{ route('register') }}">
+        @csrf
+        <div class="container mx-auto h-full flex justify-center items-center">
+            <div class="w-1/3 max-w-md">
+                {{-- Title --}}
+                <h1 class="font-hairline mb-6 text-center">@lang('belich::authorization.register.create')</h1>
+                <div class="border-teal p-8 border-t-12 bg-white mb-6 rounded-lg shadow-lg">
+                    {{-- Name --}}
+                    <div class="mb-6">
+                        <label class="font-bold text-grey-darker block mb-2">@lang('belich::authorization.register.name')</label>
+                        <input type="text" name="name" class="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow" value="{{ old('name') }}" placeholder="{{ trans('belich::authorization.placeholder.name') }}" autofocus>
+                        @if(isset($errors) && $errors->has('name'))
+                            <span class="text-red text-xs italic" for="name">
+                                <strong>{{ $errors->first('name') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    {{-- Email --}}
+                    <div class="mb-6">
+                        <label class="font-bold text-grey-darker block mb-2">@lang('belich::authorization.login.email')</label>
+                        <input type="text" name="email" class="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow" value="{{ old('email') }}" placeholder="{{ trans('belich::authorization.placeholder.email') }}">
+                        @if(isset($errors) && $errors->has('email'))
+                            <span class="text-red text-xs italic" for="email">
+                                <strong>{{ $errors->first('email') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    {{-- Password --}}
+                    <div class="mb-6">
+                        <label class="font-bold text-grey-darker block mb-2">@lang('belich::authorization.login.password')</label>
+                        <input type="password" name="password" class="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow" placeholder="{{ trans('belich::authorization.placeholder.password') }}">
+                        @if(isset($errors) && $errors->has('password'))
+                            <span class="text-red text-xs italic" role="alert">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </span>
+                        @endif
+                    </div>
+                    {{-- Password confirm --}}
+                    <div class="mb-6">
+                        <label class="font-bold text-grey-darker block mb-2">@lang('belich::authorization.register.password_confirmation')</label>
+                        <input type="password" name="password_confirmation" class="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow" placeholder="{{ trans('belich::authorization.register.password_confirmation') }}">
+                    </div>
+                    {{-- Button --}}
+                    <div class="flex items-center justify-between">
+                        <button type="submit" class="bg-teal-dark hover:bg-teal text-white font-bold py-2 px-4 rounded">
+                            @lang('belich::authorization.buttons.register')
+                        </button>
+                        {{-- Login --}}
+                        <a class="no-underline inline-block align-baseline font-bold text-sm text-blue hover:text-blue-dark float-right" href="{{ route('login') }}">
+                            @lang('belich::authorization.login.link')
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div> --}}
+    </form>
 @endsection
