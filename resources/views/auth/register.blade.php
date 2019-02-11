@@ -13,7 +13,7 @@
                         <label class="font-bold text-grey-darker block mb-2">@lang('belich::authorization.register.name')</label>
                         <input type="text" name="name" class="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow" value="{{ old('name') }}" placeholder="{{ trans('belich::authorization.placeholder.name') }}" autofocus>
                         @if(isset($errors) && $errors->has('name'))
-                            <span class="text-red text-xs italic" for="name">
+                            <span class="text-red text-xs italic" role="alert">
                                 <strong>{{ $errors->first('name') }}</strong>
                             </span>
                         @endif
@@ -23,7 +23,7 @@
                         <label class="font-bold text-grey-darker block mb-2">@lang('belich::authorization.login.email')</label>
                         <input type="text" name="email" class="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow" value="{{ old('email') }}" placeholder="{{ trans('belich::authorization.placeholder.email') }}">
                         @if(isset($errors) && $errors->has('email'))
-                            <span class="text-red text-xs italic" for="email">
+                            <span class="text-red text-xs italic" role="alert">
                                 <strong>{{ $errors->first('email') }}</strong>
                             </span>
                         @endif

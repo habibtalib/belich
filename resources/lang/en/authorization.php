@@ -25,4 +25,11 @@ return [
         'not-account'           => "Don't have an account?",
         'password_confirmation' => 'Password confirmation',
     ],
+    'verify' => [
+        'check'   => 'Before proceeding, please check your email for a verification link.',
+        'email'   => 'Verify Your Email Address',
+        'fail'    => 'If you did not receive the email',
+        'refresh' => 'A fresh verification link has been sent to your email address.',
+        'resend'  => 'click here to request another',
+    ],
 ];

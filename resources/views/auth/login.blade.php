@@ -13,7 +13,7 @@
                         <label class="font-bold text-grey-darker block mb-2">@lang('belich::authorization.login.email')</label>
                         <input type="text" name="email" class="block appearance-none w-full bg-white border border-grey-light hover:border-grey px-2 py-2 rounded shadow" placeholder="{{ trans('belich::authorization.placeholder.email') }}" autofocus>
                         @if(isset($errors) && $errors->has('email'))
-                            <span class="text-red text-xs italic" for="email">
+                            <span class="text-red text-xs italic" role="alert">
                                 <strong>{{ $errors->first('email') }}</strong>
                             </span>
                         @endif
