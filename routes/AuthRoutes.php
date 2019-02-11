@@ -12,13 +12,13 @@ Route::group(['middleware' => ['web']], function () {
     Route::post(Belich::path() . '/register', 'Daguilarm\Belich\App\Http\Controllers\Auth\RegisterController@register');
 
     // Password Reset Routes...
-    Route::get(Belich::path() . '/password/reset', 'App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
-    Route::post(Belich::path() . '/password/email', 'App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
-    Route::get(Belich::path() . '/password/reset/{token}', 'App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('password.reset');
-    Route::post(Belich::path() . '/password/reset', 'App\Http\Controllers\Auth\ResetPasswordController@reset')->name('password.update');
+    Route::get(Belich::path() . '/password/reset', 'Daguilarm\Belich\App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+    Route::post(Belich::path() . '/password/email', 'Daguilarm\Belich\App\Http\Controllers\Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
+    Route::get(Belich::path() . '/password/reset/{token}', 'Daguilarm\Belich\App\Http\Controllers\Auth\ResetPasswordController@showResetForm')->name('password.reset');
+    Route::post(Belich::path() . '/password/reset', 'Daguilarm\Belich\App\Http\Controllers\Auth\ResetPasswordController@reset')->name('password.update');
 
     // Email Verification Routes...
-    Route::get(Belich::path() . '/email/verify', 'App\Http\Controllers\Auth\VerificationController@show')->name('verification.notice');
-    Route::get(Belich::path() . '/email/verify/{id}', 'App\Http\Controllers\Auth\VerificationController@verify')->name('verification.verify');
-    Route::get(Belich::path() . '/email/resend', 'App\Http\Controllers\Auth\VerificationController@resend')->name('verification.resend');
+    Route::get(Belich::path() . '/email/verify', 'Daguilarm\Belich\App\Http\Controllers\Auth\VerificationController@show')->name('verification.notice');
+    Route::get(Belich::path() . '/email/verify/{id}', 'Daguilarm\Belich\App\Http\Controllers\Auth\VerificationController@verify')->name('verification.verify');
+    Route::get(Belich::path() . '/email/resend', 'Daguilarm\Belich\App\Http\Controllers\Auth\VerificationController@resend')->name('verification.resend');
 });

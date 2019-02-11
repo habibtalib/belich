@@ -3,6 +3,7 @@
 /** Belich Routes */
 Route::group([
         'as' => Utils::basePath() . '.',
+        'middleware' => Belich::middleware(),
     ], function () {
 
         //Load the auth routes

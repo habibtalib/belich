@@ -4,9 +4,11 @@ return [
     'buttons' => [
         'login'    => 'Login',
         'register' => 'Register',
+        'reset'    => 'Reset',
     ],
     'forgot' => [
         'password' => 'Forgot Password?',
+        'reset'    => 'Reset Password',
     ],
     'login' => [
         'email'    => 'Email',
