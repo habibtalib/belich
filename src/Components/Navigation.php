@@ -53,10 +53,12 @@ abstract class Navigation {
      */
     public static function logout()
     {
-        $url = Helpers::url() . '/logout';
+        $url = route('logout');
         $text = trans('belich::buttons.base.logout');
+        $link = sprintf('<a href="%s" onclick="event.preventDefault();document.getElementById(\'dashboard-logout\').submit();">%s</a>', $url, $text);
+        $form = sprintf('<form id="dashboard-logout" action="%s" method="POST" style="display: none;">%s</form>', $url, csrf_field());
 
-        return Link::to($url, $text)->addParentClass('float-right logout');
+        return Html::raw($form . $link)->addParentClass('float-right logout');
     }
 
     /*
