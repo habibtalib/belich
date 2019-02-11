@@ -8,8 +8,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::post(Belich::path() . '/logout', 'Daguilarm\Belich\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
     // Registration Routes...
-    Route::get(Belich::path() . '/register', 'App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('register');
-    Route::post(Belich::path() . '/register', 'App\Http\Controllers\Auth\RegisterController@register');
+    Route::get(Belich::path() . '/register', 'Daguilarm\Belich\App\Http\Controllers\Auth\RegisterController@showRegistrationForm')->name('register');
+    Route::post(Belich::path() . '/register', 'Daguilarm\Belich\App\Http\Controllers\Auth\RegisterController@register');
 
     // Password Reset Routes...
     Route::get(Belich::path() . '/password/reset', 'App\Http\Controllers\Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
