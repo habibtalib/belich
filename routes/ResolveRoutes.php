@@ -5,9 +5,6 @@ Route::group([
         'as' => Utils::basePath() . '.',
     ], function () {
 
-        //Define middleware
-        $middleware = config('belich.middleware') ?? ['web', 'auth', 'https'];
-
         //Load the auth routes
         if (file_exists(__DIR__ . '/../routes/AuthRoutes.php')) {
             require_once(__DIR__ . '/../routes/AuthRoutes.php');
@@ -20,16 +17,16 @@ Route::group([
 
         //Validation routes
         Route::post(Utils::basePath(). '/ajax/form/validation', namespace_path('App\Http\Controllers\ValidationController'))
-            ->middleware($middleware)
+            ->middleware(Belich::middleware())
             ->name('ajax.form.validation');
 
         //Generate routes from resources
         //The middleware can be setter from the config file
         return getAllTheResourcesFromFolder()
-            ->map(function($route) use ($middleware) {
+            ->map(function($route) {
                 if($route) {
                     return Route::resource(route_path($route), namespace_path('App\Http\Controllers\RestfullController'))
-                            ->middleware($middleware);
+                            ->middleware(Belich::middleware());
                 }
             });
 });

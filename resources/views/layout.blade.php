@@ -20,7 +20,7 @@
     <body>
         <div id="app">
             {{-- Navbar --}}
-            @includeWhen(Auth::check() && config('belich.navbar'), 'belich::partials.navbar')
+            @includeWhen(auth()->check() && config('belich.navbar'), 'belich::partials.navbar')
 
             {{-- Application --}}
             <section class="wrap-container">
@@ -32,6 +32,6 @@
         </div>
 
         {{-- Javascript and libs --}}
-        @includeWhen(Auth::check(), 'belich::layout.scripts')
+        @includeWhen(auth()->check(), 'belich::layout.scripts')
     </body>
 </html>
