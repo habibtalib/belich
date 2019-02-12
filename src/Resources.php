@@ -2,12 +2,12 @@
 
 namespace Daguilarm\Belich;
 
-use Daguilarm\Belich\Core\BelichHelpers;
+use Daguilarm\Belich\Core\Helpers;
 use Illuminate\Http\Request;
 
 abstract class Resources {
 
-    use BelichHelpers;
+    use Helpers;
 
     /** @var string */
     public static $actions = 'default';

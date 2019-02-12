@@ -5,8 +5,7 @@ namespace Daguilarm\Belich\Core;
 use App\Belich\Navbar;
 use Daguilarm\Belich\Components\Actions;
 use Daguilarm\Belich\Components\Breadcrumbs;
-use Daguilarm\Belich\Core\BelichHelpers;
-use Daguilarm\Belich\Core\Settings;
+use Daguilarm\Belich\Core\Helpers;
 use Daguilarm\Belich\Fields\FieldResolve;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -14,7 +13,10 @@ use Illuminate\Support\Str;
 
 class Belich {
 
-    use BelichHelpers;
+    use Helpers;
+
+    /** @var string */
+    private static $version = '1.0.0';
 
     /** @var string */
     private $request;

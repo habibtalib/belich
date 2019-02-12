@@ -2,7 +2,7 @@
 
 namespace Daguilarm\Belich\Components;
 
-use Daguilarm\Belich\Core\BelichHelpers as Helpers;
+use Daguilarm\Belich\Core\Traits\System as Helpers;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Spatie\Menu\Html;
@@ -92,7 +92,7 @@ abstract class Navigation {
                 $menu->submenu(Link::to('#', $group), $submenu);
             //Individual resources
             } else {
-                $menu = static::getLink($menu, $resources, null);
+                $menu = static::getLink($menu, $resources, $group = null);
             }
         }
 
@@ -137,14 +137,14 @@ abstract class Navigation {
    }
 
    /**
-    * Get all the resources from the project
+    * Get the navigation base link (grouped or individual)
     *
     * @param Spatie\Menu\Menu $resources
     * @param Illuminate\Support\Collection $resources
     * @param string $group
     * @return string
     */
-   public static function getLink(Menu $menu, Collection $resources, $group)
+   public static function getLink(Menu $menu, Collection $resources, $group = null)
    {
         foreach(static::getItems($resources)->where('group', $group) as $value) {
             if(!empty($value['pluralLabel'])) {

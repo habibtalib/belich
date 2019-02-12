@@ -2,10 +2,12 @@
 
 namespace Daguilarm\Belich\Core;
 
-use Daguilarm\Belich\Core\BelichHelpers as Helpers;
+use Daguilarm\Belich\Core\Helpers;
 use Daguilarm\Belich\Fields\Field;
 
 class Utils {
+
+    use Helpers;
 
     /**
      * Generate the methods
@@ -23,6 +25,16 @@ class Utils {
 
         return abort(404);
     }
+
+    // /**
+    //  * Get the base path for the package
+    //  *
+    //  * @return string
+    //  */
+    // private function basePath() : string
+    // {
+    //     return str_replace('/', '', config('belich.path'));
+    // }
 
     /**
      * Generate the url with all the parameters
@@ -111,16 +123,6 @@ class Utils {
     }
 
     /**
-     * Get the base path for the package
-     *
-     * @return string
-     */
-    private function basePath() : string
-    {
-        return str_replace('/', '', config('belich.path'));
-    }
-
-    /**
      * Generate the form route for the action attribute
      *
      * @param string $redirectTo ['index', 'edit', 'update', 'show']
@@ -128,8 +130,8 @@ class Utils {
      */
     private function formRedirectTo(string $redirectTo) : string
     {
-        $route = sprintf('%s.%s.%s', $this->basePath(), Helpers::resource(), $redirectTo);
-        $id    = Helpers::resourceId() ?? 0;
+        $route = sprintf('%s.%s.%s', Helpers::pathName(), Helpers::resource(), $redirectTo);
+        $id = Helpers::resourceId() ?? 0;
 
         return ($id > 0)
             ? route($route, $id)
@@ -177,7 +179,7 @@ class Utils {
      */
     private function route(string $controllerAction, $data) : string
     {
-        $route = sprintf('%s.%s.%s', Utils::basePath(), Belich::resource(), $controllerAction);
+        $route = sprintf('%s.%s.%s', Helpers::pathName(), Helpers::resource(), $controllerAction);
 
         return route($route, $data->id);
     }

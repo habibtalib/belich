@@ -2,7 +2,7 @@
 
 /** Belich Routes */
 Route::group([
-        'as' => Utils::basePath() . '.',
+        'as' => Belich::pathName() . '.',
         'middleware' => Belich::middleware(),
     ], function () {
 
@@ -17,7 +17,7 @@ Route::group([
         }
 
         //Validation routes
-        Route::post(Utils::basePath(). '/ajax/form/validation', namespace_path('App\Http\Controllers\ValidationController'))
+        Route::post(Belich::pathName() . '/ajax/form/validation', namespace_path('App\Http\Controllers\ValidationController'))
             ->middleware(Belich::middleware())
             ->name('ajax.form.validation');
 

@@ -8,7 +8,7 @@
 
 /** Belich Routes */
 Route::group([
-        'as' => Utils::basePath() . '.',
+        'as' => Belich::pathName() . '.',
         'middleware' => Belich::middleware(),
     ], function () {
 

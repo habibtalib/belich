@@ -2,11 +2,13 @@
 
 namespace Daguilarm\Belich\Fields;
 
-use Daguilarm\Belich\Core\BelichHelpers as Helpers;
+use Daguilarm\Belich\Core\Traits\Route as Helpers;
 use Daguilarm\Belich\Fields\Field;
 use Illuminate\Support\Collection;
 
 class FieldResolve {
+
+    use Helpers;
 
     /** @var string */
     private $action;
