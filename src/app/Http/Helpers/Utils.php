@@ -54,10 +54,13 @@ if (!function_exists('emptyResults')) {
 if (!function_exists('icon')) {
     function icon(string $icon, string $text = '') : string
     {
-        $icon = sprintf('<i class="fas fa-%s mr-1"></i>', $icon);
+        // Set right margin if we have text
+        $margin = $text ? ' mr-2' : '';
+
+        $icon = sprintf('<i class="fas fa-%s%s"></i>', $icon, $margin);
 
         return $text
-            ? $icon . ' ' . $text
+            ? $icon . $text
             : $icon;
     }
 }
