@@ -55,7 +55,7 @@ trait Route {
     {
         $route = sprintf('%s.%s.%s', static::pathName(), static::resource(), $controllerAction);
 
-        if(is_object($data)) {
+        if(is_object($data) && optional($data)->id > 0) {
             return route($route, $data->id);
         }
 
