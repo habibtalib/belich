@@ -40,8 +40,8 @@ class ServiceProvider extends Provider {
         $this->app['router']->pushMiddlewareToGroup('https', \Daguilarm\Belich\App\Http\Middleware\HttpsMiddleware::class);
 
         // Load the helper functions
-        if(file_exists(__DIR__ . '/app/Http/helpers.php')) {
-            require_once(__DIR__ . '/app/Http/helpers.php');
+        foreach (glob(__DIR__ . '/app/Http/Helpers/*.php') as $file) {
+            require_once($file);
         }
 
         //Configure a disk for the package

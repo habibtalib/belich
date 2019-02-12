@@ -16,7 +16,7 @@
         {{-- Buttons --}}
         <div class="flex w-full justify-end">
             <a href="#" class="btn btn-primary">
-                {!! Utils::icon('plus-square', trans('belich::buttons.crud.create')) !!}
+                @icon('plus-square', 'belich::buttons.crud.create')
             </a>
         </div>
     </div>
@@ -30,7 +30,7 @@
                     @foreach($fields as $field)
                         <th>
                             {{-- Get URL with ASC or DESC order --}}
-                            {!! Utils::urlWithOrder($field) !!}
+                            {!! Belich::blade()->getUrlWithOrder($field) !!}
                         </th>
                     @endforeach
                     <th></th>
@@ -44,7 +44,7 @@
                         @foreach($fields as $field)
                             <td>
                                 {{-- Resolve the values --}}
-                                {{ resolveFieldValue($field, $result) }}
+                                {{ Belich::blade()->resolveField($field, $result) }}
                             </td>
                         @endforeach
                         <td class="text-right">

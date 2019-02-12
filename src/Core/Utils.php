@@ -26,16 +26,6 @@ class Utils {
         return abort(404);
     }
 
-    // /**
-    //  * Get the base path for the package
-    //  *
-    //  * @return string
-    //  */
-    // private function basePath() : string
-    // {
-    //     return str_replace('/', '', config('belich.path'));
-    // }
-
     /**
      * Generate the url with all the parameters
      *
