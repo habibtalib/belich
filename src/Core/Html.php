@@ -4,30 +4,19 @@ namespace Daguilarm\Belich\Core;
 
 abstract class Html {
 
+    /** @var bool */
     protected $toBlade = false;
 
+    /**
+     * Blade constructor
+     *
+     * @return this
+     */
     public function blade()
     {
         $this->toBlade = true;
 
         return $this;
-    }
-
-    /**
-     * Resolve field values for: relationship, displayUsing and resolveUsing
-     * Shorthand for blade
-     *
-     * @param  Daguilarm\Belich\Fields\Field $attribute
-     * @param  object $data
-     * @return string
-     */
-    public function resolveField(object $field, object $data = null) : string
-    {
-        if(!$this->toBlade) {
-            return null;
-        }
-
-        return \Daguilarm\Belich\Fields\FieldResolve::resolveField($field, $data);
     }
 
     /**
@@ -72,6 +61,23 @@ abstract class Html {
         ]);
 
         return sprintf('<a href="%s">%s</a>', $this->getUrl($parameters), $field->label);
+    }
+
+    /**
+     * Resolve field values for: relationship, displayUsing and resolveUsing
+     * Shorthand for blade
+     *
+     * @param  Daguilarm\Belich\Fields\Field $attribute
+     * @param  object $data
+     * @return string
+     */
+    public function resolveField(object $field, object $data = null) : string
+    {
+        if(!$this->toBlade) {
+            return null;
+        }
+
+        return \Daguilarm\Belich\Fields\FieldResolve::resolveField($field, $data);
     }
 
     /**
