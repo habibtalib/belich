@@ -77,20 +77,23 @@ abstract class Navigation {
     {
         //New menu with the brand
         $menu = Menu::new()
-            ->add(Self::brand());
+            ->add(static::brand());
 
         //Get the menu from the groups
-        foreach(Self::getGroups($resources) as $group) {
+        foreach(static::getGroups($resources) as $group) {
             //Generate new submenu for each group
             $submenu = Menu::new();
-            //Get the submenus from the resources
-            foreach(Self::getItems($resources)->where('group', $group) as $value) {
-                if(!empty($value['pluralLabel'])) {
-                    $submenu->link(Helpers::url() . '/' . $value['resource'], $value['pluralLabel']);
-                }
+
+            //Grouped resources
+            if($group) {
+                //Get the submenus from the resources
+                $submenu = static::getLink($submenu, $resources, $group);
+                //Add the submenu
+                $menu->submenu(Link::to('#', $group), $submenu);
+            //Individual resources
+            } else {
+                $menu = static::getLink($menu, $resources, null);
             }
-            //Add the submenu
-            $menu->submenu(Link::to('#', $group), $submenu);
         }
 
         return $menu->add(Self::logout());
@@ -131,5 +134,24 @@ abstract class Navigation {
                 return $items->toArray();
             })
             ->values();
+   }
+
+   /**
+    * Get all the resources from the project
+    *
+    * @param Spatie\Menu\Menu $resources
+    * @param Illuminate\Support\Collection $resources
+    * @param string $group
+    * @return string
+    */
+   public static function getLink(Menu $menu, Collection $resources, $group)
+   {
+        foreach(static::getItems($resources)->where('group', $group) as $value) {
+            if(!empty($value['pluralLabel'])) {
+                $menu->link(Helpers::url() . '/' . $value['resource'], $value['pluralLabel']);
+            }
+        }
+
+        return $menu;
    }
 }
