@@ -34,7 +34,7 @@ abstract class FieldAbstract {
     public $relationships;
 
     /** @var array [List of attributes to be dynamically render] */
-    public $renderAttributes = ['id', 'dusk'];
+    public $renderAttributes = ['id', 'name', 'dusk'];
 
     /** @var string [All the render attributes must be stored here...] */
     public $render;
