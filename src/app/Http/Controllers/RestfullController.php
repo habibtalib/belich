@@ -82,6 +82,8 @@ class RestfullController extends Controller
      */
     public function store(Request $request)
     {
+        $store = $this->resource->get('values')->get('model')::create($request->all());
+
         return 'stored!';
     }
 
