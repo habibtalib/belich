@@ -156,8 +156,8 @@ class Belich {
             'resource'            => Str::plural(Str::lower($className)),
             'displayInNavigation' => $class::$displayInNavigation,
             'group'               => $class::$group,
-            'label'               => $class::$label,
-            'pluralLabel'         => $class::$pluralLabel,
+            'label'               => $class::$label ?? Str::title($className),
+            'pluralLabel'         => $class::$pluralLabel ?? Str::plural(Str::title($className)),
             'breadcrumbs'         => $class::breadcrumbs(),
             'actions'             => $class::$actions,
         ]);

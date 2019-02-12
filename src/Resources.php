@@ -15,14 +15,26 @@ abstract class Resources {
     /** @var Illuminate\Support\Collection */
     public static $cards;
 
+    /** @var bool */
+    public static $displayInNavigation = true;
+
     /** @var Illuminate\Support\Collection */
     public static $fields;
+
+    /** @var string */
+    public static $group;
+
+    /** @var string */
+    public static $label;
 
     /** @var Illuminate\Support\Collection */
     public static $metrics;
 
     /** @var string [Model path] */
     public static $model;
+
+    /** @var string */
+    public static $pluralLabel;
 
     /** @var array */
     public static $relationships;
