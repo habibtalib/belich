@@ -33,6 +33,11 @@ class FieldResolve {
      */
     public function make(object $class, object $fields, $sqlResponse) : Collection
     {
+        //Not apply
+        if($this->action === 'store' || $this->action === 'update' || $this->action === 'destroy') {
+            return new Collection;
+        }
+
         //Show or hide fields base on Resource settings
         $fields = $this->setVisibilities($fields);
 
