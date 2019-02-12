@@ -84,10 +84,6 @@ class FieldValidate {
                         $this->setRules($field)
                     ]
                 ];
-        })
-        //Ignore for validation incorrect value names
-        ->filter(function($item) {
-            return $this->stringHasValidPhpStructure($item[0]);
         });
     }
 
