@@ -48,15 +48,21 @@ trait Route {
      * Get the button action route
      *
      * @param string $controllerAction
-     * @param object $data
+     * @param int|object $data
      * @return string
      */
     public static function actionRoute(string $controllerAction, $data = null) : string
     {
         $route = sprintf('%s.%s.%s', static::pathName(), static::resource(), $controllerAction);
 
-        return !empty($data->id)
-            ? route($route, $data->id)
-            : route($route);
+        if(is_object($data)) {
+            return route($route, $data->id);
+        }
+
+        if(is_numeric($data)) {
+            return route($route, $data);
+        }
+
+        return route($route);
     }
 }
