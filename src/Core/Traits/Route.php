@@ -51,12 +51,12 @@ trait Route {
      * @param object $data
      * @return string
      */
-    public static function actionRoute(string $controllerAction, $data) : string
+    public static function actionRoute(string $controllerAction, $data = null) : string
     {
         $route = sprintf('%s.%s.%s', static::pathName(), static::resource(), $controllerAction);
 
         return !empty($data->id)
             ? route($route, $data->id)
-            : 'dashboard';
+            : route($route);
     }
 }
