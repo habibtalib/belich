@@ -34,6 +34,7 @@ class RestfullController extends Controller
         $this->actions     = $this->resource->get('values')->get('actions');
         $this->breadcrumbs = $this->resource->get('values')->get('breadcrumbs');
         $this->fields      = $this->resource->get('fields');
+        $this->model       = $this->resource->get('values')->get('model');
         $this->name        = $this->resource->get('name');
 
         //Share the setting to all the views
@@ -82,9 +83,15 @@ class RestfullController extends Controller
      */
     public function store(Request $request)
     {
-        $store = $this->resource->get('values')->get('model')::create($request->all());
+        if($this->model::create($request->all())) {
+            return redirect()
+                ->back()
+                ->withSuccess('Hellow');
+        }
 
-        return 'stored!';
+        return redirect()
+            ->back()
+            ->withErrors(['Errors']);
     }
 
     /**
