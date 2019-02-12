@@ -154,14 +154,15 @@ class Belich extends Html {
         $class = static::resourceClassPath($className);
 
         return collect([
+            'actions'             => $class::$actions,
+            'breadcrumbs'         => $class::breadcrumbs(),
             'class'               => $className,
-            'resource'            => Str::plural(Str::lower($className)),
             'displayInNavigation' => $class::$displayInNavigation,
             'group'               => $class::$group,
             'label'               => $class::$label ?? Str::title($className),
+            'model'               => $class::$model,
             'pluralLabel'         => $class::$pluralLabel ?? Str::plural(Str::title($className)),
-            'breadcrumbs'         => $class::breadcrumbs(),
-            'actions'             => $class::$actions,
+            'resource'            => Str::plural(Str::lower($className)),
         ]);
     }
 
