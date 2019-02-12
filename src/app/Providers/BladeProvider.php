@@ -1,6 +1,25 @@
 <?php
 
 /**
+ * Create a @icon directive
+ *
+ * @return string
+ */
+Blade::directive('icon', function ($expression) {
+    $list = explode(',', str_replace(['(',')',' ', "'"], '', $expression));
+
+    if(count($list) === 2) {
+        $icon = $list[0];
+        $text = trans($list[1]);
+    } else {
+        $icon = $list[0];
+        $text = '';
+    }
+
+    return "<?php echo icon('$icon', '$text'); ?>";
+});
+
+/**
  * Create a @mix directive for the package namespace
  *
  * @return string
@@ -24,23 +43,4 @@ Blade::directive('mix', function ($expression) {
  */
 Blade::directive('trans', function ($expression) {
     return e(trans('belich::' . str_replace("'", '', $expression)));
-});
-
-/**
- * Create a @icon directive
- *
- * @return string
- */
-Blade::directive('icon', function ($expression) {
-    $list = explode(',', str_replace(['(',')',' ', "'"], '', $expression));
-
-    if(count($list) === 2) {
-        $icon = $list[0];
-        $text = trans($list[1]);
-    } else {
-        $icon = $list[0];
-        $text = '';
-    }
-
-    return "<?php echo icon('$icon', '$text'); ?>";
 });
