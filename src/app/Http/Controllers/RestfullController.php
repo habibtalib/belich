@@ -4,7 +4,6 @@ namespace Daguilarm\Belich\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Daguilarm\Belich\Core\Belich;
-use Daguilarm\Belich\Facades\Utils;
 use Daguilarm\Belich\Fields\FieldValidate as Validate;
 use Illuminate\Http\Request;
 
@@ -56,7 +55,7 @@ class RestfullController extends Controller
             ->withBreadcrumbs($this->breadcrumbs)
             ->withFields($this->fields)
             ->withResults($this->resource->get('results'))
-            ->withTotalResults(Utils::count($this->fields, 2));
+            ->withTotalResults(Belich::count($this->fields, 2));
     }
 
     /**

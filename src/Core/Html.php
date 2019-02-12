@@ -74,6 +74,21 @@ abstract class Html {
         return sprintf('<a href="%s">%s</a>', $this->getUrl($parameters), $field->label);
     }
 
+    /**
+     * Generate the form route for the action attribute
+     *
+     * @param string $redirectTo ['index', 'edit', 'update', 'show']
+     * @return string
+     */
+    public function toRoute(string $redirectTo) : string
+    {
+        $route = sprintf('%s.%s.%s', Helpers::pathName(), Helpers::resource(), $redirectTo);
+        $id = Helpers::resourceId() ?? 0;
+
+        return ($id > 0)
+            ? route($route, $id)
+            : route($route);
+    }
 
     /*
     |--------------------------------------------------------------------------
@@ -108,21 +123,5 @@ abstract class Html {
             })
             ->values()
             ->implode('&');
-    }
-
-    /**
-     * Generate the form route for the action attribute
-     *
-     * @param string $redirectTo ['index', 'edit', 'update', 'show']
-     * @return string
-     */
-    private function setformRedirectTo(string $redirectTo) : string
-    {
-        $route = sprintf('%s.%s.%s', Helpers::pathName(), Helpers::resource(), $redirectTo);
-        $id = Helpers::resourceId() ?? 0;
-
-        return ($id > 0)
-            ? route($route, $id)
-            : route($route);
     }
 }

@@ -43,4 +43,20 @@ trait Route {
         //Get route name
         return explode('.', Request::route()->getName());
     }
+
+    /**
+     * Get the button action route
+     *
+     * @param string $controllerAction
+     * @param object $data
+     * @return string
+     */
+    public static function actionRoute(string $controllerAction, $data) : string
+    {
+        $route = sprintf('%s.%s.%s', static::pathName(), static::resource(), $controllerAction);
+
+        return !empty($data->id)
+            ? route($route, $data->id)
+            : 'dashboard';
+    }
 }
