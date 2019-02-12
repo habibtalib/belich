@@ -4,6 +4,15 @@
     {{-- Breadcrumbs --}}
     @include('belich::partials.breadcrumbs')
 
+    {{-- Buttons --}}
+    <div class="table-search flex items-center">
+        <div class="flex w-full justify-end">
+            <a href="{{ Belich::actionRoute('edit', $resourceId) }}" class="btn btn-primary">
+                @icon('edit', 'belich::buttons.crud.update')
+            </a>
+        </div>
+    </div>
+
     @foreach($fields as $field)
         @if(!empty($field->label))
             <div class="form-container">
