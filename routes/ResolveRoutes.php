@@ -11,11 +11,6 @@ Route::group([
             require_once(__DIR__ . '/../routes/AuthRoutes.php');
         }
 
-        //Load all the custom routes
-        if (file_exists(app_path('/Belich/Routes.php'))) {
-            require_once(app_path('/Belich/Routes.php'));
-        }
-
         //Validation routes
         Route::post(Belich::pathName() . '/ajax/form/validation', namespace_path('App\Http\Controllers\ValidationController'))
             ->middleware(Belich::middleware())
@@ -30,4 +25,9 @@ Route::group([
                             ->middleware(Belich::middleware());
                 }
             });
+
+        //Load all the custom routes
+        if (file_exists(app_path('/Belich/Routes.php'))) {
+            require_once(app_path('/Belich/Routes.php'));
+        }
 });
