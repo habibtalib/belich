@@ -38,6 +38,9 @@ class FieldResolve {
             return new Collection;
         }
 
+        //Authorized fields
+        $fields = $this->setAuthorization($fields);
+
         //Show or hide fields base on Resource settings
         $fields = $this->setVisibilities($fields);
 
@@ -108,6 +111,35 @@ class FieldResolve {
     | Private methods
     |--------------------------------------------------------------------------
     */
+
+    /**
+     * Determine if the field should be available for the given request.
+     *
+     * @param  object  $fields
+     * @return bool
+     */
+    private static function setAuthorization(object $fields)
+    {
+        return $fields->map(function($field) {
+            if(static::authorizedField($field)) {
+                return $field;
+            }
+        })
+        ->filter();
+    }
+
+    /**
+     * Determine if the field is authorized
+     *
+     * @param  object  $field
+     * @return bool
+     */
+    private static function authorizedField(object $field)
+    {
+        if(empty($field->seeCallback) || (is_callable($field->seeCallback) && call_user_func($field->seeCallback, request()) !== false)) {
+            return true;
+        }
+    }
 
     /**
      * Show or Hide field base on the controller action
