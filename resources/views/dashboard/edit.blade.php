@@ -4,12 +4,12 @@
     {{-- Breadcrumbs --}}
     @include('belich::partials.breadcrumbs')
 
-    <form method="POST" name="form-{{ $resource }}-edit" id="form-{{ $resource }}-edit" action="{{ Belich::blade()->toRoute('update') }}" class="form-container">
+    <form method="POST" name="form-{{ $request->name }}-edit" id="form-{{ $request->name }}-edit" action="{{ Belich::blade()->toRoute('update') }}" class="form-container">
         @csrf
         @method('PATCH')
 
         {{-- Include the fields by type --}}
-        @foreach($fields as $field)
+        @foreach($request->fields as $field)
             @includeIf('belich::fields.' . $field->type, ['field' => $field])
         @endforeach
 
@@ -22,5 +22,5 @@
 
 {{-- Javascript from packages --}}
 @section('javascript')
-    {!! $javascript->get('javascript') !!}
+    {!! $request->javascript !!}
 @endsection

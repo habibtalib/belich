@@ -4,7 +4,6 @@ namespace Daguilarm\Belich\App\Http\Controllers;
 
 use Daguilarm\Belich\App\Http\Controllers\BaseController;
 use Daguilarm\Belich\Core\Belich;
-use Daguilarm\Belich\Fields\FieldValidate as Validate;
 use Illuminate\Http\Request;
 
 class RestfullController extends BaseController
@@ -32,17 +31,9 @@ class RestfullController extends BaseController
     public function index(Belich $belich, Request $request)
     {
         //Get all the data
-        $request = $this->getAllData($belich, $request);
+        $request = $this->getData($belich, $request);
 
         return view('belich::dashboard.index', compact('request'));
-
-        //Load the view with the data
-        return view('belich::dashboard.index')
-            ->withActions($data->get('actions'))
-            ->withBreadcrumbs($data->get('breadcrumbs'))
-            ->withFields($data->get('fields'))
-            ->withResults($data->get('results'))
-            ->withTotalResults($data->get('total'));
     }
 
     /**
@@ -50,20 +41,14 @@ class RestfullController extends BaseController
      *
      * @param Daguilarm\Belich\Core\Belich $belich
      * @param Illuminate\Http\Request $request
-     * @param Daguilarm\Belich\Fields\FieldValidate $validate
      * @return \Illuminate\Http\Response
      */
-    public function create(Belich $belich, Request $request, Validate $validate)
+    public function create(Belich $belich, Request $request)
     {
         //Get the data
-        $data = $this->getPartialData($belich, $request);
+        $request = $this->getFormData($belich, $request);
 
-        //Load the view with the data
-        return view('belich::dashboard.create')
-            ->withBreadcrumbs($data->get('breadcrumbs'))
-            ->withFields($data->get('fields'))
-            ->withJavascript($validate->create($data->get('validate')))
-            ->withResource($data->get('name'));
+        return view('belich::dashboard.create', compact('request'));
     }
 
     /**
@@ -96,36 +81,23 @@ class RestfullController extends BaseController
     public function show(Belich $belich, $id, Request $request)
     {
         //Get the data
-        $data = $this->getPartialData($belich, $request);
+        $request = $this->getFormData($belich, $request, $id);
 
-        //Load the view with the data
-        return view('belich::dashboard.show')
-            ->withBreadcrumbs($data->get('breadcrumbs'))
-            ->withFields($data->get('fields'))
-            ->withResource($data->get('name'))
-            ->withResourceId($id);
+        return view('belich::dashboard.show', compact('request'));
     }
 
     /**
      * Edit a resource.
      *
      * @param Daguilarm\Belich\Core\Belich $belich
-     * @param int $id
      * @param Illuminate\Http\Request $request
-     * @param Daguilarm\Belich\Fields\ValidateFields $validate
      */
-    public function edit(Belich $belich, $id, Request $request, Validate $validate)
+    public function edit(Belich $belich, Request $request)
     {
         //Get the data
-        $data = $this->getPartialData($belich, $request);
+        $request = $this->getFormData($belich, $request);
 
-        //Load the view with the data
-        return view('belich::dashboard.edit')
-            ->withBreadcrumbs($data->breadcrumbs)
-            ->withFields($data->fields)
-            ->withJavascript($validate->create($data->get('validate')))
-            ->withResource($data->get('name'))
-            ->withResourceId($id);
+        return view('belich::dashboard.edit', compact('request'));
     }
 
     /**

@@ -4,6 +4,7 @@ namespace Daguilarm\Belich\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Daguilarm\Belich\Core\Belich;
+use Daguilarm\Belich\Fields\FieldValidate as Validate;
 use Illuminate\Http\Request;
 
 class BaseController extends Controller
@@ -15,7 +16,7 @@ class BaseController extends Controller
      * @param Illuminate\Http\Request $request
      * @return array
      */
-    public function getAllData(Belich $belich, Request $request)
+    public function getData(Belich $belich, Request $request)
     {
         //Set current resource
         $data   = $belich->currentResource($request);
@@ -31,15 +32,6 @@ class BaseController extends Controller
         ]);
 
         return $request;
-
-        // return collect([
-        //     'actions'     => data_get($data, 'values.actions'),
-        //     'breadcrumbs' => data_get($data, 'values.breadcrumbs'),
-        //     'fields'      => $fields,
-        //     'name'        => data_get($data, 'name'),
-        //     'results'     => data_get($data, 'results'),
-        //     'total'       => Belich::count($fields, 2),
-        // ]);
     }
 
     /**
@@ -49,16 +41,20 @@ class BaseController extends Controller
      * @param Illuminate\Http\Request $request
      * @return array
      */
-    public function getPartialData(Belich $belich, Request $request)
+    public function getFormData(Belich $belich, Request $request, $id = null)
     {
         //Set current resource
-        $data = $belich->currentResource($request);
+        $data     = $belich->currentResource($request);
+        $fields   = data_get($data, 'fields');
 
-        return collect([
+        $request->request->add([
             'breadcrumbs' => data_get($data, 'values.breadcrumbs'),
-            'fields'      => data_get($data, 'fields'),
+            'fields'      => $fields,
+            'id'          => $id,
+            'javascript'  => (new Validate)->create($data)->get('javascript'),
             'name'        => data_get($data, 'name'),
-            'validate'    => $data,
         ]);
+
+        return $request;
     }
 }

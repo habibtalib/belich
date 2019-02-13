@@ -7,13 +7,13 @@
     {{-- Buttons --}}
     <div class="table-search flex items-center">
         <div class="flex w-full justify-end">
-            <a href="{{ Belich::actionRoute('edit', $resourceId) }}" class="btn btn-primary">
+            <a href="{{ Belich::actionRoute('edit', $request->id) }}" class="btn btn-primary">
                 @icon('edit', 'belich::buttons.crud.update')
             </a>
         </div>
     </div>
 
-    @foreach($fields as $field)
+    @foreach($request->fields as $field)
         @if(!empty($field->label))
             <div class="form-container">
                 @component('belich::fields.components.inlineForm')

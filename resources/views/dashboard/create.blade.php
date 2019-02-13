@@ -4,11 +4,11 @@
     {{-- Breadcrumbs --}}
     @include('belich::partials.breadcrumbs')
 
-    <form method="POST" name="form-{{ $resource }}-create" id="form-{{ $resource }}-create" action="{{ Belich::blade()->toRoute('store') }}" class="form-container">
+    <form method="POST" name="form-{{ $request->name }}-create" id="form-{{ $request->name }}-create" action="{{ Belich::blade()->toRoute('store') }}" class="form-container">
         @csrf
 
         {{-- Include the fields by type --}}
-        @foreach($fields as $field)
+        @foreach($request->fields as $field)
             @includeIf('belich::fields.' . $field->type, ['field' => $field])
         @endforeach
 
@@ -21,5 +21,5 @@
 
 {{-- Javascript from packages --}}
 @section('javascript')
-    {!! $javascript->get('javascript') !!}
+    {!! $request->javascript !!}
 @endsection

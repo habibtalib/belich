@@ -29,9 +29,8 @@
                     <th><input type="checkbox" name="item_selection" onclick="checkAll('form-index', this)"></th>
                     @foreach($request->fields as $field)
                         <th>
-                            {{ $field->name }}
                             {{-- Get URL with ASC or DESC order --}}
-                            {{-- {!! Belich::blade()->getUrlWithOrder($field) !!} --}}
+                            {!! Belich::blade()->renderOrderedLink($field) !!}
                         </th>
                     @endforeach
                     <th></th>
