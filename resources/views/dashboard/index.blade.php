@@ -7,7 +7,7 @@
     {{-- Search --}}
     <div class="table-search flex items-center">
         <div class="icon-search w-full">
-            <input type="text" name="_search" id="_search" placeholder="search..." onkeydown="showResetSearch()">
+            <input type="text" name="_search" id="_search" class="ml-2" placeholder="search..." onkeydown="showResetSearch()">
             <span class="hidden" id="icon-search-reset">
                 <i class="fas fa-times-circle text-grey cursor-pointer" onclick="resetSearch()"></i>
             </span>
@@ -15,7 +15,7 @@
 
         {{-- Buttons --}}
         <div class="flex w-full justify-end">
-            <a href="{{ Belich::actionRoute('create') }}" class="btn btn-secondary">
+            <a href="{{ Belich::actionRoute('create') }}" class="btn btn-secondary mr-2">
                 @icon('plus-square', 'belich::buttons.crud.create')
             </a>
         </div>

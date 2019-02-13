@@ -10,5 +10,5 @@
     .table-search .icon-search:before {
         content: "\f002";
         font-family: 'Font Awesome 5 Free';
-        @apply absolute ml-2 mt-4 font-bold text-xl text-grey;
+        @apply absolute ml-4 mt-4 font-bold text-xl text-grey;
     }

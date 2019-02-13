@@ -462,8 +462,8 @@ li.logout a:before {
 
 .pagination li.page-item {
   display: block;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
   font-size: 1.125rem;
@@ -561,7 +561,7 @@ li.logout a:before {
   content: "\F002";
   font-family: 'Font Awesome 5 Free';
   position: absolute;
-  margin-left: .5rem;
+  margin-left: 1rem;
   margin-top: 1rem;
   font-weight: 700;
   font-size: 1.25rem;

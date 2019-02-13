@@ -7,7 +7,7 @@
     {{-- Buttons --}}
     <div class="table-search flex items-center">
         <div class="flex w-full justify-end">
-            <a href="{{ Belich::actionRoute('show', $request->id) }}" class="btn btn-secondary">
+            <a href="{{ Belich::actionRoute('show', $request->id) }}" class="btn btn-secondary mr-2">
                 @icon('eye', 'belich::buttons.crud.show')
             </a>
         </div>
