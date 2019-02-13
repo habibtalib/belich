@@ -119,6 +119,12 @@ abstract class Html {
             })
             ->unique()
             ->map(function($value, $key) use ($field) {
+                //Set orderBy
+                if($key === 'orderBy') {
+                    return $field->attribute;
+                }
+
+                //Set direction
                 if($key === 'direction') {
                     //Set only the allowed direction values
                     if($value !== 'DESC' && $value !== 'ASC') {
