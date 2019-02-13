@@ -150,10 +150,12 @@ class FieldResolve {
     private function setVisibilities(Collection $fields) : Collection
     {
         return $fields->map(function($field) {
+            //If the field has the visibility for this controller action on true...
             return $field->visibility[$this->action]
                 ? $field
                 : null;
         })
+        //Delete all null results from the collection
         ->filter();
     }
 
@@ -169,7 +171,9 @@ class FieldResolve {
             //Showing field relationship in index
             //See blade template: dashboard.index
             $field->attribute = $field->fieldRelationship
+                //Prepare field for relationship
                 ? [$field->fieldRelationship, $field->attribute]
+                //No relationship field
                 : $field->attribute;
 
             return $field;
@@ -190,6 +194,7 @@ class FieldResolve {
             //Add attributes dynamically from the list
             $field->render = collect($field)
                 ->map(function($value, $attribute) use ($field) {
+                    //Get the list of attributes to be rendered: name, dusk,...
                     if(in_array($attribute, $field->renderAttributes)) {
                         return sprintf('%s=%s', $attribute, $value);
                     }
