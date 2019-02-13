@@ -21,7 +21,7 @@ abstract class FieldAbstract {
     /** @var object model data */
     public $data;
 
-    /** @var object for manipulate data */
+    /** @var \Closure|null for manipulate data */
     public $displayCallback;
 
     /** @var string [Set the field label tag] */
@@ -39,7 +39,7 @@ abstract class FieldAbstract {
     /** @var string [All the render attributes must be stored here...] */
     public $render;
 
-    /** @var object for manipulate data */
+    /** @var \Closure|null for manipulate data */
     public $resolveCallback;
 
     /** @var \Closure|null */
