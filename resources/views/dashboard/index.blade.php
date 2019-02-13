@@ -27,10 +27,11 @@
             <thead>
                 <tr>
                     <th><input type="checkbox" name="item_selection" onclick="checkAll('form-index', this)"></th>
-                    @foreach($fields as $field)
+                    @foreach($request->fields as $field)
                         <th>
+                            {{ $field->name }}
                             {{-- Get URL with ASC or DESC order --}}
-                            {!! Belich::blade()->getUrlWithOrder($field) !!}
+                            {{-- {!! Belich::blade()->getUrlWithOrder($field) !!} --}}
                         </th>
                     @endforeach
                     <th></th>
@@ -38,10 +39,10 @@
             </thead>
             <tbody>
                 {{-- Get the results --}}
-                @forelse($results as $result)
+                @forelse($request->results as $result)
                     <tr>
                         <td><input type="checkbox" name="item_selection[]" value="{{ $result->id }}"></td>
-                        @foreach($fields as $field)
+                        @foreach($request->fields as $field)
                             <td>
                                 {{-- Resolve the values --}}
                                 {{ Belich::blade()->resolveField($field, $result) }}
@@ -49,7 +50,7 @@
                         @endforeach
                         <td class="text-right">
                             {{-- Load the button actions --}}
-                            {!! Belich::actions($result, $actions) !!}
+                            {!! Belich::actions($result, $request->actions) !!}
                         </td>
                     </tr>
                 {{-- No results --}}
@@ -63,10 +64,10 @@
             </tbody>
 
             {{-- Pagination --}}
-            @if($pagination = $results->links())
+            @if($pagination = $request->results->links())
                 <tfoot>
                     <tr>
-                        <td colspan="{{ $totalResults }}" class="text-center">{{ $pagination }}</td>
+                        <td colspan="{{ $request->total }}" class="text-center">{{ $pagination }}</td>
                     </tr>
                 </tfoot>
             @endif

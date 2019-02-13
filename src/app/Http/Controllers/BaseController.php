@@ -21,7 +21,7 @@ class BaseController extends Controller
         $data   = $belich->currentResource($request);
         $fields = data_get($data, 'fields');
 
-        return collect([
+        $request->request->add([
             'actions'     => data_get($data, 'values.actions'),
             'breadcrumbs' => data_get($data, 'values.breadcrumbs'),
             'fields'      => $fields,
@@ -29,6 +29,17 @@ class BaseController extends Controller
             'results'     => data_get($data, 'results'),
             'total'       => Belich::count($fields, 2),
         ]);
+
+        return $request;
+
+        // return collect([
+        //     'actions'     => data_get($data, 'values.actions'),
+        //     'breadcrumbs' => data_get($data, 'values.breadcrumbs'),
+        //     'fields'      => $fields,
+        //     'name'        => data_get($data, 'name'),
+        //     'results'     => data_get($data, 'results'),
+        //     'total'       => Belich::count($fields, 2),
+        // ]);
     }
 
     /**

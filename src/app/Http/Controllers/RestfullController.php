@@ -32,7 +32,9 @@ class RestfullController extends BaseController
     public function index(Belich $belich, Request $request)
     {
         //Get all the data
-        $data = $this->getAllData($belich, $request);
+        $request = $this->getAllData($belich, $request);
+
+        return view('belich::dashboard.index', compact('request'));
 
         //Load the view with the data
         return view('belich::dashboard.index')
@@ -119,8 +121,8 @@ class RestfullController extends BaseController
 
         //Load the view with the data
         return view('belich::dashboard.edit')
-            ->withBreadcrumbs($data->get('breadcrumbs'))
-            ->withFields($data->get('fields'))
+            ->withBreadcrumbs($data->breadcrumbs)
+            ->withFields($data->fields)
             ->withJavascript($validate->create($data->get('validate')))
             ->withResource($data->get('name'))
             ->withResourceId($id);

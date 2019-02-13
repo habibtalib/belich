@@ -112,7 +112,7 @@ abstract class Html {
     {
         return $key
             ? request()->query($key)
-            : request()->query();
+            : [request()->getQueryString()];
     }
 
     /**
