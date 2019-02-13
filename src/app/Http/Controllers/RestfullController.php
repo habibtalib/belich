@@ -25,6 +25,8 @@ class RestfullController extends BaseController
     /**
      * List the resources.
      *
+     * @param Daguilarm\Belich\Core\Belich $belich
+     * @param Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function index(Belich $belich, Request $request)
@@ -44,17 +46,22 @@ class RestfullController extends BaseController
     /**
      * Create a new resource.
      *
+     * @param Daguilarm\Belich\Core\Belich $belich
+     * @param Illuminate\Http\Request $request
      * @param Daguilarm\Belich\Fields\FieldValidate $validate
      * @return \Illuminate\Http\Response
      */
-    public function create(Validate $validate)
+    public function create(Belich $belich, Request $request, Validate $validate)
     {
+        //Get the data
+        $data = $this->getPartialData($belich, $request);
+
         //Load the view with the data
         return view('belich::dashboard.create')
-            ->withBreadcrumbs($this->breadcrumbs)
-            ->withFields($this->fields)
-            ->withJavascript($validate->create($this->resource))
-            ->withResource($this->name);
+            ->withBreadcrumbs($data->get('breadcrumbs'))
+            ->withFields($data->get('fields'))
+            ->withJavascript($validate->create($data->get('validate')))
+            ->withResource($data->get('name'));
     }
 
     /**
@@ -79,33 +86,43 @@ class RestfullController extends BaseController
     /**
      * Show the a resource.
      *
+     * @param Daguilarm\Belich\Core\Belich $belich
      * @param int $id
+     * @param Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Belich $belich, $id, Request $request)
     {
+        //Get the data
+        $data = $this->getPartialData($belich, $request);
+
         //Load the view with the data
         return view('belich::dashboard.show')
-            ->withBreadcrumbs($this->breadcrumbs)
-            ->withFields($this->fields)
-            ->withResource($this->name)
+            ->withBreadcrumbs($data->get('breadcrumbs'))
+            ->withFields($data->get('fields'))
+            ->withResource($data->get('name'))
             ->withResourceId($id);
     }
 
     /**
      * Edit a resource.
      *
-     * @param Daguilarm\Belich\Fields\ValidateFields $validate
+     * @param Daguilarm\Belich\Core\Belich $belich
      * @param int $id
+     * @param Illuminate\Http\Request $request
+     * @param Daguilarm\Belich\Fields\ValidateFields $validate
      */
-    public function edit(Validate $validate, $id)
+    public function edit(Belich $belich, $id, Request $request, Validate $validate)
     {
+        //Get the data
+        $data = $this->getPartialData($belich, $request);
+
         //Load the view with the data
         return view('belich::dashboard.edit')
-            ->withBreadcrumbs($this->breadcrumbs)
-            ->withFields($this->fields)
-            ->withJavascript($validate->create($this->resource))
-            ->withResource($this->name)
+            ->withBreadcrumbs($data->get('breadcrumbs'))
+            ->withFields($data->get('fields'))
+            ->withJavascript($validate->create($data->get('validate')))
+            ->withResource($data->get('name'))
             ->withResourceId($id);
     }
 

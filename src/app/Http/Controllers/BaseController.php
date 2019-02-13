@@ -41,12 +41,13 @@ class BaseController extends Controller
     public function getPartialData(Belich $belich, Request $request)
     {
         //Set current resource
-        $data   = $belich->currentResource($request);
+        $data = $belich->currentResource($request);
 
         return collect([
             'breadcrumbs' => data_get($data, 'values.breadcrumbs'),
             'fields'      => data_get($data, 'fields'),
             'name'        => data_get($data, 'name'),
+            'validate'    => $data,
         ]);
     }
 }
