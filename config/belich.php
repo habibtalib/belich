@@ -41,4 +41,15 @@ return [
         'web',
         'auth',
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Url allowed parameters
+    |--------------------------------------------------------------------------
+    |
+    | Belich only allows a list of predetermined parameters. If you need your own url
+    | parameters, please, add this to this variable...
+    |
+    */
+    'allowedUrlParameters' => [],
 ];

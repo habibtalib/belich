@@ -29,6 +29,18 @@ abstract class Html {
     }
 
     /**
+     * Allowed url parameters
+     *
+     * @return array
+     */
+    private function allowedUrlParameters()
+    {
+        return config('belich.allowedUrlParameters')
+            ? array_merge($this->allowedParameters, config('belich.allowedUrlParameters'))
+            : $this->allowedParameters;
+    }
+
+    /**
      * Generate the link with all the parameters for the table header
      *
      * @param  Daguilarm\Belich\Fields\Field $field
@@ -103,7 +115,7 @@ abstract class Html {
         $parameters = collect(request()->query())
             //Only the allowed parameters
             ->filter(function($value, $key) {
-                return in_array($key, $this->allowedParameters);
+                return in_array($key, $this->allowedUrlParameters());
             })
             ->unique()
             ->map(function($value, $key) use ($field) {
