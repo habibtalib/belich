@@ -58,8 +58,11 @@ trait Resource {
     public static function resourceId()
     {
         $resource = Str::singular(static::resource());
+        $resourceId = Request::route($resource) ?? null;
 
-        return Request::route($resource) ?? null;
+        return is_numeric($resourceId)
+            ? $resourceId
+            : abort(404);
     }
 
     /**
