@@ -21,3 +21,11 @@
     .btn-danger:hover {
         @apply bg-red-dark;
     }
+
+    .btn-secondary {
+        @apply bg-white text-blue border border-blue-lighter;
+    }
+
+    .btn-secondary:hover {
+        @apply text-blue-dark  border border-blue-light;
+    }

@@ -10,6 +10,19 @@ use Illuminate\Http\Request;
 class BaseController extends Controller
 {
     /**
+     * Generate crud controllers
+     *
+     * @param Daguilarm\Belich\Core\Belich $belich
+     */
+    public function __construct(Belich $belich)
+    {
+        //Share the setting to all the views
+        view()->share([
+            'resources' => $belich->resourcesAll(),
+        ]);
+    }
+
+    /**
      * List the resource values.
      *
      * @param Daguilarm\Belich\Core\Belich $belich

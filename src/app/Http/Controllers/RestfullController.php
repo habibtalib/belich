@@ -15,10 +15,7 @@ class RestfullController extends BaseController
      */
     public function __construct(Belich $belich)
     {
-        //Share the setting to all the views
-        view()->share([
-            'resources' => $belich->resourcesAll(),
-        ]);
+        parent::__construct($belich);
     }
 
     /**
@@ -90,12 +87,13 @@ class RestfullController extends BaseController
      * Edit a resource.
      *
      * @param Daguilarm\Belich\Core\Belich $belich
+     * @param int $id
      * @param Illuminate\Http\Request $request
      */
-    public function edit(Belich $belich, Request $request)
+    public function edit(Belich $belich, $id, Request $request)
     {
         //Get the data
-        $request = $this->getFormData($belich, $request);
+        $request = $this->getFormData($belich, $request, $id);
 
         return view('belich::dashboard.edit', compact('request'));
     }

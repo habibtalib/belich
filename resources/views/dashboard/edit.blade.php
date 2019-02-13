@@ -4,6 +4,15 @@
     {{-- Breadcrumbs --}}
     @include('belich::partials.breadcrumbs')
 
+    {{-- Buttons --}}
+    <div class="table-search flex items-center">
+        <div class="flex w-full justify-end">
+            <a href="{{ Belich::actionRoute('show', $request->id) }}" class="btn btn-secondary">
+                @icon('eye', 'belich::buttons.crud.show')
+            </a>
+        </div>
+    </div>
+
     <form method="POST" name="form-{{ $request->name }}-edit" id="form-{{ $request->name }}-edit" action="{{ Belich::blade()->toRoute('update') }}" class="form-container">
         @csrf
         @method('PATCH')
