@@ -190,8 +190,8 @@ class Belich extends Html {
             return $class
                 ->indexQuery($this->request)
                 //Order query
-                ->when(request()->query('order') && request()->query('direction'), function ($query) {
-                    return $query->orderBy(request()->query('order'), request()->query('direction'));
+                ->when(request()->query('orderBy') && request()->query('direction'), function ($query) {
+                    return $query->orderBy(request()->query('orderBy'), request()->query('direction'));
                 })
                 ->simplePaginate($this->perPage)
                 //Add all the url variables
