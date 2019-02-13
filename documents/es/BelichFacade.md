@@ -170,19 +170,7 @@ Belich::blade()->method()
 
 Los métodos soportados son:
 
-#### getUrl() 
-
-Nos devuelve la url actual con todos los parámetros, por ejemplo: 
-
-`http://www.url.com/?perPage=20&page=2&relationship=billings`
-
-~~~
-Belich::blade()->getUrl()
-~~~
-
-Es utilizado por el sistema en la vista `index`.
-
-#### getUrlWithOrder()
+#### renderOrderedLink()
 
 Igual que la anterior, pero añade dos nuevos parámetros:
 
@@ -194,7 +182,7 @@ Quedando algo así:
 `http://www.url.com/?perPage=20&page=2&relationship=billings&order=users&direction=DESC`
 
 ~~~
-Belich::blade()->getUrlWithOrder()
+Belich::blade()->renderOrderedLink()
 ~~~
 
 Es utilizado por el sistema en la vista `index`.
