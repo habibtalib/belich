@@ -159,5 +159,9 @@ class ServiceProvider extends Provider {
         //Belich Facade
         $this->app->register(\Daguilarm\Belich\Facades\BelichProvider::class);
         AliasLoader::getInstance()->alias('Belich', \Daguilarm\Belich\Facades\Belich::class);
+
+        //Credentials Facade
+        $this->app->register(\Daguilarm\Belich\Facades\CredentialsProvider::class);
+        AliasLoader::getInstance()->alias('Credentials', \Daguilarm\Belich\Facades\Credentials::class);
     }
 }

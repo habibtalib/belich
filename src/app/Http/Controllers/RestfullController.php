@@ -2,25 +2,13 @@
 
 namespace Daguilarm\Belich\App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Daguilarm\Belich\App\Http\Controllers\BaseController;
 use Daguilarm\Belich\Core\Belich;
 use Daguilarm\Belich\Fields\FieldValidate as Validate;
 use Illuminate\Http\Request;
 
-class RestfullController extends Controller
+class RestfullController extends BaseController
 {
-    /** @var array */
-    private $breadcrumbs;
-
-    /** @var array */
-    private $fields;
-
-    /** @var string */
-    private $name;
-
-    /** @var Illuminate\Support\Collection */
-    private $resource;
-
     /**
      * Generate crud controllers
      *
@@ -28,15 +16,6 @@ class RestfullController extends Controller
      */
     public function __construct(Belich $belich)
     {
-        //Get the current resource values
-        $this->resource = $belich->currentResource();
-
-        $this->actions     = $this->resource->get('values')->get('actions');
-        $this->breadcrumbs = $this->resource->get('values')->get('breadcrumbs');
-        $this->fields      = $this->resource->get('fields');
-        $this->model       = $this->resource->get('values')->get('model');
-        $this->name        = $this->resource->get('name');
-
         //Share the setting to all the views
         view()->share([
             'resources' => $belich->resourcesAll(),
@@ -48,15 +27,18 @@ class RestfullController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Belich $belich, Request $request)
     {
+        //Get all the data
+        $data = $this->getAllData($belich, $request);
+
         //Load the view with the data
         return view('belich::dashboard.index')
-            ->withActions($this->actions)
-            ->withBreadcrumbs($this->breadcrumbs)
-            ->withFields($this->fields)
-            ->withResults($this->resource->get('results'))
-            ->withTotalResults(Belich::count($this->fields, 2));
+            ->withActions($data->get('actions'))
+            ->withBreadcrumbs($data->get('breadcrumbs'))
+            ->withFields($data->get('fields'))
+            ->withResults($data->get('results'))
+            ->withTotalResults($data->get('total'));
     }
 
     /**

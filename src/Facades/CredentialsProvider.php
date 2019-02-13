@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Facades;
 
 use Illuminate\Support\ServiceProvider;
 
-class UtilsProvider extends ServiceProvider
+class CredentialsProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -23,9 +23,9 @@ class UtilsProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('Utils',function()
+        $this->app->singleton('Credentials',function()
         {
-            return new \Daguilarm\Belich\Core\Utils;
+            return new \Daguilarm\Belich\Core\Credentials;
         });
     }
 }

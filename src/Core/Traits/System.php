@@ -19,7 +19,7 @@ trait System {
      */
     public static function middleware() : array
     {
-        return config('belich.middleware') ?? ['web', 'auth', 'https'];
+        return config('belich.middleware') ?? ['https', 'web', 'auth'];
     }
 
     /**

@@ -10,19 +10,23 @@ use Daguilarm\Belich\Fields\FieldResolve;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
+use Daguilarm\Belich\Facades\Credentials;
 
 class Belich extends Html {
 
     use Helpers;
 
     /** @var string */
-    private static $version = '1.0.0';
+    private $perPage = 20;
 
     /** @var string */
     private $request;
 
     /** @var string */
-    private $perPage = 20;
+    private $user;
+
+    /** @var string */
+    private static $version = '1.0.0';
 
     /**
      * Init the constuctor
@@ -32,6 +36,7 @@ class Belich extends Html {
     public function __construct()
     {
         $this->request = request();
+        $this->user = \Illuminate\Support\Facades\Auth::user();
 
         //Set pagination
         if($this->request->has('perPage')) {
@@ -68,16 +73,16 @@ class Belich extends Html {
      *
      * @return Illuminate\Support\Collection
      */
-    public function currentResource() : Collection
+    public function currentResource(Request $request) : Collection
     {
         //Default values
         $class = $this->initResourceClass();
 
         //Update the fields
-        $updateFields = collect($class->fields($this->request));
+        $updateFields = collect($class->fields($request));
 
         //Sql Response
-        $sqlResponse = $this->sqlResponse($class, $this->request);
+        $sqlResponse = $this->sqlResponse($class, $request);
 
         //ClassName
         $className = static::resource();

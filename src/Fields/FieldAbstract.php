@@ -42,6 +42,9 @@ abstract class FieldAbstract {
     /** @var object for manipulate data */
     public $resolveCallback;
 
+    /** @var \Closure|null */
+    public $seeCallback;
+
     /** @var bool [Indicates if the field should be sortable] */
     public $sortable = false;
 
@@ -50,6 +53,19 @@ abstract class FieldAbstract {
 
     /** @var mixed [The field value (Resolved and updated...)] */
     public $value;
+
+    /**
+     * Set the callback to be run to authorize viewing the field.
+     *
+     * @param  \Closure  $callback
+     * @return $this
+     */
+    public function canSee(\Closure $callback)
+    {
+        $this->seeCallback = $callback;
+
+        return $this;
+    }
 
     /**
      * Set the field sortable
