@@ -20,13 +20,16 @@
             {{-- Navbar --}}
             @includeWhen(auth()->check(), 'belich::partials.navbar')
 
-            {{-- Sidebar --}}
-            @includeWhen(auth()->check() && config('belich.navbar') === 'sidebar', 'belich::partials.sidebar')
+            {{-- Sidebar and Application container --}}
+            <div class="min-h-screen md:flex">
+                {{-- Sidebar --}}
+                @includeWhen(auth()->check() && config('belich.navbar') === 'sidebar', 'belich::partials.sidebar')
 
-            {{-- Application --}}
-            <section class="wrap-container">
-                @yield('content')
-            </section>
+                {{-- Application --}}
+                <section class="flex-1 m-8">
+                    @yield('content')
+                </section>
+            </div>
 
             {{-- Include footer --}}
             @includeIf('belich::partials.footer')

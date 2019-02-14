@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Belich;
+namespace Daguilarm\Belich\Components\Navigation\Stubs;
 
-use Daguilarm\Belich\Components\Navigation\NavBuilder;
+use Daguilarm\Belich\Components\Navigation\NavbarConstructor;
 use Illuminate\Support\Collection;
 use Spatie\Menu\Html;
 use Spatie\Menu\Link;
 use Spatie\Menu\Menu;
 
-class Navbar extends NavBuilder {
+class Navbar extends NavbarConstructor {
 
     /**
      * Generate the navbar
@@ -16,14 +16,13 @@ class Navbar extends NavBuilder {
      * @param Illuminate\Support\Collection $resources
      * @return void
      */
-    public static function make(Collection $resources)
+    public function get()
     {
         //Generate the navbar without resources
         if(config('belich.navbar') === 'sidebar') {
-            return Parent::withoutResources();
+            return Parent::withoutResources()->menu->render();
         }
 
-        //Generate the default navbar with resources
-        return Parent::withResources($resources);
+        return Parent::withResources()->menu->render();
     }
 }

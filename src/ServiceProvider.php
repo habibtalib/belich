@@ -126,8 +126,8 @@ class ServiceProvider extends Provider {
 
         //Publish the navigation
         $this->publishes([
-           __DIR__ . '/Components/Navigation/Navbar.php' => base_path('app/Belich/Navbar.php'),
-           __DIR__ . '/Components/Navigation/Sidebar.php' => base_path('app/Belich/Sidebar.php'),
+           __DIR__ . '/Components/Navigation/Stubs/Navbar.php' => base_path('app/Belich/Navbar.php'),
+           __DIR__ . '/Components/Navigation/Stubs/Sidebar.php' => base_path('app/Belich/Sidebar.php'),
         ]);
     }
 

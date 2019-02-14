@@ -2,7 +2,6 @@
 
 /* Navbar */
 nav#navbar {
-    @apply h-12;
     background-color: var(--navbar-bg);
 }
 
@@ -11,9 +10,10 @@ nav#navbar ul {
 }
 
 nav#navbar li.brand {
-    @apply inline-block font-semibold;
+    @apply inline-block font-semibold text-center;
     margin-right: -4px;
     background-color: var(--navbar-brand-bg);
+    width: var(--navigation-width);
 }
 
 nav#navbar li.brand:hover {

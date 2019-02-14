@@ -31,6 +31,8 @@
   --warning: rgb(255, 235, 59);
   /*Html*/
   --body-bg: var(--10);
+  /*Navbar && Sidebar*/
+  --navigation-width: 14rem;
   /*Navbar*/
   --navbar-bg: var(--primary);
   --navbar-bg-hover: var(--primary-dark);
@@ -89,12 +91,6 @@ body {
 
 a {
   text-decoration: none;
-}
-
-/* Base container */
-
-.wrap-container {
-  margin: 2rem;
 }
 .nav-breadcrumbs {
   width: 100%;
@@ -336,7 +332,6 @@ form.form-container > .form-group option:disabled {
 /* Navbar */
 
 nav#navbar {
-  height: 3rem;
   background-color: var(--navbar-bg);
 }
 
@@ -351,8 +346,10 @@ nav#navbar ul {
 nav#navbar li.brand {
   display: inline-block;
   font-weight: 600;
+  text-align: center;
   margin-right: -4px;
   background-color: var(--navbar-brand-bg);
+  width: var(--navigation-width);
 }
 
 nav#navbar li.brand:hover {
@@ -481,6 +478,9 @@ li.logout a:before {
 
 .pagination li.page-item a.page-link:hover {
   color: var(--pagination-link-hover);
+}
+nav#sidebar {
+  width: var(--navigation-width);
 }
 .table {
   width: 100%;

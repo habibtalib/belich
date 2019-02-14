@@ -33,6 +33,9 @@
     /*Html*/
     --body-bg: var(--10);
 
+    /*Navbar && Sidebar*/
+    --navigation-width: 14rem;
+
     /*Navbar*/
     --navbar-bg: var(--primary);
     --navbar-bg-hover: var(--primary-dark);

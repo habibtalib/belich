@@ -6,8 +6,3 @@ body {
 a {
     @apply no-underline;
 }
-
-/* Base container */
-.wrap-container {
-    @apply m-8;
-}
