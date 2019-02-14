@@ -2,13 +2,13 @@
 
 namespace Daguilarm\Belich\Components\Navigation\Stubs;
 
-use Daguilarm\Belich\Components\Navigation\NavbarConstructor;
+use Daguilarm\Belich\Components\Navigation\Navbar as BaseNavbar;
 use Illuminate\Support\Collection;
 use Spatie\Menu\Html;
 use Spatie\Menu\Link;
 use Spatie\Menu\Menu;
 
-class Navbar extends NavbarConstructor {
+class Navbar extends BaseNavbar {
 
     /**
      * Generate the navbar
