@@ -100,12 +100,6 @@ class ServiceProvider extends Provider {
             __DIR__ . '/../src/Stubs/validate-form.stub' => config_path('belich/stubs/validate-form.stub'),
         ]);
 
-        //Publish the belich directory and the dashboard constructor
-        $this->publishes([
-            //Set the resources
-            __DIR__ . '/../routes/Routes.php' => base_path('app/Belich/Routes.php'),
-        ]);
-
         //Publish the views
         $this->publishes([
             __DIR__ . '/../resources/views/actions' => base_path('resources/views/vendor/belich/actions'),
@@ -122,6 +116,18 @@ class ServiceProvider extends Provider {
         //Publish the public folder
         $this->publishes([
             __DIR__ . '/../public/' => public_path('vendor/belich')
+        ]);
+
+        //Publish the belich directory and the dashboard constructor
+        $this->publishes([
+            //Set the resources
+            __DIR__ . '/../routes/Routes.php' => base_path('app/Belich/Routes.php'),
+        ]);
+
+        //Publish the navigation
+        $this->publishes([
+           __DIR__ . '/Components/Navigation/Navbar.php' => base_path('app/Belich/Navbar.php'),
+           __DIR__ . '/Components/Navigation/Sidebar.php' => base_path('app/Belich/Sidebar.php'),
         ]);
     }
 
