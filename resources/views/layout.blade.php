@@ -18,7 +18,10 @@
     <body>
         <div id="app">
             {{-- Navbar --}}
-            @includeWhen(auth()->check() && config('belich.navbar'), 'belich::partials.navbar')
+            @includeWhen(auth()->check(), 'belich::partials.navbar')
+
+            {{-- Sidebar --}}
+            @includeWhen(auth()->check() && config('belich.navbar') === 'sidebar', 'belich::partials.sidebar')
 
             {{-- Application --}}
             <section class="wrap-container">
