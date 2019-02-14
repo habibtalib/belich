@@ -30,7 +30,7 @@
                     @foreach($request->fields as $field)
                         <th>
                             {{-- Get URL with ASC or DESC order --}}
-                            @orderedLink($field)
+                            {!! Belich::html()->tableLink($field) !!}
                         </th>
                     @endforeach
                     <th></th>
@@ -44,7 +44,7 @@
                         @foreach($request->fields as $field)
                             <td>
                                 {{-- Resolve the values --}}
-                                @resolveField($field, $result)
+                                {!! Belich::html()->resolve($field, $result) !!}
                             </td>
                         @endforeach
                         <td class="text-right">

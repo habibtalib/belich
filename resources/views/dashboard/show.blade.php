@@ -19,7 +19,7 @@
                 @component('belich::fields.components.inlineForm')
                     @slot('label', $field->label)
                     @slot('field')
-                        @resolveField($field, null)
+                        {!! Belich::html()->resolve($field) !!}
                     @endslot
                 @endcomponent
             </div>

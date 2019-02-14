@@ -2,12 +2,14 @@
 
 namespace Daguilarm\Belich\Core;
 
+use Daguilarm\Belich\Fields\Field;
+use Daguilarm\Belich\Fields\FieldResolve;
 use Illuminate\Support\Collection;
 
 class Html {
 
     /** @var bool */
-    protected static $allowedParameters = [
+    protected $allowedParameters = [
         'direction',
         'orderBy',
         'page'
@@ -20,7 +22,7 @@ class Html {
      *
      * @return string
      */
-    public static function orderedLink(object $field) : string
+    public function tableLink(Field $field) : string
     {
         //Filter if the attribute is a relationship or is not sortable
         if(is_array($field->attribute) || $field->sortable === false) {
@@ -28,9 +30,22 @@ class Html {
         }
 
         //Get url parameters
-        $parameters = static::getUrlParameters($field);
+        $parameters = $this->getUrlParameters($field);
 
         return sprintf('<a href="%s?%s">%s</a>', url()->current(), $parameters, $field->label);
+    }
+
+    /**
+     * Resolve field
+     *
+     * @param  Daguilarm\Belich\Fields\Field $field
+     * @param  object $data
+     *
+     * @return string
+     */
+    public function resolve(Field $field, object $data = null) : string
+    {
+        return FieldResolve::resolveField($field, $data);
     }
 
     /*
@@ -44,26 +59,26 @@ class Html {
      *
      * @return array
      */
-    private static function allowedUrlParameters()
+    private function allowedUrlParameters()
     {
         return config('belich.allowedUrlParameters')
-            ? array_merge(static::$allowedParameters, config('belich.allowedUrlParameters'))
-            : static::$allowedParameters;
+            ? array_merge($this->allowedParameters, config('belich.allowedUrlParameters'))
+            : $this->allowedParameters;
     }
 
     /**
      * Get all the url parameters
      *
-     * @param object $field
+     * @param Daguilarm\Belich\Fields\Field $field
      * @return string
      */
-    private static function getUrlParameters(object $field) : string
+    private function getUrlParameters(Field $field) : string
     {
         //Get the url parameters
         $parameters = collect(request()->query())
             //Only the allowed parameters
             ->filter(function($value, $key) {
-                return in_array($key, static::allowedUrlParameters());
+                return in_array($key, $this->allowedUrlParameters());
             })
             ->unique()
             ->map(function($value, $key) use ($field) {
@@ -86,20 +101,20 @@ class Html {
             });
 
         //Set the default parameters values for the urls
-        $parameters = static::setUrlParametersDefaultValues($field, $parameters);
+        $parameters = $this->setUrlParametersDefaultValues($field, $parameters);
 
         //Serialize the parameters
-        return static::setUrlParametersSerialized($parameters);
+        return $this->setUrlParametersSerialized($parameters);
     }
 
     /**
      * Get all the url parameters
      *
-     * @param object $field
+     * @param Daguilarm\Belich\Fields\Field $field
      * @param Illuminate\Support\Collection $parameters
      * @return Illuminate\Support\Collection
      */
-    private static function setUrlParametersDefaultValues(object $field, Collection $parameters) : Collection
+    private function setUrlParametersDefaultValues(Field $field, Collection $parameters) : Collection
     {
         if(!$parameters->get('orderBy')) {
             $parameters->put('orderBy', $field->attribute);
@@ -118,7 +133,7 @@ class Html {
      * @param Illuminate\Support\Collection $parameters
      * @return string
      */
-    private static function setUrlParametersSerialized(Collection $parameters) : string
+    private function setUrlParametersSerialized(Collection $parameters) : string
     {
         return $parameters
             ->map(function($value, $key) {
