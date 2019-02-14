@@ -1,6 +1,6 @@
 <?php
 
-namespace Daguilarm\Belich\Components;
+namespace Daguilarm\Belich\Components\Navigation;
 
 use Daguilarm\Belich\Core\Traits\System as Helpers;
 use Illuminate\Support\Collection;
@@ -9,7 +9,7 @@ use Spatie\Menu\Html;
 use Spatie\Menu\Link;
 use Spatie\Menu\Menu;
 
-abstract class Navigation {
+abstract class NavBuilder {
     /*
     |--------------------------------------------------------------------------
     | Navigation methods
@@ -73,7 +73,7 @@ abstract class Navigation {
      * @param Illuminate\Support\Collection $resources
      * @return string
      */
-    public static function resourcesForNavigation(Collection $resources)
+    public static function withResources(Collection $resources)
     {
         //New menu with the brand
         $menu = Menu::new()
@@ -97,6 +97,20 @@ abstract class Navigation {
         }
 
         return $menu->add(Self::logout());
+    }
+
+    /**
+     * Get all the resources from the project
+     *
+     * @param Illuminate\Support\Collection $resources
+     * @return string
+     */
+    public static function withoutResources()
+    {
+        //New menu with the brand
+        return Menu::new()
+            ->add(static::brand())
+            ->add(Self::logout());
     }
 
     /*
