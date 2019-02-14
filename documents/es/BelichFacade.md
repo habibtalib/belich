@@ -154,7 +154,7 @@ Es la url base de la aplicación. Se obtiene del archivo de configuración: `.\c
 
 Nos devuelve la versión action del package.
 
-## Métodos para Blade 
+## Métodos para Blade (generando HTML)
 
 También podemos generar helpers especializados para nuestras plantillas Blade. A veces necesitamos generar código HTML en Blade, y no queremos añadir código PHP a nuestro template. Para ello, se han desarrollado algunos helpers para ser utilizados de forma directa.
 
@@ -163,26 +163,41 @@ Normalmente, estos métodos son utilizados por el sistema, pero pueden ser útil
 La sintaxis para utilizar estos helpers será:
 
 ~~~
-Belich::blade()->method()
+Belich::html()->method()
 ~~~
 
 >Si olvidamos añadir el método `blade()`, dará error.
 
 Los métodos soportados son:
 
-#### renderOrderedLink()
+#### tableLink()
 
-Igual que la anterior, pero añade dos nuevos parámetros:
+Genera un enlace para el campo `th` de una tabla, con capacidad para ordenar por columnas. Para ello, añade dos parámetros a la url:
 
 - **order**: que será el campo de la base de datos por el que queremos ordenar la lista.
 - **direction**: aceptando los parámetros `ASC` y `DESC`.
 
-Quedando algo así:
+Si el sistema, dispone de más variables (y estas están autorizadas), las añade a la url, junto con `order` y `direction`. Quedando algo así:
 
 `http://www.url.com/?perPage=20&page=2&relationship=billings&order=users&direction=DESC`
 
 ~~~
-Belich::blade()->renderOrderedLink()
+Belich::html()->tableLink()
 ~~~
 
 Es utilizado por el sistema en la vista `index`.
+
+>Si necesitamos autorizar más variables, es aconsejable leer la documentación sobre el archivo de configuración, donde se explica como hacerlo.
+
+#### resolve()
+
+Modifica el valor de un campo al mostrarlo en la vista. Se utiliza, cuando este campo tiene una relación (relationship), o utiliza los métodos `displayUsing` o `resolveUsing`. 
+
+Utiliza la siguiente sintaxis:
+
+~~~
+Belich::html()->resolve($field, $model)
+~~~
+
+Es utilizado por el sistema en las vistas `index` y `show`.
+

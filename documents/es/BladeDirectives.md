@@ -63,16 +63,6 @@ Que a su vez, se renderizará en:
 
 La directiva, buscará la extensión del archivo (.js o .css) y en función de cual sea, renderizará el código de una forma u otra.
 
-#### resolveField
-
-Modifica el valor de un campo, en la vista, cuando este campo tiene una relación, o utiliza los métodos `displayUsing` o `resolveUsing`. Utiliza la siguiente sintaxis:
-
-~~~
-@resolveField($field, $model)
-~~~
-
-Es utilizado por el sistema en las vistas `index` y `show`.
-
 #### trans
 
 Al igual que la directiva `@mix()`, está pensada para cargar el archivo de idioma de la carpeta  `vendor/belich`. 

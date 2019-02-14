@@ -36,24 +36,3 @@ Blade::directive('mix', function ($arguments) {
 Blade::directive('trans', function ($arguments) {
     return e(trans('belich::' . str_replace("'", '', $arguments)));
 });
-
-/**
- * Create a @resolveField directive for the package
- *
- * @return string
- */
-Blade::directive('resolveField', function ($arguments) {
-
-    list($field, $data) = explode(',', $arguments.',');
-
-    return "<?php echo namespace_path('Fields\\FieldResolve')::resolveField($field, $data); ?>";
-});
-
-/**
- * Create a @orderedLink directive for the package
- *
- * @return string
- */
-Blade::directive('orderedLink', function ($arguments) {
-    return "<?php echo namespace_path('Core\\Html')::orderedLink($arguments); ?>";
-});
