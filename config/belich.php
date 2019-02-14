@@ -17,13 +17,10 @@ return [
     //Application url
     'url'  => env('APP_URL', '/'),
 
-    //Fontawesome
-    'fontAwesome' => true,
-
     /*
     |--------------------------------------------------------------------------
     | Navbar options
-    | Options: 'top' or 'full'
+    | Options: 'top' or 'sidebar'
     |--------------------------------------------------------------------------
     */
     'navbar'  => 'top',

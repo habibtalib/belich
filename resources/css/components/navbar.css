@@ -74,7 +74,8 @@ nav#navbar ul ul ul li {
 
 /* Change this in order to change the Dropdown symbol */
 li > a:after {
-    content:  ' \f0d7';
+    content: '\f0d7';
+    margin-left: .3rem;
     font-family: 'Font Awesome 5 Free';
     @apply font-bold;
 }
