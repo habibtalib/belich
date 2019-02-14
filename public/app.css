@@ -343,42 +343,8 @@ nav#navbar ul {
   position: relative;
 }
 
-nav#navbar li.brand {
-  display: inline-block;
-  font-weight: 600;
-  text-align: center;
-  margin-right: -4px;
-  background-color: var(--navbar-brand-bg);
-  width: var(--navigation-width);
-}
-
-nav#navbar li.brand:hover {
-  background-color: var(--navbar-brand-bg);
-}
-
-nav#navbar li.brand a:hover {
-  color: var(--navbar-brand-link-hover);
-}
-
-nav#navbar li.brand .collapse {
-  display: none;
-}
-
 nav#navbar ul li {
   display: inline-block;
-  background-color: var(--navbar-bg);
-}
-
-nav#navbar ul li:hover {
-  background-color: var(--navbar-bg-hover);
-}
-
-nav#navbar ul li.logout {
-  background-color: var(--navbar-logout-bg);
-}
-
-nav#navbar ul li.logout:hover {
-  background-color: var(--navbar-logout-bg-hover);
 }
 
 nav#navbar a {
@@ -391,7 +357,33 @@ nav#navbar a {
   font-size: 1rem;
   line-height: 1.25;
   text-decoration: none;
-  color: var(--navbar-link);
+}
+
+/*nav#navbar li.brand {
+    @apply inline-block font-semibold text-center;
+    margin-right: -4px;
+    background-color: var(--navbar-brand-bg);
+    width: var(--navigation-width);
+}
+
+nav#navbar li.brand:hover {
+    background-color: var(--navbar-brand-bg);
+}
+
+nav#navbar li.brand a:hover {
+    color: var(--navbar-brand-link-hover);
+}
+
+nav#navbar li.brand .collapse {
+    @apply hidden;
+}*/
+
+/*nav#navbar ul li.logout {
+    background-color: var(--navbar-logout-bg);
+}
+
+nav#navbar ul li.logout:hover {
+    background-color: var(--navbar-logout-bg-hover);
 }
 
 /* Hide Dropdowns by Default */

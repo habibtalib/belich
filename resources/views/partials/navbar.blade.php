@@ -2,7 +2,6 @@
 <nav id="navbar" class="h-12 bg-teal">
     {!!
         Belich::navbar()
-            ->setBrandName('hellow')
             ->get();
     !!}
 </nav>

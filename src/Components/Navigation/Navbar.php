@@ -5,6 +5,7 @@ namespace Daguilarm\Belich\Components\Navigation;
 use Daguilarm\Belich\Components\Navigation\NavbarConstructor;
 use Daguilarm\Belich\Components\Navigation\Traits\NavHtml;
 use Daguilarm\Belich\Components\Navigation\Traits\Operations;
+use Daguilarm\Belich\Components\Navigation\Traits\Settings;
 use Daguilarm\Belich\Core\Traits\System as Helpers;
 use Daguilarm\Belich\Facades\Belich;
 use Illuminate\Support\Collection;
@@ -15,7 +16,7 @@ use Spatie\Menu\Menu;
 
 class Navbar extends NavbarConstructor {
 
-    use NavHtml, Operations;
+    use NavHtml, Operations, Settings;
 
     /**
      * Initialize the constructor
@@ -52,9 +53,9 @@ class Navbar extends NavbarConstructor {
             //Grouped resources
             if($group) {
                 //Get the submenus from the resources
-                $submenu = $this->createLink($group, $submenu);
+                $submenu = $this->createLink($group, $submenu)->addParentClass($this->menuBackgroundHover);
                 //Add the submenu
-                $this->menu->submenu(Link::to('#', $group), $submenu);
+                $this->menu->submenu(Link::to('#', $group)->addClass($this->linkColor), $submenu);
 
             //Individual resources
             } else {
@@ -78,13 +79,6 @@ class Navbar extends NavbarConstructor {
         $this->menu = Menu::new()
             ->add($this->getBrand())
             ->add($this->getLogout());
-
-        return $this;
-    }
-
-    public function setBrandName($text)
-    {
-        $this->brandName = $text;
 
         return $this;
     }

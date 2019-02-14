@@ -22,9 +22,11 @@ trait NavHtml {
     public function getBrand()
     {
         $brandName = $this->brandName ?? Belich::name();
+        $css = $this->merge($this->brandCss, $this->lateralWidth, $this->brandBackground);
 
         return Link::to(Belich::url(), $brandName)
-            ->addParentClass('brand');
+            ->addParentClass($css)
+            ->addClass($this->brandLinkCss);
     }
 
     /**
@@ -34,11 +36,9 @@ trait NavHtml {
      */
     public static function getLogout()
     {
-        $text = trans('belich::buttons.base.logout');
-        $link = sprintf('<a href="%s" onclick="event.preventDefault();document.getElementById(\'dashboard-logout\').submit();">%s</a>', route('logout'), $text);
-        $form = sprintf('<form id="dashboard-logout" action="%s" method="POST" style="display: none;">%s</form>', route('logout'), csrf_field());
+        $loadView = view('belich::partials.settings');
 
-        return Html::raw($form . $link)->addParentClass('float-right logout');
+        return Html::raw($loadView)->addParentClass('float-right');
     }
 
     /*
@@ -60,12 +60,17 @@ trait NavHtml {
             ->map(function($value)  use ($menu) {
                 //Set the resource title
                 $title = $value['pluralLabel'] ?? $value['class'];
+                //Set the resource URL
+                $resourceUrl = Belich::url() . '/' . $value['resource'];
+                //Submenu class
+                $submenuClass = $this->merge($this->submenuBackground, $this->submenuBackgroundHover);
+
                 //Link for Submenu
                 if(!empty($menu)) {
-                    return $menu->link(Belich::url() . '/' . $value['resource'], $title);
+                    return $menu->add(Link::to($resourceUrl, $title)->addClass($this->linkColor))->addClass($submenuClass);
                 //Link for Menu
                 } else {
-                    $this->menu->link(Belich::url() . '/' . $value['resource'], $title);
+                    $this->menu->add(Link::to($resourceUrl, $title)->addClass($this->linkColor))->addClass($submenuClass);
                 }
             });
 
