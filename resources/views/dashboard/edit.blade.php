@@ -25,7 +25,7 @@
         {{-- Buttons --}}
         <div class="btn-container">
             <button id="button-form-edit" type="submit" class="btn btn-primary">
-                @icon('pen-square', 'belich::buttons.crud.update')
+                @icon('pen', 'belich::buttons.crud.update')
             </button>
         </div>
     </form>

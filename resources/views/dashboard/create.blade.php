@@ -15,7 +15,7 @@
         {{-- Buttons --}}
         <div class="btn-container">
             <button id="button-form-create" type="submit" class="btn btn-primary">
-                @icon('plus-square', 'belich::buttons.crud.create')
+                @icon('plus', 'belich::buttons.crud.create')
             </button>
         </div>
     </form>

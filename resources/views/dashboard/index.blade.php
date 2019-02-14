@@ -16,7 +16,7 @@
         {{-- Buttons --}}
         <div class="flex w-full justify-end">
             <a href="{{ Belich::actionRoute('create') }}" class="btn btn-secondary mr-2">
-                @icon('plus-square', 'belich::buttons.crud.create')
+                @icon('plus', 'belich::buttons.crud.create')
             </a>
         </div>
     </div>

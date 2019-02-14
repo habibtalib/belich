@@ -5,6 +5,15 @@
  *
  * @return string
  */
+Blade::directive('actionIcon', function ($arguments) {
+    return "<?php echo actionIcon($arguments); ?>";
+});
+
+/**
+ * Create a @icon directive
+ *
+ * @return string
+ */
 Blade::directive('icon', function ($arguments) {
     $list = explode(',', str_replace(['(',')',' ', "'"], '', $arguments));
     $text = isset($list[1]) ? trans($list[1]) : '';

@@ -36,10 +36,12 @@
  * @import "components/forms";
  */
  @import "vars.css";
+
  @import "components/actions.css";
  @import "components/base.css";
  @import "components/breadcrumbs.css";
  @import "components/buttons.css";
+ @import "components/icons.css";
  @import "components/form.css";
  @import "components/navbar.css";
  @import "components/pagination.css";

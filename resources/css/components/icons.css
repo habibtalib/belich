@@ -1,0 +1,4 @@
+.icon {
+    @apply text-sm;
+    opacity: .65;
+}

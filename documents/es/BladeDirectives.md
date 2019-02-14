@@ -39,6 +39,12 @@ icon('edit', 'Edit text')
 icon('edit', 'belich::file.fileText')
 ~~~
 
+Puede personalizarse el aspecto, a través de la clase css `.icon`.
+
+#### actionIcon
+
+Igual que `@icon`, pero no acepta texto. Pensado para los iconos de los botones de acción del `index`.
+
 #### mix
 
 Ideal para crear un enlace de hoja de estilos o de javascript. Está pensado para cuando queremos llamar un archivo **JS** o **CSS** dentro de la carpeta `vendor/belich`. 
