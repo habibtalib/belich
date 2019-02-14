@@ -1,2 +1,4 @@
 {{-- This section is segregate in case you want to customize --}}
-SIDEBAR
+<nav id="sidebar">
+    {!! Belich::sidebar() !!}
+</nav>

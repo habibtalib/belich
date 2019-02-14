@@ -3,6 +3,7 @@
 namespace Daguilarm\Belich\Core;
 
 use App\Belich\Navbar;
+use App\Belich\Sidebar;
 use Daguilarm\Belich\Components\Actions;
 use Daguilarm\Belich\Components\Breadcrumbs;
 use Daguilarm\Belich\Core\Helpers;
@@ -253,6 +254,15 @@ class Belich {
     */
     public function navbar()
     {
-        return Navbar::make($this->resourcesAll());
+        return class_exists('\App\Belich\Navbar')
+            ? Navbar::make($this->resourcesAll())
+            : abort(404, trans('belich::exceptions.no_class', ['class' => '\App\Belich\Navbar']));
+    }
+
+    public function sidebar()
+    {
+        return class_exists('\App\Belich\Sidebar')
+            ? Sidebar::make($this->resourcesAll())
+            : abort(404, trans('belich::exceptions.no_class', ['class' => '\App\Belich\Sidebar']));
     }
 }
