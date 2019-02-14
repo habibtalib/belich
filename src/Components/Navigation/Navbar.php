@@ -18,11 +18,12 @@ class Navbar extends NavBuilder {
      */
     public static function make(Collection $resources)
     {
-        //Generate the default navbar from the resources
-        if(config('belich.navbar') === 'top') {
-            return Parent::withResources($resources);
+        //Generate the navbar without resources
+        if(config('belich.navbar') === 'sidebar') {
+            return Parent::withoutResources();
         }
 
-        return Parent::withoutResources();
+        //Generate the default navbar with resources
+        return Parent::withResources($resources);
     }
 }
