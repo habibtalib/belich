@@ -12,7 +12,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 use Daguilarm\Belich\Facades\Credentials;
 
-class Belich extends Html {
+class Belich {
 
     use Helpers;
 

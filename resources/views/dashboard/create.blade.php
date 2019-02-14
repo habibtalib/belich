@@ -4,7 +4,7 @@
     {{-- Breadcrumbs --}}
     @include('belich::partials.breadcrumbs')
 
-    <form method="POST" name="form-{{ $request->name }}-create" id="form-{{ $request->name }}-create" action="{{ Belich::blade()->toRoute('store') }}" class="form-container">
+    <form method="POST" name="form-{{ $request->name }}-create" id="form-{{ $request->name }}-create" action="{{ toRoute('store') }}" class="form-container">
         @csrf
 
         {{-- Include the fields by type --}}
@@ -14,7 +14,9 @@
 
         {{-- Buttons --}}
         <div class="btn-container">
-            <button id="button-form-create" type="submit" class="btn btn-primary">@icon('plus-square', 'belich::buttons.crud.create')</button>
+            <button id="button-form-create" type="submit" class="btn btn-primary">
+                @icon('plus-square', 'belich::buttons.crud.create')
+            </button>
         </div>
     </form>
 @endsection

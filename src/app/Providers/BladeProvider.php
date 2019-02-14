@@ -5,18 +5,11 @@
  *
  * @return string
  */
-Blade::directive('icon', function ($expression) {
-    $list = explode(',', str_replace(['(',')',' ', "'"], '', $expression));
+Blade::directive('icon', function ($arguments) {
+    $list = explode(',', str_replace(['(',')',' ', "'"], '', $arguments));
+    $text = isset($list[1]) ? trans($list[1]) : '';
 
-    if(count($list) === 2) {
-        $icon = $list[0];
-        $text = trans($list[1]);
-    } else {
-        $icon = $list[0];
-        $text = '';
-    }
-
-    return "<?php echo icon('$icon', '$text'); ?>";
+    return "<?php echo icon('$list[0]', '$text'); ?>";
 });
 
 /**
@@ -24,16 +17,15 @@ Blade::directive('icon', function ($expression) {
  *
  * @return string
  */
-Blade::directive('mix', function ($expression) {
-    if (ends_with($expression, ".css'")) {
-        return '<link rel="stylesheet" href="<?php echo mix('.$expression.', \'vendor/belich\') ?>">';
+Blade::directive('mix', function ($arguments) {
+    if (ends_with($arguments, ".css'")) {
+        return '<link rel="stylesheet" href="<?php echo mix('.$arguments.', \'vendor/belich\') ?>">';
+    }
+    if (ends_with($arguments, ".js'")) {
+        return '<script src="<?php echo mix('.$arguments.', \'vendor/belich\') ?>"></script>';
     }
 
-    if (ends_with($expression, ".js'")) {
-        return '<script src="<?php echo mix('.$expression.', \'vendor/belich\') ?>"></script>';
-    }
-
-    return "<?php echo mix({$expression}); ?>";
+    return "<?php echo mix({$arguments}); ?>";
 });
 
 /**
@@ -41,6 +33,27 @@ Blade::directive('mix', function ($expression) {
  *
  * @return string
  */
-Blade::directive('trans', function ($expression) {
-    return e(trans('belich::' . str_replace("'", '', $expression)));
+Blade::directive('trans', function ($arguments) {
+    return e(trans('belich::' . str_replace("'", '', $arguments)));
+});
+
+/**
+ * Create a @resolveField directive for the package
+ *
+ * @return string
+ */
+Blade::directive('resolveField', function ($arguments) {
+
+    list($field, $data) = explode(',', $arguments.',');
+
+    return "<?php echo namespace_path('Fields\\FieldResolve')::resolveField($field, $data); ?>";
+});
+
+/**
+ * Create a @orderedLink directive for the package
+ *
+ * @return string
+ */
+Blade::directive('orderedLink', function ($arguments) {
+    return "<?php echo namespace_path('Core\\Html')::orderedLink($arguments); ?>";
 });

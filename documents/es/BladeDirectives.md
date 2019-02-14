@@ -2,7 +2,7 @@
 
 Belich incluye, una serie de directivas para Blade, para facilitar la integración del package en Blade.
 
-#### icon()
+#### icon
 
 Esta directiva, nos permite añadir un icono de [Fontawesome](https://origin.fontawesome.com/) de forma rápida. A modo de ejemplo:
 
@@ -39,7 +39,7 @@ icon('edit', 'Edit text')
 icon('edit', 'belich::file.fileText')
 ~~~
 
-#### mix()
+#### mix
 
 Ideal para crear un enlace de hoja de estilos o de javascript. Está pensado para cuando queremos llamar un archivo **JS** o **CSS** dentro de la carpeta `vendor/belich`. 
 
@@ -63,7 +63,17 @@ Que a su vez, se renderizará en:
 
 La directiva, buscará la extensión del archivo (.js o .css) y en función de cual sea, renderizará el código de una forma u otra.
 
-#### trans()
+#### resolveField
+
+Modifica el valor de un campo, en la vista, cuando este campo tiene una relación, o utiliza los métodos `displayUsing` o `resolveUsing`. Utiliza la siguiente sintaxis:
+
+~~~
+@resolveField($field, $model)
+~~~
+
+Es utilizado por el sistema en las vistas `index` y `show`.
+
+#### trans
 
 Al igual que la directiva `@mix()`, está pensada para cargar el archivo de idioma de la carpeta  `vendor/belich`. 
 

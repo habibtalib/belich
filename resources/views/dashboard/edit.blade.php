@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <form method="POST" name="form-{{ $request->name }}-edit" id="form-{{ $request->name }}-edit" action="{{ Belich::blade()->toRoute('update') }}" class="form-container">
+    <form method="POST" name="form-{{ $request->name }}-edit" id="form-{{ $request->name }}-edit" action="{{ toRoute('update') }}" class="form-container">
         @csrf
         @method('PATCH')
 
@@ -24,7 +24,9 @@
 
         {{-- Buttons --}}
         <div class="btn-container">
-            <button id="button-form-edit" type="submit" class="btn btn-primary">@icon('pen-square', 'belich::buttons.crud.update')</button>
+            <button id="button-form-edit" type="submit" class="btn btn-primary">
+                @icon('pen-square', 'belich::buttons.crud.update')
+            </button>
         </div>
     </form>
 @endsection

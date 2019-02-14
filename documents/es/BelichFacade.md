@@ -186,31 +186,3 @@ Belich::blade()->renderOrderedLink()
 ~~~
 
 Es utilizado por el sistema en la vista `index`.
-
-#### resolveField()
-
-Modifica el valor de un campo, en la vista, cuando este campo tiene una relación, o utiliza los métodos `displayUsing` o `resolveUsing`. Utiliza la siguiente sintaxis:
-
-~~~
-Belich::blade()->resolveField($field, $model)
-~~~
-
-Es utilizado por el sistema en las vistas `index` y `show`.
-
-#### toRoute()
-
-Utilizado en los formularios de las vistas `edit` y `create`, para generar rápidamente las urls (a partir de rutas) del campo `action`.
-
-El ejemplo utilizado por la vista create:
-
-~~~
-<form method="POST" action="{{ Belich::blade()->toRoute('store') }}">
-~~~
-
-En el caso de la vista `edit`, sería:
-
-~~~
-<form method="POST" action="{{ Belich::blade()->toRoute('update') }}">
-~~~
-
-Obteniendo automáticamente el identificador del recurso (ID), y generando la url a partir de él.

@@ -4,41 +4,14 @@ namespace Daguilarm\Belich\Core;
 
 use Illuminate\Support\Collection;
 
-abstract class Html {
+class Html {
 
     /** @var bool */
-    protected $allowedParameters = [
+    protected static $allowedParameters = [
         'direction',
         'orderBy',
         'page'
     ];
-
-    /** @var bool */
-    protected $toBlade = false;
-
-    /**
-     * Blade constructor
-     *
-     * @return this
-     */
-    public function blade()
-    {
-        $this->toBlade = true;
-
-        return $this;
-    }
-
-    /**
-     * Allowed url parameters
-     *
-     * @return array
-     */
-    private function allowedUrlParameters()
-    {
-        return config('belich.allowedUrlParameters')
-            ? array_merge($this->allowedParameters, config('belich.allowedUrlParameters'))
-            : $this->allowedParameters;
-    }
 
     /**
      * Generate the link with all the parameters for the table header
@@ -47,54 +20,17 @@ abstract class Html {
      *
      * @return string
      */
-    public function renderOrderedLink(object $field) : string
+    public static function orderedLink(object $field) : string
     {
-        if(!$this->toBlade) {
-            return null;
-        }
-
         //Filter if the attribute is a relationship or is not sortable
         if(is_array($field->attribute) || $field->sortable === false) {
             return $field->label;
         }
 
         //Get url parameters
-        $parameters = $this->getUrlParameters($field);
+        $parameters = static::getUrlParameters($field);
 
         return sprintf('<a href="%s?%s">%s</a>', url()->current(), $parameters, $field->label);
-    }
-
-    /**
-     * Resolve field values for: relationship, displayUsing and resolveUsing
-     * Shorthand for blade
-     *
-     * @param  Daguilarm\Belich\Fields\Field $attribute
-     * @param  object $data
-     * @return string
-     */
-    public function resolveField(object $field, object $data = null) : string
-    {
-        if(!$this->toBlade) {
-            return null;
-        }
-
-        return \Daguilarm\Belich\Fields\FieldResolve::resolveField($field, $data);
-    }
-
-    /**
-     * Generate the form route for the action attribute
-     *
-     * @param string $redirectTo ['index', 'edit', 'update', 'show']
-     * @return string
-     */
-    public function toRoute(string $redirectTo) : string
-    {
-        $route = sprintf('%s.%s.%s', Helpers::pathName(), Helpers::resource(), $redirectTo);
-        $id = Helpers::resourceId() ?? 0;
-
-        return ($id > 0)
-            ? route($route, $id)
-            : route($route);
     }
 
     /*
@@ -104,18 +40,30 @@ abstract class Html {
     */
 
     /**
+     * Allowed url parameters
+     *
+     * @return array
+     */
+    private static function allowedUrlParameters()
+    {
+        return config('belich.allowedUrlParameters')
+            ? array_merge(static::$allowedParameters, config('belich.allowedUrlParameters'))
+            : static::$allowedParameters;
+    }
+
+    /**
      * Get all the url parameters
      *
      * @param object $field
      * @return string
      */
-    private function getUrlParameters(object $field) : string
+    private static function getUrlParameters(object $field) : string
     {
         //Get the url parameters
         $parameters = collect(request()->query())
             //Only the allowed parameters
             ->filter(function($value, $key) {
-                return in_array($key, $this->allowedUrlParameters());
+                return in_array($key, static::allowedUrlParameters());
             })
             ->unique()
             ->map(function($value, $key) use ($field) {
@@ -138,10 +86,10 @@ abstract class Html {
             });
 
         //Set the default parameters values for the urls
-        $parameters = $this->setUrlParametersDefaultValues($field, $parameters);
+        $parameters = static::setUrlParametersDefaultValues($field, $parameters);
 
         //Serialize the parameters
-        return $this->setUrlParametersSerialized($parameters);
+        return static::setUrlParametersSerialized($parameters);
     }
 
     /**
@@ -151,7 +99,7 @@ abstract class Html {
      * @param Illuminate\Support\Collection $parameters
      * @return Illuminate\Support\Collection
      */
-    private function setUrlParametersDefaultValues(object $field, Collection $parameters) : Collection
+    private static function setUrlParametersDefaultValues(object $field, Collection $parameters) : Collection
     {
         if(!$parameters->get('orderBy')) {
             $parameters->put('orderBy', $field->attribute);
@@ -170,7 +118,7 @@ abstract class Html {
      * @param Illuminate\Support\Collection $parameters
      * @return string
      */
-    private function setUrlParametersSerialized(Collection $parameters) : string
+    private static function setUrlParametersSerialized(Collection $parameters) : string
     {
         return $parameters
             ->map(function($value, $key) {
