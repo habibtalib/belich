@@ -3,10 +3,6 @@
 namespace App\Belich;
 
 use Daguilarm\Belich\Components\Navigation\Navbar as BaseNavbar;
-use Illuminate\Support\Collection;
-use Spatie\Menu\Html;
-use Spatie\Menu\Link;
-use Spatie\Menu\Menu;
 
 class Navbar extends BaseNavbar {
 

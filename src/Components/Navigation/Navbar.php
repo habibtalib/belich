@@ -6,11 +6,7 @@ use Daguilarm\Belich\Components\Navigation\NavbarConstructor;
 use Daguilarm\Belich\Components\Navigation\Traits\NavHtml;
 use Daguilarm\Belich\Components\Navigation\Traits\Operations;
 use Daguilarm\Belich\Components\Navigation\Traits\Settings;
-use Daguilarm\Belich\Core\Traits\System as Helpers;
-use Daguilarm\Belich\Facades\Belich;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
-use Spatie\Menu\Html;
 use Spatie\Menu\Link;
 use Spatie\Menu\Menu;
 
@@ -45,23 +41,32 @@ class Navbar extends NavbarConstructor {
         $this->menu = Menu::new()->add($this->getBrand());
 
         //Create the groups and subgroups
-        collect($this->getGroups())->map(function($group) {
-            //Set default variables for the menu
-            $linkTitle = $group->get('name');
-            $linkUrl = $group->get('hasGroup') === true ? '#' : $this->resourceUrl($group->get('resource'));
+        collect($this->getGroups())
+            ->map(function($group) {
+                //Set default variables for the menu
+                list($linkTitle, $linkTitleWithIcon, $linkUrl) = $this->getLinkParameters($group);
 
-            //Create a grouped menu
-            if($group->get('hasGroup') === true) {
-                //First create the submenu
-                $submenu = $this->createSubMenus($group->get('name'), Menu::new());
-                $groupMenu = $linkTitle . $this->getDropdownIcon();
-                //Now add the submenu to the parent menu
-                $this->menu->submenu(Link::to($linkUrl, $groupMenu)->addClass($this->menuCss())->addClass($this->linkColor), $submenu)->addParentClass($this->menuBackgroundActive);
-            //Individual link (no grouped link)
-            } else {
-                $this->menu->add(Link::to($linkUrl, $linkTitle)->addClass($this->linkColor)->addParentClass($this->menuCss()));
-            }
-        });
+                //Create a grouped menu
+                if($group->get('hasGroup') === true) {
+                    //First create the submenu
+                    $submenu = $this->createSubMenus($group->get('name'), Menu::new());
+                    //Now create the parent menu link
+                    $menuLink = Link::to($linkUrl, $linkTitleWithIcon)->addClass($this->menuCss())
+                        ->addClass($this->linkColor);
+                    //And now add the submenu to the parent menu
+                    $this->menu->submenu($menuLink, $submenu)
+                        ->addParentClass($this->menuBackgroundActive);
+
+                //Individual link (no grouped link)
+                } else {
+                    //Generate the "no grouped link"
+                    $noGroupedLink = Link::to($linkUrl, $linkTitle)
+                        ->addClass($this->linkColor)
+                        ->addParentClass($this->menuCss());
+                    //Add to the menu
+                    $this->menu->add($noGroupedLink);
+                }
+            });
 
         //Add the logout
         $this->menu->add($this->getLogout());
@@ -82,5 +87,26 @@ class Navbar extends NavbarConstructor {
             ->add($this->getLogout());
 
         return $this;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Navigation helpers
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Get the parameters for a menu link
+     *
+     * @param Collection $group
+     * @return string
+     */
+    public function getLinkParameters(Collection $group) : array
+    {
+        return [
+            $group->get('name'),
+            $group->get('name') . $this->getDropdownIcon(),
+            $group->get('hasGroup') === true ? '#' : $this->resourceUrl($group->get('resource')),
+        ];
     }
 }
