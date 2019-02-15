@@ -17,33 +17,6 @@ nav#navbar a {
     @apply block h-12 px-6 py-4 text-base leading-tight no-underline;
 }
 
-/*nav#navbar li.brand {
-    @apply inline-block font-semibold text-center;
-    margin-right: -4px;
-    background-color: var(--navbar-brand-bg);
-    width: var(--navigation-width);
-}
-
-nav#navbar li.brand:hover {
-    background-color: var(--navbar-brand-bg);
-}
-
-nav#navbar li.brand a:hover {
-    color: var(--navbar-brand-link-hover);
-}
-
-nav#navbar li.brand .collapse {
-    @apply hidden;
-}*/
-
-/*nav#navbar ul li.logout {
-    background-color: var(--navbar-logout-bg);
-}
-
-nav#navbar ul li.logout:hover {
-    background-color: var(--navbar-logout-bg-hover);
-}
-
 /* Hide Dropdowns by Default */
 nav#navbar ul ul {
     @apply hidden absolute w-48 h-12/* the height of the main nav */
@@ -64,23 +37,4 @@ nav#navbar ul ul ul li {
     @apply relative;
     top: -3rem;
     left: 12rem;
-}
-
-/* Change this in order to change the Dropdown symbol */
-li > a:after {
-    content: '\f0d7';
-    margin-left: .3rem;
-    font-family: 'Font Awesome 5 Free';
-    @apply font-bold;
-}
-
-li > a:only-child:after {
-    content: '';
-}
-
-/* Change this in order to change the logout symbol */
-li.logout a:before {
-    content:  ' \f2f5';
-    font-family: 'Font Awesome 5 Free';
-    @apply font-bold mr-1;
 }

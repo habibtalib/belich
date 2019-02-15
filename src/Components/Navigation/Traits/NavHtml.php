@@ -46,37 +46,54 @@ trait NavHtml {
     | Methods to generate links
     |--------------------------------------------------------------------------
     */
-    /**
-     * Get the navigation base link (grouped or individual)
-     *
-     * @param string $group
-     * @param Spatie\Menu\Menu $menu
-     * @return string
-     */
-    public function createLink($group = null, $menu = null)
+    public function createSubMenus($group, $submenu)
     {
-        $result = $this->getSubgroups($this->resources)
+        return $this->getSubgroups($this->resources)
             ->where('group', $group)
-            ->map(function($value)  use ($menu) {
-                //Set the resource title
-                $title = $value['pluralLabel'] ?? $value['class'];
-                //Set the resource URL
-                $resourceUrl = Belich::url() . '/' . $value['resource'];
-                //Submenu class
-                $submenuClass = $this->merge($this->submenuBackground, $this->submenuBackgroundHover);
+            ->map(function($value) use ($submenu) {
+                //Set default variables for the menu
+                $linkTitle = $value['pluralLabel'] ?? stringPluralUpper($value['class']);
+                $linkUrl = $this->resourceUrl($value['resource']);
 
-                //Link for Submenu
-                if(!empty($menu)) {
-                    return $menu->add(Link::to($resourceUrl, $title)->addClass($this->linkColor))->addClass($submenuClass);
-                //Link for Menu
-                } else {
-                    $this->menu->add(Link::to($resourceUrl, $title)->addClass($this->linkColor))->addClass($submenuClass);
-                }
-            });
-
-        //Return the submenu link
-        if(!empty($menu)) {
-            return $result->first() ?? \Spatie\Menu\Menu::new();
-        }
+                return $submenu->add(Link::to($linkUrl, $linkTitle)->addClass($this->linkColor));
+            })
+            ->first();
     }
+    // /**
+    //  * Get the navigation base link (grouped or individual)
+    //  *
+    //  * @param string $group
+    //  * @param Spatie\Menu\Menu $menu
+    //  * @return string
+    //  */
+    // public function createLink($group, $menu = null)
+    // {
+    //     $result = $this->getSubgroups($this->resources)
+    //         ->map(function($value)  use ($menu) {
+    //             //Set the resource title
+    //             $title = $value['pluralLabel'] ?? $value['class'];
+    //             //Set the resource URL
+    //             $resourceUrl = Belich::url() . '/' . $value['resource'];
+    //             //Submenu class
+    //             $submenuClass = $this->merge($this->submenuBackground, $this->submenuBackgroundHover);
+
+    //             if($value['group']) {
+    //                 //Link for Submenu
+    //                 if(!empty($menu)) {
+    //                     return $menu->add(Link::to($resourceUrl, $title)->addClass($this->linkColor))->addClass($submenuClass);
+    //                 //Link for Menu
+    //                 } else {
+    //                     $this->menu->add(Link::to($resourceUrl, $title)->addClass($this->linkColor))->addClass($submenuClass);
+    //                 }
+    //             //No group result
+    //             } else {
+    //                 $this->menu->add(Link::to($resourceUrl, $title)->addClass($this->linkColor));
+    //             }
+    //         });
+
+    //     //Return the submenu link
+    //     if(!empty($menu)) {
+    //         return $result->first() ?? \Spatie\Menu\Menu::new();
+    //     }
+    // }
 }

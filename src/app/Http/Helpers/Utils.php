@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 */
 
 /**
- * Get all the resource names from folder
+ * Set the string into migration format
  *
  * @return string
  */
@@ -21,7 +21,19 @@ if (!function_exists('stringPluralLower')) {
 }
 
 /**
- * Get all the resource names from folder
+ * Set string into class name format
+ *
+ * @return string
+ */
+if (!function_exists('stringPluralUpper')) {
+    function stringPluralUpper($string) : string
+    {
+        return Str::plural(ucfirst($string));
+    }
+}
+
+/**
+ * Set string into model format
  *
  * @return string
  */

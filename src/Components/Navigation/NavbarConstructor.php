@@ -7,6 +7,9 @@ use Illuminate\Support\Collection;
 abstract class NavbarConstructor {
 
     /** @var string */
+    protected $arrowDownIcon = 'caret-down';
+
+    /** @var string */
     protected $linkColor = 'text-white';
 
     /** @var string */

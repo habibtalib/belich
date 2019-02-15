@@ -44,24 +44,32 @@ class Navbar extends NavbarConstructor {
         //New menu with the brand
         $this->menu = Menu::new()->add($this->getBrand());
 
-        //Get the menu from the groups
-        foreach($this->getGroups() as $group) {
+        collect($this->getGroups())->map(function($group) {
+            //Set default variables for the menu
+            $linkTitle = $group->get('name');
+            $linkUrl = $group->get('hasGroup') === true ? '#' : $this->resourceUrl($group->get('resource'));
 
-            //Generate new submenu for each group
-            $submenu = Menu::new();
-
-            //Grouped resources
-            if($group) {
-                //Get the submenus from the resources
-                $submenu = $this->createLink($group, $submenu)->addParentClass($this->menuBackgroundHover);
-                //Add the submenu
-                $this->menu->submenu(Link::to('#', $group)->addClass($this->linkColor), $submenu);
-
-            //Individual resources
+            if($group->get('hasGroup') === true) {
+                $submenu = $this->createSubMenus($group->get('name'), Menu::new());
+                $this->menu->submenu(Link::to($linkUrl, $linkTitle)->addClass($this->linkColor), $submenu);
             } else {
-                $this->menu->add($this->createLink($group = null));
+                $this->menu->add(Link::to($linkUrl, $linkTitle)->addClass($this->linkColor));
             }
-        }
+        });
+        // //Get the menu from the groups
+        // foreach($this->getGroups() as $group) {
+
+        //     //Generate new submenu for each group
+        //     $submenu = Menu::new();
+
+        //     //Grouped resources
+        //     if($group) {
+        //         //Get the submenus from the resources
+        //         $submenu = $this->createLink($group, $submenu)->addParentClass($this->menuBackgroundHover);
+        //         //Add the menu
+        //         $this->menu->submenu(Link::to('#', $group . ' ' . icon($this->arrowDownIcon))->addClass($this->linkColor), $submenu);
+        //     }
+        // }
 
         $this->menu->add($this->getLogout());
 

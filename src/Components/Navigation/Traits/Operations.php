@@ -2,6 +2,8 @@
 
 namespace Daguilarm\Belich\Components\Navigation\Traits;
 
+use Daguilarm\Belich\Facades\Belich;
+
 trait Operations {
     /*
     |--------------------------------------------------------------------------
@@ -15,12 +17,17 @@ trait Operations {
      */
     public function getGroups()
     {
-         return collect($this->resources)
-             ->map(function ($item, $key) {
-                 return $item['group'];
-             })
-             ->unique()
-             ->values();
+        return collect($this->resources)
+            ->map(function ($item, $key) {
+                return collect([
+                    'hasGroup' => $item['group'] ? true : false,
+                    'name'     => $item['group'] ?? $item['pluralLabel'] ?? stringPluralUpper($item['class']),
+                    'resource' => $item['resource']
+                ]);
+            })
+            ->filter()
+            ->unique()
+            ->values();
     }
 
     /**
@@ -42,14 +49,26 @@ trait Operations {
     | Operations
     |--------------------------------------------------------------------------
     */
+
+    /**
+     * Merge arrays to string
+     *
+     * @param array $args
+     * @return string
+     */
     public function merge(...$args)
     {
         return implode(' ', $args);
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Css
-    |--------------------------------------------------------------------------
-    */
+    /**
+     * Set the url for a resource
+     *
+     * @param array $args
+     * @return string
+     */
+    public function resourceUrl($resource)
+    {
+        return Belich::url() . '/' . $resource;
+    }
 }
