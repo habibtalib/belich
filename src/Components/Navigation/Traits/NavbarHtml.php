@@ -101,8 +101,7 @@ trait NavbarHtml {
         $dropdownLinks = $this->getSubmenuLinks($resources);
 
         $this->menu
-            ->submenu($dropdown, $dropdownLinks)
-            ->addParentClass($this->menuBackgroundActive);
+            ->submenu($dropdown, $dropdownLinks);
     }
 
     /**

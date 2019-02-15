@@ -39,9 +39,6 @@ abstract class NavbarConstructor {
     /** @var string */
     protected $menuBackgroundHover = 'hover:bg-teal-dark';
 
-    /** @var string */
-    protected $menuBackgroundActive = 'active:bg-teal-dark';
-
     /** @var Illuminate\Support\Collection */
     protected $resources;
 
