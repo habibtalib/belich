@@ -6,7 +6,7 @@ nav#navbar {
 }
 
 nav#navbar ul {
-    @apply p-0 m-0 list-reset z-10;
+    @apply p-0 m-0 list-reset shadow z-10;
 }
 
 nav#navbar ul li {
