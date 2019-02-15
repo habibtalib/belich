@@ -56,21 +56,8 @@ class Navbar extends NavbarConstructor {
                 $this->menu->add(Link::to($linkUrl, $linkTitle)->addClass($this->linkColor));
             }
         });
-        // //Get the menu from the groups
-        // foreach($this->getGroups() as $group) {
 
-        //     //Generate new submenu for each group
-        //     $submenu = Menu::new();
-
-        //     //Grouped resources
-        //     if($group) {
-        //         //Get the submenus from the resources
-        //         $submenu = $this->createLink($group, $submenu)->addParentClass($this->menuBackgroundHover);
-        //         //Add the menu
-        //         $this->menu->submenu(Link::to('#', $group . ' ' . icon($this->arrowDownIcon))->addClass($this->linkColor), $submenu);
-        //     }
-        // }
-
+        //Add the logout
         $this->menu->add($this->getLogout());
 
         return $this;
