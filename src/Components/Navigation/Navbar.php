@@ -44,16 +44,19 @@ class Navbar extends NavbarConstructor {
         //New menu with the brand
         $this->menu = Menu::new()->add($this->getBrand());
 
+        //Create the groups and subgroups
         collect($this->getGroups())->map(function($group) {
             //Set default variables for the menu
             $linkTitle = $group->get('name');
             $linkUrl = $group->get('hasGroup') === true ? '#' : $this->resourceUrl($group->get('resource'));
 
+            //Create a grouped menu
             if($group->get('hasGroup') === true) {
                 $submenu = $this->createSubMenus($group->get('name'), Menu::new());
-                $this->menu->submenu(Link::to($linkUrl, $linkTitle)->addClass($this->linkColor), $submenu);
+                $this->menu->submenu(Link::to($linkUrl, $linkTitle)->addClass($this->menuCss())->addClass($this->linkColor), $submenu);
+            //Individual link
             } else {
-                $this->menu->add(Link::to($linkUrl, $linkTitle)->addClass($this->linkColor));
+                $this->menu->add(Link::to($linkUrl, $linkTitle)->addClass($this->linkColor)->addParentClass($this->menuCss()));
             }
         });
 

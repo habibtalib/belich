@@ -55,7 +55,7 @@ trait NavHtml {
                 $linkTitle = $value['pluralLabel'] ?? stringPluralUpper($value['class']);
                 $linkUrl = $this->resourceUrl($value['resource']);
                 //Get the submenu
-                return $submenu->add(Link::to($linkUrl, $linkTitle)->addClass($this->linkColor));
+                return $submenu->add(Link::to($linkUrl, $linkTitle)->addClass($this->linkColor))->addClass($this->submenuCss());
             })
             ->first();
     }

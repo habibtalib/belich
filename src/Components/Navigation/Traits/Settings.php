@@ -8,9 +8,10 @@ trait Settings {
 
     /*
     |--------------------------------------------------------------------------
-    | Brand
+    | Settings
     |--------------------------------------------------------------------------
     */
+
     /**
      * Set the callback for the settings
      *
@@ -28,5 +29,35 @@ trait Settings {
         return $this;
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Css
+    |--------------------------------------------------------------------------
+    */
 
+   /**
+    * Set the menu CSS
+    *
+    * @return $this
+    */
+    public function menuCss()
+    {
+        return $this->merge(
+            $this->menuBackground,
+            $this->menuBackgroundHover,
+        );
+    }
+
+    /**
+     * Set the submenu CSS
+     *
+     * @return $this
+     */
+    public function submenuCss()
+    {
+        return $this->merge(
+            $this->submenuBackground,
+            $this->submenuBackgroundHover,
+        );
+    }
 }
