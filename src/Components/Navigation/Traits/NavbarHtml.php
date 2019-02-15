@@ -19,9 +19,9 @@ trait NavbarHtml {
     /**
      * Generate the navbar brand
      *
-     * @return string
+     * @return Spatie\Menu\Link
      */
-    public function getBrand()
+    public function getBrand() : Link
     {
         $brandName = $this->brandName ?? Belich::name();
         $css = $this->merge(
@@ -38,9 +38,9 @@ trait NavbarHtml {
     /**
      * Generate logout link
      *
-     * @return string
+     * @return Spatie\Menu\Html
      */
-    public function getLogout()
+    public function getLogout() : Html
     {
         $loadView = view('belich::partials.logout');
         $css = $this->merge(
@@ -98,25 +98,32 @@ trait NavbarHtml {
         //Create dropdown link
         $dropdown = $this->getGroupedLink($parameters);
         //Add links to dropdown
-        $dropdownLinks = $this->getSubmenuLinks($resources);
-
+        $dropdownLinks = $this->getDropdownLinks($resources);
+        //Generate the dropdown
         $this->menu
             ->submenu($dropdown, $dropdownLinks);
     }
 
     /**
-     * Create submenu
+     * Create dropdown links
      *
      * @param Illuminate\Support\Collection $resources
-     * @return Spatie\Menu\Link
+     * @return Spatie\Menu\Menu
      */
-    public function getSubmenuLinks(Collection $resources) : Menu
+    public function getDropdownLinks(Collection $resources) : Menu
     {
+        //Create the new menu
         $submenu = Menu::new();
+        //Add links to the menu
         $resources->map(function($resources) use ($submenu) {
-            list($submenuLinkTitle, $submenuLinkTitleWithIcon, $submenuLinkUrl) = $this->getLinkParameters($resources);
-            $link = Link::to($submenuLinkUrl, $submenuLinkTitle)->addClass($this->menuCss())->addClass($this->linkColor);
-            $submenu->add($link);
+            //Links parameters
+            list($title, $icon, $url) = $this->getLinkParameters($resources);
+            //Populating the menu...
+            $submenu->add(
+                Link::to($url, $title)
+                    ->addClass($this->menuCss())
+                    ->addClass($this->linkColor)
+            );
         });
 
         return $submenu;
