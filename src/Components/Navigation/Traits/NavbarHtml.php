@@ -63,7 +63,9 @@ trait NavbarHtml {
     {
         return Link::to('#', $parameters[1])
             ->addClass($this->menuCss())
-            ->addClass($this->linkCss());
+            ->addClass($this->linkCss())
+            //Mark as parent
+            ->addClass('sidebar-parent');
     }
 
     /**
@@ -76,7 +78,9 @@ trait NavbarHtml {
     {
         $link = Link::to($parameters[2], $parameters[0])
             ->addClass($this->menuCss())
-            ->addClass($this->linkCss());
+            ->addClass($this->linkCss())
+            //Mark as parent
+            ->addClass('sidebar-parent');
 
         //Add the link in the menu
         $this->menu->add($link);
@@ -118,6 +122,8 @@ trait NavbarHtml {
                 Link::to($url, $title)
                     ->addClass($this->menuCss())
                     ->addClass($this->linkCss())
+                    //Mark as child
+                    ->addClass('sidebar-child')
             );
         });
 
