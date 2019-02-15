@@ -3,7 +3,6 @@
 namespace Daguilarm\Belich\Components\Navigation\Traits;
 
 use Illuminate\Support\Collection;
-use Spatie\Menu\Link;
 
 trait Helpers {
 

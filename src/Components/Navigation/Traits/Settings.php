@@ -20,9 +20,11 @@ trait Settings {
      */
     public function settings(\Closure $callback)
     {
-        foreach(call_user_func($callback) as $key => $value) {
-            if($value) {
-                $this->{$key} = $value;
+        if(is_callable($callback) && !empty($callback)) {
+            foreach(call_user_func($callback) as $key => $value) {
+                if($value) {
+                    $this->{$key} = $value;
+                }
             }
         }
 
