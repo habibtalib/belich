@@ -430,7 +430,9 @@ nav#navbar ul ul ul li {
 .pagination li.page-item a.page-link:hover {
   color: var(--pagination-link-hover);
 }
-nav#sidebar {
+nav#sidebar ul {
+  list-style: none;
+  padding: 0;
 }
 .table {
   width: 100%;
