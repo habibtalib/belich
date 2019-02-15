@@ -8,7 +8,6 @@ use Daguilarm\Belich\Components\Navigation\Traits\NavbarHtml;
 use Daguilarm\Belich\Components\Navigation\Traits\Operations;
 use Daguilarm\Belich\Components\Navigation\Traits\Settings;
 use Illuminate\Support\Collection;
-use Spatie\Menu\Link;
 use Spatie\Menu\Menu;
 
 class Navbar extends NavbarConstructor {
