@@ -25,6 +25,9 @@ abstract class Resources {
     public static $group;
 
     /** @var string */
+    public static $icon;
+
+    /** @var string */
     public static $label;
 
     /** @var Illuminate\Support\Collection */

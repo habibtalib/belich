@@ -22,4 +22,4 @@ try {
   * It is a great starting point when
   * building robust, powerful web applications using Jquery and Laravel.
   */
- require('./components/jquery/defaults.js')
+ //require('./components/jquery/defaults.js')

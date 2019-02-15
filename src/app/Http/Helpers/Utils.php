@@ -68,13 +68,11 @@ if (!function_exists('icon')) {
     {
         // Set right margin if we have text
         $margin = $text ? ' mr-2' : '';
-        $css = $css ? ' ' . $css : '';
 
-        $icon = sprintf('<i class="fas fa-%s%s%s icon"></i>', $icon, $margin, $css);
+        //Set the css
+        $css = $css ? ' ' . $css : ' icon';
 
-        return $text
-            ? $icon . $text
-            : $icon;
+        return sprintf('<span class="leading-normal align-middle"><i class="fas fa-%s%s%s"></i>%s</span>', $icon, $margin, $css, $text);
     }
 }
 

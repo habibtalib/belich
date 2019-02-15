@@ -2,3 +2,7 @@
     @apply text-sm;
     opacity: .65;
 }
+
+.icon-light {
+    opacity: .45;
+}

@@ -22,6 +22,7 @@ trait Operations {
                 $title = $item['pluralLabel'] ?? stringPluralUpper($item['class']);
                 return collect([
                     'group' => $item['group'] ?? $title,
+                    'icon' => $item['icon'],
                     'name' => $title,
                     'resource' => $item['resource']
                 ]);

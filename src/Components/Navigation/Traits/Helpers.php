@@ -21,9 +21,9 @@ trait Helpers {
     public function getLinkParameters(Collection $group) : array
     {
         return [
-            $group->get('name'),
+            icon($group->get('icon'), $group->get('name'), 'icon-light'),
             $group->get('group') . $this->getDropdownIcon(),
-            $group->get('hasGroup') === true ? '#' : $this->resourceUrl($group->get('resource')),
+            $this->resourceUrl($group->get('resource')),
         ];
     }
 }

@@ -165,6 +165,7 @@ class Belich {
             'class'               => $className,
             'displayInNavigation' => $class::$displayInNavigation,
             'group'               => $class::$group,
+            'icon'                => $class::$icon ?? 'angle-right',
             'label'               => $class::$label ?? Str::title($className),
             'model'               => $class::$model,
             'pluralLabel'         => $class::$pluralLabel ?? Str::plural(Str::title($className)),
