@@ -19,11 +19,11 @@ nav#navbar a {
 
 /* Hide Dropdowns by Default */
 nav#navbar ul ul {
-    @apply hidden absolute w-48 h-12/* the height of the main nav */
+    @apply hidden absolute h-12/* the height of the main nav */
 }
 
 nav#navbar ul ul li {
-    @apply shadow-md;
+    @apply shadow-md w-auto;
     border-top: 1px solid transparent;
 }
 

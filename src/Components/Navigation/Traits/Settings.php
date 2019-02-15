@@ -20,11 +20,13 @@ trait Settings {
      */
     public function settings(\Closure $callback)
     {
-        if(is_callable($callback) && !empty($callback)) {
-            foreach(call_user_func($callback) as $key => $value) {
-                if($value) {
-                    $this->{$key} = $value;
-                }
+        if(empty($getCallback = call_user_func($callback))) {
+            return $this;
+        }
+
+        foreach($getCallback as $key => $value) {
+            if($value && $key) {
+                $this->{$key} = $value;
             }
         }
 
@@ -84,6 +86,46 @@ trait Settings {
         return $this->merge(
             $this->submenuBackground,
             $this->submenuBackgroundHover,
+        );
+    }
+
+    /**
+     * Set the links CSS
+     *
+     * @return $this
+     */
+    private function linkCss()
+    {
+        return $this->merge(
+            $this->linkColor,
+            $this->linkColorHover,
+        );
+    }
+
+    /**
+     * Set the brand CSS
+     *
+     * @return $this
+     */
+    private function brandCss()
+    {
+        return $this->merge(
+            $this->brandText,
+            $this->brandWidth,
+            $this->brandBackground
+        );
+    }
+
+    /**
+     * Set the brand link CSS
+     *
+     * @return $this
+     */
+    private function brandLinkCss()
+    {
+        return $this->merge(
+            $this->brandLink,
+            $this->brandLinkHover,
         );
     }
 }

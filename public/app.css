@@ -366,13 +366,13 @@ nav#navbar a {
 nav#navbar ul ul {
   display: none;
   position: absolute;
-  width: 12rem;
   height: 3rem;
 }
 
 nav#navbar ul ul li {
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
+  width: auto;
   border-top: 1px solid transparent;
 }
 
@@ -431,7 +431,6 @@ nav#navbar ul ul ul li {
   color: var(--pagination-link-hover);
 }
 nav#sidebar {
-  width: var(--navigation-width);
 }
 .table {
   width: 100%;

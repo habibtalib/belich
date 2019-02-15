@@ -13,19 +13,25 @@ abstract class NavbarConstructor {
     protected $linkColor = 'text-white';
 
     /** @var string */
+    protected $linkColorHover = 'hover:text-yellow';
+
+    /** @var string */
     protected $brandName;
 
     /** @var string */
     protected $brandBackground = 'bg-blue';
 
     /** @var string */
-    protected $brandCss = 'font-semibold text-center';
+    protected $brandText = 'font-semibold text-center';
 
     /** @var string */
-    protected $brandLinkCss = 'text-white';
+    protected $brandLink = 'text-white';
 
     /** @var string */
-    protected $lateralWidth = 'w-48';
+    protected $brandLinkHover = 'hover:text-yellow';
+
+    /** @var string */
+    protected $brandWidth = 'w-48';
 
     /** @var string */
     protected $logoutBackground = 'bg-grey-lighter';

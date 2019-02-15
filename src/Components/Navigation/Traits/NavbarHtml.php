@@ -24,15 +24,10 @@ trait NavbarHtml {
     public function getBrand() : Link
     {
         $brandName = $this->brandName ?? Belich::name();
-        $css = $this->merge(
-            $this->brandCss,
-            $this->lateralWidth,
-            $this->brandBackground
-        );
 
         return Link::to(Belich::url(), $brandName)
-            ->addParentClass($css)
-            ->addClass($this->brandLinkCss);
+            ->addParentClass($this->brandCss())
+            ->addClass($this->brandLinkCss());
     }
 
     /**
@@ -68,7 +63,7 @@ trait NavbarHtml {
     {
         return Link::to('#', $parameters[1])
             ->addClass($this->menuCss())
-            ->addClass($this->linkColor);
+            ->addClass($this->linkCss());
     }
 
     /**
@@ -81,7 +76,7 @@ trait NavbarHtml {
     {
         $link = Link::to($parameters[2], $parameters[0])
             ->addClass($this->menuCss())
-            ->addClass($this->linkColor);
+            ->addClass($this->linkCss());
 
         //Add the link in the menu
         $this->menu->add($link);
@@ -122,7 +117,7 @@ trait NavbarHtml {
             $submenu->add(
                 Link::to($url, $title)
                     ->addClass($this->menuCss())
-                    ->addClass($this->linkColor)
+                    ->addClass($this->linkCss())
             );
         });
 

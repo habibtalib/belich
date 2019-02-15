@@ -74,4 +74,38 @@ class Navbar extends NavbarConstructor {
 
         return $this;
     }
+
+    /**
+     * Get all the resources from the project
+     *
+     * @return self
+     */
+    public function sidebarWithResources() : self
+    {
+        //Configure css
+        $this->settings(function() {
+            return [
+                'menuBackground' => 'bg-transparent',
+            ];
+        });
+
+        //New menu with the brand
+        $this->menu = Menu::new();
+
+        //List of resources to be listed as menu
+        $this->getResources()
+            ->map(function($resources, $group) {
+                //Get the link parameters for the menu
+                $parameters = $this->getLinkParameters($resources->first());
+
+                //Set the menu
+                return ($resources->count() <= 1)
+                    //Simple menu link
+                    ? $this->getMenu($parameters)
+                    //Grouped menu links with dropdown
+                    : $this->getDropdownMenu($parameters, $resources);
+            });
+
+        return $this;
+    }
 }
