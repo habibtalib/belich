@@ -72,7 +72,7 @@ if (!function_exists('icon')) {
         //Set the css
         $css = $css ? ' ' . $css : ' icon';
 
-        return sprintf('<span class="leading-normal align-middle"><i class="fas fa-%s%s%s"></i>%s</span>', $icon, $margin, $css, $text);
+        return sprintf('<i class="fas fa-%s%s%s"></i>%s', $icon, $margin, $css, $text);
     }
 }
 
