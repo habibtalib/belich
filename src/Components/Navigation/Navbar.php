@@ -52,9 +52,12 @@ class Navbar extends NavbarConstructor {
 
             //Create a grouped menu
             if($group->get('hasGroup') === true) {
+                //First create the submenu
                 $submenu = $this->createSubMenus($group->get('name'), Menu::new());
-                $this->menu->submenu(Link::to($linkUrl, $linkTitle)->addClass($this->menuCss())->addClass($this->linkColor), $submenu);
-            //Individual link
+                $groupMenu = $linkTitle . $this->getDropdownIcon();
+                //Now add the submenu to the parent menu
+                $this->menu->submenu(Link::to($linkUrl, $groupMenu)->addClass($this->menuCss())->addClass($this->linkColor), $submenu)->addParentClass($this->menuBackgroundActive);
+            //Individual link (no grouped link)
             } else {
                 $this->menu->add(Link::to($linkUrl, $linkTitle)->addClass($this->linkColor)->addParentClass($this->menuCss()));
             }

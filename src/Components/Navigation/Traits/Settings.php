@@ -8,7 +8,7 @@ trait Settings {
 
     /*
     |--------------------------------------------------------------------------
-    | Settings
+    | Public methods
     |--------------------------------------------------------------------------
     */
 
@@ -29,9 +29,33 @@ trait Settings {
         return $this;
     }
 
+    /**
+     * Set the callback for the settings
+     *
+     * @param  \Closure  $callback
+     * @return $this
+     */
+    public function setDropdownIcon($icon)
+    {
+        $this->dropdownIcon = $icon;
+
+        return $this;
+    }
+
+    /**
+     * Set the callback for the settings
+     *
+     * @param  \Closure  $callback
+     * @return $this
+     */
+    public function getDropdownIcon()
+    {
+        return $this->dropdownIcon ?? icon('caret-down', $text = '', $css = 'ml-1');
+    }
+
     /*
     |--------------------------------------------------------------------------
-    | Css
+    | Private methods
     |--------------------------------------------------------------------------
     */
 
@@ -40,7 +64,7 @@ trait Settings {
     *
     * @return $this
     */
-    public function menuCss()
+    private function menuCss()
     {
         return $this->merge(
             $this->menuBackground,
@@ -53,7 +77,7 @@ trait Settings {
      *
      * @return $this
      */
-    public function submenuCss()
+    private function submenuCss()
     {
         return $this->merge(
             $this->submenuBackground,

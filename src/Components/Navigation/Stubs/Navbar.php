@@ -1,6 +1,6 @@
 <?php
 
-namespace Daguilarm\Belich\Components\Navigation\Stubs;
+namespace App\Belich;
 
 use Daguilarm\Belich\Components\Navigation\Navbar as BaseNavbar;
 use Illuminate\Support\Collection;

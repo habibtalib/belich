@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 abstract class NavbarConstructor {
 
     /** @var string */
-    protected $arrowDownIcon = 'caret-down';
+    protected $dropdownIcon;
 
     /** @var string */
     protected $linkColor = 'text-white';
@@ -35,6 +35,9 @@ abstract class NavbarConstructor {
 
     /** @var string */
     protected $menuBackgroundHover = 'hover:bg-teal-dark';
+
+    /** @var string */
+    protected $menuBackgroundActive = 'active:bg-teal-dark';
 
     /** @var Illuminate\Support\Collection */
     protected $resources;

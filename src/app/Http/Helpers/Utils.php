@@ -64,12 +64,13 @@ if (!function_exists('emptyResults')) {
  * @return string
  */
 if (!function_exists('icon')) {
-    function icon(string $icon, string $text = '') : string
+    function icon(string $icon, string $text = '', $css = '') : string
     {
         // Set right margin if we have text
         $margin = $text ? ' mr-2' : '';
+        $css = $css ? ' ' . $css : '';
 
-        $icon = sprintf('<i class="fas fa-%s%s icon"></i>', $icon, $margin);
+        $icon = sprintf('<i class="fas fa-%s%s%s icon"></i>', $icon, $margin, $css);
 
         return $text
             ? $icon . $text
