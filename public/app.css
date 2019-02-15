@@ -96,8 +96,6 @@ a {
   width: 100%;
   margin-bottom: 2rem;
   border-radius: .25rem;
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
   background-color: var(--breadcrumbs-bg);
 }
 
@@ -340,15 +338,11 @@ nav#navbar ul {
   margin: 0;
   list-style: none;
   padding: 0;
-  position: relative;
-  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
-          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
-  z-index: 50;
+  z-index: 10;
 }
 
 nav#navbar ul li {
   display: inline-block;
-  z-index: 50;
 }
 
 nav#navbar a {
@@ -370,6 +364,12 @@ nav#navbar ul ul {
   position: absolute;
   width: 12rem;
   height: 3rem;
+}
+
+nav#navbar ul ul li {
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
+  border-top: 1px solid transparent;
 }
 
 /* Display Dropdowns on Hover */

@@ -1,21 +1,6 @@
 {{-- <li> --}}
     <a href="#" class="text-teal-dark">@icon('cog', 'Settings')</a>
-    <ul class="pin-r border border-teal">
-        <li class="bg-grey-lighter">
-            <a href="#" class="text-teal-dark hover:text-black">
-                @icon('user', 'Profile')
-            </a>
-        </li>
-        <li class="bg-grey-lighter">
-            <a href="#" class="text-teal-dark hover:text-black">
-                @icon('user', 'Profile')
-            </a>
-        </li>
-        <li class="bg-grey-lighter">
-            <a href="#" class="text-teal-dark hover:text-black">
-                @icon('user', 'Profile')
-            </a>
-        </li>
+    <ul class="pin-r">
         <li class="bg-grey-lighter">
             <a href="#" class="text-teal-dark hover:text-black">
                 @icon('user', 'Profile')

@@ -1,5 +1,5 @@
 .nav-breadcrumbs {
-    @apply w-full mb-8 rounded shadow-md;
+    @apply w-full mb-8 rounded;
     background-color: var(--breadcrumbs-bg);
 }
 

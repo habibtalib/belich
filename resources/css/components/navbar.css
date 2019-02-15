@@ -6,11 +6,11 @@ nav#navbar {
 }
 
 nav#navbar ul {
-    @apply p-0 m-0 list-reset relative shadow z-50;
+    @apply p-0 m-0 list-reset z-10;
 }
 
 nav#navbar ul li {
-    @apply inline-block z-50;
+    @apply inline-block;
 }
 
 nav#navbar a {
@@ -20,6 +20,11 @@ nav#navbar a {
 /* Hide Dropdowns by Default */
 nav#navbar ul ul {
     @apply hidden absolute w-48 h-12/* the height of the main nav */
+}
+
+nav#navbar ul ul li {
+    @apply shadow-md;
+    border-top: 1px solid transparent;
 }
 
 /* Display Dropdowns on Hover */
