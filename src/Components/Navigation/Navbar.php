@@ -35,7 +35,7 @@ class Navbar extends NavbarConstructor {
      *
      * @return self
      */
-    public function withResources() : self
+    public function navbarWithResources() : self
     {
         //New menu with the brand
         $this->menu = Menu::new()->add($this->getBrand());
@@ -65,7 +65,7 @@ class Navbar extends NavbarConstructor {
      *
      * @return self
      */
-    public function withoutResources() : self
+    public function navbarWithoutResources() : self
     {
         //New menu with the brand
         $this->menu = Menu::new()

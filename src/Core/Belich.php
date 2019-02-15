@@ -262,7 +262,7 @@ class Belich {
     public function sidebar()
     {
         return class_exists('\App\Belich\Sidebar')
-            ? Sidebar::make($this->resourcesAll())
+            ? new Sidebar($this->resourcesAll())
             : abort(404, trans('belich::exceptions.no_class', ['class' => '\App\Belich\Sidebar']));
     }
 }

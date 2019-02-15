@@ -16,9 +16,13 @@ class Navbar extends BaseNavbar {
     {
         //Generate the navbar without resources
         if(config('belich.navbar') === 'sidebar') {
-            return Parent::withoutResources()->menu->render();
+            return Parent::navbarWithoutResources()
+                ->menu
+                ->render();
         }
 
-        return Parent::withResources()->menu->render();
+        return Parent::navbarWithResources()
+            ->menu
+            ->render();
     }
 }
