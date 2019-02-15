@@ -114,7 +114,7 @@ trait NavbarHtml {
     {
         //Create the new menu
         $submenu = Menu::new();
-        //Add links to the menu
+        //Adding links to the menu
         $resources->map(function($resources) use ($submenu) {
             //Links parameters
             list($title, $icon, $url) = $this->getLinkParameters($resources);
