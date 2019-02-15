@@ -1,5 +1,6 @@
 :root {
   /*Colors*/
+  --body: rgb(238, 241, 244);
   --black: rgb(34, 41, 47);
   --white: rgb(255, 255, 255);
   --grey: rgb(135, 149, 161);
@@ -30,17 +31,7 @@
   --warning-30: rgba(255, 235, 59, .3);
   --warning: rgb(255, 235, 59);
   /*Html*/
-  --body-bg: var(--10);
-  /*Navbar && Sidebar*/
-  --navigation-width: 14rem;
-  /*Navbar*/
-  --navbar-bg: var(--primary);
-  --navbar-bg-hover: var(--primary-dark);
-  --navbar-link: var(--white);
-  --navbar-brand-bg: var(--info);
-  --navbar-brand-link-hover: var(--warning);
-  --navbar-logout-bg: var(--danger);
-  --navbar-logout-bg-hover: var(--danger-dark);
+  --body-bg: var(--body);
   /*Breadcrumbs*/
   --breadcrumbs-bg: var(--white);
   --breadcrumbs-current: var(--70);
@@ -61,11 +52,11 @@
   /*Table*/
   --table-bg: var(--white);
   --table-color: var(--80);
-  --table-head-bg: var(--grey);
-  --table-search-bg: var(--info-20);
-  --table-head-color: var(--white);
-  --table-head-link: var(--white);
-  --table-body-tr-hover: var(--info-20);
+  --table-head-bg: var(--info-20);
+  --table-search-bg: var(--white);
+  --table-head-color: var(--grey-dark);
+  --table-head-link: var(--grey);
+  --table-body-tr-hover: var(--5);
   --table-footer-bg: var(--info-20);
   /*Pagination*/
   --pagination-disabled: var(--30);
@@ -331,10 +322,6 @@ form.form-container > .form-group option:disabled {
 
 /* Navbar */
 
-nav#navbar {
-  background-color: var(--navbar-bg);
-}
-
 nav#navbar ul {
   padding: 0;
   margin: 0;
@@ -351,13 +338,13 @@ nav#navbar ul li {
 
 nav#navbar a {
   display: block;
-  height: 3rem;
+  height: 4rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
   font-size: 1rem;
-  line-height: 1.25;
+  line-height: 1;
   text-decoration: none;
 }
 
@@ -366,7 +353,6 @@ nav#navbar a {
 nav#navbar ul ul {
   display: none;
   position: absolute;
-  height: 3rem;
 }
 
 nav#navbar ul ul li {
@@ -387,6 +373,14 @@ nav#navbar ul li:hover > ul {
 nav#navbar ul ul li {
   position: relative;
   display: block;
+}
+
+/* Fisrt Tier Dropdown */
+
+nav#navbar ul ul li a {
+  height: 3rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 /* Second, Third and more Tiers */
@@ -499,6 +493,7 @@ nav#sidebar ul {
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
   width: 100%;
   background-color: var(--table-search-bg);
+  margin-bottom: 1px;
 }
 
 .table-search input {

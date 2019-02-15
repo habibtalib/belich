@@ -19,7 +19,7 @@ abstract class NavbarConstructor {
     protected $brandName;
 
     /** @var string */
-    protected $brandBackground = 'bg-blue';
+    protected $brandBackground = 'bg-teal-dark';
 
     /** @var string */
     protected $brandText = 'font-semibold text-center';
@@ -40,10 +40,10 @@ abstract class NavbarConstructor {
     public $menu;
 
     /** @var string */
-    protected $menuBackground = 'bg-teal';
+    protected $menuBackground = 'bg-teal-light';
 
     /** @var string */
-    protected $menuBackgroundHover = 'hover:bg-teal-dark';
+    protected $menuBackgroundHover = 'hover:bg-teal';
 
     /** @var Illuminate\Support\Collection */
     protected $resources;

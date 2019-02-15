@@ -1,10 +1,6 @@
 /* Base on https://codepen.io/andornagy/pen/xhiJH */
 
 /* Navbar */
-nav#navbar {
-    background-color: var(--navbar-bg);
-}
-
 nav#navbar ul {
     @apply p-0 m-0 list-reset shadow z-10;
 }
@@ -14,12 +10,13 @@ nav#navbar ul li {
 }
 
 nav#navbar a {
-    @apply block h-12 px-6 py-4 text-base leading-tight no-underline;
+    @apply block h-16 px-6 py-6 text-base leading-none no-underline;
+
 }
 
 /* Hide Dropdowns by Default */
 nav#navbar ul ul {
-    @apply hidden absolute h-12/* the height of the main nav */
+    @apply hidden absolute/* the height of the main nav */
 }
 
 nav#navbar ul ul li {
@@ -35,6 +32,11 @@ nav#navbar ul li:hover > ul {
 /* Fisrt Tier Dropdown */
 nav#navbar ul ul li {
     @apply relative block;
+}
+
+/* Fisrt Tier Dropdown */
+nav#navbar ul ul li a {
+    @apply h-12 py-4;
 }
 
 /* Second, Third and more Tiers */

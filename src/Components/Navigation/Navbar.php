@@ -67,6 +67,13 @@ class Navbar extends NavbarConstructor {
      */
     public function navbarWithoutResources() : self
     {
+        //Configure css
+        $this->settings(function() {
+            return [
+                'brandBackground' => 'bg-grey-darkest',
+            ];
+        });
+
         //New menu with the brand
         $this->menu = Menu::new()
             ->add($this->getBrand())
@@ -82,13 +89,6 @@ class Navbar extends NavbarConstructor {
      */
     public function sidebarWithResources() : self
     {
-        //Configure css
-        $this->settings(function() {
-            return [
-                'menuBackground' => 'bg-transparent',
-            ];
-        });
-
         //New menu with the brand
         $this->menu = Menu::new();
 

@@ -1,5 +1,6 @@
 :root {
     /*Colors*/
+    --body: rgb(238, 241, 244);
     --black: rgb(34, 41, 47);
     --white: rgb(255, 255, 255);
     --grey: rgb(135, 149, 161);
@@ -31,19 +32,7 @@
     --warning: rgb(255, 235, 59);
 
     /*Html*/
-    --body-bg: var(--10);
-
-    /*Navbar && Sidebar*/
-    --navigation-width: 14rem;
-
-    /*Navbar*/
-    --navbar-bg: var(--primary);
-    --navbar-bg-hover: var(--primary-dark);
-    --navbar-link: var(--white);
-    --navbar-brand-bg: var(--info);
-    --navbar-brand-link-hover: var(--warning);
-    --navbar-logout-bg: var(--danger);
-    --navbar-logout-bg-hover: var(--danger-dark);
+    --body-bg: var(--body);
 
     /*Breadcrumbs*/
     --breadcrumbs-bg: var(--white);
@@ -67,11 +56,11 @@
     /*Table*/
     --table-bg: var(--white);
     --table-color: var(--80);
-    --table-head-bg: var(--grey);
-    --table-search-bg: var(--info-20);
-    --table-head-color: var(--white);
-    --table-head-link: var(--white);
-    --table-body-tr-hover: var(--info-20);
+    --table-head-bg:  var(--info-20);
+    --table-search-bg: var(--white);
+    --table-head-color: var(--grey-dark);
+    --table-head-link: var(--grey);
+    --table-body-tr-hover: var(--5);
     --table-footer-bg: var(--info-20);
 
     /*Pagination*/
