@@ -20,8 +20,13 @@ trait Helpers {
      */
     public function getLinkParameters(Collection $group) : array
     {
+        //Only show icons in the sidebar
+        $title = config('belich.navbar') === 'top'
+            ? $group->get('name')
+            : icon($group->get('icon'), $group->get('name'), 'icon-light');
+
         return [
-            icon($group->get('icon'), $group->get('name'), 'icon-light'),
+            $title,
             $group->get('group') . $this->getDropdownIcon(),
             $this->resourceUrl($group->get('resource')),
         ];

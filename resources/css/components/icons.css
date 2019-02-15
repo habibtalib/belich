@@ -1,8 +1,7 @@
 .icon {
-    @apply text-sm;
-    opacity: .65;
+    opacity: .50;
 }
 
 .icon-light {
-    opacity: .45;
+    opacity: .35;
 }

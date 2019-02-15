@@ -123,7 +123,7 @@ trait NavbarHtml {
                     ->addClass($this->menuCss())
                     ->addClass($this->linkCss())
                     //Mark as child
-                    ->addParentClass('sidebar-child')
+                    ->addParentClass('sidebar-child text-left')
             );
         });
 

@@ -34,12 +34,12 @@ trait Settings {
     }
 
     /**
-     * Set the callback for the settings
+     * Set the dropdown icon
      *
-     * @param  \Closure  $callback
+     * @param  string  $icon
      * @return $this
      */
-    public function setDropdownIcon($icon)
+    public function setDropdownIcon(string $icon)
     {
         $this->dropdownIcon = $icon;
 
@@ -54,7 +54,7 @@ trait Settings {
      */
     public function getDropdownIcon()
     {
-        return $this->dropdownIcon ?? icon('caret-down', $text = '', $css = 'ml-1');
+        return $this->dropdownIcon ?? icon('caret-down', $text = '', $css = 'ml-1 icon');
     }
 
     /*
