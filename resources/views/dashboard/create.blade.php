@@ -13,7 +13,7 @@
         @endforeach
 
         {{-- Buttons --}}
-        <div class="btn-container">
+        <div class="btn-container bg-blue-lightest">
             <button id="button-form-create" type="submit" class="btn btn-primary">
                 @icon('plus', 'belich::buttons.crud.create')
             </button>

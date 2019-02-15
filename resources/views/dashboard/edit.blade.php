@@ -5,12 +5,10 @@
     @include('belich::partials.breadcrumbs')
 
     {{-- Buttons --}}
-    <div class="table-search flex items-center">
-        <div class="flex w-full justify-end">
-            <a href="{{ Belich::actionRoute('show', $request->id) }}" class="btn btn-secondary mr-2">
-                @icon('eye', 'belich::buttons.crud.show')
-            </a>
-        </div>
+    <div class="flex w-full justify-end">
+        <a href="{{ Belich::actionRoute('show', $request->id) }}" class="btn btn-secondary mb-4">
+            @icon('eye', 'belich::buttons.crud.show')
+        </a>
     </div>
 
     <form method="POST" name="form-{{ $request->name }}-edit" id="form-{{ $request->name }}-edit" action="{{ toRoute('update') }}" class="form-container">
@@ -23,7 +21,7 @@
         @endforeach
 
         {{-- Buttons --}}
-        <div class="btn-container">
+        <div class="btn-container bg-blue-lightest">
             <button id="button-form-edit" type="submit" class="btn btn-primary">
                 @icon('pen', 'belich::buttons.crud.update')
             </button>

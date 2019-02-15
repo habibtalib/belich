@@ -5,12 +5,10 @@
     @include('belich::partials.breadcrumbs')
 
     {{-- Buttons --}}
-    <div class="table-search flex items-center">
-        <div class="flex w-full justify-end">
-            <a href="{{ Belich::actionRoute('edit', $request->id) }}" class="btn btn-secondary mr-2">
-                @icon('edit', 'belich::buttons.crud.update')
-            </a>
-        </div>
+    <div class="flex w-full justify-end">
+        <a href="{{ Belich::actionRoute('edit', $request->id) }}" class="btn btn-secondary mb-4">
+            @icon('edit', 'belich::buttons.crud.update')
+        </a>
     </div>
 
     @foreach($request->fields as $field)

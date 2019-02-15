@@ -1,7 +1,7 @@
 .table-search {
     @apply rounded-t p-4 shadow-md w-full;
     background-color: var(--table-search-bg);
-    margin-bottom: 1px;
+    border-bottom: 1px solid var(--10);
 }
 
     .table-search input {

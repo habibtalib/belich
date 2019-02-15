@@ -1,9 +1,11 @@
 .btn-container {
     @apply w-full text-right p-6;
+    border-top: 1px solid var(--10);
 }
 
 .btn {
-    @apply font-bold py-2 px-4 rounded;
+    @apply font-bold py-3 px-4 rounded text-center;
+    min-width: 120px;
 }
 
     .btn-primary {
@@ -23,9 +25,9 @@
     }
 
     .btn-secondary {
-        @apply bg-white text-blue border border-blue-lighter;
+        @apply bg-blue-lightest text-blue-dark border border-blue-light;
     }
 
     .btn-secondary:hover {
-        @apply text-blue-dark  border border-blue-light;
+        @apply bg-blue-light text-white;
     }
