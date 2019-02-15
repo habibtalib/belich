@@ -75,13 +75,34 @@ trait NavbarHtml {
      * Generate a no grouped link
      *
      * @param array $parameters
-     * @return Spatie\Menu\Link
+     * @return void
      */
-    public function getNoGroupedLink(array $parameters) : Link
+    public function getMenu(array $parameters) : void
     {
-        return Link::to($parameters[2], $parameters[0])
+        $link = Link::to($parameters[2], $parameters[0])
             ->addClass($this->menuCss())
             ->addClass($this->linkColor);
+
+        //Add the link in the menu
+        $this->menu->add($link);
+    }
+
+    /**
+     * Create submenu
+     *
+     * @param Illuminate\Support\Collection $resources
+     * @return void
+     */
+    public function getDropdownMenu(array $parameters, Collection $resources) : void
+    {
+        //Create dropdown link
+        $dropdown = $this->getGroupedLink($parameters);
+        //Add links to dropdown
+        $dropdownLinks = $this->getSubmenuLinks($resources);
+
+        $this->menu
+            ->submenu($dropdown, $dropdownLinks)
+            ->addParentClass($this->menuBackgroundActive);
     }
 
     /**

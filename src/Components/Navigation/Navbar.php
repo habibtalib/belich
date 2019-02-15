@@ -15,8 +15,6 @@ class Navbar extends NavbarConstructor {
 
     use Helpers, NavbarHtml, Operations, Settings;
 
-    protected $groupedLinks;
-
     /**
      * Initialize the constructor
      *
@@ -36,30 +34,25 @@ class Navbar extends NavbarConstructor {
     /**
      * Get all the resources from the project
      *
-     * @return string
+     * @return self
      */
-    public function withResources()
+    public function withResources() : self
     {
         //New menu with the brand
         $this->menu = Menu::new()->add($this->getBrand());
 
-        $resources = $this->getResources()
+        //List of resources to be listed as menu
+        $this->getResources()
             ->map(function($resources, $group) {
-                //Get the link parameters
+                //Get the link parameters for the menu
                 $parameters = $this->getLinkParameters($resources->first());
 
-                //Simple menu link
-                if($resources->count() <= 1) {
-                    $simpleLink = $this->getNoGroupedLink($parameters);
-                    //Create the simple link in the menu
-                    $this->menu->add($simpleLink);
-                } else {
-                    $parentLink = $this->getGroupedLink($parameters);
-                    $submenu = $this->getSubmenuLinks($resources);
-                    //Create submenu
-                    $this->menu->submenu($parentLink, $submenu)
-                        ->addParentClass($this->menuBackgroundActive);
-                }
+                //Set the menu
+                return ($resources->count() <= 1)
+                    //Simple menu link
+                    ? $this->getMenu($parameters)
+                    //Grouped menu links with dropdown
+                    : $this->getDropdownMenu($parameters, $resources);
             });
 
         //Add the logout
@@ -71,9 +64,9 @@ class Navbar extends NavbarConstructor {
     /**
      * Get all the resources from the project
      *
-     * @return string
+     * @return self
      */
-    public function withoutResources()
+    public function withoutResources() : self
     {
         //New menu with the brand
         $this->menu = Menu::new()
