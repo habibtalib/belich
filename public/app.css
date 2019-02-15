@@ -427,6 +427,26 @@ nav#navbar ul ul ul li {
 nav#sidebar ul {
   list-style: none;
   padding: 0;
+  background-color: transparent;
+}
+
+nav#sidebar ul li {
+  margin-left: 1.5rem;
+  font-size: 1.125rem;
+}
+
+nav#sidebar ul li a {
+  background-color: transparent;
+}
+
+nav#sidebar ul li.sidebar-parent {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+nav#sidebar ul li.sidebar-child {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 .table {
   width: 100%;

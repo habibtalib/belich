@@ -65,7 +65,7 @@ trait NavbarHtml {
             ->addClass($this->menuCss())
             ->addClass($this->linkCss())
             //Mark as parent
-            ->addClass('sidebar-parent');
+            ->addParentClass('sidebar-parent');
     }
 
     /**
@@ -80,7 +80,7 @@ trait NavbarHtml {
             ->addClass($this->menuCss())
             ->addClass($this->linkCss())
             //Mark as parent
-            ->addClass('sidebar-parent');
+            ->addParentClass('sidebar-parent');
 
         //Add the link in the menu
         $this->menu->add($link);
@@ -123,7 +123,7 @@ trait NavbarHtml {
                     ->addClass($this->menuCss())
                     ->addClass($this->linkCss())
                     //Mark as child
-                    ->addClass('sidebar-child')
+                    ->addParentClass('sidebar-child')
             );
         });
 
