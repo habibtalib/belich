@@ -27,6 +27,9 @@ abstract class NavbarConstructor {
     /** @var string */
     protected $lateralWidth = 'w-48';
 
+    /** @var string */
+    protected $logoutBackground = 'bg-grey-lighter';
+
     /** @var array */
     public $menu;
 

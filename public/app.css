@@ -341,10 +341,14 @@ nav#navbar ul {
   list-style: none;
   padding: 0;
   position: relative;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+  z-index: 50;
 }
 
 nav#navbar ul li {
   display: inline-block;
+  z-index: 50;
 }
 
 nav#navbar a {

@@ -15,33 +15,20 @@ trait Operations {
      *
      * @return string
      */
-    public function getGroups()
+    public function getResources()
     {
         return collect($this->resources)
             ->map(function ($item, $key) {
+                $title = $item['pluralLabel'] ?? stringPluralUpper($item['class']);
                 return collect([
-                    'hasGroup' => $item['group'] ? true : false,
-                    'name'     => $item['group'] ?? $item['pluralLabel'] ?? stringPluralUpper($item['class']),
+                    'group' => $item['group'] ?? $title,
+                    'name' => $title,
                     'resource' => $item['resource']
                 ]);
             })
             ->filter()
-            ->unique()
-            ->values();
-    }
-
-    /**
-     * Get all the resources from the project
-     *
-     * @return string
-     */
-    public function getSubgroups()
-    {
-         return collect($this->resources)
-             ->map(function ($items) {
-                 return $items->toArray();
-             })
-             ->values();
+            ->values()
+            ->groupBy('group');
     }
 
     /*

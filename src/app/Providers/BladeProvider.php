@@ -17,8 +17,9 @@ Blade::directive('actionIcon', function ($arguments) {
 Blade::directive('icon', function ($arguments) {
     $list = explode(',', str_replace(['(',')',' ', "'"], '', $arguments));
     $text = isset($list[1]) ? trans($list[1]) : '';
+    $css = isset($list[2]) ? $list[2] : '';
 
-    return "<?php echo icon('$list[0]', '$text'); ?>";
+    return "<?php echo icon('$list[0]', '$text', '$css'); ?>";
 });
 
 /**

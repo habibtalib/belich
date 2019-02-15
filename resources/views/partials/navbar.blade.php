@@ -1,5 +1,5 @@
 {{-- This section is segregate in case you want to customize --}}
-<nav id="navbar" class="h-12 bg-teal">
+<nav id="navbar" class="h-12 bg-teal shadow">
     {!!
         Belich::navbar()
             ->get();
