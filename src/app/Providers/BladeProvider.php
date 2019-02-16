@@ -17,7 +17,7 @@ Blade::directive('actionIcon', function ($arguments) {
 Blade::directive('gravatar', function ($arguments) {
     $arguments = str_replace(['(',')', "'"], '', $arguments);
     $css = empty($arguments)
-        ? 'block h-10 rounded-full shadow'
+        ? 'block h-10 rounded-full shadow-md'
         : $arguments;
 
     return "<?php echo '" . sprintf('<img class="%s" src="%s" alt="">', $css, gravatar()) . "'; ?>";
