@@ -7,6 +7,7 @@ use App\Belich\Sidebar;
 use Daguilarm\Belich\Components\Actions;
 use Daguilarm\Belich\Components\Breadcrumbs;
 use Daguilarm\Belich\Core\Helpers;
+use Daguilarm\Belich\Core\Traits\SqlConnection;
 use Daguilarm\Belich\Fields\FieldResolve;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -15,7 +16,7 @@ use Illuminate\View\View;
 
 class Belich {
 
-    use Helpers;
+    use Helpers, SqlConnection;
 
     /** @var string */
     private $perPage = 20;
@@ -83,7 +84,7 @@ class Belich {
         $updateFields = collect($class->fields($request));
 
         //Sql Response
-        $sqlResponse = $this->sqlResponse($class, $request);
+        $sqlResponse = $this->SqlConnectionResponse($class, $request);
 
         //ClassName
         $className = static::resource();
@@ -171,52 +172,6 @@ class Belich {
             'pluralLabel'         => $class::$pluralLabel ?? Str::plural(Str::title($className)),
             'resource'            => Str::plural(Str::lower($className)),
         ]);
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | SQL
-    |--------------------------------------------------------------------------
-    */
-
-    /**
-    * Create the belich admin
-    *
-    * @param string $class
-    * @param Illuminate\Http\Request $request
-    * @return object
-    */
-    private function sqlResponse(object $class) : object
-    {
-        //Set variables
-        $direction = request()->query('direction');
-        $order     = request()->query('orderBy');
-        $trashed   = request()->query('withTrashed');
-
-        if(static::action() === 'index') {
-            return $class
-                ->indexQuery($this->request)
-                //Order query
-                ->when(!empty($order) && !empty($direction), function ($query) use ($direction, $order, $trashed) {
-                    return $query->orderBy($order, $direction);
-                })
-                //Trashed
-                ->when(!empty($trashed) && $trashed === 'true', function ($query) {
-                    return $query->withTrashed();
-                })
-                //Pagination
-                ->simplePaginate($this->perPage)
-                //Add all the url variables
-                ->appends(request()->query());
-        }
-
-        if(static::action() === 'edit' || static::action() === 'show' && is_numeric(static::resourceId())) {
-            return $class
-                ->model()
-                ->findOrFail(static::resourceId());
-        }
-
-        return new \Illuminate\Database\Eloquent\Collection;
     }
 
     /*
