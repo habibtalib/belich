@@ -11,7 +11,7 @@ use Daguilarm\Belich\Fields\FieldResolve;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Daguilarm\Belich\Facades\Credentials;
+use Illuminate\View\View;
 
 class Belich {
 
@@ -224,18 +224,26 @@ class Belich {
     | Actions
     |--------------------------------------------------------------------------
     */
-    public function actions($data, $view)
+
+   /**
+    * Prepare the actions for the view
+    *
+    * @param object $model
+    * @param string $view
+    * @return Illuminate\View\View
+    */
+    public function actions(object $model, string $view) : View
     {
         //Set view path
         $actionView = 'belich::actions.' . $view;
 
         //Custom action
         if(view()->exists($actionView)) {
-            return view($actionView, ['data' => $data]);
+            return view($actionView, ['model' => $model]);
         }
 
         //Default action
-        return view('belich::actions.default', ['data' => $data]);
+        return view('belich::actions.default', ['model' => $model]);
     }
 
     /*
@@ -243,17 +251,30 @@ class Belich {
     | Breadcrumbs
     |--------------------------------------------------------------------------
     */
-    public function breadcrumbs($breadcrumbs)
+
+   /**
+    * Prepare the breadcrumbs for the view
+    *
+    * @param array $breadcrumbs
+    * @return string
+    */
+    public function breadcrumbs(array $breadcrumbs)
     {
         return Breadcrumbs::make($breadcrumbs);
     }
 
     /*
     |--------------------------------------------------------------------------
-    | Navbar and Sidebar
+    | Html helper
     |--------------------------------------------------------------------------
     */
-    public function html()
+
+   /**
+    * Initialize the html helper in order to be accesible from Belich
+    *
+    * @return \Daguilarm\Belich\Core\Htm
+    */
+    public function html() : Html
     {
         return new \Daguilarm\Belich\Core\Html;
     }
@@ -263,6 +284,12 @@ class Belich {
     | Navbar and Sidebar
     |--------------------------------------------------------------------------
     */
+
+   /**
+    * Prepare the navbar for the view
+    *
+    * @return \App\Belich\Navbar
+    */
     public function navbar()
     {
         return class_exists('\App\Belich\Navbar')
@@ -270,6 +297,11 @@ class Belich {
             : abort(404, trans('belich::exceptions.no_class', ['class' => '\App\Belich\Navbar']));
     }
 
+    /**
+     * Prepare the sidebar for the view
+     *
+     * @return \App\Belich\Sidebar
+     */
     public function sidebar()
     {
         return class_exists('\App\Belich\Sidebar')
