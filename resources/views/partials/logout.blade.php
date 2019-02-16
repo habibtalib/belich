@@ -1,6 +1,6 @@
 {{-- <li> --}}
     <div class="flex items-center h-16 w-auto font-medium {{ config('belich.navbar') === 'top' ? 'text-white' : 'text-grey-darker' }}">
-        <div class="pr-4"><img class="block h-10 rounded-full shadow" src="{{ gravatar(auth()->user()->email) }}" alt=""></div>
+        <div class="pr-4">@gravatar()</div>
         <div class="pr-1">{{ auth()->user()->name }}</div>
         <div class="pr-4">@icon('angle-down')</div>
     </div>

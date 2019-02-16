@@ -10,6 +10,20 @@ Blade::directive('actionIcon', function ($arguments) {
 });
 
 /**
+ * Create a @gravatar directive for the package gravatar
+ *
+ * @return string
+ */
+Blade::directive('gravatar', function ($arguments) {
+    $arguments = str_replace(['(',')', "'"], '', $arguments);
+    $css = empty($arguments)
+        ? 'block h-10 rounded-full shadow'
+        : $arguments;
+
+    return "<?php echo '" . sprintf('<img class="%s" src="%s" alt="">', $css, gravatar()) . "'; ?>";
+});
+
+/**
  * Create a @icon directive
  *
  * @return string
