@@ -188,13 +188,23 @@ class Belich {
     */
     private function sqlResponse(object $class) : object
     {
+        //Set variables
+        $direction = request()->query('direction');
+        $order     = request()->query('orderBy');
+        $trashed   = request()->query('withTrashed');
+
         if(static::action() === 'index') {
             return $class
                 ->indexQuery($this->request)
                 //Order query
-                ->when(request()->query('orderBy') && request()->query('direction'), function ($query) {
-                    return $query->orderBy(request()->query('orderBy'), request()->query('direction'));
+                ->when(!empty($order) && !empty($direction), function ($query) use ($direction, $order, $trashed) {
+                    return $query->orderBy($order, $direction);
                 })
+                //Trashed
+                ->when(!empty($trashed) && $trashed === 'true', function ($query) {
+                    return $query->withTrashed();
+                })
+                //Pagination
                 ->simplePaginate($this->perPage)
                 //Add all the url variables
                 ->appends(request()->query());

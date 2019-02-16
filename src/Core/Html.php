@@ -12,7 +12,8 @@ class Html {
     protected $allowedParameters = [
         'direction',
         'orderBy',
-        'page'
+        'page',
+        'withTrashed'
     ];
 
     /**
