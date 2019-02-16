@@ -1,12 +1,12 @@
 {{-- <li> --}}
-    <div class="flex items-center h-16 w-auto font-medium {{ config('belich.navbar') === 'top' ? 'text-white' : 'text-grey-darker' }}">
+    <div class="flex items-center h-16 w-auto font-medium cursor-pointer {{ config('belich.navbar') === 'top' ? 'text-white' : 'text-grey-darker' }}">
         <div class="pr-4">@gravatar()</div>
         <div class="pr-1">{{ auth()->user()->name }}</div>
         <div class="pr-4">@icon('angle-down')</div>
     </div>
     <ul class="pin-r">
         <li class="bg-grey-lighter">
-            <a href="#" class="text-grey-darker hover:text-black">
+            <a href="{{ Belich::url() . '/profiles/' . auth()->user()->id }}" class="text-grey-darker hover:text-black">
                 @icon('user', 'Profile')
             </a>
         </li>
