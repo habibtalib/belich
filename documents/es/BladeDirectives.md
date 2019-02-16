@@ -45,6 +45,21 @@ Puede personalizarse el aspecto, a través de la clase css `.icon`.
 
 Igual que `@icon`, pero no acepta texto. Pensado para los iconos de los botones de acción del `index`.
 
+
+#### gravatar 
+
+Nos devuelve una imagen de la [API de gravatar](https://es.gravatar.com/site/implement/) a partir de nuestro email de usuario:
+
+~~~
+@gravatar()
+~~~
+
+Admite como parámetro, nuestra customización de estilos css basados en tailwindcss:
+
+~~~
+@gravatar('shadow-md mx-2')
+~~~
+
 #### mix
 
 Ideal para crear un enlace de hoja de estilos o de javascript. Está pensado para cuando queremos llamar un archivo **JS** o **CSS** dentro de la carpeta `vendor/belich`. 
