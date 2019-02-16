@@ -241,6 +241,12 @@ class FieldResolve {
     private function setValues(object $sqlResponse, Collection $fields) : Collection
     {
         return $fields->map(function($field) use ($sqlResponse) {
+            //Not resolve field value
+            //Mostly, this is a hidden field...
+            if($field->notResolveField) {
+                return $field;
+            }
+
             //Set new value for the fields, even if has a fieldRelationship value
             //This relationship method is only on forms
             //Index has its own way in blade template

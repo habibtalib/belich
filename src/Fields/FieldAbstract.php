@@ -24,11 +24,14 @@ abstract class FieldAbstract {
     /** @var \Closure|null for manipulate data */
     public $displayCallback;
 
+    /** @var string [The field relationship. Mostly for text fields wich want to show a relationship] */
+    public $fieldRelationship;
+
     /** @var string [Set the field label tag] */
     public $label;
 
-    /** @var string [The field relationship. Mostly for text fields wich want to show a relationship] */
-    public $fieldRelationship;
+    /** @var bool */
+    public $notResolveField;
 
     /** @var string [The model relationships] */
     public $relationships;
@@ -120,6 +123,18 @@ abstract class FieldAbstract {
         if(!empty($resolveCallback)) {
             $this->resolveCallback = $resolveCallback;
         }
+
+        return $this;
+    }
+
+    /**
+     * Not Resolving field value
+     * This is (mostly) for hidden fields
+     * @return self
+     */
+    public function notResolveField() : self
+    {
+        $this->notResolveField = true;
 
         return $this;
     }
