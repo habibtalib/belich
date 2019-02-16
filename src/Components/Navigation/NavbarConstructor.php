@@ -34,7 +34,7 @@ abstract class NavbarConstructor {
     protected $brandWidth = 'w-48';
 
     /** @var string */
-    protected $logoutBackground = 'bg-grey-lighter';
+    protected $logoutBackground;
 
     /** @var array */
     public $menu;
