@@ -76,9 +76,32 @@ if (!function_exists('icon')) {
     }
 }
 
+/**
+ * Render the action icons
+ *
+ * @param string $icon
+ * @return string
+ */
 if (!function_exists('actionIcon')) {
     function actionIcon(string $icon) : string
     {
         return sprintf('<i class="fas fa-%s"></i>', $icon);
+    }
+}
+
+/**
+ * Get either a Gravatar URL or complete image tag for a specified email address.
+ *
+ * @param string $email The email address
+ * @param string $s Size in pixels, defaults to 80px [ 1 - 2048 ]
+ * @param string $d Default imageset to use [ 404 | mp | identicon | monsterid | wavatar ]
+ * @param string $r Maximum rating (inclusive) [ g | pg | r | x ]
+ * @source https://gravatar.com/site/implement/images/php/
+ */
+if (!function_exists('gravatar')) {
+    function gravatar($email, $size = 80, $imageSet = 'mp', $rating = 'g') : string
+    {
+        $email = md5( strtolower( trim( $email ) ) );
+        return sprintf('https://www.gravatar.com/avatar/%s?s=%s&d=%s&r=%s', $email, $size, $imageSet, $rating);
     }
 }
