@@ -8,10 +8,6 @@ use Daguilarm\Belich\Components\Actions;
 use Daguilarm\Belich\Components\Breadcrumbs;
 use Daguilarm\Belich\Core\Helpers;
 use Daguilarm\Belich\Core\Traits\SqlConnection;
-use Daguilarm\Belich\Fields\FieldResolve;
-use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class Belich {
@@ -64,115 +60,6 @@ class Belich {
         return new $class;
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Resources
-    |--------------------------------------------------------------------------
-    */
-
-    /**
-     * Get the current resource
-     *
-     * @return Illuminate\Support\Collection
-     */
-    public function currentResource(Request $request) : Collection
-    {
-        //Default values
-        $class = $this->initResourceClass();
-
-        //Update the fields
-        $updateFields = collect($class->fields($request));
-
-        //Sql Response
-        $sqlResponse = $this->SqlConnectionResponse($class, $request);
-
-        //ClassName
-        $className = static::resource();
-
-        return collect([
-            'name'             => $className,
-            'controllerAction' => static::action(),
-            'fields'           => (new FieldResolve)->make($class, $updateFields, $sqlResponse),
-            'results'          => $sqlResponse,
-            'values'           => $this->resourceValues($className),//From resource
-        ]);
-    }
-
-    /**
-     * Get all the Belich resources for send globaly to the views
-     *
-     * @return Illuminate\Support\Collection
-     */
-    public function resourcesAll() : Collection
-    {
-        return $this->resourceFiles()
-            ->map(function($file) {
-                return $file;
-            })->filter(function($value, $key) {
-                return $value !== '.' && $value !== '..';
-            })->mapWithKeys(function($file, $key) {
-                if($file) {
-                    //Define the current class name
-                    $className = Str::title(explode('.', $file)[0]);
-                    $resource  = Str::plural(Str::lower($className));
-
-                    return [
-                        $resource => $this->resourceValues($className)
-                    ];
-                }
-            });
-    }
-
-    /**
-     * Get all the files from the resources folder (All the resources)
-     *
-     * @return Illuminate\Support\Collection
-     */
-    private function resourceFiles() : Collection
-    {
-        $filePath = app_path('Belich/Resources');
-
-        return collect(scandir($filePath));
-    }
-
-    /**
-     * Get the labels for the current resource
-     * Plural for the index and sigular for the others...
-     *
-     * @return string
-     */
-    private function resourceLabels() : string
-    {
-        $initializedClass = $this->initResourceClass();
-
-        return (static::action() === 'index')
-            ? $initializedClass::$pluralLabel
-            : $initializedClass::$label;
-    }
-
-    /**
-     * Get all the items from a resource
-     *
-     * @param string $className
-     * @return array
-     */
-    private function resourceValues($className)
-    {
-        $class = static::resourceClassPath($className);
-
-        return collect([
-            'actions'             => $class::$actions,
-            'breadcrumbs'         => $class::breadcrumbs(),
-            'class'               => $className,
-            'displayInNavigation' => $class::$displayInNavigation,
-            'group'               => $class::$group,
-            'icon'                => $class::$icon ?? 'angle-right',
-            'label'               => $class::$label ?? Str::title($className),
-            'model'               => $class::$model,
-            'pluralLabel'         => $class::$pluralLabel ?? Str::plural(Str::title($className)),
-            'resource'            => Str::plural(Str::lower($className)),
-        ]);
-    }
 
     /*
     |--------------------------------------------------------------------------
