@@ -83,11 +83,6 @@ body {
 a {
   text-decoration: none;
 }
-
-.gradient {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#3d4852), to(#606f7b));
-  background-image: linear-gradient(#3d4852, #606f7b);
-}
 .nav-breadcrumbs {
   width: 100%;
   margin-bottom: 2rem;
@@ -98,11 +93,11 @@ a {
 }
 
 .nav-breadcrumbs > ul {
-  list-style: none;
-  padding: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  list-style: none;
+  padding: 0;
   margin-top: 1rem;
   margin-bottom: 1rem;
   padding: 1rem;
@@ -174,6 +169,12 @@ a {
 .btn-secondary:hover {
   background-color: #6cb2eb;
   color: #fff;
+}
+/* Gradients */
+
+.sidebar-gradient {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#3d4852), to(#606f7b));
+  background-image: linear-gradient(#3d4852, #606f7b);
 }
 .icon {
   opacity: .5;
@@ -520,31 +521,12 @@ nav#sidebar ul li.sidebar-child {
 .table-footer {
   background-color: var(--table-footer-bg);
 }
-.table-search {
-  border-top-left-radius: .25rem;
-  border-top-right-radius: .25rem;
-  padding: 1rem;
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
-  width: 100%;
+#table-search {
   background-color: var(--table-search-bg);
   border-bottom: 1px solid var(--10);
 }
 
-.table-search input {
-  padding: .5rem;
-  padding-left: 2rem;
-  margin-top: .5rem;
-  margin-bottom: .5rem;
-  border-radius: .25rem;
-  border-width: 1px;
-  border-color: #dae1e7;
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
-  width: 16rem;
-}
-
-.table-search .icon-search:before {
+#table-search .icon-search:before {
   content: "\F002";
   font-family: 'Font Awesome 5 Free';
   position: absolute;
@@ -552,7 +534,7 @@ nav#sidebar ul li.sidebar-child {
   margin-top: 1rem;
   font-weight: 700;
   font-size: 1.25rem;
-  color: #b8c2cc;
+  color: #8795a1;
 }
 /**
  * This injects Tailwind's base styles, which is a combination of

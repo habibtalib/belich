@@ -4,7 +4,7 @@
 }
 
     .nav-breadcrumbs > ul {
-        @apply list-reset flex my-4 p-4;
+        @apply flex list-reset my-4 p-4;
     }
 
     .nav-breadcrumbs > ul > li {
