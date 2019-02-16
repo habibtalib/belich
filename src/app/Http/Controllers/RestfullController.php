@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class RestfullController extends BaseController
 {
+    /** @var Illuminate\Database\Eloquent\Model */
+    private $model;
+
     /**
      * Generate crud controllers
      *
@@ -16,6 +19,9 @@ class RestfullController extends BaseController
     public function __construct(Belich $belich)
     {
         parent::__construct($belich);
+
+        //Get resource model
+        $this->model = Belich::getModel();
     }
 
     /**
@@ -27,6 +33,9 @@ class RestfullController extends BaseController
      */
     public function index(Belich $belich, Request $request)
     {
+        //Authorization
+        $this->authorize('viewAny', $this->model);
+
         //Get all the data
         $request = $this->getData($belich, $request);
 
@@ -42,6 +51,9 @@ class RestfullController extends BaseController
      */
     public function create(Belich $belich, Request $request)
     {
+        //Authorization
+        $this->authorize('create', $this->model);
+
         //Get the data
         $request = $this->getFormData($belich, $request);
 
@@ -56,6 +68,9 @@ class RestfullController extends BaseController
      */
     public function store(Request $request)
     {
+        //Authorization
+        $this->authorize('create', $this->model);
+
         if($this->model::create($request->all())) {
             return redirect()
                 ->back()
@@ -77,6 +92,9 @@ class RestfullController extends BaseController
      */
     public function show(Belich $belich, $id, Request $request)
     {
+        //Authorization
+        $this->authorize('view', $this->model);
+
         //Get the data
         $request = $this->getFormData($belich, $request, $id);
 
@@ -92,6 +110,9 @@ class RestfullController extends BaseController
      */
     public function edit(Belich $belich, $id, Request $request)
     {
+        //Authorization
+        $this->authorize('update', $this->model);
+
         //Get the data
         $request = $this->getFormData($belich, $request, $id);
 
@@ -107,6 +128,9 @@ class RestfullController extends BaseController
      */
     public function update(Request $request, $id)
     {
+        //Authorization
+        $this->authorize('update', $this->model);
+
         //Update the storage...
         return;
     }
@@ -119,6 +143,9 @@ class RestfullController extends BaseController
      */
     public function delete($id)
     {
+        //Authorization
+        $this->authorize('delete', $this->model);
+
         return;
     }
 }

@@ -5,11 +5,13 @@
     @include('belich::partials.breadcrumbs')
 
     {{-- Buttons --}}
-    <div class="flex w-full justify-end">
-        <a href="{{ Belich::actionRoute('show', $request->id) }}" class="btn btn-secondary mb-4">
-            @icon('eye', 'belich::buttons.crud.show')
-        </a>
-    </div>
+    @can('view', $autorizedModel)
+        <div class="flex w-full justify-end">
+            <a href="{{ Belich::actionRoute('show', $request->id) }}" class="btn btn-secondary mb-4">
+                @icon('eye', 'belich::buttons.crud.show')
+            </a>
+        </div>
+    @endcan
 
     <form method="POST" name="form-{{ $request->name }}-edit" id="form-{{ $request->name }}-edit" action="{{ toRoute('update') }}" class="form-container">
         @csrf

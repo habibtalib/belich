@@ -14,6 +14,18 @@ trait Models {
     */
 
     /**
+     * Get the resource model instance.
+     *
+     * @return Illuminate\Database\Eloquent\Model
+     */
+    public static function getModel()
+    {
+        $resourceClass = static::resourceClassPath();
+
+        return app($resourceClass::$model);
+    }
+
+    /**
      * Get the resource model key name.
      *
      * @return string
@@ -21,23 +33,5 @@ trait Models {
     public static function getModelKeyName() : string
     {
         return static::getModel()->getKeyName();
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Private Static Methods
-    |--------------------------------------------------------------------------
-    */
-
-    /**
-     * Get the resource model instance.
-     *
-     * @return Illuminate\Database\Eloquent\Model
-     */
-    private static function getModel()
-    {
-        $resourceClass = static::resourceClassPath();
-
-        return app($resourceClass::$model);
     }
 }
