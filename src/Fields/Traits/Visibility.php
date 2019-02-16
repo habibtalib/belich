@@ -68,7 +68,7 @@ trait Visibility {
     public function exceptOnForms() : self
     {
         //Reset the values
-        self::hideAllActions();
+        self::hideFromAll();
 
         $this->visibility['index'] = true;
         $this->visibility['show']  = true;
@@ -84,7 +84,7 @@ trait Visibility {
     public function onlyOnForms() : self
     {
         //Reset the values
-        self::hideAllActions();
+        self::hideFromAll();
 
         $this->visibility['create'] = true;
         $this->visibility['edit']   = true;
@@ -100,7 +100,7 @@ trait Visibility {
     public function onlyOnIndex() : self
     {
         //Reset the values
-        self::hideAllActions();
+        self::hideFromAll();
 
         $this->visibility['index'] = true;
 
@@ -115,7 +115,7 @@ trait Visibility {
     public function onlyOnShow() : self
     {
         //Reset the values
-        self::hideAllActions();
+        self::hideFromAll();
 
         $this->visibility['show'] = true;
 
@@ -130,7 +130,7 @@ trait Visibility {
     public function onlyOnEditing() : self
     {
         //Reset the values
-        self::hideAllActions();
+        self::hideFromAll();
 
         $this->visibility['edit'] = true;
 
@@ -145,7 +145,7 @@ trait Visibility {
     public function onlyOnCreating() : self
     {
         //Reset the values
-        self::hideAllActions();
+        self::hideFromAll();
 
         $this->visibility['create'] = true;
 
@@ -160,7 +160,7 @@ trait Visibility {
     public function visibleOn(...$attributes) : self
     {
         //Reset the values
-        self::hideAllActions();
+        self::hideFromAll();
 
         foreach($attributes as $attribute) {
             if(in_array($attribute, $this->allowedControllerActions)) {
@@ -196,7 +196,7 @@ trait Visibility {
      *
      * @var void
      */
-    private function hideAllActions()
+    protected function hideFromAll()
     {
         foreach($this->visibility as $attribute => $value) {
             $this->visibility[$attribute] = false;
