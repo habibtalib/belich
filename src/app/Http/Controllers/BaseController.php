@@ -19,7 +19,6 @@ class BaseController extends Controller
         //Share the setting to all the views
         view()->share([
             'resources'      => $belich->resourcesAll(),
-            'autorizedModel' => $belich::getModel(),
         ]);
     }
 
@@ -37,12 +36,13 @@ class BaseController extends Controller
         $fields = data_get($data, 'fields');
 
         $request->request->add([
-            'actions'     => data_get($data, 'values.actions'),
-            'breadcrumbs' => data_get($data, 'values.breadcrumbs'),
-            'fields'      => $fields,
-            'name'        => data_get($data, 'name'),
-            'results'     => data_get($data, 'results'),
-            'total'       => Belich::count($fields, 2),
+            'autorizedModel' => $belich::getModel(),
+            'actions'        => data_get($data, 'values.actions'),
+            'breadcrumbs'    => data_get($data, 'values.breadcrumbs'),
+            'fields'         => $fields,
+            'name'           => data_get($data, 'name'),
+            'results'        => data_get($data, 'results'),
+            'total'          => Belich::count($fields, 2),
         ]);
 
         return $request;

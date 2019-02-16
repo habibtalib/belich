@@ -60,7 +60,7 @@ trait Resource {
     public static function resourceId()
     {
         $resource   = Str::singular(static::resource());
-        $resourceId = Request::route($resource) ?? null;
+        $resourceId = request()->route($resource) ?? null;
 
         if(is_null($resourceId)) {
             return null;

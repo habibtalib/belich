@@ -14,7 +14,7 @@
         </div>
 
         {{-- Buttons --}}
-        @can('create', $autorizedModel)
+        @can('create', $request->autorizedModel)
             <div class="flex w-full justify-end">
                 <a href="{{ Belich::actionRoute('create') }}" class="btn btn-secondary mr-2">
                     @icon('plus', 'belich::buttons.crud.create')

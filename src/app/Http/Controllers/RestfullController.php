@@ -92,8 +92,8 @@ class RestfullController extends BaseController
      */
     public function show(Belich $belich, $id, Request $request)
     {
-        //Authorization
-        $this->authorize('view', $this->model);
+        //The autorization magic happens in the Daguilarm\Belich\Fields\FieldResolve::class
+        //in order to avoid duplicate mySql queries
 
         //Get the data
         $request = $this->getFormData($belich, $request, $id);
@@ -110,8 +110,8 @@ class RestfullController extends BaseController
      */
     public function edit(Belich $belich, $id, Request $request)
     {
-        //Authorization
-        $this->authorize('update', $this->model);
+        //The autorization magic happens in the Daguilarm\Belich\Fields\FieldResolve::class
+        //in order to avoid duplicate mySql queries
 
         //Get the data
         $request = $this->getFormData($belich, $request, $id);
@@ -128,8 +128,8 @@ class RestfullController extends BaseController
      */
     public function update(Request $request, $id)
     {
-        //Authorization
-        $this->authorize('update', $this->model);
+        //The autorization magic happens in the Daguilarm\Belich\Fields\FieldResolve::class
+        //in order to avoid duplicate mySql queries
 
         //Update the storage...
         return;

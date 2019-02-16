@@ -33,6 +33,10 @@ class FieldResolve {
      */
     public function make(object $class, object $fields, $sqlResponse) : Collection
     {
+        //Policy authorization for 'show', 'edit' and 'update' actions
+        //This go here because we want to avoid duplicated sql queries...Don't remove!!!
+        $this->authorizedAccessThroughPolicy($sqlResponse);
+
         //Not apply
         if($this->action === 'store' || $this->action === 'update' || $this->action === 'destroy') {
             return new Collection;
@@ -121,7 +125,7 @@ class FieldResolve {
     private static function setAuthorization(object $fields)
     {
         return $fields->map(function($field) {
-            if(static::authorizedField($field)) {
+            if(static::canSeeField($field)) {
                 return $field;
             }
         })
@@ -129,15 +133,39 @@ class FieldResolve {
     }
 
     /**
-     * Determine if the field is authorized
+     * Determine if the user has been authorized to see the field: $field->canSee()
      *
      * @param  object  $field
      * @return bool
      */
-    private static function authorizedField(object $field)
+    private static function canSeeField(object $field)
     {
         if(empty($field->seeCallback) || (is_callable($field->seeCallback) && call_user_func($field->seeCallback, request()) !== false)) {
             return true;
+        }
+    }
+
+    /**
+     * Determine if the user can access to the resource
+     * See resource Policy
+     *
+     * @param  object  $sqlResponse
+     * @return bool
+     */
+    private function authorizedAccessThroughPolicy(object $sqlResponse)
+    {
+        //Authorized access to show action
+        if($this->action === 'show') {
+            if(!request()->user()->can('view', $sqlResponse)) {
+                return abort(403);
+            }
+        }
+
+        //Authorized access to edit or update action
+        if($this->action === 'edit' || $this->action === 'update') {
+            if(!request()->user()->can('update', $sqlResponse)) {
+                return abort(403);
+            }
         }
     }
 
@@ -251,6 +279,7 @@ class FieldResolve {
             //This relationship method is only on forms
             //Index has its own way in blade template
             $field->value = self::setValuesWithFieldRelationship($sqlResponse, $field);
+
             //Add the data for the show view
             if($this->action === 'show') {
                 $field->data = $sqlResponse;
