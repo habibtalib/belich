@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Core;
 
+use Daguilarm\Belich\Facades\Belich;
 use Daguilarm\Belich\Fields\Field;
 use Daguilarm\Belich\Fields\FieldResolve;
 use Illuminate\Support\Collection;
@@ -37,21 +38,98 @@ class Html {
     }
 
     /**
-     * Resolve field
+     * Resolve field values for: relationship, displayUsing and resolveUsing
+     * This method is used throw Belich Facade => Belich::html()->resolveField($field, $data);
+     * This method is for refactoring the blade templates.
      *
-     * @param  Daguilarm\Belich\Fields\Field $field
+     * @param  Daguilarm\Belich\Fields\Field $attribute
      * @param  object $data
-     *
      * @return string
      */
     public function resolve(Field $field, object $data = null) : string
     {
-        return FieldResolve::resolveField($field, $data);
+        //Resolve Relationship
+        if(is_array($field->attribute) && count($field->attribute) === 2 && !empty($data)) {
+            $value = $data->{$field->attribute[0]}->{$field->attribute[1]} ?? emptyResults();
+
+        //Resolve value for action controller: edit
+        } elseif(!empty($data)) {
+            $value = $data->{$field->attribute} ?? emptyResults();
+
+        //Resolve value for action controller: show
+        } else {
+            $value = $field->value;
+        }
+
+        //Resolve the field value through callbacks
+        return $this->getCallbackValue($field, $data, $value);
     }
 
     /*
     |--------------------------------------------------------------------------
-    | Helpers
+    | Callbacks
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Resolve field value through callbacks
+     *
+     * @param Daguilarm\Belich\Fields\Field $field
+     * @param object $data
+     * @param string $value
+     * @return string
+     */
+    private function getCallbackValue(Field $field, object $data = null, string $value = '') : string
+    {
+        //Resolve value when using the method: $field->displayUsing()
+        $value = $this->displayCallback($field, $value);
+
+        //Resolve value when using the method: $field->resolveUsingg()
+        return $this->resolveCallback($field, $data, $value);
+    }
+
+    /**
+     * Resolve field callback: $field->displayUsing()
+     *
+     * @param Daguilarm\Belich\Fields\Field $field
+     * @param string $value
+     * @return string
+     */
+    private function displayCallback(Field $field, string $value = '') : string
+    {
+        if(is_callable($field->displayCallback)) {
+            $value = call_user_func($field->displayCallback, $value);
+        }
+
+        return $value;
+    }
+
+    /**
+     * Resolve field callback: $field->resolveUsing()
+     *
+     * @param Daguilarm\Belich\Fields\Field $field
+     * @param object $data
+     * @param string $value
+     * @return string
+     */
+    private function resolveCallback(Field $field, object $data = null, string $value = '') : string
+    {
+        //Resolve value when using the method: $field->resolveUsingg()
+        if(is_callable($field->resolveCallback)) {
+            //Add the data for the show view
+            if(Belich::action() === 'show') {
+                $data = $field->data;
+            }
+
+            $value = call_user_func($field->resolveCallback, $data);
+        }
+
+        return $value;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Url parameters
     |--------------------------------------------------------------------------
     */
 
@@ -83,22 +161,7 @@ class Html {
             })
             ->unique()
             ->map(function($value, $key) use ($field) {
-                //Set orderBy
-                if($key === 'orderBy') {
-                    return $field->attribute;
-                }
-
-                //Set direction
-                if($key === 'direction') {
-                    //Set only the allowed direction values
-                    if($value !== 'DESC' && $value !== 'ASC') {
-                        return 'DESC';
-                    }
-                    //Change order
-                    return ($value === 'DESC') ? 'ASC' : 'DESC';
-                }
-
-                return $value;
+                return $this->setOrderAndDirection($field, $key, $value);
             });
 
         //Set the default parameters values for the urls
@@ -141,5 +204,46 @@ class Html {
                 return sprintf('%s=%s', $key, $value);
             })
             ->implode('&');
+    }
+
+    /**
+     * Set value base on direction
+     *
+     * @param string $key
+     * @param string $value
+     * @return string
+     */
+    private function setValueFromDirection(string $key, string $value) : string
+    {
+        //Set only the allowed direction values
+        if($value !== 'DESC' && $value !== 'ASC') {
+            return 'DESC';
+        }
+
+        //Change order
+        return ($value === 'DESC') ? 'ASC' : 'DESC';
+    }
+
+    /**
+     * Set the values for order and direction
+     *
+     * @param Daguilarm\Belich\Fields\Field $field
+     * @param string $key
+     * @param string $value
+     * @return string
+     */
+    private function setOrderAndDirection(Field $field, string $key, string $value) : string
+    {
+        //Set orderBy
+        if($key === 'orderBy') {
+            return $field->attribute;
+        }
+
+        //Set direction
+        if($key === 'direction') {
+            return $this->setValueFromDirection($key, $value);
+        }
+
+        return $value;
     }
 }
