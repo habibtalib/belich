@@ -44,9 +44,9 @@ class Html {
      *
      * @param  Daguilarm\Belich\Fields\Field $attribute
      * @param  object $data
-     * @return string
+     * @return null|string
      */
-    public function resolve(Field $field, object $data = null) : string
+    public function resolve(Field $field, object $data = null)
     {
         //Resolve Relationship
         if(is_array($field->attribute) && count($field->attribute) === 2 && !empty($data)) {
@@ -76,10 +76,10 @@ class Html {
      *
      * @param Daguilarm\Belich\Fields\Field $field
      * @param object $data
-     * @param string $value
-     * @return string
+     * @param null|string $value
+     * @return null|string
      */
-    private function getCallbackValue(Field $field, object $data = null, string $value = '') : string
+    private function getCallbackValue(Field $field, object $data = null, $value = '')
     {
         //Resolve value when using the method: $field->displayUsing()
         $value = $this->displayCallback($field, $value);
@@ -92,10 +92,10 @@ class Html {
      * Resolve field callback: $field->displayUsing()
      *
      * @param Daguilarm\Belich\Fields\Field $field
-     * @param string $value
-     * @return string
+     * @param null|string $value
+     * @return null|string
      */
-    private function displayCallback(Field $field, string $value = '') : string
+    private function displayCallback(Field $field, $value = '')
     {
         if(is_callable($field->displayCallback)) {
             $value = call_user_func($field->displayCallback, $value);
@@ -109,10 +109,10 @@ class Html {
      *
      * @param Daguilarm\Belich\Fields\Field $field
      * @param object $data
-     * @param string $value
-     * @return string
+     * @param null|string $value
+     * @return null|string
      */
-    private function resolveCallback(Field $field, object $data = null, string $value = '') : string
+    private function resolveCallback(Field $field, object $data = null, $value = '')
     {
         //Resolve value when using the method: $field->resolveUsingg()
         if(is_callable($field->resolveCallback)) {
