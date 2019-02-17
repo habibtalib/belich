@@ -79,7 +79,7 @@ class Html {
     public function resolveRowWithSoftdeletingCreatingHtml(Field $field, object $data = null)
     {
         if(method_exists(Belich::getModel(), 'trashed') && $data->trashed()) {
-            return sprintf('<td><del>%s</del></td>', $this->resolve($field, $data));
+            return sprintf('<td class="text-red line-through">%s</td>', $this->resolve($field, $data));
         }
         return sprintf('<td>%s</td>', $this->resolve($field, $data));
     }
