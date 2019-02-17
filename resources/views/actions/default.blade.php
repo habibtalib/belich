@@ -8,8 +8,12 @@
 
 @can('delete', $model)
     @isTrashed($model)
-        <a href="{{ Belich::actionRoute('destroy', $model) }}" class="action">@actionIcon('redo')</a>
-        <a href="{{ Belich::actionRoute('destroy', $model) }}" class="action bg-red-lightest rounded-full">@actionIcon('trash-alt')</a>
+        @can('restore', $model)
+            <a href="{{ Belich::actionRoute('destroy', $model) }}" class="action">@actionIcon('redo')</a>
+        @endcan
+        @can('forceDelete', $model)
+            <a href="{{ Belich::actionRoute('destroy', $model) }}" class="action bg-red-lightest rounded-full">@actionIcon('trash-alt')</a>
+        @endcan
     @else
         <a href="{{ Belich::actionRoute('destroy', $model) }}" class="action">@actionIcon('trash')</a>
     @endif
