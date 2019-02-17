@@ -46,6 +46,17 @@ Puede personalizarse el aspecto, a través de la clase css `.icon`.
 Igual que `@icon`, pero no acepta texto. Pensado para los iconos de los botones de acción del `index`.
 
 
+#### isTrashed
+
+Verifica si un modelo tiene el trait *softdelete*, y puede por tanto, utilizar los métodos de este trait. Es una lo que Laravel denomina *Custom If Statements
+*, por lo tanto, funciona como si fuera una directiva `@if`.
+
+~~~
+@isTrashed($model)  
+    //Staff
+@endif
+~~~
+
 #### gravatar 
 
 Nos devuelve una imagen de la [API de gravatar](https://es.gravatar.com/site/implement/) a partir de nuestro email de usuario:

@@ -7,7 +7,7 @@
 @endcan
 
 @can('delete', $model)
-    @if($model->trashed())
+    @isTrashed($model)
         <a href="{{ Belich::actionRoute('destroy', $model) }}" class="action">@actionIcon('redo')</a>
     @else
         <a href="{{ Belich::actionRoute('destroy', $model) }}" class="action">@actionIcon('trash')</a>

@@ -37,6 +37,20 @@ Blade::directive('icon', function ($arguments) {
 });
 
 /**
+ * Create a Blade if directive for @isTrashed
+ * Check if a model is softdeleting
+ *
+ * @return string
+ */
+Blade::if('isTrashed', function ($model) {
+    if(method_exists($model, 'trashed') && $model->trashed()) {
+        return true;
+    }
+
+    return false;
+});
+
+/**
  * Create a @mix directive for the package namespace
  *
  * @return string
