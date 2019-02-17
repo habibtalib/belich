@@ -2,6 +2,8 @@
 
 namespace Daguilarm\Belich\Core\Traits;
 
+use Daguilarm\Belich\Facades\Belich;
+
 trait SqlConnection {
 
     /**
@@ -16,6 +18,7 @@ trait SqlConnection {
         $direction = request()->query('direction');
         $order     = request()->query('orderBy');
         $trashed   = request()->query('withTrashed');
+        $policy    = request()->user()->can('withTrashed', Belich::getModel());
 
         //Sql for index
         if(static::action() === 'index') {
@@ -24,12 +27,12 @@ trait SqlConnection {
                 ->indexQuery($this->request)
 
                 //Order query
-                ->when(!empty($order) && !empty($direction), function ($query) use ($direction, $order, $trashed) {
+                ->when(!empty($order) && !empty($direction), function ($query) use ($direction, $order, $policy, $trashed) {
                     return $query->orderBy($order, $direction);
                 })
 
                 //Trashed
-                ->when(!empty($trashed) && $trashed === 'true', function ($query) {
+                ->when(!empty($trashed) && $trashed === 'true' && $policy, function ($query) {
                     return $query->withTrashed();
                 })
 
