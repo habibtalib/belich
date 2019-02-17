@@ -2,13 +2,14 @@
 
 namespace Daguilarm\Belich\Fields;
 
-use Daguilarm\Belich\Core\Traits\Route as Helpers;
 use Daguilarm\Belich\Fields\Field;
+use Daguilarm\Belich\Core\Traits\Route as Helpers;
+use Daguilarm\Belich\Fields\Traits\Resolve;
 use Illuminate\Support\Collection;
 
 class FieldResolve {
 
-    use Helpers;
+    use Helpers, Resolve;
 
     /** @var string */
     private $action;
@@ -24,48 +25,27 @@ class FieldResolve {
     }
 
     /**
-     * Show or Hide field base on actions
+     * Resolve fields: auth, visibility, value,...
      *
      * @param object $class
-     * @param string $controllerAction
      * @param object $fields
+     * @param object $sqlResponse
      * @return Illuminate\Support\Collection
      */
-    public function make(object $class, object $fields, $sqlResponse) : Collection
+    public function make(object $class, object $fields, object $sqlResponse) : Collection
     {
         //Policy authorization for 'show', 'edit' and 'update' actions
         //This go here because we want to avoid duplicated sql queries...Don't remove!!!
-        $this->setAuthorizationForPolicy($sqlResponse);
+        $this->setAuthorizationFromPolicy($sqlResponse);
 
-        //Not apply
-        if($this->action === 'store' || $this->action === 'update' || $this->action === 'destroy') {
-            return new Collection;
-        }
-
-        //Authorized fields
+        //Authorized fields: $field->canSee()
         $fields = $this->setAuthorizationForFields($fields);
 
         //Show or hide fields base on Resource settings
         $fields = $this->setVisibilityForFields($fields);
 
-        //Index action: Return only the name and the attribute for each field.
-        if($this->action === 'index') {
-            return $this->setIndexValues($fields);
-        }
-
-        //Form actions: Create or Edit
-        if($this->action === 'create' || $this->action === 'edit') {
-            // Creating all the render attributes for the forms
-            $fields = $this->setAttributes($fields);
-        }
-
-        //Add values to fields: Only in Edit or Show actions
-        if($this->action === 'edit' || $this->action === 'show') {
-            //Fill the field value with the model
-            return self::setValues($sqlResponse, $fields);
-        }
-
-        return $fields;
+        //Resolve fields base on the controller action
+        return $this->setControllerActionForFields($fields, $sqlResponse);
     }
 
     /**
@@ -112,7 +92,7 @@ class FieldResolve {
 
     /*
     |--------------------------------------------------------------------------
-    | Private methods
+    | Auth methods
     |--------------------------------------------------------------------------
     */
 
@@ -152,7 +132,7 @@ class FieldResolve {
      * @param  object  $sqlResponse
      * @return bool
      */
-    private function setAuthorizationForPolicy(object $sqlResponse)
+    private function setAuthorizationFromPolicy(object $sqlResponse)
     {
         //Authorized access to show action
         if($this->action === 'show') {
@@ -168,6 +148,12 @@ class FieldResolve {
             }
         }
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Attributes
+    |--------------------------------------------------------------------------
+    */
 
     /**
      * Show or Hide field base on the controller action
@@ -188,58 +174,22 @@ class FieldResolve {
     }
 
     /**
-     * Set the values base on the index controller action
-     *
-     * @param Illuminate\Support\Collection $fields
-     * @return Illuminate\Support\Collection
-     */
-    private function setIndexValues(Collection $fields) : Collection
-    {
-        return $fields->map(function($field) {
-            //Showing field relationship in index
-            //See blade template: dashboard.index
-            $field->attribute = $field->fieldRelationship
-                //Prepare field for relationship
-                ? [$field->fieldRelationship, $field->attribute]
-                //No relationship field
-                : $field->attribute;
-
-            return $field;
-        });
-    }
-
-    /**
      * Generate the attributes for the fields
      *
      * @param Illuminate\Support\Collection $fields
      * @return \Illuminate\Support\Collection
      */
-    private function setAttributes(Collection $fields) : Collection
+    private function setAttributesForFields(Collection $fields) : Collection
     {
         //Set attributes for each field
         return $fields->map(function($field) {
 
             //Add attributes dynamically from the list
-            $field->render = collect($field)
-                ->map(function($value, $attribute) use ($field) {
-                    //Get the list of attributes to be rendered: name, dusk,...
-                    if(in_array($attribute, $field->renderAttributes)) {
-                        return sprintf('%s=%s', $attribute, $value);
-                    }
-                })
-                ->filter(function($value) {
-                    return $value;
-                });
+            $field->render = $this->setRenderFieldAttributes($field);
 
             //Add the data attributes
             if($field->data) {
-                $data = collect($field->data)
-                    ->map(function($value) {
-                        return sprintf('data-%s=%s', $value[0], $value[1]);
-                    })
-                    ->implode(' ');
-
-                $field->render->push($data);
+                $field->render->push($this->setRenderFieldAttributesData($field));
             }
 
             //Add readonly attribute
@@ -252,12 +202,16 @@ class FieldResolve {
                 $field->render->push('disabled');
             }
 
-            //To string...
-            $field->render = $field->render->implode(' ');
-
-            return $field;
+            //Render field
+            return $this->renderField($field);
         });
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Values for fields
+    |--------------------------------------------------------------------------
+    */
 
     /**
      * When the action is update or show
@@ -266,7 +220,7 @@ class FieldResolve {
      * @param Illuminate\Support\Collection $sqlResponse
      * @return Illuminate\Support\Collection
      */
-    private function setValues(object $sqlResponse, Collection $fields) : Collection
+    private function setValueForFields(object $sqlResponse, Collection $fields) : Collection
     {
         return $fields->map(function($field) use ($sqlResponse) {
             //Not resolve field value
@@ -303,5 +257,42 @@ class FieldResolve {
         }
 
         return $sqlResponse->{$field->attribute} ?? null;
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Render field attributes
+    |--------------------------------------------------------------------------
+    */
+
+    private function setRenderFieldAttributes($field)
+    {
+        return collect($field)
+            ->map(function($value, $attribute) use ($field) {
+                //Get the list of attributes to be rendered: name, dusk,...
+                if(in_array($attribute, $field->renderAttributes)) {
+                    return sprintf('%s=%s', $attribute, $value);
+                }
+            })
+            ->filter(function($value) {
+                return $value;
+            });
+    }
+
+    private function setRenderFieldAttributesData($field)
+    {
+        return collect($field->data)
+            ->map(function($value) {
+                return sprintf('data-%s=%s', $value[0], $value[1]);
+            })
+            ->implode(' ');
+    }
+
+    private function renderField($field)
+    {
+        //To string...
+        $field->render = $field->render->implode(' ');
+
+        return $field;
     }
 }
