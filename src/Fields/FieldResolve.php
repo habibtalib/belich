@@ -35,7 +35,7 @@ class FieldResolve {
     {
         //Policy authorization for 'show', 'edit' and 'update' actions
         //This go here because we want to avoid duplicated sql queries...Don't remove!!!
-        $this->authorizedAccessThroughPolicy($sqlResponse);
+        $this->setAuthorizationForPolicy($sqlResponse);
 
         //Not apply
         if($this->action === 'store' || $this->action === 'update' || $this->action === 'destroy') {
@@ -43,10 +43,10 @@ class FieldResolve {
         }
 
         //Authorized fields
-        $fields = $this->setAuthorization($fields);
+        $fields = $this->setAuthorizationForFields($fields);
 
         //Show or hide fields base on Resource settings
-        $fields = $this->setVisibilities($fields);
+        $fields = $this->setVisibilityForFields($fields);
 
         //Index action: Return only the name and the attribute for each field.
         if($this->action === 'index') {
@@ -122,10 +122,10 @@ class FieldResolve {
      * @param  object  $fields
      * @return bool
      */
-    private static function setAuthorization(object $fields)
+    private function setAuthorizationForFields(object $fields)
     {
         return $fields->map(function($field) {
-            if(static::canSeeField($field)) {
+            if($this->canSeeField($field)) {
                 return $field;
             }
         })
@@ -138,7 +138,7 @@ class FieldResolve {
      * @param  object  $field
      * @return bool
      */
-    private static function canSeeField(object $field)
+    private function canSeeField(object $field)
     {
         if(empty($field->seeCallback) || (is_callable($field->seeCallback) && call_user_func($field->seeCallback, request()) !== false)) {
             return true;
@@ -152,7 +152,7 @@ class FieldResolve {
      * @param  object  $sqlResponse
      * @return bool
      */
-    private function authorizedAccessThroughPolicy(object $sqlResponse)
+    private function setAuthorizationForPolicy(object $sqlResponse)
     {
         //Authorized access to show action
         if($this->action === 'show') {
@@ -175,7 +175,7 @@ class FieldResolve {
      * @param Illuminate\Support\Collection $fields
      * @return array|null
      */
-    private function setVisibilities(Collection $fields) : Collection
+    private function setVisibilityForFields(Collection $fields) : Collection
     {
         return $fields->map(function($field) {
             //If the field has the visibility for this controller action on true...
