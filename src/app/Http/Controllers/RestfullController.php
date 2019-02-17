@@ -148,4 +148,32 @@ class RestfullController extends BaseController
 
         return;
     }
+
+    /**
+     * Force delete a resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function forceDelete($id)
+    {
+        //Authorization
+        $this->authorize('forceDelete', $this->model);
+
+        return;
+    }
+
+    /**
+     * Restore a deleted a resource.
+     *
+     * @param int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function restore($id)
+    {
+        //Authorization
+        $this->authorize('restore', $this->model);
+
+        return;
+    }
 }
