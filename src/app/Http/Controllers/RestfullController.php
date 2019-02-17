@@ -178,8 +178,15 @@ class RestfullController extends BaseController
         //Authorization
         $this->authorize('restore', $this->model);
 
-        return $this->model
-            ->find($id)
+        $restore = $this->model
+            ->onlyTrashed()
+            ->whereId($id)
             ->restore();
+
+        $redirect = redirect()->back();
+
+        return $restore
+            ? $redirect->withSuccess(['success', 'success', 'success'])
+            : $redirect->withErrors(['error1', 'error2']);
     }
 }

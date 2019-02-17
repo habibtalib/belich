@@ -2,7 +2,7 @@
 @isTrashed($model)
     {{-- The user can restore trashed items --}}
     @can('restore', $model)
-        <a href="{{ Belich::actionRoute('destroy', $model) }}" class="action">@actionIcon('redo')</a>
+        <a href="{{ Belich::actionRoute('restore', $model) }}" class="action">@actionIcon('redo')</a>
     @endcan
     {{-- The user can force delete trashed items --}}
     @can('forceDelete', $model)

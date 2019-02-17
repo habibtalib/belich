@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Str;
+
 //Load the auth routes
 if (file_exists(__DIR__ . '/../routes/AuthRoutes.php')) {
     require_once(__DIR__ . '/../routes/AuthRoutes.php');
@@ -13,16 +15,20 @@ Route::group([
 
         //Validation routes
         Route::post(Belich::pathName() . '/ajax/form/validation', namespace_path('App\Http\Controllers\ValidationController'))
-            ->middleware(Belich::middleware())
             ->name('ajax.form.validation');
 
         //Generate routes from resources
         //The middleware can be setter from the config file
         $resources = getAllTheResourcesFromFolder()
             ->map(function($route) {
+                //Get route ID
+                $routeID = sprintf('{%s}', Str::singular($route));
                 if($route) {
-                    return Route::resource(route_path($route), namespace_path('App\Http\Controllers\RestfullController'))
-                            ->middleware(Belich::middleware());
+                    Route::resource(route_path($route), namespace_path('App\Http\Controllers\RestfullController'));
+                    Route::get(route_path($route) . '/' . $routeID . '/restore', namespace_path('App\Http\Controllers\RestfullController@restore'))
+                        ->name($route . '.restore');
+                    Route::get(route_path($route) . '/' . $routeID . '/forceDelete', namespace_path('App\Http\Controllers\RestfullController@forceDelete'))
+                        ->name($route . '.forceDelete');
                 }
             });
 

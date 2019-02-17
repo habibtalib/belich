@@ -27,6 +27,7 @@
 
                 {{-- Application --}}
                 <section class="flex-1 m-8">
+                    @include('belich::partials.messages')
                     @yield('content')
                 </section>
             </div>
