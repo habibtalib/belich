@@ -201,3 +201,18 @@ Belich::html()->resolve($field, $model)
 
 Es utilizado por el sistema en las vistas `index` y `show`.
 
+#### resolveRowWithSoftdeletingCreatingHtml()
+
+Hace lo mismo que el anterior, pero añade estilos css a la tabla, para indicar que una fila ha sido borrada (softdeleting) y la estamos viendo porque tenemos permisos para ello, pero se encuentra eliminada para el resto de usuarios.
+
+~~~
+Belich::html()->resolveRowWithSoftdeletingCreatingHtml($field, $model, $css = 'bg-red text-white')
+~~~
+
+O podemos dejar los estilos por defecto `bg-red-lightest`:
+
+~~~
+Belich::html()->resolveRowWithSoftdeletingCreatingHtml($field, $model)
+~~~
+
+>Si optamos por este método en vez de `resolve()`, no debemos añadir el html de la columna: `<td></td>`, ya que el sistema lo genera automáticamente para añadirle los estilos.

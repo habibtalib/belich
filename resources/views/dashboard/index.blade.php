@@ -35,6 +35,7 @@
                             {!! Belich::html()->tableLink($field) !!}
                         </th>
                     @endforeach
+                    {{-- Action column --}}
                     <th></th>
                 </tr>
             </thead>
@@ -44,10 +45,8 @@
                     <tr>
                         <td><input type="checkbox" name="item_selection[]" value="{{ $result->id }}"></td>
                         @foreach($request->fields as $field)
-                            <td>
-                                {{-- Resolve the values --}}
-                                {!! Belich::html()->resolve($field, $result) !!}
-                            </td>
+                            {{-- Resolve the values and create the <td></td> --}}
+                            {!! Belich::html()->resolveRowWithSoftdeletingCreatingHtml($field, $result) !!}
                         @endforeach
                         <td class="text-right">
                             {{-- Load the button actions --}}
