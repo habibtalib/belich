@@ -1,0 +1,106 @@
+<?php
+
+namespace App\Policies;
+
+use d_model_path_b;
+use d_model_user_path_b;
+use Illuminate\Auth\Access\HandlesAuthorization;
+
+class d_model_bPolicy
+{
+    use HandlesAuthorization;
+
+    /**
+    * Determine whether the User can create the a d_model_b.
+    *
+    * @param  d_model_user_path_b  $user
+    * @return mixed
+    */
+    public function create(User $user)
+    {
+        return true;
+    }
+
+    /**
+    * Determine whether the User can delete a d_model_b.
+    *
+    * @param  d_model_user_path_b  $user
+    * @param  d_model_path_b  $d_model_variable_b
+    * @return mixed
+    */
+    public function delete(User $user, d_model_b $d_model_variable_b)
+    {
+        return true;
+    }
+
+    /**
+    * Determine whether the User can force delete a d_model_b.
+    *
+    * @param  d_model_user_path_b  $user
+    * @param  d_model_path_b  $d_model_variable_b
+    * @return mixed
+    */
+    public function forceDelete(User $user, d_model_b $d_model_variable_b)
+    {
+        return true;
+    }
+
+    /**
+    * Determine whether the User can restore a d_model_b.
+    *
+    * @param  d_model_user_path_b  $user
+    * @param  d_model_path_b  $d_model_variable_b
+    * @return mixed
+    */
+    public function restore(User $user, d_model_b $d_model_variable_b)
+    {
+        return true;
+    }
+
+    /**
+    * Determine whether the User can update a d_model_b.
+    *
+    * @param  d_model_user_path_b  $user
+    * @param  d_model_path_b  $d_model_variable_b
+    * @return mixed
+    */
+    public function update(User $user, d_model_b $d_model_variable_b)
+    {
+        return true;
+    }
+
+    /**
+    * Determine whether the User can view a d_model_b.
+    * This method will affect the controller 'show' action
+    *
+    * @param  d_model_user_path_b  $user
+    * @return mixed
+    */
+    public function view(User $user)
+    {
+       return true;
+    }
+
+    /**
+    * Determine whether the User can view a d_model_b.
+    * This method will affect the controller 'index' action
+    *
+    * @param  d_model_user_path_b  $user
+    * @return mixed
+    */
+    public function viewAny(User $user)
+    {
+        return true;
+    }
+
+    /**
+    * Determine whether the User can see the trashed model.
+    *
+    * @param  d_model_user_path_b  $user
+    * @return mixed
+    */
+    public function withTrashed(User $user)
+    {
+        return true;
+    }
+}

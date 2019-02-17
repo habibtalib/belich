@@ -97,7 +97,7 @@ class ServiceProvider extends Provider {
         //Publish the config file
         $this->publishes([
             __DIR__ . '/../config/belich.php' => config_path('belich.php'),
-            __DIR__ . '/../src/Stubs/validate-form.stub' => config_path('belich/stubs/validate-form.stub'),
+            __DIR__ . '/../src/stubs/validate-form.stub' => config_path('belich/stubs/validate-form.stub'),
         ]);
 
         //Publish the views
@@ -126,8 +126,8 @@ class ServiceProvider extends Provider {
 
         //Publish the navigation
         $this->publishes([
-           __DIR__ . '/Stubs/Navbar.php' => base_path('app/Belich/Navbar.php'),
-           __DIR__ . '/Stubs/Sidebar.php' => base_path('app/Belich/Sidebar.php'),
+           __DIR__ . '/stubs/navbar.stub' => base_path('app/Belich/Navbar.php'),
+           __DIR__ . '/stubs/sidebar.stub' => base_path('app/Belich/Sidebar.php'),
         ]);
     }
 
@@ -138,11 +138,12 @@ class ServiceProvider extends Provider {
      */
     protected function registerConsole()
     {
-        // if ($this->app->runningInConsole()) {
-        //     $this->commands([
-        //         \Daguilarm\Belich\App\Console\Commands\Hello::class,
-        //     ]);
-        // }
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                \Daguilarm\Belich\App\Console\Commands\PolicyCommand::class,
+                \Daguilarm\Belich\App\Console\Commands\ResourceCommand::class,
+            ]);
+        }
     }
 
     /**

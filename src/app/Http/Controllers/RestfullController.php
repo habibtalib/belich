@@ -146,7 +146,9 @@ class RestfullController extends BaseController
         //Authorization
         $this->authorize('delete', $this->model);
 
-        return;
+        return $this->model
+            ->find($id)
+            ->delete();
     }
 
     /**
@@ -160,7 +162,9 @@ class RestfullController extends BaseController
         //Authorization
         $this->authorize('forceDelete', $this->model);
 
-        return;
+        return $this->model
+            ->find($id)
+            ->forceDelete();
     }
 
     /**
@@ -174,6 +178,8 @@ class RestfullController extends BaseController
         //Authorization
         $this->authorize('restore', $this->model);
 
-        return;
+        return $this->model
+            ->find($id)
+            ->restore();
     }
 }

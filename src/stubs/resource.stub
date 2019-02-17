@@ -1,0 +1,83 @@
+<?php
+
+namespace App\Belich\Resources;
+
+use Daguilarm\Belich\Fields\Types\ID;
+use Daguilarm\Belich\Resources;
+use Illuminate\Http\Request;
+
+class d_model_b extends Resources {
+
+    /** @var string [Model path] */
+    public static $model = 'd_model_path_b';
+
+    /** @var array */
+    public static $relationships = [];
+
+    /** @var bool */
+    public static $displayInNavigation = true;
+
+    /** @var string */
+    public static $group = '';
+
+    /** @var string */
+    public static $icon = '';
+
+    /** @var string */
+    public static $label = 'd_model_b';
+
+    /** @var string */
+    public static $pluralLabel = 'd_model_plural_b';
+
+    /**
+     * Generate constructor for the resource
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Build the query for the given resource.
+     *
+     * @return Illuminate\Database\Eloquent\Collection
+     */
+    public function indexQuery() {
+        return $this->model();
+    }
+
+    /**
+     * Get the fields displayed by the resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return Illuminate\Support\Collection
+     */
+    public function fields(Request $request) {
+        return [
+            ID::make('Id')
+                ->sortable(),
+        ];
+    }
+
+    /**
+     * Set the custom metric cards
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return Illuminate\Support\Collection
+     */
+    public function metrics(Request $request) {
+        return;
+    }
+
+    /**
+     * Set the custom cards
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return Illuminate\Support\Collection
+     */
+    public function cards(Request $request) {
+        return;
+    }
+}
