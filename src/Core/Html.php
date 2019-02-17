@@ -74,13 +74,12 @@ class Html {
      *
      * @param  Daguilarm\Belich\Fields\Field $attribute
      * @param  object $data
-     * @param  string $css
      * @return null|string
      */
-    public function resolveRowWithSoftdeletingCreatingHtml(Field $field, object $data = null, $css = 'bg-red-lightest')
+    public function resolveRowWithSoftdeletingCreatingHtml(Field $field, object $data = null)
     {
         if(method_exists(Belich::getModel(), 'trashed') && $data->trashed()) {
-            return sprintf('<td class="%s">%s</td>', $css, $this->resolve($field, $data));
+            return sprintf('<td><del>%s</del></td>', $this->resolve($field, $data));
         }
         return sprintf('<td>%s</td>', $this->resolve($field, $data));
     }

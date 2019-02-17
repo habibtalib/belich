@@ -203,13 +203,8 @@ Es utilizado por el sistema en las vistas `index` y `show`.
 
 #### resolveRowWithSoftdeletingCreatingHtml()
 
-Hace lo mismo que el anterior, pero añade estilos css a la tabla, para indicar que una fila ha sido borrada (softdeleting) y la estamos viendo porque tenemos permisos para ello, pero se encuentra eliminada para el resto de usuarios.
+Hace lo mismo que el anterior, pero añade la etiqueta `del` a la columna, para indicar que una fila ha sido borrada (softdeleting) y la estamos viendo porque tenemos permisos para ello, pero se encuentra eliminada para el resto de usuarios.
 
-~~~
-Belich::html()->resolveRowWithSoftdeletingCreatingHtml($field, $model, $css = 'bg-red text-white')
-~~~
-
-O podemos dejar los estilos por defecto `bg-red-lightest`:
 
 ~~~
 Belich::html()->resolveRowWithSoftdeletingCreatingHtml($field, $model)
