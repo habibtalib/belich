@@ -48,7 +48,9 @@ Igual que `@icon`, pero no acepta texto. Pensado para los iconos de los botones 
 
 #### isTrashed
 
-Verifica si un modelo tiene el trait *softdelete*, y puede por tanto, utilizar los métodos de este trait. Es una lo que Laravel denomina *Custom If Statements
+Verifica si un modelo tiene el trait *softdelete*, y si utiliza el método `trashed()` de este trait, y por tanto, está mostrando resultados que han sido eliminados por softdelete. 
+
+Es una lo que Laravel denomina *Custom If Statements
 *, por lo tanto, funciona como si fuera una directiva `@if`.
 
 ~~~
