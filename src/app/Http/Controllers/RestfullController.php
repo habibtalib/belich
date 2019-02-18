@@ -71,15 +71,9 @@ class RestfullController extends BaseController
         //Authorization
         $this->authorize('create', $this->model);
 
-        if($this->model::create($request->all())) {
-            return redirect()
-                ->back()
-                ->withSuccess('Hellow');
-        }
+        $create = $this->model::create($request->all());
 
-        return redirect()
-            ->back()
-            ->withErrors(['Errors']);
+        return $this->redirectBack($create, $actionSuccess = 'created', $actionFail = 'creating');
     }
 
     /**
@@ -131,8 +125,9 @@ class RestfullController extends BaseController
         //The autorization magic happens in the Daguilarm\Belich\Fields\FieldResolve::class
         //in order to avoid duplicate mySql queries
 
-        //Update the storage...
-        return;
+        $update = $this->model->findOrFail($id)->update($request->all());
+
+        return $this->redirectBack($update, $actionSuccess = 'updated', $actionFail = 'updating');
     }
 
     /**
@@ -146,7 +141,9 @@ class RestfullController extends BaseController
         //Authorization
         $this->authorize('delete', $this->model);
 
-        return $this->model->find($id)->delete();
+        $delete = $this->model->findOrFail($id)->delete();
+
+        return $this->redirectBack($delete, $actionSuccess = 'deleted', $actionFail = 'deleting');
     }
 
     /**
