@@ -4,7 +4,7 @@
     {{-- Breadcrumbs --}}
     @include('belich::partials.breadcrumbs')
 
-    {{-- Search --}}
+    {{-- Search container --}}
     <div id="table-search" class="flex items-center rounded-t p-4 pr-6 shadow-md w-full">
         <div class="icon-search w-full">
             <input type="text" name="_search" id="_search" class="p-2 pl-8 my-2 ml-2 rounded border border-grey-light shadow-md w-64" placeholder="search..." onkeydown="showResetSearch()">
@@ -21,18 +21,23 @@
                         @icon('plus', 'belich::buttons.crud.create')
                     </a>
             @endcan
-
             {{-- Options --}}
             @include('belich::partials.options')
+        </div>
+        {{-- End right container --}}
     </div>
-    </div>
+    {{-- End search container --}}
 
     {{-- Start / Table --}}
     <form name="form-index" id="form-index" method="POST" action="">
         <table class="table">
             <thead>
                 <tr>
-                    <th><input type="checkbox" name="item_selection" onclick="checkAll('form-index', this)"></th>
+                    {{-- Checkboxes --}}
+                    <th>
+                        <input type="checkbox" name="item_selection" onclick="checkAll('form-index', this)">
+                    </th>
+                    {{-- Headers --}}
                     @foreach($request->fields as $field)
                         <th>
                             {{-- Get URL with ASC or DESC order --}}
@@ -48,10 +53,12 @@
                 @forelse($request->results as $result)
                     <tr>
                         <td><input type="checkbox" name="item_selection[]" value="{{ $result->id }}"></td>
-                        @foreach($request->fields as $field)
-                            {{-- Resolve the values and create the <td></td> --}}
-                            {!! Belich::html()->resolveRowWithSoftdeletingCreatingHtml($field, $result) !!}
-                        @endforeach
+                        {{-- <td> --}}
+                            @foreach($request->fields as $field)
+                                {{-- Resolve the values and create the <td></td> --}}
+                                {!! Belich::html()->resolveRowWithSoftdeletingCreatingHtml($field, $result) !!}
+                            @endforeach
+                        {{-- </td> --}}
                         <td class="text-right">
                             {{-- Load the button actions --}}
                             {!! Belich::actions($result, $request->actions) !!}
@@ -60,7 +67,7 @@
                 {{-- No results --}}
                 @empty
                     <tr>
-                        <td colspan="{{ $totalResults }}" class="text-center">
+                        <td colspan="{{ $request->total }}" class="text-center">
                             {{ trans('belich::messages.resources.no_results') }}
                         </td>
                     </tr>
@@ -73,6 +80,7 @@
         </table>
     </form>
     {{-- End / Table --}}
+
     {{-- Table footer (bordered) --}}
     <div class="table-footer rounded-b-lg h-1 mb-16 shadow-md"></div>
 @endsection
