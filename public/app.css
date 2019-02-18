@@ -178,33 +178,17 @@ a {
 }
 
 .btn-default {
-  background-color: #f8fafc;
-  color: #8795a1;
+  background-color: #b8c2cc;
+  color: #fff;
   border-width: 1px;
   border-color: #dae1e7;
 }
 
 .btn-default:hover {
-  background-color: #f1f5f8;
+  background-color: #dae1e7;
   color: #606f7b;
   border-width: 1px;
   border-color: #b8c2cc;
-}
-
-.btn-icon {
-  background-color: #e3fcec;
-  color: #1f9d55;
-  border-width: 1px;
-  border-color: #51d88a;
-}
-
-.btn-icon:hover {
-  background-color: #51d88a;
-  color: #fff;
-}
-
-.btn-icon > i {
-  opacity: 1;
 }
 
 /*Dropdown*/
@@ -222,22 +206,21 @@ a {
 .btn-dropdown-content {
   z-index: 10;
   position: absolute;
+  visibility: hidden;
+  opacity: 0;
   width: 16rem;
-  border-width: 1px;
-  border-color: #dae1e7;
-  right: 0;
-  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
-          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
-  border-radius: .5rem;
-  background-color: #fff;
-  color: #22292f;
   margin-top: 1.25rem;
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
 }
 
-/*.btn-dropdown:hover .btn-dropdown-content {
-    @apply visible z-40 opacity-100;
-    transition-delay: var(--transition-delay);
-}*/
+.btn-dropdown:hover .btn-dropdown-content {
+  visibility: visible;
+  z-index: 40;
+  opacity: 1;
+  -webkit-transition-delay: var(--transition-delay);
+          transition-delay: var(--transition-delay);
+}
 /* Gradients */
 
 .sidebar-gradient {

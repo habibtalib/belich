@@ -15,14 +15,19 @@
 
         {{-- Right container --}}
         <div class="flex justify-end w-full">
+
             {{-- Buttons --}}
             @can('create', $request->autorizedModel)
                     <a href="{{ Belich::actionRoute('create') }}" class="btn btn-secondary mr-2">
                         @icon('plus', 'belich::buttons.crud.create')
                     </a>
             @endcan
+
             {{-- Options --}}
             @include('belich::partials.options')
+
+            {{-- Export --}}
+            @include('belich::partials.exports')
         </div>
         {{-- End right container --}}
     </div>

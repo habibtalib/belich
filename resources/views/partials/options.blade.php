@@ -1,14 +1,21 @@
 {{-- Options --}}
-<div class="btn btn-icon btn-dropdown">
+<div class="btn btn-dropdown bg-grey-lighter text-grey-dark border border-grey mr-2">
     {{-- Set button icon --}}
-    @icon('cogs')
+    @icon('cogs', '', 'opacity-100')
 
     {{-- Start with form --}}
-    <form method="GET" class="btn-dropdown-content text-grey-dark text-left">
+    <form method="POST"
+        name="belich-form-options"
+        id="belich-form-options"
+        dusk="dusk-form-options"
+        class="btn-dropdown-content pin-r rounded-lg border border-grey shadow text-grey-dark text-left bg-white"
+        action="/"
+    >
         @csrf
 
         {{-- Per page --}}
         @component('belich::components.options')
+            @slot('css', 'rounded-t-lg')
             @slot('text', 'Per page')
             @slot('icon', 'exchange-alt')
             @slot('field', 'perPage')
@@ -29,7 +36,7 @@
         @endcan
 
         <div class="float-right p-2 mb-2">
-            <button class="btn btn-default">Configure</button>
+            <button type="submit" class="btn btn-default">{!! icon('redo-alt', 'Configure') !!}</button>
         </div>
     </form>
 </div>

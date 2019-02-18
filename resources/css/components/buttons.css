@@ -7,53 +7,41 @@
     @apply font-bold py-3 px-4 rounded text-center;
 }
 
-    .btn-lg {
-        min-width: 120px;
-    }
+.btn-lg {
+    min-width: 120px;
+}
 
-    .btn-primary {
-        @apply bg-blue text-white;
-    }
+.btn-primary {
+    @apply bg-blue text-white;
+}
 
-    .btn-primary:hover {
-        @apply bg-blue-dark;
-    }
+.btn-primary:hover {
+    @apply bg-blue-dark;
+}
 
-    .btn-danger {
-        @apply bg-red text-white;
-    }
+.btn-danger {
+    @apply bg-red text-white;
+}
 
-    .btn-danger:hover {
-        @apply bg-red-dark;
-    }
+.btn-danger:hover {
+    @apply bg-red-dark;
+}
 
-    .btn-secondary {
-        @apply bg-blue-lightest text-blue-dark border border-blue-light;
-    }
+.btn-secondary {
+    @apply bg-blue-lightest text-blue-dark border border-blue-light;
+}
 
-    .btn-secondary:hover {
-        @apply bg-blue-light text-white;
-    }
+.btn-secondary:hover {
+    @apply bg-blue-light text-white;
+}
 
-    .btn-default {
-        @apply bg-grey-lightest  text-grey-dark border border-grey-light;
-    }
+.btn-default {
+    @apply bg-grey-light text-grey-darker;
+}
 
-    .btn-default:hover {
-        @apply bg-grey-lighter text-grey-darker border border-grey;
-    }
-
-    .btn-icon {
-        @apply bg-green-lightest text-green-dark border border-green-light;
-    }
-
-        .btn-icon:hover {
-            @apply bg-green-light text-white;
-        }
-
-        .btn-icon > i {
-            @apply opacity-100;
-        }
+.btn-default:hover {
+    @apply bg-grey text-grey-ligth border border-grey;
+}
 
 /*Dropdown*/
 .btn-dropdown {
@@ -65,12 +53,11 @@
 }
 
 .btn-dropdown-content {
-    @apply z-10 absolute w-64 border border-grey-light pin-r shadow rounded-lg bg-white text-black mt-5
-    /*@apply z-10 absolute invisible opacity-0 w-64 border border-grey-light pin-r shadow rounded-lg p-4 bg-white text-black mt-5;*/
-    /*transition: var(--transition);*/
+    @apply z-10 absolute invisible opacity-0 w-64 mt-5;
+    transition: var(--transition)
 }
 
-/*.btn-dropdown:hover .btn-dropdown-content {
+.btn-dropdown:hover .btn-dropdown-content {
     @apply visible z-40 opacity-100;
-    transition-delay: var(--transition-delay);
-}*/
+    transition-delay: var(--transition-delay)
+}
