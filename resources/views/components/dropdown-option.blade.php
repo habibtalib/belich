@@ -9,10 +9,14 @@
                     @if(is_array($option) && count($option) <= 1)
                         <option value="{{ array_keys($option)[0] }}">{{ array_values($option)[0] }}</option>
                     @else
-                        <option value="{{ $option }}">{{ $option }}</option>
+                        @isset($option)
+                            <option value="{{ $option }}">{{ $option }}</option>
+                        @endisset
                     @endif
                 @endforeach
             </select>
+        @else
+            hellow
         @endisset
     </div>
 </div>
