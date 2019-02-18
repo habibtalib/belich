@@ -9,6 +9,9 @@ abstract class Resources {
 
     use Helpers;
 
+    /** @var bool */
+    public static $accessToResource = true;
+
     /** @var string */
     public static $actions = 'default';
 

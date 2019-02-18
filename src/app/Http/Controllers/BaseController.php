@@ -4,7 +4,6 @@ namespace Daguilarm\Belich\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Daguilarm\Belich\Core\Belich;
-use Daguilarm\Belich\Facades\Belich as Resource;
 use Daguilarm\Belich\Fields\FieldValidate as Validate;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
@@ -118,14 +117,17 @@ class BaseController extends Controller
      */
     protected function redirectToAction(bool $condition, string $success, string $error, $id = '') : RedirectResponse
     {
+        //Set current Controller action
+        $action = Belich::action();
+
         //Redirect back for this actions...
-        if(Resource::action() === 'delete' || Resource::action() === 'forceDelete' ||Resource::action() === 'restore') {
+        if($action === 'delete' || $action === 'forceDelete' || $action === 'restore') {
             $redirect = redirect()->back();
 
         //Custom redirect to route
         } else {
             //Get the current resource action
-            $action = Resource::redirectTo();
+            $action = Belich::redirectTo();
 
             //Validate the resource action
             if(!in_array($action, $this->allowedActions)) {
@@ -135,7 +137,7 @@ class BaseController extends Controller
             //Allowed action and redirect to action
             } else {
                 $redirect = redirect()->to(
-                    Resource::actionRoute($action, $id)
+                    Belich::actionRoute($action, $id)
                 );
             }
         }

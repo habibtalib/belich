@@ -37,6 +37,7 @@ return [
         'https',
         'web',
         'auth',
+        'access',
     ],
 
     /*
