@@ -20,12 +20,14 @@ trait Operations {
         return collect($this->resources)
             ->map(function ($item, $key) {
                 $title = $item['pluralLabel'] ?? stringPluralUpper($item['class']);
-                return collect([
-                    'group' => $item['group'] ?? $title,
-                    'icon' => $item['icon'],
-                    'name' => $title,
-                    'resource' => $item['resource']
-                ]);
+                if($item['displayInNavigation'] === true) {
+                    return collect([
+                        'group' => $item['group'] ?? $title,
+                        'icon' => $item['icon'],
+                        'name' => $title,
+                        'resource' => $item['resource']
+                    ]);
+                }
             })
             ->filter()
             ->values()
