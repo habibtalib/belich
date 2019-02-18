@@ -147,6 +147,8 @@ a {
   min-width: 120px;
 }
 
+/* Buttons types */
+
 .btn-primary {
   background-color: #3490dc;
   color: #fff;
@@ -178,20 +180,23 @@ a {
 }
 
 .btn-default {
-  background-color: #b8c2cc;
-  color: #fff;
+  background-color: #fff;
+  color: #606f7b;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+  border-width: 1px;
+  border-color: #f1f5f8;
+}
+
+.btn-default:hover {
+  background-color: #f8fafc;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
   border-width: 1px;
   border-color: #dae1e7;
 }
 
-.btn-default:hover {
-  background-color: #dae1e7;
-  color: #606f7b;
-  border-width: 1px;
-  border-color: #b8c2cc;
-}
-
-/*Dropdown*/
+/* Dropdown buttons */
 
 .btn-dropdown {
   position: relative;
