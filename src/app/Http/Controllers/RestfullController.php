@@ -16,9 +16,9 @@ class RestfullController extends BaseController
      *
      * @param Daguilarm\Belich\Core\Belich $belich
      */
-    public function __construct(Belich $belich)
+    public function __construct(Belich $belich, Request $request)
     {
-        parent::__construct($belich);
+        parent::__construct($belich, $request);
 
         //Get resource model
         $this->model = Belich::getModel();
@@ -178,15 +178,9 @@ class RestfullController extends BaseController
         //Authorization
         $this->authorize('restore', $this->model);
 
-        $restore = $this->model
-            ->onlyTrashed()
-            ->whereId($id)
-            ->restore();
+        //Restore deleted row
+        $restore = $this->model->onlyTrashed()->whereId($id)->restore();
 
-        $redirect = redirect()->back();
-
-        return $restore
-            ? $redirect->withSuccess(['success', 'success', 'success'])
-            : $redirect->withErrors(['error1', 'error2']);
+        return $this->redirectBack($restore, 'restored', 'restoring');
     }
 }

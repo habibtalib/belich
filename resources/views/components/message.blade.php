@@ -1,4 +1,4 @@
-<div class="bg-{{ $color }}-lightest text-{{ $color }}-darker shadow-md rounded-lg p-4 relative w-1/3" role="alert">
+<div class="bg-{{ $color }}-lightest text-{{ $color }}-darker shadow-md rounded-lg p-6 pr-8 relative w-1/3" role="alert">
     <ul>
         @foreach($messages as $message)
             <li>{{ $message }}</li>
