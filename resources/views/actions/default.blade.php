@@ -6,7 +6,7 @@
     @endcan
     {{-- The user can force delete trashed items --}}
     @can('forceDelete', $model)
-        <a href="{{ Belich::actionRoute('destroy', $model) }}" class="action bg-red-lightest rounded-full">@actionIcon('trash-alt')</a>
+        <a href="{{ Belich::actionRoute('forceDelete', $model) }}" class="action bg-red-lightest rounded-full">@actionIcon('trash-alt')</a>
     @endcan
 
 {{-- Regular model results --}}
