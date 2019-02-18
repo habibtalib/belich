@@ -25,12 +25,35 @@
             {{-- Options --}}
             <div class="btn btn-icon btn-dropdown">
                 @icon('cogs')
-                <div class="btn-dropdown-content">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+                <form method="GET" class="btn-dropdown-content text-grey-dark text-left">
+                    @csrf
+                    <div class="w-full mb-1">
+                        <div class="w-full p-4 bg-grey-lighter border-b border-grey-light">Per page</div>
+                        <div class="p-2 text-lg">
+                            <select name="perPage" class="w-full h-10">
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                                <option value="40">40</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="w-full mb-1">
+                        <div class="w-full p-4 bg-grey-lighter border-t border-b border-grey-light">Per page</div>
+                        <div class="p-2 text-lg">
+                            <select name="perPage" class="w-full h-10">
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                                <option value="40">40</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
             </div>
     </div>
     </div>

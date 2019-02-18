@@ -30,6 +30,9 @@
   --warning: rgb(255, 235, 59);
   --warning-30: rgba(255, 235, 59, .3);
   --warning: rgb(255, 235, 59);
+  /*Transitions*/
+  --transition: all .15s ease-in-out 0s, visibility 0s linear .15s, z-index 0s linear .01s;
+  --transition-delay: 0s, 0s, 0s;
   /*Html*/
   --body-bg: var(--body);
   /*Breadcrumbs*/
@@ -190,9 +193,12 @@ a {
   opacity: 1;
 }
 
+/*Dropdown*/
+
 .btn-dropdown {
   position: relative;
   display: inline-block;
+  margin: 0;
 }
 
 .btn-dropdown:hover {
@@ -200,22 +206,24 @@ a {
 }
 
 .btn-dropdown-content {
+  z-index: 10;
   position: absolute;
-  display: none;
-  right: 0;
   width: 16rem;
-  padding: 1rem;
   border-width: 1px;
-  border-color: #51d88a;
+  border-color: #dae1e7;
+  right: 0;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+  border-radius: .5rem;
   background-color: #fff;
   color: #22292f;
-  border-radius: .25rem;
+  margin-top: 1.25rem;
 }
 
-.btn-dropdown:hover .btn-dropdown-content {
-  display: block;
-  z-index: 40;
-}
+/*.btn-dropdown:hover .btn-dropdown-content {
+    @apply visible z-40 opacity-100;
+    transition-delay: var(--transition-delay);
+}*/
 /* Gradients */
 
 .sidebar-gradient {
@@ -412,8 +420,12 @@ nav#navbar ul li.sidebar-child {
 /* Hide Dropdowns by Default */
 
 nav#navbar ul ul {
-  display: none;
+  z-index: 10;
   position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
 }
 
 nav#navbar ul ul li {
@@ -427,7 +439,11 @@ nav#navbar ul ul li {
 /* Display Dropdowns on Hover */
 
 nav#navbar ul li:hover ul {
-  display: block;
+  visibility: visible;
+  z-index: 40;
+  opacity: 1;
+  -webkit-transition-delay: var(--transition-delay);
+          transition-delay: var(--transition-delay);
 }
 
 /* Fisrt Tier Dropdown */

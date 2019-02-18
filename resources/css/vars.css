@@ -31,6 +31,10 @@
     --warning-30: rgba(255, 235, 59, 0.3);
     --warning: rgb(255, 235, 59);
 
+    /*Transitions*/
+    --transition: all 0.15s ease-in-out 0s, visibility 0s linear 0.15s, z-index 0s linear 0.01s;
+    --transition-delay: 0s, 0s, 0s;
+
     /*Html*/
     --body-bg: var(--body);
 
