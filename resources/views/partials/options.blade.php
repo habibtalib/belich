@@ -1,6 +1,9 @@
 {{-- Options --}}
 <div class="btn btn-icon btn-dropdown">
+    {{-- Set button icon --}}
     @icon('cogs')
+
+    {{-- Start with form --}}
     <form method="GET" class="btn-dropdown-content text-grey-dark text-left">
         @csrf
 
@@ -37,6 +40,10 @@
                     ['pdf' => 'Pdf'],
                 ])
             @endcomponent
+        </div>
+
+        <div class="float-right p-2 mb-2">
+            <button class="btn btn-default">Configure</button>
         </div>
     </form>
 </div>

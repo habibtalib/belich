@@ -5,15 +5,13 @@
         <select name="{{ $field }}" class="w-full h-10">
             <option></option>
             @foreach($options as $option)
-                @php
-                    if(is_array($option)) {
-                        $value = array_keys($option)[0];
-                        $label = array_values($option)[0];
-                    } else {
-                        $value = $label = $option;
-                    }
-                @endphp
-                <option value="{{ $value }}">{{ $label }}</option>
+                @if(!empty($option))
+                    @if(is_array($option) && count($option) <= 1)
+                        <option value="{{ array_keys($option)[0] }}">{{ array_values($option)[0] }}</option>
+                    @else
+                        <option value="{{ $option }}">{{ $option }}</option>
+                    @endif
+                @endif
             @endforeach
         </select>
     </div>

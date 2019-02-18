@@ -177,6 +177,20 @@ a {
   color: #fff;
 }
 
+.btn-default {
+  background-color: #f8fafc;
+  color: #8795a1;
+  border-width: 1px;
+  border-color: #dae1e7;
+}
+
+.btn-default:hover {
+  background-color: #f1f5f8;
+  color: #606f7b;
+  border-width: 1px;
+  border-color: #b8c2cc;
+}
+
 .btn-icon {
   background-color: #e3fcec;
   color: #1f9d55;

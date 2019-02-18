@@ -35,6 +35,14 @@
         @apply bg-blue-light text-white;
     }
 
+    .btn-default {
+        @apply bg-grey-lightest  text-grey-dark border border-grey-light;
+    }
+
+    .btn-default:hover {
+        @apply bg-grey-lighter text-grey-darker border border-grey;
+    }
+
     .btn-icon {
         @apply bg-green-lightest text-green-dark border border-green-light;
     }
