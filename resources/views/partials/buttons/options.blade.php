@@ -9,7 +9,7 @@
         id="belich-form-options"
         dusk="dusk-form-options"
         class="btn-dropdown-content pin-r rounded-lg border border-grey shadow text-grey-dark text-left bg-white"
-        action="/"
+        action="{{ route('dashboard.users.settings') }}"
     >
         @csrf
 

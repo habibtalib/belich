@@ -5,7 +5,7 @@ namespace Daguilarm\Belich\App\Http\Middleware;
 use Closure;
 use Daguilarm\Belich\Core\Belich;
 
-class AccessMiddleware
+class BelichMiddleware
 {
     /**
      * Force to secure URL
@@ -15,6 +15,7 @@ class AccessMiddleware
      */
     public function handle($request, Closure $next)
     {
+        // Authorized access to resource
         if (Belich::accessToResource() === false) {
             return abort(403);
         }

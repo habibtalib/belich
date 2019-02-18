@@ -32,6 +32,10 @@ Route::group([
                 }
             });
 
+        //Belich options
+        Route::post(route_path('/user/settings'), namespace_path('App\Http\Controllers\OptionsController'))
+            ->name('users.settings');
+
         //Load all the custom routes
         if (file_exists(app_path('/Belich/Routes.php'))) {
             require_once(app_path('/Belich/Routes.php'));

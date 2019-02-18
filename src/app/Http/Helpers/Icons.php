@@ -16,7 +16,7 @@ use Illuminate\Support\Str;
  * @return string
  */
 if (!function_exists('icon')) {
-    function icon(string $icon, string $text = '', $css = '') : string
+    function icon(string $icon, $text = '', $css = '') : string
     {
         // Set right margin if we have text
         $margin = $text ? ' mr-2' : '';

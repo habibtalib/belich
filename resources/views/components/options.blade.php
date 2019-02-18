@@ -5,16 +5,7 @@
         @isset($options)
             <select name="{{ $field }}" class="w-full h-10 border border-grey-light">
                 <option></option>
-                @foreach($options as $option)
-                    {{-- Using multilevel array --}}
-                    @if(is_array($option) && count($option) <= 1)
-                        <option value="{{ array_keys($option)[0] }}">{{ array_values($option)[0] }}</option>
-                    @else
-                        @isset($option)
-                            <option value="{{ $option }}">{{ $option }}</option>
-                        @endisset
-                    @endif
-                @endforeach
+                {!! createFormSelectOptions($options, $field) !!}
             </select>
         @else
             {{ $custom ?? emptyResults() }}

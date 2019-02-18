@@ -6,6 +6,9 @@ use Illuminate\Support\Facades\Request;
 
 trait System {
 
+    /** @var array */
+    private $defaultMiddleware = ['https', 'web', 'auth', 'belich'];
+
     /*
     |--------------------------------------------------------------------------
     | Public Static Methods
@@ -19,7 +22,7 @@ trait System {
      */
     public static function middleware() : array
     {
-        return config('belich.middleware') ?? ['https', 'web', 'auth'];
+        return array_merge(config('belich.middleware'), ['belich']) ?? $this->defaultMiddleware;
     }
 
     /**
