@@ -191,10 +191,30 @@ a {
 }
 
 .btn-dropdown {
+  position: relative;
+  display: inline-block;
 }
 
 .btn-dropdown:hover {
   cursor: pointer;
+}
+
+.btn-dropdown-content {
+  position: absolute;
+  display: none;
+  right: 0;
+  width: 16rem;
+  padding: 1rem;
+  border-width: 1px;
+  border-color: #51d88a;
+  background-color: #fff;
+  color: #22292f;
+  border-radius: .25rem;
+}
+
+.btn-dropdown:hover .btn-dropdown-content {
+  display: block;
+  z-index: 40;
 }
 /* Gradients */
 
@@ -406,7 +426,7 @@ nav#navbar ul ul li {
 
 /* Display Dropdowns on Hover */
 
-nav#navbar ul li:hover > ul {
+nav#navbar ul li:hover ul {
   display: block;
 }
 

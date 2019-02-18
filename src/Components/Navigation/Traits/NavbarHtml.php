@@ -62,10 +62,7 @@ trait NavbarHtml {
     public function getGroupedLink(array $parameters) : Link
     {
         return Link::to('#', $parameters[1])
-            ->addClass($this->menuCss())
-            ->addClass($this->linkCss())
-            //Mark as parent
-            ->addParentClass('sidebar-parent');
+            ->addClass($this->linkCss());
     }
 
     /**
@@ -79,7 +76,7 @@ trait NavbarHtml {
         $link = Link::to($parameters[2], $parameters[0])
             ->addClass($this->menuCss())
             ->addClass($this->linkCss())
-            //Mark as parent
+            //Mark as parent (no grouped link)
             ->addParentClass('sidebar-parent');
 
         //Add the link in the menu
@@ -112,7 +109,8 @@ trait NavbarHtml {
     public function getDropdownLinks(Collection $resources) : Menu
     {
         //Create the new menu
-        $submenu = Menu::new();
+        $submenu = Menu::new()
+            ->addParentClass($this->menuCss());
         //Adding links to the menu
         $resources->map(function($resources) use ($submenu) {
             //Links parameters

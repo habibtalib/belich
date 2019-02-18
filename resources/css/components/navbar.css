@@ -31,7 +31,7 @@ nav#navbar ul ul li {
 }
 
 /* Display Dropdowns on Hover */
-nav#navbar ul li:hover > ul {
+nav#navbar ul li:hover ul {
     @apply block;
 }
 

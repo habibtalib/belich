@@ -7,9 +7,9 @@
     @apply font-bold py-3 px-4 rounded text-center;
 }
 
-.btn-lg {
-    min-width: 120px;
-}
+    .btn-lg {
+        min-width: 120px;
+    }
 
     .btn-primary {
         @apply bg-blue text-white;
@@ -39,18 +39,26 @@
         @apply bg-green-lightest text-green-dark border border-green-light;
     }
 
-    .btn-icon:hover {
-        @apply bg-green-light text-white;
-    }
+        .btn-icon:hover {
+            @apply bg-green-light text-white;
+        }
 
-    .btn-icon > i {
-        @apply opacity-100;
-    }
+        .btn-icon > i {
+            @apply opacity-100;
+        }
 
     .btn-dropdown {
-
+        @apply relative inline-block;
     }
 
     .btn-dropdown:hover {
         @apply cursor-pointer;
+    }
+
+    .btn-dropdown-content {
+        @apply absolute hidden pin-r w-64 p-4 border border-green-light bg-white text-black rounded;
+    }
+
+    .btn-dropdown:hover .btn-dropdown-content {
+        @apply block z-40;
     }
