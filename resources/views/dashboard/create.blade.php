@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- Breadcrumbs --}}
-    @include('belich::partials.breadcrumbs')
+    @include('belich::partials.navigation.breadcrumbs')
 
     <form method="POST" name="form-{{ $request->name }}-create" id="form-{{ $request->name }}-create" action="{{ toRoute('store') }}" class="form-container">
         @csrf

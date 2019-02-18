@@ -18,12 +18,12 @@
     <body>
         <div id="app">
             {{-- Navbar --}}
-            @includeWhen(auth()->check(), 'belich::partials.navbar')
+            @includeWhen(auth()->check(), 'belich::partials.navigation.navbar')
 
             {{-- Sidebar and Application container --}}
             <div class="min-h-screen md:flex">
                 {{-- Sidebar --}}
-                @includeWhen(auth()->check() && config('belich.navbar') === 'sidebar', 'belich::partials.sidebar')
+                @includeWhen(auth()->check() && config('belich.navbar') === 'sidebar', 'belich::partials.navigation.sidebar')
 
                 {{-- Application --}}
                 <section class="flex-1 m-8">

@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- Breadcrumbs --}}
-    @include('belich::partials.breadcrumbs')
+    @include('belich::partials.navigation.breadcrumbs')
 
     {{-- Buttons --}}
     <div class="flex w-full justify-end">

@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- Breadcrumbs --}}
-    @include('belich::partials.breadcrumbs')
+    @include('belich::partials.navigation.breadcrumbs')
 
     {{-- Search container --}}
     <div id="table-search" class="flex items-center rounded-t p-4 pr-6 shadow-md w-full">
@@ -18,16 +18,16 @@
 
             {{-- Buttons --}}
             @can('create', $request->autorizedModel)
-                    <a href="{{ Belich::actionRoute('create') }}" class="btn btn-secondary mr-2">
-                        @icon('plus', 'belich::buttons.crud.create')
-                    </a>
+                <a href="{{ Belich::actionRoute('create') }}" class="btn btn-secondary mr-2">
+                    @icon('plus', 'belich::buttons.crud.create')
+                </a>
             @endcan
 
             {{-- Options --}}
-            @include('belich::partials.options')
+            @include('belich::partials.buttons.options')
 
             {{-- Export --}}
-            @include('belich::partials.exports')
+            @include('belich::partials.buttons.exports')
         </div>
         {{-- End right container --}}
     </div>

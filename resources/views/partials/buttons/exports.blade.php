@@ -16,8 +16,7 @@
         {{-- Export format --}}
         @component('belich::components.options')
             @slot('css', 'rounded-t-lg')
-            @slot('color', 'green')
-            @slot('text', 'Exports')
+            @slot('text', 'Format')
             @slot('icon', 'file')
             @slot('field', 'exports')
             @slot('options', [
@@ -25,6 +24,14 @@
                 ['xls' => 'Excel'],
                 ['csv' => 'CSV'],
             ])
+        @endcomponent
+
+        {{-- Export format --}}
+        @component('belich::components.options')
+            @slot('text', 'Quantity')
+            @slot('icon', 'check-square')
+            @slot('field', 'exports_quantity')
+            @slot('options', ['all', 'selected'])
         @endcomponent
 
         <div class="float-right p-2 mb-2">
