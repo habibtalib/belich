@@ -90,6 +90,18 @@ trait Resource {
     */
 
     /**
+     * Get the resource $downloable variable.
+     *
+     * @return string
+     */
+    public static function downloable() : string
+    {
+        $class = static::resourceClassPath();
+
+        return $class::$downloable;
+    }
+
+    /**
      * Get the resource $redirectTo variable.
      *
      * @return string

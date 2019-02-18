@@ -21,6 +21,9 @@ abstract class Resources {
     /** @var bool */
     public static $displayInNavigation = true;
 
+    /** @var bool */
+    public static $downloable = false;
+
     /** @var Illuminate\Support\Collection */
     public static $fields;
 
