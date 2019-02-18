@@ -24,6 +24,12 @@ class BaseController extends Controller
         ]);
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Getters methods
+    |--------------------------------------------------------------------------
+    */
+
     /**
      * List the resource values for detail and index.
      *
@@ -73,6 +79,27 @@ class BaseController extends Controller
     }
 
     /**
+     * Get the default values
+     *
+     * @param Daguilarm\Belich\Core\Belich $belich
+     * @param Illuminate\Http\Request $request
+     * @return array
+     */
+    private function getDefaultValues(Belich $belich, Request $request)
+    {
+        //Set default values
+        $data = $belich->currentResource($request);
+
+        return [$data, data_get($data, 'fields')];
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Redirection methods
+    |--------------------------------------------------------------------------
+    */
+
+    /**
      * Redirect back with message
      *
      * @param boll $condition
@@ -93,6 +120,12 @@ class BaseController extends Controller
             : $redirect->withErrors(trans('belich::messages.crud.fail', ['action' => $error, 'email' => config('mail.from.address')]));
     }
 
+    /*
+    |--------------------------------------------------------------------------
+    | Model methods
+    |--------------------------------------------------------------------------
+    */
+
     /**
      * Sql query from softdeleted row
      *
@@ -104,20 +137,5 @@ class BaseController extends Controller
         return $this->model
             ->onlyTrashed()
             ->whereId($id);
-    }
-
-    /**
-     * Get the default values
-     *
-     * @param Daguilarm\Belich\Core\Belich $belich
-     * @param Illuminate\Http\Request $request
-     * @return array
-     */
-    private function getDefaultValues(Belich $belich, Request $request)
-    {
-        //Set default values
-        $data = $belich->currentResource($request);
-
-        return [$data, data_get($data, 'fields')];
     }
 }
