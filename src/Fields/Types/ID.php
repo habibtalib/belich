@@ -26,6 +26,6 @@ class ID extends Field {
         parent::__construct($name ?? 'ID', $attribute ?? Belich::getModelKeyName());
 
         //Set visibility
-        $this->readonly();
+        $this->exceptOnForms();
     }
 }
