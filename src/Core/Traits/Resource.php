@@ -88,9 +88,35 @@ trait Resource {
     | Resource Operations
     |--------------------------------------------------------------------------
     */
-    public function redirectTo()
+
+    /**
+     * Get the resource $redirectTo variable.
+     *
+     * @return string
+     */
+    public static function redirectTo() : string
     {
-        return (self::initResourceClass())::$redirectTo;
+        $class = static::resourceClassPath();
+
+        return $class::$redirectTo;
+    }
+
+    /**
+     * Get the resource $accessToResource variable.
+     *
+     * @return bool
+     */
+    public static function accessToResource() : bool
+    {
+        $class = static::resourceClassPath();
+
+        // This is for the views (like dashboard)
+        // which has not a resouce class
+        if(class_exists($class)) {
+            return $class::$accessToResource;
+        }
+
+        return true;
     }
 
     /*
@@ -189,11 +215,22 @@ trait Resource {
     {
         $class = static::resourceClassPath($className);
 
+        //If a resource is not accessible then cannot be listed in a menu
+        if($class::$accessToResource === false) {
+            $accessToResource = $displayInNavigation = false;
+
+        //Default values
+        } else {
+            $accessToResource    = $class::$accessToResource;
+            $displayInNavigation = $class::$displayInNavigation;
+        }
+
         return collect([
+            'accessToResource'    => $accessToResource,
             'actions'             => $class::$actions,
             'breadcrumbs'         => $class::breadcrumbs(),
             'class'               => $className,
-            'displayInNavigation' => $class::$displayInNavigation,
+            'displayInNavigation' => $displayInNavigation,
             'group'               => $class::$group,
             'icon'                => $class::$icon ?? 'angle-right',
             'label'               => $class::$label ?? Str::title($className),
