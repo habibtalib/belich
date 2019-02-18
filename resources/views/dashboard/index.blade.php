@@ -5,7 +5,7 @@
     @include('belich::partials.breadcrumbs')
 
     {{-- Search --}}
-    <div id="table-search" class="flex items-center rounded-t p-4 shadow-md w-full">
+    <div id="table-search" class="flex items-center rounded-t p-4 pr-6 shadow-md w-full">
         <div class="icon-search w-full">
             <input type="text" name="_search" id="_search" class="p-2 pl-8 my-2 ml-2 rounded border border-grey-light shadow-md w-64" placeholder="search..." onkeydown="showResetSearch()">
             <span class="hidden" id="icon-search-reset">
@@ -13,14 +13,20 @@
             </span>
         </div>
 
-        {{-- Buttons --}}
-        @can('create', $request->autorizedModel)
-            <div class="flex w-full justify-end">
-                <a href="{{ Belich::actionRoute('create') }}" class="btn btn-secondary mr-2">
-                    @icon('plus', 'belich::buttons.crud.create')
-                </a>
+        {{-- Right container --}}
+        <div class="flex justify-end w-full">
+            {{-- Buttons --}}
+            @can('create', $request->autorizedModel)
+                    <a href="{{ Belich::actionRoute('create') }}" class="btn btn-secondary mr-2">
+                        @icon('plus', 'belich::buttons.crud.create')
+                    </a>
+            @endcan
+
+            {{-- Options --}}
+            <div class="btn btn-icon btn-dropdown">
+                @icon('cogs')
             </div>
-        @endcan
+    </div>
     </div>
 
     {{-- Start / Table --}}

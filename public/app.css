@@ -138,6 +138,9 @@ a {
   padding-right: 1rem;
   border-radius: .25rem;
   text-align: center;
+}
+
+.btn-lg {
   min-width: 120px;
 }
 
@@ -169,6 +172,29 @@ a {
 .btn-secondary:hover {
   background-color: #6cb2eb;
   color: #fff;
+}
+
+.btn-icon {
+  background-color: #e3fcec;
+  color: #1f9d55;
+  border-width: 1px;
+  border-color: #51d88a;
+}
+
+.btn-icon:hover {
+  background-color: #51d88a;
+  color: #fff;
+}
+
+.btn-icon > i {
+  opacity: 1;
+}
+
+.btn-dropdown {
+}
+
+.btn-dropdown:hover {
+  cursor: pointer;
 }
 /* Gradients */
 

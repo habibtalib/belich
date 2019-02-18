@@ -5,6 +5,9 @@
 
 .btn {
     @apply font-bold py-3 px-4 rounded text-center;
+}
+
+.btn-lg {
     min-width: 120px;
 }
 
@@ -30,4 +33,24 @@
 
     .btn-secondary:hover {
         @apply bg-blue-light text-white;
+    }
+
+    .btn-icon {
+        @apply bg-green-lightest text-green-dark border border-green-light;
+    }
+
+    .btn-icon:hover {
+        @apply bg-green-light text-white;
+    }
+
+    .btn-icon > i {
+        @apply opacity-100;
+    }
+
+    .btn-dropdown {
+
+    }
+
+    .btn-dropdown:hover {
+        @apply cursor-pointer;
     }

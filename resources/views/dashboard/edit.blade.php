@@ -23,7 +23,7 @@
         {{-- Buttons --}}
         <div class="btn-container bg-blue-lightest">
             <button id="button-form-edit" type="submit" class="btn btn-primary">
-                @icon('pen', 'belich::buttons.crud.update')
+                @icon('edit', 'belich::buttons.crud.update')
             </button>
         </div>
     </form>
