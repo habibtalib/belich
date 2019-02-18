@@ -160,7 +160,7 @@ class RestfullController extends BaseController
         //Authorization
         $this->authorize('forceDelete', $this->model);
 
-        $forceDelete = $this->whereTrashedID($id)->forceDelete();
+        $forceDelete = $this->whereDeletedID($id)->forceDelete();
 
         return $this->redirectToAction($forceDelete, $actionSuccess = 'force deleted', $actionFail = 'force deleting', $id);
     }
@@ -177,7 +177,7 @@ class RestfullController extends BaseController
         $this->authorize('restore', $this->model);
 
         //Restore deleted row
-        $restore = $this->whereTrashedID($id)->restore();
+        $restore = $this->whereDeletedID($id)->restore();
 
         return $this->redirectToAction($restore, $actionSuccess = 'restored', $actionFail = 'restoring', $id);
     }

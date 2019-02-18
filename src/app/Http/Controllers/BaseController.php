@@ -29,7 +29,7 @@ class BaseController extends Controller
     {
         //Share the setting to all the views
         view()->share([
-            'resources'      => $belich->resourcesAll(),
+            'resources' => $belich->resourcesAll(),
         ]);
     }
 
@@ -46,7 +46,7 @@ class BaseController extends Controller
      * @param Illuminate\Http\Request $request
      * @return array
      */
-    public function getData(Belich $belich, Request $request)
+    protected function getData(Belich $belich, Request $request)
     {
         //Get the default values
         list($data, $fields) = $this->getDefaultValues($belich, $request);
@@ -71,7 +71,7 @@ class BaseController extends Controller
      * @param Illuminate\Http\Request $request
      * @return array
      */
-    public function getFormData(Belich $belich, Request $request, $id = null)
+    protected function getFormData(Belich $belich, Request $request, $id = null)
     {
         //Get the default values
         list($data, $fields) = $this->getDefaultValues($belich, $request);
@@ -116,7 +116,7 @@ class BaseController extends Controller
      * @param string $error
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function redirectToAction(bool $condition, string $success, string $error, $id = '') : RedirectResponse
+    protected function redirectToAction(bool $condition, string $success, string $error, $id = '') : RedirectResponse
     {
         //Redirect back for this actions...
         if(Resource::action() === 'delete' || Resource::action() === 'forceDelete' ||Resource::action() === 'restore') {
@@ -156,12 +156,12 @@ class BaseController extends Controller
     */
 
     /**
-     * Sql query from softdeleted row
+     * Sql query from soft deleted rows
      *
      * @param int $id
      * @return Illuminate\Database\Eloquent\Builder
      */
-    public function whereTrashedID($id) : Builder
+    protected function whereDeletedID($id) : Builder
     {
         return $this->model
             ->onlyTrashed()
