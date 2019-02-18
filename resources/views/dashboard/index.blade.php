@@ -23,52 +23,7 @@
             @endcan
 
             {{-- Options --}}
-            <div class="btn btn-icon btn-dropdown">
-                @icon('cogs')
-                <form method="GET" class="btn-dropdown-content text-grey-dark text-left">
-                    @csrf
-                    {{-- Per page --}}
-                    <div class="w-full mb-1">
-                        <div class="w-full p-4 bg-grey-lighter border-b border-grey-light">Per page</div>
-                        <div class="p-2 text-lg">
-                            <select name="perPage" class="w-full h-10">
-                                <option></option>
-                                <option value="10">10</option>
-                                <option value="20">20</option>
-                                <option value="30">30</option>
-                                <option value="40">40</option>
-                                <option value="50">50</option>
-                                <option value="100">100</option>
-                            </select>
-                        </div>
-                    </div>
-                    {{-- Trashed --}}
-                    @can('withTrashed', $request->autorizedModel)
-                        <div class="w-full mb-1">
-                            <div class="w-full p-4 bg-grey-lighter border-t border-b border-grey-light">Trashed</div>
-                            <div class="p-2 text-lg">
-                                <select name="withTrashed" class="w-full h-10">
-                                    <option></option>
-                                    <option value="all">All</option>
-                                    <option value="only">Only Trashed</option>
-                                </select>
-                            </div>
-                        </div>
-                    @endcan
-                    {{-- Export --}}
-                    <div class="w-full mb-1">
-                        <div class="w-full p-4 bg-grey-lighter border-t border-b border-grey-light">Export</div>
-                        <div class="p-2 text-lg">
-                            <select name="export" class="w-full h-10">
-                                <option></option>
-                                <option value="csv">Csv</option>
-                                <option value="xls">Excel</option>
-                                <option value="pdf">Pdf</option>
-                            </select>
-                        </div>
-                    </div>
-                </form>
-            </div>
+            @include('belich::partials.options')
     </div>
     </div>
 
@@ -113,13 +68,7 @@
             </tbody>
 
             {{-- Pagination --}}
-            @if($pagination = $request->results->links())
-                <tfoot>
-                    <tr>
-                        <td colspan="{{ $request->total }}" class="text-center">{{ $pagination }}</td>
-                    </tr>
-                </tfoot>
-            @endif
+            @include('belich::partials.pagination')
 
         </table>
     </form>
