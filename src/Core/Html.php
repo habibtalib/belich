@@ -12,8 +12,10 @@ class Html {
     /** @var bool */
     protected $allowedParameters = [
         'direction',
+        'export',
         'orderBy',
         'page',
+        'perPage',
         'withTrashed'
     ];
 
