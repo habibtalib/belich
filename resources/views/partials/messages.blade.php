@@ -1,15 +1,19 @@
 <div class="flex justify-center w-full leading-normal mb-8">
     @if(session()->has('success'))
         @component('belich::components.message')
-            @slot('color', 'green')
-            @slot('messages', session()->get('success'))
+            @slot('message_color', 'teal')
+            @slot('message_icon', 'check')
+            @slot('message_header', session()->get('message_header'))
+            @slot('message_bag', session()->get('success'))
         @endcomponent
     @endif
 
     @if(session()->has('errors'))
         @component('belich::components.message')
-            @slot('color', 'red')
-            @slot('messages', session()->get('errors')->all())
+            @slot('message_color', 'red')
+            @slot('message_icon', 'exclamation-triangle')
+            @slot('message_header', session()->get('message_header'))
+            @slot('message_bag', session()->get('errors')->all())
         @endcomponent
     @endif
 </div>

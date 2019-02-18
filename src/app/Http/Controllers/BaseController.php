@@ -143,10 +143,14 @@ class BaseController extends Controller
         return $condition
             //As array or will fail...
             //The resource has been successfuly :action
-            ? $redirect->withSuccess([trans('belich::messages.crud.success', ['action' => $success])])
+            ? $redirect
+                ->withMessageHeader(trans('belich::messages.crud.success.title'))
+                ->withSuccess([trans('belich::messages.crud.success.text', ['action' => $success])])
             //Is array by default so no need...
             //An error occurred during the :action process
-            : $redirect->withErrors(trans('belich::messages.crud.fail', ['action' => $error, 'email' => config('mail.from.address')]));
+            : $redirect
+                ->withMessageHeader(trans('belich::messages.crud.fail.title'))
+                ->withErrors(trans('belich::messages.crud.fail.text', ['action' => $error, 'email' => config('mail.from.address')]));
     }
 
     /*
