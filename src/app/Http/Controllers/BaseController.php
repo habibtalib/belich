@@ -4,6 +4,7 @@ namespace Daguilarm\Belich\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Daguilarm\Belich\Core\Belich;
+use Daguilarm\Belich\Facades\Belich as Resource;
 use Daguilarm\Belich\Fields\FieldValidate as Validate;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
@@ -11,6 +12,14 @@ use Illuminate\Http\Request;
 
 class BaseController extends Controller
 {
+    /** @var array */
+    private $allowedActions = [
+        'index',
+        'create',
+        'edit',
+        'show'
+    ];
+
     /**
      * Generate crud controllers
      *
@@ -107,9 +116,29 @@ class BaseController extends Controller
      * @param string $error
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function redirectBack(bool $condition, string $success, string $error) : RedirectResponse
+    public function redirectToAction(bool $condition, string $success, string $error, $id = '') : RedirectResponse
     {
-        $redirect = redirect()->back();
+        //Redirect back for this actions...
+        if(Resource::action() === 'delete' || Resource::action() === 'forceDelete' ||Resource::action() === 'restore') {
+            $redirect = redirect()->back();
+
+        //Custom redirect to route
+        } else {
+            //Get the current resource action
+            $action = Resource::redirectTo();
+
+            //Validate the resource action
+            if(!in_array($action, $this->allowedActions)) {
+                //Action not allowed
+                $redirect = redirect()->back();
+
+            //Allowed action and redirect to action
+            } else {
+                $redirect = redirect()->to(
+                    Resource::actionRoute($action, $id)
+                );
+            }
+        }
 
         return $condition
             //As array or will fail...

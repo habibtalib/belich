@@ -283,8 +283,11 @@ Lo cual nos permitirá, mostrar u ocultar el campo en función de roles, permiso
 
 Los campos soportados por Belich, son:
 
+- `ID`
 - `Select`
 - `Text`
+- `Password`
+- `PasswordConfirmation`
 
 Cada campo, puede disponer de métodos exclusivos para cada uno de ellos. A continuación, explicamos estós métodos a la vez que explicamos, de forma individual, cada uno de los tipos de campo.
 

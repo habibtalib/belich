@@ -88,6 +88,10 @@ trait Resource {
     | Resource Operations
     |--------------------------------------------------------------------------
     */
+    public function redirectTo()
+    {
+        return (self::initResourceClass())::$redirectTo;
+    }
 
     /*
     |--------------------------------------------------------------------------

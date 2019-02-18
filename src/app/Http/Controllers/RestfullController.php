@@ -73,7 +73,7 @@ class RestfullController extends BaseController
 
         $create = $this->model::create($request->all());
 
-        return $this->redirectBack($create, $actionSuccess = 'created', $actionFail = 'creating');
+        return $this->redirectToAction($create, $actionSuccess = 'created', $actionFail = 'creating', $id = $create->id);
     }
 
     /**
@@ -130,7 +130,7 @@ class RestfullController extends BaseController
 
         $update = $this->model->findOrFail($id)->update($request->all());
 
-        return $this->redirectBack($update, $actionSuccess = 'updated', $actionFail = 'updating');
+        return $this->redirectToAction($update, $actionSuccess = 'updated', $actionFail = 'updating', $id);
     }
 
     /**
@@ -146,7 +146,7 @@ class RestfullController extends BaseController
 
         $delete = $this->model->findOrFail($id)->delete();
 
-        return $this->redirectBack($delete, $actionSuccess = 'deleted', $actionFail = 'deleting');
+        return $this->redirectToAction($delete, $actionSuccess = 'deleted', $actionFail = 'deleting', $id);
     }
 
     /**
@@ -162,7 +162,7 @@ class RestfullController extends BaseController
 
         $forceDelete = $this->whereTrashedID($id)->forceDelete();
 
-        return $this->redirectBack($forceDelete, $actionSuccess = 'force deleted', $actionFail = 'force deleting');
+        return $this->redirectToAction($forceDelete, $actionSuccess = 'force deleted', $actionFail = 'force deleting', $id);
     }
 
     /**
@@ -179,6 +179,6 @@ class RestfullController extends BaseController
         //Restore deleted row
         $restore = $this->whereTrashedID($id)->restore();
 
-        return $this->redirectBack($restore, $actionSuccess = 'restored', $actionFail = 'restoring');
+        return $this->redirectToAction($restore, $actionSuccess = 'restored', $actionFail = 'restoring', $id);
     }
 }

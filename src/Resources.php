@@ -39,6 +39,9 @@ abstract class Resources {
     /** @var string */
     public static $pluralLabel;
 
+    /** @var string */
+    public static $redirectTo = 'index';
+
     /** @var array */
     public static $relationships;
 
