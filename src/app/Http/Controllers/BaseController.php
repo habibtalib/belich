@@ -5,8 +5,9 @@ namespace Daguilarm\Belich\App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Daguilarm\Belich\Core\Belich;
 use Daguilarm\Belich\Fields\FieldValidate as Validate;
-use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class BaseController extends Controller
 {
@@ -85,9 +86,24 @@ class BaseController extends Controller
 
         return $condition
             //As array or will fail...
+            //The resource has been successfuly :action
             ? $redirect->withSuccess([trans('belich::messages.crud.success', ['action' => $success])])
             //Is array by default so no need...
+            //An error occurred during the :action process
             : $redirect->withErrors(trans('belich::messages.crud.fail', ['action' => $error, 'email' => config('mail.from.address')]));
+    }
+
+    /**
+     * Sql query from softdeleted row
+     *
+     * @param int $id
+     * @return Illuminate\Database\Eloquent\Builder
+     */
+    public function whereTrashedID($id) : Builder
+    {
+        return $this->model
+            ->onlyTrashed()
+            ->whereId($id);
     }
 
     /**

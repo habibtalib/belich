@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class RestfullController extends BaseController
 {
     /** @var Illuminate\Database\Eloquent\Model */
-    private $model;
+    protected $model;
 
     /**
      * Generate crud controllers
@@ -146,9 +146,7 @@ class RestfullController extends BaseController
         //Authorization
         $this->authorize('delete', $this->model);
 
-        return $this->model
-            ->find($id)
-            ->delete();
+        return $this->model->find($id)->delete();
     }
 
     /**
@@ -162,9 +160,9 @@ class RestfullController extends BaseController
         //Authorization
         $this->authorize('forceDelete', $this->model);
 
-        return $this->model
-            ->find($id)
-            ->forceDelete();
+        $forceDelete = $this->whereTrashedID($id)->forceDelete();
+
+        return $this->redirectBack($forceDelete, $actionSuccess = 'force deleted', $actionFail = 'force deleting');
     }
 
     /**
@@ -179,8 +177,8 @@ class RestfullController extends BaseController
         $this->authorize('restore', $this->model);
 
         //Restore deleted row
-        $restore = $this->model->onlyTrashed()->whereId($id)->restore();
+        $restore = $this->whereTrashedID($id)->restore();
 
-        return $this->redirectBack($restore, 'restored', 'restoring');
+        return $this->redirectBack($restore, $actionSuccess = 'restored', $actionFail = 'restoring');
     }
 }
