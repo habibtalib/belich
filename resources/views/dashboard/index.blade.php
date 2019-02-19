@@ -28,6 +28,9 @@
 
             {{-- Export --}}
             @includeWhen(Belich::downloable(), 'belich::partials.buttons.exports')
+
+            {{-- Delete --}}
+            @include('belich::partials.buttons.delete')
         </div>
         {{-- End right container --}}
     </div>
