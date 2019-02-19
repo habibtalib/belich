@@ -37,7 +37,8 @@ trait NavbarHtml {
      */
     public function getLogout() : Html
     {
-        $loadView = view('belich::partials.logout');
+        $loadView = view('belich::partials.navigation.logout');
+
         $css = $this->merge(
             $this->logoutBackground,
             'float-right',
