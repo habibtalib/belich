@@ -46,18 +46,28 @@ Puede personalizarse el aspecto, a través de la clase css `.icon`.
 Igual que `@icon`, pero no acepta texto. Pensado para los iconos de los botones de acción del `index`.
 
 
-#### isTrashed
+#### hasSoftdelete
 
-Verifica si un modelo tiene el trait *softdelete*, y si utiliza el método `trashed()` de este trait, y por tanto, está mostrando resultados que han sido eliminados por softdelete. 
+Verifica si un modelo tiene el trait *softdelete*. 
 
 Es una lo que Laravel denomina *Custom If Statements
 *, por lo tanto, funciona como si fuera una directiva `@if`.
 
 ~~~
-@isTrashed($model)  
+@hasSoftdelete($model)  
     //Staff
 @endif
 ~~~
+
+
+#### hasSoftdeletedResults
+
+Igual que el anterior, pero esta vez, verifica si el valor actual del modelo esta eliminado o no (con softdelete).
+
+Es un helper para ser utilizado con los botones de acción del `index`.
+
+Por ejemplo, si queremos saber si el valor actual ha sido eliminado o no, para poder mostrar el icono de restaurar item o el de eliminar item...
+
 
 #### gravatar 
 
