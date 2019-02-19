@@ -16,3 +16,7 @@ Project in development. Still in the early stages...help will be great!!!
 ## Configuration 
 
 `php artisan vendor:publish --provider="Daguilarm\Belich\BelichServiceProvider" --force`
+
+## Screenshot
+
+![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/documents/images/menu.png)
