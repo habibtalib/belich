@@ -1,9 +1,6 @@
 <?php
 
 return [
-    'resources' => [
-        'no_results' => 'No results found for the resource' . ': ' . ':resource.',
-    ],
     'crud' => [
         'success' => [
             'title' => 'Congrats!',
@@ -16,5 +13,11 @@ return [
                 'If the error persists, please contact the system administrator: :email',
             ],
         ],
+    ],
+    'options' => [
+        'success' => 'Your setting configuration has been stored!',
+    ],
+    'resources' => [
+        'no_results' => 'No results found for the resource' . ': ' . ':resource.',
     ],
 ];

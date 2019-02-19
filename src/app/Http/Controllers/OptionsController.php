@@ -28,6 +28,6 @@ class OptionsController extends Controller
             $redirect = $redirect->withCookie($cookie);
         }
 
-        return $redirect->withSuccess(['Your settings has been stored!']);
+        return $redirect->withSuccess([trans('belich::messages.options.success')]);
     }
 }
