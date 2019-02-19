@@ -7,8 +7,6 @@ use Illuminate\Http\Request;
 
 class OptionsController extends Controller
 {
-    private $time = 60 * 24 * 31 * 12;
-
     /**
      * Configure the Belich options
      *
@@ -21,12 +19,12 @@ class OptionsController extends Controller
             ->back();
 
         if(!empty($request->perPage)) {
-            $cookie = cookie('belich_perPage', $request->perPage, $this->time);
+            $cookie = cookie('belich_perPage', $request->perPage, setTimeToOneYear());
             $redirect = $redirect->withCookie($cookie);
         }
 
         if(!empty($request->withTrashed)) {
-            $cookie = cookie('belich_withTrashed', $request->withTrashed, $this->time);
+            $cookie = cookie('belich_withTrashed', $request->withTrashed, setTimeToOneYear());
             $redirect = $redirect->withCookie($cookie);
         }
 
