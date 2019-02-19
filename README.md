@@ -1,7 +1,7 @@
 # belich
 Laravel admin dashboard totaly inspired by the Nova documents, but totaly different...
 
-The objective of the project is to follow the Laravel Nova line, but without the dependence on Vuejs. It is just a personal challence to build Nova without vuejs... just for fun! 
+The objective of the project is to follow the Laravel Nova line, but without the dependence on Vuejs. It is just a personal challence to build Nova without vuejs... just for fun! Only back-end!
 
 And of course, all the code is built from 0!
 
@@ -17,8 +17,18 @@ Project in development. Still in the early stages...help will be great!!!
 
 `php artisan vendor:publish --provider="Daguilarm\Belich\BelichServiceProvider" --force`
 
-## Screenshots
+## Features 
 
+- Sidebar or topbar from the `config` file.
+- Customized:
+    + actions.
+    + navbar.
+    + sidebar.
+    + breadcrumb.
+    + ...
+- Resources download.
+
+## Screenshots
 
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/buttons.png?raw=true)
 
