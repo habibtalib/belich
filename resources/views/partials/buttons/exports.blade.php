@@ -14,6 +14,7 @@
         @csrf
 
         <input type="hidden" name="resource_model" value="{{ Belich::getModelPath() }}">
+        <input type="hidden" id="exports_selected" name="exports_selected" value="">
 
         {{-- Export format --}}
         @component('belich::components.options')
@@ -36,13 +37,13 @@
             @slot('required', true)
             @slot('options', [
                 ['' => ''],
-                trans('belich::default.all'),
-                trans('belich::default.selected')
+                ['all' => trans('belich::default.all')],
+                ['selected' => trans('belich::default.selected')],
             ])
         @endcomponent
 
         <div class="float-right p-2 mb-2">
-            <button type="submit" class="btn btn-default">{!! icon('download', trans('belich::buttons.base.download')) !!}</button>
+            <button type="submit" class="btn btn-default" onclick="addCheckboxesToField('exports_selected');">{!! icon('download', trans('belich::buttons.base.download')) !!}</button>
         </div>
     </form>
 </div>

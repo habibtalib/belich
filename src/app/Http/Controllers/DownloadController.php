@@ -14,6 +14,9 @@ class DownloadController extends Controller
     /** @var array */
     private $formats = ['xls', 'xlsx', 'csv'];
 
+    /** @var array */
+    private $quantity = ['all', 'selected'];
+
     /**
      * Configure the Belich options
      *
@@ -135,12 +138,7 @@ class DownloadController extends Controller
     {
         return Validator::make($request->all(), [
             'format'   => ['required', Rule::in($this->formats)],
-            'quantity' => ['required',
-                Rule::in([
-                    trans('belich::default.all'),
-                    trans('belich::default.selected')
-                ]),
-            ],
+            'quantity' => ['required', Rule::in($this->quantity)],
             'resource_model' => ['required',
                 function ($attribute, $value, $fail) {
                     if(!class_exists($value)) {
