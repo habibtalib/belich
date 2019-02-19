@@ -13,4 +13,5 @@ La primera versión de Belich, utilizaba [Jquery](https://jquery.com/), pero sol
 ## Librerías y código utilizado
 
 - [Html Menu Generator for Laravel](https://github.com/spatie/laravel-menu)
+- [Laravel Excel](https://laravel-excel.maatwebsite.nl/)
 - [Mustafa Ehsan](http://mustafaehsan.com/2017/tailwind-css-building-a-login-page/)
