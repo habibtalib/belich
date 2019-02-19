@@ -20,13 +20,13 @@ Project in development. Still in the early stages...help will be great!!!
 ## Features 
 
 - Sidebar or topbar from the `config` file.
+- Resources download.
 - Customized:
     + actions.
     + navbar.
     + sidebar.
     + breadcrumb.
     + ...
-- Resources download.
 
 ## Screenshots
 
