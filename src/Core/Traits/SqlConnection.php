@@ -3,6 +3,7 @@
 namespace Daguilarm\Belich\Core\Traits;
 
 use Daguilarm\Belich\Facades\Belich;
+use Illuminate\Support\Facades\Cookie;
 
 trait SqlConnection {
 
@@ -17,7 +18,6 @@ trait SqlConnection {
         //Set variables
         $direction = request()->query('direction');
         $order     = request()->query('orderBy');
-        $trashed   = request()->query('withTrashed');
         $policy    = request()->user()->can('withTrashed', Belich::getModel());
 
         //Sql for index
@@ -27,17 +27,22 @@ trait SqlConnection {
                 ->indexQuery($this->request)
 
                 //Order query
-                ->when(!empty($order) && !empty($direction), function ($query) use ($direction, $order, $policy, $trashed) {
+                ->when(!empty($order) && !empty($direction), function ($query) use ($direction, $order) {
                     return $query->orderBy($order, $direction);
                 })
 
-                //Trashed
-                ->when(!empty($trashed) && $trashed === 'true' && $policy, function ($query) {
+                //Show the trashed results
+                ->when($policy && Cookie::get('belich_withTrashed') === 'all', function ($query) {
                     return $query->withTrashed();
                 })
 
+                //Only show the trashed results
+                ->when($policy && Cookie::get('belich_withTrashed') === 'only', function ($query) {
+                    return $query->onlyTrashed();
+                })
+
                 //Pagination
-                ->simplePaginate($this->perPage)
+                ->simplePaginate(Cookie::get('belich_perPage'))
 
                 //Add all the url variables
                 ->appends(request()->query());
