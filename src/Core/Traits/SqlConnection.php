@@ -32,12 +32,12 @@ trait SqlConnection {
                 })
 
                 //Show the trashed results
-                ->when($policy && Cookie::get('belich_withTrashed') === 'all', function ($query) {
+                ->when($policy && isTrashed(Belich::getModel()) && Cookie::get('belich_withTrashed') === 'all', function ($query) {
                     return $query->withTrashed();
                 })
 
                 //Only show the trashed results
-                ->when($policy && Cookie::get('belich_withTrashed') === 'only', function ($query) {
+                ->when($policy && isTrashed(Belich::getModel()) && Cookie::get('belich_withTrashed') === 'only', function ($query) {
                     return $query->onlyTrashed();
                 })
 

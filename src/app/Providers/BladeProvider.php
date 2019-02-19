@@ -46,11 +46,8 @@ Blade::directive('icon', function ($arguments) {
  * @return string
  */
 Blade::if('isTrashed', function ($model) {
-    if(method_exists($model, 'trashed') && $model->trashed()) {
-        return true;
-    }
-
-    return false;
+    //App\Http\Helpers\Models.php
+    return isTrashed($model);
 });
 
 /**

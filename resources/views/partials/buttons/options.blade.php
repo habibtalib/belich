@@ -23,15 +23,17 @@
 
         {{-- Trashed --}}
         @can('withTrashed', $request->autorizedModel)
-            @component('belich::components.options')
-                @slot('text', trans('belich::default.trashed'))
-                @slot('field', 'withTrashed')
-                @slot('options', [
-                    ['none' => trans('belich::default.none')],
-                    ['all'  => trans('belich::default.all')],
-                    ['only' => trans('belich::default.trashedOnly')],
-                ])
-            @endcomponent
+            @isTrashed($request->autorizedModel)
+                @component('belich::components.options')
+                    @slot('text', trans('belich::default.trashed'))
+                    @slot('field', 'withTrashed')
+                    @slot('options', [
+                        ['none' => trans('belich::default.none')],
+                        ['all'  => trans('belich::default.all')],
+                        ['only' => trans('belich::default.trashedOnly')],
+                    ])
+                @endcomponent
+            @endif
         @endcan
 
         <div class="float-right p-2 mb-2">
