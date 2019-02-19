@@ -65,7 +65,7 @@ class CrudController extends Controller
         $this->authorize('create', $this->model);
 
         //Get the data
-        $request = $this->dataToForm($belich, $request);
+        $request = $this->dataToForms($belich, $request);
 
         return view('belich::dashboard.create', compact('request'));
     }
