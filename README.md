@@ -17,7 +17,7 @@ Project in development. Still in the early stages...help will be great!!!
 
 `php artisan vendor:publish --provider="Daguilarm\Belich\BelichServiceProvider" --force`
 
-## Screenshot
+## Screenshots
 
 
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/buttons.png?raw=true)
@@ -27,3 +27,7 @@ Project in development. Still in the early stages...help will be great!!!
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/small/buttons-small-1.png?raw=true)
 
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/small/buttons-small-2.png?raw=true)
+
+#### With sidebar (Nova style)
+
+![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/sidebar.png?raw=true)

@@ -111,7 +111,7 @@ trait NavbarHtml {
     {
         //Create the new menu
         $submenu = Menu::new()
-            ->addParentClass($this->menuCss());
+            ->addParentClass(config('belich.navbar') === 'top' ? $this->menuCss() : '');
         //Adding links to the menu
         $resources->map(function($resources) use ($submenu) {
             //Links parameters
