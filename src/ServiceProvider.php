@@ -44,12 +44,6 @@ class ServiceProvider extends Provider {
         foreach (glob(__DIR__ . '/app/Http/Helpers/*.php') as $file) {
             require_once($file);
         }
-
-        //Configure a disk for the package
-        app()->config["filesystems.disks.belich"] = [
-            'driver' => 'local',
-            'root' => public_path('path'),
-        ];
     }
 
     /**
