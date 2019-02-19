@@ -37,3 +37,33 @@ if (!function_exists('hasSoftdeletedResults')) {
         return false;
     }
 }
+
+/*
+|--------------------------------------------------------------------------
+| Working with forms
+|--------------------------------------------------------------------------
+*/
+
+/**
+ * Convert a field string (coma separated values) into an array
+ * Only works on numeric
+ * This is for using mass selection and $model->whereIn($array)
+ *
+ * @return array
+ */
+if (!function_exists('fieldToArray')) {
+    function fieldToArray($values) : array
+    {
+        $listOfValues = explode(',', $values);
+
+        return collect($listOfValues)
+            ->map(function($value) {
+                // Only numeric values
+                if(!empty($value) && is_numeric($value)) {
+                    return (integer) $value;
+                }
+            })
+            ->filter()
+            ->toArray();
+    }
+}

@@ -32,32 +32,15 @@ class Download implements FromCollection
      */
     public function collection() : Collection
     {
-        // Selected fields
+        //Selected fields
         if($this->request->quantity === 'selected') {
             return $this->model
-                ->whereIn('id', $this->filterValues())
+                //App\Http\Helpers\Utils
+                ->whereIn('id', fieldToArray($this->selected))
                 ->get();
         }
 
-        // All the fields
+        //All the fields
         return $this->model->all();
-    }
-
-    /**
-     * filter the values: only numeric values
-     *
-     * @return array
-     */
-    public function filterValues() : array
-    {
-        return collect(explode(',', $this->selected))
-            ->map(function($value) {
-                // Only numeric values
-                if(!empty($value) && is_numeric($value)) {
-                    return (integer) $value;
-                }
-            })
-            ->filter()
-            ->toArray();
     }
 }

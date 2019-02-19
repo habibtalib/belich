@@ -93,6 +93,7 @@
 
 @section('javascript')
     <script>
+        {{-- Check all checkboxes --}}
         function checkAll(selector) {
             var checkboxes = document.getElementById('belich-index-table').getElementsByTagName('input');
             for (var i=0; i < checkboxes.length; i++)  {
@@ -101,6 +102,8 @@
                 }
             }
         }
+
+        {{-- Search fields --}}
         function resetSearch() {
             document.getElementById('_search').value = '';
             document.getElementById('icon-search-reset').classList.add('hidden');
@@ -110,6 +113,8 @@
                 return document.getElementById('icon-search-reset').classList.remove('hidden');
             }
         }
+
+        {{-- Add checked checkboxes to hidden field --}}
         function addCheckboxesToField(fieldID) {
             return document.getElementById(fieldID).value = getCheckboxSelected();
         }
@@ -122,6 +127,14 @@
                 }
             }
             return listOfCheckedElements;
+        }
+
+        {{-- Delete selected fields --}}
+        function deleteSelectedFields(fieldID) {
+            //Add selected values
+            document.getElementById(fieldID).value = getCheckboxSelected();
+            //Submit form and delete values
+            document.getElementById('belich-form-delete-selected').submit();
         }
     </script>
 @endsection

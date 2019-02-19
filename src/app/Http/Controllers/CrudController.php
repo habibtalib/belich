@@ -2,14 +2,21 @@
 
 namespace Daguilarm\Belich\App\Http\Controllers;
 
-use Daguilarm\Belich\App\Http\Controllers\BaseController;
+use App\Http\Controllers\Controller;
+use Daguilarm\Belich\App\Http\Controllers\Traits\Redirectable;
+use Daguilarm\Belich\App\Http\Controllers\Traits\Valuable;
 use Daguilarm\Belich\Core\Belich;
 use Illuminate\Http\Request;
 
-class RestfullController extends BaseController
+class CrudController extends Controller
 {
+    use Redirectable, Valuable;
+
     /** @var Illuminate\Database\Eloquent\Model */
     protected $model;
+
+    /** @var Illuminate\Http\Request */
+    protected $request;
 
     /**
      * Generate crud controllers
@@ -18,7 +25,10 @@ class RestfullController extends BaseController
      */
     public function __construct(Belich $belich, Request $request)
     {
-        parent::__construct($belich, $request);
+        //Share the setting to all the views
+        view()->share([
+            'resources' => $belich->resourcesAll(),
+        ]);
 
         //Get resource model
         $this->model = Belich::getModel();
@@ -147,38 +157,5 @@ class RestfullController extends BaseController
         $delete = $this->model->findOrFail($id)->delete();
 
         return $this->redirectToAction($delete, $actionSuccess = 'deleted', $actionFail = 'deleting', $id);
-    }
-
-    /**
-     * Force delete a resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function forceDelete($id)
-    {
-        //Authorization
-        $this->authorize('forceDelete', $this->model);
-
-        $forceDelete = $this->whereDeletedID($id)->forceDelete();
-
-        return $this->redirectToAction($forceDelete, $actionSuccess = 'force deleted', $actionFail = 'force deleting', $id);
-    }
-
-    /**
-     * Restore a deleted a resource.
-     *
-     * @param int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function restore($id)
-    {
-        //Authorization
-        $this->authorize('restore', $this->model);
-
-        //Restore deleted row
-        $restore = $this->whereDeletedID($id)->restore();
-
-        return $this->redirectToAction($restore, $actionSuccess = 'restored', $actionFail = 'restoring', $id);
     }
 }

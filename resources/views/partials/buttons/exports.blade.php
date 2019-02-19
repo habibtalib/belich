@@ -24,8 +24,8 @@
             @slot('required', true)
             @slot('options', [
                 ['' => ''],
-                ['xlsx' => 'Excel 2007'],
                 ['xls' => 'Excel 2003'],
+                ['xlsx' => 'Excel 2007'],
                 ['csv' => 'CSV'],
             ])
         @endcomponent

@@ -24,11 +24,13 @@ Route::group([
                 //Get route ID
                 $routeID = sprintf('{%s}', Str::singular($route));
                 if($route) {
-                    Route::resource(route_path($route), namespace_path('App\Http\Controllers\RestfullController'));
-                    Route::get(route_path($route) . '/' . $routeID . '/restore', namespace_path('App\Http\Controllers\RestfullController@restore'))
+                    Route::resource(route_path($route), namespace_path('App\Http\Controllers\CrudController'));
+                    Route::get(route_path($route) . '/' . $routeID . '/restore', namespace_path('App\Http\Controllers\CrudExtendedController@restore'))
                         ->name($route . '.restore');
-                    Route::get(route_path($route) . '/' . $routeID . '/forceDelete', namespace_path('App\Http\Controllers\RestfullController@forceDelete'))
+                    Route::get(route_path($route) . '/' . $routeID . '/forceDelete', namespace_path('App\Http\Controllers\CrudExtendedController@forceDelete'))
                         ->name($route . '.forceDelete');
+                    Route::post(route_path($route) . '/delete/selected', namespace_path('App\Http\Controllers\CrudExtendedController@deleteSelected'))
+                        ->name($route . '.delete.selected');
                 }
             });
 
