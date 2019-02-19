@@ -27,6 +27,7 @@
                 @slot('text', trans('belich::default.trashed'))
                 @slot('field', 'withTrashed')
                 @slot('options', [
+                    ['none' => trans('belich::default.none')],
                     ['all'  => trans('belich::default.all')],
                     ['only' => trans('belich::default.trashedOnly')],
                 ])
