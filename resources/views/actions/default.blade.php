@@ -1,5 +1,5 @@
 {{-- If the model results has been trashed --}}
-@isTrashed($model)
+@hasSoftdeletedResults($model)
     {{-- The user can restore trashed items --}}
     @can('restore', $model)
         <a href="{{ Belich::actionRoute('restore', $model) }}" class="action">@actionIcon('redo')</a>

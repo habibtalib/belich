@@ -40,14 +40,25 @@ Blade::directive('icon', function ($arguments) {
 });
 
 /**
- * Create a Blade if directive for @isTrashed
- * Check if a model is softdeleting
+ * Create a Blade if directive for @hasSoftdelete
+ * Check if a model has the softdelete trait
  *
  * @return string
  */
-Blade::if('isTrashed', function ($model) {
+Blade::if('hasSoftdelete', function ($model) {
     //App\Http\Helpers\Models.php
-    return isTrashed($model);
+    return hasSoftdelete($model);
+});
+
+/**
+ * Create a Blade if directive for @isTrashed
+ * Check if a model has softdeleted results
+ *
+ * @return string
+ */
+Blade::if('hasSoftdeletedResults', function ($model) {
+    //App\Http\Helpers\Models.php
+    return hasSoftdeletedResults($model);
 });
 
 /**

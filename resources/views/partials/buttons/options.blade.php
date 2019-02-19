@@ -23,7 +23,7 @@
 
         {{-- Trashed --}}
         @can('withTrashed', $request->autorizedModel)
-            @isTrashed($request->autorizedModel)
+            @hasSoftdelete($request->autorizedModel)
                 @component('belich::components.options')
                     @slot('text', trans('belich::default.trashed'))
                     @slot('field', 'withTrashed')
