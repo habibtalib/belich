@@ -15,7 +15,7 @@ trait Valuable {
      * @param Illuminate\Http\Request $request
      * @return array
      */
-    protected function getData(Belich $belich, Request $request)
+    protected function dataToIndex(Belich $belich, Request $request)
     {
         //Get the default values
         list($data, $fields) = $this->getDefaultValues($belich, $request);
@@ -40,7 +40,7 @@ trait Valuable {
      * @param Illuminate\Http\Request $request
      * @return array
      */
-    protected function getFormData(Belich $belich, Request $request, $id = null)
+    protected function dataToForms(Belich $belich, Request $request, $id = null)
     {
         //Get the default values
         list($data, $fields) = $this->getDefaultValues($belich, $request);

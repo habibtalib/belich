@@ -47,7 +47,7 @@ class CrudController extends Controller
         $this->authorize('viewAny', $this->model);
 
         //Get all the data
-        $request = $this->getData($belich, $request);
+        $request = $this->dataToIndex($belich, $request);
 
         return view('belich::dashboard.index', compact('request'));
     }
@@ -65,7 +65,7 @@ class CrudController extends Controller
         $this->authorize('create', $this->model);
 
         //Get the data
-        $request = $this->getFormData($belich, $request);
+        $request = $this->dataToForm($belich, $request);
 
         return view('belich::dashboard.create', compact('request'));
     }
@@ -101,7 +101,7 @@ class CrudController extends Controller
         //This controller use the: $this->authorize('view')
 
         //Get the data
-        $request = $this->getFormData($belich, $request, $id);
+        $request = $this->dataToForms($belich, $request, $id);
 
         return view('belich::dashboard.show', compact('request'));
     }
@@ -120,7 +120,7 @@ class CrudController extends Controller
         //This controller use the: $this->authorize('update')
 
         //Get the data
-        $request = $this->getFormData($belich, $request, $id);
+        $request = $this->dataToForms($belich, $request, $id);
 
         return view('belich::dashboard.edit', compact('request'));
     }
