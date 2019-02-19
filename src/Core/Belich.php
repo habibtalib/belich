@@ -15,9 +15,6 @@ class Belich {
     use Helpers, SqlConnection;
 
     /** @var string */
-    private $perPage = 20;
-
-    /** @var string */
     private $request;
 
     /** @var string */
