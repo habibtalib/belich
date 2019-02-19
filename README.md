@@ -19,4 +19,6 @@ Project in development. Still in the early stages...help will be great!!!
 
 ## Screenshot
 
-![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/menu.png)
+![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/deleted.png)
+
+![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/buttons.png)
