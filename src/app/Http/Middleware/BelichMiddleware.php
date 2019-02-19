@@ -4,9 +4,16 @@ namespace Daguilarm\Belich\App\Http\Middleware;
 
 use Closure;
 use Daguilarm\Belich\Core\Belich;
+use Illuminate\Support\Facades\Cookie;
 
 class BelichMiddleware
 {
+    /** @var int */
+    private $perPage = 20;
+
+    /** @var string */
+    private $withTrashed = 'none';
+
     /**
      * Force to secure URL
      *
@@ -20,6 +27,19 @@ class BelichMiddleware
             return abort(403);
         }
 
-        return $next($request);
+        //Set base middleware response
+        $response = $next($request);
+
+        // Default results per page cookie
+        if(!$request->cookie('belich_perPage')) {
+            $response = $response->withCookie(cookie('belich_perPage', $this->perPage, setTimeToOneYear()));
+        }
+
+        // Default trashed results cookie
+        if(!$request->cookie('belich_withTrashed')) {
+            $response = $response->withCookie(cookie('belich_withTrashed', $this->withTrashed, setTimeToOneYear()));
+        }
+
+        return $response;
     }
 }
