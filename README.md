@@ -22,6 +22,6 @@ Project in development. Still in the early stages...help will be great!!!
 
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/buttons.png?raw=true)
 
-![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/buttons-1.png?raw=true =200x200)
+![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/buttons-1.png?raw=true)
 
-![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/buttons-2.png?raw=true =200x200)
+![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/buttons-2.png?raw=true)
