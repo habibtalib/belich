@@ -5,7 +5,9 @@
         @isset($options)
             <select name="{{ $field }}" class="w-full h-10 border border-grey-light">
                 <option></option>
-                {!! createFormSelectOptions($options, $field) !!}
+                @foreach($options as $option)
+                    @optionFromArray($field, $option)
+                @endforeach
             </select>
         @else
             {{ $custom ?? emptyResults() }}
