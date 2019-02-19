@@ -33,8 +33,12 @@ Route::group([
             });
 
         //Belich options
-        Route::post(route_path('/user/settings'), namespace_path('App\Http\Controllers\OptionsController'))
+        Route::post(route_path('user/settings'), namespace_path('App\Http\Controllers\OptionsController'))
             ->name('users.settings');
+
+        //Belich export
+        Route::post(route_path('exports/download'), namespace_path('App\Http\Controllers\DownloadController'))
+            ->name('exports.download');
 
         //Load all the custom routes
         if (file_exists(app_path('/Belich/Routes.php'))) {

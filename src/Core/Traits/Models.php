@@ -20,9 +20,19 @@ trait Models {
      */
     public static function getModel()
     {
+        return app(static::getModelPath());
+    }
+
+    /**
+     * Get the resource model path.
+     *
+     * @return string
+     */
+    public static function getModelPath() : string
+    {
         $resourceClass = static::resourceClassPath();
 
-        return app($resourceClass::$model);
+        return $resourceClass::$model;
     }
 
     /**

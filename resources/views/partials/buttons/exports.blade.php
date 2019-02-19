@@ -9,18 +9,22 @@
         id="belich-form-exports"
         dusk="dusk-form-exports"
         class="btn-dropdown-content pin-r rounded-lg border border-grey shadow text-grey-dark text-left bg-white"
-        action="/"
+        action="{{ route('dashboard.exports.download') }}"
     >
         @csrf
+
+        <input type="hidden" name="resource_model" value="{{ Belich::getModelPath() }}">
 
         {{-- Export format --}}
         @component('belich::components.options')
             @slot('css', 'rounded-t-lg')
             @slot('text', trans('belich::default.format'))
-            @slot('field', 'exports')
+            @slot('field', 'format')
+            @slot('required', true)
             @slot('options', [
-                ['pdf' => 'PDF'],
-                ['xls' => 'Excel'],
+                ['' => ''],
+                ['xlsx' => 'Excel 2007'],
+                ['xls' => 'Excel 2003'],
                 ['csv' => 'CSV'],
             ])
         @endcomponent
@@ -28,8 +32,10 @@
         {{-- Export format --}}
         @component('belich::components.options')
             @slot('text', trans('belich::default.items'))
-            @slot('field', 'exports_quantity')
+            @slot('field', 'quantity')
+            @slot('required', true)
             @slot('options', [
+                ['' => ''],
                 trans('belich::default.all'),
                 trans('belich::default.selected')
             ])
