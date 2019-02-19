@@ -21,11 +21,13 @@ Project in development. Still in the early stages...help will be great!!!
 
 - Sidebar or topbar from the `config` file.
 - Resources download.
+- Native authorization with Policies.
 - Customized:
     + actions.
     + navbar.
     + sidebar.
     + breadcrumb.
+    + dashboard.
     + ...
 
 ## Screenshots
