@@ -6,6 +6,7 @@
  * @return string
  */
 Blade::directive('actionIcon', function ($arguments) {
+    //App\Http\Helpers\Icons.php
     return "<?php echo actionIcon($arguments); ?>";
 });
 
@@ -20,6 +21,7 @@ Blade::directive('gravatar', function ($arguments) {
         ? 'block h-10 rounded-full shadow-md'
         : $arguments;
 
+    //App\Http\Helpers\Icons.php
     return "<?php echo '" . sprintf('<img class="%s" src="%s" alt="">', $css, gravatar()) . "'; ?>";
 });
 
@@ -33,6 +35,7 @@ Blade::directive('icon', function ($arguments) {
     $text = isset($list[1]) ? trans($list[1]) : '';
     $css = isset($list[2]) ? $list[2] : '';
 
+    //App\Http\Helpers\Icons.php
     return "<?php echo icon('$list[0]', '$text', '$css'); ?>";
 });
 
@@ -68,6 +71,7 @@ Blade::directive('mix', function ($arguments) {
 
 /**
  * Create am @option directive for a select field
+ * App\Http\Helpers\Blade.php
  *
  * @return string
  */
@@ -77,6 +81,7 @@ Blade::directive('optionFromArray', function ($arguments) {
     $value = $list[1] ?? null;
 
     if($field && $value) {
+        //App\Http\Helpers\Blade.php
         return "<?php echo createFormSelectOptions({$value}, {$field}); ?>";
     }
 
