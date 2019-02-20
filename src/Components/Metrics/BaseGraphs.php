@@ -6,14 +6,26 @@ use Illuminate\Http\Request;
 
 abstract class BaseGraphs {
 
-    /** @var array */
-    protected $labels;
+    /** @var object */
+    public $calculate;
 
-    /** @var Illuminate\Http\Request */
-    protected $request;
+    /** @var array */
+    public $labels;
 
     /** @var string */
-    protected $type;
+    public $name;
+
+    /** @var Illuminate\Http\Request */
+    public $request;
+
+    /** @var string */
+    public $type;
+
+    /** @var string */
+    public $uriKey;
+
+    /** @var string */
+    public $width = 'w-1/3';
 
     /**
      * Set the custom metrics cards
@@ -23,17 +35,35 @@ abstract class BaseGraphs {
      */
     public function __construct(Request $request)
     {
-        $this->labels = $this->labels();
-        $this->request = $this->request;
+        $this->request    = $request;
+        $this->labels     = $this->renderLabels($request);
+        $this->name       = $this->name($request);
+        $this->uriKey     = $this->uriKey();
+        $this->calculate  = $this->calculate($request);
     }
 
     /**
      * Initialize the metrics
      */
-    abstract function handle();
+    abstract function calculate(Request $request);
 
     /**
      * Set the labels
      */
-    abstract function labels();
+    abstract function labels(Request $request);
+
+    /**
+     * Set the metric name
+     */
+    abstract function name(Request $request);
+
+    private function renderLabels(Request $request)
+    {
+        return collect($this->labels($request))
+            ->map(function($label) {
+                return sprintf("'%s'", $label);
+            })
+            ->filter()
+            ->implode(',');
+    }
 }
