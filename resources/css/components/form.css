@@ -1,5 +1,5 @@
 .form-container {
-    @apply shadow-md rounded;
+    @apply shadow-md;
     background-color: var(--form-bg);
 }
 

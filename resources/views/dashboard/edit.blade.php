@@ -22,11 +22,13 @@
 
         {{-- Buttons --}}
         <div class="btn-container bg-blue-lightest">
-            <button id="button-form-edit" type="submit" class="btn btn-primary">
+            <button id="button-form-edit" type="submit" class="btn btn-primary mt-1">
                 @icon('edit', 'belich::buttons.crud.update')
             </button>
         </div>
     </form>
+    {{-- Form border rounded --}}
+    @include('belich::partials.form-rounded')
 @endsection
 
 {{-- Javascript from packages --}}

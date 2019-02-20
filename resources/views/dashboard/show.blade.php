@@ -23,4 +23,6 @@
             </div>
         @endif
     @endforeach
+    {{-- Form border rounded --}}
+    @include('belich::partials.form-rounded', ['height' => 'h-16'])
 @endsection

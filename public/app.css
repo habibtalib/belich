@@ -89,7 +89,9 @@ a {
 .nav-breadcrumbs {
   width: 100%;
   margin-bottom: 2rem;
-  border-radius: .25rem;
+  border-radius: .5rem;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
   -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
           box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
   background-color: var(--breadcrumbs-bg);
@@ -242,7 +244,6 @@ a {
 .form-container {
   -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
-  border-radius: .25rem;
   background-color: var(--form-bg);
 }
 

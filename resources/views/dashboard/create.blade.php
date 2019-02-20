@@ -14,11 +14,13 @@
 
         {{-- Buttons --}}
         <div class="btn-container bg-blue-lightest">
-            <button id="button-form-create" type="submit" class="btn btn-primary">
+            <button id="button-form-create" type="submit" class="btn btn-primary mt-1">
                 @icon('plus', 'belich::buttons.crud.create')
             </button>
         </div>
     </form>
+    {{-- Form border rounded --}}
+    @include('belich::partials.form-rounded')
 @endsection
 
 {{-- Javascript from packages --}}
