@@ -40,7 +40,7 @@ Project in development. Still in the early stages...help will be great!!!
 #### Metrics
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/stats.png?raw=true)
 
-#### Deleted, force delete and restore
+#### Delete, force delete and restore
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/deleted.png?raw=true)
 
 #### Options
