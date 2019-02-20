@@ -12,6 +12,7 @@
     ],
     "require": {
         "matthiasmullie/minify": "dev-master",
+        "rap2hpoutre/fast-excel": "dev-master",
         "spatie/menu": "^2.8"
     },
     "require-dev": {
