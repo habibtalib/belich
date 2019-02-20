@@ -20,7 +20,7 @@
         </div>
     </form>
     {{-- Form border rounded --}}
-    @include('belich::partials.form-rounded')
+    @includeIf('belich::partials.containers.rounded-bottom')
 @endsection
 
 {{-- Javascript from packages --}}

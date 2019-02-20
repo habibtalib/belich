@@ -23,5 +23,5 @@
         @endif
     @endforeach
     {{-- Form border rounded --}}
-    @include('belich::partials.containers.rounded-bottom', ['height' => 'h-16'])
+    @includeIf('belich::partials.containers.rounded-bottom', ['height' => 'h-16'])
 @endsection
