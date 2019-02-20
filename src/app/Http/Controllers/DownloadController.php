@@ -3,7 +3,7 @@
 namespace Daguilarm\Belich\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Daguilarm\Belich\Components\Export\Excel;
+use Daguilarm\Belich\Components\Export\Drivers\FastExcelDriver as Excel;
 use Illuminate\Http\Request;
 
 class DownloadController extends Controller

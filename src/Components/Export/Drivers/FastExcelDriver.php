@@ -1,15 +1,20 @@
 <?php
 
-namespace Daguilarm\Belich\Components\Export;
+namespace Daguilarm\Belich\Components\Export\Drivers;
 
 use Daguilarm\Belich\Components\Export\Eloquent;
+use Daguilarm\Belich\Components\Export\ExportContract;
 use Daguilarm\Belich\Components\Export\File;
 use Daguilarm\Belich\Components\Export\Validation;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Rap2hpoutre\FastExcel\FastExcel;
 
-class Excel extends FastExcel
+/**
+ * @Driver: FastExcel
+ * @Github: https://github.com/rap2hpoutre/fast-excel
+ */
+class FastExcelDriver extends FastExcel implements ExportContract
 {
     /**
      * @var Collection
@@ -35,9 +40,9 @@ class Excel extends FastExcel
     /**
      * Add collection from model
      *
-     * @return Illuminate\Database\Eloquent\Collection
+     * @return Daguilarm\Belich\Components\Export\Drivers\FastExcelDriver
      */
-    public function collection(Collection $data)
+    public function collection(Collection $data) : FastExcelDriver
     {
         $this->data = $data;
 
