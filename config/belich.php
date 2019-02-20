@@ -41,6 +41,26 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Export file (xls, xlsx, csv) from supported drivers
+    |--------------------------------------------------------------------------
+    |
+    | Belich has support for:
+    |
+    | @Driver: Fast Excel
+    | @Github: https://github.com/rap2hpoutre/fast-excel
+    | @value: 'fast-excel'
+    |
+    | @Driver: Laravel Maatwebsite excel (comming soon...)
+    | @Github: https://laravel-excel.maatwebsite.nl/
+    | @value: 'maatwebsite'
+    |
+    */
+    'export' => [
+        'driver' => 'fast-excel',
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Url allowed parameters
     |--------------------------------------------------------------------------
     |

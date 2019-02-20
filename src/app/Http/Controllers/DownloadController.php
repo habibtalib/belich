@@ -3,7 +3,7 @@
 namespace Daguilarm\Belich\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Daguilarm\Belich\Components\Export\Drivers\FastExcelDriver as Excel;
+use Daguilarm\Belich\Components\Export\Excel;
 use Illuminate\Http\Request;
 
 class DownloadController extends Controller
@@ -14,8 +14,11 @@ class DownloadController extends Controller
      * @param Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Excel $excel, Request $request)
+    public function __invoke(Request $request)
     {
+        //Get the excel instance from the driver
+        $excel = Excel::make();
+
         //Handle the excel values
         list($file, $query, $validator) = $excel->handle($request);
 
