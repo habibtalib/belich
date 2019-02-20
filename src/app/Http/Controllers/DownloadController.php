@@ -3,9 +3,8 @@
 namespace Daguilarm\Belich\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Daguilarm\Belich\Components\Export\Operations;
+use Daguilarm\Belich\Components\Export\Excel;
 use Illuminate\Http\Request;
-use Rap2hpoutre\FastExcel\FastExcel;
 
 class DownloadController extends Controller
 {
@@ -15,25 +14,19 @@ class DownloadController extends Controller
      * @param Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function __invoke(Excel $excel, Request $request)
     {
-        //Create a export to excel instance
-        $export = (new Operations)->handle($request);
+        //Handle the excel values
+        list($file, $query, $validator) = $excel->handle($request);
 
-        // Do the validation
-        $validator = $export->get('validation');
-
+        //Handle validation
         if ($validator->fails()) {
             return redirect()
                 ->back()
                 ->withErrors($validator->messages()->first());
         }
 
-        //Set values
-        $file  = $export->get('file');
-        $query = $export->get('query');
-
         //Download the file
-        return (new FastExcel($query))->download($file);
+        return $excel->collection($query)->download($file);
     }
 }
