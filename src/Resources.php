@@ -15,9 +15,6 @@ abstract class Resources {
     /** @var string */
     public static $actions = 'default';
 
-    /** @var Illuminate\Support\Collection */
-    public static $cards;
-
     /** @var bool */
     public static $displayInNavigation = true;
 
@@ -35,9 +32,6 @@ abstract class Resources {
 
     /** @var string */
     public static $label;
-
-    /** @var Illuminate\Support\Collection */
-    public static $metrics;
 
     /** @var string [Model path] */
     public static $model;

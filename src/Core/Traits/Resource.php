@@ -256,7 +256,9 @@ trait Resource {
                 'accessToResource'    => $accessToResource,
                 'actions'             => $class::$actions,
                 'breadcrumbs'         => $class::breadcrumbs(),
+                'cards'               => $class::cards(request()),
                 'model'               => $class::$model,
+                'metrics'             => $class::metrics(request()),
             ]);
         }
 

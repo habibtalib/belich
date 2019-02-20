@@ -4,6 +4,9 @@
     {{-- Breadcrumbs --}}
     @include('belich::partials.navigation.breadcrumbs')
 
+    {{-- Metrics --}}
+    {!! Belich::metrics($request) !!}
+
     {{-- Search container --}}
     <div id="belich-table-search" class="flex items-center rounded-t p-4 pr-6 shadow-md w-full">
         <div class="icon-search w-full">
