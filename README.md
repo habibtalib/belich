@@ -23,6 +23,7 @@ Project in development. Still in the early stages...help will be great!!!
 - Resources download.
 - Native authorization with Policies.
 - Font awesome.
+- Metrics.
 - Customized:
     + actions.
     + navbar.
@@ -33,10 +34,17 @@ Project in development. Still in the early stages...help will be great!!!
 
 ## Screenshots
 
+#### Dashboard
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/buttons.png?raw=true)
 
+#### Metrics
+![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/stats.png?raw=true)
+
+#### Deleted, force delete and restore
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/deleted.png?raw=true)
 
+#### Options
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/small/buttons-small-1.png?raw=true)
 
+#### Export
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/small/buttons-small-2.png?raw=true)
