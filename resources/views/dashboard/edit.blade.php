@@ -4,12 +4,11 @@
     {{-- Breadcrumbs --}}
     @include('belich::partials.navigation.breadcrumbs')
 
-    {{-- Buttons --}}
-    <div class="flex w-full justify-end">
-        <a href="{{ Belich::actionRoute('show', $request->id) }}" class="btn btn-secondary mb-4">
-            @icon('eye', 'belich::buttons.crud.show')
-        </a>
-    </div>
+    {{-- Crud Button: show --}}
+    @component('belich::components.crud-button')
+        @slot('url', Belich::actionRoute('show', $request->id))
+        @slot('icon', icon('eye', trans('belich::buttons.crud.show')))
+    @endcomponent
 
     <form method="POST" name="form-{{ $request->name }}-edit" id="form-{{ $request->name }}-edit" action="{{ toRoute('update') }}" class="form-container">
         @csrf
@@ -28,7 +27,7 @@
         </div>
     </form>
     {{-- Form border rounded --}}
-    @include('belich::partials.form-rounded')
+    @include('belich::partials.containers.rounded-bottom')
 @endsection
 
 {{-- Javascript from packages --}}

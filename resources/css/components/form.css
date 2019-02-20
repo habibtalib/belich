@@ -35,7 +35,7 @@
     /*Default form fields*/
     form.form-container > .form-group input,
     form.form-container > .form-group select {
-        @apply w-full appearance-none border leading-loose rounded text-grey-darker;
+        @apply w-full appearance-none border leading-loose rounded text-lg text-grey-darker;
         border-color: var(--form-input-border);
         background-color: var(--form-input-bg);
     }
@@ -49,7 +49,6 @@
         @apply outline-none shadow-md;
         background-color: var(--form-input-focus-bg);
         border-color: var(--form-input-focus-border);
-        color: var(--form-input-focus-color);
     }
 
     /*Input fields*/

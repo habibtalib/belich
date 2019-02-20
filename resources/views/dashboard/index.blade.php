@@ -8,7 +8,7 @@
     {!! Belich::metrics($request) !!}
 
     {{-- Search container --}}
-    <div id="belich-table-search" class="flex items-center p-4 pr-6 shadow-md w-full">
+    <div id="belich-table-search" class="flex items-center p-4 pr-6 shadow-md bg-grey-lightest w-full">
         <div class="icon-search w-full">
             <input type="text" name="_search" id="_search" class="p-2 pl-8 my-2 ml-2 rounded border border-grey-light shadow-md w-64" placeholder="search..." onkeydown="showResetSearch()">
             <span class="hidden" id="icon-search-reset">

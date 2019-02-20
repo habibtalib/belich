@@ -51,7 +51,7 @@
     --form-help: var(--50);
     --form-input-bg: var(--white);
     --form-input-border: var(--20);
-    --form-input-focus-bg: var(--warning-30);
+    --form-input-focus-bg: var(--5);
     --form-input-focus-border: var(--20);
     --form-input-focus-color: var(--black);
     --form-select-dropdown-icon: var(--80);

@@ -47,7 +47,7 @@
   --form-help: var(--50);
   --form-input-bg: var(--white);
   --form-input-border: var(--20);
-  --form-input-focus-bg: var(--warning-30);
+  --form-input-focus-bg: var(--5);
   --form-input-focus-border: var(--20);
   --form-input-focus-color: var(--black);
   --form-select-dropdown-icon: var(--80);
@@ -307,6 +307,7 @@ form.form-container > .form-group select {
   border-width: 1px;
   line-height: 2;
   border-radius: .25rem;
+  font-size: 1.125rem;
   color: #606f7b;
   border-color: var(--form-input-border);
   background-color: var(--form-input-bg);
@@ -323,7 +324,6 @@ textarea:focus {
           box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
   background-color: var(--form-input-focus-bg);
   border-color: var(--form-input-focus-border);
-  color: var(--form-input-focus-color);
 }
 
 /*Input fields*/
@@ -555,10 +555,10 @@ nav#sidebar ul li.sidebar-child {
 
 .table thead tr {
   border-bottom-width: 1px;
-  border-style: solid;
-  border-color: #dae1e7;
+  border-top-width: 1px;
   background-color: var(--table-head-bg);
   color: var(--table-head-color);
+  border-color: var(--10);
 }
 
 .table tbody tr:hover {

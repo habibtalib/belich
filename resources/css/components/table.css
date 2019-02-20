@@ -19,9 +19,10 @@
         }
 
         .table thead tr {
-            @apply border-b border-solid border-grey-light;
+            @apply border-b border-t;
             background-color: var(--table-head-bg);
             color: var(--table-head-color);
+            border-color: var(--10);
         }
 
             .table tbody tr:hover {

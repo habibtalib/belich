@@ -4,12 +4,11 @@
     {{-- Breadcrumbs --}}
     @include('belich::partials.navigation.breadcrumbs')
 
-    {{-- Buttons --}}
-    <div class="flex w-full justify-end">
-        <a href="{{ Belich::actionRoute('edit', $request->id) }}" class="btn btn-secondary mb-4">
-            @icon('edit', 'belich::buttons.crud.update')
-        </a>
-    </div>
+    {{-- Crud Button: edit --}}
+    @component('belich::components.crud-button')
+        @slot('url', Belich::actionRoute('edit', $request->id))
+        @slot('icon', icon('eye', trans('belich::buttons.crud.update')))
+    @endcomponent
 
     @foreach($request->fields as $field)
         @if(!empty($field->label))
@@ -24,5 +23,5 @@
         @endif
     @endforeach
     {{-- Form border rounded --}}
-    @include('belich::partials.form-rounded', ['height' => 'h-16'])
+    @include('belich::partials.containers.rounded-bottom', ['height' => 'h-16'])
 @endsection

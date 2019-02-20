@@ -2,12 +2,18 @@
     @slot('header', $metric->name)
     @slot('width', $metric->width ?? 'w-1/3')
     @slot('content')
-        <div class="ct-chart {{ $metric->uriKey }} ct-perfect-fourth h-full"></div>
+        <div class="ct-chart {{ $metric->uriKey }} ct-perfect-fourth max-h-full"></div>
     @endslot
 @endcomponent
 
 @section('css-metrics')
     <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+    <style>
+        .ct-series-a .ct-bar, .ct-series-a .ct-line, .ct-series-a .ct-point, .ct-series-a .ct-slice-donut {
+            stroke: lightseagreen;
+            stroke-linecap: circle;
+        }
+    </style>
 @endsection
 
 @section('javascript-metrics')
@@ -30,7 +36,7 @@
         // is the actual data object.
         new Chartist.Line('.{{ $metric->uriKey }}', data_{{ md5($metric->uriKey) }}, {
             showArea: true,
-            fullWidth: true,
+            low: 0,
         });
     </script>
 @endprepend
