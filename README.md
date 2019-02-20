@@ -36,3 +36,5 @@ Project in development. Still in the early stages...help will be great!!!
 
 #### Dashboard
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/videos/belich.gif)
+
+![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/videos/code.gif)
