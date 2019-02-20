@@ -124,6 +124,7 @@ trait Resource {
 
         // This is for the views (like dashboard)
         // which has not a resouce class
+        // so don't ever remove!
         if(class_exists($class)) {
             return $class::$accessToResource;
         }
@@ -161,7 +162,7 @@ trait Resource {
             'controllerAction' => static::action(),
             'fields'           => (new FieldResolve)->make($class, $updateFields, $sqlResponse),
             'results'          => $sqlResponse,
-            'values'           => $this->resourceValues($className),//From resource
+            'values'           => $this->resourceValues($className),
         ]);
     }
 
@@ -184,7 +185,7 @@ trait Resource {
                     $resource  = Str::plural(Str::lower($className));
 
                     return [
-                        $resource => $this->resourceValues($className)
+                        $resource => $this->resourceValues($className, $forNavigation = true)
                     ];
                 }
             });
@@ -221,9 +222,10 @@ trait Resource {
      * Get all the items from a resource
      *
      * @param string $className
+     * @param bool $forNavigation [only return the parameters needed for navigation]
      * @return array
      */
-    private function resourceValues($className)
+    private function resourceValues($className, $forNavigation = false)
     {
         $class = static::resourceClassPath($className);
 
@@ -237,18 +239,28 @@ trait Resource {
             $displayInNavigation = $class::$displayInNavigation;
         }
 
-        return collect([
-            'accessToResource'    => $accessToResource,
-            'actions'             => $class::$actions,
-            'breadcrumbs'         => $class::breadcrumbs(),
+        //Set the basic values for navigation
+        $resource = collect([
             'class'               => $className,
             'displayInNavigation' => $displayInNavigation,
             'group'               => $class::$group,
             'icon'                => $class::$icon ?? 'angle-right',
             'label'               => $class::$label ?? Str::title($className),
-            'model'               => $class::$model,
             'pluralLabel'         => $class::$pluralLabel ?? Str::plural(Str::title($className)),
             'resource'            => Str::plural(Str::lower($className)),
         ]);
+
+        //Advanced values
+        if($forNavigation === false) {
+            return $resource->merge([
+                'accessToResource'    => $accessToResource,
+                'actions'             => $class::$actions,
+                'breadcrumbs'         => $class::breadcrumbs(),
+                'model'               => $class::$model,
+            ]);
+        }
+
+        //Navigation values
+        return $resource;
     }
 }
