@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Fields\Traits;
 
 use Illuminate\Support\Collection;
 
-trait Resolve {
+trait Resolvable {
 
     /*
     |--------------------------------------------------------------------------

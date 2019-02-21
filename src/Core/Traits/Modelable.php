@@ -5,7 +5,7 @@ namespace Daguilarm\Belich\Core\Traits;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
 
-trait Models {
+trait Modelable {
 
     /*
     |--------------------------------------------------------------------------

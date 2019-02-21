@@ -2,16 +2,16 @@
 
 namespace Daguilarm\Belich\Fields;
 
-use Daguilarm\Belich\Core\Traits\System as Helpers;
+use Daguilarm\Belich\Core\Traits\Systemable;
 use Daguilarm\Belich\Fields\ResolveFields as Fields;
-use Daguilarm\Belich\Fields\Traits\Filters;
+use Daguilarm\Belich\Fields\Traits\Filterable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use MatthiasMullie\Minify;
 
 class FieldValidate {
 
-    use Filters, Helpers;
+    use Filterable, Systemable;
 
     /** @var string */
     private $controllerAction;
@@ -183,7 +183,7 @@ class FieldValidate {
         $stub = File::get(config_path('belich/stubs/validate-form.stub'));
 
         //Set the route for validation
-        $route = route(Helpers::pathName() .'.ajax.form.validation');
+        $route = route(Systemable::pathName() .'.ajax.form.validation');
 
         //Stub values
         $stubValues = [

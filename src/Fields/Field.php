@@ -4,20 +4,20 @@ namespace Daguilarm\Belich\Fields;
 
 use Daguilarm\Belich\Contracts\Maker;
 use Daguilarm\Belich\Fields\FieldAbstract;
-use Daguilarm\Belich\Fields\Traits\Attributes;
-use Daguilarm\Belich\Fields\Traits\Messages;
-use Daguilarm\Belich\Fields\Traits\Rules;
-use Daguilarm\Belich\Fields\Traits\Settings;
-use Daguilarm\Belich\Fields\Traits\Visibility;
+use Daguilarm\Belich\Fields\Traits\Attributable;
+use Daguilarm\Belich\Fields\Traits\Messageable;
+use Daguilarm\Belich\Fields\Traits\Ruleable;
+use Daguilarm\Belich\Fields\Traits\Settingable;
+use Daguilarm\Belich\Fields\Traits\Visibilitable;
 use Illuminate\Support\Str;
 
 class Field extends FieldAbstract {
 
-    use Attributes,
-        Messages,
-        Rules,
-        Settings,
-        Visibility;
+    use Attributable,
+        Messageable,
+        Ruleable,
+        Settingable,
+        Visibilitable;
 
     /**
      * Create a new field

@@ -8,7 +8,7 @@ use Spatie\Menu\Html;
 use Spatie\Menu\Link;
 use Spatie\Menu\Menu;
 
-trait NavbarHtml {
+trait Renderable {
 
     /*
     |--------------------------------------------------------------------------

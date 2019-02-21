@@ -5,7 +5,7 @@ namespace Daguilarm\Belich\Core\Traits;
 use Daguilarm\Belich\Facades\Belich;
 use Illuminate\Support\Facades\Cookie;
 
-trait SqlConnection {
+trait Connectable {
 
     /**
     * Create the Sql Connection

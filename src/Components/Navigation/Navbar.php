@@ -3,16 +3,16 @@
 namespace Daguilarm\Belich\Components\Navigation;
 
 use Daguilarm\Belich\Components\Navigation\NavbarConstructor;
-use Daguilarm\Belich\Components\Navigation\Traits\Helpers;
-use Daguilarm\Belich\Components\Navigation\Traits\NavbarHtml;
-use Daguilarm\Belich\Components\Navigation\Traits\Operations;
-use Daguilarm\Belich\Components\Navigation\Traits\Settings;
+use Daguilarm\Belich\Components\Navigation\Traits\Helperable;
+use Daguilarm\Belich\Components\Navigation\Traits\Operationable;
+use Daguilarm\Belich\Components\Navigation\Traits\Renderable;
+use Daguilarm\Belich\Components\Navigation\Traits\Settingable;
 use Illuminate\Support\Collection;
 use Spatie\Menu\Menu;
 
 class Navbar extends NavbarConstructor {
 
-    use Helpers, NavbarHtml, Operations, Settings;
+    use Helperable, Operationable, Renderable, Settingable;
 
     /**
      * Initialize the constructor

@@ -1,10 +1,10 @@
 <?php
 
-namespace Daguilarm\Belich\Components\Metrics;
+namespace Daguilarm\Belich\Components\Metrics\Traits;
 
 use Illuminate\Support\Collection;
 
-trait Javascript {
+trait Javascriptable {
 
     /** @var array */
     public $labels;

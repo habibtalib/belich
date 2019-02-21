@@ -2,7 +2,7 @@
 
 namespace Daguilarm\Belich\Fields\Traits;
 
-trait Attributes {
+trait Attributable {
 
     /** @var array [Add new css classes to the current field] */
     public $addClass;

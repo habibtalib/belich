@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Components\Navigation\Traits;
 
 use Illuminate\Support\Collection;
 
-trait Helpers {
+trait Helperable {
 
     /*
     |--------------------------------------------------------------------------

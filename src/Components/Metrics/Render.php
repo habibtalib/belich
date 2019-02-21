@@ -2,14 +2,14 @@
 
 namespace Daguilarm\Belich\Components\Metrics;
 
-use Daguilarm\Belich\Components\Metrics\Css;
-use Daguilarm\Belich\Components\Metrics\Javascript;
+use Daguilarm\Belich\Components\Metrics\Traits\Javascriptable;
+use Daguilarm\Belich\Components\Metrics\Traits\Stylable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
 class Render {
 
-    use Css, Javascript;
+    use Javascriptable, Stylable;
 
     /** @var string */
     private $js  = '//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js';

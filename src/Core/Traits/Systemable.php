@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Core\Traits;
 
 use Illuminate\Support\Facades\Request;
 
-trait System {
+trait Systemable {
 
     /** @var array */
     private $defaultMiddleware = ['https', 'web', 'auth', 'belich'];

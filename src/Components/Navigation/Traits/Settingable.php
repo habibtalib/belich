@@ -2,7 +2,7 @@
 
 namespace Daguilarm\Belich\Components\Navigation\Traits;
 
-trait Settings {
+trait Settingable {
 
     private $settingCallback;
 

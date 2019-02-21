@@ -1,8 +1,8 @@
 <?php
 
-namespace Daguilarm\Belich\Components\Metrics;
+namespace Daguilarm\Belich\Components\Metrics\Traits;
 
-trait Css {
+trait Stylable {
     /**
      * Set the labels
      *

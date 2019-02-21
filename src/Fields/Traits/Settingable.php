@@ -2,7 +2,7 @@
 
 namespace Daguilarm\Belich\Fields\Traits;
 
-trait Settings {
+trait Settingable {
 
     /** @var string [Set the dusk value] */
     public $dusk;

@@ -3,13 +3,13 @@
 namespace Daguilarm\Belich\Fields;
 
 use Daguilarm\Belich\Fields\Field;
-use Daguilarm\Belich\Core\Traits\Route as Helpers;
-use Daguilarm\Belich\Fields\Traits\Resolve;
+use Daguilarm\Belich\Core\Traits\Routeable;
+use Daguilarm\Belich\Fields\Traits\Resolvable;
 use Illuminate\Support\Collection;
 
 class FieldResolve {
 
-    use Helpers, Resolve;
+    use Resolvable, Routeable;
 
     /** @var string */
     private $action;
@@ -21,7 +21,7 @@ class FieldResolve {
      */
     public function __construct()
     {
-        $this->action = Helpers::action();
+        $this->action = Routeable::action();
     }
 
     /**

@@ -7,13 +7,13 @@ use App\Belich\Sidebar;
 use Daguilarm\Belich\Components\Actions;
 use Daguilarm\Belich\Components\Breadcrumbs;
 use Daguilarm\Belich\Core\Helpers;
-use Daguilarm\Belich\Core\Traits\SqlConnection;
+use Daguilarm\Belich\Core\Traits\Connectable;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class Belich {
 
-    use Helpers, SqlConnection;
+    use Helpers, Connectable;
 
     /** @var string */
     private $request;

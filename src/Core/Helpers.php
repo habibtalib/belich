@@ -2,12 +2,12 @@
 
 namespace Daguilarm\Belich\Core;
 
-use Daguilarm\Belich\Core\Traits\Models;
-use Daguilarm\Belich\Core\Traits\Operations;
-use Daguilarm\Belich\Core\Traits\Resource;
-use Daguilarm\Belich\Core\Traits\Route;
-use Daguilarm\Belich\Core\Traits\System;
+use Daguilarm\Belich\Core\Traits\Modelable;
+use Daguilarm\Belich\Core\Traits\Operationable;
+use Daguilarm\Belich\Core\Traits\Resourceable;
+use Daguilarm\Belich\Core\Traits\Routeable;
+use Daguilarm\Belich\Core\Traits\Systemable;
 
 trait Helpers {
-    use Models, Operations, Resource, Route, System;
+    use Modelable, Operationable, Resourceable, Routeable, Systemable;
 }

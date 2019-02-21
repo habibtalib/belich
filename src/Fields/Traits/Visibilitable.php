@@ -2,7 +2,7 @@
 
 namespace Daguilarm\Belich\Fields\Traits;
 
-trait Visibility {
+trait Visibilitable {
 
     /** @var array [Field visibility base on the action] */
     public $visibility = [

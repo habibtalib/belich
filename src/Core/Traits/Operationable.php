@@ -2,7 +2,7 @@
 
 namespace Daguilarm\Belich\Core\Traits;
 
-trait Operations {
+trait Operationable {
 
     /*
     |--------------------------------------------------------------------------

@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Core\Traits;
 
 use Illuminate\Support\Facades\Request;
 
-trait Route {
+trait Routeable {
 
     /*
     |--------------------------------------------------------------------------

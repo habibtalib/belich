@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Components\Navigation\Traits;
 
 use Daguilarm\Belich\Facades\Belich;
 
-trait Operations {
+trait Operationable {
     /*
     |--------------------------------------------------------------------------
     | Resources
