@@ -3,6 +3,7 @@
 namespace Daguilarm\Belich\Components\Metrics;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 abstract class Graph {
 

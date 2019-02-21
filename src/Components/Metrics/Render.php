@@ -55,14 +55,24 @@ class Render {
         //Set javascript key
         $key = md5($this->uriKey);
 
+        //Format values
+        $labels = $this->formatLabels($this->labels);
+        $series = $this->formatSeries($this->series);
+
         //Set var object
-        $varObject = sprintf("var data_%s={labels:%s,series:[%s]};", $key, $this->labels, $this->serie);
+        $varObject = sprintf("var data_%s={labels:[%s],series:%s};", $key, $labels, $series);
 
         //Set the chartist object
         $varChartist = sprintf("new Chartist.Line('.%s', data_%s, { showArea: true,low: 0});", $this->uriKey, $key);
 
         return sprintf('<script>%s%s</script>', $varObject, $varChartist);
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Helpers
+    |--------------------------------------------------------------------------
+    */
 
     /**
      * Check for results
@@ -80,5 +90,28 @@ class Render {
         return $results
             ? sprintf('<div class="flex mb-12">%s</div>', $results)
             : '';
+    }
+
+    private function formatLabels($values) : string
+    {
+        $values = is_array($values) ? collect($values) : $values;
+
+        return $values
+            ->map(function($value) {
+                return sprintf("'%s'", $value);
+            })->implode(',');
+    }
+
+    private function formatSeries($serie) : string
+    {
+        $collection = is_array($serie) ? collect($serie) : $serie;
+
+        return sprintf('[%s]', $collection->map(function($value) {
+                if(is_array($value)) {
+                    return $this->formatSeries($value);
+                }
+                return $value;
+            })->implode(',')
+        );
     }
 }

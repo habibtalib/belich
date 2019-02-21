@@ -10,7 +10,7 @@ trait Javascript {
     public $labels;
 
     /** @var array */
-    public $serie;
+    public $series;
 
     /** @var string */
     public $type;
@@ -26,7 +26,7 @@ trait Javascript {
      */
     public function labels(array $labels = []) : self
     {
-        $this->labels = $this->serialize($labels);
+        $this->labels = $labels;
 
         return $this;
     }
@@ -37,9 +37,9 @@ trait Javascript {
      * @param  array  $serie
      * @return self
      */
-    public function serie(array $serie = []) : self
+    public function series(array $series = []) : self
     {
-        $this->serie = $this->serialize($serie);
+        $this->series = $series;
 
         return $this;
     }
@@ -68,37 +68,5 @@ trait Javascript {
         $this->uriKey = $uriKey;
 
         return $this;
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Helpers
-    |--------------------------------------------------------------------------
-    */
-
-    /**
-     * Generate a serialized array
-     *
-     * @param  array|string|model  $array
-     * @return string
-     */
-    private function serialize($values) : string
-    {
-        //Array to collection
-        if(is_array($values)) {
-            $values = collect($values);
-        }
-
-        //Convert to string
-        if($values instanceof Collection) {
-            $values = $values
-                ->map(function($item) {
-                    return sprintf("'%s'", $item);
-                })
-                ->filter()
-                ->implode(',');
-        }
-
-        return sprintf('[%s]', $values);
     }
 }

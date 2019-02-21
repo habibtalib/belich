@@ -11,15 +11,7 @@
         Metric::uriKey('hellow')
             ->uriKey($metric->uriKey)
             ->labels($metric->labels)
-            ->serie([
-                rand(0, 20),
-                rand(0, 20),
-                rand(0, 20),
-                rand(0, 20),
-                rand(0, 20),
-                rand(0, 20),
-                rand(0, 20)
-            ])
+            ->series([$metric->calculate])
             ->get()
     !!}
 @endprepend
