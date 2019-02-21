@@ -18,6 +18,9 @@ trait Javascript {
     /** @var string */
     public $uriKey;
 
+    /** @var string */
+    public $withArea;
+
     /**
      * Set the labels
      *
@@ -66,6 +69,19 @@ trait Javascript {
     public function uriKey(string $uriKey) : self
     {
         $this->uriKey = $uriKey;
+
+        return $this;
+    }
+
+    /**
+     * Set the withArea
+     *
+     * @param  bool  $withArea
+     * @return self
+     */
+    public function withArea(bool $withArea) : self
+    {
+        $this->withArea = $withArea;
 
         return $this;
     }

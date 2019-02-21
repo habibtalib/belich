@@ -34,6 +34,9 @@ abstract class Graph {
     /** @var string */
     public $width;
 
+    /** @var string */
+    public $withArea;
+
     /**
      * Set the custom metrics cards
      *
@@ -49,7 +52,8 @@ abstract class Graph {
         $this->marker     = $this->marker($request);
         $this->name       = $this->name($request);
         $this->uriKey     = $this->uriKey();
-        $this->width     = $this->width();
+        $this->width      = $this->width();
+        $this->withArea   = $this->withArea();
     }
 
     /**
@@ -89,5 +93,13 @@ abstract class Graph {
     private function width()
     {
         return $this->width ?? 'w-1/3';
+    }
+
+    /**
+     * Add a highlight area to graph
+     */
+    private function withArea()
+    {
+        return $this->withArea ?? false;
     }
 }

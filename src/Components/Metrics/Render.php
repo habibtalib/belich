@@ -50,22 +50,34 @@ class Render {
             : sprintf($cssTemplate, $this->css);
     }
 
+    /**
+     * Create the metric
+     *
+     * @return string
+     */
     public function get()
     {
         //Set javascript key
         $key = md5($this->uriKey);
 
-        //Format values
-        $labels = $this->formatLabels($this->labels);
-        $series = $this->formatSeries($this->series);
-
         //Set var object
-        $varObject = sprintf("var data_%s={labels:[%s],series:%s};", $key, $labels, $series);
+        $varObject = sprintf("var data_%s={labels:[%s],series:%s};", $key, $this->formatLabels($this->labels), $this->formatSeries($this->series));
 
         //Set the chartist object
-        $varChartist = sprintf("new Chartist.Line('.%s', data_%s, { showArea: true,low: 0});", $this->uriKey, $key);
+        $varChartist = $this->lineGraph($key);
 
         return sprintf('<script>%s%s</script>', $varObject, $varChartist);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Graphs types
+    |--------------------------------------------------------------------------
+    */
+    private function lineGraph($key) {
+        $withArea = $this->withArea ? ', { showArea: true,low: 0}' : '';
+
+        return sprintf("new Chartist.Line('.%s', data_%s%s);", $this->uriKey, $key, $withArea);
     }
 
     /*
@@ -92,25 +104,44 @@ class Render {
             : '';
     }
 
+    /**
+     * Format the labels to render
+     *
+     * @param  array|Collection  $values
+     * @return string
+     */
     private function formatLabels($values) : string
     {
+        //To collection
         $values = is_array($values) ? collect($values) : $values;
 
+        //Serialize the values
         return $values
             ->map(function($value) {
                 return sprintf("'%s'", $value);
             })->implode(',');
     }
 
-    private function formatSeries($serie) : string
+    /**
+     * Format the series to render
+     *
+     * @param  array|Collection  $values
+     * @return string
+     */
+    private function formatSeries($series) : string
     {
-        $collection = is_array($serie) ? collect($serie) : $serie;
+        //To collection
+        $collection = is_array($series) ? collect($series) : $series;
 
+        //Serialize the values
         return sprintf('[%s]', $collection->map(function($value) {
+                //Multilevel loop for arrays
                 if(is_array($value)) {
                     return $this->formatSeries($value);
                 }
-                return $value;
+                //Regular value
+                return sprintf("'%s'", $value);
+            //To string
             })->implode(',')
         );
     }
