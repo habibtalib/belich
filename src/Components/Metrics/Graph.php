@@ -9,8 +9,14 @@ abstract class Graph {
     /** @var object */
     public $calculate;
 
+    /** @var string */
+    public $color;
+
     /** @var array */
     public $labels;
+
+    /** @var string */
+    public $marker;
 
     /** @var string */
     public $name;
@@ -25,7 +31,7 @@ abstract class Graph {
     public $uriKey;
 
     /** @var string */
-    public $width = 'w-1/3';
+    public $width;
 
     /**
      * Set the custom metrics cards
@@ -35,11 +41,14 @@ abstract class Graph {
      */
     public function __construct(Request $request)
     {
-        $this->request    = $request;
-        $this->labels     = $this->renderLabels($request);
+        // Set default values
+        $this->calculate  = $this->calculate($request);
+        $this->color      = $this->color($request);
+        $this->labels     = $this->labels($request);
+        $this->marker     = $this->marker($request);
         $this->name       = $this->name($request);
         $this->uriKey     = $this->uriKey();
-        $this->calculate  = $this->calculate($request);
+        $this->width     = $this->width();
     }
 
     /**
@@ -57,13 +66,27 @@ abstract class Graph {
      */
     abstract function name(Request $request);
 
-    private function renderLabels(Request $request)
+    /**
+     * Set the default line color
+     */
+    private function color()
     {
-        return collect($this->labels($request))
-            ->map(function($label) {
-                return sprintf("'%s'", $label);
-            })
-            ->filter()
-            ->implode(',');
+        return $this->color ?? 'lightseagreen';
+    }
+
+    /**
+     * Set the default line marker
+     */
+    private function marker()
+    {
+        return $this->marker ?? 'circle';
+    }
+
+    /**
+     * Set the default card width
+     */
+    private function width()
+    {
+        return $this->width ?? 'w-1/3';
     }
 }

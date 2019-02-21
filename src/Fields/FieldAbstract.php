@@ -61,9 +61,9 @@ abstract class FieldAbstract {
      * Set the callback to be run to authorize viewing the field.
      *
      * @param  \Closure  $callback
-     * @return $this
+     * @return self
      */
-    public function canSee(\Closure $callback)
+    public function canSee(\Closure $callback) : self
     {
         $this->seeCallback = $callback;
 
@@ -73,7 +73,7 @@ abstract class FieldAbstract {
     /**
      * Set the field sortable
      *
-     *@param  bool  $value
+     * @param  bool  $value
      * @return self
      */
     public function sortable(bool $value = true) : self
@@ -87,7 +87,7 @@ abstract class FieldAbstract {
 
     /**
      * Set the field sortable
-     *@param  bool  $value
+     * @param  bool  $value
      * @return self
      */
     public function textAlign(string $value = 'left') : self
@@ -101,7 +101,7 @@ abstract class FieldAbstract {
 
     /**
      * Resolving field value in index and detailed
-     *@param  object  $displayCallback
+     * @param  object  $displayCallback
      * @return self
      */
     public function displayUsing(callable $displayCallback) : self
@@ -115,7 +115,7 @@ abstract class FieldAbstract {
 
     /**
      * Resolving field value (before processing) in all the fields
-     *@param  object  $resolveCallback
+     * @param  object  $resolveCallback
      * @return self
      */
     public function resolveUsing(callable $resolveCallback) : self

@@ -19,7 +19,6 @@ class Hidden extends Field {
      *
      * @param  string|null  $name
      * @param  string|null  $attribute
-     * @return void
      */
     public function __construct($name = null, $attribute = null)
     {

@@ -24,7 +24,6 @@ class Select extends Field {
      * Add option values to the select
      *
      * @param array $options
-     * @var void
      */
     public function options(array $options = [])
     {

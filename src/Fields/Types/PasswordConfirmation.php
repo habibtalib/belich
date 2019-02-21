@@ -18,7 +18,6 @@ class PasswordConfirmation extends Field {
      *
      * @param  string  $name
      * @param  string|null  $attribute
-     * @return void
      */
     public function __construct($label, $attribute = null)
     {

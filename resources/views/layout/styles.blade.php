@@ -8,11 +8,8 @@
 @ifMetrics($request ?? null)
     {{-- Load the css lib --}}
     {!! Metric::assets('css') !!}
-    {{-- Load the custom css styles for the lib --}}
     <style>
-        .ct-series-a .ct-bar, .ct-series-a .ct-line, .ct-series-a .ct-point, .ct-series-a .ct-slice-donut {
-            stroke: lightseagreen;
-            stroke-linecap: circle;
-        }
+        {{-- Create a container for each metric css configuration --}}
+        @stack('css-metrics')
     </style>
 @endif

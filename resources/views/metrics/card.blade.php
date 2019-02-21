@@ -2,27 +2,29 @@
     @slot('header', $metric->name)
     @slot('width', $metric->width ?? 'w-1/3')
     @slot('content')
-        <div class="ct-chart {{ $metric->uriKey }} ct-perfect-fourth max-h-full"></div>
+        <div id="graph-{{ md5($metric->uriKey) }}" class="ct-chart {{ $metric->uriKey }} ct-perfect-fourth max-h-full"></div>
     @endslot
 @endcomponent
 
 @prepend('javascript-metrics')
-    <script>
-        var data_{{ md5($metric->uriKey) }} = {
-            // A labels array that can contain any sort of values
-            labels: [{!! $metric->labels !!}],
-            // Our series array that contains series objects or in this case series data arrays
-            series: [
-                [{{ rand(0, 20) }}, {{ rand(0, 20) }}, {{ rand(0, 20) }}, {{ rand(0, 20) }}, {{ rand(0, 20) }}, {{ rand(0, 20) }}, {{ rand(0, 20) }}]
-            ],
-        };
+    {!!
+        Metric::uriKey('hellow')
+            ->uriKey($metric->uriKey)
+            ->labels($metric->labels)
+            ->serie([
+                rand(0, 20),
+                rand(0, 20),
+                rand(0, 20),
+                rand(0, 20),
+                rand(0, 20),
+                rand(0, 20),
+                rand(0, 20)
+            ])
+            ->get()
+    !!}
+@endprepend
 
-        // Create a new line chart object where as first parameter we pass in a selector
-        // that is resolving to our chart container element. The Second parameter
-        // is the actual data object.
-        new Chartist.Line('.{{ $metric->uriKey }}', data_{{ md5($metric->uriKey) }}, {
-            showArea: true,
-            low: 0,
-        });
-    </script>
+@prepend('css-metrics')
+    {{-- Load the custom css styles for the lib --}}
+    {!! Metric::css($metric) !!}
 @endprepend
