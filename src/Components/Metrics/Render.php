@@ -80,6 +80,14 @@ class Render {
             return $this->barGraph($key);
         }
 
+        if($type === 'horizontal-bars') {
+            return $this->horizontalBarGraph($key);
+        }
+
+        if($type === 'pie') {
+            return $this->pieGraph($key);
+        }
+
         return $this->lineGraph($key);
     }
 
@@ -90,17 +98,30 @@ class Render {
     */
     private function lineGraph($key)
     {
-        $options = $this->withArea ? ',{showArea: true,low: 0}' : '';
+        $withArea = $this->withArea ? "{showArea: true, low: 0}" : '';
 
-        return sprintf("new Chartist.Line('.%s',data_%s%s);", $this->uriKey, $key, $options);
+        return sprintf("new Chartist.Line('.%s',data_%s,%s);", $this->uriKey, $key, $withArea);
     }
 
-    private function barGraph($key, $labelValue = 'users') {
+    private function barGraph($key) {
         $options = "seriesBarDistance:10,axisX:{offset:30},axisY:{offset:40,labelInterpolationFnc:function(value){return value},scaleMinSpace:15}";
 
         return sprintf("new Chartist.Bar('.%s',data_%s,{%s});", $this->uriKey, $key, $options);
     }
 
+    private function horizontalBarGraph($key) {
+        $barGraph = substr($this->barGraph($key, $labelValue), 0, -3);
+        $options = "reverseData:true,horizontalBars:true,seriesBarDistance:10,axisX:{offset:30},axisY:{offset:100,labelInterpolationFnc:function(value){return value},scaleMinSpace:15}";
+
+        return sprintf("new Chartist.Bar('.%s',data_%s,{%s});", $this->uriKey, $key, $options);
+    }
+
+    private function pieGraph($key) {
+        $options = "{donut:true,donutWidth:50,donutSolid:true,startAngle:270,total:200,showLabel:false}";
+
+        $data = "{labels:['monday','tuesday','wednesday','thursday','friday','saturday','sunday'],series:['37','41','45','19','43','14','29']}";
+        return sprintf("new Chartist.Pie('.%s',%s,%s);", $this->uriKey, $data, $options);
+    }
     /*
     |--------------------------------------------------------------------------
     | Helpers

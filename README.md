@@ -34,6 +34,10 @@ Project in development. Still in the early stages...help will be great!!!
 
 ## Screenshots
 
+#### With stats 
+
+![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/stats.gif)
+
 #### Dashboard
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/videos/belich.gif)
 
