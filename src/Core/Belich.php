@@ -6,7 +6,6 @@ use App\Belich\Navbar;
 use App\Belich\Sidebar;
 use Daguilarm\Belich\Components\Actions;
 use Daguilarm\Belich\Components\Breadcrumbs;
-use Daguilarm\Belich\Components\Metrics\Graph;
 use Daguilarm\Belich\Core\Helpers;
 use Daguilarm\Belich\Core\Traits\SqlConnection;
 use Illuminate\Http\Request;
@@ -148,22 +147,5 @@ class Belich {
         return class_exists('\App\Belich\Sidebar')
             ? new Sidebar($this->resourcesAll())
             : abort(404, trans('belich::exceptions.no_class', ['class' => '\App\Belich\Sidebar']));
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Metrics
-    |--------------------------------------------------------------------------
-    */
-
-    /**
-     * Prepare the sidebar for the view
-     *
-     * @param Illuminate\Http\Request $request
-     * @return Daguilarm\Belich\Components\Metrics\Graph
-     */
-    public function metrics(Request $request) : string
-    {
-        return Graph::render($request);
     }
 }

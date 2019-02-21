@@ -6,21 +6,7 @@
     @endslot
 @endcomponent
 
-@section('css-metrics')
-    <link rel="stylesheet" href="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
-    <style>
-        .ct-series-a .ct-bar, .ct-series-a .ct-line, .ct-series-a .ct-point, .ct-series-a .ct-slice-donut {
-            stroke: lightseagreen;
-            stroke-linecap: circle;
-        }
-    </style>
-@endsection
-
-@section('javascript-metrics')
-    <script src="//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
-@endsection
-
-@prepend('javascript-metrics-items')
+@prepend('javascript-metrics')
     <script>
         var data_{{ md5($metric->uriKey) }} = {
             // A labels array that can contain any sort of values

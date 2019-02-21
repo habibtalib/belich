@@ -5,7 +5,7 @@
     @include('belich::partials.navigation.breadcrumbs')
 
     {{-- Metrics --}}
-    {!! Belich::metrics($request) !!}
+    {!! Metric::render($request) !!}
 
     {{-- Search container --}}
     <div id="belich-table-search" class="flex items-center p-4 pr-6 shadow-md bg-grey-lightest w-full">

@@ -3,42 +3,67 @@
 namespace Daguilarm\Belich\Components\Metrics;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 
-class Graph {
+abstract class Graph {
+
+    /** @var object */
+    public $calculate;
+
+    /** @var array */
+    public $labels;
+
+    /** @var string */
+    public $name;
+
+    /** @var Illuminate\Http\Request */
+    public $request;
+
+    /** @var string */
+    public $type;
+
+    /** @var string */
+    public $uriKey;
+
+    /** @var string */
+    public $width = 'w-1/3';
 
     /**
-     * Render the metric card
+     * Set the custom metrics cards
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return string
+     * @return Illuminate\Support\Collection
      */
-    public static function render(Request $request) : string
+    public function __construct(Request $request)
     {
-        //Render the metric view
-        $metrics = collect($request->metrics)
-            ->map(function($metric) {
-                return view('belich::metrics.card', compact('metric'))->render();
-            });
-
-        return static::hasResults($metrics);
+        $this->request    = $request;
+        $this->labels     = $this->renderLabels($request);
+        $this->name       = $this->name($request);
+        $this->uriKey     = $this->uriKey();
+        $this->calculate  = $this->calculate($request);
     }
 
     /**
-     * Check for results
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return string
+     * Initialize the metrics
      */
-    private static function hasResults(Collection $metrics) : string
-    {
-        //If results...
-        $results = ($metrics->count() > 0)
-            ? $metrics->implode('')
-            : null;
+    abstract function calculate(Request $request);
 
-        return $results
-            ? sprintf('<div class="flex mb-12">%s</div>', $results)
-            : '';
+    /**
+     * Set the labels
+     */
+    abstract function labels(Request $request);
+
+    /**
+     * Set the metric name
+     */
+    abstract function name(Request $request);
+
+    private function renderLabels(Request $request)
+    {
+        return collect($this->labels($request))
+            ->map(function($label) {
+                return sprintf("'%s'", $label);
+            })
+            ->filter()
+            ->implode(',');
     }
 }
