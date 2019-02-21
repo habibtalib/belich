@@ -36,7 +36,7 @@ Project in development. Still in the early stages...help will be great!!!
 
 #### With stats 
 
-![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/stats.png)
+![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/stats.png)
 
 #### Dashboard
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/videos/belich.gif)
