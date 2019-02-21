@@ -2,13 +2,13 @@
 
 namespace Daguilarm\Belich\Components\Metrics;
 
-use Daguilarm\Belich\Components\Metrics\Traits\Eloquentable;
+use Daguilarm\Belich\Components\Metrics\Traits\Resultable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
 abstract class Graph {
 
-    use Eloquentable;
+    use Resultable;
 
     /** @var object */
     public $calculate;

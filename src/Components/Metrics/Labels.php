@@ -2,6 +2,8 @@
 
 namespace Daguilarm\Belich\Components\Metrics;
 
+use Carbon\Carbon;
+
 class Labels {
 
     // Filters: 'capitalize', 'lower', 'title'
@@ -26,6 +28,24 @@ class Labels {
     public static function daysOfTheWeek(string $filter = '') : array
     {
         return static::get($filter, 'daysOfTheWeek');
+    }
+
+    /**
+     * Set an array with all the months of the year
+     *
+     * @param  string  $filter
+     * @return array
+     */
+    public static function daysOfTheMonth() : array
+    {
+        $labels = [];
+        $daysOfTheMonth = Carbon::now()->daysInMonth;
+
+        for($x = 0; $x <= $daysOfTheMonth; $x++) {
+            $labels[] .= $x;
+        }
+
+        return $labels;
     }
 
     /**

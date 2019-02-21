@@ -2,21 +2,44 @@
 
 namespace Daguilarm\Belich\Components\Metrics\Traits;
 
+use Carbon\Carbon;
+use Daguilarm\Belich\Components\Metrics\Traits\Dateable;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
+
 trait Eloquentable {
+
+    use Dateable;
+
+    /** @var object */
+    protected $startDate;
+
+    /** @var object */
+    protected $endDate;
+
+    /*
+    |--------------------------------------------------------------------------
+    | Helpers
+    |--------------------------------------------------------------------------
+    */
 
     /**
      * Counts the values for model at the range and previous range
      *
-     * @param Illuminate\Http\Request $request
      * @param Illuminate\Database\Eloquent\Model $model Eloquent model
-     * @return Matthewnw\Metrics\Classes\Metric
+     * @return Illuminate\Database\Eloquent\Collection
      */
-    protected function count($model, $groupColumn, $dateColumn = 'created_at')
+    private function totalByDays(string $model, string $dateField = 'created_at')
     {
-        $this->values = DB::table(with(new $model)->getTable())
-            ->select("$groupColumn as text", DB::raw('count(*) as value'))
-            ->groupBy($groupColumn)->orderBy($groupColumn, 'asc')->get();
-
-        return $this;
+        return $model::whereBetween($dateField, [$this->startDate, $this->endDate])
+            ->select([
+                DB::raw('Day(created_at) as day'),
+                DB::raw('COUNT(*) as total')
+            ])
+            ->groupBy('day')
+            ->orderBy('day', 'DESC')
+            ->pluck('day', 'total')
+            ->flip()
+            ->toArray();
     }
 }
