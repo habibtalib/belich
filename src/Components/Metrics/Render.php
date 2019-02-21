@@ -64,9 +64,23 @@ class Render {
         $varObject = sprintf("var data_%s={labels:[%s],series:%s};", $key, $this->formatLabels($this->labels), $this->formatSeries($this->series));
 
         //Set the chartist object
-        $varChartist = $this->lineGraph($key);
+        $varChartist = $this->graphSelector($this->type, $key);
 
         return sprintf('<script>%s%s</script>', $varObject, $varChartist);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Graphs selector
+    |--------------------------------------------------------------------------
+    */
+    private function graphSelector($type, $key)
+    {
+        if($type === 'bars') {
+            return $this->barGraph($key);
+        }
+
+        return $this->lineGraph($key);
     }
 
     /*
@@ -74,10 +88,17 @@ class Render {
     | Graphs types
     |--------------------------------------------------------------------------
     */
-    private function lineGraph($key) {
-        $withArea = $this->withArea ? ', { showArea: true,low: 0}' : '';
+    private function lineGraph($key)
+    {
+        $options = $this->withArea ? ',{showArea: true,low: 0}' : '';
 
-        return sprintf("new Chartist.Line('.%s', data_%s%s);", $this->uriKey, $key, $withArea);
+        return sprintf("new Chartist.Line('.%s',data_%s%s);", $this->uriKey, $key, $options);
+    }
+
+    private function barGraph($key, $labelValue = 'users') {
+        $options = "seriesBarDistance:10,axisX:{offset:30},axisY:{offset:40,labelInterpolationFnc:function(value){return value},scaleMinSpace:15}";
+
+        return sprintf("new Chartist.Bar('.%s',data_%s,{%s});", $this->uriKey, $key, $options);
     }
 
     /*

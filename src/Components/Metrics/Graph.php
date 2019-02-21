@@ -51,6 +51,7 @@ abstract class Graph {
         $this->labels     = $this->labels($request);
         $this->marker     = $this->marker($request);
         $this->name       = $this->name($request);
+        $this->type       = $this->type($request);
         $this->uriKey     = $this->uriKey();
         $this->width      = $this->width();
         $this->withArea   = $this->withArea();
@@ -85,6 +86,14 @@ abstract class Graph {
     private function marker()
     {
         return $this->marker ?? 'circle';
+    }
+
+    /**
+     * Set the default graph type
+     */
+    private function type()
+    {
+        return $this->type ?? 'line';
     }
 
     /**

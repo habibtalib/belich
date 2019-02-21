@@ -12,6 +12,7 @@
             ->uriKey($metric->uriKey)
             ->labels($metric->labels)
             ->series([$metric->calculate])
+            ->type($metric->type)
             ->withArea($metric->withArea)
             ->get()
     !!}
