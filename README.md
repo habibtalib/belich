@@ -30,8 +30,8 @@ Project in development. Still in the early stages...help will be great!!!
     + breadcrumb.
     + dashboard.
     + ...
-- Metrics with: https://gionkunz.github.io/chartist-js/index.html
--Simples tools for Metrics:
+- Metrics using: https://gionkunz.github.io/chartist-js/index.html a lightweight library for charts.
+- Simple tools for Metrics:
 
 Showing the total users by day in the last week, is just this:
 
