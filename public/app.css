@@ -234,6 +234,15 @@ a {
   background-image: -webkit-gradient(linear, left top, left bottom, from(#3d4852), to(#606f7b));
   background-image: linear-gradient(#3d4852, #606f7b);
 }
+
+/* Transformations */
+
+.vertical-text {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  -webkit-transform-origin: left top 0;
+          transform-origin: left top 0;
+}
 .icon {
   opacity: .5;
 }
@@ -384,6 +393,11 @@ form.form-container > .form-group option:disabled {
   opacity: .5;
   cursor: not-allowed;
   background-color: var(--form-disabled-bg);
+}
+/* Metrics values */
+
+.metrics {
+  height: 18rem;
 }
 /* Base on https://codepen.io/andornagy/pen/xhiJH */
 

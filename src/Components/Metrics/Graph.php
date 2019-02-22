@@ -20,6 +20,12 @@ abstract class Graph {
     public $labels;
 
     /** @var string */
+    public $legend_h;
+
+    /** @var string */
+    public $legend_v;
+
+    /** @var string */
     public $marker;
 
     /** @var string */
