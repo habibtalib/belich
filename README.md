@@ -22,8 +22,8 @@ Project in development. Still in the early stages...help will be great!!!
 - Sidebar or topbar from the `config` file.
 - Resources download.
 - Native authorization with Policies.
-- Font awesome.
-- Metrics.
+- Icons with: https://origin.fontawesome.com
+- Metrics with: https://gionkunz.github.io/chartist-js/index.html
 - Customized:
     + actions.
     + navbar.
