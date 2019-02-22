@@ -11,7 +11,9 @@ trait Stylable {
      */
     public function css(object $metric) : string
     {
+        //Set the unique key for the graph
         $key = md5($metric->uriKey);
+
         return  sprintf(
             '#graph-%s .ct-series .ct-bar,' .
             '#graph-%s .ct-series .ct-line,' .
@@ -21,17 +23,18 @@ trait Stylable {
                 'stroke:%s;' .
                 'stroke-linecap:%s;' .
             '}' .
-            '#graph-%s .ct-series .ct-area {' .
-                'fill: %s;' .
+            '#graph-%s .ct-series .ct-area' .
+            '{' .
+                'fill:%s;' .
             '}',
             $key,
             $key,
             $key,
             $key,
-            $metric->color,
+            $metric->defineColor['line-color'] ?? $metric->color,
             $metric->marker,
             $key,
-            $metric->color
+            $metric->defineColor['area-color'] ?? $metric->color
         );
     }
 }

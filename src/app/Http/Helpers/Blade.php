@@ -1,5 +1,27 @@
 <?php
 
+use Daguilarm\Belich\Components\Metrics\Graph;
+
+/*
+|--------------------------------------------------------------------------
+| Helper for the blade Metrics. Components\metrics.blade.php
+|--------------------------------------------------------------------------
+*/
+
+/**
+ * Set the color between the options, for the metrics in blade template
+ *
+ * @param Daguilarm\Belich\Components\Metrics\Graph $metric
+ * @param string $type
+ * @return string
+ */
+if (!function_exists('setColor')) {
+    function setColor(Graph $metric, string $type) : string
+    {
+        return $metric->defineColor[$type] ?? $metric->color;
+    }
+}
+
 /*
 |--------------------------------------------------------------------------
 | Helper for the blade directive @optionFromArray
@@ -26,3 +48,5 @@ if (!function_exists('createFormSelectOptions')) {
             ->implode('');
     }
 }
+
+
