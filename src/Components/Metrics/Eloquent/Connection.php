@@ -4,6 +4,7 @@ namespace Daguilarm\Belich\Components\Metrics\Eloquent;
 
 use Daguilarm\Belich\Components\Metrics\Eloquent\Traits\DatesForHumans;
 use Daguilarm\Belich\Components\Metrics\Eloquent\Traits\Total;
+use Illuminate\Support\Collection;
 
 class Connection {
 
@@ -86,7 +87,7 @@ class Connection {
      * @param array $collection
      * @return array
      */
-    private function mapFilterByDate(array $total, array $collection) : array
+    private function mapFilterByDate(array $total, Collection $collection) : array
     {
         // Set the total days, months or years and reset to 0
         $total = array_fill_keys($total, 0);
@@ -94,9 +95,7 @@ class Connection {
         return collect($total)
             ->map(function($value, $date) use($collection) {
                 //Search the days with results
-                $search = $collection[$date] ?? 0;
-                //Get the values
-                return $value > 0 ? $value : $search;
+                return $collection->where('day', $date)->first()->total ?? 0;
             })
             ->toArray();
     }
