@@ -28,7 +28,7 @@ class Render {
         //Render the metric view
         $metrics = collect($request->metrics)
             ->map(function($metric) {
-                return view('belich::metrics.card', compact('metric'))->render();
+                return view('belich::components.metrics', compact('metric'))->render();
             });
 
         return $this->hasResults($metrics);

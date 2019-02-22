@@ -2,7 +2,7 @@
 @mix('app.js')
 
 {{-- Javascript metrics --}}
-@ifMetrics($request ?? null)
+@hasMetrics($request ?? null)
     {{-- Load the javascript lib --}}
     {!! Metric::assets('js') !!}
     {{-- Create a container for each metric item --}}

@@ -394,11 +394,6 @@ form.form-container > .form-group option:disabled {
   cursor: not-allowed;
   background-color: var(--form-disabled-bg);
 }
-/* Metrics values */
-
-.metrics {
-  height: 18rem;
-}
 /* Base on https://codepen.io/andornagy/pen/xhiJH */
 
 /* Navbar */
@@ -542,6 +537,19 @@ nav#sidebar ul li.sidebar-parent {
 nav#sidebar ul li.sidebar-child {
   margin-top: 1.5rem;
   margin-bottom: 1.5rem;
+}
+/* Metrics values */
+
+.h-50 {
+  height: 14rem;
+}
+
+.h-80 {
+  height: 18rem;
+}
+
+.h-100 {
+  height: 20rem;
 }
 .table {
   width: 100%;

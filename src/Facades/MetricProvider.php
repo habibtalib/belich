@@ -20,9 +20,23 @@ class MetricProvider extends ServiceProvider
          *
          * @return string
          */
-        Blade::if('ifMetrics', function ($request) {
+        Blade::if('hasMetrics', function ($request) {
             if(!empty($request->metrics)) {
                 return count($request->metrics) > 0;
+            }
+
+            return false;
+        });
+
+        /**
+         * Create a Blade if directive for @ifMetrics
+         * Check if a request has metrics
+         *
+         * @return string
+         */
+        Blade::if('hasMetricsLegends', function ($request) {
+            if(!empty($request->legend_h || $request->legend_v)) {
+                return true;
             }
 
             return false;
