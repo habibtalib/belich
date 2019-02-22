@@ -71,6 +71,6 @@ public function calculate(Request $request)
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/videos/code.gif)
 
 
-## And of course, with sidebar like Nova...
+## And of course, with sidebar...
 
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/sidebar.png)
