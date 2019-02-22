@@ -31,6 +31,33 @@ Project in development. Still in the early stages...help will be great!!!
     + breadcrumb.
     + dashboard.
     + ...
+-Simples tools for Metrics:
+
+Showing the total users by day in the last week, is just this:
+
+~~~
+/**
+ * Set the displayable labels
+ *
+ * @return string
+ */
+public function labels(Request $request) : array
+{
+    return Labels::daysOfTheMonth();
+}
+
+/**
+ * Calculate from model
+ *
+ * @return string
+ */
+public function calculate(Request $request)
+{
+    return $this
+        ->thisWeek()
+        ->getTotalByDay(User::class);
+}
+~~~
 
 ## Screenshots
 
