@@ -24,7 +24,7 @@ abstract class Graph {
     /** @var string */
     public $legend_v;
 
-    /** @var string */
+    /** @var string ['butt', 'square', 'round']*/
     public $marker;
 
     /** @var string */
@@ -57,7 +57,7 @@ abstract class Graph {
         $this->calculate  = $this->calculate($request);
         $this->color      = $this->color($request);
         $this->labels     = $this->labels($request);
-        $this->marker     = $this->marker($request);
+        $this->marker     = $this->marker();
         $this->name       = $this->name($request);
         $this->type       = $this->type($request);
         $this->uriKey     = $this->uriKey();
@@ -90,11 +90,11 @@ abstract class Graph {
     }
 
     /**
-     * Set the default line marker
+     * Set the default line color
      */
     private function marker()
     {
-        return $this->marker ?? 'circle';
+        return $this->marker ?? 'butt';
     }
 
     /**
