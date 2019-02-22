@@ -45,13 +45,43 @@ trait Dateable {
     }
 
     /**
-     * Get an array with all the month of the year
+     * Get the first day of the current month
      *
      * @return Carbon\Carbon
      */
-    protected static function getFirsDayOfTheMonth() : Carbon
+    protected static function getFirstDayOfTheMonth() : Carbon
     {
         return new Carbon('first day of this month');
+    }
+
+    /**
+     * Get the first day of the last month
+     *
+     * @return Carbon\Carbon
+     */
+    protected static function getLastDayOfTheMonth() : Carbon
+    {
+        return new Carbon('last day of this month');
+    }
+
+    /**
+     * Get the first day of the last month
+     *
+     * @return Carbon\Carbon
+     */
+    protected static function getFirstDayOfTheLastMonth() : Carbon
+    {
+        return new Carbon('first day of last month');
+    }
+
+    /**
+     * Get the first day of the last month
+     *
+     * @return Carbon\Carbon
+     */
+    protected static function getLastDayOfTheLastMonth() : Carbon
+    {
+        return new Carbon('last day of last month');
     }
 
     /**
@@ -74,6 +104,84 @@ trait Dateable {
     protected function endDate(Carbon $date) : self
     {
         $this->endDate = $date;
+
+        return $this;
+    }
+
+    /**
+     * Set this month the query
+     *
+     * @return self
+     */
+    protected function thisMonth() : self
+    {
+        $this->startDate = static::getFirstDayOfTheMonth();
+        $this->endDate   = now();
+
+        return $this;
+    }
+
+    /**
+     * Set last month for the query
+     *
+     * @return self
+     */
+    protected function lastMonth() : self
+    {
+        $this->startDate = static::getFirstDayOfTheLastMonth();
+        $this->endDate   = static::getLastDayOfTheLastMonth();
+
+        return $this;
+    }
+
+    /**
+     * Set last months for the query
+     *
+     * @return self
+     */
+    protected function lastMonths($number = 3) : self
+    {
+        $this->startDate = now()->subMonth($number);
+        $this->endDate   = now();
+
+        return $this;
+    }
+
+    /**
+     * Set the last week for the query
+     *
+     * @return self
+     */
+    protected function thisWeek() : self
+    {
+        $this->startDate = now()->startOfWeek();
+        $this->endDate   = now();
+
+        return $this;
+    }
+
+    /**
+     * Set this year for the query
+     *
+     * @return self
+     */
+    protected function thisYear() : self
+    {
+        $this->startDate = now()->firstOfYear();
+        $this->endDate   = now();
+
+        return $this;
+    }
+
+    /**
+     * Set today for the query
+     *
+     * @return self
+     */
+    protected function toDay() : self
+    {
+        $this->startDate = now()->startOfDay();
+        $this->endDate   = now();
 
         return $this;
     }
