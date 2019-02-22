@@ -12,6 +12,19 @@ trait Total {
      *
      * @return array
      */
+    public function totalByHour() : array
+    {
+        $total      = static::getRangeOfHours();
+        $collection = self::totalResultsByType('hour');
+
+        return $this->mapFilterByDate($total, $collection);
+    }
+
+    /**
+     * Get the total items by day
+     *
+     * @return array
+     */
     public function totalByDay() : array
     {
         $total      = static::getRangeOfDays();
@@ -50,7 +63,7 @@ trait Total {
     /**
      * Counts the total values for model by days
      *
-     * @param string $dateType ['day', 'week', 'month', 'year']
+     * @param string $dateType ['day', 'month', 'year']
      * @return Collection
      */
     private function totalResultsByType(string $dateType)
@@ -64,28 +77,6 @@ trait Total {
             ->orderBy($dateType, 'DESC')
             ->pluck($dateType, 'total')
             ->flip()
-            ->toArray();
-    }
-
-    /**
-     * Get the total results filter by date and reset the value to 0 if no results
-     *
-     * @param array $totals
-     * @param array $collection
-     * @return array
-     */
-    private function mapFilterByDate(array $total, array $collection) : array
-    {
-        // Set the total days, months or years and reset to 0
-        $total = array_fill_keys($total, 0);
-
-        return collect($total)
-            ->map(function($value, $date) use($collection) {
-                //Search the days with results
-                $search = $collection[$date] ?? 0;
-                //Get the values
-                return $value > 0 ? $value : $search;
-            })
             ->toArray();
     }
 }

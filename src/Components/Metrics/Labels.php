@@ -41,14 +41,18 @@ class Labels {
      */
     public static function daysOfTheMonth() : array
     {
-        $labels = [];
-        $daysOfTheMonth = now()->daysInMonth;
+        return static::getRangeOfDays();
+    }
 
-        for($x = 0; $x <= $daysOfTheMonth; $x++) {
-            $labels[] .= $x;
-        }
-
-        return $labels;
+    /**
+     * Set an array with all the daily hours
+     *
+     * @param  string  $filter
+     * @return array
+     */
+    public static function hoursOfTheday() : array
+    {
+        return static::getRangeOfHours();
     }
 
     /**

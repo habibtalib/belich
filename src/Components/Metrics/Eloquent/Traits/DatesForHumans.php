@@ -53,18 +53,18 @@ trait DatesForHumans {
         }
 
         //Sql format
-        if(DateTime::createFromFormat('Y-m-d', $date)) {
-            return DateTime::createFromFormat('Y-m-d', $date);
+        if(DateTime::createFromFormat('Y-m-d', $date, config('app.timezone'))) {
+            return DateTime::createFromFormat('Y-m-d', $date, config('app.timezone'));
         }
 
         //European format
-        if(DateTime::createFromFormat('d/m/Y', $date)) {
-            return DateTime::createFromFormat('d/m/Y', $date);
+        if(DateTime::createFromFormat('d/m/Y', $date, config('app.timezone'))) {
+            return DateTime::createFromFormat('d/m/Y', $date, config('app.timezone'));
         }
 
         //English format
-        if(DateTime::createFromFormat('Y/m/d', $date)) {
-            return DateTime::createFromFormat('Y/m/d', $date);
+        if(DateTime::createFromFormat('Y/m/d', $date, config('app.timezone'))) {
+            return DateTime::createFromFormat('Y/m/d', $date, config('app.timezone'));
         }
     }
 
@@ -83,6 +83,22 @@ trait DatesForHumans {
     {
         $this->startDate = now()->startOfDay();
         $this->endDate   = now();
+
+        return $this;
+    }
+
+    /**
+     * Set last days for the query
+     *
+     * @param int $number [Set the number of days]
+     * @return self
+     */
+    public function oneDay($day, $month, $year) : self
+    {
+        $date = Carbon::createFromDate($year, $month, $day, config('app.timezone'));
+
+        $this->startDate = $date->startOfDay();
+        $this->endDate = $date->endOfDay();
 
         return $this;
     }

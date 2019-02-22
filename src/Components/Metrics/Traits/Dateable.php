@@ -7,6 +7,21 @@ use Carbon\Carbon;
 trait Dateable {
 
     /**
+     * Set an array with all the daily hours
+     *
+     * @param  string  $filter
+     * @return array
+     */
+    public static function getRangeOfHours() : array
+    {
+        foreach(range(1, 24) as $hour) {
+            $range[] = $hour;
+        };
+
+        return $range;
+    }
+
+    /**
      * Get an array with all the days of the current month
      *
      * @return array

@@ -13,10 +13,10 @@ class Connection {
     private $model;
 
     /** @var object */
-    private $dateStart;
+    public $startDate;
 
     /** @var object */
-    private $dateEnd;
+    public $endDate;
 
     /** @var string */
     private $dateTable = 'created_at';
@@ -37,9 +37,9 @@ class Connection {
      * @param string $date
      * @return string
      */
-    public function dateEnd($date) : self
+    public function endDate($date) : self
     {
-        $this->dateEnd = $date;
+        $this->endDate = $date;
 
         return $this;
     }
@@ -50,9 +50,9 @@ class Connection {
      * @param string $date
      * @return string
      */
-    public function dateStart($date) : self
+    public function startDate($date) : self
     {
-        $this->dateStart = $date;
+        $this->startDate = $date;
 
         return $this;
     }
@@ -77,5 +77,27 @@ class Connection {
     public static function make($model)
     {
         return new Connection($model);
+    }
+
+    /**
+     * Get the total results filter by date and reset the value to 0 if no results
+     *
+     * @param array $totals
+     * @param array $collection
+     * @return array
+     */
+    private function mapFilterByDate(array $total, array $collection) : array
+    {
+        // Set the total days, months or years and reset to 0
+        $total = array_fill_keys($total, 0);
+
+        return collect($total)
+            ->map(function($value, $date) use($collection) {
+                //Search the days with results
+                $search = $collection[$date] ?? 0;
+                //Get the values
+                return $value > 0 ? $value : $search;
+            })
+            ->toArray();
     }
 }
