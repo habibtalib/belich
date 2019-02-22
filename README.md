@@ -23,7 +23,6 @@ Project in development. Still in the early stages...help will be great!!!
 - Resources download to: EXCEL and CSV.
 - Native authorization with Policies.
 - Icons with: https://origin.fontawesome.com
-- Metrics with: https://gionkunz.github.io/chartist-js/index.html
 - Customized:
     + actions.
     + navbar.
@@ -31,6 +30,7 @@ Project in development. Still in the early stages...help will be great!!!
     + breadcrumb.
     + dashboard.
     + ...
+- Metrics with: https://gionkunz.github.io/chartist-js/index.html
 -Simples tools for Metrics:
 
 Showing the total users by day in the last week, is just this:
