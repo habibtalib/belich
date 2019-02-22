@@ -74,7 +74,15 @@ class Render {
     | Graphs selector
     |--------------------------------------------------------------------------
     */
-    private function graphSelector($type, $key)
+
+   /**
+    * Graph type selector
+    *
+    * @param string $type
+    * @param string $key
+    * @return string
+    */
+    private function graphSelector(string $type, string $key)
     {
         if($type === 'bars') {
             return $this->barGraph($key);
@@ -96,32 +104,186 @@ class Render {
     | Graphs types
     |--------------------------------------------------------------------------
     */
-    private function lineGraph($key)
+
+    /**
+     * Create a Line Graph
+     *
+     * @param string $key
+     * @return string
+     */
+    private function lineGraph(string $key) : string
     {
-        $withArea = $this->withArea ? "{showArea: true, low: 0}" : '';
+        $withArea = $this->withArea ? static::templateShowArea() : '';
 
-        return sprintf("new Chartist.Line('.%s',data_%s,%s);", $this->uriKey, $key, $withArea);
+        return sprintf(
+            static::templateLineGraph(),
+            $this->uriKey,
+            $key,
+            $withArea
+        );
     }
 
-    private function barGraph($key) {
-        $options = "seriesBarDistance:10,axisX:{offset:30},axisY:{offset:40,labelInterpolationFnc:function(value){return value},scaleMinSpace:15}";
-
-        return sprintf("new Chartist.Bar('.%s',data_%s,{%s});", $this->uriKey, $key, $options);
+    /**
+     * Create a Bar Graph
+     *
+     * @param string $key
+     * @return string
+     */
+    private function barGraph(string $key)  : string
+    {
+        return sprintf(
+            static::templateBarGraph(),
+            $this->uriKey,
+            $key,
+            static::templateBarGraphOptions()
+        );
     }
 
-    private function horizontalBarGraph($key) {
-        $barGraph = substr($this->barGraph($key, $labelValue), 0, -3);
-        $options = "reverseData:true,horizontalBars:true,seriesBarDistance:10,axisX:{offset:30},axisY:{offset:100,labelInterpolationFnc:function(value){return value},scaleMinSpace:15}";
-
-        return sprintf("new Chartist.Bar('.%s',data_%s,{%s});", $this->uriKey, $key, $options);
+    /**
+     * Create a Horizontal Bar Graph
+     *
+     * @param string $key
+     * @return string
+     */
+    private function horizontalBarGraph(string $key)  : string
+    {
+        return sprintf(
+            static::templateBarGraph(),
+            $this->uriKey,
+            $key,
+            static::templateHorizontalBarGraphOptions()
+        );
     }
 
-    private function pieGraph($key) {
-        $options = "{donut:true,donutWidth:50,donutSolid:true,startAngle:270,total:200,showLabel:false}";
-
-        $data = "{labels:['monday','tuesday','wednesday','thursday','friday','saturday','sunday'],series:['37','41','45','19','43','14','29']}";
-        return sprintf("new Chartist.Pie('.%s',%s,%s);", $this->uriKey, $data, $options);
+    /**
+     * Create a Pie Graph
+     *
+     * @param string $key
+     * @return string
+     */
+    private function pieGraph(string $key)
+    {
+        return sprintf(
+            static::templatePieGraph(),
+            $this->uriKey,
+            $data,
+            static::templatePieGraphOptions()
+        );
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Javascript templates for Graphs
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Template Line Graph
+     *
+     * @return string
+     */
+    private static function templateLineGraph() : string
+    {
+        return "new Chartist.Line('.%s',data_%s,%s);";
+    }
+
+    /**
+     * Template Bar Graph options
+     *
+     * @return string
+     */
+    private static function templateBarGraph() : string
+    {
+        return "new Chartist.Bar('.%s',data_%s,{%s});";
+    }
+
+    /**
+     * Template Pie Graph
+     *
+     * @return string
+     */
+    private static function templatePieGraph() : string
+    {
+        return "new Chartist.Pie('.%s',%s,%s);";
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Javascript templates for options
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Template show area
+     *
+     * @return string
+     */
+    private static function templateShowArea() : string
+    {
+        return
+            '{' .
+                'showArea:true,low:0'.
+            '}';
+    }
+
+    /**
+     * Template Bar Graph options
+     *
+     * @return string
+     */
+    private static function templateBarGraphOptions() : string
+    {
+        return  "seriesBarDistance:10," .
+                "axisX:{" .
+                    "offset:30" .
+                "}," .
+                "axisY:{" .
+                    "offset:40," .
+                    "labelInterpolationFnc:function(value)" .
+                    "{" .
+                        "return value" .
+                    "}," .
+                    "scaleMinSpace:15" .
+                "}";
+    }
+
+    /**
+     * Template Horizontal Bar Graph options
+     *
+     * @return string
+     */
+    private function templateHorizontalBarGraphOptions() : string
+    {
+        return  "reverseData:true," .
+                "horizontalBars:true," .
+                "seriesBarDistance:10," .
+                "axisX:" .
+                "{" .
+                    "offset: 30" .
+                "}," .
+                "axisY:" .
+                "{" .
+                    "offset:100," .
+                "}";
+    }
+
+    /**
+     * Template Paie Graph options
+     *
+     * @return string
+     */
+    private static function templatePieGraphOptions() : string
+    {
+        return  "{" .
+                    "donut:true," .
+                    "donutWidth:50," .
+                    "donutSolid:true," .
+                    "startAngle:270," .
+                    "total:200," .
+                    "showLabel:false" .
+                "}";
+    }
+
     /*
     |--------------------------------------------------------------------------
     | Helpers
