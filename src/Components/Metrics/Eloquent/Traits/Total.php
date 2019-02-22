@@ -3,22 +3,19 @@
 namespace Daguilarm\Belich\Components\Metrics\Eloquent\Traits;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 
 trait Total {
-
-    protected $query;
 
     /**
      * Get the total items by day
      *
-     * @param string $model
-     * @param string $dateField
      * @return array
      */
-    public function totalByDay(string $model, string $dateField = 'created_at') : array
+    public function totalByDay() : array
     {
         $total      = static::getRangeOfDays();
-        $collection = self::totalResultsByType($model, 'day', $dateField);
+        $collection = self::totalResultsByType('day');
 
         return $this->mapFilterByDate($total, $collection);
     }
@@ -26,14 +23,12 @@ trait Total {
     /**
      * Get the total items by month
      *
-     * @param string $model
-     * @param string $dateField
      * @return array
      */
-    public function totalByMonth(string $model, string $dateField = 'created_at') : array
+    public function totalByMonth() : array
     {
         $total      = static::getRangeOfMonths();
-        $collection = self::totalResultsByType($model, 'month', $dateField);
+        $collection = self::totalResultsByType('month');
 
         return $this->mapFilterByDate($total, $collection);
     }
@@ -41,15 +36,13 @@ trait Total {
     /**
      * Get the total items by month
      *
-     * @param string $model
      * @param int $years
-     * @param string $dateField
      * @return array
      */
-    public function totalByYears(string $model, int $years, string $dateField = 'created_at') : array
+    public function totalByYears(int $years) : array
     {
         $total      = static::getRangeOfYears($years);
-        $collection = self::totalResultsByType($model, 'year', $dateField);
+        $collection = self::totalResultsByType('year');
 
         return $this->mapFilterByDate($total, $collection);
     }
@@ -60,17 +53,18 @@ trait Total {
      * @param string $dateType ['day', 'week', 'month', 'year']
      * @return Collection
      */
-    private function totalResultsByType(string $dateType) : Collection
+    private function totalResultsByType(string $dateType)
     {
-        $this->query = $this->model::whereBetween($this->dateField, [$this->startDate, $this->endDate])
+        return $this->model::whereBetween($this->dateTable, [$this->startDate, $this->endDate])
             ->select([
-                DB::raw(strtoupper($dateType) . '(' . $this->dateField . ') as ' . $dateType),
+                DB::raw(strtoupper($dateType) . '(' . $this->dateTable . ') as ' . $dateType),
                 DB::raw('COUNT(*) as total')
             ])
             ->groupBy($dateType)
             ->orderBy($dateType, 'DESC')
             ->pluck($dateType, 'total')
-            ->flip();
+            ->flip()
+            ->toArray();
     }
 
     /**

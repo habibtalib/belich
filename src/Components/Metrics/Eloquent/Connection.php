@@ -2,17 +2,15 @@
 
 namespace Daguilarm\Belich\Components\Metrics\Eloquent;
 
+use Daguilarm\Belich\Components\Metrics\Eloquent\Traits\DatesForHumans;
 use Daguilarm\Belich\Components\Metrics\Eloquent\Traits\Total;
 
 class Connection {
 
-    use Dateable, Total;
+    use DatesForHumans, Total;
 
-    /** @var object */
+    /** @var string */
     private $model;
-
-    /** @var object */
-    private $query;
 
     /** @var object */
     private $dateStart;
@@ -24,14 +22,24 @@ class Connection {
     private $dateTable = 'created_at';
 
     /**
-     * Set the connection model
+     * Initialize the class
      *
      * @param string $model
-     * @return string
      */
-    public function model(string $model) : self
+    public function __construct(string $model)
     {
         $this->model = $model;
+    }
+
+    /**
+     * Set the end date
+     *
+     * @param string $date
+     * @return string
+     */
+    public function dateEnd($date) : self
+    {
+        $this->dateEnd = $date;
 
         return $this;
     }
@@ -45,19 +53,6 @@ class Connection {
     public function dateStart($date) : self
     {
         $this->dateStart = $date;
-
-        return $this;
-    }
-
-    /**
-     * Set the end date
-     *
-     * @param string $date
-     * @return string
-     */
-    public function dateEnd($date) : self
-    {
-        $this->dateEnd = $date;
 
         return $this;
     }
@@ -77,12 +72,10 @@ class Connection {
     }
 
     /**
-     * Get the model response
-     *
-     * @return array
+     * Initialize the connection
      */
-    public function get() : array
+    public static function make($model)
     {
-        return $query->toArray();
+        return new Connection($model);
     }
 }

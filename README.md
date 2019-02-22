@@ -36,6 +36,9 @@ Project in development. Still in the early stages...help will be great!!!
 Showing the total users by day in the last week, is just this:
 
 ~~~
+use App\User;
+use Daguilarm\Belich\Components\Metrics\Eloquent\Connection;
+
 /**
  * Set the displayable labels
  *
@@ -53,9 +56,9 @@ public function labels(Request $request) : array
  */
 public function calculate(Request $request)
 {
-    return $this
+    return Connection::make(User::class)
         ->thisWeek()
-        ->getTotalByDay(User::class);
+        ->getTotalByDay();
 }
 ~~~
 

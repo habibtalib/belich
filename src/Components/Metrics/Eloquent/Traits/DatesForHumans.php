@@ -1,11 +1,13 @@
 <?php
 
-namespace Daguilarm\Belich\Components\Metrics\Traits;
+namespace Daguilarm\Belich\Components\Metrics\Eloquent\Traits;
 
 use Carbon\Carbon;
 use Daguilarm\Belich\Components\Metrics\Traits\Dateable;
 
 trait DatesForHumans {
+
+    use Dateable;
 
     /*
     |--------------------------------------------------------------------------
@@ -18,7 +20,7 @@ trait DatesForHumans {
      *
      * @return self
      */
-    protected function startDate(Carbon $date) : self
+    public function startDate(Carbon $date) : self
     {
         $this->startDate = $this->filterDateFormat($date);
 
@@ -30,7 +32,7 @@ trait DatesForHumans {
      *
      * @return self
      */
-    protected function endDate(Carbon $date) : self
+    public function endDate(Carbon $date) : self
     {
         $this->endDate = $this->filterDateFormat($date);
 
@@ -77,7 +79,7 @@ trait DatesForHumans {
      *
      * @return self
      */
-    protected function toDay() : self
+    public function toDay() : self
     {
         $this->startDate = now()->startOfDay();
         $this->endDate   = now();
@@ -91,7 +93,7 @@ trait DatesForHumans {
      * @param int $number [Set the number of days]
      * @return self
      */
-    protected function lastDays(int $number) : self
+    public function lastDays(int $number) : self
     {
         $this->startDate = now()->subDay($number);
         $this->endDate   = now();
@@ -110,7 +112,7 @@ trait DatesForHumans {
      *
      * @return self
      */
-    protected function thisWeek() : self
+    public function thisWeek() : self
     {
         $this->startDate = now()->startOfWeek();
         $this->endDate   = now();
@@ -129,7 +131,7 @@ trait DatesForHumans {
      *
      * @return self
      */
-    protected function thisMonth() : self
+    public function thisMonth() : self
     {
         $this->startDate = static::getFirstDayOfTheMonth();
         $this->endDate   = now();
@@ -142,7 +144,7 @@ trait DatesForHumans {
      *
      * @return self
      */
-    protected function lastMonth() : self
+    public function lastMonth() : self
     {
         $this->startDate = static::getFirstDayOfTheLastMonth();
         $this->endDate   = static::getLastDayOfTheLastMonth();
@@ -156,7 +158,7 @@ trait DatesForHumans {
      * @param int $number [Set the number of months]
      * @return self
      */
-    protected function lastMonths(int $number) : self
+    public function lastMonths(int $number) : self
     {
         $this->startDate = now()->subMonth($number);
         $this->endDate   = now();
@@ -175,7 +177,7 @@ trait DatesForHumans {
      *
      * @return self
      */
-    protected function thisYear() : self
+    public function thisYear() : self
     {
         $this->startDate = now()->firstOfYear();
         $this->endDate   = now();
@@ -188,7 +190,7 @@ trait DatesForHumans {
      *
      * @return self
      */
-    protected function lastYears(int $years) : self
+    public function lastYears(int $years) : self
     {
         $this->startDate = now()->subYear($years);
         $this->endDate   = now();
