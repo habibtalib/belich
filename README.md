@@ -73,4 +73,4 @@ public function calculate(Request $request)
 
 ## And of course, like Nova...
 
-![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/sidebar.gif)
+![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/sidebar.png)
