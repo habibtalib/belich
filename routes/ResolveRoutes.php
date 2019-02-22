@@ -13,6 +13,11 @@ Route::group([
         'middleware' => Belich::middleware(),
     ], function () {
 
+        //Just for tests
+        Route::get(Belich::pathName() . '/test', function() {
+            return view('belich::test');
+        });
+
         //Validation routes
         Route::post(Belich::pathName() . '/ajax/form/validation', namespace_path('App\Http\Controllers\ValidationController'))
             ->name('ajax.form.validation');
