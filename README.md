@@ -38,6 +38,8 @@ Showing the total users by day in the last week, is just this:
 ~~~
 use App\User;
 use Daguilarm\Belich\Components\Metrics\Eloquent\Connection;
+use Daguilarm\Belich\Components\Metrics\Labels;
+use Illuminate\Http\Request;
 
 /**
  * Set the displayable labels
