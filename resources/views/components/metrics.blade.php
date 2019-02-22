@@ -6,14 +6,14 @@
             <div class="p-1"><b class="mr-1">Y:</b> {{ $metric->legend_v }}</div>
         </div>
     @endif
+    {{-- Header --}}
     <h4 class="text-{{ $metric->color }}-dark mt-2 px-4 ml-2">{{ $metric->name }}</h4>
+    {{-- Graph --}}
     <div class="h-full py-4 pr-4">
-        {{-- Graph --}}
-        @hasMetricsLegends($metric)
-            <div id="graph-{{ md5($metric->uriKey) }}" class="ct-chart {{ $metric->uriKey }} ct-perfect-fourth h-50 mt-3 z-10"></div>
-        @else
-            <div id="graph-{{ md5($metric->uriKey) }}" class="ct-chart {{ $metric->uriKey }} ct-perfect-fourth max-h-full z-10"></div>
-        @endif
+        <div
+            id="graph-{{ md5($metric->uriKey) }}"
+            class="ct-chart {{ $metric->uriKey }} ct-perfect-fourth {{ ($metric->legend_h || $metric->legend_v) ? 'h-50 mt-3 z-10' : 'max-h-full' }} z-10">
+        </div>
     </div>
 </div>
 
