@@ -69,6 +69,17 @@ class Labels {
     /**
      * Set an array with all the months of the year
      *
+     * @param  string  $filter
+     * @return array
+     */
+    public static function monthsOfTheYearMin(string $filter = '') : array
+    {
+        return static::get($filter, 'monthsOfTheYearMin');
+    }
+
+    /**
+     * Set an array with all the months of the year
+     *
      * @param  int  $years
      * @return array
      */

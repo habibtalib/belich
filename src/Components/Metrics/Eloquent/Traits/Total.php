@@ -10,54 +10,58 @@ trait Total {
     /**
      * Get the total items by day
      *
+     * @param string $type
      * @return array
      */
-    public function totalByHour() : array
+    public function totalByHour(string $type = 'hour') : array
     {
         $total      = static::getRangeOfHours();
-        $collection = self::totalResultsByType('hour');
+        $collection = self::totalResultsByType($type);
 
-        return $this->mapFilterByDate($total, $collection);
+        return $this->mapFilterByDate($total, $collection, $type);
     }
 
     /**
      * Get the total items by day
      *
+     * @param string $type
      * @return array
      */
-    public function totalByDay() : array
+    public function totalByDay(string $type = 'day') : array
     {
         $total      = static::getRangeOfDays();
-        $collection = self::totalResultsByType('day');
+        $collection = self::totalResultsByType($type);
 
-        return $this->mapFilterByDate($total, $collection);
+        return $this->mapFilterByDate($total, $collection, $type);
     }
 
     /**
      * Get the total items by month
      *
+     * @param string $type
      * @return array
      */
-    public function totalByMonth() : array
+    public function totalByMonth(string $type = 'month') : array
     {
         $total      = static::getRangeOfMonths();
-        $collection = self::totalResultsByType('month');
+        $collection = self::totalResultsByType($type);
 
-        return $this->mapFilterByDate($total, $collection);
+        return $this->mapFilterByDate($total, $collection, $type);
     }
 
     /**
      * Get the total items by month
      *
      * @param int $years
+     * @param string $type
      * @return array
      */
-    public function totalByYears(int $years) : array
+    public function totalByYears(int $years, string $type = 'year') : array
     {
         $total      = static::getRangeOfYears($years);
-        $collection = self::totalResultsByType('year');
+        $collection = self::totalResultsByType($type);
 
-        return $this->mapFilterByDate($total, $collection);
+        return $this->mapFilterByDate($total, $collection, $type);
     }
 
     /**

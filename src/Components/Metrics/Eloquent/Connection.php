@@ -85,17 +85,18 @@ class Connection {
      *
      * @param array $totals
      * @param array $collection
+     * @param string $type
      * @return array
      */
-    private function mapFilterByDate(array $total, Collection $collection) : array
+    private function mapFilterByDate(array $total, Collection $collection, string $type) : array
     {
         // Set the total days, months or years and reset to 0
         $total = array_fill_keys($total, 0);
 
         return collect($total)
-            ->map(function($value, $date) use($collection) {
+            ->map(function($value, $date) use($collection, $type) {
                 //Search the days with results
-                return $collection->where('day', $date)->first()->total ?? 0;
+                return $collection->where($type, $date)->first()->total ?? 0;
             })
             ->toArray();
     }
