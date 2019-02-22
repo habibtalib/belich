@@ -166,8 +166,8 @@ class Render {
         return sprintf(
             static::templatePieGraph(),
             $this->uriKey,
-            $data,
-            static::templatePieGraphOptions()
+            $key,
+            static::templatePieGraphOptions($key)
         );
     }
 
@@ -194,7 +194,7 @@ class Render {
      */
     private static function templateBarGraph() : string
     {
-        return "new Chartist.Bar('.%s',data_%s,{%s});";
+        return "new Chartist.Bar('.%s',data_%s,%s);";
     }
 
     /**
@@ -204,7 +204,7 @@ class Render {
      */
     private static function templatePieGraph() : string
     {
-        return "new Chartist.Pie('.%s',%s,%s);";
+        return "var sum=function(a,b){return a+b};new Chartist.Pie('.%s',data_%s,%s);";
     }
 
     /*
@@ -233,17 +233,19 @@ class Render {
      */
     private static function templateBarGraphOptions() : string
     {
-        return  "seriesBarDistance:10," .
-                "axisX:{" .
-                    "offset:30" .
-                "}," .
-                "axisY:{" .
-                    "offset:40," .
-                    "labelInterpolationFnc:function(value)" .
-                    "{" .
-                        "return value" .
+        return  "{" .
+                    "seriesBarDistance:10," .
+                    "axisX:{" .
+                        "offset:30" .
                     "}," .
-                    "scaleMinSpace:15" .
+                    "axisY:{" .
+                        "offset:40," .
+                        "labelInterpolationFnc:function(value)" .
+                        "{" .
+                            "return value" .
+                        "}," .
+                        "scaleMinSpace:15" .
+                    "}" .
                 "}";
     }
 
@@ -272,15 +274,13 @@ class Render {
      *
      * @return string
      */
-    private static function templatePieGraphOptions() : string
+    private static function templatePieGraphOptions($key) : string
     {
         return  "{" .
-                    "donut:true," .
-                    "donutWidth:50," .
-                    "donutSolid:true," .
-                    "startAngle:270," .
-                    "total:200," .
-                    "showLabel:false" .
+                    "labelInterpolationFnc: function(value)" .
+                    "{
+                        return value[0];
+                    }" .
                 "}";
     }
 

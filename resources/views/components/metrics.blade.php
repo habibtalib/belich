@@ -22,7 +22,8 @@
         Metric::uriKey('hellow')
             ->uriKey($metric->uriKey)
             ->labels($metric->labels)
-            ->series([$metric->calculate])
+            //Pie charts has not support for multidimensional arrays
+            ->series(($metric->type === 'pie') ? $metric->calculate : [$metric->calculate])
             ->type($metric->type)
             ->withArea($metric->withArea)
             ->get()
