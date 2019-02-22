@@ -67,6 +67,7 @@ abstract class Graph {
 
     /**
      * Initialize the metrics
+     *
      */
     abstract function calculate(Request $request);
 

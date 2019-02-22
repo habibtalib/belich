@@ -56,7 +56,7 @@ public function labels(Request $request) : array
  *
  * @return string
  */
-public function calculate(Request $request)
+public function calculate(Request $request) : array
 {
     return Connection::make(User::class)
         ->thisWeek()
