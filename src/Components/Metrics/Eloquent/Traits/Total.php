@@ -29,7 +29,7 @@ trait Total {
     {
         $total      = static::getRangeOfDays();
         $collection = self::totalResultsByType('day');
-
+        dd($collection);
         return $this->mapFilterByDate($total, $collection);
     }
 

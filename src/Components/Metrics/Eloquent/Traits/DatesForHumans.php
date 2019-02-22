@@ -81,8 +81,8 @@ trait DatesForHumans {
      */
     public function toDay() : self
     {
-        $this->startDate = now()->startOfDay();
-        $this->endDate   = now();
+        $this->startDate = Carbon::now()->startOfDay();
+        $this->endDate   = Carbon::now()->endOfDay();
 
         return $this;
     }
@@ -95,10 +95,8 @@ trait DatesForHumans {
      */
     public function oneDay($day, $month, $year) : self
     {
-        $date = Carbon::createFromDate($year, $month, $day, config('app.timezone'));
-
-        $this->startDate = $date->startOfDay();
-        $this->endDate = $date->endOfDay();
+        $this->startDate = Carbon::createFromDate($year, $month, $day, config('app.timezone'))->startOfDay();
+        $this->endDate   = Carbon::createFromDate($year, $month, $day, config('app.timezone'))->endOfDay();
 
         return $this;
     }
@@ -111,8 +109,8 @@ trait DatesForHumans {
      */
     public function lastDays(int $number) : self
     {
-        $this->startDate = now()->subDay($number);
-        $this->endDate   = now();
+        $this->startDate = Carbon::now()->subDay($number);
+        $this->endDate   = Carbon::now()->endOfDay();
 
         return $this;
     }
@@ -130,8 +128,8 @@ trait DatesForHumans {
      */
     public function thisWeek() : self
     {
-        $this->startDate = now()->startOfWeek();
-        $this->endDate   = now();
+        $this->startDate = Carbon::now()->startOfWeek();
+        $this->endDate   = Carbon::now()->endOfDay();
 
         return $this;
     }
@@ -149,8 +147,8 @@ trait DatesForHumans {
      */
     public function thisMonth() : self
     {
-        $this->startDate = static::getFirstDayOfTheMonth();
-        $this->endDate   = now();
+        $this->startDate = static::getFirstDayOfTheMonth()->startOfDay();
+        $this->endDate   = Carbon::now()->endOfDay();
 
         return $this;
     }
@@ -162,8 +160,8 @@ trait DatesForHumans {
      */
     public function lastMonth() : self
     {
-        $this->startDate = static::getFirstDayOfTheLastMonth();
-        $this->endDate   = static::getLastDayOfTheLastMonth();
+        $this->startDate = static::getFirstDayOfTheLastMonth()->startOfDay();
+        $this->endDate   = static::getLastDayOfTheLastMonth()->endOfDay();
 
         return $this;
     }
@@ -176,8 +174,8 @@ trait DatesForHumans {
      */
     public function lastMonths(int $number) : self
     {
-        $this->startDate = now()->subMonth($number);
-        $this->endDate   = now();
+        $this->startDate = Carbon::now()->subMonth($number)->startOfDay();
+        $this->endDate   = Carbon::now()->endOfDay();
 
         return $this;
     }
@@ -195,8 +193,8 @@ trait DatesForHumans {
      */
     public function thisYear() : self
     {
-        $this->startDate = now()->firstOfYear();
-        $this->endDate   = now();
+        $this->startDate = Carbon::now()->firstOfYear()->startOfDay();
+        $this->endDate   = Carbon::now()->endOfDay();
 
         return $this;
     }
@@ -208,8 +206,8 @@ trait DatesForHumans {
      */
     public function lastYears(int $years) : self
     {
-        $this->startDate = now()->subYear($years);
-        $this->endDate   = now();
+        $this->startDate = Carbon::now()->subYear($years)->startOfDay();
+        $this->endDate   = Carbon::now()->endOfDay();
 
         return $this;
     }
