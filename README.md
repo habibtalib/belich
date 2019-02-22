@@ -64,18 +64,22 @@ public function calculate(Request $request) : array
 }
 ~~~
 
+>In the documentation you will find a complete list of methods availables.
+
 ## Screenshots
 
 #### With stats 
 
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/stats.png)
 
+#### And of course, with sidebar...
+
+![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/sidebar.png)
+
+## Videos
+
 #### Dashboard
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/videos/belich.gif)
 
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/videos/code.gif)
 
-
-## And of course, with sidebar...
-
-![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/sidebar.png)
