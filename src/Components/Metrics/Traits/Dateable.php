@@ -11,7 +11,7 @@ trait Dateable {
      *
      * @return array
      */
-    protected static function getRangeOfDaysFromMonth() : array
+    protected static function getRangeOfDays() : array
     {
         foreach(range(1, static::getDaysOfTheMonth()) as $day) {
             $range[] = $day;
@@ -25,9 +25,26 @@ trait Dateable {
      *
      * @return array
      */
-    protected static function getRangeOfMonthFromYear() : array
+    protected static function getRangeOfMonths() : array
     {
         foreach(range(1, 12) as $month) {
+            $range[] = $month;
+        };
+
+        return $range;
+    }
+
+    /**
+     * Get an array with all the month of the year
+     *
+     * @return array
+     */
+    protected static function getRangeOfYears(int $years) : array
+    {
+        $firstYear = now()->subYear($years)->year;
+        $lastYear  = now()->year;
+
+        foreach(range($firstYear , $lastYear) as $month) {
             $range[] = $month;
         };
 
@@ -168,6 +185,19 @@ trait Dateable {
     protected function thisYear() : self
     {
         $this->startDate = now()->firstOfYear();
+        $this->endDate   = now();
+
+        return $this;
+    }
+
+    /**
+     * Set list of years for the query
+     *
+     * @return self
+     */
+    protected function lastYears(int $years) : self
+    {
+        $this->startDate = now()->subYear($years);
         $this->endDate   = now();
 
         return $this;

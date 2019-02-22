@@ -24,21 +24,22 @@ trait Eloquentable {
     */
 
     /**
-     * Counts the values for model at the range and previous range
+     * Counts the total values for model by days
      *
      * @param Illuminate\Database\Eloquent\Model $model Eloquent model
-     * @return Illuminate\Database\Eloquent\Collection
+     * @param string $dateType ['day', 'week', 'month', 'year']
+     * @return array
      */
-    private function totalByDays(string $model, string $dateField = 'created_at')
+    private function totalResultsBy(string $model, $dateType, string $dateField = 'created_at')
     {
         return $model::whereBetween($dateField, [$this->startDate, $this->endDate])
             ->select([
-                DB::raw('Day(created_at) as day'),
+                DB::raw(strtoupper($dateType) . '(created_at) as ' . $dateType),
                 DB::raw('COUNT(*) as total')
             ])
-            ->groupBy('day')
-            ->orderBy('day', 'DESC')
-            ->pluck('day', 'total')
+            ->groupBy($dateType)
+            ->orderBy($dateType, 'DESC')
+            ->pluck($dateType, 'total')
             ->flip()
             ->toArray();
     }

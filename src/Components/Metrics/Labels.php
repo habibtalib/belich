@@ -3,8 +3,11 @@
 namespace Daguilarm\Belich\Components\Metrics;
 
 use Carbon\Carbon;
+use Daguilarm\Belich\Components\Metrics\Traits\Dateable;
 
 class Labels {
+
+    use Dateable;
 
     // Filters: 'capitalize', 'lower', 'title'
 
@@ -39,7 +42,7 @@ class Labels {
     public static function daysOfTheMonth() : array
     {
         $labels = [];
-        $daysOfTheMonth = Carbon::now()->daysInMonth;
+        $daysOfTheMonth = now()->daysInMonth;
 
         for($x = 0; $x <= $daysOfTheMonth; $x++) {
             $labels[] .= $x;
@@ -57,6 +60,17 @@ class Labels {
     public static function monthsOfTheYear(string $filter = '') : array
     {
         return static::get($filter, 'monthsOfTheYear');
+    }
+
+    /**
+     * Set an array with all the months of the year
+     *
+     * @param  int  $years
+     * @return array
+     */
+    public static function listOfYears(int $years) : array
+    {
+        return static::getRangeOfYears($years);
     }
 
     /*
