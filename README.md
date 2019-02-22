@@ -69,3 +69,8 @@ public function calculate(Request $request)
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/videos/belich.gif)
 
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/videos/code.gif)
+
+
+## And of course, like Nova...
+
+![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/sidebar.gif)
