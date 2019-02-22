@@ -20,7 +20,7 @@ Project in development. Still in the early stages...help will be great!!!
 ## Features 
 
 - Sidebar or topbar from the `config` file.
-- Resources download.
+- Resources download to: EXCEL and CSV.
 - Native authorization with Policies.
 - Icons with: https://origin.fontawesome.com
 - Metrics with: https://gionkunz.github.io/chartist-js/index.html
