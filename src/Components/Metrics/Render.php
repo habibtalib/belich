@@ -304,17 +304,15 @@ class Render {
         // var data = data_" . $key . ".series.map(Number).reduce((partial_sum, a) => partial_sum + a);
         return  "{" .
                     "labelInterpolationFnc: function(value)" .
-                    "{
-                        var series = data_" . $key . ".series.map(Number);
-                        var labels = data_" . $key . ".labels;
-                        var position = labels.indexOf(value);
-                        var total = series.map(Number).reduce((partial_sum, a) => partial_sum + a);
-                        var currentValue = series[position];
-                        var percent = Math.round(currentValue / total * 100);
-                        return currentValue
-                            ? value + ' (' + percent + '%)'
-                            : '';
-                    }" .
+                    "{" .
+                        "var series = data_" . $key . ".series.map(Number);" .
+                        "var labels = data_" . $key . ".labels;" .
+                        "var position = labels.indexOf(value);" .
+                        "var total = series.map(Number).reduce((partial_sum, a) => partial_sum + a);" .
+                        "var currentValue = series[position];" .
+                        "var percent = Math.round(currentValue / total * 100);" .
+                        "return currentValue ? value + ' (' + percent + '%)' : '';" .
+                    "}" .
                 "}";
     }
     /*
