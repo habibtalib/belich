@@ -394,6 +394,16 @@ form.form-container > .form-group option:disabled {
   cursor: not-allowed;
   background-color: var(--form-disabled-bg);
 }
+.modal {
+  background: rgba(0, 0, 0, .2);
+  -webkit-transition: opacity 400ms;
+  transition: opacity 400ms;
+}
+
+.modal:target {
+  visibility: visible;
+  opacity: 1;
+}
 /* Base on https://codepen.io/andornagy/pen/xhiJH */
 
 /* Navbar */
