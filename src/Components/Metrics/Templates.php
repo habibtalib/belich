@@ -37,12 +37,12 @@ trait Templates {
      */
     private static function templatePieGraph() : string
     {
-        return "
+        return <<<EOT
             var sum = function(a, b) {
                 return a+b
             };
             new Chartist.Pie('.%s', data_%s, %s);
-        ";
+        EOT;
     }
 
     /*
@@ -58,12 +58,12 @@ trait Templates {
      */
     private static function templateLineGraphOptions() : string
     {
-        return "
+        return <<<EOT
             {
                 showArea: true,
                 low: 0,
             }
-        ";
+        EOT;
     }
 
     /**
@@ -73,7 +73,7 @@ trait Templates {
      */
     private static function templateBarGraphOptions() : string
     {
-        return  "
+        return <<<EOT
             {
                 seriesBarDistance:10,
                 axisX: {
@@ -87,7 +87,7 @@ trait Templates {
                     scaleMinSpace: 15,
                 }
             }
-        ";
+       EOT;
     }
 
     /**
@@ -97,7 +97,7 @@ trait Templates {
      */
     private function templateHorizontalBarGraphOptions() : string
     {
-        return  "
+        return <<<EOT
             {
                 reverseData: true,
                 horizontalBars: true,
@@ -109,7 +109,7 @@ trait Templates {
                     offset: 100,
                 }
             }
-        ";
+        EOT;
     }
 
     /**
@@ -119,20 +119,20 @@ trait Templates {
      */
     private static function templatePieGraphOptions($key) : string
     {
-        return  "
-                {
-                    labelInterpolationFnc: function(value) {
-                        var series = data_" . $key . ".series.map(Number);
-                        var labels = data_" . $key . ".labels;
-                        var position = labels.indexOf(value);
-                        var total = series.map(Number).reduce((partial_sum, a) => partial_sum + a);
-                        var currentValue = series[position];
-                        var percent = Math.round(currentValue / total * 100);
+        return <<<EOT
+            {
+                labelInterpolationFnc: function(value) {
+                    var series = data_" . $key . ".series.map(Number);
+                    var labels = data_" . $key . ".labels;
+                    var position = labels.indexOf(value);
+                    var total = series.map(Number).reduce((partial_sum, a) => partial_sum + a);
+                    var currentValue = series[position];
+                    var percent = Math.round(currentValue / total * 100);
 
-                        return currentValue ? value + ' (' + percent + '%)' : '';
-                    }
+                    return currentValue ? value + ' (' + percent + '%)' : '';
                 }
-            ";
+            }
+        EOT;
     }
 
     /**
@@ -143,18 +143,19 @@ trait Templates {
      */
     private static function templatePieGraphResponsive($key) : string
     {
-        return  "
-                {
-                    labelInterpolationFnc: function(value) {
-                        var series = data_" . $key . ".series.map(Number);
-                        var labels = data_" . $key . ".labels;
-                        var position = labels.indexOf(value);
-                        var total = series.map(Number).reduce((partial_sum, a) => partial_sum + a);
-                        var currentValue = series[position];
-                        var percent = Math.round(currentValue / total * 100);
+        return <<<EOT
+            {
+                labelInterpolationFnc: function(value) {
+                    var series = data_" . $key . ".series.map(Number);
+                    var labels = data_" . $key . ".labels;
+                    var position = labels.indexOf(value);
+                    var total = series.map(Number).reduce((partial_sum, a) => partial_sum + a);
+                    var currentValue = series[position];
+                    var percent = Math.round(currentValue / total * 100);
 
-                        return currentValue ? value + ' (' + percent + '%)' : '';
-                    }
-                }";
+                    return currentValue ? value + ' (' + percent + '%)' : '';
+                }
+            }
+        EOT;
     }
 }
