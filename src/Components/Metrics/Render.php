@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Components\Metrics;
 
+use Daguilarm\Belich\Components\Metrics\Templates;
 use Daguilarm\Belich\Components\Metrics\Traits\Javascriptable;
 use Daguilarm\Belich\Components\Metrics\Traits\Stylable;
 use Illuminate\Http\Request;
@@ -9,7 +10,7 @@ use Illuminate\Support\Collection;
 
 class Render {
 
-    use Javascriptable, Stylable;
+    use Javascriptable, Templates, Stylable;
 
     /** @var string */
     private $js  = '//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js';
@@ -61,7 +62,7 @@ class Render {
         $key = md5($this->uriKey);
 
         //Set var object
-        $varObject = sprintf("var data_%s={labels:[%s],series:%s};", $key, $this->formatLabels($this->labels), $this->formatSeries($this->series));
+        $varObject = sprintf("var data_%s={labels:[%s], series:%s};", $key, $this->formatLabels($this->labels), $this->formatSeries($this->series));
 
         //Set the chartist object
         $varChartist = $this->graphSelector($this->type, $key);
@@ -117,7 +118,7 @@ class Render {
      */
     private function lineGraph(string $key) : string
     {
-        $withArea = $this->withArea ? static::templateShowArea() : '';
+        $withArea = $this->withArea ? static::templateLineGraphOptions() : '';
 
         return sprintf(
             static::templateLineGraph(),
@@ -175,150 +176,6 @@ class Render {
         );
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Javascript templates for Graphs
-    |--------------------------------------------------------------------------
-    */
-
-    /**
-     * Template Line Graph
-     *
-     * @return string
-     */
-    private static function templateLineGraph() : string
-    {
-        return "new Chartist.Line('.%s',data_%s,%s);";
-    }
-
-    /**
-     * Template Bar Graph options
-     *
-     * @return string
-     */
-    private static function templateBarGraph() : string
-    {
-        return "new Chartist.Bar('.%s',data_%s,%s);";
-    }
-
-    /**
-     * Template Pie Graph
-     *
-     * @return string
-     */
-    private static function templatePieGraph() : string
-    {
-        return "var sum=function(a,b){return a+b};new Chartist.Pie('.%s',data_%s,%s);";
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Javascript templates for options
-    |--------------------------------------------------------------------------
-    */
-
-    /**
-     * Template show area
-     *
-     * @return string
-     */
-    private static function templateShowArea() : string
-    {
-        return
-            '{' .
-                'showArea:true,low:0'.
-            '}';
-    }
-
-    /**
-     * Template Bar Graph options
-     *
-     * @return string
-     */
-    private static function templateBarGraphOptions() : string
-    {
-        return  "{" .
-                    "seriesBarDistance:10," .
-                    "axisX:{" .
-                        "offset:30" .
-                    "}," .
-                    "axisY:{" .
-                        "offset:40," .
-                        "labelInterpolationFnc:function(value)" .
-                        "{" .
-                            "return value" .
-                        "}," .
-                        "scaleMinSpace:15" .
-                    "}" .
-                "}";
-    }
-
-    /**
-     * Template Horizontal Bar Graph options
-     *
-     * @return string
-     */
-    private function templateHorizontalBarGraphOptions() : string
-    {
-        return  "reverseData:true," .
-                "horizontalBars:true," .
-                "seriesBarDistance:10," .
-                "axisX:" .
-                "{" .
-                    "offset: 30" .
-                "}," .
-                "axisY:" .
-                "{" .
-                    "offset:100," .
-                "}";
-    }
-
-    /**
-     * Template Paie Graph options
-     *
-     * @return string
-     */
-    private static function templatePieGraphOptions($key) : string
-    {
-        // var data = data_" . $key . ".series.map(Number).reduce((partial_sum, a) => partial_sum + a);
-        return  "{" .
-                    "labelInterpolationFnc: function(value)" .
-                    "{
-                        var series = data_" . $key . ".series.map(Number);
-                        var labels = data_" . $key . ".labels;
-                        var position = labels.indexOf(value);
-                        var total = series.map(Number).reduce((partial_sum, a) => partial_sum + a);
-                        var currentValue = series[position];
-                        var percent = Math.round(currentValue / total * 100);
-                        return currentValue
-                            ? value + ' (' + percent + '%)'
-                            : '';
-                    }" .
-                "}";
-    }
-
-    /**
-     * Template Paie Graph options
-     *
-     * @param string $key
-     * @return string
-     */
-    private static function templatePieGraphResponsive($key) : string
-    {
-        // var data = data_" . $key . ".series.map(Number).reduce((partial_sum, a) => partial_sum + a);
-        return  "{" .
-                    "labelInterpolationFnc: function(value)" .
-                    "{" .
-                        "var series = data_" . $key . ".series.map(Number);" .
-                        "var labels = data_" . $key . ".labels;" .
-                        "var position = labels.indexOf(value);" .
-                        "var total = series.map(Number).reduce((partial_sum, a) => partial_sum + a);" .
-                        "var currentValue = series[position];" .
-                        "var percent = Math.round(currentValue / total * 100);" .
-                        "return currentValue ? value + ' (' + percent + '%)' : '';" .
-                    "}" .
-                "}";
-    }
     /*
     |--------------------------------------------------------------------------
     | Helpers
