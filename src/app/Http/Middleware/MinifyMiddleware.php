@@ -23,6 +23,18 @@ class MinifyMiddleware
         '/>\s{2,}</' => '><',
         // Collapse new lines
         '/(\r?\n)/' => '',
+        //Close potential hacking attempts
+        '/(\.+\/)/' => '',
+    ];
+
+    private $htmlSpaces = [
+        ', ' => ',',
+        '; ' => ';',
+        ': ' => ':',
+        '{ ' => '{',
+        ' {' => '{',
+        ' }' => '}',
+        '} ' => '}',
     ];
 
     /**
@@ -74,6 +86,9 @@ class MinifyMiddleware
      */
     private function html(string $html) : string
     {
-        return preg_replace(array_keys($this->htmlFilters), array_values($this->htmlFilters), $html);
+        $html = preg_replace(array_keys($this->htmlFilters), array_values($this->htmlFilters), $html);
+        $html = str_replace(array_keys($this->htmlSpaces), array_values($this->htmlSpaces), $html);
+
+        return $html;
     }
 }
