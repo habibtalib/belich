@@ -14,8 +14,11 @@ trait Stylable {
         //Set the unique key for the graph
         $key = md5($metric->uriKey);
 
+        //Set the grid
+        $grid = $metric->grid === false ? 'none' : 'var(--10)';
+
         return  sprintf(
-            '#graph-%s .ct-grids line{stroke: var(--10)}' .
+            '#graph-%s .ct-grids line{stroke:%s}' .
             '#graph-%s .ct-label{font-weight:bold;fill:white}' .
             '#graph-%s .ct-series .ct-bar,' .
             '#graph-%s .ct-series .ct-line,' .
@@ -29,7 +32,7 @@ trait Stylable {
             '{' .
                 'fill:%s;' .
             '}',
-            $key,
+            $key, $grid,
             $key,
             $key,
             $key,

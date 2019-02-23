@@ -15,8 +15,11 @@ abstract class Graph {
     /** @var string */
     public $color;
 
-    /** @var array ['area-color', 'line-color', 'title-color', 'legend-color']*/
+    /** @var array ['area-color', 'line-color', 'title-color', 'legend-color'] */
     public $defineColors;
+
+    /** @var bool */
+    public $grid;
 
     /** @var array */
     public $labels;
