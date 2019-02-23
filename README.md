@@ -62,7 +62,7 @@ public function calculate(Request $request) : array
     return Connection::make(User::class)
         ->cacheInMinutes(10, $this->uriKey())
         ->thisWeek()
-        ->getTotalByDay();
+        ->totalByDay();
 }
 ~~~
 
