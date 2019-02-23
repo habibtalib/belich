@@ -2,13 +2,16 @@
 
 namespace Daguilarm\Belich\Components\Metrics\Eloquent;
 
+use Carbon\Carbon;
+use Daguilarm\Belich\Components\Metrics\Eloquent\Traits\Cacheable;
 use Daguilarm\Belich\Components\Metrics\Eloquent\Traits\DatesForHumans;
-use Daguilarm\Belich\Components\Metrics\Eloquent\Traits\Total;
+use Daguilarm\Belich\Components\Metrics\Eloquent\Traits\Results;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 
 class Connection {
 
-    use DatesForHumans, Total;
+    use Cacheable, DatesForHumans, Results;
 
     /** @var string */
     private $model;
@@ -81,22 +84,46 @@ class Connection {
     }
 
     /**
+     * Get the results by type and dateType from storage
+     *
+     * @param string $dateType ['day', 'month', 'year']
+     * @param string $type ['average', 'total', 'trent']
+     * @return Collection
+     */
+    private function getDataFromStorage(string $dateType, string $type) : Collection
+    {
+        return $this->model::whereBetween($this->dateTable, [$this->startDate, $this->endDate])
+            ->select([
+                DB::raw(strtoupper($dateType) . '(' . $this->dateTable . ') as ' . $dateType),
+                DB::raw('COUNT(*) as total'),
+            ])
+            ->groupBy($dateType)
+            ->orderBy($dateType, 'DESC')
+            ->get();
+    }
+
+    /**
      * Get the total results filter by date and reset the value to 0 if no results
      *
      * @param array $totals
-     * @param array $collection
-     * @param string $type
+     * @param string $dateType ['day', 'month', 'year']
+     * @param string $type ['average', 'total', 'trent']
      * @return array
      */
-    private function mapFilterByDate(array $total, Collection $collection, string $type) : array
+    private function resultsByDate(array $total, string $dateType, string $type) : array
     {
-        // Set the total days, months or years and reset to 0
+        //Set the total days, months or years and reset to 0
         $total = array_fill_keys($total, 0);
 
+        //Get the data from cache or storage
+        $sql = ($this->cache instanceof Carbon)
+            ? $this->getDataFromCache($dateType, $type)
+            : $this->getDataFromStorage($dateType, $type);
+
         return collect($total)
-            ->map(function($value, $date) use($collection, $type) {
+            ->map(function($value, $date) use($sql, $dateType) {
                 //Search the days with results
-                return $collection->where($type, $date)->first()->total ?? 0;
+                return $sql->where($dateType, $date)->first()->total ?? 0;
             })
             ->toArray();
     }
