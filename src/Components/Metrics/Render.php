@@ -67,7 +67,7 @@ class Render {
         //Set the chartist object
         $varChartist = $this->graphSelector($this->type, $key);
 
-        return sprintf('<script>%s%s</script>', $varObject, $varChartist);
+        return sprintf('%s%s', $varObject, $varChartist);
     }
 
     /*

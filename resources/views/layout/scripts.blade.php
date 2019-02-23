@@ -6,7 +6,10 @@
     {{-- Load the javascript lib --}}
     {!! Metric::assets('js') !!}
     {{-- Create a container for each metric item --}}
-    @stack('javascript-metrics')
+    <script>
+        {{-- Add the items --}}
+        @stack('javascript-metrics')
+    </script>
 @endif
 
 {{-- User custom javascript --}}
