@@ -204,6 +204,18 @@ trait DatesForHumans {
      *
      * @return self
      */
+    public function lastYear() : self
+    {
+        $this->lastYears(1);
+
+        return $this;
+    }
+
+    /**
+     * Set list of years for the query
+     *
+     * @return self
+     */
     public function lastYears(int $years) : self
     {
         $this->startDate = Carbon::now()->subYear($years)->startOfDay();
