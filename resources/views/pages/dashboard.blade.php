@@ -3,15 +3,24 @@
 @section('content')
     <div class="shadow-md bg-white rounded my-8 mx-6 p-4">
 
-        <a href="#modal1" class="button">Open Modal</a>
+        <a href="#modal-delete" class="button">Delete</a>
 
-        <div id="modal1" class="modal absolute pin-t pin-r pin-b pin-l invisible opacity-0">
-            {{-- This link will close the modal when clicking outside --}}
-            <a class="absolute w-full h-full cursor-default" href="#"></a>
-            {{-- Load the modal container --}}
-            <div class="relative w-1/3 mt-20 mx-auto p-8 shadow-md rounded bg-white">
-                Modal
-            </div>
-        </div>
+        @component('belich::components.modal')
+            @slot('containerID', 'modal-delete')
+            @slot('background', 'red')
+            @slot('color', 'white')
+            @slot('title', icon('trash', 'Delete fields'))
+            @slot('content')
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            @endslot
+            @slot('footer')
+                <button class="btn btn-primary">Send</button>
+            @endslot
+        @endcomponent
     </div>
 @endsection

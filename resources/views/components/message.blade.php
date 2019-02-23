@@ -1,9 +1,20 @@
-<div class="bg-{{ $message_color }}-lightest shadow-md rounded-lg opacity-75 pt-4 pl-6 pr-8 pb-6 relative w-1/3" role="alert">
-    <p class="text-lg text-{{ $message_color }}-darker border-b border-{{ $message_color }}-lighter capitalize font-bold mb-3 pb-2">{!! icon($message_icon, $message_header) !!}</p>
-    @foreach($message_bag as $message)
+<div id="menssage-alert" class="relative rounded-lg pt-4 pl-6 pr-8 pb-6 w-1/3 bg-{{ $color }}-lightest shadow-md fade-out" role="alert">
+    <p class="text-lg text-{{ $color }}-darker border-b border-{{ $color }}-lighter capitalize font-bold mb-3 pb-2">{!! icon($icon, $header) !!}</p>
+    @foreach($messages as $message)
         <li class="mb-2 text-black">{{ $message }}</li>
     @endforeach
-    <span class="absolute pin-t pin-b pin-r px-4 py-3 cursor-pointer">
+    <a href="#" class="absolute pin-t pin-b pin-r px-4 py-3 cursor-pointer text-black" onclick="closeMenssage();">
         @icon('times')
-    </span>
+    </a>
 </div>
+<script>
+    //Close alert with fadeOut
+    function closeMenssage(container) {
+        //Set container
+        var container = document.getElementById('menssage-alert');
+        //Set the opacity to 0
+        container.style.opacity = '0';
+        //Hide the div after 500ms
+        setTimeout(function() {container.style.display = 'none';}, 500);
+    }
+</script>
