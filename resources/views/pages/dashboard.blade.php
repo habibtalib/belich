@@ -13,6 +13,5 @@
                 Modal
             </div>
         </div>
-
     </div>
 @endsection

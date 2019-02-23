@@ -3,10 +3,11 @@
 namespace Daguilarm\Belich\App\Http\Middleware;
 
 use Closure;
+use Daguilarm\Belich\Facades\Belich;
 
 /**
  * @author: https://github.com/nckg/laravel-minify-html
- * It's not server as a package for simplyfy integration with the config.php
+ * It is not integrated as a package due to its simplicity (but it is a real awesome!)
  */
 class MinifyMiddleware
 {
@@ -35,7 +36,17 @@ class MinifyMiddleware
         /** @var Response $response */
         $response = $next($request);
 
-        if (config('belich.minifyHtml') && $this->isHtml($response)) {
+        if (config('belich.minifyHtml.enable') && $this->isHtml($response)) {
+            //Filter by exclusionary action
+            if(in_array(Belich::action(), config('belich.minifyHtml.except.actions'))) {
+                return $response;
+            }
+            //Filter by url path
+            if(in_array(trim($request->path(), '/'), config('belich.minifyHtml.except.paths'))) {
+                return $response;
+            }
+
+            //Minify
             $response->setContent($this->html($response->getContent()));
         }
 

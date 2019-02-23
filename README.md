@@ -31,6 +31,7 @@ Project in development. Still in the early stages...help will be great!!!
     + dashboard.
     + ...
 - Cache.
+- Minify HTML (with filters by pages and Controller actions): https://github.com/nckg/laravel-minify-html
 - Metrics using: https://gionkunz.github.io/chartist-js/index.html a lightweight library for charts.
 - Simple tools for Metrics:
 

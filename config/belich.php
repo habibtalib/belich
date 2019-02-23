@@ -76,7 +76,16 @@ return [
     |--------------------------------------------------------------------------
     |
     | Belich will minify the html before blade create the cache for the views
-    |
+    | The allowed actions for the except are: dashboard, index, edit, create, show,...
+    | For the paths, use only the $request->path().
+    | For example, if the current url is: https://url.com/dashboard/2/users/ the correct path for this url will be: dashboard/2/users
+    | Don't worry about slashes... there is no different between dashboard/2/users or /dashboard/2/users/ for Belich!
     */
-    'minifyHtml' => true,
+    'minifyHtml' => [
+        'enable'    => true,
+        'except'  => [
+            'actions' => [], //['index', 'show']
+            'paths'   => [], //['dashboard/', 'dashboard/users/create']
+        ],
+    ],
 ];
