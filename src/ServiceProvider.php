@@ -39,6 +39,7 @@ class ServiceProvider extends Provider {
         // Middleware
         $this->app['router']->pushMiddlewareToGroup('https', \Daguilarm\Belich\App\Http\Middleware\HttpsMiddleware::class);
         $this->app['router']->pushMiddlewareToGroup('belich', \Daguilarm\Belich\App\Http\Middleware\BelichMiddleware::class);
+        $this->app['router']->pushMiddlewareToGroup('minify', \Daguilarm\Belich\App\Http\Middleware\MinifyMiddleware::class);
 
         // Load the helper functions
         foreach (glob(__DIR__ . '/app/Http/Helpers/*.php') as $file) {

@@ -69,4 +69,14 @@ return [
     |
     */
     'allowedUrlParameters' => [],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Minify html
+    |--------------------------------------------------------------------------
+    |
+    | Belich will minify the html before blade create the cache for the views
+    |
+    */
+    'minifyHtml' => true,
 ];

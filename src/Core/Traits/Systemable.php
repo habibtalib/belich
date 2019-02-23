@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Request;
 trait Systemable {
 
     /** @var array */
-    private $defaultMiddleware = ['https', 'web', 'auth', 'belich'];
+    private $defaultMiddleware = ['https', 'web', 'auth', 'belich', 'minify'];
 
     /*
     |--------------------------------------------------------------------------
@@ -22,7 +22,10 @@ trait Systemable {
      */
     public static function middleware() : array
     {
-        return array_merge(config('belich.middleware'), ['belich']) ?? $this->defaultMiddleware;
+        //This middleware need to be always available
+        $baseMiddleware = ['belich', 'minify'];
+
+        return array_merge(config('belich.middleware'), $baseMiddleware) ?? $this->defaultMiddleware;
     }
 
     /**
