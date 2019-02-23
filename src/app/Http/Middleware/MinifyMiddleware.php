@@ -15,7 +15,8 @@ class MinifyMiddleware
         // Remove HTML comments except IE conditions
         '/<!--(?!\s*(?:\[if [^\]]+]|<!|>))(?:(?!-->).)*-->/s' => '',
         // Remove comments in the form /* */
-        '/(?<!\S)\/\/\s*[^\r\n]*/' => '',
+        // Update from https://manas.tungare.name/software/css-compression-in-php
+        '/(?:(?:\/\*(?:[^*]|(?:\*+[^*\/]))*\*+\/)|(?:(?<!\:|\\\|\'|\")\/\/.*))/' => '',
         // Shorten multiple white spaces
         '/\s{2,}/' => ' ',
         // Remove whitespaces between HTML tags
