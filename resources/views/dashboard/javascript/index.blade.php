@@ -19,13 +19,15 @@
     */
     function resetSearch()
     {
+        //Reset value
         document.getElementById('_search').value = '';
+        //Hide icon
         document.getElementById('icon-search-reset').classList.add('hidden');
     }
 
     /*
     Section: Search
-    Description: show the reset icon when the input is not empty
+    Description: Show the reset icon when the input is not empty
     */
     function showResetSearch()
     {
@@ -39,8 +41,11 @@
     Description: Select all the checked checkboxes
     */
     function getCheckboxSelected() {
+        //Reset the elements list
         var listOfCheckedElements = [];
+        //Get all the checked elements
         var elements = document.querySelector('#belich-index-table').querySelectorAll('input[type="checkbox"]');
+        //Add all the elements to the list
         for (var i = 0; i < elements.length; i++) {
             if(elements[i].checked) {
                 listOfCheckedElements[i] = elements[i].value;
@@ -66,7 +71,7 @@
     function deleteSelectedFields(fieldID) {
         //Add selected values
         document.getElementById(fieldID).value = getCheckboxSelected();
-        //Submit form and delete values
+        //Submit form with the items to be deleted
         document.getElementById('belich-form-delete-selected').submit();
     }
 </script>
