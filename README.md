@@ -73,7 +73,7 @@ public function calculate(Request $request) : array
 
 #### With stats 
 
-![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/stats.png)
+![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/stats1.png)
 
 #### And of course, with sidebar...
 
