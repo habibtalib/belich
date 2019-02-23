@@ -70,7 +70,7 @@ trait Resourceable {
             return $resourceId;
         }
 
-        return abort(404);
+        throw new \InvalidArgumentException('The resource ID is invalid.');
     }
 
     /**

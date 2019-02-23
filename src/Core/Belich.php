@@ -132,9 +132,10 @@ class Belich {
     */
     public function navbar()
     {
-        return class_exists('\App\Belich\Navbar')
-            ? new Navbar($this->resourcesAll())
-            : abort(404, trans('belich::exceptions.no_class', ['class' => '\App\Belich\Navbar']));
+       if(class_exists('\App\Belich\Navbar')) {
+            return new Navbar($this->resourcesAll());
+       }
+       throw new \InvalidArgumentException('The \App\Belich\Navbar::class does not exist. Please restore the file to its folder or install the package again.');
     }
 
     /**
@@ -144,8 +145,9 @@ class Belich {
      */
     public function sidebar()
     {
-        return class_exists('\App\Belich\Sidebar')
-            ? new Sidebar($this->resourcesAll())
-            : abort(404, trans('belich::exceptions.no_class', ['class' => '\App\Belich\Sidebar']));
+        if(class_exists('\App\Belich\Sidebar')) {
+            return new Sidebar($this->resourcesAll());
+        }
+        throw new \InvalidArgumentException('The \App\Belich\Sidebar::class does not exist. Please restore the file to its folder or install the package again.');
     }
 }

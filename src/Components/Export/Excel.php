@@ -25,7 +25,11 @@ class Excel {
          * @Driver: FastExcel
          * @Github: https://github.com/rap2hpoutre/fast-excel
          */
-        return new \Daguilarm\Belich\Components\Export\Drivers\FastExcelDriver;
+        if(static::getDriver() === 'fast-excel') {
+            return new \Daguilarm\Belich\Components\Export\Drivers\FastExcelDriver;
+        }
+
+        throw new \InvalidArgumentException('Invalid Download driver. Please check your config file, and select a correct one.');
     }
 
     /**

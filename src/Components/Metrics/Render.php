@@ -96,7 +96,11 @@ class Render {
             return $this->pieGraph($key);
         }
 
-        return $this->lineGraph($key);
+        if($type === 'line') {
+            return $this->lineGraph($key);
+        }
+
+        throw new \InvalidArgumentException('Invalid Chart type. Please, select a valid one.');
     }
 
     /*
