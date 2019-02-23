@@ -30,6 +30,7 @@ Project in development. Still in the early stages...help will be great!!!
     + breadcrumb.
     + dashboard.
     + ...
+- Cache.
 - Metrics using: https://gionkunz.github.io/chartist-js/index.html a lightweight library for charts.
 - Simple tools for Metrics:
 
@@ -59,6 +60,7 @@ public function labels(Request $request) : array
 public function calculate(Request $request) : array
 {
     return Connection::make(User::class)
+        ->cacheInMinutes(10, $this->uriKey())
         ->thisWeek()
         ->getTotalByDay();
 }
