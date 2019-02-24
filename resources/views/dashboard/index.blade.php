@@ -5,7 +5,9 @@
     @include('belich::partials.navigation.breadcrumbs')
 
     {{-- Metrics --}}
-    {!! Metric::render($request) !!}
+    <div class="{{ hideMetricsForScreens($request) }}">
+        {!! Metric::render($request) !!}
+    </div>
 
     {{-- Search container --}}
     <div id="belich-table-search" class="flex items-center p-4 pr-6 shadow-md bg-grey-lightest w-full">
@@ -41,7 +43,7 @@
     {{-- End search container --}}
 
     {{-- Start / Table --}}
-    <table class="table" id="belich-index-table">
+    <table class="table table-auto" id="belich-index-table">
         <thead>
             <tr>
                 {{-- Checkboxes --}}

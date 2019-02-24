@@ -27,6 +27,9 @@ abstract class Resources {
     /** @var string */
     public static $group;
 
+    /** @var array */
+    public static $hideMetricsForScreens;
+
     /** @var string */
     public static $icon;
 

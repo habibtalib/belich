@@ -21,15 +21,16 @@ trait Valuable {
         list($data, $fields) = $this->getDefaultValues($belich, $request);
 
         $request->request->add([
-            'autorizedModel' => $belich::getModel(),
-            'actions'        => data_get($data, 'values.actions'),
-            'breadcrumbs'    => data_get($data, 'values.breadcrumbs'),
-            'cards'          => data_get($data, 'values.cards'),
-            'fields'         => $fields,
-            'metrics'        => data_get($data, 'values.metrics'),
-            'name'           => data_get($data, 'name'),
-            'results'        => data_get($data, 'results'),
-            'total'          => Belich::count($fields, 2),
+            'autorizedModel'        => $belich::getModel(),
+            'actions'               => data_get($data, 'values.actions'),
+            'breadcrumbs'           => data_get($data, 'values.breadcrumbs'),
+            'cards'                 => data_get($data, 'values.cards'),
+            'fields'                => $fields,
+            'hideMetricsForScreens' => data_get($data, 'values.hideMetricsForScreens'),
+            'metrics'               => data_get($data, 'values.metrics'),
+            'name'                  => data_get($data, 'name'),
+            'results'               => data_get($data, 'results'),
+            'total'                 => Belich::count($fields, 2),
         ]);
 
         return $request;

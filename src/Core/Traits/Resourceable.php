@@ -241,13 +241,14 @@ trait Resourceable {
 
         //Set the basic values for navigation
         $resource = collect([
-            'class'               => $className,
-            'displayInNavigation' => $displayInNavigation,
-            'group'               => $class::$group,
-            'icon'                => $class::$icon ?? 'angle-right',
-            'label'               => $class::$label ?? Str::title($className),
-            'pluralLabel'         => $class::$pluralLabel ?? Str::plural(Str::title($className)),
-            'resource'            => Str::plural(Str::lower($className)),
+            'class'                 => $className,
+            'displayInNavigation'   => $displayInNavigation,
+            'group'                 => $class::$group,
+            'icon'                  => $class::$icon ?? 'angle-right',
+            'hideMetricsForScreens' => $class::$hideMetricsForScreens,
+            'label'                 => $class::$label ?? Str::title($className),
+            'pluralLabel'           => $class::$pluralLabel ?? Str::plural(Str::title($className)),
+            'resource'              => Str::plural(Str::lower($className)),
         ]);
 
         //Advanced values

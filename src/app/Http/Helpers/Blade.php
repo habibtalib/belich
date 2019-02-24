@@ -15,17 +15,20 @@ use Illuminate\Http\Request;
  * @param object $request
  * @return bool
  */
-if (!function_exists('hideFromScreens')) {
-    function hideFromScreens(object $request)
+if (!function_exists('hideMetricsForScreens')) {
+    function hideMetricsForScreens(object $request)
     {
-        $values = optional($request)->hideFromScreens;
+        $values  = optional($request)->hideMetricsForScreens;
+        $screens = ['sm', 'md', 'lg', 'xl'];
 
         if(!empty($values) && is_array($values)) {
-            return collect($values)
-                ->map(function($item) {
-                    return sprintf('%s:hidden', $item);
+            return collect($screens)
+                ->map(function($size) use ($values) {
+                    $status = in_array($size, $values) ? 'hidden' : 'block';
+                    return sprintf('%s:%s', $size, $status);
                 })
                 ->filter()
+                ->prepend('hidden')
                 ->implode(' ');
         }
     }
