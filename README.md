@@ -79,11 +79,9 @@ At the moment, Belich only has this type of charts:
 
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/metrics/graph-types.png)
 
-The pie charts is working, but is not ready yet...
+The pie charts are pretty advanced, but they are not ready yet...
 
-![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/metrics/graph-pie.png)
-
-Due to Chartist don't have a great support for pie charts, I have to do all the work so...
+![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/metrics/graph-pie-labels.png)
 
 #### And of course, with sidebar...
 
