@@ -37,6 +37,10 @@ class MinifyMiddleware
         '} ' => '}',
     ];
 
+    private $exceptedActions = [
+        'download'
+    ];
+
     /**
      * Handle an incoming request.
      *
@@ -51,7 +55,7 @@ class MinifyMiddleware
 
         if (config('belich.minifyHtml.enable') && $this->isHtml($response)) {
             //Filter by exclusionary action
-            if(in_array(Belich::action(), config('belich.minifyHtml.except.actions'))) {
+            if(in_array(Belich::action(), $this->exceptedActions())) {
                 return $response;
             }
             //Filter by url path
@@ -64,6 +68,19 @@ class MinifyMiddleware
         }
 
         return $response;
+    }
+
+    /**
+    * Filter Controller actions to be excluded from minify
+    *
+    * @return array
+    */
+    private function exceptedActions() : array
+    {
+        return array_merge(
+            $this->exceptedActions,
+            config('belich.minifyHtml.except.actions')
+        );
     }
 
      /**
