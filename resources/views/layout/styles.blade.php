@@ -8,9 +8,4 @@
 @hasMetrics($request ?? null)
     {{-- Load the css lib --}}
     {!! Metric::assets('css') !!}
-
-    <style>
-        {{-- Create a container for each metric css configuration --}}
-        @stack('css-metrics')
-    </style>
 @endif

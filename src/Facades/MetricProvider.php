@@ -35,7 +35,7 @@ class MetricProvider extends ServiceProvider
          * @return string
          */
         Blade::if('hasMetricsLegends', function ($request) {
-            if($request->legend_h || $request->legend_v) {
+            if(($request->legend_h || $request->legend_v) && $request->type !== 'pie') {
                 return true;
             }
 
