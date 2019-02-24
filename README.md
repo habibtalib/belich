@@ -81,7 +81,7 @@ At the moment, Belich only has this type of charts:
 
 The pie charts are pretty advanced, but they are not ready yet...
 
-![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/metrics/graph-pie-labels.png)
+![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/metrics/graph-pie.png)
 
 #### And of course, with sidebar...
 
