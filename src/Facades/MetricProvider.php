@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Facades;
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
@@ -20,12 +21,8 @@ class MetricProvider extends ServiceProvider
          *
          * @return string
          */
-        Blade::if('hasMetrics', function ($request) {
-            if(!empty($request->metrics)) {
-                return count($request->metrics) > 0;
-            }
-
-            return false;
+        Blade::if('hasMetrics', function (object $request) {
+            return hasMetric($request);
         });
 
         /**
@@ -35,11 +32,7 @@ class MetricProvider extends ServiceProvider
          * @return string
          */
         Blade::if('hasMetricsLegends', function ($request) {
-            if(($request->legend_h || $request->legend_v) && $request->type !== 'pie') {
-                return true;
-            }
-
-            return false;
+            return hasMetricsLegends($request);
         });
     }
 

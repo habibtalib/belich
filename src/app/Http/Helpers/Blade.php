@@ -1,10 +1,75 @@
 <?php
 
 use Daguilarm\Belich\Components\Metrics\Graph;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
-| Helper for the blade Metrics. Components\metrics.blade.php
+| Helper for the blade. Hide content base on screen size
+|--------------------------------------------------------------------------
+*/
+
+/**
+ * Hide content base on screen size
+ *
+ * @param object $request
+ * @return bool
+ */
+if (!function_exists('hideFromScreens')) {
+    function hideFromScreens(object $request)
+    {
+        $values = optional($request)->hideFromScreens;
+
+        if(!empty($values) && is_array($values)) {
+            return collect($values)
+                ->map(function($item) {
+                    return sprintf('%s:hidden', $item);
+                })
+                ->filter()
+                ->implode(' ');
+        }
+    }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Helper for the blade Metrics. Components\metrics\legend.blade.php
+|--------------------------------------------------------------------------
+*/
+
+/**
+ * Determine if the view has a metric chart
+ *
+ * @param object $request
+ * @return bool
+ */
+if (!function_exists('hasMetric')) {
+    function hasMetric(object $request) : bool
+    {
+        return !empty($request->metrics)
+            ? count($request->metrics) > 0
+            : false;
+    }
+}
+
+/**
+ * Determine if the view has a metric legend
+ *
+ * @param object $request
+ * @return bool
+ */
+if (!function_exists('hasMetricsLegends')) {
+    function hasMetricsLegends(object $request) : bool
+    {
+        return (($request->legend_h || $request->legend_v) && $request->type !== 'pie')
+            ? true
+            : false;
+    }
+}
+
+/*
+|--------------------------------------------------------------------------
+| Helper for the blade Metrics. Components\metrics\chart.blade.php
 |--------------------------------------------------------------------------
 */
 

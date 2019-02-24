@@ -29,7 +29,7 @@ class Render {
         //Render the metric view
         $metrics = collect($request->metrics)
             ->map(function($metric) {
-                return view('belich::components.metrics', compact('metric'))->render();
+                return view('belich::components.metrics.chart', compact('metric'))->render();
             });
 
         return $this->hasResults($metrics);
