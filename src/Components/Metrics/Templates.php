@@ -122,8 +122,8 @@ trait Templates {
         return <<<EOT
             {
                 labelInterpolationFnc: function(value) {
-                    var series = data_" . $key . ".series.map(Number);
-                    var labels = data_" . $key . ".labels;
+                    var series = data_{$key}.series.map(Number);
+                    var labels = data_{$key}.labels;
                     var position = labels.indexOf(value);
                     var total = series.map(Number).reduce((partial_sum, a) => partial_sum + a);
                     var currentValue = series[position];
