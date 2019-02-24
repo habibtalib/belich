@@ -75,6 +75,8 @@ public function calculate(Request $request) : array
 
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/stats1.png)
 
+At the moment, Belich only has this type of metrics:
+
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/metrics/graph-types.png)
 
 #### And of course, with sidebar...
