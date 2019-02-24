@@ -12,7 +12,14 @@ La primera versión de Belich, utilizaba [Jquery](https://jquery.com/), pero sol
 
 ## Librerías y código utilizado
 
+#### Packages
 - [Html Menu Generator for Laravel](https://github.com/spatie/laravel-menu)
 - [FastExcel](https://github.com/rap2hpoutre/fast-excel)
-- [Mustafa Ehsan](http://mustafaehsan.com/2017/tailwind-css-building-a-login-page/)
 - [Nick Goris](https://github.com/nckg/laravel-minify-html)
+
+#### Charts
+- [ChartistJS](https://github.com/gionkunz/chartist-js)
+- [CodeYellowBV](https://github.com/CodeYellowBV/chartist-plugin-legend)
+
+#### HTML & CSS
+- [Mustafa Ehsan](http://mustafaehsan.com/2017/tailwind-css-building-a-login-page/)
