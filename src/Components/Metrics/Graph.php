@@ -88,6 +88,11 @@ abstract class Graph {
     abstract function name(Request $request);
 
     /**
+     * Set the urikey
+     */
+    abstract function urikey();
+
+    /**
      * Set the default line color
      */
     private function color()
