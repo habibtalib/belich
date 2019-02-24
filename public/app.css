@@ -160,6 +160,15 @@ a {
   background-color: #2779bd;
 }
 
+.btn-success {
+  background-color: #38c172;
+  color: #fff;
+}
+
+.btn-success:hover {
+  background-color: #1f9d55;
+}
+
 .btn-danger {
   background-color: #e3342f;
   color: #fff;
@@ -411,6 +420,10 @@ form.form-container > .form-group option:disabled {
 .modal:target {
   visibility: visible;
   opacity: 1;
+}
+
+.close {
+  cursor: pointer;
 }
 /* Base on https://codepen.io/andornagy/pen/xhiJH */
 

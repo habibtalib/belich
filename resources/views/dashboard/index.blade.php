@@ -29,11 +29,12 @@
             {{-- Options --}}
             @include('belich::partials.buttons.options')
 
-            {{-- Export --}}
-            @includeWhen(Belich::downloable(), 'belich::partials.buttons.exports')
+            {{-- Show or hide base on selected items --}}
+                {{-- Export --}}
+                @includeWhen(Belich::downloable(), 'belich::partials.buttons.exports')
 
-            {{-- Delete --}}
-            @include('belich::partials.buttons.delete')
+                {{-- Delete --}}
+                @include('belich::partials.buttons.delete')
         </div>
         {{-- End right container --}}
     </div>
@@ -62,7 +63,7 @@
             {{-- Get the results --}}
             @forelse($request->results as $result)
                 <tr>
-                    <td><input type="checkbox" name="item_selection[]" value="{{ $result->id }}" class="belich-form-index-selector"></td>
+                    <td><input type="checkbox" name="item_selection[]" value="{{ $result->id }}" class="form-index-selector" onclick="checkForSelectedFields();"></td>
                     {{-- <td> --}}
                         @foreach($request->fields as $field)
                             {{-- Resolve the values and create the <td></td> --}}

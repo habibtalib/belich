@@ -21,6 +21,14 @@
         @apply bg-blue-dark;
     }
 
+    .btn-success {
+        @apply bg-green text-white;
+    }
+
+    .btn-success:hover {
+        @apply bg-green-dark;
+    }
+
     .btn-danger {
         @apply bg-red text-white;
     }

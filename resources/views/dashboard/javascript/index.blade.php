@@ -5,12 +5,24 @@
     */
     function checkAll(selector)
     {
-        var checkboxes = document.getElementById('belich-index-table').getElementsByTagName('input');
+        var checkboxes = document.querySelectorAll('input[type="checkbox"].form-index-selector');
         for (var i=0; i < checkboxes.length; i++)  {
             if (checkboxes[i].type == 'checkbox')   {
                 checkboxes[i].checked = (selector.checked === true) ? true : false;
             }
         }
+        //Toogle buttons
+        checkForSelectedFields();
+    }
+
+    /*
+    Section: Table
+    Description: Check if there is a field selected
+    */
+    function checkForSelectedFields()
+    {
+        //Toogle buttons
+        toggleOnSelection('.button-selected', document.querySelectorAll('input[type="checkbox"]:checked.form-index-selector'));
     }
 
     /*
@@ -22,7 +34,7 @@
         //Reset value
         document.getElementById('_search').value = '';
         //Hide icon
-        document.getElementById('icon-search-reset').classList.add('hidden');
+        onSelection('#icon-search-reset', 'hide');
     }
 
     /*
@@ -32,7 +44,7 @@
     function showResetSearch()
     {
         if(document.getElementById('_search').value.length > 0) {
-            return document.getElementById('icon-search-reset').classList.remove('hidden');
+            onSelection('#icon-search-reset', 'show');
         }
     }
 
@@ -46,9 +58,9 @@
         //Get all the checked elements
         var elements = document.querySelector('#belich-index-table').querySelectorAll('input[type="checkbox"]');
         //Add all the elements to the list
-        for (var i = 0; i < elements.length; i++) {
-            if(elements[i].checked) {
-                listOfCheckedElements[i] = elements[i].value;
+        for (var i = 0; i < tableSelectors.length; i++) {
+            if(tableSelectors[i].checked) {
+                listOfCheckedElements[i] = tableSelectors[i].value;
             }
         }
         return listOfCheckedElements;
@@ -69,9 +81,38 @@
     Methods: getCheckboxSelected()
     */
     function deleteSelectedFields(fieldID) {
+        //Get the selected items
+        var items = getCheckboxSelected();
         //Add selected values
-        document.getElementById(fieldID).value = getCheckboxSelected();
+        document.getElementById(fieldID).value = items;
+
+        if(items.length <= 0) {
+            return false;
+        }
+
         //Submit form with the items to be deleted
-        document.getElementById('belich-form-delete-selected').submit();
+        //document.getElementById('belich-form-delete-selected').submit();
+    }
+
+    /*
+    Section: Global
+    Description: Toggle container base on item selection
+    */
+    function toggleOnSelection(selector, items) {
+        (items.length <= 0) ? onSelection(selector, 'hide') : onSelection(selector, 'show');
+    }
+
+    /*
+    Section: Global
+    Description: Show or hide container base on item selection
+    */
+    function onSelection(selector, type)
+    {
+        var elements = document.querySelectorAll(selector);
+
+        //Show each element
+        for (var i = 0; i < elements.length; i++) {
+            (type === 'hide') ? elements[i].classList.add('hidden') : elements[i].classList.remove('hidden');
+        }
     }
 </script>
