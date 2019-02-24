@@ -75,15 +75,15 @@ public function calculate(Request $request) : array
 
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/stats1.png)
 
-At the moment, Belich only has this type of metrics:
+At the moment, Belich only has this type of charts:
 
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/metrics/graph-types.png)
 
-The pie graph is working, but is not ready yet...
+The pie charts is working, but is not ready yet...
 
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/metrics/graph-pie.png)
 
-Due to Chartist don't have a great support for pie graph, I have to do all the work so...
+Due to Chartist don't have a great support for pie charts, I have to do all the work so...
 
 #### And of course, with sidebar...
 
