@@ -34,6 +34,17 @@ class Labels {
     }
 
     /**
+     * Set an array with all the days of the week (abbreviations)
+     *
+     * @param  string  $filter
+     * @return array
+     */
+    public static function daysOfTheWeekMin(string $filter = '') : array
+    {
+        return static::get($filter, 'daysOfTheWeekMin');
+    }
+
+    /**
      * Set an array with all the months of the year
      *
      * @param  string  $filter
@@ -67,7 +78,7 @@ class Labels {
     }
 
     /**
-     * Set an array with all the months of the year
+     * Set an array with all the months of the year (abbreviations)
      *
      * @param  string  $filter
      * @return array
