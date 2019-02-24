@@ -22,6 +22,9 @@ class Connection {
     /** @var object */
     public $endDate;
 
+    /** @var int */
+    public $take;
+
     /** @var string */
     private $dateTable = 'created_at';
 
@@ -76,6 +79,19 @@ class Connection {
     }
 
     /**
+     * Get only a number of results from storage
+     *
+     * @param string $take
+     * @return string
+     */
+    public function take(int $take) : self
+    {
+        $this->take = $take;
+
+        return $this;
+    }
+
+    /**
      * Initialize the connection
      */
     public static function make($model)
@@ -99,6 +115,9 @@ class Connection {
             ])
             ->groupBy($dateType)
             ->orderBy($dateType, 'DESC')
+            ->when(is_numeric($this->take), function($query) {
+                return $query->take($this->take);
+            })
             ->get();
     }
 

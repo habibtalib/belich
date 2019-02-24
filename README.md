@@ -79,6 +79,10 @@ At the moment, Belich only has this type of metrics:
 
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/metrics/graph-types.png)
 
+The pie graph is working, but is not ready yet...
+
+![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/metrics/graph-pie.png)
+
 #### And of course, with sidebar...
 
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/sidebar.png)
