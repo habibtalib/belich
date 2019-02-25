@@ -9,6 +9,10 @@
         {!! Chart::render($request) !!}
     </div>
 
+    <div class="border border-red my-4">
+        {!! Component::make('card') !!}
+    </div>
+
     {{-- Search container --}}
     <div id="belich-table-search" class="flex items-center p-4 pr-6 shadow-md bg-grey-lightest w-full">
         <div class="icon-search w-full">
