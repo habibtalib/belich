@@ -1,28 +1,55 @@
 # Etiquetas para gráficas
 
-Belich incluye una herramienta para generar etiquetas en las gráficas, formateándolas a partir de archivos de idioma.
+Belich incluye una serie de etiquetas predeterminadas y basadas en la localización de Laravel, y que por tanto, pueden ser traducidas.
 
-El archivo de idioma, se encuentra en `App\resources\langs\vendor\belich\en\metrics.php`
+Este archivo se encuentra en:
 
-La forma de utilizar esta herramienta, es la siguiente:
+~~~
+\resources\lang\vendor\belich\en\metrics.php
+~~~
+
+Y por tanto, puede crearse el archivo:
+
+~~~
+\resources\lang\vendor\belich\es\metrics.php
+~~~
+
+Con su respectiva traducción al Castellano.
+
+A modo de ejemplo, la utilización de este helper, sería de la siguiente forma:
 
 ~~~
 use Daguilarm\Belich\Components\Metrics\Labels;
 
 /**
- * Get the values from storage
+ * Set the displayable labels
  *
  * @return string
  */
 public function labels(Request $request) : array
 {
-    return Labels::daysOfTheMonth();
+    return Labels::daysOfTheWeek();
 }
 ~~~
 
->Recuerde que nos encontramos en un archivo de gráficas, que debe estar situado en `\App\Belich\Metrics`
+Que devolvería un array con:
 
-Los métodos soportados son:
+~~~
+Array
+(
+    [0] => 'monday'
+    [1] => 'tuesday'
+    [2] => 'wednesday'
+    [3] => 'thursday'
+    [4] => 'friday'
+    [5] => 'saturday'
+    [6] => 'sunday'
+)
+~~~
+
+El cual puede ser utilizado directamente por las gráficas.
+
+## Métodos soportados
 
 - **countriesOfTheWorld**: Devuelve un array con todos los nombres de los paises del mundo.
 - **daysOfTheWeek**: Devuelve un array con los nombres de los días de la semana.

@@ -1,7 +1,2 @@
-# Etiquetas para gráficas
+# Métodos de cálculo para gráficas
 
-
-
-~~~
-php artisan belich:metrics MetricName
-~~~

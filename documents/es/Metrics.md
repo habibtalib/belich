@@ -202,6 +202,8 @@ Pueden ser personalizadas por el usuario (recordando siempre que debe devolverse
 A continuación se puede ver un ejemplo:
 
 ~~~
+use Daguilarm\Belich\Components\Metrics\Labels;
+
 /**
  * Set the displayable labels
  *
