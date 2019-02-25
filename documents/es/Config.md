@@ -128,3 +128,7 @@ Los valores soportados son:
 - **md**: a partir de 768px.
 - **lg**: a partir de 992px.
 - **xl**: a partir de 1200px.
+
+>Esta misma opción, también esta disponible en cada recurso, por lo que se considerará el valor de este archivo como global, y el del recurso para particular. En caso de que ambos estén activos, prevalecerá el valor del recurso.
+
+
