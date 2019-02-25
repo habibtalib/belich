@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
-class MetricProvider extends ServiceProvider
+class ChartProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -43,7 +43,7 @@ class MetricProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('Metric',function()
+        $this->app->singleton('Chart',function()
         {
             return new \Daguilarm\Belich\Components\Metrics\Render;
         });

@@ -4,7 +4,7 @@
 {{-- Javascript metrics --}}
 @hasMetrics($request ?? null)
     {{-- Load the javascript lib --}}
-    {!! Metric::assets('js') !!}
+    {!! Chart::assets('js') !!}
     {{-- Create a container for each metric item --}}
     <script src="{!! asset('./vendor/belich/charts.min.js') !!}"></script>
     <script>

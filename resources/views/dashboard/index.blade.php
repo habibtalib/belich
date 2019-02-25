@@ -6,7 +6,7 @@
 
     {{-- Metrics --}}
     <div class="{{ hideMetricsForScreens($request) }}">
-        {!! Metric::render($request) !!}
+        {!! Chart::render($request) !!}
     </div>
 
     {{-- Search container --}}

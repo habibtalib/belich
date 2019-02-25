@@ -7,5 +7,5 @@
 {{-- Css metrics --}}
 @hasMetrics($request ?? null)
     {{-- Load the css lib --}}
-    {!! Metric::assets('css') !!}
+    {!! Chart::assets('css') !!}
 @endif

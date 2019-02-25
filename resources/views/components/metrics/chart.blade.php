@@ -15,7 +15,7 @@
 
 @prepend('javascript-metrics')
     {!!
-        Metric::uriKey('hellow')
+        Chart::uriKey('hellow')
             ->uriKey($metric->uriKey)
             ->labels($metric->labels)
             //Pie charts has not support for multidimensional arrays
@@ -28,5 +28,5 @@
 
 @prepend('css-metrics')
     {{-- Load the custom css styles for the lib --}}
-    {!! Metric::css($metric) !!}
+    {!! Chart::css($metric) !!}
 @endprepend

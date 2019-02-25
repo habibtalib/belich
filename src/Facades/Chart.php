@@ -4,10 +4,10 @@ namespace Daguilarm\Belich\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class Metric extends Facade {
+class Chart extends Facade {
 
     protected static function getFacadeAccessor()
     {
-        return 'Metric';
+        return 'Chart';
     }
 }
