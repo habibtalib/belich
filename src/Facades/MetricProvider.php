@@ -21,7 +21,7 @@ class MetricProvider extends ServiceProvider
          *
          * @return string
          */
-        Blade::if('hasMetrics', function (object $request) {
+        Blade::if('hasMetrics', function ($request) {
             return hasMetric($request);
         });
 

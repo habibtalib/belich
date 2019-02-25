@@ -47,9 +47,9 @@ if (!function_exists('hideMetricsForScreens')) {
  * @return bool
  */
 if (!function_exists('hasMetric')) {
-    function hasMetric(object $request) : bool
+    function hasMetric($request) : bool
     {
-        return !empty($request->metrics)
+        return optional($request)->metrics
             ? count($request->metrics) > 0
             : false;
     }
