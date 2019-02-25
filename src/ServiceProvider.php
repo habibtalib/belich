@@ -118,7 +118,7 @@ class ServiceProvider extends Provider {
         //Publish the belich directory and the dashboard constructor
         $this->publishes([
             //Set the resources
-            __DIR__ . '/../routes/Routes.php' => base_path('app/Belich/Routes.php'),
+            __DIR__ . '/stubs/routes.stub' => base_path('app/Belich/Routes.php'),
         ]);
 
         //Publish the navigation
