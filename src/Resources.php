@@ -59,6 +59,22 @@ abstract class Resources {
      */
     abstract public function fields(Request $request);
 
+    /**
+     * Set the custom cards
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return Illuminate\Support\Collection
+     */
+    abstract public static function cards(Request $request);
+
+    /**
+     * Set the custom metrics cards
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return Illuminate\Support\Collection
+     */
+    abstract public static function metrics(Request $request);
+
     /*
     |--------------------------------------------------------------------------
     | Methods

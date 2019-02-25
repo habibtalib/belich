@@ -18,7 +18,7 @@ use Illuminate\Http\Request;
 if (!function_exists('hideMetricsForScreens')) {
     function hideMetricsForScreens(object $request)
     {
-        $values  = optional($request)->hideMetricsForScreens;
+        $values  = optional($request)->hideMetricsForScreens ?? config('belich.hideMetricsForScreens') ?? null;
         $screens = ['sm', 'md', 'lg', 'xl'];
 
         if(!empty($values) && is_array($values)) {
