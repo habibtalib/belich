@@ -69,6 +69,10 @@ public function calculate(Request $request) : array
 
 >In the documentation you will find a complete list of methods availables.
 
+## Docs 
+
+https://github.com/daguilarm/belich-documents
+
 ## Screenshots
 
 #### With stats 
