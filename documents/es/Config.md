@@ -88,7 +88,7 @@ Por ejemplo, para evitar problemas con la exportación de archivos, se ha deshab
 
 Se puede hacer de dos formas:
 
-1) Indicando que acciones quremos excluir del `middleware`:
+1. Indicando que acciones quremos excluir del `middleware`:
 
 ~~~
 'minifyHtml' => [
@@ -100,7 +100,7 @@ Se puede hacer de dos formas:
 ],
 ~~~
 
-2) Indicando las urls que queremos excluir:
+2. Indicando las urls que queremos excluir:
 
 ~~~
 'minifyHtml' => [
@@ -113,3 +113,18 @@ Se puede hacer de dos formas:
 ~~~
 
 >No es necesario preocuparse por si nuestra ruta empieza o termina con `/`. Belich las elimina de forma automática para hacer la comprobación.
+
+## Eliminar gráficas (Metrics) según el tamaño de pantalla
+
+Podemos indicarle a Belich, que no queremos mostrar gráficas en dispositivos pequeños, para ello, haremos lo siguiente:
+
+~~~
+'hideMetricsForScreens' => ['sm'],
+~~~
+
+Los valores soportados son:
+
+- **sm**: a partir de 576px.
+- **md**: a partir de 768px.
+- **lg**: a partir de 992px.
+- **xl**: a partir de 1200px.

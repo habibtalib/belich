@@ -15,7 +15,7 @@ class MetricCommand extends BelichCommand
      *
      * @var string
      */
-    protected $signature = 'belich:metrics {className}';
+    protected $signature = 'belich:metric {className}';
 
     /**
      * The console command description.

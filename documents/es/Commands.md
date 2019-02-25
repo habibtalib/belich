@@ -53,3 +53,15 @@ use App\Name;
 Si desea específicar una ruta personalizada para el modelo (como se ha mostrado en el primer ejemplo), no olvide añadir las comillas simples, y al igual que pasaba el generar un recurso, evite incluir `\` al principio de la ruta del modelo.
 
 >Puede seguir usando directmente Laravel para crear su política. Simplemente, tendrá que adaptarla a los requerimientos de Belich.
+
+3. Crear una métrica
+
+~~~
+php artisan belich:metric MetricName
+~~~
+
+Y la métrica será creada en:
+
+~~~
+\App\Belich\Metrics;
+~~~

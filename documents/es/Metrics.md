@@ -6,7 +6,7 @@ Belich permite configurar gráficas de forma sencilla y rápida, utilizando para
 
 
 ~~~
-php artisan belich:metrics MetricName
+php artisan belich:metric MetricName
 ~~~
 
 Generando un archivo base en la ubicación: `App\Belich\Metics`. En este archivo, encontraremos dos variables para definir:

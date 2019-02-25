@@ -1,7 +1,15 @@
 #Autorización de acceso 
 
 
-Belich utiliza el sistema de autorización de Laravel, mediante `Policies`. Genere la `Police` y regístrela en `\App\Providers\AuthServiceProvider`.
+Belich utiliza el sistema de autorización de Laravel, mediante `Policies`. 
+
+Genere la `Police` y regístrela en `\App\Providers\AuthServiceProvider`, para ello, la forma más rápida es mediante `artisan`:
+
+~~~
+php artisan belich:policy PolicyName
+~~~
+
+Puede encontrar más información en: [Comandos de consola](Commands.md).
 
 Por defecto, el sistema buscará la `Police` para autorizar los recursos que añada. Por tanto, si la `Police` no ha sido generada, no podrá acceder al recurso, y se disparará un error 403.
 
