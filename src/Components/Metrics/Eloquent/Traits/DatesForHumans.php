@@ -88,12 +88,14 @@ trait DatesForHumans {
     }
 
     /**
-     * Set last days for the query
+     * Set one specific day for the query
      *
-     * @param int $number [Set the number of days]
+     * @param int $day
+     * @param int $month
+     * @param int $year
      * @return self
      */
-    public function oneDay($day, $month, $year) : self
+    public function oneDay(int $day, int $month, int $year) : self
     {
         $this->startDate = Carbon::createFromDate($year, $month, $day, config('app.timezone'))->startOfDay();
         $this->endDate   = Carbon::createFromDate($year, $month, $day, config('app.timezone'))->endOfDay();

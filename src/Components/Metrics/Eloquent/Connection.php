@@ -44,7 +44,7 @@ class Connection {
      * @param string $date
      * @return string
      */
-    public function endDate($date) : self
+    public function endDate(Carbon $date) : self
     {
         $this->endDate = $date;
 
@@ -57,7 +57,7 @@ class Connection {
      * @param string $date
      * @return string
      */
-    public function startDate($date) : self
+    public function startDate(Carbon $date) : self
     {
         $this->startDate = $date;
 
