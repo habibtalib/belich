@@ -94,3 +94,13 @@ The pie charts are pretty advanced, but they are not ready yet...
 
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/videos/code.gif)
 
+## TODO
+
+- Redesign the front-end with all the lesson from: https://refactoringui.com/
+- Refactoring all the code, because I am just writting code...
+- Template helper to create blade components fluency.
+- Finish the pie charts.
+- Complete the fiends types.
+- Create the relationship fields.
+
+...
