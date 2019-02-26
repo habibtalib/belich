@@ -3,9 +3,8 @@
     @if(session()->has('success'))
         <belich::message
             color="teal"
-            icon="check"
             type="success"
-            :header="trans('belich::messages.crud.success.title')"
+            :header="icon('check', session()->get('header') ?? trans('belich::messages.crud.success.title'))"
         />
     @endif
 
@@ -13,9 +12,8 @@
     @if(session()->has('errors'))
         <belich::message
             color="red"
-            icon="exclamation-triangle"
             type="errors"
-            :header="trans('belich::messages.crud.fail.title')"
+            :header="icon('exclamation-triangle', session()->get('header') ?? trans('belich::messages.crud.fail.title'))"
         />
     @endif
 </div>

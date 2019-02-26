@@ -4,6 +4,7 @@
 
     {{-- Header --}}
     <h4 class="text-{{ setColor($metric, 'title-color') }}-dark mt-2 px-4 ml-2">{{ $metric->name }}</h4>
+
     {{-- Graph --}}
     <div class="h-full py-4 pr-4">
         <div

@@ -5,11 +5,7 @@
     @include('belich::partials.navigation.breadcrumbs')
 
     {{-- Crud Button: edit --}}
-    <belich::button
-        type="edit"
-        :id="$request->id"
-        :icon="icon('edit', trans('belich::buttons.crud.update'))"
-    />
+    <belich::button :title="icon('edit', trans('belich::buttons.crud.update'))" :url="Belich::actionRoute('edit', $request->id)"/>
 
     @foreach($request->fields as $field)
         @if(!empty($field->label))
