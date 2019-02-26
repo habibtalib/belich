@@ -22,5 +22,16 @@
                 <button class="btn btn-primary">Send</button>
             @endslot
         @endcomponent
+
+        {{
+            Tailblade::make('div')
+                ->attributes('id', 'en la casa')
+                ->attributes('data-value', 'value1')
+                ->color('red')
+                ->background('red', 'light')
+                ->margin(2)
+                ->padding('top', 2)
+                ->create()
+        }}
     </div>
 @endsection
