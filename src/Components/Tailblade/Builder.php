@@ -3,14 +3,16 @@
 namespace Daguilarm\Belich\Components\Tailblade;
 
 use Daguilarm\Belich\Components\Tailblade\Traits\Css;
+use Daguilarm\Belich\Components\Tailblade\Traits\Dimensions;
 use Daguilarm\Belich\Components\Tailblade\Traits\Responsive;
 use Daguilarm\Belich\Components\Tailblade\Traits\States;
 use Daguilarm\Belich\Components\Tailblade\Traits\Tailwind;
 use Daguilarm\Belich\Components\Tailblade\Traits\Utilities;
+use Illuminate\Support\Str;
 
 abstract class Builder {
 
-    use Css, Responsive, States, Tailwind, Utilities;
+    use Css, Dimensions, Responsive, States, Tailwind, Utilities;
 
     /** @var array */
     protected $config;

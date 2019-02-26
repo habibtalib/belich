@@ -22,12 +22,16 @@ class Render extends Builder {
      */
     public function create()
     {
-        return sprintf(
+        $html = sprintf(
             '<%s %s %s>',
             $this->container,
             $this->renderAttributes(),
             $this->renderClasses()
         );
+
+        return $this->container === 'form'
+            ? $html . csrf_field()
+            : $html;
     }
 
     /**

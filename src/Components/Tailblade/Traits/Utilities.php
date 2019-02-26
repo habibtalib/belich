@@ -20,7 +20,7 @@ trait Utilities {
          * @param mixed $position
          * @return string
          */
-        protected function getConfig(string $dotNotation, $position = null) {
+        protected function getConfig(string $dotNotation, $position = null, $default = '') {
             //Get array with values
             $array = Arr::get($this->config, $dotNotation);
 
@@ -29,8 +29,31 @@ trait Utilities {
                 return $array;
             }
 
+            //Set default
+            $default = $default
+                ? $default
+                : end($array);
+
             //Get current value or max value
-            return $array[$position] ?? end($array);
+            return $array[$position] ?? $default;
+        }
+
+        /**
+         * Check if the a value exists in the config file or return a default
+         *
+         * @param string $dotNotation
+         * @param mixed $search
+         * @return string
+         */
+        protected function getValidateConfig(string $dotNotation, $search, $default = '') : string
+        {
+            //Get array with values
+            $array = Arr::get($this->config, $dotNotation);
+
+            //Verify the value exists
+            return in_array($search, $array)
+                ? $search
+                : $default;
         }
 
         /**

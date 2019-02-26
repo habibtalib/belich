@@ -34,7 +34,8 @@
             ->padding('top', 2)
             ->addClass('dam1', 'dam2')
             ->hover('bg-teal', 'text-red')
-            ->responsive('sm', 'hidden')
+            ->width('w-8')
+            ->height('w-12')
             ->create()
         !!}
            hellow world
