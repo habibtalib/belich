@@ -14,25 +14,29 @@
         @csrf
 
         {{-- Per page --}}
-        @component('belich::components.options')
-            @slot('css', 'rounded-t-lg')
-            @slot('text', trans('belich::default.perPage'))
-            @slot('field', 'perPage')
-            @slot('options', [10, 20, 30, 40, 50, 100])
-        @endcomponent
+        <belich::options field="perPage" css="rounded-t-lg" :text="trans('belich::default.perPage')">
+            <slot name="options">
+                <option></option>
+                @foreach(range(10, 50, 10) as $option)
+                    <option value="{{ $option }}">{{ $option }}</option>
+                @endforeach
+                <option value="100">100</option>
+                <option value="300">300</option>
+                <option value="500">500</option>
+            </slot>
+        </belich::options>
 
         {{-- Trashed --}}
         @can('withTrashed', $request->autorizedModel)
             @hasSoftdelete($request->autorizedModel)
-                @component('belich::components.options')
-                    @slot('text', trans('belich::default.trashed'))
-                    @slot('field', 'withTrashed')
-                    @slot('options', [
-                        ['none' => trans('belich::default.none')],
-                        ['all'  => trans('belich::default.all')],
-                        ['only' => trans('belich::default.trashedOnly')],
-                    ])
-                @endcomponent
+                <belich::options field="withTrashed" css="rounded-t-lg" :text="trans('belich::default.trashed')">
+                    <slot name="options">
+                        <option></option>
+                        <option value="none">@lang('belich::default.none')</option>
+                        <option value="all">@lang('belich::default.all')</option>
+                        <option value="only">@lang('belich::default.trashedOnly')</option>
+                    </slot>
+                </belich::options>
             @endif
         @endcan
 

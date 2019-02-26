@@ -17,30 +17,23 @@
         <input type="hidden" id="exports_selected" name="exports_selected" value="">
 
         {{-- Export format --}}
-        @component('belich::components.options')
-            @slot('css', 'rounded-t-lg')
-            @slot('text', trans('belich::default.format'))
-            @slot('field', 'format')
-            @slot('required', true)
-            @slot('options', [
-                ['' => ''],
-                ['xls' => 'Excel 2003'],
-                ['xlsx' => 'Excel 2007'],
-                ['csv' => 'CSV'],
-            ])
-        @endcomponent
+        <belich::options field="format" css="rounded-t-lg" required="true" :text="trans('belich::default.format')">
+            <slot name="options">
+               <option><option>
+                <option value="xls">Excel 2003</option>
+                <option value="xlsx">Excel 2007</option>
+                <option value="csv">CSV</option>
+            </slot>
+        </belich::options>
 
-        {{-- Export format --}}
-        @component('belich::components.options')
-            @slot('text', trans('belich::default.items'))
-            @slot('field', 'quantity')
-            @slot('required', true)
-            @slot('options', [
-                ['' => ''],
-                ['all' => trans('belich::default.all')],
-                ['selected' => trans('belich::default.selected')],
-            ])
-        @endcomponent
+        {{-- Export quantity --}}
+        <belich::options field="quantity" css="rounded-t-lg" required="true" :text="trans('belich::default.items')">
+            <slot name="options">
+               <option><option>
+                <option value="all">@lang('belich::default.all')</option>
+                <option value="selected">@lang('belich::default.selected')</option>
+            </slot>
+        </belich::options>
 
         <div class="float-right p-2 mb-2">
             <button type="submit" class="btn btn-default" onclick="addCheckboxesToField('exports_selected');">{!! icon('download', trans('belich::buttons.base.download')) !!}</button>
