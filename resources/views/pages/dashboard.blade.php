@@ -22,23 +22,5 @@
                 <button class="btn btn-primary">Send</button>
             @endslot
         @endcomponent
-
-        {!! Tailblade::make('div')
-            ->attributes('id', 'en la casa')
-            ->attributes('data-value', 'value1')
-            ->size(8)
-            ->color('red')
-            ->background('red', 'light')
-            ->margin('top', 5)
-            ->radius('top', 10)
-            ->padding('top', 2)
-            ->addClass('dam1', 'dam2')
-            ->hover('bg-teal', 'text-red')
-            ->width('w-8')
-            ->height('w-12')
-            ->create()
-        !!}
-           hellow world
-        {!! Tailblade::close() !!}
     </div>
 @endsection
