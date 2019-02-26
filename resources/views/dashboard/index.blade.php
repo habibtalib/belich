@@ -98,6 +98,6 @@
 @endsection
 
 {{-- Added the minimum javascript possible --}}
-@section('javascript')
+@prepend('javascript')
     @include('belich::dashboard.javascript.index')
-@endsection
+@endprepend

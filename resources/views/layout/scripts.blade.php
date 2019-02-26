@@ -14,4 +14,4 @@
 @endif
 
 {{-- User custom javascript --}}
-@yield('javascript')
+@stack('javascript')
