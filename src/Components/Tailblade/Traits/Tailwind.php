@@ -1,6 +1,6 @@
 <?php
 
-namespace Daguilarm\Belich\Components\Tailblade;
+namespace Daguilarm\Belich\Components\Tailblade\Traits;
 
 trait Tailwind {
 
@@ -19,7 +19,7 @@ trait Tailwind {
      */
     public function margin($direction, int $value = 0) : self
     {
-        $this->css[] = $this->getSpacing($direction, $value, $type = 'm');
+        $this->classes[] = $this->withDirection($direction, $value, $type = 'm');
 
         return $this;
     }
@@ -33,7 +33,7 @@ trait Tailwind {
      */
     public function padding($direction, int $value = 0) : self
     {
-        $this->css[] = $this->getSpacing($direction, $value, $type = 'p');
+        $this->classes[] = $this->withDirection($direction, $value, $type = 'p');
 
         return $this;
     }
@@ -46,7 +46,7 @@ trait Tailwind {
      */
     public function color(...$arg) : self
     {
-        $this->css[] = $this->getColor('text', ...$arg);
+        $this->classes[] = $this->getColor('text', ...$arg);
 
         return $this;
     }
@@ -59,7 +59,50 @@ trait Tailwind {
      */
     public function background(...$arg) : self
     {
-        $this->css[] = $this->getColor('bg', ...$arg);
+        $this->classes[] = $this->getColor('bg', ...$arg);
+
+        return $this;
+    }
+
+    /**
+     * Generate the border radius
+     *
+     * @param string $direction
+     * @param int $value
+     * @return self
+     */
+    public function radius(string $direction, int $value = 0) : self
+    {
+        //Set direction
+        $pointer = in_array($direction, $this->getConfig('spacing.directions'))
+            ? substr($direction, 0, 1)
+            : '';
+
+        //Set value
+        $quantity = ($value <= 0 && is_numeric($direction))
+            ? $this->getConfig('radius.size', $direction)
+            : $this->getConfig('radius.size', $value);
+
+        //Without direction
+        if($value <= 0 && is_int($direction)) {
+            $this->classes[] = sprintf('rounded-%s', $quantity);
+        }
+
+        //With direction
+        $this->classes[] = sprintf('rounded-%s-%s', $pointer, $quantity);
+
+        return $this;
+    }
+
+    /**
+     * Generate the text size
+     *
+     * @param int $number
+     * @return self
+     */
+    public function size(int $number) : self
+    {
+        $this->classes[] = 'text-' . $this->getConfig('font.size', $number);
 
         return $this;
     }
@@ -78,25 +121,25 @@ trait Tailwind {
      * @param string $type
      * @return string
      */
-    private function getSpacing(string $direction, int $value = 0, string $type) : string
+    private function withDirection(string $direction, int $value = 0, string $type) : string
     {
         //Set direction
-        $direction = in_array($direction, $this->config['spacing']['directions'])
+        $pointer = in_array($direction, $this->getConfig('spacing.directions'))
             ? substr($direction, 0, 1)
             : '';
 
         //Set value
-        $spacing =  ($value <= 0 && is_int($direction))
+        $quantity =  ($value <= 0 && is_numeric($direction))
             ? $direction
             : $value;
 
         //Without direction
         if($value <= 0 && is_int($direction)) {
-            return sprintf('%s-%s', $type, $spacing);
+            return sprintf('%s-%s', $type, $quantity);
         }
 
         //With direction
-        return sprintf('%s%s-%s', $type, $direction, $spacing);
+        return sprintf('%s%s-%s', $type, $pointer, $quantity);
     }
 
     /**

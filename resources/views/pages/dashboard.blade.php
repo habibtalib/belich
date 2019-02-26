@@ -23,15 +23,21 @@
             @endslot
         @endcomponent
 
-        {{
-            Tailblade::make('div')
-                ->attributes('id', 'en la casa')
-                ->attributes('data-value', 'value1')
-                ->color('red')
-                ->background('red', 'light')
-                ->margin(2)
-                ->padding('top', 2)
-                ->create()
-        }}
+        {!! Tailblade::make('div')
+            ->attributes('id', 'en la casa')
+            ->attributes('data-value', 'value1')
+            ->size(8)
+            ->color('red')
+            ->background('red', 'light')
+            ->margin('top', 5)
+            ->radius('top', 10)
+            ->padding('top', 2)
+            ->addClass('dam1', 'dam2')
+            ->hover('bg-teal', 'text-red')
+            ->responsive('sm', 'hidden')
+            ->create()
+        !!}
+           hellow world
+        {!! Tailblade::close() !!}
     </div>
 @endsection

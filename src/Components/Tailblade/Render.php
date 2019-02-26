@@ -3,7 +3,7 @@
 namespace Daguilarm\Belich\Components\Tailblade;
 
 use Daguilarm\Belich\Components\Tailblade\Builder;
-use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
 
 class Render extends Builder {
 
@@ -16,63 +16,18 @@ class Render extends Builder {
     }
 
     /**
-     * Initialize the container
-     *
-     * @param string $container
-     * @return self
-     */
-    public function make(string $container = 'div') : self
-    {
-        $this->container = $container;
-
-        return $this;
-    }
-
-    /**
-     * Create a new attribute
-     *
-     * @param string $attribute
-     * @param int|string $value
-     * @return self
-     */
-    public function attributes(string $attribute, $value) : self
-    {
-        $this->attributes[$attribute] = $value;
-
-        return $this;
-    }
-
-    /**
-     * Create a new tailwind classes with magic!
-     *
-     * @param string $method
-     * @param array $args
-     * @return self
-     */
-    public function __call(string $method, array $args)
-    {
-        $items = collect($args)
-            ->map(function($value) {
-                return $value;
-            })
-            ->filter()
-            ->implode('-');
-
-        $this->css[] = $items
-            ? sprintf('%s-%s', Str::kebab($method), $items)
-            : Str::kebab($method);
-
-        return $this;
-    }
-
-    /**
      * Create a new container
      *
      * @return string
      */
     public function create()
     {
-        return dd($this);
+        return sprintf(
+            '<%s %s %s>',
+            $this->container,
+            $this->renderAttributes(),
+            $this->renderClasses()
+        );
     }
 
     /**
@@ -82,6 +37,47 @@ class Render extends Builder {
      */
     public function close()
     {
-        return $this;
+        return sprintf('</%s>', $this->container);
+    }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Render helpers
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Render attributes
+     *
+     * @return string
+     */
+    private function renderAttributes() : string
+    {
+        return collect($this->attributes)
+            ->map(function($value, $key) {
+                return sprintf('%s="%s"', $key, $value);
+            })
+            ->sort()
+            ->implode(' ');
+    }
+
+    /**
+     * Render classes
+     *
+     * @return string
+     */
+    private function renderClasses() : string
+    {
+        $classes = collect($this->classes)
+            ->map(function($value) {
+                return $value;
+            })
+            ->filter()
+            ->sort()
+            ->implode(' ');
+
+        return $classes
+            ? sprintf('class="%s"', $classes)
+            : '';
     }
 }

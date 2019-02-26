@@ -2,23 +2,27 @@
 
 namespace Daguilarm\Belich\Components\Tailblade;
 
-use Daguilarm\Belich\Components\Tailblade\Tailwind;
+use Daguilarm\Belich\Components\Tailblade\Traits\Css;
+use Daguilarm\Belich\Components\Tailblade\Traits\Responsive;
+use Daguilarm\Belich\Components\Tailblade\Traits\States;
+use Daguilarm\Belich\Components\Tailblade\Traits\Tailwind;
+use Daguilarm\Belich\Components\Tailblade\Traits\Utilities;
 
 abstract class Builder {
 
-    use Tailwind;
+    use Css, Responsive, States, Tailwind, Utilities;
 
     /** @var array */
-    private $config;
+    protected $config;
 
     /** @var string */
-    private $container;
+    protected $container;
 
     /** @var array */
-    private $css;
+    protected $classes;
 
     /** @var array */
-    private $attributes;
+    protected $attributes;
 
     /**
      * Initialize the constructor
@@ -26,5 +30,55 @@ abstract class Builder {
     public function __construct()
     {
         $this->config = include(__DIR__ . '/Config.php');
+    }
+
+    /**
+     * Initialize the container
+     *
+     * @param string $container
+     * @return self
+     */
+    public function make(string $container = 'div') : self
+    {
+        $this->container = $container;
+
+        return $this;
+    }
+
+    /**
+     * Create a new attribute
+     *
+     * @param string $attribute
+     * @param int|string $value
+     * @return self
+     */
+    public function attributes(string $attribute, $value) : self
+    {
+        $this->attributes[$attribute] = $value;
+
+        return $this;
+    }
+
+    /**
+     * Create a new tailwind classes with magic!
+     *
+     * @param string $method
+     * @param array $args
+     * @return self
+     */
+    public function __call(string $method, array $args)
+    {
+        $items = collect($args)
+            ->map(function($value) {
+                return $value;
+            })
+            ->filter()
+            ->implode('-');
+
+        $this->classes[] = $items
+            ? sprintf('%s-%s', Str::kebab($method), $items)
+            : Str::kebab($method);
+
+        return $this;
     }
 }
