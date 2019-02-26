@@ -13,6 +13,7 @@
     "require": {
         "matthiasmullie/minify": "dev-master",
         "rap2hpoutre/fast-excel": "dev-master",
+        "spatie/laravel-blade-x": "^2.0.0",
         "spatie/menu": "^2.8"
     },
     "require-dev": {

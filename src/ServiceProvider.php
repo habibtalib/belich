@@ -2,8 +2,9 @@
 
 namespace Daguilarm\Belich;
 
-use Illuminate\Support\ServiceProvider as Provider;
 use Illuminate\Foundation\AliasLoader;
+use Illuminate\Support\ServiceProvider as Provider;
+use Spatie\BladeX\Facades\BladeX;
 
 class ServiceProvider extends Provider {
     /**
@@ -22,6 +23,9 @@ class ServiceProvider extends Provider {
         $this->registerResources();
         $this->registerConsole();
         $this->registerMigrations();
+
+        //Blade X components
+        BladeX::component('belich::components.*');
     }
 
     /**
@@ -168,9 +172,5 @@ class ServiceProvider extends Provider {
         //Chart Facade
         $this->app->register(\Daguilarm\Belich\Facades\ChartProvider::class);
         AliasLoader::getInstance()->alias('Chart', \Daguilarm\Belich\Facades\Chart::class);
-
-        //Component Facade
-        $this->app->register(\Daguilarm\Belich\Facades\ComponentProvider::class);
-        AliasLoader::getInstance()->alias('Component', \Daguilarm\Belich\Facades\Component::class);
     }
 }

@@ -5,10 +5,11 @@
     @include('belich::partials.navigation.breadcrumbs')
 
     {{-- Crud Button: edit --}}
-    @component('belich::components.crud-button')
-        @slot('url', Belich::actionRoute('edit', $request->id))
-        @slot('icon', icon('eye', trans('belich::buttons.crud.update')))
-    @endcomponent
+    <belich::button
+        type="edit"
+        :id="$request->id"
+        :icon="icon('edit', trans('belich::buttons.crud.update'))"
+    />
 
     @foreach($request->fields as $field)
         @if(!empty($field->label))
@@ -22,6 +23,7 @@
             </div>
         @endif
     @endforeach
+
     {{-- Form border rounded --}}
     @includeIf('belich::partials.containers.rounded-bottom', ['height' => 'h-16'])
 @endsection

@@ -59,6 +59,13 @@ trait Resolvable {
         });
     }
 
+    /**
+     * Set the values base on the controllers action (except for index)
+     *
+     * @param Illuminate\Support\Collection $fields
+     * @param object $sqlResponse
+     * @return Illuminate\Support\Collection
+     */
     public function setController(object $fields, object $sqlResponse)
     {
         //Set fields attributes: Only for create and edit actions

@@ -5,10 +5,11 @@
     @include('belich::partials.navigation.breadcrumbs')
 
     {{-- Crud Button: show --}}
-    @component('belich::components.crud-button')
-        @slot('url', Belich::actionRoute('show', $request->id))
-        @slot('icon', icon('eye', trans('belich::buttons.crud.show')))
-    @endcomponent
+    <belich::button
+        type="show"
+        :id="$request->id"
+        :icon="icon('eye', trans('belich::buttons.crud.show'))"
+    />
 
     <form method="POST" name="form-{{ $request->name }}-edit" id="form-{{ $request->name }}-edit" action="{{ toRoute('update') }}" class="form-container">
         @csrf
