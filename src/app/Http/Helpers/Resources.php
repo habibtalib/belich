@@ -29,3 +29,28 @@ if (!function_exists('getAllTheResourcesFromFolder')) {
             });
     }
 }
+
+/*
+|--------------------------------------------------------------------------
+| Get a string with the resource name or ID, base on sprintf()
+|--------------------------------------------------------------------------
+*/
+
+/**
+ * Set the container ID base on the resource
+ *
+ * @param string $fileName
+ * @param bool $extension
+ * @return string
+ */
+if (!function_exists('parseTextWithResource')) {
+    //Example of use: parseTextWithResource('form-%s-create', 'name') => form-resourceName-create
+    function parseTextWithResource(string $text, $resourceType = 'name') : string
+    {
+        $type = $resourceType === 'name'
+            ? Belich::resource()
+            : Belich::resourceId();
+
+        return sprintf($text, $type);
+    }
+}
