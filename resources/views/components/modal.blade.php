@@ -2,7 +2,7 @@
 @if(!empty($form))
     <form method="POST" id="form-{{ \Illuminate\Support\Str::kebab($id) }}" name="form-{{ \Illuminate\Support\Str::kebab($id) }}" action="{{ $action }}">
         @csrf
-        <input type="hidden" id="{{ $hidden }}" name="{{ $hidden }}" value="">
+        <input type="hidden" id="{{ $hidden ?? null }}" name="{{ $hidden ?? null }}" value="">
 @endif
 
     {{-- Modal body --}}
@@ -20,14 +20,18 @@
             </div>
 
             {{-- Title --}}
-            <h2 class="{{ 'bg-' . $background ?? 'bg-grey-dark'}} {{ 'text-' . $color ?? 'text-white'}} font-bold rounded-t p-4">
-                {!! $title !!}
-            </h2>
+            @isset($title)
+                <h2 class="{{ 'bg-' . $background ?? 'bg-grey-dark'}} {{ 'text-' . $color ?? 'text-white'}} font-bold rounded-t p-4">
+                    {!! $title !!}
+                </h2>
+            @endisset
 
             {{-- Content --}}
-            <div class="p-8 leading-loose text-lg text-grey-darker">
-                {!! $content !!}
-            </div>
+            @isset($content)
+                <div class="p-8 leading-loose text-lg text-grey-darker">
+                    {!! $content !!}
+                </div>
+            @endisset
 
             {{-- Footer --}}
             @isset($footer)

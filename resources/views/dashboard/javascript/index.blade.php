@@ -89,9 +89,6 @@
         if(items.length <= 0) {
             return false;
         }
-
-        //Submit form with the items to be deleted
-        //document.getElementById('belich-form-delete-selected').submit();
     }
 
     /*

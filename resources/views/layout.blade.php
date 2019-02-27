@@ -34,6 +34,9 @@
 
             {{-- Include footer --}}
             @includeIf('belich::partials.footer')
+
+            {{-- Add modals --}}
+            @stack('modals')
         </div>
 
         {{-- Javascript and libs --}}
