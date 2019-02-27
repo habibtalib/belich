@@ -10,7 +10,7 @@
 @else
     <button
         {{ isset($id) ? $id : ''}}
-        type="{{ $type ?? 'submit' }}"
+        type="{{ $type ?? 'button' }}"
         class="btn btn-{{ $color ?? 'secondary' }} {{ $class ?? '' }}"
         {!! isset($loading) ? 'onclick="loading(this);"' : '' !!}
     >

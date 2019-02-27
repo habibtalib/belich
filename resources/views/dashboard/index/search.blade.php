@@ -13,9 +13,13 @@
 
         {{-- Buttons: create --}}
         @can('create', $request->autorizedModel)
-            <a href="{{ Belich::actionRoute('create') }}" class="btn btn-secondary mr-2">
-                @icon('plus', 'belich::buttons.crud.create')
-            </a>
+            <belich::button
+                :title="icon('plus', trans('belich::buttons.crud.create'))"
+                :url="Belich::actionRoute('create')"
+                class="mx-2"
+                color="secondary"
+                loading
+            />
         @endcan
 
         {{-- Dropdowns --}}
