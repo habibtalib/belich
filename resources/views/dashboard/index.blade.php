@@ -46,8 +46,19 @@
         </slot>
         {{-- Modal footer --}}
         <slot name="footer">
-            <a href="#" class="btn btn-default mx-2 close">@lang('belich::buttons.actions.cancel')</a>
-            <button class="btn btn-success mx-2">@lang('belich::buttons.actions.confirm')</button>
+            <belich::button
+                :title="trans('belich::buttons.actions.cancel')"
+                url="#"
+                class="mx-2 close"
+                color="default"
+                loading
+            />
+
+            <belich::button
+                color="success"
+                :title="icon('trash', trans('belich::buttons.actions.confirm'))"
+                loading
+            />
         </slot>
     </belich::modal>
 @endprepend

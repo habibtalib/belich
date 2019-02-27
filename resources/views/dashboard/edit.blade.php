@@ -4,7 +4,7 @@
     {{-- Breadcrumbs --}}
     @include('belich::partials.navigation.breadcrumbs')
 
-    {{-- Crud Button: show --}}
+    {{-- Crud Button: navigation to show --}}
     <belich::button-navigation :title="icon('eye', trans('belich::buttons.crud.show'))" :url="Belich::actionRoute('show', $request->id)" loading/>
 
     {{-- Form --}}
@@ -19,9 +19,14 @@
 
         {{-- Button: update --}}
         <div class="btn-container bg-blue-lightest">
-            <button id="button-form-edit" type="submit" class="btn btn-primary mt-1" onclick="loading(this);">
-                @icon('edit', 'belich::buttons.crud.update')
-            </button>
+            {{-- Button: create --}}
+            <belich::button
+                id="button-form-edit"
+                type="submit"
+                color="primary"
+                :title="icon('edit', trans('belich::buttons.crud.update'))"
+                loading
+            />
         </div>
     </form>
 

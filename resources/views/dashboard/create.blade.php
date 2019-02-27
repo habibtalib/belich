@@ -13,11 +13,16 @@
             @includeIf('belich::fields.' . $field->type, ['field' => $field])
         @endforeach
 
-        {{-- Button: create --}}
+        {{-- Bottom border rounded  --}}
         <div class="btn-container bg-blue-lightest">
-            <button id="button-form-create" type="submit" class="btn btn-primary mt-1"  onclick="loading(this);">
-                @icon('plus', 'belich::buttons.crud.create')
-            </button>
+            {{-- Button: create --}}
+            <belich::button
+                id="button-form-create"
+                type="submit"
+                color="primary"
+                :title="icon('plus', trans('belich::buttons.crud.create'))"
+                loading
+            />
         </div>
     </form>
 
