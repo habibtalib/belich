@@ -7,6 +7,7 @@
     {{-- Crud Button: edit --}}
     <belich::button :title="icon('edit', trans('belich::buttons.crud.update'))" :url="Belich::actionRoute('edit', $request->id)"/>
 
+    {{-- Show resource fields --}}
     @foreach($request->fields as $field)
         @if(!empty($field->label))
             <div class="form-container">
@@ -20,6 +21,6 @@
         @endif
     @endforeach
 
-    {{-- Form border rounded --}}
+    {{-- Container bottom border rounded --}}
     @includeIf('belich::partials.containers.rounded-bottom', ['height' => 'h-16'])
 @endsection

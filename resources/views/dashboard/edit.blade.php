@@ -7,6 +7,7 @@
     {{-- Crud Button: show --}}
     <belich::button :title="icon('eye', trans('belich::buttons.crud.show'))" :url="Belich::actionRoute('show', $request->id)"/>
 
+    {{-- Form --}}
     <form method="POST" name="form-{{ $request->name }}-edit" id="form-{{ $request->name }}-edit" action="{{ toRoute('update') }}" class="form-container">
         @csrf
         @method('PATCH')
@@ -16,14 +17,15 @@
             @includeIf('belich::fields.' . $field->type, ['field' => $field])
         @endforeach
 
-        {{-- Buttons --}}
+        {{-- Button: update --}}
         <div class="btn-container bg-blue-lightest">
             <button id="button-form-edit" type="submit" class="btn btn-primary mt-1">
                 @icon('edit', 'belich::buttons.crud.update')
             </button>
         </div>
     </form>
-    {{-- Form border rounded --}}
+
+    {{-- Form bottom border rounded --}}
     @includeIf('belich::partials.containers.rounded-bottom')
 @endsection
 

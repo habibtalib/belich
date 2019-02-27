@@ -4,6 +4,7 @@
     {{-- Breadcrumbs --}}
     @include('belich::partials.navigation.breadcrumbs')
 
+    {{-- Form --}}
     <form method="POST" name="form-{{ $request->name }}-create" id="form-{{ $request->name }}-create" action="{{ toRoute('store') }}" class="form-container">
         @csrf
 
@@ -12,14 +13,15 @@
             @includeIf('belich::fields.' . $field->type, ['field' => $field])
         @endforeach
 
-        {{-- Create button --}}
+        {{-- Button: create --}}
         <div class="btn-container bg-blue-lightest">
             <button id="button-form-create" type="submit" class="btn btn-primary mt-1">
                 @icon('plus', 'belich::buttons.crud.create')
             </button>
         </div>
     </form>
-    {{-- Form border rounded --}}
+
+    {{-- Form bottom border rounded --}}
     @includeIf('belich::partials.containers.rounded-bottom')
 @endsection
 
