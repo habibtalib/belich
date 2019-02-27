@@ -16,11 +16,12 @@
         {{-- Bottom border rounded  --}}
         <div class="btn-container bg-blue-lightest">
             {{-- Button: create --}}
+
             <belich::button
-                id="button-form-create"
-                type="submit"
+                type="button"
                 color="primary"
                 :title="icon('plus', trans('belich::buttons.crud.create'))"
+                id="button-form-create"
                 loading
             />
         </div>
@@ -31,6 +32,6 @@
 @endsection
 
 {{-- Javascript from packages --}}
-@section('javascript')
+@push('javascript')
     {!! $request->javascript !!}
-@endsection
+@endpush

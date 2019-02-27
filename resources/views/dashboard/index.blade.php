@@ -28,22 +28,26 @@
 @endsection
 
 {{-- Added the minimum javascript possible --}}
-@prepend('javascript')
+@push('javascript')
     @include('belich::dashboard.javascript.index')
-@endprepend
+@endpush
 
 {{-- Added the modals --}}
-@prepend('modals')
+@push('modals')
+
     {{-- Modal component: delete item --}}
     <belich::modal form="true" id="item-delete" background="red" color="white" action="#" :request="$request" :header="icon('exclamation-triangle', trans('belich::messages.delete.item.title'))">
+
         {{-- Form method field for DELETE --}}
         <slot name="method">
             @method('DELETE')
         </slot>
+
         {{-- Modal content --}}
         <slot name="content">
             <div>@listTextFromArray('belich::messages.delete.item.confirm')</div>
         </slot>
+
         {{-- Modal footer --}}
         <slot name="footer">
             <belich::button
@@ -51,7 +55,6 @@
                 url="#"
                 class="mx-2 close"
                 color="default"
-                loading
             />
 
             <belich::button
@@ -61,4 +64,4 @@
             />
         </slot>
     </belich::modal>
-@endprepend
+@endpush

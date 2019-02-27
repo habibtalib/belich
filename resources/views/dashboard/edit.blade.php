@@ -22,7 +22,7 @@
             {{-- Button: create --}}
             <belich::button
                 id="button-form-edit"
-                type="submit"
+                type="button"
                 color="primary"
                 :title="icon('edit', trans('belich::buttons.crud.update'))"
                 loading
@@ -35,6 +35,6 @@
 @endsection
 
 {{-- Javascript from packages --}}
-@section('javascript')
+@push('javascript')
     {!! $request->javascript !!}
-@endsection
+@endpush
