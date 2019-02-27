@@ -4,6 +4,7 @@ namespace Daguilarm\Belich\App\Console\Commands;
 
 use Daguilarm\Belich\App\Console\BelichCommand;
 use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -42,13 +43,23 @@ class PolicyCommand extends BelichCommand
     }
 
     /**
+     * Get the stub file
+     *
+     * @return string
+     */
+    protected function path()
+    {
+        return app_path('Policies');
+    }
+
+    /**
      * Set the stub destination
      *
      * @return string
      */
     protected function setStub($ext = 'stub')
     {
-        return app_path('Policies/' . $this->classModel() . '.' . $ext);
+        return $this->path() . '/' . $this->classModel() . '.' . $ext;
     }
 
     /**
@@ -68,6 +79,10 @@ class PolicyCommand extends BelichCommand
      */
     public function handle()
     {
+        if(!File::exists($this->path())) {
+            File::makeDirectory($this->path());
+        }
+
         //Copy the file to folder while keeping the .stub extension
         (new Filesystem)->copy(
             $this->getStub(),

@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Belich\Cards;
+
+use Daguilarm\Belich\Components\Cards\Card;
+use Illuminate\Http\Request;
+
+class d_class_b extends Card {
+
+    /** @var string */
+    public $width;
+
+    /**
+     * Initialize the metric
+     *
+     * @return string
+     */
+    public function __construct(Request $request)
+    {
+        parent::__construct();
+    }
+
+    /**
+     * Return the view
+     *
+     * @return Illuminate\Support\Facades\View
+     */
+    public function render() : View
+    {
+        return view('belich::cards.d_view_b');
+    }
+
+    /**
+     * Get the URI key for the card
+     *
+     * @return string
+     */
+    public function uriKey()
+    {
+        return 'd_key_b';
+    }
+}

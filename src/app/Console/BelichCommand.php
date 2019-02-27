@@ -40,6 +40,26 @@ abstract class BelichCommand extends Command
     }
 
     /**
+     * Get the class name.
+     *
+     * @return string
+     */
+    protected function classLower()
+    {
+        return strtolower($this->argument('className'));
+    }
+
+    /**
+     * Get the class name.
+     *
+     * @return string
+     */
+    protected function classSnake()
+    {
+        return Str::snake($this->classLower());
+    }
+
+    /**
      * Replace the given string in the given file.
      *
      * @param  string  $search

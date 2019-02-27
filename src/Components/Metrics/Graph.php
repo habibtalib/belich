@@ -67,7 +67,7 @@ abstract class Graph {
         $this->name       = $this->name($request);
         $this->type       = $this->type($request);
         $this->uriKey     = $this->uriKey();
-        $this->width      = $this->width();
+        $this->width      = 'w-1/3';
         $this->withArea   = $this->withArea();
     }
 
@@ -93,6 +93,19 @@ abstract class Graph {
     abstract function urikey();
 
     /**
+     * Set the default card width
+     *
+     * @param string $width
+     * @return self
+     */
+    public function width(string $width) : self
+    {
+        $this->width = $width;
+
+        return $this;
+    }
+
+    /**
      * Set the default line color
      */
     private function color()
@@ -114,14 +127,6 @@ abstract class Graph {
     private function type()
     {
         return $this->type ?? 'line';
-    }
-
-    /**
-     * Set the default card width
-     */
-    private function width()
-    {
-        return $this->width ?? 'w-1/3';
     }
 
     /**
