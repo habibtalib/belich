@@ -12,7 +12,7 @@
 @endif
 
     {{-- Modal body --}}
-    <div id="modal-{{ $id }}" class="modal absolute pin-t pin-r pin-b pin-l invisible opacity-0">
+    <div id="modal-{{ $id }}" class="modal absolute pin-t pin-r pin-b pin-l invisible opacity-0 z-40">
 
         {{-- This link will close the modal when clicking outside --}}
         <a class="absolute w-full h-full cursor-default" href="#"></a>
