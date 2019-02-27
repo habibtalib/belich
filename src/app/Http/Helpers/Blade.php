@@ -102,7 +102,7 @@ if (!function_exists('setColor')) {
  * @return string
  */
 if (!function_exists('createFormSelectOptions')) {
-    function createFormSelectOptions($options, $field)
+    function createFormSelectOptions($options, $field, $emptyField = false)
     {
         return collect($options)
             ->map(function($key, $value) use ($field) {
@@ -113,6 +113,7 @@ if (!function_exists('createFormSelectOptions')) {
 
                 return sprintf('<option value="%s"%s>%s</option>', $value, $selected, $key);
             })
+            ->prepend($emptyField ? '<option></option>' : '')
             ->implode('');
     }
 }

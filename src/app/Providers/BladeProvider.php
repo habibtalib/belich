@@ -96,24 +96,6 @@ Blade::directive('mix', function ($arguments) {
 });
 
 /**
- * Create am @option directive for a select field
- * App\Http\Helpers\Blade.php
- *
- * @return string
- */
-Blade::directive('optionFromArray', function ($arguments) {
-    $list = explode(',', str_replace(['(',')',' ', "'"], '', $arguments));
-    $field = $list[0] ?? null;
-    $value = $list[1] ?? null;
-
-    if($field && $value) {
-        //App\Http\Helpers\Blade.php
-        return "<?php echo createFormSelectOptions({$value}, {$field}); ?>";
-    }
-
-});
-
-/**
  * Create a @trans directive for the package localization's files
  *
  * @return string
