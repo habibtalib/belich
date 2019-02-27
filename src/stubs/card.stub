@@ -27,6 +27,8 @@ class d_class_b extends Card {
      */
     public function render() : View
     {
+        //Don't forget to create the view: resources/views/vendor/belich/cards/d_view_b.blade.php
+        //Or just change the view path...
         return view('belich::cards.d_view_b');
     }
 
