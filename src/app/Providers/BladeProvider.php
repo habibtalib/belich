@@ -40,12 +40,12 @@ Blade::directive('icon', function ($arguments) {
 });
 
 /**
- * Create a @listFromLocale directive
+ * Create a @listTextFromArray directive
  * It is created for modal or menssages, when there is a array with texts!
  *
  * @return string
  */
-Blade::directive('listFromLocale', function ($arguments) {
+Blade::directive('listTextFromArray', function ($arguments) {
     $text = explode(',', str_replace(['(',')',' ', "'"], '', $arguments));
     $list = collect(trans($text[0]))
         ->map(function($item) {

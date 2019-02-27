@@ -3,24 +3,6 @@
 @section('content')
     <div class="shadow-md bg-white rounded my-8 mx-6 p-4">
 
-        <a href="#modal-delete" class="button">Delete</a>
-
-        @component('belich::components.modal')
-            @slot('containerID', 'modal-delete')
-            @slot('background', 'red')
-            @slot('color', 'white')
-            @slot('title', icon('trash', 'Delete fields'))
-            @slot('content')
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            @endslot
-            @slot('footer')
-                <button class="btn btn-primary">Send</button>
-            @endslot
-        @endcomponent
+        <button class="btn btn-primary" onclick="loading(this);">Click me</button>
     </div>
 @endsection

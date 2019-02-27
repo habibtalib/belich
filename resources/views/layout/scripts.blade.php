@@ -1,6 +1,13 @@
 {{-- Load the vendor's scripts --}}
 @mix('app.js')
 
+{{-- Global Javascript --}}
+<script>
+    function loading(item) {
+        item.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+    }
+</script>
+
 {{-- Javascript metrics --}}
 @hasMetrics($request ?? null)
     {{-- Load the javascript lib --}}
