@@ -58,9 +58,9 @@
         //Get all the checked elements
         var elements = document.querySelector('#belich-index-table').querySelectorAll('input[type="checkbox"]');
         //Add all the elements to the list
-        for (var i = 0; i < tableSelectors.length; i++) {
-            if(tableSelectors[i].checked) {
-                listOfCheckedElements[i] = tableSelectors[i].value;
+        for (var i = 0; i < elements.length; i++) {
+            if(elements[i].checked) {
+                listOfCheckedElements[i] = elements[i].value;
             }
         }
         return listOfCheckedElements;

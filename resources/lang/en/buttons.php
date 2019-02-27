@@ -1,6 +1,14 @@
 <?php
 
 return [
+    'actions' => [
+        'accept'    => 'Accept',
+        'back'      => 'Back',
+        'cancel'    => 'Cancel',
+        'confirm'   => 'Confirm',
+        'reject'    => 'Reject',
+        'send'      => 'Send',
+    ],
     'base' => [
         'configure' => 'Configure',
         'download'  => 'Download',

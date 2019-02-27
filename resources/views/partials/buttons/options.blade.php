@@ -4,16 +4,10 @@
     @icon('cogs', '', 'opacity-100')
 
     {{-- Start with form --}}
-    <form method="POST"
-        name="belich-form-options"
-        id="belich-form-options"
-        dusk="dusk-form-options"
-        class="btn-dropdown-content pin-r rounded-lg border border-grey shadow text-grey-dark text-left bg-white"
-        action="{{ route('dashboard.users.settings') }}"
-    >
+    <form method="POST" action="{{ route('dashboard.users.settings') }}" name="belich-form-options" id="belich-form-options" dusk="dusk-form-options" class="btn-dropdown-content pin-r rounded-lg border border-grey shadow text-grey-dark text-left bg-white">
         @csrf
 
-        {{-- Per page --}}
+        {{-- Per page component --}}
         <belich::options field="perPage" css="rounded-t-lg" :text="trans('belich::default.perPage')">
             <slot name="options">
                 <option></option>
@@ -26,7 +20,7 @@
             </slot>
         </belich::options>
 
-        {{-- Trashed --}}
+        {{-- Trashed component --}}
         @can('withTrashed', $request->autorizedModel)
             @hasSoftdelete($request->autorizedModel)
                 <belich::options field="withTrashed" css="rounded-t-lg" :text="trans('belich::default.trashed')">

@@ -4,19 +4,12 @@
     @icon('download', '', 'opacity-100')
 
     {{-- Start with form --}}
-    <form method="POST"
-        name="belich-form-exports"
-        id="belich-form-exports"
-        dusk="dusk-form-exports"
-        class="btn-dropdown-content pin-r rounded-lg border border-grey shadow text-grey-dark text-left bg-white"
-        action="{{ route('dashboard.exports.download') }}"
-    >
+    <form method="POST" action="{{ route('dashboard.exports.download') }}" name="belich-form-exports" id="belich-form-exports" dusk="dusk-form-exports" class="btn-dropdown-content pin-r rounded-lg border border-grey shadow text-grey-dark text-left bg-white">
         @csrf
-
         <input type="hidden" name="resource_model" value="{{ Belich::getModelPath() }}">
         <input type="hidden" id="exports_selected" name="exports_selected" value="">
 
-        {{-- Export format --}}
+        {{-- Export format component --}}
         <belich::options field="format" css="rounded-t-lg" required="true" :text="trans('belich::default.format')">
             <slot name="options">
                <option><option>
@@ -26,7 +19,7 @@
             </slot>
         </belich::options>
 
-        {{-- Export quantity --}}
+        {{-- Export quantity component --}}
         <belich::options field="quantity" css="rounded-t-lg" required="true" :text="trans('belich::default.items')">
             <slot name="options">
                <option><option>
