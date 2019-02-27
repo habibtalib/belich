@@ -4,9 +4,10 @@
     {{-- Breadcrumbs --}}
     @include('belich::partials.navigation.breadcrumbs')
 
-    {{-- Metrics --}}
+    {{-- Metrics And Cards --}}
     <div class="{{ hideMetricsForScreens($request) }}">
         {!! Chart::render($request) !!}
+        {!! Belich::cards($request) !!}
     </div>
 
     {{-- Search container --}}

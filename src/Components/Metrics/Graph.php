@@ -60,27 +60,27 @@ abstract class Graph {
     public function __construct(Request $request)
     {
         // Set default values
-        $this->calculate  = $this->calculate($request);
-        $this->color      = $this->color($request);
-        $this->labels     = $this->labels($request);
-        $this->marker     = $this->marker();
-        $this->name       = $this->name($request);
-        $this->type       = $this->type($request);
-        $this->uriKey     = $this->uriKey();
-        $this->width      = 'w-1/3';
-        $this->withArea   = $this->withArea();
+        $this->calculate = $this->calculate($request);
+        $this->color     = $this->color($request);
+        $this->labels    = $this->labels($request);
+        $this->marker    = $this->marker();
+        $this->name      = $this->name($request);
+        $this->type      = $this->type($request);
+        $this->uriKey    = $this->uriKey();
+        $this->width     = 'w-1/3';
+        $this->withArea  = $this->withArea();
     }
 
     /**
      * Initialize the metrics
      *
      */
-    abstract function calculate(Request $request);
+    abstract function calculate(Request $request) : array;
 
     /**
      * Set the labels
      */
-    abstract function labels(Request $request);
+    abstract function labels(Request $request) : array;
 
     /**
      * Set the metric name
@@ -90,7 +90,7 @@ abstract class Graph {
     /**
      * Set the urikey
      */
-    abstract function urikey();
+    abstract function urikey() : string;
 
     /**
      * Set the default card width

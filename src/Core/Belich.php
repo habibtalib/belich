@@ -9,6 +9,7 @@ use Daguilarm\Belich\Components\Breadcrumbs;
 use Daguilarm\Belich\Core\Helpers;
 use Daguilarm\Belich\Core\Traits\Connectable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 use Illuminate\View\View;
 
 class Belich {
@@ -102,6 +103,27 @@ class Belich {
     {
         return Breadcrumbs::make($breadcrumbs);
     }
+
+     /*
+     |--------------------------------------------------------------------------
+     | Cards
+     |--------------------------------------------------------------------------
+     */
+
+    /**
+     * Initialize the Cards
+     *
+     * @return \Daguilarm\Belich\Core\Htm
+     */
+     public function cards(Request $request) : string
+     {
+        return collect($request->cards)
+            ->map(function($card) {
+                return $card::make()->render();
+            })
+            ->filter('')
+            ->implode('');
+     }
 
     /*
     |--------------------------------------------------------------------------

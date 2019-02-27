@@ -4,6 +4,7 @@ namespace App\Belich\Cards;
 
 use Daguilarm\Belich\Components\Cards\Card;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class d_class_b extends Card {
 
@@ -25,7 +26,7 @@ class d_class_b extends Card {
      *
      * @return Illuminate\Support\Facades\View
      */
-    public function render() : View
+    public function make() : View
     {
         //Don't forget to create the view: resources/views/vendor/belich/cards/d_view_b.blade.php
         //Or just change the view path...
@@ -37,7 +38,7 @@ class d_class_b extends Card {
      *
      * @return string
      */
-    public function uriKey()
+    public function uriKey() : string
     {
         return 'd_key_b';
     }

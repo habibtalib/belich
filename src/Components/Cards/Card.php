@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Components\Cards;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\View;
+use Illuminate\View\View;
 
 abstract class Card {
 
@@ -29,7 +29,7 @@ abstract class Card {
      *
      * @return Illuminate\Support\Facades\View
      */
-    abstract public function render() : View;
+    abstract public static function make() : View;
 
     /**
      * Get the URI key for the card
