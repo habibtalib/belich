@@ -40,6 +40,24 @@ Blade::directive('icon', function ($arguments) {
 });
 
 /**
+ * Create a @listFromLocale directive
+ * It is created for modal or menssages, when there is a array with texts!
+ *
+ * @return string
+ */
+Blade::directive('listFromLocale', function ($arguments) {
+    $text = explode(',', str_replace(['(',')',' ', "'"], '', $arguments));
+    $list = collect(trans($text[0]))
+        ->map(function($item) {
+            return sprintf('<div>%s</div>', icon('check-square', $item));
+        })
+        ->implode('');
+
+    //App\Http\Helpers\Icons.php
+    return "<?php echo '$list'; ?>";
+});
+
+/**
  * Create a Blade if directive for @hasSoftdelete
  * Check if a model has the softdelete trait
  *
