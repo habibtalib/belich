@@ -20,6 +20,8 @@
     @endcan
 
     @can('delete', $model)
-        <a href="#modal-item-delete" data-id="{{ $model->id }}" class="action" onclick="document.getElementById('delete_selected').setAttribute('value', this.getAttribute('data-id'));">@actionIcon('trash')</a>
+        <a href="#modal-item-delete" data-id="{{ $model->id }}" class="action" onclick="deleteField('form-item-delete', '{{ Belich::actionRoute('destroy', $model) }}');">
+            @actionIcon('trash')
+        </a>
     @endcan
 @endif

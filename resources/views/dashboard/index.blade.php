@@ -17,80 +17,29 @@
                 <i class="fas fa-times-circle text-grey cursor-pointer" onclick="resetSearch()"></i>
             </span>
         </div>
-
         {{-- Right container --}}
         <div class="flex justify-end w-full">
-
-            {{-- Buttons --}}
+            {{-- Buttons: create --}}
             @can('create', $request->autorizedModel)
                 <a href="{{ Belich::actionRoute('create') }}" class="btn btn-secondary mr-2">
                     @icon('plus', 'belich::buttons.crud.create')
                 </a>
             @endcan
-
-            {{-- Options --}}
+            {{-- Dropdowns --}}
+            {{-- Dropdown: Options --}}
             @include('belich::partials.buttons.options')
-
             {{-- Show or hide base on selected items --}}
-                {{-- Export --}}
-                @includeWhen(Belich::downloable(), 'belich::partials.buttons.exports')
-
-                {{-- Delete --}}
-                @include('belich::partials.buttons.delete')
+            {{-- Dropdown: Export --}}
+            @includeWhen(Belich::downloable(), 'belich::partials.buttons.exports')
+            {{-- Dropdown: Delete --}}
+            @include('belich::partials.buttons.delete')
         </div>
         {{-- End right container --}}
     </div>
     {{-- End search container --}}
 
-    {{-- Start / Table --}}
-    <table class="table table-auto" id="belich-index-table">
-        <thead>
-            <tr>
-                {{-- Checkboxes --}}
-                <th>
-                    <input type="checkbox" name="item_selection" onclick="checkAll(this)">
-                </th>
-                {{-- Headers --}}
-                @foreach($request->fields as $field)
-                    <th>
-                        {{-- Get URL with ASC or DESC order --}}
-                        {!! Belich::html()->tableLink($field) !!}
-                    </th>
-                @endforeach
-                {{-- Action column --}}
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            {{-- Get the results --}}
-            @forelse($request->results as $result)
-                <tr>
-                    <td><input type="checkbox" name="item_selection[]" value="{{ $result->id }}" class="form-index-selector" onclick="checkForSelectedFields();"></td>
-                    {{-- <td> --}}
-                        @foreach($request->fields as $field)
-                            {{-- Resolve the values and create the <td></td> --}}
-                            {!! Belich::html()->resolveRowWithSoftdeletingCreatingHtml($field, $result) !!}
-                        @endforeach
-                    {{-- </td> --}}
-                    <td class="text-right">
-                        {{-- Load the button actions --}}
-                        {!! Belich::actions($result, $request->actions) !!}
-                    </td>
-                </tr>
-            {{-- No results --}}
-            @empty
-                <tr>
-                    <td colspan="{{ $request->total }}" class="text-center">
-                        {{ trans('belich::messages.resources.no_results') }}
-                    </td>
-                </tr>
-            @endforelse
-        </tbody>
-
-        {{-- Pagination --}}
-        @include('belich::partials.pagination')
-
-    </table>
+    {{-- Table --}}
+    @include('belich::dashboard.sections.table')
 
     {{-- End / Table --}}
     {{-- Table footer (bordered) --}}
@@ -104,11 +53,15 @@
 
 {{-- Added the modals --}}
 @prepend('modals')
-    {{-- Modal delete component --}}
-    <belich::modal form="true" hidden="delete_selected" id="item-delete" background="red" color="white" :action="route('dashboard.' . $request->name . '.destroy', 1)" :request="$request" :icon="icon('trash', 'Mass delete')" :title="trans('belich::messages.delete.selected.title')">
+    {{-- Modal component: delete item --}}
+    <belich::modal form="true" id="item-delete" background="red" color="white" action="#" :request="$request" :header="icon('exclamation-triangle', trans('belich::messages.delete.item.title'))">
+        {{-- Form method field for DELETE --}}
+        <slot name="method">
+            @method('DELETE')
+        </slot>
         {{-- Modal content --}}
         <slot name="content">
-            <div>@icon('check-square', 'belich::messages.delete.selected.confirm')</div>
+            <div>@listTextFromArray('belich::messages.delete.item.confirm')</div>
         </slot>
         {{-- Modal footer --}}
         <slot name="footer">

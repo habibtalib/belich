@@ -92,6 +92,14 @@
     }
 
     /*
+    Section: Delete
+    Description: Delete the a field
+    */
+    function deleteField(form, url) {
+        document.getElementById(form).setAttribute('action', url);
+    }
+
+    /*
     Section: Global
     Description: Toggle container base on item selection
     */
@@ -109,7 +117,9 @@
 
         //Show each element
         for (var i = 0; i < elements.length; i++) {
-            (type === 'hide') ? elements[i].classList.add('hidden') : elements[i].classList.remove('hidden');
+            (type === 'hide')
+                ? elements[i].classList.add('hidden')
+                : elements[i].classList.remove('hidden');
         }
     }
 </script>

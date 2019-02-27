@@ -1,8 +1,14 @@
 {{-- Conditional form --}}
 @if(!empty($form))
     <form method="POST" id="form-{{ \Illuminate\Support\Str::kebab($id) }}" name="form-{{ \Illuminate\Support\Str::kebab($id) }}" action="{{ $action }}">
+        {{-- Form CSRF --}}
         @csrf
-        <input type="hidden" id="{{ $hidden ?? null }}" name="{{ $hidden ?? null }}" value="">
+        {{-- Form method field --}}
+        {!! $method ?? null !!}
+        {{-- Selected fields --}}
+        @isset($hidden)
+            <input type="hidden" id="{{ $hidden ?? null }}" name="{{ $hidden ?? null }}" value="">
+        @endisset
 @endif
 
     {{-- Modal body --}}
@@ -19,10 +25,10 @@
                 <a href="#" class="close text-white font-bold text-lg">@icon('times')</a>
             </div>
 
-            {{-- Title --}}
-            @isset($title)
-                <h2 class="{{ 'bg-' . $background ?? 'bg-grey-dark'}} {{ 'text-' . $color ?? 'text-white'}} font-bold rounded-t p-4">
-                    {!! $title !!}
+            {{-- Header --}}
+            @isset($header)
+                <h2 id="header-{{ $id }}" class="{{ 'bg-' . $background ?? 'bg-grey-dark'}} {{ 'text-' . $color ?? 'text-white'}} font-bold rounded-t p-4">
+                    {!! $header !!}
                 </h2>
             @endisset
 
