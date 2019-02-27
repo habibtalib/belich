@@ -15,7 +15,7 @@
 
         {{-- Button: create --}}
         <div class="btn-container bg-blue-lightest">
-            <button id="button-form-create" type="submit" class="btn btn-primary mt-1">
+            <button id="button-form-create" type="submit" class="btn btn-primary mt-1"  onclick="loading(this);">
                 @icon('plus', 'belich::buttons.crud.create')
             </button>
         </div>

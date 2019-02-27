@@ -5,7 +5,7 @@
     @include('belich::partials.navigation.breadcrumbs')
 
     {{-- Crud Button: show --}}
-    <belich::button :title="icon('eye', trans('belich::buttons.crud.show'))" :url="Belich::actionRoute('show', $request->id)"/>
+    <belich::button :title="icon('eye', trans('belich::buttons.crud.show'))" :url="Belich::actionRoute('show', $request->id)" loading/>
 
     {{-- Form --}}
     <form method="POST" name="form-{{ $request->name }}-edit" id="form-{{ $request->name }}-edit" action="{{ toRoute('update') }}" class="form-container">
@@ -19,7 +19,7 @@
 
         {{-- Button: update --}}
         <div class="btn-container bg-blue-lightest">
-            <button id="button-form-edit" type="submit" class="btn btn-primary mt-1">
+            <button id="button-form-edit" type="submit" class="btn btn-primary mt-1" onclick="loading(this);">
                 @icon('edit', 'belich::buttons.crud.update')
             </button>
         </div>
