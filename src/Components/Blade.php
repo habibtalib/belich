@@ -13,6 +13,7 @@ class Blade {
         $metrics = collect($request->metrics)
             ->map(function($metric) {
                 if($metric) {
+                    //Return the metric view
                     return view('belich::components.metrics.chart', compact('metric'))->render();
                 }
             });
@@ -21,6 +22,7 @@ class Blade {
         $cards = collect($request->cards)
             ->map(function($card) {
                 if($card) {
+                    //Return the card view
                     return $card::make();
                 }
             });
@@ -28,7 +30,7 @@ class Blade {
         //Render values
         return $metrics->count() > 0
             ? $metrics->merge($cards)->implode('')
-            : implode('', $cards->toArray());
+            : implode('', $cards->all());
     }
 }
 
