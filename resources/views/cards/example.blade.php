@@ -1,5 +1,6 @@
 {{-- Direct version using Blade components --}}
 @component('belich::components.card')
+    @slot('width', 'w-1/3')
     @slot('content')
         <h1>Lorem</h1>
         <div>
@@ -9,7 +10,7 @@
 @endcomponent
 
 {{-- Same example using BladeX (https://github.com/spatie/laravel-blade-x) --}}
-<belich::card>
+<belich::card width="w-1/3">
     <slot name="content">
         <h1>Lorem</h1>
         <div>

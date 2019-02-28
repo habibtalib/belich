@@ -5,7 +5,7 @@
     @include('belich::partials.navigation.breadcrumbs')
 
     {{-- Metrics And Cards --}}
-    @if($request->metrics && $request->cards)
+    @if($request->metrics || $request->cards)
         <div class="{{ hideMetricsForScreens() }} flex-wrap mb-8">
             {!! Belich::components($request) !!}
         </div>

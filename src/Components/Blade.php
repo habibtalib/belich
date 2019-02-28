@@ -3,21 +3,32 @@
 namespace Daguilarm\Belich\Components;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 class Blade {
 
     public static function render(Request $request)
     {
-        //Render the metric view
-        return collect($request->metrics)
+        //Render the metric items
+        $metrics = collect($request->metrics)
             ->map(function($metric) {
-                return view('belich::components.metrics.chart', compact('metric'))->render();
-            })
-            ->merge(collect($request->cards)->map(function($card) {
+                if($metric) {
+                    return view('belich::components.metrics.chart', compact('metric'))->render();
+                }
+            });
+
+        //Render the cards items
+        $cards = collect($request->cards)
+            ->map(function($card) {
+                if($card) {
                     return $card::make();
-                })
-            )
-            ->implode('');
+                }
+            });
+
+        //Render values
+        return $metrics->count() > 0
+            ? $metrics->merge($cards)->implode('')
+            : implode('', $cards->toArray());
     }
 }
 
