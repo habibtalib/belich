@@ -5,11 +5,11 @@
     @include('belich::partials.navigation.breadcrumbs')
 
     {{-- Metrics And Cards --}}
-    <div id="metrics-and-cards">
-        <div class="{{ hideMetricsForScreens() }}">
+    @if($request->metrics && $request->cards)
+        <div class="{{ hideMetricsForScreens() }} flex-wrap mb-8">
             {!! Belich::components($request) !!}
         </div>
-    </div>
+    @endif
 
     {{-- Search container --}}
     {{-- input: search field --}}

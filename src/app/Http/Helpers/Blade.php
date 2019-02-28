@@ -22,7 +22,7 @@ if (!function_exists('hideContainerForScreens')) {
 
         return $screens
             ->map(function($size) use ($hideFor) {
-                $status = in_array($size, $hideFor) ? 'hidden' : 'block';
+                $status = in_array($size, $hideFor) ? 'hidden' : 'flex';
                 return sprintf('%s:%s', $size, $status);
             })
             ->filter()
