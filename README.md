@@ -1,9 +1,17 @@
 # belich (working on it...)
-Laravel admin dashboard totaly inspired by the Nova documents, but totaly different...
 
-The objective of the project is to follow the Laravel Nova line, but without the dependence on Vuejs. It is just a personal challence to build Nova without vuejs... just for fun! Only back-end!
+I started this project to improve my skills as a programmer, and for that, I immersed myself in the Laravel Nova code (it was something that changed my way of understanding programming).
 
-And of course, all the code is built from 0!
+From that point, I decided as an exercise, to develop a version of Nova that did not use VueJS, in other words, focused on the back-end, and using Javascript only in cases where there was no other option available.
+
+What has happened during this adventure, is that in the end, what started as an exercise, is becoming a real project, and increasingly away from Nova, especially when I have added new features, which have made me (on several occasions) rebuild a good part of the code from the beginning.
+
+
+To this day, Belich has its own code structure designed from 0.
+
+Choosing to eliminate VueJS from the equation has been a very complicated decision, and in some cases, it has been a big headache.
+
+The adventure is worth it, and I think I've learned great things!
 
 ## Status 
 
@@ -15,7 +23,7 @@ Project in development. Still in the early stages...help will be great!!!
 
 ## Configuration 
 
-`php artisan vendor:publish --provider="Daguilarm\Belich\BelichServiceProvider" --force`
+`php artisan vendor:publish --provider="Daguilarm\Belich\BelichServiceProvider"`
 
 ## Features 
 
@@ -29,6 +37,7 @@ Project in development. Still in the early stages...help will be great!!!
     + sidebar.
     + breadcrumb.
     + dashboard.
+    + cards
     + ...
 - Cache.
 - Minify HTML (with filters by pages and Controller actions): https://github.com/nckg/laravel-minify-html
