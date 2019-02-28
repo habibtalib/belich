@@ -32,7 +32,7 @@ class Render {
                 return view('belich::components.metrics.chart', compact('metric'))->render();
             });
 
-        return $this->hasResults($metrics);
+        return $metrics->implode('');
     }
 
     /**
@@ -181,24 +181,6 @@ class Render {
     | Helpers
     |--------------------------------------------------------------------------
     */
-
-    /**
-     * Check for results
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return string
-     */
-    private function hasResults(Collection $metrics) : string
-    {
-        //If results...
-        $results = ($metrics->count() > 0)
-            ? $metrics->implode('')
-            : null;
-
-        return $results
-            ? sprintf('<div class="flex mb-12">%s</div>', $results)
-            : '';
-    }
 
     /**
      * Format the labels to render

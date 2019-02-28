@@ -7,11 +7,8 @@
     {{-- Metrics And Cards --}}
     <div id="metrics-and-cards">
         <div class="{{ hideMetricsForScreens() }}">
-            {!! Chart::render($request) !!}
+            {!! Belich::components($request) !!}
         </div>
-{{--         <div class="{{ hideMetricsForScreens($request) }}">
-            {!! Chart::render($request) !!}
-        </div> --}}
     </div>
 
     {{-- Search container --}}

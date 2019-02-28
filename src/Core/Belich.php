@@ -2,10 +2,6 @@
 
 namespace Daguilarm\Belich\Core;
 
-use App\Belich\Navbar;
-use App\Belich\Sidebar;
-use Daguilarm\Belich\Components\Actions;
-use Daguilarm\Belich\Components\Breadcrumbs;
 use Daguilarm\Belich\Core\Helpers;
 use Daguilarm\Belich\Core\Traits\Connectable;
 use Illuminate\Http\Request;
@@ -101,28 +97,23 @@ class Belich {
     */
     public function breadcrumbs(array $breadcrumbs)
     {
-        return Breadcrumbs::make($breadcrumbs);
+        return \Daguilarm\Belich\Components\Breadcrumbs::make($breadcrumbs);
     }
 
      /*
      |--------------------------------------------------------------------------
-     | Cards
+     | Cards and Metrics
      |--------------------------------------------------------------------------
      */
 
     /**
-     * Initialize the Cards
+     * Initialize the Cards and the Metrics
      *
-     * @return \Daguilarm\Belich\Core\Htm
+     * @return null|Blade
      */
-     public function cards(Request $request) : string
+     public function components(Request $request)
      {
-        return collect($request->cards)
-            ->map(function($card) {
-                return $card::make()->render();
-            })
-            ->filter('')
-            ->implode('');
+        return \Daguilarm\Belich\Components\Blade::render($request);
      }
 
     /*
@@ -136,7 +127,7 @@ class Belich {
     *
     * @return \Daguilarm\Belich\Core\Htm
     */
-    public function html() : Html
+    public function html() : \Daguilarm\Belich\Core\Html
     {
         return new \Daguilarm\Belich\Core\Html;
     }
@@ -155,7 +146,7 @@ class Belich {
     public function navbar()
     {
        if(class_exists('\App\Belich\Navbar')) {
-            return new Navbar($this->resourcesAll());
+            return new \App\Belich\Navbar($this->resourcesAll());
        }
        throw new \InvalidArgumentException('The \App\Belich\Navbar::class does not exist. Please restore the file to its folder or install the package again.');
     }
@@ -168,7 +159,7 @@ class Belich {
     public function sidebar()
     {
         if(class_exists('\App\Belich\Sidebar')) {
-            return new Sidebar($this->resourcesAll());
+            return new \App\Belich\Sidebar($this->resourcesAll());
         }
         throw new \InvalidArgumentException('The \App\Belich\Sidebar::class does not exist. Please restore the file to its folder or install the package again.');
     }
