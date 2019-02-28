@@ -104,6 +104,7 @@ class ServiceProvider extends Provider {
         $this->publishes([
             __DIR__ . '/../resources/views/actions'    => base_path('resources/views/vendor/belich/actions'),
             __DIR__ . '/../resources/views/auth'       => base_path('resources/views/vendor/belich/auth'),
+            __DIR__ . '/../resources/views/cards'      => base_path('resources/views/vendor/belich/cards'),
             __DIR__ . '/../resources/views/pages'      => base_path('resources/views/vendor/belich/pages'),
             __DIR__ . '/../resources/views/partials'   => base_path('resources/views/vendor/belich/partials'),
             __DIR__ . '/../resources/views/components' => base_path('resources/views/vendor/belich/components'),

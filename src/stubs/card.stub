@@ -30,6 +30,7 @@ class d_class_b extends Card {
     {
         //Don't forget to create the view: resources/views/vendor/belich/cards/d_view_b.blade.php
         //Or just change the view path...
+        //You will find a blade template at: resources/views/vendor/belich/cards/example.blade.php
         return view('belich::cards.d_view_b');
     }
 
