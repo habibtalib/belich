@@ -4,15 +4,11 @@ namespace App\Belich\Cards;
 
 use Daguilarm\Belich\Components\Cards\Card;
 use Illuminate\Http\Request;
-use Illuminate\View\View;
 
 class d_class_b extends Card {
 
-    /** @var string */
-    public $width;
-
     /**
-     * Initialize the metric
+     * Initialize the card
      *
      * @return string
      */
@@ -24,14 +20,26 @@ class d_class_b extends Card {
     /**
      * Return the view
      *
-     * @return Illuminate\Support\Facades\View
+     * @return string
      */
-    public function make() : View
+    public function view() : string
     {
         //Don't forget to create the view: resources/views/vendor/belich/cards/d_view_b.blade.php
         //Or just change the view path...
         //You will find a blade template at: resources/views/vendor/belich/cards/example.blade.php
-        return view('belich::cards.d_view_b');
+        return 'belich::cards.d_view_b';
+    }
+
+    /**
+     * Return the view data
+     *
+     * @return string
+     */
+    public function withMeta() : array
+    {
+        return [
+            //
+        ];
     }
 
     /**

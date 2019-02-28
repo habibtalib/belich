@@ -113,7 +113,7 @@ class Belich {
      */
      public function components(Request $request)
      {
-        return \Daguilarm\Belich\Components\Blade::render($request);
+        return (new \Daguilarm\Belich\Components\Blade)->render($request);
      }
 
     /*

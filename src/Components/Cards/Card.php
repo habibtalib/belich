@@ -2,14 +2,29 @@
 
 namespace Daguilarm\Belich\Components\Cards;
 
+use Daguilarm\Belich\Components\Metrics\Eloquent\Traits\CacheForHumans;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 
 abstract class Card {
 
+    use CacheForHumans;
+
+    /** @var int */
+    protected $cache;
+
+    /** @var bool */
+    protected $cacheForEver = false;
+
     /** @var string */
-    public $width;
+    protected $cacheKey;
+
+    /** @var string */
+    public $view;
+
+    /** @var array */
+    public $withMeta;
 
     /** @var string */
     public $uriKey;
@@ -21,15 +36,18 @@ abstract class Card {
      */
     public function __construct()
     {
-        $this->uriKey = $this->uriKey();
+        $this->uriKey   = $this->uriKey();
+        $this->view     = $this->view();
+        $this->withMeta = $this->withMeta();
+        $this->cache    = $this->cache() ?? null;
     }
 
     /**
-     * Return the view
+     * Initialize the card
      *
-     * @return Illuminate\Support\Facades\View
+     * @return string
      */
-    abstract public static function make() : View;
+    abstract public function view() : string;
 
     /**
      * Get the URI key for the card
@@ -39,15 +57,9 @@ abstract class Card {
     abstract public function uriKey() : string;
 
     /**
-     * Set the default card width
+     * Get the URI key for the card
      *
-     * @param string $width
-     * @return self
+     * @return string
      */
-    public function width(string $width) : self
-    {
-        $this->width = $width;
-
-        return $this;
-    }
+    abstract public function withMeta() : array;
 }
