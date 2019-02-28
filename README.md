@@ -4,7 +4,7 @@ I started this project to improve my skills as a programmer, and for that, I imm
 
 From that point, I decided as an exercise, to develop a version of Nova that did not use VueJS, in other words, focused on the back-end, and using Javascript only in cases where there was no other option available.
 
-What has happened during this adventure, is that in the end, what started as an exercise, is becoming a real project, and increasingly away from Nova, especially when I have added new features, which have made me (on several occasions) rebuild a good part of the code from the beginning.
+What has happened during this adventure, is that in the end, what started as an exercise, is becoming a real project, and gradually moving away from Nova, especially when I have added new features, which have made me (on several occasions) rebuild a good part of the code from the beginning.
 
 
 To this day, Belich has its own code structure designed from 0.
