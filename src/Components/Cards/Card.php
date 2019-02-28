@@ -2,23 +2,11 @@
 
 namespace Daguilarm\Belich\Components\Cards;
 
-use Daguilarm\Belich\Components\Metrics\Eloquent\Traits\CacheForHumans;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 
 abstract class Card {
-
-    use CacheForHumans;
-
-    /** @var int */
-    protected $cache;
-
-    /** @var bool */
-    protected $cacheForEver = false;
-
-    /** @var string */
-    protected $cacheKey;
 
     /** @var string */
     public $view;
@@ -39,7 +27,6 @@ abstract class Card {
         $this->uriKey   = $this->uriKey();
         $this->view     = $this->view();
         $this->withMeta = $this->withMeta();
-        $this->cache    = $this->cache() ?? null;
     }
 
     /**
