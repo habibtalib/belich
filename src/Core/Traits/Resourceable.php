@@ -245,7 +245,6 @@ trait Resourceable {
             'displayInNavigation'   => $displayInNavigation,
             'group'                 => $class::$group,
             'icon'                  => $class::$icon ?? 'angle-right',
-            'hideMetricsForScreens' => $class::$hideMetricsForScreens,
             'label'                 => $class::$label ?? Str::title($className),
             'pluralLabel'           => $class::$pluralLabel ?? Str::plural(Str::title($className)),
             'resource'              => Str::plural(Str::lower($className)),

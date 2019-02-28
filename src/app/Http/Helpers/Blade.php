@@ -12,25 +12,48 @@ use Illuminate\Http\Request;
 /**
  * Hide content base on screen size
  *
+ * @param object $hideFor
+ * @return bool
+ */
+if (!function_exists('hideContainerForScreens')) {
+    function hideContainerForScreens(array $hideFor)
+    {
+        $screens = collect(['sm', 'md', 'lg', 'xl']);
+
+        return $screens
+            ->map(function($size) use ($hideFor) {
+                $status = in_array($size, $hideFor) ? 'hidden' : 'block';
+                return sprintf('%s:%s', $size, $status);
+            })
+            ->filter()
+            ->prepend('hidden')
+            ->implode(' ');
+    }
+}
+
+/**
+ * Hide cards base on screen size
+ *
+ * @param object $request
+ * @return bool
+ */
+if (!function_exists('hideCardsForScreens')) {
+    function hideCardsForScreens()
+    {
+        return hideContainerForScreens(config('belich.hideCardsForScreens'));
+    }
+}
+
+/**
+ * Hide metrics base on screen size
+ *
  * @param object $request
  * @return bool
  */
 if (!function_exists('hideMetricsForScreens')) {
-    function hideMetricsForScreens(object $request)
+    function hideMetricsForScreens()
     {
-        $values  = optional($request)->hideMetricsForScreens ?? config('belich.hideMetricsForScreens') ?? null;
-        $screens = ['sm', 'md', 'lg', 'xl'];
-
-        if(!empty($values) && is_array($values)) {
-            return collect($screens)
-                ->map(function($size) use ($values) {
-                    $status = in_array($size, $values) ? 'hidden' : 'block';
-                    return sprintf('%s:%s', $size, $status);
-                })
-                ->filter()
-                ->prepend('hidden')
-                ->implode(' ');
-        }
+        return hideContainerForScreens(config('belich.hideMetricsForScreens'));
     }
 }
 
