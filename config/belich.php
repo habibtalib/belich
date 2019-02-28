@@ -61,6 +61,16 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Hide metrics for a different screen sizes
+    |--------------------------------------------------------------------------
+    |
+    | Belich will allow you to hide metrics base on the device and its screen-size: mobile, tables, etc.
+    | The allowed values are: 'sm', 'md', 'lg' and  'xl'
+    */
+    'hideMetricsForScreens' => [],
+
+    /*
+    |--------------------------------------------------------------------------
     | Hide cards for a different screen sizes
     |--------------------------------------------------------------------------
     |
