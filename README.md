@@ -96,6 +96,10 @@ The pie charts are pretty advanced, but they are not ready yet...
 
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/metrics/graph-pie.png)
 
+#### With stats and cards
+
+![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/metrics/card-and-pie.png)
+
 #### And of course, with sidebar...
 
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/sidebar.png)
