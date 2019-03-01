@@ -4,13 +4,12 @@ namespace Daguilarm\Belich\Fields;
 
 use Daguilarm\Belich\Core\Traits\Routeable;
 use Daguilarm\Belich\Fields\Field;
-use Daguilarm\Belich\Fields\Traits\DependsOn;
 use Daguilarm\Belich\Fields\Traits\Resolvable;
 use Illuminate\Support\Collection;
 
 class FieldResolve {
 
-    use DependsOn, Resolvable, Routeable;
+    use Resolvable, Routeable;
 
     /** @var string */
     private $action;
