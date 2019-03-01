@@ -202,4 +202,16 @@ trait Visibilitable {
             $this->visibility[$attribute] = false;
         }
     }
+
+    /**
+     * Show field for all actions
+     *
+     * @var void
+     */
+    protected function showInAll()
+    {
+        foreach($this->visibility as $attribute => $value) {
+            $this->visibility[$attribute] = true;
+        }
+    }
 }
