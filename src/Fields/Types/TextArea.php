@@ -88,14 +88,14 @@ class TextArea extends Field {
     }
 
     /**
-     * Show textArea in all the actions
+     * Show textArea in show action
      * Alias for alwaysShow()
      *
      * @return  self
      */
     public function show() : self
     {
-        $this->showInAll();
+        $this->visibility['show'] = true;
 
         return $this;
     }

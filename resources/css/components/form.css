@@ -34,7 +34,8 @@
 
     /*Default form fields*/
     form.form-container > .form-group input,
-    form.form-container > .form-group select {
+    form.form-container > .form-group select,
+    form.form-container > .form-group textarea {
         @apply w-full appearance-none border leading-loose rounded text-lg text-grey-darker;
         border-color: var(--form-input-border);
         background-color: var(--form-input-bg);

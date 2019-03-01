@@ -8,7 +8,7 @@
                 {!! setAttribute($field, 'addClass') !!}
                 {!! setAttribute($field, 'rows', 4) !!}
                 {!! setAttribute($field, 'maxlength') !!}
-                {!! $field->count ? 'onkeydown="textAreaCount(this, \'' . $field->id . '\');"' : '' !!}
+                {!! $field->count ? 'onkeyup="textAreaCount(this, \'' . $field->id . '\');"' : '' !!}
                 {!! $field->render !!}
             >
                 {{ $field->value }}

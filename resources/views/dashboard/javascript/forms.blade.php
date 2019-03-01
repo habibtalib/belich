@@ -5,6 +5,6 @@
     */
     function textAreaCount(container, id) {
         var message = '{{ trans('belich::forms.chart_left') }}';
-        document.getElementById('chars-' + id).innerHTML = message + ": <b>" + (container.maxLength - container.value.length + 1) + "</b>";
+        document.getElementById('chars-' + id).innerHTML = message + ": <b>" + (container.maxLength - container.value.length) + "</b>";
     }
 </script>
