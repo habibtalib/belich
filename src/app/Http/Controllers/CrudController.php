@@ -4,13 +4,16 @@ namespace Daguilarm\Belich\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Daguilarm\Belich\App\Http\Controllers\Traits\Redirectable;
-use Daguilarm\Belich\App\Http\Controllers\Traits\Valuable;
+use Daguilarm\Belich\App\Http\Requests\CreateRequest;
+use Daguilarm\Belich\App\Http\Requests\IndexRequest;
+use Daguilarm\Belich\App\Http\Requests\ShowRequest;
+use Daguilarm\Belich\App\Http\Requests\UpdateRequest;
 use Daguilarm\Belich\Core\Belich;
 use Illuminate\Http\Request;
 
 class CrudController extends Controller
 {
-    use Redirectable, Valuable;
+    use Redirectable;
 
     /** @var Illuminate\Database\Eloquent\Model */
     protected $model;
@@ -38,16 +41,16 @@ class CrudController extends Controller
      * List the resources.
      *
      * @param Daguilarm\Belich\Core\Belich $belich
-     * @param Illuminate\Http\Request $request
+     * @param Daguilarm\Belich\App\Http\Requests\IndexRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Belich $belich, Request $request)
+    public function index(Belich $belich, IndexRequest $request)
     {
         //Authorization
         $this->authorize('viewAny', $this->model);
 
         //Get all the data
-        $request = $this->dataToIndex($belich, $request);
+        $request = $request->data($belich, $request);
 
         return view('belich::dashboard.index', compact('request'));
     }
@@ -56,16 +59,16 @@ class CrudController extends Controller
      * Create a new resource.
      *
      * @param Daguilarm\Belich\Core\Belich $belich
-     * @param Illuminate\Http\Request $request
+     * @param Daguilarm\Belich\App\Http\Requests\CreateRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function create(Belich $belich, Request $request)
+    public function create(Belich $belich, CreateRequest $request)
     {
         //Authorization
         $this->authorize('create', $this->model);
 
         //Get the data
-        $request = $this->dataToForms($belich, $request);
+        $request = $request->data($belich);
 
         return view('belich::dashboard.create', compact('request'));
     }
@@ -91,17 +94,16 @@ class CrudController extends Controller
      *
      * @param Daguilarm\Belich\Core\Belich $belich
      * @param int $id
-     * @param Illuminate\Http\Request $request
+     * @param Daguilarm\Belich\App\Http\Requests\ShowRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function show(Belich $belich, $id, Request $request)
+    public function show(Belich $belich, $id, ShowRequest $request)
     {
-        //The autorization magic happens in the Daguilarm\Belich\Fields\FieldResolve::class
-        //in order to avoid duplicate mySql queries
-        //This controller use the: $this->authorize('view')
+        //Authorization
+        $this->authorize('view', $this->model);
 
         //Get the data
-        $request = $this->dataToForms($belich, $request, $id);
+        $request = $request->data($belich, $id);
 
         return view('belich::dashboard.show', compact('request'));
     }
@@ -111,16 +113,15 @@ class CrudController extends Controller
      *
      * @param Daguilarm\Belich\Core\Belich $belich
      * @param int $id
-     * @param Illuminate\Http\Request $request
+     * @param Daguilarm\Belich\App\Http\Requests\UpdateRequest $request
      */
-    public function edit(Belich $belich, $id, Request $request)
+    public function edit(Belich $belich, $id, UpdateRequest $request)
     {
-        //The autorization magic happens in the Daguilarm\Belich\Fields\FieldResolve::class
-        //in order to avoid duplicate mySql queries
-        //This controller use the: $this->authorize('update')
+        //Authorization
+        $this->authorize('update');
 
         //Get the data
-        $request = $this->dataToForms($belich, $request, $id);
+        $request = $request->data($belich, $id);
 
         return view('belich::dashboard.edit', compact('request'));
     }
@@ -134,9 +135,8 @@ class CrudController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //The autorization magic happens in the Daguilarm\Belich\Fields\FieldResolve::class
-        //in order to not duplicate code...(in this case, the sql duplicate queries is not an issue)
-        //This controller use the: $this->authorize('update')
+        //Authorization
+        $this->authorize('update');
 
         $update = $this->model->findOrFail($id)->update($request->all());
 
