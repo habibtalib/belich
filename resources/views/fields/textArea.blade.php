@@ -5,9 +5,9 @@
         @slot('label', $field->label)
         @slot('field')
             <textarea
-                class="{{ $field->addClass }}"
-                rows="{{ $field->rows ?? 4 }}"
-                {!! $field->maxlength ? 'maxlength="' . $field->maxlength . '"' : '' !!}
+                {!! setAttribute($field, 'addClass') !!}
+                {!! setAttribute($field, 'rows', 4) !!}
+                {!! setAttribute($field, 'maxlength') !!}
                 {!! $field->count ? 'onkeydown="textAreaCount(this, ' . $field->id . ');"' : '' !!}
                 {!! $field->render !!}
             >
@@ -19,6 +19,8 @@
             @endif
 
             <p id="error-{{ $field->id }}" class="validation-error"></p>
+
+           {{-- Show charts count --}}
             @isset($field->count)
                 <p id="chars-{{ $field->id }}" class="bg-green text-white"></p>
                 @push('javascript')

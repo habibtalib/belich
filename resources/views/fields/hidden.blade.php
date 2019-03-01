@@ -1,1 +1,5 @@
-<input type="{{ $field->type }}" value="{{ $field->value }}" {!! $field->render !!}>
+<input
+    {!! setAttribute($field, 'type') !!}
+    {!! setAttribute($field, 'value') !!}
+    {!! $field->render !!}
+>

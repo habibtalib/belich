@@ -4,7 +4,12 @@
     @component('belich::fields.components.inlineForm')
         @slot('label', $field->label)
         @slot('field')
-            <input class="{{ $field->addClass }}" type="{{ $field->type }}" value="{{ $field->value }}" {!! $field->render !!}>
+            <input
+                {!! setAttribute($field, 'addClass') !!}
+                {!! setAttribute($field, 'type') !!}
+                {!! setAttribute($field, 'value') !!}
+                {!! $field->render !!}
+            >
 
             @if($field->help)
                 <div class="help-text">{{ $field->help }}</div>
