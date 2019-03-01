@@ -86,7 +86,7 @@ abstract class FieldAbstract {
     }
 
     /**
-     * Set the field sortable
+     * Set the field align
      * @param  bool  $value
      * @return self
      */
