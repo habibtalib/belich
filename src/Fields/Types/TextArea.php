@@ -13,11 +13,14 @@ class TextArea extends Field {
      */
     public $type = 'textArea';
 
-    /** @var int */
-    public $rows;
+    /** @var bool */
+    public $count;
 
     /** @var int */
     public $maxlength;
+
+    /** @var int */
+    public $rows;
 
     /**
      * Create a new field
@@ -28,8 +31,7 @@ class TextArea extends Field {
     public function __construct($label, $attribute = null)
     {
         //Set the values
-        $this->label     = $label;
-        $this->attribute = $attribute;
+        parent::__construct($label, $attribute);
 
         //Set visibility
         //Hide from detail by default
@@ -49,14 +51,26 @@ class TextArea extends Field {
     }
 
     /**
-     * Show textArea in all the actions
-     * Alias for alwaysShow()
+     * Show characters count
      *
      * @return  self
      */
-    public function show() : self
+    public function count(int $chars = 0) : self
     {
-        $this->showInAll();
+        $this->count     = true;
+        $this->maxlength = $chars;
+
+        return $this;
+    }
+
+    /**
+     * Set the textArea maximum length
+     *
+     * @return  self
+     */
+    public function maxlength(int $maxlength) : self
+    {
+        $this->maxlength = $maxlength;
 
         return $this;
     }
@@ -74,13 +88,14 @@ class TextArea extends Field {
     }
 
     /**
-     * Set the textArea maximum length
+     * Show textArea in all the actions
+     * Alias for alwaysShow()
      *
      * @return  self
      */
-    public function maxlength(int $maxlength) : self
+    public function show() : self
     {
-        $this->maxlength = $maxlength;
+        $this->showInAll();
 
         return $this;
     }
