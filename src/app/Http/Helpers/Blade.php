@@ -1,6 +1,7 @@
 <?php
 
 use Daguilarm\Belich\Components\Metrics\Graph;
+use Daguilarm\Belich\Fields\Field;
 use Illuminate\Http\Request;
 
 /*
@@ -141,4 +142,36 @@ if (!function_exists('createFormSelectOptions')) {
     }
 }
 
+/*
+|--------------------------------------------------------------------------
+| Helper for the belich fields: ./resources/fields
+|--------------------------------------------------------------------------
+*/
 
+/**
+ * Render the field attribute base on the value
+ *
+ * @param Daguilarm\Belich\Fields\Field $field
+ * @param string $attribute
+ * @param mixed $default
+ * @return string
+ */
+if (!function_exists('setAttribute')) {
+    function setAttribute(Field $field, string $attribute, $default = null)
+    {
+        //Format attribute names for HTML5
+        $filter = [
+            'addClass' => 'class'
+        ];
+
+        //Apply the format
+        $filterAttribute = str_replace(array_keys($filter), array_values($filter), $attribute);
+
+        //Set attribute value
+        $value = $field->{$attribute} ?? $default;
+
+        return $value
+            ? sprintf('%s="%s"', $filterAttribute, $value)
+            : '';
+    }
+}
