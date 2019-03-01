@@ -6,6 +6,9 @@ use Illuminate\Support\Collection;
 
 trait Resolvable {
 
+    /** @var array */
+    private $conditionalBag;
+
     /*
     |--------------------------------------------------------------------------
     | Controller actions
@@ -220,7 +223,7 @@ trait Resolvable {
      */
     private function setValueForFields(object $sqlResponse, Collection $fields) : Collection
     {
-        return $fields->map(function($field) use ($sqlResponse) {
+        $fields = $fields->map(function($field) use ($sqlResponse) {
             //Not resolve field value
             //Mostly, this is a hidden field...
             if($field->notResolveField) {
@@ -239,6 +242,12 @@ trait Resolvable {
 
             return $field;
         });
+
+        //Get all depends fields
+        //Daguilarm\Belich\Fields\Traits\DependsOn
+        $dependencies = $this->dependencies($fields);
+
+        return $fields->merge($dependencies);
     }
 
     /**
