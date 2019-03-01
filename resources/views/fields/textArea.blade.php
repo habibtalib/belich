@@ -8,7 +8,7 @@
                 {!! setAttribute($field, 'addClass') !!}
                 {!! setAttribute($field, 'rows', 4) !!}
                 {!! setAttribute($field, 'maxlength') !!}
-                {!! $field->count ? 'onkeydown="textAreaCount(this, ' . $field->id . ');"' : '' !!}
+                {!! $field->count ? 'onkeydown="textAreaCount(this, \'' . $field->id . '\');"' : '' !!}
                 {!! $field->render !!}
             >
                 {{ $field->value }}
@@ -22,7 +22,7 @@
 
            {{-- Show charts count --}}
             @isset($field->count)
-                <p id="chars-{{ $field->id }}" class="bg-green text-white"></p>
+                <p id="chars-{{ $field->id }}" class="italic mt-2"></p>
                 @push('javascript')
                     @include('belich::dashboard.javascript.forms')
                 @endpush
