@@ -61,6 +61,6 @@ trait DependsOn {
             }
         })
         ->filter()
-        ->first();
+        ->first() ?? [];
     }
 }

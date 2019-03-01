@@ -10,7 +10,11 @@
 
         {{-- Include the fields by type --}}
         @foreach($request->fields as $field)
-            @includeIf('belich::fields.' . $field->type, ['field' => $field])
+            @if($field->type === 'custom')
+                @include($field->view, ['fields' => $request->fields])
+            @else
+                @includeIf('belich::fields.' . $field->type, ['field' => $field])
+            @endif
         @endforeach
 
         {{-- Bottom border rounded  --}}

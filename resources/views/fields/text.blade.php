@@ -1,21 +1,16 @@
-@if(isset($field->formType) && $field->formType === 'grid')
+<belich::fields :label="$field->label">
+    <slot name="field">
+        <input
+            {!! setAttribute($field, 'addClass') !!}
+            {!! setAttribute($field, 'type') !!}
+            {!! setAttribute($field, 'value') !!}
+            {!! $field->render !!}
+        >
 
-@else
-    @component('belich::fields.components.inlineForm')
-        @slot('label', $field->label)
-        @slot('field')
-            <input
-                {!! setAttribute($field, 'addClass') !!}
-                {!! setAttribute($field, 'type') !!}
-                {!! setAttribute($field, 'value') !!}
-                {!! $field->render !!}
-            >
+        @if($field->help)
+            <div class="help-text">{{ $field->help }}</div>
+        @endif
 
-            @if($field->help)
-                <div class="help-text">{{ $field->help }}</div>
-            @endif
-
-            <p id="error-{{ $field->id }}" class="validation-error"></p>
-        @endslot
-    @endcomponent
-@endif
+        <p id="error-{{ $field->id }}" class="validation-error"></p>
+    </slot>
+</belich::fields>
