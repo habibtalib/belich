@@ -30,7 +30,9 @@
         {{-- Dropdown: Export --}}
         @includeWhen(Belich::downloable(), 'belich::partials.buttons.exports')
         {{-- Dropdown: Delete --}}
-        @include('belich::partials.buttons.delete')
+        @can('delete', $request->autorizedModel)
+            @include('belich::partials.buttons.delete')
+        @endcan
 
     </div>
     {{-- End right container --}}
