@@ -117,8 +117,7 @@ class CrudController extends Controller
      */
     public function edit(Belich $belich, $id, UpdateRequest $request)
     {
-        //Authorization
-        $this->authorize('update');
+        //The autorization happend in Daguilarm\Belich\Fields\FieldValidate
 
         //Get the data
         $request = $request->data($belich, $id);
@@ -135,8 +134,7 @@ class CrudController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //Authorization
-        $this->authorize('update');
+        //The autorization happend in Daguilarm\Belich\Fields\FieldValidate
 
         $update = $this->model->findOrFail($id)->update($request->all());
 
