@@ -7,6 +7,9 @@ trait Attributable {
     /** @var array [Add new css classes to the current field] */
     public $addClass;
 
+    /** @var string [Add to field the autofocus attribute] */
+    public $autofocus;
+
     /** @var array [Generate de data attributes] */
     public $data;
 
@@ -24,6 +27,18 @@ trait Attributable {
     public function addClass(...$values) : self
     {
         $this->addClass = implode(' ', $values);
+
+        return $this;
+    }
+
+    /**
+     * Add to field the autofocus attribute
+     *
+     * @return self
+     */
+    public function autofocus() : self
+    {
+        $this->autofocus = true;
 
         return $this;
     }
