@@ -122,6 +122,7 @@ At the moment, Belich only has this type of charts:
     + <del>Boolean</del>.
     + Date.
     + Field.
+    + Header.
     + <del>Hidden</del>.
     + <del>ID</del>.
     + Image.
