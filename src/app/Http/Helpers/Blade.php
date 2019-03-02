@@ -168,7 +168,11 @@ if (!function_exists('setAttribute')) {
         $filterAttribute = str_replace(array_keys($filter), array_values($filter), $attribute);
 
         //Set attribute value
-        $value = $field->{$attribute} ?? $default;
+        if(isset($field->{$attribute}) && isset($default)) {
+            $value = $field->{$attribute} . ', ' . $defaul;
+        } else {
+            $value = $field->{$attribute} ?? $default;
+        }
 
         return $value
             ? sprintf('%s="%s"', $filterAttribute, $value)
