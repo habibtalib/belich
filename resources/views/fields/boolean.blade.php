@@ -1,13 +1,12 @@
 <belich::fields :label="$field->label">
     <slot name="field">
-        <p class="normal">
+        <p class="{{ $field->color }}">
             <input
                 type="checkbox"
-                id="normal-toggle"
-                {!! setAttribute($field, 'addClass', 'itoggle') !!}
+                {!! setAttribute($field, 'addClass', 'itoggle ' . $field->color) !!}
                 {!! $field->render !!}
             >
-            <label for="normal-toggle"></label>
+            <label for="{{ $field->id }}"></label>
         </p>
 
         @if($field->help)
