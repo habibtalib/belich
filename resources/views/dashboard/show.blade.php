@@ -8,18 +8,13 @@
     <belich::button-navigation :title="icon('edit', trans('belich::buttons.crud.update'))" :url="Belich::actionRoute('edit', $request->id)" loading/>
 
     {{-- Show resource fields --}}
-    @foreach($request->fields as $field)
-        @if(!empty($field->label))
-            <div class="form-container">
-                @component('belich::fields.components.inlineForm')
-                    @slot('label', $field->label)
-                    @slot('field')
-                        {!! Belich::html()->resolve($field) !!}
-                    @endslot
-                @endcomponent
-            </div>
-        @endif
-    @endforeach
+    <div class="form-container">
+        @foreach($request->fields as $field)
+            @if(!empty($field->label))
+                <belich::fields :label="$field->label" :field="Belich::html()->resolve($field)"></belich::fields>
+            @endif
+        @endforeach
+    </div>
 
     {{-- Container bottom border rounded --}}
     @includeIf('belich::partials.containers.rounded-bottom', ['height' => 'h-16'])

@@ -14,7 +14,13 @@
 
         {{-- Include the fields by type --}}
         @foreach($request->fields as $field)
-            @includeIf('belich::fields.' . $field->type, ['field' => $field])
+            {{-- Add custom field view --}}
+            @if($field->type === 'custom')
+                @include($field->view, ['fields' => $request->fields])
+            {{-- Resource view --}}
+            @else
+                @includeIf('belich::fields.' . $field->type, ['field' => $field])
+            @endif
         @endforeach
 
         {{-- Button: update --}}
