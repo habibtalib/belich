@@ -57,9 +57,6 @@ abstract class FieldAbstract {
     /** @var bool [Indicates if the field should be sortable] */
     public $sortable = false;
 
-    /** @var bool [Show with tabs] */
-    public $tabs;
-
     /** @var string [Table text align. Only on controller action: index] */
     public $textAlign = 'left';
 
@@ -156,17 +153,6 @@ abstract class FieldAbstract {
     public function panels(string $panel)
     {
         $this->panels = $panel;
-
-        return $this;
-    }
-
-    /**
-     * Group field into tabs
-     * @return self
-     */
-    public function tabs()
-    {
-        $this->tabs = true;
 
         return $this;
     }

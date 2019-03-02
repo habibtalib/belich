@@ -16,4 +16,12 @@
         var container = document.getElementById(id);
         container.value = container.checked == 0 ? 0 : 1;
     }
+
+    /*
+    Section: Tabs
+    Description: Tabs for forms
+    */
+    function switchTab(tab_id, tab_content) {
+
+    }
 </script>

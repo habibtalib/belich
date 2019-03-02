@@ -48,6 +48,9 @@ abstract class Resources {
     /** @var array */
     public static $softDeletes = false;
 
+    /** @var bool [Show with tabs] */
+    public static $tabs;
+
     /**
      * Get the fields displayed by the resource.
      *

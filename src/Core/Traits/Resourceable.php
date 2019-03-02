@@ -102,6 +102,18 @@ trait Resourceable {
     }
 
     /**
+     * Get the resource $tabs variable.
+     *
+     * @return string
+     */
+    public static function tabs() : string
+    {
+        $class = static::resourceClassPath();
+
+        return $class::$tabs;
+    }
+
+    /**
      * Get the resource $redirectTo variable.
      *
      * @return string
