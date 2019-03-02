@@ -61,8 +61,34 @@ class Html {
             $value = $field->value;
         }
 
+        //Boolean custom labels
+        $value = $this->resolveBoolean($field, $value);
+
         //Resolve the field value through callbacks
         return $this->getCallbackValue($field, $data, $value);
+    }
+
+    /**
+     * Resolve the boolean fields
+     *
+     * @param  Daguilarm\Belich\Fields\Field $field
+     * @param  mixed $value
+     * @return mixed
+     */
+    public function resolveBoolean(Field $field, $value)
+    {
+        // If boolean
+        if($field->type === 'boolean') {
+            // With default labels
+            if(isset($field->trueValue) && isset($field->falseValue)) {
+                return $value ? $field->trueValue : $field->falseValue;
+            // With color circles
+            } else {
+                return sprintf('<i class="fas fa-circle text-%s"></i>', $value ? 'green' : 'grey-light');
+            }
+        }
+
+        return $value;
     }
 
     /**

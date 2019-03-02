@@ -208,12 +208,6 @@ trait Resolvable {
         });
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Values for fields
-    |--------------------------------------------------------------------------
-    */
-
     /**
      * When the action is update or show
      * We have to update the field value

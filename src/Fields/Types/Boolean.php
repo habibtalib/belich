@@ -13,6 +13,12 @@ class Boolean extends Field {
     /** @var string */
     public $color = 'green';
 
+    /** @var string */
+    public $falseValue;
+
+    /** @var string */
+    public $trueValue;
+
     /**
      * Field type
      *
@@ -35,11 +41,37 @@ class Boolean extends Field {
      * Set the boolean color
      *
      * @param  string  $color
-     * @return string
+     * @return self
      */
-    public function color(string $color)
+    public function color(string $color) : self
     {
         $this->color = in_array($color, $this->defaultColors) ? $color : 'normal';
+
+        return $this;
+    }
+
+    /**
+     * Set the label for false
+     *
+     * @param  string  $value
+     * @return self
+     */
+    public function falseValue(string $value) : self
+    {
+        $this->falseValue = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set the label for true
+     *
+     * @param  string  $value
+     * @return self
+     */
+    public function trueValue(string $value) : self
+    {
+        $this->trueValue = $value;
 
         return $this;
     }
