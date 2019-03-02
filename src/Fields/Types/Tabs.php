@@ -4,10 +4,10 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Illuminate\Support\Collection;
 
-class Panels {
+class Tabs {
 
     /**
-     * Create a new panel
+     * Create a new tab
      *
      * @param  string  $name
      * @param  \Closure  $fields
@@ -18,6 +18,7 @@ class Panels {
         return static::getFields($fields)
             ->map(function($field) use ($name) {
                 return $field
+                    ->tabs()
                     ->panels($name);
             })
             ->toArray();
