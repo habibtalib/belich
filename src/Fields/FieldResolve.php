@@ -34,6 +34,9 @@ class FieldResolve {
      */
     public function make(object $class, object $fields, object $sqlResponse) : Collection
     {
+        //Just in case we are using tabs
+        $fields = $fields->flatten();
+
         //Policy authorization for 'show', 'edit' and 'update' actions
         //This go here because we want to avoid duplicated sql queries...Don't remove!!!
         $this->setAuthorizationFromPolicy($sqlResponse);

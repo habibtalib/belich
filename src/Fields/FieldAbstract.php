@@ -54,6 +54,9 @@ abstract class FieldAbstract {
     /** @var bool [Indicates if the field should be sortable] */
     public $sortable = false;
 
+    /** @var string */
+    public $tabs;
+
     /** @var string [Table text align. Only on controller action: index] */
     public $textAlign = 'left';
 
@@ -138,6 +141,18 @@ abstract class FieldAbstract {
         if(!empty($resolveCallback)) {
             $this->resolveCallback = $resolveCallback;
         }
+
+        return $this;
+    }
+
+    /**
+     * Group field into tabs
+     * @param  string  $tab
+     * @return self
+     */
+    public function tabs(string $tab)
+    {
+        $this->tabs = $tab;
 
         return $this;
     }
