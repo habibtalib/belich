@@ -61,6 +61,11 @@ class Html {
             $value = $field->value;
         }
 
+        //Avatar field
+        if($field->type === 'avatar' && $value) {
+            return $this->resolveAvatar($value);
+        }
+
         //Boolean custom labels
         $value = $this->resolveBoolean($field, $value);
 
@@ -89,6 +94,20 @@ class Html {
         }
 
         return $value;
+    }
+
+    /**
+     * Resolve the avatar fields
+     *
+     * @param  string $value
+     * @return mixed
+     */
+    public function resolveAvatar(string $value)
+    {
+        return sprintf(
+            '<img class="block h-10 rounded-full shadow-md" src="%s" alt="avatar">',
+            $value
+        );
     }
 
     /**
