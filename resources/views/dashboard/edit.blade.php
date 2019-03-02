@@ -8,19 +8,14 @@
     <belich::button-navigation :title="icon('eye', trans('belich::buttons.crud.show'))" :url="Belich::actionRoute('show', $request->id)" loading/>
 
     {{-- Form --}}
-    <form method="POST" name="form-{{ $request->name }}-edit" id="form-{{ $request->name }}-edit" action="{{ toRoute('update') }}" class="form-container">
+    <form method="POST" name="form-{{ $request->name }}-edit" id="form-{{ $request->name }}-edit" action="{{ toRoute('update') }}">
         @csrf
         @method('PATCH')
 
-        {{-- Include the fields by type --}}
-        @foreach($request->fields as $field)
-            {{-- Add custom field view --}}
-            @if($field->type === 'custom')
-                @include($field->view, ['fields' => $request->fields])
-            {{-- Resource view --}}
-            @else
-                @includeIf('belich::fields.' . $field->type, ['field' => $field])
-            @endif
+        {{-- Create panels --}}
+        @foreach($request->fields as $label => $panel)
+            {{-- Load panel component with its fields --}}
+            <belich::panel :label="$label" :panel="$panel" :loop="$loop" toField></belich::panel>
         @endforeach
 
         {{-- Button: update --}}

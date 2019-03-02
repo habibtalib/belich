@@ -36,6 +36,9 @@ abstract class FieldAbstract {
     /** @var bool */
     public $notResolveField;
 
+    /** @var string */
+    public $panel;
+
     /** @var string [The model relationships] */
     public $relationships;
 
@@ -53,9 +56,6 @@ abstract class FieldAbstract {
 
     /** @var bool [Indicates if the field should be sortable] */
     public $sortable = false;
-
-    /** @var string */
-    public $tabs;
 
     /** @var string [Table text align. Only on controller action: index] */
     public $textAlign = 'left';
@@ -146,13 +146,13 @@ abstract class FieldAbstract {
     }
 
     /**
-     * Group field into tabs
-     * @param  string  $tab
+     * Group field into panels
+     * @param  string  $panel
      * @return self
      */
-    public function tabs(string $tab)
+    public function panels(string $panel)
     {
-        $this->tabs = $tab;
+        $this->panels = $panel;
 
         return $this;
     }

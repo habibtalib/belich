@@ -23,7 +23,7 @@ class CreateRequest extends FormRequest
         //Add values to request
         $this->merge([
             'breadcrumbs' => data_get($data, 'values.breadcrumbs'),
-            'fields'      => data_get($data, 'fields'),
+            'fields'      => data_get($data, 'fields')->groupBy('panels'),
             'javascript'  => $validate->create($data)->get('javascript'),
             'name'        => data_get($data, 'name'),
         ]);

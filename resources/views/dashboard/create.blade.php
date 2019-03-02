@@ -5,18 +5,13 @@
     @include('belich::partials.navigation.breadcrumbs')
 
     {{-- Form --}}
-    <form method="POST" name="form-{{ $request->name }}-create" id="form-{{ $request->name }}-create" action="{{ toRoute('store') }}" class="form-container">
+    <form method="POST" name="form-{{ $request->name }}-create" id="form-{{ $request->name }}-create" action="{{ toRoute('store') }}">
         @csrf
 
-        {{-- Include the fields by type --}}
-        @foreach($request->fields as $field)
-            {{-- Add custom field view --}}
-            @if($field->type === 'custom')
-                @include($field->view, ['fields' => $request->fields])
-            {{-- Resource view --}}
-            @else
-                @includeIf('belich::fields.' . $field->type, ['field' => $field])
-            @endif
+        {{-- Create panels --}}
+        @foreach($request->fields as $label => $panel)
+            {{-- Load panel component with its fields --}}
+            <belich::panel :label="$label" :panel="$panel" :loop="$loop" toField></belich::panel>
         @endforeach
 
         {{-- Bottom border rounded  --}}
