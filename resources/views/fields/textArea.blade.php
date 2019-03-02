@@ -4,7 +4,7 @@
     <slot name="field">
          <textarea
              {!! setAttribute($field, 'addClass') !!}
-             {!! setAttribute($field, 'rows', 4) !!}
+             {!! setAttribute($field, 'rows', 3) !!}
              {!! setAttribute($field, 'maxlength') !!}
              {!! $field->count ? 'onkeyup="textAreaCount(this, \'' . $field->id . '\');"' : '' !!}
              {!! $field->render !!}
