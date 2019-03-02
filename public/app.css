@@ -415,11 +415,11 @@ input.itoggle.red:checked+label:after {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
+  line-height: 1.5;
   border-width: 1px;
-  line-height: 2;
   border-radius: .25rem;
-  font-size: 1.125rem;
-  color: #606f7b;
+  color: #8795a1;
+  padding: .75rem;
   border-color: var(--form-input-border);
   background-color: var(--form-input-bg);
 }

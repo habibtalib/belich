@@ -36,7 +36,7 @@
     .form-container > .form-group input,
     .form-container > .form-group select,
     .form-container > .form-group textarea {
-        @apply w-full appearance-none border leading-loose rounded text-lg text-grey-darker;
+        @apply w-full appearance-none leading-normal border rounded text-grey-dark p-3;
         border-color: var(--form-input-border);
         background-color: var(--form-input-bg);
     }
