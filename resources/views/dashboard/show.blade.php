@@ -13,6 +13,9 @@
         <belich::panel :label="$label" :panel="$panel" :loop="$loop"></belich::panel>
     @endforeach
 
-    {{-- Container bottom border rounded --}}
-    @includeIf('belich::partials.containers.rounded-bottom', ['height' => 'h-12'])
+    {{-- Bottom container --}}
+    {{-- Just empty because there is no button... --}}
+    <belich::bottom height="10">
+        <slot name="button"></slot>
+    </belich::bottom>
 @endsection

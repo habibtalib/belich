@@ -14,22 +14,20 @@
             <belich::panel :label="$label" :panel="$panel" :loop="$loop" toField></belich::panel>
         @endforeach
 
-        {{-- Bottom border rounded  --}}
-        <div class="btn-container bg-blue-lightest">
+        {{-- Bottom container --}}
+        <belich::bottom>
             {{-- Button: create --}}
-
-            <belich::button
-                type="button"
-                color="primary"
-                :title="icon('plus', trans('belich::buttons.crud.create'))"
-                id="button-form-create"
-                loading
-            />
-        </div>
+            <slot name="button">
+                <belich::button
+                    type="button"
+                    color="primary"
+                    :title="icon('plus', trans('belich::buttons.crud.create'))"
+                    id="button-form-create"
+                    loading
+                />
+            </slot>
+        </belich::bottom>
     </form>
-
-    {{-- Form bottom border rounded --}}
-    @includeIf('belich::partials.containers.rounded-bottom')
 @endsection
 
 {{-- Javascript from packages --}}

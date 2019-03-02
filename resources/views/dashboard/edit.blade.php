@@ -18,21 +18,20 @@
             <belich::panel :label="$label" :panel="$panel" :loop="$loop" toField></belich::panel>
         @endforeach
 
-        {{-- Button: update --}}
-        <div class="btn-container bg-blue-lightest">
-            {{-- Button: create --}}
-            <belich::button
-                id="button-form-edit"
-                type="button"
-                color="primary"
-                :title="icon('edit', trans('belich::buttons.crud.update'))"
-                loading
-            />
-        </div>
+        {{-- Bottom container --}}
+        <belich::bottom>
+            {{-- Button: edit --}}
+            <slot name="button">
+                <belich::button
+                    id="button-form-edit"
+                    type="button"
+                    color="primary"
+                    :title="icon('edit', trans('belich::buttons.crud.update'))"
+                    loading
+                />
+            </slot>
+        </belich::bottom>
     </form>
-
-    {{-- Form bottom border rounded --}}
-    @includeIf('belich::partials.containers.rounded-bottom')
 @endsection
 
 {{-- Javascript from packages --}}
