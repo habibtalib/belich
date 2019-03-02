@@ -12,6 +12,9 @@ abstract class FieldAbstract {
         'show'
     ];
 
+    /** @var bool */
+    public $asHtml;
+
     /** @var string [The attribute / column name of the field] */
     public $attribute;
 
@@ -56,6 +59,18 @@ abstract class FieldAbstract {
 
     /** @var mixed [The field value (Resolved and updated...)] */
     public $value;
+
+    /**
+     * Resolve the value as HTML (without scape)
+     *
+     * @return self
+     */
+    public function asHtml() : self
+    {
+        $this->asHtml = true;
+
+        return $this;
+    }
 
     /**
      * Set the callback to be run to authorize viewing the field.

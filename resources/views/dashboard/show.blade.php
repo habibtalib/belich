@@ -11,7 +11,16 @@
     <div class="form-container">
         @foreach($request->fields as $field)
             @if(!empty($field->label))
-                <belich::fields :label="$field->label" :field="Belich::html()->resolve($field)"></belich::fields>
+                <belich::fields :label="$field->label">
+                    <slot name="field">
+                        {{-- Enable or disable html scape --}}
+                        @if($field->asHtml)
+                            {!! Belich::html()->resolve($field) !!}
+                        @else
+                            {{ Belich::html()->resolve($field)}}
+                        @endif
+                    </slot>
+                </belich::fields>
             @endif
         @endforeach
     </div>
