@@ -92,22 +92,17 @@ class Html {
     }
 
     /**
-     * Create a table row with css style if the row is softdeleted
-     * Resolve field values for: relationship, displayUsing and resolveUsing
-     * This method is used throw Belich Facade => Belich::html()->resolveRowWithSoftdeleting($field, $data);
+     * Resolve if the row is softdeleted
+     * This method is used throw Belich Facade => Belich::html()->resolveSoftdeleting($field, $data);
      * This method is for refactoring the blade templates.
      *
      * @param  Daguilarm\Belich\Fields\Field $attribute
      * @param  object $data
      * @return null|string
      */
-    public function resolveRowWithSoftdeletingCreatingHtml(Field $field, object $data = null)
+    public function resolveSoftdeleting(Field $field, object $data = null)
     {
-        if(method_exists(Belich::getModel(), 'trashed') && $data->trashed()) {
-            return sprintf('<td class="text-red line-through">%s</td>', $this->resolve($field, $data));
-        }
-
-        return sprintf('<td>%s</td>', $this->resolve($field, $data));
+        return (method_exists(Belich::getModel(), 'trashed') && $data->trashed()) ? true : false;
     }
 
     /*
