@@ -92,8 +92,6 @@ At the moment, Belich only has this type of charts:
 
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/metrics/graph-types.png)
 
-The pie charts are pretty advanced, but they are not ready yet...
-
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/metrics/graph-pie.png)
 
 #### With stats and cards
@@ -115,9 +113,27 @@ The pie charts are pretty advanced, but they are not ready yet...
 
 - Redesign the front-end with all the lesson from: https://refactoringui.com/
 - Refactoring all the code, because I am just writting code...
-- Template helper to create blade components fluency.
 - <del>Finish the pie charts</del>.
-- Complete the fiends types.
+- <del>Group fields in panels</del>.
+- Group fields in tabs.
+- Complete the fields types:
+    + Address.
+    + Avatar.
+    + <del>Boolean</del>.
+    + Date.
+    + Field.
+    + <del>Hidden</del>.
+    + <del>ID</del>.
+    + Image.
+    + Leaflet.
+    + Number.
+    + <del>Password</del>.
+    + <del>PasswordConfirmation</del>.
+    + Radio.
+    + <del>Select</del>.
+    + <del>Text</del>.
+    + <del>TextArea</del>.
+    + Year.
 - Create the relationship fields.
 - Writting test... I know but...
 
