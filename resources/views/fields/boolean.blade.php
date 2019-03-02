@@ -6,6 +6,7 @@
                 value="{{ $field->value ?? 0 }}"
                 {!! setAttribute($field, 'addClass', 'itoggle ' . $field->color) !!}
                 {!! $field->render !!}
+                {!! setAttribute($field, 'checked') !!}
             >
             <label for="{{ $field->id }}"></label>
         </p>
