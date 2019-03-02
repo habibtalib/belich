@@ -1,0 +1,75 @@
+/*https://jsfiddle.net/avadon/ta2xobzc/4/*/
+.itoggle {
+    max-height:0;
+    max-width:0;
+    opacity:0;
+    position:absolute;
+}
+
+input.itoggle + label {
+    display:block;
+    position:relative;
+    box-shadow:inset 0 0 0 1px #d5d5d5;
+    height:30px;
+    width:50px;
+    border-radius:15px;
+    margin-bottom:0;
+}
+
+input.itoggle + label:before {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 30px;
+    width: 30px;
+    top: 0;
+    left: 0;
+    border-radius: 15px;
+    background: rgba(19,191,17,0);
+    transition: .25s ease-in-out;
+}
+
+input.itoggle + label:after {
+    content: "";
+    position: absolute;
+    display: block;
+    height: 30px;
+    width: 30px;
+    top: 0;
+    left: 0;
+    border-radius: 15px;
+    background: white;
+    box-shadow: inset 0 0 0 1px rgba(0,0,0,.2), 0 2px 4px rgba(0,0,0,.2);
+    transition: .25s ease-in-out;
+}
+
+input.itoggle:checked + label:before {
+    width: 50px;
+    background: rgba(19,191,17,1);
+    content:"";
+}
+
+input.itoggle:checked + label:after {
+    left: 20px;
+    box-shadow: inset 0 0 0 1px rgba(19,191,17,1), 0 2px 4px rgba(0,0,0,.2);
+}
+
+input.itoggle:disabled + label {
+    opacity:.5
+}
+
+input.itoggle.blue:checked+label:before {
+    background:rgb(65, 183, 241);
+}
+
+input.itoggle.blue:checked+label:after {
+    box-shadow: inset 0 0 0 1px rgb(65,183,241), 0 2px 4px rgba(65,183,241,.2);
+}
+
+input.itoggle.red:checked+label:before {
+    background:#c9302c;
+}
+
+input.itoggle.red:checked+label:after {
+    box-shadow: inset 0 0 0 1px rgb(201,48,44), 0 2px 4px rgba(201,48,44,.2);
+}

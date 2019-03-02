@@ -39,6 +39,7 @@
 
  @import "components/actions.css";
  @import "components/base.css";
+ @import "components/boolean.css";
  @import "components/breadcrumbs.css";
  @import "components/buttons.css";
  @import "components/effects.css";
