@@ -15,7 +15,5 @@
 
     {{-- Bottom container --}}
     {{-- Just empty because there is no button... --}}
-    <belich::bottom height="10">
-        <slot name="button"></slot>
-    </belich::bottom>
+    <belich::bottom height="12"></belich::bottom>
 @endsection
