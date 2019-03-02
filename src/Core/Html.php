@@ -80,6 +80,7 @@ class Html {
         if(method_exists(Belich::getModel(), 'trashed') && $data->trashed()) {
             return sprintf('<td class="text-red line-through">%s</td>', $this->resolve($field, $data));
         }
+
         return sprintf('<td>%s</td>', $this->resolve($field, $data));
     }
 
@@ -132,9 +133,10 @@ class Html {
      */
     private function resolveCallback(Field $field, object $data = null, $value = '')
     {
-        //Resolve value when using the method: $field->resolveUsingg()
+        //Resolve value when using the method: $field->resolveUsing()
         if(is_callable($field->resolveCallback)) {
             //Add the data for the show view
+            //No need to resolve for index because the $data variable is already available
             if(Belich::action() === 'show') {
                 $data = $field->data;
             }
