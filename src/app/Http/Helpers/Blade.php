@@ -164,6 +164,11 @@ if (!function_exists('setAttribute')) {
             'addClass' => 'class'
         ];
 
+        //Checked field
+        if($attribute === 'checked') {
+            return $field->value ? 'checked="checked"' : '';
+        }
+
         //Apply the format
         $filterAttribute = str_replace(array_keys($filter), array_values($filter), $attribute);
 
