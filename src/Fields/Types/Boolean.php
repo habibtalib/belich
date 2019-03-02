@@ -35,6 +35,9 @@ class Boolean extends Field {
     public function __construct($name = null, $attribute = null)
     {
         parent::__construct($name, $attribute);
+
+        //Set the html by default because we are showing icons as value (green or grey)
+        $this->asHtml = true;
     }
 
     /**
