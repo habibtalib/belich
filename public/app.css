@@ -104,6 +104,7 @@ input.itoggle + label {
   width: 50px;
   border-radius: 15px;
   margin-bottom: 0;
+  cursor: pointer;
 }
 
 input.itoggle + label:before {
