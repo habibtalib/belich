@@ -17,6 +17,11 @@ The adventure is worth it, and I think I've learned great things!
 
 Project in development. Still in the early stages...help will be great!!!
 
+## Requirements
+
+- PHP 7.3
+- Laravel 5.8
+
 ## Instalation (not yet...)
 
 `composer require daguilarm/belich`
