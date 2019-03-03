@@ -30,7 +30,6 @@
                     color="primary"
                     :title="icon('plus', trans('belich::buttons.crud.create'))"
                     id="button-form-create"
-                    loading
                 />
             </slot>
         </belich::bottom>

@@ -34,7 +34,6 @@
                     type="button"
                     color="primary"
                     :title="icon('edit', trans('belich::buttons.crud.update'))"
-                    loading
                 />
             </slot>
         </belich::bottom>
