@@ -9,7 +9,8 @@
                 {!! setAttribute($field, 'step') !!}
                 {!! renderWithPrefix($field, 'lat') !!}
                 placeholder="{{ trans('belich::units.lat') }}"
-                class="mr-3"
+                decimals="6"
+                class="float mr-3"
             >
 
             {{-- Lng --}}
@@ -20,7 +21,8 @@
                 {!! setAttribute($field, 'step') !!}
                 {!! renderWithPrefix($field, 'lng') !!}
                 placeholder="{{ trans('belich::units.lng') }}"
-                class="ml-3"
+                decimals="6"
+                class="float ml-3"
             >
         </div>
 
