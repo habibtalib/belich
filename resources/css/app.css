@@ -53,8 +53,6 @@
  @import "components/spacing.css";
  @import "components/table.css";
  @import "components/table-search.css";
- @import "components/tabs.css";
-
 
 /**
  * This injects all of Tailwind's utility classes, generated based on your

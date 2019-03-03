@@ -45,6 +45,18 @@ if (!function_exists('stringSingularUpper')) {
 }
 
 /**
+ * Set string into kebab case
+ *
+ * @return string
+ */
+if (!function_exists('stringTokebab')) {
+    function stringTokebab($string) : string
+    {
+        return Str::kebab($string);
+    }
+}
+
+/**
  * Set the default value for a empty string or result
  *
  * @return string

@@ -9,3 +9,5 @@
     {{-- Load the css lib --}}
     {!! Chart::assets('css') !!}
 @endif
+
+@stack('css')

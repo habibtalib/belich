@@ -10,31 +10,14 @@
 
         {{-- Building tabs --}}
         @if(Belich::tabs())
-            <div class="tabs">
-                {{-- Create tabs links --}}
-                <ul>
-                    @foreach($request->fields as $label => $panel)
-                        <li>
-                            @php
-                                $slug = Illuminate\Support\Str::kebab($label);
-                            @endphp
-                            <a href="javascript:switchTab('menu_{{ $slug }}', '{{ $slug }}');" id="menu_{{ $slug }}" class="menu {{ $loop->first ? 'active' : '' }}">
-                                {{ $label }}
-                            </a>
-                        </li>
-                    @endforeach
-                </ul>
-                @foreach($request->fields as $label => $panel)
-                    <div class="content {{ $loop->first ? 'block' : 'hidden' }}" id="content_{{ Illuminate\Support\Str::kebab($label) }}">
-                        <belich::panel :label="$label" :panel="$panel" :loop="$loop" toField></belich::panel>
-                    </div>
-                @endforeach
-            </div>
+            <belich::tabs :tabs="$request->fields" toField="true"></belich::tabs>
+
+        {{-- Building panels --}}
         @else
-            {{-- Create panels --}}
+            {{-- Create panels or not.. --}}
             @foreach($request->fields as $label => $panel)
                 {{-- Load panel component with its fields --}}
-                <belich::panel :label="$label" :panel="$panel" :loop="$loop" toField></belich::panel>
+                <belich::panel :label="$label" :panel="$panel" :loop="$loop" toField="true"></belich::panel>
             @endforeach
         @endif
 
@@ -57,4 +40,7 @@
 {{-- Javascript from packages --}}
 @push('javascript')
     {!! $request->javascript !!}
+
+    {{-- Javascript for tabs --}}
+    @include('belich::dashboard.javascript.forms')
 @endpush

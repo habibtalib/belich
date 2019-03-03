@@ -12,11 +12,18 @@
         @csrf
         @method('PATCH')
 
-        {{-- Create panels --}}
-        @foreach($request->fields as $label => $panel)
-            {{-- Load panel component with its fields --}}
-            <belich::panel :label="$label" :panel="$panel" :loop="$loop" toField></belich::panel>
-        @endforeach
+        {{-- Building tabs --}}
+        @if(Belich::tabs())
+            <belich::tabs :tabs="$request->fields" toField="true"></belich::tabs>
+
+        {{-- Building panels --}}
+        @else
+            {{-- Create panels or not.. --}}
+            @foreach($request->fields as $label => $panel)
+                {{-- Load panel component with its fields --}}
+                <belich::panel :label="$label" :panel="$panel" :loop="$loop"  toField="true"></belich::panel>
+            @endforeach
+        @endif
 
         {{-- Bottom container --}}
         <belich::bottom>
@@ -37,4 +44,7 @@
 {{-- Javascript from packages --}}
 @push('javascript')
     {!! $request->javascript !!}
+
+    {{-- Javascript for tabs --}}
+    @include('belich::dashboard.javascript.forms')
 @endpush

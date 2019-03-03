@@ -847,36 +847,6 @@ nav#sidebar ul li.sidebar-child {
   font-size: 1.25rem;
   color: #8795a1;
 }
-/* https://codepen.io/mikestreety/pen/yVNNNm */
-
-.tabs {
-}
-
-.tabs ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.tabs ul li {
-  display: inline;
-  border: solid;
-  border-width: 1px 1px 0 1px;
-  margin: 0 5px 0 0;
-}
-
-.tabs li a {
-  padding: 0 10px;
-}
-
-.tabs li a.active {
-  background-color: #e3342f;
-  color: #fff;
-}
-
-.tabs .content {
-  border: 1px solid;
-}
 /**
  * This injects Tailwind's base styles, which is a combination of
  * Normalize.css and some additional base styles.

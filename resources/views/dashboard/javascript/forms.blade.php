@@ -28,8 +28,8 @@
 
         //Hide all the containers
         for (var i = 0; i < elements.length; i++) {
-            elements[i].classList.toggle('block');
             elements[i].classList.toggle('hidden');
+            elements[i].classList.toggle('block');
         }
 
         //Add active
