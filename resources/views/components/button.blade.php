@@ -3,6 +3,7 @@
         {!! isset($id) ? 'id="' . $id . '"' : '' !!}
         href="{{ $url ?? '#' }}"
         class="btn btn-{{ $color ?? 'secondary' }} {{ $class ?? '' }}"
+        data-title="{{ $title }}"
         {!! isset($loading) ? 'onclick="loading(this);"' : '' !!}
     >
         {!! $title !!}
@@ -12,6 +13,7 @@
         {!! isset($id) ? 'id="' . $id . '"' : '' !!}
         type="{{ $type ?? 'button' }}"
         class="btn btn-{{ $color ?? 'secondary' }} {{ $class ?? '' }}"
+        data-title="{{ $title }}"
         {!! isset($loading) ? 'onclick="loading(this);"' : '' !!}
     >
         {!! $title !!}
