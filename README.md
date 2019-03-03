@@ -121,6 +121,7 @@ At the moment, Belich only has this type of charts:
     + Avatar.
     + <del>Boolean</del>.
     + Date.
+    + DependsOn fields
     + Field.
     + Header.
     + <del>Hidden</del>.
