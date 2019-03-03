@@ -115,7 +115,7 @@ At the moment, Belich only has this type of charts:
 - Refactoring all the code, because I am just writting code...
 - <del>Finish the pie charts</del>.
 - <del>Group fields in panels</del>.
-- Group fields in tabs.
+- Group fields in tabs (Ready...only a few design things remained).
 - Complete the fields types:
     + Address.
     + Avatar.
