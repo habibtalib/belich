@@ -7,7 +7,8 @@
             <li class="inline m-0">
                 <a
                     id="menu_{{ stringTokebab($label) }}"
-                    href="javascript:switchTab('menu_{{ stringTokebab($label) }}', '{{ stringTokebab($label) }}');"
+                    onclick="javascript:switchTab('{{ stringTokebab($label) }}', '{{ md5(stringTokebab($label)) }}');"
+                    href="#{{ md5(stringTokebab($label)) }}"
                     class="p-4 px-6 text-grey-darker border border-b-0 border-grey-lighter {{ $loop->first ? 'active' : '' }}"
                 >
                     {{ $label }}
