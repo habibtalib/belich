@@ -172,9 +172,11 @@ if (!function_exists('setAttribute')) {
         //Apply the format
         $filterAttribute = str_replace(array_keys($filter), array_values($filter), $attribute);
 
-        //Set attribute value
-        if(isset($field->{$attribute}) && isset($default)) {
-            $value = $field->{$attribute} . ', ' . $defaul;
+        //Add classes
+        if(isset($field->{$attribute}) && $attribute === 'addClass' && isset($default)) {
+            $value = $field->{$attribute} . ', ' . $default;
+
+        //Value or default value
         } else {
             $value = $field->{$attribute} ?? $default;
         }
