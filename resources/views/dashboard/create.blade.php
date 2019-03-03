@@ -18,14 +18,14 @@
                             @php
                                 $slug = Illuminate\Support\Str::kebab($label);
                             @endphp
-                            <a href="javascript:switchTab('{{ $slug }}', 'content_{{ $slug }}');" id="{{ $slug }}" class="tab_menu {{ $loop->first ? 'active' : '' }}">
+                            <a href="javascript:switchTab('menu_{{ $slug }}', '{{ $slug }}');" id="menu_{{ $slug }}" class="menu {{ $loop->first ? 'active' : '' }}">
                                 {{ $label }}
                             </a>
                         </li>
                     @endforeach
                 </ul>
                 @foreach($request->fields as $label => $panel)
-                    <div class="tab_content {{ $loop->first ? 'block' : 'hidden' }}" id="content_{{ $slug }}">
+                    <div class="content {{ $loop->first ? 'block' : 'hidden' }}" id="content_{{ Illuminate\Support\Str::kebab($label) }}">
                         <belich::panel :label="$label" :panel="$panel" :loop="$loop" toField></belich::panel>
                     </div>
                 @endforeach

@@ -21,7 +21,19 @@
     Section: Tabs
     Description: Tabs for forms
     */
-    function switchTab(tab_id, tab_content) {
+    function switchTab(currentLink, container) {
+        //Close all tabs
+        var elements = document.querySelectorAll('.content');
+        var container = document.getElementById('content_' + container);
 
+        //Hide all the containers
+        for (var i = 0; i < elements.length; i++) {
+            elements[i].classList.toggle('block');
+            elements[i].classList.toggle('hidden');
+        }
+
+        //Add active
+        document.querySelector('.tabs ul li a.active').classList.remove('active');
+        document.getElementById(currentLink).classList.add('active');
     }
 </script>
