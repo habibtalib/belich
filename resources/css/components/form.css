@@ -1,11 +1,7 @@
-.form-container {
-    @apply shadow-md;
-    background-color: var(--form-bg);
-}
-
 .form-container > .form-group {
-    @apply w-full flex items-center py-8 px-6 border-b border-grey-lighter text-sm;
+    @apply w-full flex items-center py-8 px-6 border-b border-grey-lighter text-sm shadow-md;
     color: var(--form-color);
+    background-color: var(--form-bg);
 }
 
     /*Help text*/

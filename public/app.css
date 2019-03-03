@@ -368,12 +368,6 @@ input.itoggle.red:checked+label:after {
 .icon-light {
   opacity: .35;
 }
-.form-container {
-  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
-          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
-  background-color: var(--form-bg);
-}
-
 .form-container > .form-group {
   width: 100%;
   display: -webkit-box;
@@ -389,7 +383,10 @@ input.itoggle.red:checked+label:after {
   border-bottom-width: 1px;
   border-color: #f1f5f8;
   font-size: .875rem;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
   color: var(--form-color);
+  background-color: var(--form-bg);
 }
 
 /*Help text*/
