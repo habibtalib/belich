@@ -117,13 +117,11 @@ At the moment, Belich only has this type of charts:
 - <del>Group fields in panels</del>.
 - <del>Group fields in tabs</del>.
 - Complete the fields types:
-    + Address.
     + Avatar.
     + <del>Boolean</del>.
     + Date.
-    + Decimal.
+    + <del>Decimal</del>.
     + DependsOn fields
-    + Field.
     + <del>Coordenates (latLng)</del>.
     + Header.
     + <del>Hidden</del>.
@@ -133,6 +131,7 @@ At the moment, Belich only has this type of charts:
     + <del>Number</del>.
     + <del>Password</del>.
     + <del>PasswordConfirmation</del>.
+    + Place.
     + Radio.
     + <del>Select</del>.
     + <del>Text</del>.
