@@ -7,11 +7,7 @@ use Daguilarm\Belich\Fields\Field;
 
 class ID extends Field {
 
-    /**
-     * Field type
-     *
-     * @var string
-     */
+    /** @var string */
     public $type = 'text';
 
     /**

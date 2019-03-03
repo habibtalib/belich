@@ -18,11 +18,7 @@ class Boolean extends Field {
     /** @var string */
     public $trueValue;
 
-    /**
-     * Field type
-     *
-     * @var string
-     */
+    /** @var string */
     public $type = 'boolean';
 
     /**

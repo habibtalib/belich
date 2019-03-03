@@ -6,11 +6,7 @@ use Daguilarm\Belich\Fields\Field;
 
 class Text extends Field {
 
-    /**
-     * Field type
-     *
-     * @var string
-     */
+    /** @var string */
     public $type = 'text';
 
     /**
