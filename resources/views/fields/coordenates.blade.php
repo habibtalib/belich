@@ -3,22 +3,24 @@
         <div class="flex w-full">
             {{-- Lat --}}
             <input
-            placeholder="{{ trans('belich::units.lat') }}"
-            class="mr-3"
-            {!! setAttribute($field, 'addClass') !!}
-            {!! setAttribute($field, 'value') !!}
-            {!! setAttribute($field, 'step') !!}
-            {!! renderWithPrefix($field, 'lat') !!}
+                type="number"
+                {!! setAttribute($field, 'addClass') !!}
+                {!! setAttribute($field, 'value') !!}
+                {!! setAttribute($field, 'step') !!}
+                {!! renderWithPrefix($field, 'lat') !!}
+                placeholder="{{ trans('belich::units.lat') }}"
+                class="mr-3"
             >
 
             {{-- Lng --}}
             <input
-                placeholder="{{ trans('belich::units.lng') }}"
-                class="ml-3"
+                type="number"
                 {!! setAttribute($field, 'addClass') !!}
                 {!! setAttribute($field, 'value') !!}
                 {!! setAttribute($field, 'step') !!}
                 {!! renderWithPrefix($field, 'lng') !!}
+                placeholder="{{ trans('belich::units.lng') }}"
+                class="ml-3"
             >
         </div>
 

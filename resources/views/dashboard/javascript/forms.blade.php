@@ -21,10 +21,18 @@
     Section: Tabs
     Description: Tabs for forms
     */
-    function switchTab(currentLink, container) {
+    var currentTab;
+
+    function switchTab(id, key) {
+
+        // Prevent doubble click
+        if(currentTab === key) {
+            return false;
+        }
+
         //Close all tabs
         var elements = document.querySelectorAll('.content');
-        var container = document.getElementById('content_' + container);
+        var container = document.getElementById('content_' + id);
 
         //Hide all the containers
         for (var i = 0; i < elements.length; i++) {
@@ -34,6 +42,9 @@
 
         //Add active
         document.querySelector('.tabs ul li a.active').classList.remove('active');
-        document.getElementById(currentLink).classList.add('active');
+        document.getElementById('menu_' + id).classList.add('active');
+
+        //Set current tab
+        currentTab = key;
     }
 </script>
