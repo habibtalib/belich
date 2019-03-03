@@ -104,13 +104,13 @@ trait Resourceable {
     /**
      * Get the resource $tabs variable.
      *
-     * @return string
+     * @return bool
      */
-    public static function tabs() : string
+    public static function tabs() : bool
     {
         $class = static::resourceClassPath();
 
-        return $class::$tabs;
+        return $class::$tabs ?? false;
     }
 
     /**
