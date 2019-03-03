@@ -4,9 +4,6 @@
     {{-- Breadcrumbs --}}
     @include('belich::partials.navigation.breadcrumbs')
 
-    {{-- Crud Button: edit --}}
-    <belich::button-navigation :title="icon('edit', trans('belich::buttons.crud.update'))" :url="Belich::actionRoute('edit', $request->id)" loading/>
-
     {{-- Building tabs --}}
     @if(Belich::tabs())
         <belich::tabs :tabs="$request->fields"></belich::tabs>
@@ -22,7 +19,25 @@
 
     {{-- Bottom container --}}
     {{-- Just empty because there is no button... --}}
-    <belich::bottom height="12"></belich::bottom>
+    <belich::bottom>
+        {{-- Button: create --}}
+        <slot name="button">
+            <belich::button
+                :title="icon('plus')"
+                :url="Belich::actionRoute('create')"
+                class="mr-2"
+                color="icon"
+                loading
+            />
+            {{-- Button: edit --}}
+            <belich::button
+                :title="icon('edit')"
+                :url="Belich::actionRoute('edit', $request->id)"
+                color="icon"
+                loading
+            />
+        </slot>
+    </belich::bottom>
 @endsection
 
 {{-- Added the minimum javascript possible --}}

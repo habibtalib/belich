@@ -55,7 +55,7 @@
     --form-input-focus-border: var(--20);
     --form-input-focus-color: var(--black);
     --form-select-dropdown-icon: var(--80);
-    --form-disabled-bg: var(--20);
+    --form-disabled-bg: var(--10);
 
     /*Table*/
     --table-bg: var(--white);

@@ -12,7 +12,7 @@
     <button
         {!! isset($id) ? 'id="' . $id . '"' : '' !!}
         type="{{ $type ?? 'button' }}"
-        class="btn btn-{{ $color ?? 'secondary' }} {{ $class ?? '' }}"
+        class="btn btn-{{ $color ?? 'secondary' }} mx-2 {{ $class ?? '' }}"
         data-title="{{ $title }}"
         {!! isset($loading) ? 'onclick="loading(this);"' : '' !!}
     >

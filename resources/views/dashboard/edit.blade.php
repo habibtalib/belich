@@ -4,9 +4,6 @@
     {{-- Breadcrumbs --}}
     @include('belich::partials.navigation.breadcrumbs')
 
-    {{-- Crud Button: navigation to show --}}
-    <belich::button-navigation :title="icon('eye', trans('belich::buttons.crud.show'))" :url="Belich::actionRoute('show', $request->id)" loading/>
-
     {{-- Form --}}
     <form method="POST" name="form-{{ $request->name }}-edit" id="form-{{ $request->name }}-edit" action="{{ toRoute('update') }}">
         @csrf
@@ -27,8 +24,23 @@
 
         {{-- Bottom container --}}
         <belich::bottom>
-            {{-- Button: edit --}}
+            {{-- Button: create --}}
             <slot name="button">
+                <belich::button
+                    :title="icon('plus')"
+                    :url="Belich::actionRoute('create')"
+                    class="mr-2"
+                    color="icon"
+                    loading
+                />
+                {{-- Button: show --}}
+                <belich::button
+                    :title="icon('eye')"
+                    :url="Belich::actionRoute('show', $request->id)"
+                    color="icon"
+                    loading
+                />
+                {{-- Button: edit --}}
                 <belich::button
                     id="button-form-edit"
                     type="button"

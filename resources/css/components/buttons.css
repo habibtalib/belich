@@ -14,7 +14,7 @@
     /* Buttons types */
 
     .btn-primary {
-        @apply bg-blue text-white;
+        @apply bg-blue text-white border border-blue;
     }
 
     .btn-primary:hover {
@@ -22,7 +22,7 @@
     }
 
     .btn-success {
-        @apply bg-green text-white;
+        @apply bg-green text-white border border-green;
     }
 
     .btn-success:hover {
@@ -30,7 +30,7 @@
     }
 
     .btn-danger {
-        @apply bg-red text-white;
+        @apply bg-red text-white border border-red;
     }
 
     .btn-danger:hover {
@@ -46,11 +46,23 @@
     }
 
     .btn-default {
-        @apply bg-white text-grey-darker shadow border border-grey-lighter;
+        @apply bg-white text-grey-darker border border-grey-light;
     }
 
     .btn-default:hover {
-        @apply bg-grey-lightest shadow-md border border-grey-light;
+        @apply bg-grey-lightest text-black;
+    }
+
+    .btn-icon {
+        @apply bg-white text-grey-darker border border-grey-light;
+    }
+
+        .btn-icon i {
+            @apply w-4 ml-1;
+        }
+
+    .btn-icon:hover {
+        @apply bg-grey-lightest text-black;
     }
 
 /* Dropdown buttons */
