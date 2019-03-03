@@ -36,13 +36,13 @@
 
         //Hide all the containers
         for (var i = 0; i < elements.length; i++) {
-            elements[i].classList.add('hidden');
-            elements[i].classList.remove('block');
+            elements[i].classList.add('hidden'), elements[i].classList.remove('block');
         }
 
+        //Set visible
+        container.classList.remove('hidden'), container.classList.add('block');
+
         //Add active
-        container.classList.remove('hidden');
-        container.classList.add('block');
         document.querySelector('.tabs ul li a.active').classList.remove('active');
         document.getElementById('menu_' + id).classList.add('active');
 
