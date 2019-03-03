@@ -184,3 +184,32 @@ if (!function_exists('setAttribute')) {
             : '';
     }
 }
+
+/**
+ * Render the field attribute base on the value
+ *
+ * @param Daguilarm\Belich\Fields\Field $field
+ * @param string $prefix
+ * @return string
+ */
+if (!function_exists('renderWithPrefix')) {
+    function renderWithPrefix(Field $field, string $prefix)
+    {
+        return collect(explode(' ', $field->render))->map(function($item) use ($prefix) {
+            //Get the fields
+            $item = explode('=', $item);
+            //Prefixed dusk field
+            if($item[0] === 'dusk') {
+                $value = explode('-', $item[1]);
+                //Format: dusk-$prefix-$attribute
+                array_splice($value, 1, 0, $prefix);
+                return [$item[0] => implode('-', $value)];
+            }
+            return [$item[0] => implode('_', [$prefix, $item[1]])];
+        })
+        ->map(function($value) {
+            return sprintf('%s=%s', array_keys($value)[0], array_values($value)[0]);
+        })
+        ->implode(' ');
+    }
+}

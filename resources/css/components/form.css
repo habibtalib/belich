@@ -24,7 +24,7 @@
     }
 
     .form-container > .form-group .form-inline-field {
-        @apply w-2/3;
+        @apply w-2/3 my-auto;
     }
 
     /*Default label*/
@@ -36,7 +36,7 @@
     .form-container > .form-group input,
     .form-container > .form-group select,
     .form-container > .form-group textarea {
-        @apply w-full appearance-none leading-normal border rounded text-grey-dark p-3;
+        @apply w-full appearance-none leading-normal border rounded text-grey-dark p-3 mt-1;
         border-color: var(--form-input-border);
         background-color: var(--form-input-bg);
     }

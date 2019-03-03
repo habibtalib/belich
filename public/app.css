@@ -414,6 +414,8 @@ input.itoggle.red:checked+label:after {
 
 .form-container > .form-group .form-inline-field {
   width: 66.66667%;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 
 /*Default label*/
@@ -437,6 +439,7 @@ input.itoggle.red:checked+label:after {
   border-radius: .25rem;
   color: #8795a1;
   padding: .75rem;
+  margin-top: .25rem;
   border-color: var(--form-input-border);
   background-color: var(--form-input-bg);
 }

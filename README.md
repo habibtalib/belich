@@ -124,7 +124,7 @@ At the moment, Belich only has this type of charts:
     + Decimal.
     + DependsOn fields
     + Field.
-    + Geolocation.
+    + <del>Coordenates (latLng)</del>.
     + Header.
     + <del>Hidden</del>.
     + <del>ID</del>.
