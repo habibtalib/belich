@@ -17,3 +17,13 @@
         {!! $title !!}
     </button>
 @endif
+
+@push('javascript')
+    {{-- Global Javascript --}}
+    <script>
+        function loading(item, event) {
+            item.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            event.stopPropagation();
+        }
+    </script>
+@endpush
