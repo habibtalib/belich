@@ -172,7 +172,6 @@ input.itoggle.red:checked+label:after {
 }
 .nav-breadcrumbs {
   width: 100%;
-  margin-bottom: 2rem;
   border-radius: .5rem;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
@@ -187,8 +186,8 @@ input.itoggle.red:checked+label:after {
   display: flex;
   list-style: none;
   padding: 0;
-  margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-top: .75rem;
+  margin-bottom: .75rem;
   padding: 1rem;
 }
 

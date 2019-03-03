@@ -40,7 +40,7 @@
             font-weight: 700;
             color: #3490dc;
             border: 0;
-            border-top: 2px solid #3490dc;
+            border-bottom: 1px solid #3490dc;
         }
     </style>
 @endpush
