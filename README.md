@@ -121,14 +121,16 @@ At the moment, Belich only has this type of charts:
     + Avatar.
     + <del>Boolean</del>.
     + Date.
+    + Decimal.
     + DependsOn fields
     + Field.
+    + Geolocation.
     + Header.
     + <del>Hidden</del>.
     + <del>ID</del>.
     + Image.
     + Leaflet.
-    + Number.
+    + <del>Number</del>.
     + <del>Password</del>.
     + <del>PasswordConfirmation</del>.
     + Radio.
