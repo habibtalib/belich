@@ -20,6 +20,7 @@ class Panels {
                 return $field
                     ->panels($name);
             })
+            ->unique('attribute')
             ->toArray();
     }
 
