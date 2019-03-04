@@ -118,7 +118,7 @@ trait Casteable {
      */
     protected function toYear(string $key): void
     {
-        $this->request->set($key, Carbon::createFromFormat('Y', request($key)));
+        $this->request->set($key, Carbon::createFromFormat('Y', request($key))->year);
     }
 
     /**

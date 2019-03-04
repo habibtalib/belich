@@ -79,3 +79,17 @@
         @apply opacity-50 cursor-not-allowed;
         background-color: var(--form-disabled-bg);
     }
+
+    /* Date */
+    [type="date"] {
+        opacity: 0.6;
+        background: url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  99% 50% no-repeat;
+    }
+
+    [type="date"]::-webkit-inner-spin-button {
+      display: none;
+    }
+
+    [type="date"]::-webkit-calendar-picker-indicator {
+      opacity: 0;
+    }
