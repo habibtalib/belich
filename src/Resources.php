@@ -129,7 +129,7 @@ abstract class Resources {
             );
         }
 
-        //Set create
+        //Set show
         if(static::action() === 'show') {
             return array_merge($home,
                 [static::$label => static::resourceUrl()],
