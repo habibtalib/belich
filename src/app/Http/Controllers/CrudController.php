@@ -138,7 +138,6 @@ class CrudController extends Controller
     {
         //The autorization happend in Daguilarm\Belich\Fields\FieldValidate
 
-        dd($request);
         $update = $this->model->findOrFail($id)->update($request->all());
 
         return $this->redirectToAction($update, $actionSuccess = 'updated', $actionFail = 'updating', $id);

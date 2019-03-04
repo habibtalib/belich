@@ -14,7 +14,7 @@
     {{-- Search container --}}
     {{-- input: search field --}}
     {{-- buttons: options, export, delete,... --}}
-    <div id="search-container" class="p-4 pr-6 shadow-md bg-grey-lightest">
+    <div id="search-container" class="p-4 shadow-md bg-grey-lightest">
         @include('belich::dashboard.index.search')
     </div>
 
