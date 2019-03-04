@@ -39,6 +39,9 @@ abstract class FieldAbstract {
     /** @var string [Group by panel] */
     public $panel;
 
+    /** @var string [Prefix for field value] */
+    public $prefix;
+
     /** @var string [The model relationships] */
     public $relationships;
 
@@ -56,6 +59,9 @@ abstract class FieldAbstract {
 
     /** @var bool [Indicates if the field should be sortable] */
     public $sortable = false;
+
+    /** @var string [Suffix for field value] */
+    public $suffix;
 
     /** @var string [Table text align. Only on controller action: index] */
     public $textAlign = 'left';
@@ -153,6 +159,34 @@ abstract class FieldAbstract {
     public function panels(string $panel)
     {
         $this->panels = $panel;
+
+        return $this;
+    }
+
+    /**
+     * Prefix for field value
+     * @param  string  $prefix
+     * @return self
+     */
+    public function prefix(string $prefix)
+    {
+        $this->displayUsing(function($value) use ($prefix) {
+            return $prefix ? $prefix . ' ' . $value : $value;
+        });
+
+        return $this;
+    }
+
+    /**
+     * Suffix for field value
+     * @param  string  $suffix
+     * @return self
+     */
+    public function suffix(string $suffix)
+    {
+        $this->displayUsing(function($value) use ($suffix) {
+            return $suffix ? $value . ' ' . $suffix  : $value;
+        });
 
         return $this;
     }
