@@ -164,8 +164,7 @@ At the moment, Belich only has this type of charts:
     + <del>Number</del>.
     + <del>Password</del>.
     + <del>PasswordConfirmation</del>.
-    + Place.
-    + Radio.
+    + <del>Place (No need for this place... we have Panels!)</del>.
     + <del>Select</del>.
     + <del>Text</del>.
     + <del>TextArea</del>.
