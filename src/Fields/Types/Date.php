@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Fields\Types;
 
+use Carbon\Carbon;
 use Daguilarm\Belich\Fields\Field;
 
 class Date extends Field {
@@ -21,5 +22,10 @@ class Date extends Field {
 
         //Cast the field as string
         $this->toDate('Y-m-d');
+
+        //Resolving the date
+        $this->resolveUsing(function($model) {
+            return Carbon::createFromFormat('Y-m-d', $model->{$this->attribute})->format('d/m/Y');
+        });
     }
 }
