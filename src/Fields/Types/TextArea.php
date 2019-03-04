@@ -32,6 +32,9 @@ class TextArea extends Field {
         //Set visibility
         //Hide from detail by default
         $this->hideFromShow();
+
+        //Cast the field as string
+        $this->toString();
     }
 
     /**

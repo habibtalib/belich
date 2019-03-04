@@ -12,6 +12,7 @@
                 decimals="6"
                 class="float mr-3"
             >
+            <input type="hidden" name="cast[]" value="float|lat_{{ $field->attribute }}">
 
             {{-- Lng --}}
             <input
@@ -24,6 +25,7 @@
                 decimals="6"
                 class="float ml-3"
             >
+            <input type="hidden" name="cast[]" value="float|lng_{{ $field->attribute }}">
         </div>
 
         @if($field->help)
