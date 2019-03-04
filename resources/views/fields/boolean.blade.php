@@ -16,5 +16,7 @@
         @endif
 
         <p id="error-{{ $field->id }}" class="validation-error"></p>
+
+        @include('belich::fields.cast')
     </slot>
 </belich::fields>

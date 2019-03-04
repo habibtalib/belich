@@ -33,6 +33,9 @@ class Boolean extends Field {
 
         //Set the html by default because we are showing icons as value (green or grey)
         $this->asHtml = true;
+
+        //Cast the field as bool
+        $this->toBoolean();
     }
 
     /**

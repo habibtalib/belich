@@ -5,6 +5,7 @@ namespace Daguilarm\Belich\Fields;
 use Daguilarm\Belich\Contracts\Maker;
 use Daguilarm\Belich\Fields\FieldAbstract;
 use Daguilarm\Belich\Fields\Traits\Attributable;
+use Daguilarm\Belich\Fields\Traits\Casteable;
 use Daguilarm\Belich\Fields\Traits\Messageable;
 use Daguilarm\Belich\Fields\Traits\Ruleable;
 use Daguilarm\Belich\Fields\Traits\Settingable;
@@ -14,6 +15,7 @@ use Illuminate\Support\Str;
 class Field extends FieldAbstract {
 
     use Attributable,
+        Casteable,
         Messageable,
         Ruleable,
         Settingable,

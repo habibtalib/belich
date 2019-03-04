@@ -5,8 +5,10 @@ namespace Daguilarm\Belich\App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Daguilarm\Belich\App\Http\Controllers\Traits\Redirectable;
 use Daguilarm\Belich\App\Http\Requests\CreateRequest;
+use Daguilarm\Belich\App\Http\Requests\EditRequest;
 use Daguilarm\Belich\App\Http\Requests\IndexRequest;
 use Daguilarm\Belich\App\Http\Requests\ShowRequest;
+use Daguilarm\Belich\App\Http\Requests\StoreRequest;
 use Daguilarm\Belich\App\Http\Requests\UpdateRequest;
 use Daguilarm\Belich\Core\Belich;
 use Illuminate\Http\Request;
@@ -76,10 +78,10 @@ class CrudController extends Controller
     /**
      * Store a new resource.
      *
-     * @param Illuminate\Http\Request $request
+     * @param Illuminate\Http\StoreRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
         //Authorization
         $this->authorize('create', $this->model);
@@ -113,9 +115,9 @@ class CrudController extends Controller
      *
      * @param Daguilarm\Belich\Core\Belich $belich
      * @param int $id
-     * @param Daguilarm\Belich\App\Http\Requests\UpdateRequest $request
+     * @param Daguilarm\Belich\App\Http\Requests\EditRequest $request
      */
-    public function edit(Belich $belich, $id, UpdateRequest $request)
+    public function edit(Belich $belich, $id, EditRequest $request)
     {
         //The autorization happend in Daguilarm\Belich\Fields\FieldValidate
 
@@ -128,11 +130,11 @@ class CrudController extends Controller
     /**
      * Update a resource.
      *
-     * @param Illuminate\Http\Request $request
+     * @param Illuminate\Http\UpdateRequest $request
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateRequest $request, $id)
     {
         //The autorization happend in Daguilarm\Belich\Fields\FieldValidate
 

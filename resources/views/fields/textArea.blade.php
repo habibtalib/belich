@@ -25,5 +25,7 @@
                  @include('belich::dashboard.javascript.forms')
              @endpush
          @endisset
+
+         @include('belich::fields.cast')
     </slot>
 </belich::fields>
