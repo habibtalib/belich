@@ -48,7 +48,7 @@ Project in development. Still in the early stages...help will be great!!!
 - Minify HTML (with filters by pages and Controller actions): https://github.com/nckg/laravel-minify-html
 - Metrics using: https://gionkunz.github.io/chartist-js/index.html a lightweight library for charts.
 
-#### Casting the fields before storage
+####Casting the fields before storage
 
 ~~~
 use Daguilarm\Belich\Fields\Types\Text;
@@ -67,7 +67,7 @@ public function fields(Request $request) {
 }
 ~~~
 
-#### Simple tools for Metrics:
+####Simple tools for Metrics:
 
 Showing the total users by day in the last week, is just this:
 
