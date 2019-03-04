@@ -150,7 +150,7 @@ At the moment, Belich only has this type of charts:
 - Complete the fields types:
     + Avatar.
     + <del>Boolean</del>.
-    + Date.
+    + <del>Date</del>.
     + <del>Decimal</del>.
     + DependsOn fields
     + <del>Coordenates (latLng)</del>.
@@ -167,7 +167,7 @@ At the moment, Belich only has this type of charts:
     + <del>Select</del>.
     + <del>Text</del>.
     + <del>TextArea</del>.
-    + Year.
+    + <del>Year</del>.
 - <del>Casting fields before storage</del>.
 - Create the relationship fields.
 - Writting test... I know but...

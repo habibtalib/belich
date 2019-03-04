@@ -114,7 +114,7 @@ return [
     | Date format
     |--------------------------------------------------------------------------
     |
-    | Define the default date format
+    | Define the default date format. This format will be use in the Controller actions: index and show.
     */
     'dateFormat' => 'd/m/Y',
 ];
