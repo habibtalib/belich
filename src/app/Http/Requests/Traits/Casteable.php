@@ -1,11 +1,11 @@
 <?php
 
-namespace Daguilarm\Belich\Components\Cast;
+namespace Daguilarm\Belich\App\Http\Requests\Traits;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
 
-// This trait is base on the https://github.com/stahiralijan/request-caster/
+// This trait is inspired by https://github.com/stahiralijan/request-caster/
 trait Casteable {
 
     /**

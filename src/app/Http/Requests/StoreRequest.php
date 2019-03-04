@@ -2,7 +2,7 @@
 
 namespace Daguilarm\Belich\App\Http\Requests;
 
-use Daguilarm\Belich\Components\Cast\Casteable;
+use Daguilarm\Belich\App\Http\Requests\Traits\Casteable;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreRequest extends FormRequest
