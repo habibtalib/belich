@@ -117,8 +117,11 @@ class FieldValidate {
     {
         return collect($values)
             ->map(function($value, $attribute) {
-                return sprintf("%s:$('#%s').val()", $attribute, $attribute);
+                if(!empty($value) && !empty($attribute)) {
+                    return sprintf("%s:$('#%s').val()", $attribute, $attribute);
+                }
             })
+            ->filter()
             ->implode(',');
     }
 
@@ -137,9 +140,7 @@ class FieldValidate {
                 return collect($value)->last();
             })
             //Remove the empty rules
-            ->filter(function($notEmpty) {
-                return $notEmpty;
-            });
+            ->filter();
     }
 
     /**
