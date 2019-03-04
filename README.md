@@ -119,6 +119,10 @@ At the moment, Belich only has this type of charts:
 
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/metrics/graph-pie.png)
 
+#### Tabs
+
+![Tabs](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/tabs.png)
+
 #### With stats and cards
 
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/card-and-pie.png)

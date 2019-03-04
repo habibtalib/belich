@@ -36,12 +36,16 @@
 {{-- Custom active tab --}}
 @push('css')
     <style>
-        .tabs li a.active {
+        .tabs li a {
             background-color: white;
+            border: 0;
+            border-bottom: 2px solid var(--20);
+            margin: 0 1px;
+        }
+        .tabs li a.active {
             font-weight: 700;
             color: #3490dc;
-            border: 0;
-            border-bottom: 1px solid #3490dc;
+            border-bottom: 2px solid #3490dc;
         }
     </style>
 @endpush
