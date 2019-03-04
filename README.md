@@ -47,7 +47,27 @@ Project in development. Still in the early stages...help will be great!!!
 - Cache.
 - Minify HTML (with filters by pages and Controller actions): https://github.com/nckg/laravel-minify-html
 - Metrics using: https://gionkunz.github.io/chartist-js/index.html a lightweight library for charts.
-- Simple tools for Metrics:
+
+#### Casting the fields before storage
+
+~~~
+use Daguilarm\Belich\Fields\Types\Text;
+
+/**
+ * Get the fields displayed by the resource.
+ *
+ * @param  \Illuminate\Http\Request  $request
+ * @return Illuminate\Support\Collection
+ */
+public function fields(Request $request) {
+    return [
+        Text::make('Status', 'status')
+            ->toInteger(),
+    ];
+}
+~~~
+
+#### Simple tools for Metrics:
 
 Showing the total users by day in the last week, is just this:
 
