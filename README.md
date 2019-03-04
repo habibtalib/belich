@@ -144,7 +144,7 @@ At the moment, Belich only has this type of charts:
     + <del>Text</del>.
     + <del>TextArea</del>.
     + Year.
-- Cast form fields.
+- <del>Casting fields before storage</del>.
 - Create the relationship fields.
 - Writting test... I know but...
 
