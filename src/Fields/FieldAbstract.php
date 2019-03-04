@@ -171,7 +171,7 @@ abstract class FieldAbstract {
     public function prefix(string $prefix)
     {
         $this->displayUsing(function($value) use ($prefix) {
-            return $prefix ? $prefix . ' ' . $value : $value;
+            return $prefix ? $prefix . $value : $value;
         });
 
         return $this;
@@ -185,7 +185,7 @@ abstract class FieldAbstract {
     public function suffix(string $suffix)
     {
         $this->displayUsing(function($value) use ($suffix) {
-            return $suffix ? $value . ' ' . $suffix  : $value;
+            return $suffix ? $value . $suffix  : $value;
         });
 
         return $this;

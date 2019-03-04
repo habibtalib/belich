@@ -151,7 +151,6 @@ At the moment, Belich only has this type of charts:
     + Avatar.
     + <del>Boolean</del>.
     + Country.
-    + Currency.
     + <del>Date</del>.
     + <del>Decimal</del>.
     + DependsOn fields
