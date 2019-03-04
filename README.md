@@ -154,7 +154,7 @@ At the moment, Belich only has this type of charts:
     + <del>Decimal</del>.
     + DependsOn fields
     + <del>Coordenates (latLng)</del>.
-    + Header.
+    + <del>Header</del>.
     + <del>Hidden</del>.
     + <del>ID</del>.
     + Image.
