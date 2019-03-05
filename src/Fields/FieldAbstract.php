@@ -131,7 +131,7 @@ abstract class FieldAbstract {
     public function displayUsing(callable $displayCallback) : self
     {
         if(!empty($displayCallback)) {
-            $this->displayCallback = $displayCallback;
+            $this->displayCallback[] = $displayCallback;
         }
 
         return $this;

@@ -156,8 +156,12 @@ class Html {
      */
     private function displayCallback(Field $field, $value = '')
     {
-        if(is_callable($field->displayCallback)) {
-            $value = call_user_func($field->displayCallback, $value);
+        if(!empty($field->displayCallback)) {
+            foreach($field->displayCallback as $callback) {
+                if(is_callable($callback)) {
+                    $value = call_user_func($callback, $value);
+                }
+            }
         }
 
         return $value;
