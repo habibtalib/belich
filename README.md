@@ -142,34 +142,12 @@ At the moment, Belich only has this type of charts:
 
 - Redesign the front-end with all the lesson from: https://refactoringui.com/
 - Refactoring all the code, because I am just writting code...
-- <del>Cards</del>.
-- <del>Metrics</del>.
-- <del>Finish the pie charts</del>.
-- <del>Group fields in panels</del>.
-- <del>Group fields in tabs</del>.
 - Complete the fields types:
     + Autocomplete.
     + Avatar.
-    + <del>Boolean</del>.
-    + <del>Countries</del>.
-    + <del>Date</del>.
-    + <del>Decimal</del>.
     + DependsOn fields
-    + <del>Coordenates (latLng)</del>.
-    + <del>Header</del>.
-    + <del>Hidden</del>.
-    + <del>ID</del>.
     + Image.
     + Leaflet.
-    + <del>Number</del>.
-    + <del>Password</del>.
-    + <del>PasswordConfirmation</del>.
-    + <del>Place (No need for this place... we have Panels!)</del>.
-    + <del>Select</del>.
-    + <del>Text</del>.
-    + <del>TextArea</del>.
-    + <del>Year</del>.
-- <del>Casting fields before storage</del>.
 - Create the relationship fields.
 - Writting test... I know but...
 
