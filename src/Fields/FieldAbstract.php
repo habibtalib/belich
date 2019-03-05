@@ -166,12 +166,17 @@ abstract class FieldAbstract {
     /**
      * Prefix for field value
      * @param  string  $prefix
+     * @param  bool  $space
      * @return self
      */
-    public function prefix(string $prefix)
+    public function prefix(string $prefix, bool $space = false)
     {
-        $this->displayUsing(function($value) use ($prefix) {
-            return $prefix ? $prefix . $value : $value;
+        $this->displayUsing(function($value) use ($prefix, $space) {
+            return sprintf(
+                '%s%s%s',
+                $prefix, $space ? ' ' : '',
+                $value
+            );
         });
 
         return $this;
@@ -180,11 +185,19 @@ abstract class FieldAbstract {
     /**
      * Suffix for field value
      * @param  string  $suffix
+     * @param  bool  $space
      * @return self
      */
-    public function suffix(string $suffix)
+    public function suffix(string $suffix, bool $space = false)
     {
-        $this->displayUsing(function($value) use ($suffix) {
+        $this->displayUsing(function($value) use ($suffix, $space) {
+            return sprintf(
+                '%s%s%s',
+                $value,
+                $space ? ' ' : '',
+                $suffix
+
+            );
             return $suffix ? $value . $suffix  : $value;
         });
 
