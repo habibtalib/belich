@@ -4,9 +4,9 @@
         <input
             id="autocompleteInput"
             list="autocompleteList"
-            oninput="selectDatalist('{{ $field->attribute }}');"
             type="text"
             value="{{ $field->response[$field->value] ?? null }}"
+            oninput="selectDatalist('{{ $field->attribute }}');"
         >
 
         {{-- Hidden container with the value for storage --}}
@@ -14,19 +14,20 @@
 
         {{-- Create the data list --}}
         <datalist id="autocompleteList">
-            <select id="autocompleteContainer">
-                @foreach($field->response as $value => $label)
-                    <option value="{{ $label }}" data-result="{{ $value }}">{{ $label }}</option>
-                @endforeach
-            </select>
+            @foreach($field->response as $value => $label)
+                <option value="{{ $label }}" data-result="{{ $value }}">{{ $label }}</option>
+            @endforeach
           </datalist>
 
+        {{-- Help container --}}
         @if($field->help)
             <div class="help-text">{{ $field->help }}</div>
         @endif
 
+        {{-- Error container --}}
         <p id="error-{{ $field->id }}" class="validation-error"></p>
 
+        {{-- Cast field --}}
         @include('belich::fields.cast')
     </slot>
 </belich::fields>
@@ -37,7 +38,7 @@
         function selectDatalist(container) {
             if(document.getElementById('autocompleteInput')) {
                 var val = document.getElementById('autocompleteInput').value;
-                var opts = document.getElementById('autocompleteContainer').childNodes;
+                var opts = document.getElementById('autocompleteList').childNodes;
                 for(var i = 0; i < opts.length; i++) {
                     if(opts[i].value === val) {
                         // Update the value

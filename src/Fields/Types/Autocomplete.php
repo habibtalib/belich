@@ -18,14 +18,18 @@ class Autocomplete extends Field {
      * @param  string|null  $name
      * @param  string|null  $attribute
      */
-    public function __construct($name = null, $attribute = null, $data)
+    public function __construct($name = null, $attribute = null, $data = [])
     {
         parent::__construct($name, $attribute);
 
+        //Get the data base on the format
         $this->response = $this->parserData($data);
 
+        //Resolve value for: index and show
         $this->resolveUsing(function($model) use ($attribute) {
+            //Get the sql value
             $attribute = $model->{$attribute};
+            //Set the label value
             return $this->response[$attribute];
         });
     }
@@ -38,8 +42,9 @@ class Autocomplete extends Field {
      */
     private function parserData($data) : array
     {
-        if(is_array($data)) {
-            return $data['array'];
+        //If is array
+        if(array_keys($data)[0] === 'array') {
+            return array_values($data)[0];
         }
     }
 }
