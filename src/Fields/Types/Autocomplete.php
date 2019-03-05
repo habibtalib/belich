@@ -10,17 +10,49 @@ class Autocomplete extends Field {
     public $type = 'autocomplete';
 
     /** @var string */
-    public $ajaxUrl;
+    public $ajaxFrom;
+
+    /** @var int */
+    public $take;
+
+    /** @var string */
+    public $varName = 'search';
 
     /**
-     * Set the ajax Url.
+     * Set the ajax Url for the response
+     *
+     * @param  string  $responseFrom
+     * @return self
+     */
+    private function ajaxFrom(string $ajaxFrom) : self
+    {
+        $this->ajaxFrom = $ajaxFrom;
+
+        return $this;
+    }
+
+    /**
+     * Set the max number of result for the response
+     *
+     * @param  int  $number
+     * @return self
+     */
+    private function take(int $number) : self
+    {
+        $this->varName = $name;
+
+        return $this;
+    }
+
+    /**
+     * Set the variable name
      *
      * @param  string  $url
      * @return self
      */
-    private function ajaxUrl(string $url) : self
+    private function varName(string $varName) : self
     {
-        $this->ajaxUrl = $url;
+        $this->varName = $varName;
 
         return $this;
     }

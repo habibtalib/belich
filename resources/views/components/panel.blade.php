@@ -13,7 +13,7 @@
     @endif
 
     {{-- Get all the fields --}}
-    @foreach($panel as $field)
+    @foreach($panel as $key => $field)
 
         {{-- Render fields: create, edit --}}
         @isset($toField)

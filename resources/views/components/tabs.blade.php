@@ -23,7 +23,7 @@
 
             {{-- Form --}}
             @isset($toField)
-                <belich::panel :label="$label" :panel="$panel" :loop="$loop" toField></belich::panel>
+                <belich::panel :label="$label" :panel="$panel" :loop="$loop" toField="true"></belich::panel>
 
             {{-- Detail --}}
             @else
