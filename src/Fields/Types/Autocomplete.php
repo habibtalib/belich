@@ -46,5 +46,10 @@ class Autocomplete extends Field {
         if(array_keys($data)[0] === 'array') {
             return array_values($data)[0];
         }
+
+        //If is url
+        if(array_keys($data)[0] === 'url') {
+            return array_values($data)[0];
+        }
     }
 }

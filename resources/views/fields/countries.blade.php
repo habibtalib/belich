@@ -5,7 +5,7 @@
             id="autocompleteInput"
             list="autocompleteList"
             type="text"
-            value="{{ $field->response[$field->value] ?? null }}"
+            value="{{ $field->countries[$field->value] ?? null }}"
             oninput="selectDatalist('{{ $field->attribute }}');"
         >
 
@@ -14,7 +14,7 @@
 
         {{-- Create the data list --}}
         <datalist id="autocompleteList">
-            @foreach($field->response as $value => $label)
+            @foreach($field->countries as $value => $label)
                 <option value="{{ $label }}" data-result="{{ $value }}">{{ $label }}</option>
             @endforeach
           </datalist>
