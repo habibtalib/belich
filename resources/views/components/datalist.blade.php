@@ -10,7 +10,7 @@
             list="list-{{ $key }}"
             type="text"
             value="{{ $value ?? null }}"
-            oninput="selectDatalist('{{ $item->attribute }}');"
+            onchange="selectDatalist('{{ $item->attribute }}', '{{ $key }}');"
         >
 
         {{-- Hidden container with the value for storage --}}
@@ -33,23 +33,4 @@
         @include('belich::fields.cast')
     </slot>
 </belich::fields>
-
-@push('javascript')
-    <script>
-        {{-- Create the dataList --}}
-        function selectDatalist(container) {
-            if(document.getElementById('input-{{ $key }}')) {
-                var val = document.getElementById('input-{{ $key }}').value;
-                var opts = document.getElementById('list-{{ $key }}').childNodes;
-                for(var i = 0; i < opts.length; i++) {
-                    if(opts[i].value === val) {
-                        // Update the value
-                        document.getElementById(container).value = opts[i].getAttribute('data-result');
-                        break;
-                    }
-                }
-            }
-        }
-    </script>
-@endpush
 

@@ -10,7 +10,7 @@ class Autocomplete extends Field {
     public $type = 'autocomplete';
 
     /** @var string */
-    public $ajaxFrom;
+    public $fromAjax;
 
     /** @var int */
     public $take;
@@ -24,9 +24,9 @@ class Autocomplete extends Field {
      * @param  string  $responseFrom
      * @return self
      */
-    private function ajaxFrom(string $ajaxFrom) : self
+    private function fromAjax(string $fromAjax) : self
     {
-        $this->ajaxFrom = $ajaxFrom;
+        $this->fromAjax = $fromAjax;
 
         return $this;
     }

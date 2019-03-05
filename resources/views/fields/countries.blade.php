@@ -1,4 +1,10 @@
-<belich::datalist :item="$field" :value="$field->countries[$field->value]">
+<belich::datalist
+    :item="$field"
+    :value="$field->countries[$field->value]"
+    jsFunction="selectDatalist"
+>
+
+
     {{-- Custom data --}}
     <slot name="data">
         @foreach($field->countries as $value => $label)
