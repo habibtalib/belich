@@ -148,9 +148,10 @@ At the moment, Belich only has this type of charts:
 - <del>Group fields in panels</del>.
 - <del>Group fields in tabs</del>.
 - Complete the fields types:
+    + Autocomplete.
     + Avatar.
     + <del>Boolean</del>.
-    + Country.
+    + <del>Countries</del>.
     + <del>Date</del>.
     + <del>Decimal</del>.
     + DependsOn fields
