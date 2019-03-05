@@ -9,47 +9,19 @@ class Autocomplete extends Field {
     /** @var string */
     public $type = 'autocomplete';
 
-    /** @var array */
-    public $response;
+    /** @var string */
+    public $ajaxUrl;
 
     /**
-     * Create a new field.
+     * Set the ajax Url.
      *
-     * @param  string|null  $name
-     * @param  string|null  $attribute
+     * @param  string  $url
+     * @return self
      */
-    public function __construct($name = null, $attribute = null, $data = [])
+    private function ajaxUrl(string $url) : self
     {
-        parent::__construct($name, $attribute);
+        $this->ajaxUrl = $url;
 
-        //Get the data base on the format
-        $this->response = $this->parserData($data);
-
-        //Resolve value for: index and show
-        $this->resolveUsing(function($model) use ($attribute) {
-            //Get the sql value
-            $attribute = $model->{$attribute};
-            //Set the label value
-            return $this->response[$attribute];
-        });
-    }
-
-    /**
-     * Parser data.
-     *
-     * @param  mixed  $data
-     * @return array
-     */
-    private function parserData($data) : array
-    {
-        //If is array
-        if(array_keys($data)[0] === 'array') {
-            return array_values($data)[0];
-        }
-
-        //If is url
-        if(array_keys($data)[0] === 'url') {
-            return array_values($data)[0];
-        }
+        return $this;
     }
 }
