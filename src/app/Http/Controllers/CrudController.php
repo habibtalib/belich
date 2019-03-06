@@ -32,7 +32,7 @@ class CrudController extends Controller
     {
         //Share the setting to all the views
         view()->share([
-            'resources' => $belich->resourcesAll(),
+            'resources' => $belich->getGroupResources(),
         ]);
 
         //Get resource model

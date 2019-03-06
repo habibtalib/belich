@@ -204,6 +204,32 @@ trait Resourceable {
     }
 
     /**
+     * Get all the resources grouped and prepare for navigation
+     *
+     * @return string
+     */
+    public function getGroupResources()
+    {
+        return collect($this->resourcesAll())
+            ->map(function ($item, $key) {
+
+                $title = $item['pluralLabel'] ?? stringPluralUpper($item['class']);
+
+                if($item['displayInNavigation'] === true) {
+                    return collect([
+                        'group' => $item['group'] ?? $title,
+                        'icon' => $item['icon'],
+                        'name' => $title,
+                        'resource' => $item['resource']
+                    ]);
+                }
+            })
+            ->filter()
+            ->values()
+            ->groupBy('group');
+    }
+
+    /**
      * Get all the files from the resources folder (All the resources)
      *
      * @return Illuminate\Support\Collection

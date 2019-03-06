@@ -652,6 +652,16 @@ textarea:focus {
 }
 /* Base on https://codepen.io/andornagy/pen/xhiJH */
 
+/*nav#navbar ul li {
+    inline-block
+}*/
+
+/* Hide Dropdowns by Default */
+
+/*nav#navbar ul ul {
+    transition: var(--transition);
+}*/
+
 /* Navbar */
 
 nav#navbar ul {
