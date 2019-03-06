@@ -150,5 +150,6 @@ At the moment, Belich only has this type of charts:
     + Leaflet.
 - Create the relationship fields.
 - Writting test... I know but...
+- Preset cards.
 
 ...
