@@ -652,21 +652,9 @@ textarea:focus {
 }
 /* Base on https://codepen.io/andornagy/pen/xhiJH */
 
-/*nav#navbar ul li {
-    inline-block
-}*/
-
-/* Hide Dropdowns by Default */
-
-/*nav#navbar ul ul {
-    transition: var(--transition);
-}*/
-
 /* Navbar */
 
 nav#navbar ul {
-  padding: 0;
-  margin: 0;
   list-style: none;
   padding: 0;
   -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
@@ -676,10 +664,13 @@ nav#navbar ul {
 
 nav#navbar ul li {
   display: inline-block;
+  margin-left: -0.25rem;
 }
 
 nav#navbar a {
-  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   height: 4rem;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
@@ -702,6 +693,7 @@ nav#navbar ul ul {
   position: absolute;
   visibility: hidden;
   opacity: 0;
+  margin-left: .25rem;
   -webkit-transition: var(--transition);
   transition: var(--transition);
 }
@@ -786,23 +778,20 @@ nav#sidebar ul {
   background-color: transparent;
 }
 
-nav#sidebar ul li {
-  margin-left: 1.5rem;
-  font-size: 1.125rem;
-}
-
 nav#sidebar ul li a {
   background-color: transparent;
 }
 
-nav#sidebar ul li.sidebar-parent {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+nav#sidebar ul li ul li {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
-nav#sidebar ul li.sidebar-child {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
+nav#sidebar i {
+  opacity: .25;
+  font-size: .875rem;
+  line-height: 1.5;
+  vertical-align: middle;
 }
 /* Metrics values */
 

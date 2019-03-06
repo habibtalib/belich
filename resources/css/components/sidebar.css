@@ -2,18 +2,14 @@ nav#sidebar ul {
     @apply list-reset bg-transparent;
 }
 
-nav#sidebar ul li {
-    @apply ml-6 text-lg;
-}
-
 nav#sidebar ul li a {
     @apply bg-transparent;
 }
 
-nav#sidebar ul li.sidebar-parent {
-    @apply my-8;
+nav#sidebar ul li ul li {
+    @apply my-4;
 }
 
-nav#sidebar ul li.sidebar-child {
-    @apply my-6;
+nav#sidebar i {
+    @apply opacity-25 text-sm leading-normal align-middle;
 }

@@ -114,36 +114,4 @@ class Belich {
     {
         return new \Daguilarm\Belich\Core\Html;
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Navbar and Sidebar
-    |--------------------------------------------------------------------------
-    */
-
-   /**
-    * Prepare the navbar for the view
-    *
-    * @return \App\Belich\Navbar
-    */
-    public function navbar()
-    {
-       if(class_exists('\App\Belich\Navbar')) {
-            return new \App\Belich\Navbar($this->resourcesAll());
-       }
-       throw new \InvalidArgumentException('The \App\Belich\Navbar::class does not exist. Please restore the file to its folder or install the package again.');
-    }
-
-    /**
-     * Prepare the sidebar for the view
-     *
-     * @return \App\Belich\Sidebar
-     */
-    public function sidebar()
-    {
-        if(class_exists('\App\Belich\Sidebar')) {
-            return new \App\Belich\Sidebar($this->resourcesAll());
-        }
-        throw new \InvalidArgumentException('The \App\Belich\Sidebar::class does not exist. Please restore the file to its folder or install the package again.');
-    }
 }
