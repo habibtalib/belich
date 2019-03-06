@@ -12,7 +12,6 @@
         {{-- Export format component --}}
         <belich::options field="format" css="rounded-t-lg" required="true" :text="trans('belich::default.format')">
             <slot name="options">
-               <option><option>
                 <option value="xls">Excel 2003</option>
                 <option value="xlsx">Excel 2007</option>
                 <option value="csv">CSV</option>
@@ -22,7 +21,6 @@
         {{-- Export quantity component --}}
         <belich::options field="quantity" css="rounded-t-lg" required="true" :text="trans('belich::default.items')">
             <slot name="options">
-               <option><option>
                 <option value="all">@lang('belich::default.all')</option>
                 <option value="selected">@lang('belich::default.selected')</option>
             </slot>
