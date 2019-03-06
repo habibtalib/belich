@@ -5,7 +5,7 @@ namespace Daguilarm\Belich\App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class OptionsController extends Controller
+class OptionController extends Controller
 {
     /**
      * Configure the Belich options

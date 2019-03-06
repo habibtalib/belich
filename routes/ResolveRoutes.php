@@ -35,7 +35,7 @@ Route::group([
             });
 
         //Belich options
-        Route::post(route_path('user/settings'), namespace_path('App\Http\Controllers\OptionsController'))
+        Route::post(route_path('user/settings'), namespace_path('App\Http\Controllers\OptionController'))
             ->name('users.settings');
 
         //Belich export
