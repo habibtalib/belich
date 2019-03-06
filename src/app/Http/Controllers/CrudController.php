@@ -30,11 +30,6 @@ class CrudController extends Controller
      */
     public function __construct(Belich $belich, Request $request)
     {
-        //Share the setting to all the views
-        view()->share([
-            'resources' => $belich->getGroupResources(),
-        ]);
-
         //Get resource model
         $this->model = Belich::getModel();
     }
