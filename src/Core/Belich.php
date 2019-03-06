@@ -83,23 +83,6 @@ class Belich {
         return view('belich::actions.default', ['model' => $model]);
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Breadcrumbs
-    |--------------------------------------------------------------------------
-    */
-
-   /**
-    * Prepare the breadcrumbs for the view
-    *
-    * @param array $breadcrumbs
-    * @return string
-    */
-    public function breadcrumbs(array $breadcrumbs)
-    {
-        return \Daguilarm\Belich\Components\Breadcrumbs::make($breadcrumbs);
-    }
-
      /*
      |--------------------------------------------------------------------------
      | Cards and Metrics
