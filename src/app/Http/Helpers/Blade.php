@@ -129,13 +129,13 @@ if (!function_exists('createFormSelectOptions')) {
     function createFormSelectOptions($options, $field, $emptyField = false)
     {
         return collect($options)
-            ->map(function($key, $value) use ($field) {
+            ->map(function($label, $value) use ($field) {
                 //Default values
                 $selected = Cookie::get('belich_' . $field) == $value ? ' selected' : '';
-                $value = ($value === 0) ? $key : $value;
-                $selected = (Cookie::get('belich_' . $field) == $value) ? ' ' . 'selected' : '';
+                $defaultValue = !is_array($value) ? $label : $value;
+                $selected = (Cookie::get('belich_' . $field) == $defaultValue) ? ' ' . 'selected' : '';
 
-                return sprintf('<option value="%s"%s>%s</option>', $value, $selected, $key);
+                return sprintf('<option value="%s"%s>%s</option>', $defaultValue, $selected, $label);
             })
             ->prepend($emptyField ? '<option></option>' : '')
             ->implode('');
