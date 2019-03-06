@@ -142,6 +142,7 @@ At the moment, Belich only has this type of charts:
 
 - Redesign the front-end with all the lesson from: https://refactoringui.com/
 - Refactoring all the code, because I am just writting code...
+- Removed de navbar class and change it for a view!
 - Complete the fields types:
     + Avatar.
     + DependsOn fields
