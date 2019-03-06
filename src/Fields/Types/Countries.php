@@ -10,7 +10,7 @@ class Countries extends Field {
     public $type = 'countries';
 
     /** @var array */
-    public $countries;
+    public $response;
 
     /**
      * Create a new field.
@@ -23,7 +23,7 @@ class Countries extends Field {
         parent::__construct($name, $attribute);
 
         //Get the countries
-        $this->countries = collect(trans('belich::metrics.countriesOfTheWorldWithCodes'))
+        $this->response = collect(trans('belich::metrics.countriesOfTheWorldWithCodes'))
             ->flatMap(function($country) {
                 return [$country['code'] => $country['name']];
             })
@@ -34,7 +34,7 @@ class Countries extends Field {
             //Get the sql value
             $attribute = $model->{$attribute};
             //Set the label value
-            return $this->countries[$attribute];
+            return $this->response[$attribute];
         });
     }
 }

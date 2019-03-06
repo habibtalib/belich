@@ -10,7 +10,7 @@ class Autocomplete extends Field {
     public $type = 'autocomplete';
 
     /** @var string */
-    public $fromAjax;
+    public $response;
 
     /** @var int */
     public $take;
@@ -19,14 +19,14 @@ class Autocomplete extends Field {
     public $varName = 'search';
 
     /**
-     * Set the ajax Url for the response
+     * Set the response from the data
      *
      * @param  string  $responseFrom
      * @return self
      */
-    private function fromAjax(string $fromAjax) : self
+    public function response(string $response) : self
     {
-        $this->fromAjax = $fromAjax;
+        $this->response = $response;
 
         return $this;
     }
@@ -37,7 +37,7 @@ class Autocomplete extends Field {
      * @param  int  $number
      * @return self
      */
-    private function take(int $number) : self
+    public function take(int $number) : self
     {
         $this->varName = $name;
 
@@ -50,7 +50,7 @@ class Autocomplete extends Field {
      * @param  string  $url
      * @return self
      */
-    private function varName(string $varName) : self
+    public function varName(string $varName) : self
     {
         $this->varName = $varName;
 
