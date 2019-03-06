@@ -146,6 +146,7 @@ At the moment, Belich only has this type of charts:
     + Avatar.
     + DependsOn fields
     + Image.
+    + File.
     + Leaflet.
 - Create the relationship fields.
 - Writting test... I know but...
