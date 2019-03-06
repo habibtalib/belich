@@ -2,15 +2,9 @@
 
 namespace Daguilarm\Belich\Fields\Types;
 
-use Daguilarm\Belich\Fields\Field;
+use Daguilarm\Belich\Fields\Types\Autocomplete;
 
-class Countries extends Field {
-
-    /** @var string */
-    public $type = 'countries';
-
-    /** @var array */
-    public $response;
+class Countries extends Autocomplete {
 
     /**
      * Create a new field.
