@@ -6,10 +6,10 @@
             list="list-{{ md5($item->attribute) }}"
             type="text"
             value="{{ $value ?? null }}"
-            @if(is_array($item->response))
+            @if($item->responseArray)
                 onchange="selectDatalist('{{ $item->attribute }}', '{{ md5($item->attribute) }}');"
-            @else
-                onkeyup="requestAjax('{{ $item->response }}', '{{ md5($item->attribute) }}');"
+            @elseif($item->responseUrl)
+                onkeyup="requestAjax('{{ $item->responseUrl }}', '{{ md5($item->attribute) }}', '{{ $item->minChars }}', '{{ $item->addVars }}');"
                 onchange="selectDatalist('{{ $item->attribute }}', '{{ md5($item->attribute) }}');"
             @endif
         >
@@ -19,8 +19,8 @@
 
         {{-- Create the data list --}}
         <datalist id="list-{{ md5($item->attribute) }}">
-            @if(is_array($item->response))
-                @foreach($item->response as $value => $label)
+            @if($item->responseArray)
+                @foreach($item->responseArray as $value => $label)
                     <option value="{{ $label }}" data-result="{{ $value }}">{{ $label }}</option>
                 @endforeach
             @endif
@@ -56,14 +56,15 @@
             }
         }
 
-        function requestAjax(url, key) {
+        function requestAjax(url, key, min, vars) {
             //Set default values
             const search = document.getElementById('input-' + key).value;
-            const ajaxUrl = url + '/?search=' + search;
+            const ajaxUrl = url + '/?search=' + search + (vars ? '&' + vars : '');
             var response;
+            console.log(ajaxUrl);
 
             //Get ajax response
-            if(search && search.length >= 3) {
+            if(search && search.length >= min) {
                 const xhr = new XMLHttpRequest();
                 xhr.open('GET', ajaxUrl , true);
                 xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
