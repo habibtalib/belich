@@ -128,12 +128,15 @@ if (!function_exists('setColor')) {
 if (!function_exists('createFormSelectOptions')) {
     function createFormSelectOptions($options, $field, $emptyField = false)
     {
+        $cookie = Cookie::get('belich_' . $field);
+
         return collect($options)
-            ->map(function($label, $value) use ($field) {
+            ->map(function($label, $value) use ($cookie, $field) {
                 //Default values
-                $selected = Cookie::get('belich_' . $field) == $value ? ' selected' : '';
                 $defaultValue = !is_array($value) ? $label : $value;
-                $selected = (Cookie::get('belich_' . $field) == $defaultValue) ? ' ' . 'selected' : '';
+                $selected = ($cookie == $defaultValue || $cookie == $value)
+                    ? ' ' . 'selected'
+                    : '';
 
                 return sprintf('<option value="%s"%s>%s</option>', $defaultValue, $selected, $label);
             })
