@@ -9,14 +9,39 @@ class Autocomplete extends Field {
     /** @var string */
     public $type = 'autocomplete';
 
-    /** @var string */
-    public $response;
-
     /** @var int */
-    public $take;
+    public $minChars = 2;
+
+    /** @var array */
+    public $addVars;
 
     /** @var string */
-    public $varName = 'search';
+    public $responseArray;
+
+    /** @var string */
+    public $responseUrl;
+
+    /**
+     * Add variables to the url
+     *
+     * @param  array  $vars
+     * @return self
+     */
+    public function addVars(...$vars) : self
+    {
+        $this->addVars = collect($vars)
+            ->map(function($value) {
+                return sprintf(
+                    '%s=%s',
+                    collect($value)->keys()->first(),
+                    collect($value)->values()->first()
+                );
+            })
+            ->filter()
+            ->implode('&');
+
+        return $this;
+    }
 
     /**
      * Set the response from the data
@@ -24,35 +49,26 @@ class Autocomplete extends Field {
      * @param  string  $responseFrom
      * @return self
      */
-    public function response(string $response) : self
+    public function dataFrom(string $data) : self
     {
-        $this->response = $response;
+        if(is_array($data)) {
+            $this->responseArray = $data;
+        } elseif(is_string($data)) {
+            $this->responseUrl = $data;
+        }
 
         return $this;
     }
 
     /**
-     * Set the max number of result for the response
+     * Set the min number of charts to start the ajax query
      *
      * @param  int  $number
      * @return self
      */
-    public function take(int $number) : self
+    public function minChars(int $minChars) : self
     {
-        $this->varName = $name;
-
-        return $this;
-    }
-
-    /**
-     * Set the variable name
-     *
-     * @param  string  $url
-     * @return self
-     */
-    public function varName(string $varName) : self
-    {
-        $this->varName = $varName;
+        $this->minChars = $minChars;
 
         return $this;
     }

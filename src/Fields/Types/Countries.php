@@ -17,7 +17,7 @@ class Countries extends Autocomplete {
         parent::__construct($name, $attribute);
 
         //Get the countries
-        $this->response = collect(trans('belich::metrics.countriesOfTheWorldWithCodes'))
+        $this->responseArray = collect(trans('belich::metrics.countriesOfTheWorldWithCodes'))
             ->flatMap(function($country) {
                 return [$country['code'] => $country['name']];
             })
@@ -28,7 +28,7 @@ class Countries extends Autocomplete {
             //Get the sql value
             $attribute = $model->{$attribute};
             //Set the label value
-            return $this->response[$attribute];
+            return $this->responseArray[$attribute];
         });
     }
 }
