@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Fields\Traits;
 
+use Daguilarm\Belich\Fields\Field;
 use Illuminate\Support\Collection;
 
 trait Resolvable {
@@ -116,9 +117,7 @@ trait Resolvable {
      */
     private function canSeeField(object $field)
     {
-        if(empty($field->seeCallback) || (is_callable($field->seeCallback) && call_user_func($field->seeCallback, request()) !== false)) {
-            return true;
-        }
+        return empty($field->seeCallback) || (is_callable($field->seeCallback) && call_user_func($field->seeCallback, request()) !== false);
     }
 
     /**
@@ -299,9 +298,9 @@ trait Resolvable {
      * Render each field value
      *
      * @param array $field
-     * @return string
+     * @return Daguilarm\Belich\Fields\Field
      */
-    private function renderField($field)
+    private function renderField($field) : Field
     {
         $field->render = $field->render->implode(' ');
 
