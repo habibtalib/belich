@@ -260,7 +260,13 @@ trait Resolvable {
     |--------------------------------------------------------------------------
     */
 
-    private function setRenderFieldAttributes($field)
+    /**
+     * Render attributes for field
+     *
+     * @param array $field
+     * @return string
+     */
+    private function setRenderFieldAttributes($field) : string
     {
         return collect($field)
             ->map(function($value, $attribute) use ($field) {
@@ -274,7 +280,13 @@ trait Resolvable {
             });
     }
 
-    private function setRenderFieldAttributesData($field)
+    /**
+     * Render data attributes for field
+     *
+     * @param array $field
+     * @return string
+     */
+    private function setRenderFieldAttributesData($field) : string
     {
         return collect($field->data)
             ->map(function($value) {
@@ -283,6 +295,12 @@ trait Resolvable {
             ->implode(' ');
     }
 
+    /**
+     * Render each field value
+     *
+     * @param array $field
+     * @return string
+     */
     private function renderField($field)
     {
         //To string...

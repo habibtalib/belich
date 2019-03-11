@@ -4,7 +4,6 @@ namespace Daguilarm\Belich\Core;
 
 use Daguilarm\Belich\Facades\Belich;
 use Daguilarm\Belich\Fields\Field;
-use Daguilarm\Belich\Fields\FieldResolve;
 use Illuminate\Support\Collection;
 
 class Html {

@@ -34,20 +34,37 @@ class FieldResolve {
      */
     public function make(object $class, object $fields, object $sqlResponse) : Collection
     {
-        //Just in case we are using tabs
-        $fields = $fields->flatten();
+        //Filter
+        //Prepare the fields for resolving...
+        $fields = $this->prepareFields($fields);
 
-        //Policy authorization for 'show', 'edit' and 'update' actions
+        //Policies
+        //Authorization for 'show', 'edit' and 'update' actions
         //This go here because we want to avoid duplicated sql queries...Don't remove!!!
         $this->setAuthorizationFromPolicy($sqlResponse);
 
-        //Authorized fields: $field->canSee()
+        //Authorized: $field->canSee()
         $fields = $this->setAuthorizationForFields($fields);
 
-        //Show or hide fields base on Resource settings
+        //Visibility: Show or hide fields base on Resource settings
         $fields = $this->setVisibilityForFields($fields);
 
+        //Controller actions
         //Resolve fields base on the controller action
         return $this->setControllerActionForFields($fields, $sqlResponse);
+    }
+
+    /**
+     * Prepare the fields to be resolve
+     *
+     * @param object $fields
+     * @return Illuminate\Support\Collection
+     */
+    private function prepareFields($fields) : Collection
+    {
+        //Prepare for tabs
+        $fields = $fields->flatten();
+
+        return $fields;
     }
 }
