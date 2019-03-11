@@ -146,7 +146,7 @@ At the moment, Belich only has this type of charts:
     + DependsOn fields (waiting for Livewire)
     + Image.
     + File.
-    + Leaflet.
+    + Maps.
 - Create the relationship fields.
 - Writting test... I know but...
 - Preset cards.
