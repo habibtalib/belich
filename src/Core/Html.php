@@ -120,7 +120,7 @@ class Html {
      */
     public function resolveSoftdeleting(Field $field, object $data = null)
     {
-        return (method_exists(Belich::getModel(), 'trashed') && $data->trashed()) ? true : false;
+        return method_exists(Belich::getModel(), 'trashed') && $data->trashed();
     }
 
     /*

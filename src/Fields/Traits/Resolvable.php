@@ -264,20 +264,20 @@ trait Resolvable {
      * Render attributes for field
      *
      * @param array $field
-     * @return string
+     * @return Illuminate\Support\Collection
      */
-    private function setRenderFieldAttributes($field) : string
+    private function setRenderFieldAttributes($field) : Collection
     {
-        return collect($field)
-            ->map(function($value, $attribute) use ($field) {
+        collect($field)
+            ->each(function($value, $attribute) use ($field) {
                 //Get the list of attributes to be rendered: name, dusk,...
                 if(in_array($attribute, $field->renderAttributes)) {
-                    return sprintf('%s=%s', $attribute, $value);
+                    $field->render[] = sprintf('%s=%s', $attribute, $value);
                 }
             })
-            ->filter(function($value) {
-                return $value;
-            });
+            ->filter();
+
+        return collect($field->render);
     }
 
     /**
@@ -303,7 +303,6 @@ trait Resolvable {
      */
     private function renderField($field)
     {
-        //To string...
         $field->render = $field->render->implode(' ');
 
         return $field;
