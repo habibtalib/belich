@@ -1,5 +1,5 @@
-<belich::fields :label="$field->label">
-    <slot name="field">
+<belich::fields :field="$field">
+    <slot name="input">
         <div class="select-container">
             <select
                 {!! setAttribute($field, 'addClass') !!}
@@ -15,13 +15,5 @@
                 </svg>
             </div>
         </div>
-
-        @if($field->help)
-            <div class="help-text">{{ $field->help }}</div>
-        @endif
-
-        <p id="error-{{ $field->id }}" class="validation-error"></p>
-
-        @include('belich::fields.cast')
     </slot>
 </belich::fields>

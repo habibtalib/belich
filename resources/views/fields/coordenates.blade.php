@@ -1,5 +1,5 @@
-<belich::fields :label="$field->label">
-    <slot name="field">
+<belich::fields :field="$field">
+    <slot name="input">
         <div class="flex w-full">
             {{-- Lat --}}
             <input
@@ -27,11 +27,5 @@
             >
             <input type="hidden" name="cast[]" value="float|lng_{{ $field->attribute }}">
         </div>
-
-        @if($field->help)
-            <div class="help-text">{{ $field->help }}</div>
-        @endif
-
-        <p id="error-{{ $field->id }}" class="validation-error"></p>
     </slot>
 </belich::fields>

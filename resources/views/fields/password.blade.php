@@ -1,15 +1,9 @@
-<belich::fields :label="$field->label">
-    <slot name="field">
+<belich::fields :field="$field">
+    <slot name="input">
         <input
             {!! setAttribute($field, 'addClass') !!}
             {!! setAttribute($field, 'type') !!}
             {!! $field->render !!}
         >
-
-        @if($field->help)
-            <div class="help-text">{{ $field->help }}</div>
-        @endif
-
-        <p id="error-{{ $field->id }}" class="validation-error"></p>
     </slot>
 </belich::fields>

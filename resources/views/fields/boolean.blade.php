@@ -1,5 +1,5 @@
-<belich::fields :label="$field->label">
-    <slot name="field">
+<belich::fields :field="$field">
+    <slot name="input">
         <p class="{{ $field->color }}" onclick="toggleCheckbox('{{ $field->id }}');">
             <input
                 type="checkbox"
@@ -10,13 +10,5 @@
             >
             <label for="{{ $field->id }}"></label>
         </p>
-
-        @if($field->help)
-            <div class="help-text">{{ $field->help }}</div>
-        @endif
-
-        <p id="error-{{ $field->id }}" class="validation-error"></p>
-
-        @include('belich::fields.cast')
     </slot>
 </belich::fields>
