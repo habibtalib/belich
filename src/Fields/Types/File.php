@@ -27,6 +27,8 @@ class File extends Field {
     public function __construct($name = null, $attribute = null)
     {
         parent::__construct($name, $attribute);
+
+        $this->rules('file');
     }
 
     /**
