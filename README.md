@@ -6,10 +6,9 @@ From that point, I decided as an exercise, to develop a version of Nova that did
 
 What has happened during this adventure, is that in the end, what started as an exercise, is becoming a real project, and gradually moving away from Nova, especially when I have added new features, which have made me (on several occasions) rebuild a good part of the code from the beginning.
 
-
-To this day, Belich has its own code structure designed from 0.
-
 Choosing to eliminate VueJS from the equation has been a very complicated decision, and in some cases, it has been a big headache.
+
+To this day, Belich has its own code structure designed from 0 and will include Livewire the [Caleb Porzio](https://github.com/calebporzio)
 
 The adventure is worth it, and I think I've learned great things!
 
@@ -144,12 +143,13 @@ At the moment, Belich only has this type of charts:
 - Refactoring all the code, because I am just writting code...
 - Complete the fields types:
     + Avatar.
-    + DependsOn fields
+    + DependsOn fields (waiting for Livewire)
     + Image.
     + File.
     + Leaflet.
 - Create the relationship fields.
 - Writting test... I know but...
 - Preset cards.
+- Removing all jquery and start with Livewire.
 
 ...
