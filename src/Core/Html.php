@@ -115,7 +115,7 @@ class Html {
         }
 
         if(!filter_var($value, FILTER_VALIDATE_URL)) {
-            $value = Storage::disk($field->disk ?? 'public')->url($value);
+            $value = Storage::disk($field->disk)->url($value);
         }
 
         return sprintf(

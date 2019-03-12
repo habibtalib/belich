@@ -134,12 +134,14 @@ class CrudController extends Controller
      */
     public function update(UpdateRequest $request, $id)
     {
-        //Handle files
-        $request = $request->handleFile();
-
         //The autorization happend in Daguilarm\Belich\Fields\FieldValidate
 
-        $update = $this->model->findOrFail($id)->update($request->all());
+        $model = $this->model->findOrFail($id);
+
+        //Handle files
+        $request = $request->handleFile($model);
+
+        $update = $model->update($request->all());
 
         return $this->redirectToAction($update, $actionSuccess = 'updated', $actionFail = 'updating', $id);
     }

@@ -10,13 +10,10 @@ class File extends Field {
     public $type = 'file';
 
     /** @var string */
-    public $disk;
+    public $disk = 'public';
 
     /** @var bool */
-    public $prunable;
-
-    /** @var bool */
-    public $storeOriginalName;
+    public $storeOriginalName = 0;
 
     /**
      * Create a new field.
