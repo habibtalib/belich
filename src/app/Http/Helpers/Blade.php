@@ -133,7 +133,7 @@ if (!function_exists('createFormSelectOptions')) {
         return collect($options)
             ->map(function($label, $value) use ($cookie, $field) {
                 //Default values
-                $defaultValue = !is_array($value) ? $label : $value;
+                $defaultValue = !is_array($value) ? strtolower($label) : $value;
                 $selected = ($cookie == $defaultValue || $cookie == $value)
                     ? ' ' . 'selected'
                     : '';
