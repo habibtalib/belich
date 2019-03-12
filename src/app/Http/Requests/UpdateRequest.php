@@ -3,11 +3,12 @@
 namespace Daguilarm\Belich\App\Http\Requests;
 
 use Daguilarm\Belich\App\Http\Requests\Traits\Casteable;
+use Daguilarm\Belich\App\Http\Requests\Traits\Fileable;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateRequest extends FormRequest
 {
-    use Casteable;
+    use Casteable, Fileable;
 
     /**
      * Determine if the user is authorized to make this request.

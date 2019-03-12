@@ -81,6 +81,9 @@ class CrudController extends Controller
         //Authorization
         $this->authorize('create', $this->model);
 
+        //Handle files
+        $request = $request->handleFile();
+
         $create = $this->model::create($request->all());
 
         return $this->redirectToAction($create, $actionSuccess = 'created', $actionFail = 'creating', $id = $create->id);
@@ -131,6 +134,9 @@ class CrudController extends Controller
      */
     public function update(UpdateRequest $request, $id)
     {
+        //Handle files
+        $request = $request->handleFile();
+
         //The autorization happend in Daguilarm\Belich\Fields\FieldValidate
 
         $update = $this->model->findOrFail($id)->update($request->all());

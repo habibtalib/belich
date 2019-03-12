@@ -3,12 +3,12 @@
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Facades\Belich;
-use Daguilarm\Belich\Fields\Field;
+use Daguilarm\Belich\Fields\Types\File;
 
-class Avatar extends Field {
+class Avatar extends File {
 
     /** @var string */
-    public $type = 'avatar';
+    public $type = 'file';
 
     /**
      * Create a new field.
@@ -19,8 +19,5 @@ class Avatar extends Field {
     public function __construct($name = null, $attribute = null)
     {
         parent::__construct($name, $attribute);
-
-        //Set the html by default because we are showing icons as value (green or grey)
-        $this->asHtml = true;
     }
 }

@@ -5,6 +5,7 @@ namespace Daguilarm\Belich\Core;
 use Daguilarm\Belich\Facades\Belich;
 use Daguilarm\Belich\Fields\Field;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 
 class Html {
 
@@ -61,8 +62,8 @@ class Html {
         }
 
         //Avatar field
-        if($field->type === 'avatar' && $value) {
-            return $this->resolveAvatar($value);
+        if($field->type === 'file' && $value) {
+            return $this->resolveFile($field, $value);
         }
 
         //Boolean custom labels
@@ -103,11 +104,20 @@ class Html {
     /**
      * Resolve the avatar fields
      *
+     * @param  Daguilarm\Belich\Fields\Field $field
      * @param  string $value
      * @return mixed
      */
-    public function resolveAvatar(string $value)
+    public function resolveFile(Field $field, string $value)
     {
+        if(empty($value) || $value === emptyResults()) {
+            return emptyResults();
+        }
+
+        if(!filter_var($value, FILTER_VALIDATE_URL)) {
+            $value = Storage::disk($field->disk ?? 'public')->url($value);
+        }
+
         return sprintf(
             '<img class="block h-10 rounded-full shadow-md" src="%s" alt="avatar">',
             $value
