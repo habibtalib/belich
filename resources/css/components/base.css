@@ -1,8 +1,12 @@
 /* General values */
 body {
-    background-color: var(--body-bg);
+    @apply bg-grey-lighter;
 }
 
 a {
     @apply no-underline;
+}
+
+.uppercase-first-letter::first-letter {
+    @apply uppercase;
 }

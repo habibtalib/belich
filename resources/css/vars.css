@@ -1,6 +1,5 @@
 :root {
     /*Colors*/
-    --body: rgb(238, 241, 244);
     --black: rgb(34, 41, 47);
     --white: rgb(255, 255, 255);
     --grey: rgb(135, 149, 161);
@@ -30,42 +29,6 @@
     --warning: rgb(255, 235, 59);
     --warning-30: rgba(255, 235, 59, 0.3);
     --warning: rgb(255, 235, 59);
-
-    /*Transitions*/
-    --transition: all 0.15s ease-in-out 0s, visibility 0s linear 0.15s, z-index 0s linear 0.01s;
-    --transition-delay: 0s, 0s, 0s;
-
-    /*Html*/
-    --body-bg: var(--body);
-
-    /*Breadcrumbs*/
-    --breadcrumbs-bg: var(--white);
-    --breadcrumbs-current: var(--70);
-    --breadcrumbs-link: var(--50);
-    --breadcrumbs-link-hover: var(--info);
-    --breadcrumbs-separator: var(--20);
-
-    /*Forms*/
-    --form-bg: var(--white);
-    --form-color: var(--60);
-    --form-help: var(--50);
-    --form-input-bg: var(--white);
-    --form-input-border: var(--20);
-    --form-input-focus-bg: var(--5);
-    --form-input-focus-border: var(--20);
-    --form-input-focus-color: var(--black);
-    --form-select-dropdown-icon: var(--80);
-    --form-disabled-bg: var(--10);
-
-    /*Table*/
-    --table-bg: var(--white);
-    --table-color: var(--80);
-    --table-head-bg:  var(--info-20);
-    --table-search-bg: var(--white);
-    --table-head-color: var(--grey-dark);
-    --table-head-link: var(--grey);
-    --table-body-tr-hover: var(--5);
-    --table-footer-bg: var(--info-20);
 
     /*Pagination*/
     --pagination-disabled: var(--30);
