@@ -10,6 +10,9 @@ class File extends Field {
     public $type = 'file';
 
     /** @var string */
+    public $fileType = 'file';
+
+    /** @var string */
     public $disk = 'public';
 
     /** @var bool */
