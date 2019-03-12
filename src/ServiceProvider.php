@@ -108,6 +108,7 @@ class ServiceProvider extends Provider {
             __DIR__ . '/../resources/views/pages'      => base_path('resources/views/vendor/belich/pages'),
             __DIR__ . '/../resources/views/partials'   => base_path('resources/views/vendor/belich/partials'),
             __DIR__ . '/../resources/views/components' => base_path('resources/views/vendor/belich/components'),
+            __DIR__ . '/../resources/views/dashboard'  => base_path('resources/views/vendor/belich/dashboard'),
         ]);
 
         //Publish the localization files

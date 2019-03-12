@@ -1,10 +1,5 @@
-#table-search {
-    background-color: var(--table-search-bg);
-    border-bottom: 1px solid var(--10);
+#table-search .icon-search:before {
+    content: "\f002";
+    font-family: 'Font Awesome 5 Free';
+    @apply absolute ml-4 mt-4 font-bold text-xl text-grey-dark;
 }
-
-    #table-search .icon-search:before {
-        content: "\f002";
-        font-family: 'Font Awesome 5 Free';
-        @apply absolute ml-4 mt-4 font-bold text-xl text-grey-dark;
-    }

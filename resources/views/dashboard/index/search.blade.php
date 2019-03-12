@@ -23,12 +23,13 @@
         @endcan
 
         {{-- Dropdowns --}}
-
         {{-- Dropdown: Options --}}
         @include('belich::partials.buttons.options')
+
         {{-- Show or hide base on selected items --}}
         {{-- Dropdown: Export --}}
         @includeWhen(Belich::downloable(), 'belich::partials.buttons.exports')
+
         {{-- Dropdown: Delete --}}
         @can('delete', $request->autorizedModel)
             @include('belich::partials.buttons.delete')

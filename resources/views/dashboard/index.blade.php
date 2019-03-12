@@ -26,7 +26,7 @@
 
     {{-- End / Table --}}
     {{-- Table footer (bordered) --}}
-    <div class="table-footer rounded-b-lg h-1 mb-16 shadow-md"></div>
+    <div class="bg-blue-lightest rounded-b-lg h-1 mb-16 shadow-md"></div>
 @endsection
 
 {{-- Added the minimum javascript possible --}}

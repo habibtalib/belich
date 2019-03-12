@@ -1,44 +1,9 @@
-.table {
-    @apply w-full text-sm text-left shadow-md;
-    background-color: var(--table-bg);
-    color: var(--table-color);
+.table thead a {
+    @apply text-grey-darker;
 }
 
-    .table thead {
-        @apply uppercase;
-    }
-
-        .table thead a {
-            color: var(--table-head-link);
-        }
-
-        .table thead a:after {
-            content: "\f0dc";
-            font-family: 'Font Awesome\ 5 Free';
-            @apply ml-2;
-        }
-
-        .table thead tr {
-            @apply border-b border-t;
-            background-color: var(--table-head-bg);
-            color: var(--table-head-color);
-            border-color: var(--10);
-        }
-
-            .table tbody tr:hover {
-                background-color: var(--table-body-tr-hover);
-            }
-
-            .table thead tr th {
-                @apply pt-4 pb-5 px-6;
-            }
-
-            .table tbody tr td {
-                @apply py-4 px-6 border-b border-solid;
-                border-color: var(--10);
-            }
-
-    .table tfoot,
-    .table-footer {
-        background-color: var(--table-footer-bg);
-    }
+.table thead a:after {
+    content: "\f0dc";
+    font-family: 'Font Awesome\ 5 Free';
+    @apply ml-2;
+}

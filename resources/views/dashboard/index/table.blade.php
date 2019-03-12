@@ -1,32 +1,32 @@
 {{-- Start / Table --}}
-<table class="table table-auto" id="belich-index-table">
-    <thead>
-        <tr>
+<table class="table table-auto w-full text-sm text-left shadow-md bg-white text-grey-dark" id="belich-index-table">
+    <thead class="uppercase">
+        <tr class="border-b border-t border-grey-light bg-blue-lightest text-grey-dark">
             {{-- Checkboxes --}}
-            <th>
+            <th class="pt-4 pb-5 px-6">
                 <input type="checkbox" name="item_selection" onclick="checkAll(this)">
             </th>
             {{-- Headers --}}
             @foreach($request->fields as $field)
-                <th>
+                <th class="pt-4 pb-5 px-6">
                     {{-- Get URL with ASC or DESC order --}}
                     {!! Belich::html()->tableLink($field) !!}
                 </th>
             @endforeach
             {{-- Action column --}}
-            <th></th>
+            <th class="pt-4 pb-5 px-6"></th>
         </tr>
     </thead>
     <tbody>
         {{-- Get the results --}}
         @forelse($request->results as $result)
-            <tr>
-                <td><input type="checkbox" name="item_selection[]" value="{{ $result->id }}" class="form-index-selector" onclick="checkForSelectedFields();"></td>
+            <tr class="hover:bg-grey-lightest">
+                <td class="py-4 px-6 border-b border-solid border-grey-lighter"><input type="checkbox" name="item_selection[]" value="{{ $result->id }}" class="form-index-selector" onclick="checkForSelectedFields();"></td>
 
                 {{-- Get the values --}}
                 @foreach($request->fields as $field)
                     {{-- Resolve the values --}}
-                    <td class="{!! Belich::html()->resolveSoftdeleting($field, $result) ? 'text-red line-through' : 'no-softdeleted' !!}">
+                    <td class="py-4 px-6 border-b border-solid border-grey-lighter {!! Belich::html()->resolveSoftdeleting($field, $result) ? 'text-red line-through' : 'no-softdeleted' !!}">
                         @if($field->asHtml)
                             {!! Belich::html()->resolve($field, $result) !!}
                         @else
@@ -35,7 +35,7 @@
                     </td>
                 @endforeach
 
-                <td class="text-right">
+                <td class="text-right py-4 px-6 border-b border-solid border-grey-lighter">
                     {{-- Load the button actions --}}
                     {!! Belich::actions($result, $request->actions) !!}
                 </td>
@@ -51,6 +51,6 @@
     </tbody>
 
     {{-- Pagination --}}
-    @include('belich::partials.pagination')
+    @include('belich::dashboard.index.pagination')
 
 </table>
