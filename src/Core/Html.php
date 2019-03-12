@@ -68,6 +68,11 @@ class Html {
         //Boolean custom labels
         $value = $this->resolveBoolean($field, $value);
 
+        //Display using labels
+        if(!empty($field->displayUsingLabels) && !empty($field->options)) {
+            $value = $field->options[$value] ?? $value;
+        }
+
         //Resolve the field value through callbacks
         return $this->getCallbackValue($field, $data, $value);
     }

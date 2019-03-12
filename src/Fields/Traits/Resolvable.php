@@ -230,6 +230,12 @@ trait Resolvable {
 
             //Add the data for the show view
             if($this->action === 'show') {
+                //Display using labels
+                if(!empty($field->displayUsingLabels) && !empty($field->options)) {
+                    $field->value = $field->options[$field->value] ?? $field->value;
+                }
+
+                //Regular
                 $field->data = $sqlResponse;
             }
 

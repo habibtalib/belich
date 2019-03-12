@@ -9,15 +9,31 @@ class Select extends Field {
     /**  @var string */
     public $type = 'select';
 
+    /**  @var boolean */
+    public $displayUsingLabels;
+
     /** @var array */
     public $options;
+
+    /**
+     * Display using labels
+     *
+     * @return self
+     */
+    public function displayUsingLabels() : self
+    {
+        $this->displayUsingLabels = true;
+
+        return $this;
+    }
 
     /**
      * Add option values to the select
      *
      * @param array $options
+     * @return self
      */
-    public function options(array $options = [])
+    public function options(array $options = []) : self
     {
         //Check the text for conditional cases...
         if(!empty($options)) {

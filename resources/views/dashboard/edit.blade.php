@@ -18,7 +18,7 @@
             {{-- Create panels or not.. --}}
             @foreach($request->fields as $label => $panel)
                 {{-- Load panel component with its fields --}}
-                <belich::panel :label="$label" :panel="$panel" :loop="$loop"  toField="true"></belich::panel>
+                <belich::panel :label="$label" :panel="$panel" :loop="$loop" toField="true"></belich::panel>
             @endforeach
         @endif
 
