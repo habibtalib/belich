@@ -142,10 +142,7 @@ At the moment, Belich only has this type of charts:
 - Redesign the front-end with all the lesson from: https://refactoringui.com/
 - Refactoring all the code, because I am just writting code...
 - Complete the fields types:
-    + Avatar.
     + DependsOn fields (waiting for Livewire)
-    + Image.
-    + File.
     + Maps.
 - Create the relationship fields.
 - Writting test... I know but...
