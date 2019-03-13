@@ -2,7 +2,9 @@
 
 namespace Daguilarm\Belich\Fields\Traits\Indexable;
 
+use Daguilarm\Belich\Core\Belich;
 use Daguilarm\Belich\Fields\Field;
+use Illuminate\Support\Facades\Storage;
 
 trait Fileable {
 
@@ -22,7 +24,7 @@ trait Fileable {
         //File policy
         if(auth()->user()->can('file', Belich::getModel())) {
             // Image by type
-            return $this->resolveFileType($field);
+            return $this->resolveFileType($field, $value);
         }
     }
 
@@ -30,9 +32,10 @@ trait Fileable {
      * Resolve the field by type
      *
      * @param  Daguilarm\Belich\Fields\Field $field
+     * @param  mixed $value
      * @return string
      */
-    private function resolveFileType(Field $field) : string
+    private function resolveFileType(Field $field, $value) : string
     {
         // Image field
         if($field->fileType === 'image') {

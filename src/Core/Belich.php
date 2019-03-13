@@ -107,10 +107,10 @@ class Belich {
    /**
     * Initialize the html helper in order to be accesible from Belich
     *
-    * @return \Daguilarm\Belich\Core\Htm
+    * @return \Daguilarm\Fields\FieldResolveIndex
     */
-    public function html() : \Daguilarm\Belich\Core\Html
+    public function html()
     {
-        return new \Daguilarm\Belich\Core\Html;
+        return app(\Daguilarm\Belich\Fields\FieldResolveIndex::class);
     }
 }

@@ -3,6 +3,7 @@
 namespace Daguilarm\Belich\Fields;
 
 use Daguilarm\Belich\Fields\Traits\Indexable\{Booleanable, Callbackable, Fileable, Linkeable, Resolvable, Softdeleteable};
+use Illuminate\Support\Collection;
 
 class FieldResolveIndex {
 
@@ -20,7 +21,7 @@ class FieldResolveIndex {
      * @param object $sqlResponse
      * @return Illuminate\Support\Collection
      */
-    public function make(object $fields, object $sqlResponse)
+    public function make(object $fields, object $sqlResponse) : Collection
     {
         $fields = $fields->map(function($field) {
            //Showing field relationship in index

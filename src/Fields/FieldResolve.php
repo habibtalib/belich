@@ -41,7 +41,7 @@ class FieldResolve {
     {
         //Filter
         //Prepare the fields for resolving...
-        $fields = $this->prepareFields($fields);
+        $fields = $fields->flatten();
 
         //Policies
         //Authorization for 'show', 'edit' and 'update' actions
@@ -68,19 +68,5 @@ class FieldResolve {
 
         //Prepare the field for the the form response: create, edit and show
         return $this->setCrudController($fields, $sqlResponse);
-    }
-
-    /**
-     * Prepare the fields to be resolve
-     *
-     * @param object $fields
-     * @return Illuminate\Support\Collection
-     */
-    private function prepareFields($fields) : Collection
-    {
-        //Prepare for tabs
-        $fields = $fields->flatten();
-
-        return $fields;
     }
 }

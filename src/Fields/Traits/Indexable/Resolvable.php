@@ -16,7 +16,7 @@ trait Resolvable {
      * @param  object $data
      * @return null|string
      */
-    protected function resolve(Field $field, object $data = null)
+    public function resolve(Field $field, object $data = null)
     {
         //Resolve Relationship
         if(is_array($field->attribute) && count($field->attribute) === 2 && !empty($data)) {

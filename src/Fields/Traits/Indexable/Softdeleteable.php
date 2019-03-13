@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Fields\Traits\Indexable;
 
+use Daguilarm\Belich\Core\Belich;
 use Daguilarm\Belich\Fields\Field;
 
 trait Softdeleteable {
@@ -15,7 +16,7 @@ trait Softdeleteable {
     * @param  object $data
     * @return null|string
     */
-    protected function resolveSoftdeleting(Field $field, object $data = null)
+    public function resolveSoftdeleting(Field $field, object $data = null)
     {
         return method_exists(Belich::getModel(), 'trashed') && $data->trashed();
     }
