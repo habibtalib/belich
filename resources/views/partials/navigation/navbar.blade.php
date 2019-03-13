@@ -2,7 +2,6 @@
 <nav id="navbar" class="h-16 {{ config('belich.navbar') === 'top' ? 'bg-teal-light' : 'bg-white' }}">
     {{-- Top navbar --}}
     <ul>
-
         {{-- Logo --}}
         <li class="bg-teal-dark">
             <a class="text-white w-48" href="{{ Belich::url() }}">{{ Belich::name() }}</a>
@@ -47,6 +46,5 @@
             @include('belich::partials.navigation.logout')
         </li>
     </ul>
-
 </nav>
 
