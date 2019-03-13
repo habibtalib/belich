@@ -32,11 +32,12 @@ trait Resolvable {
 
         //Prepare the field for the index response
         if($this->action === 'index') {
+            return app(\Daguilarm\Belich\Fields\FieldResolveIndex::class)->make($fields, $sqlResponse);
             return $this->setControllerForIndex($fields);
 
         //Prepare the field for the the form response: create, edit and show
         } else {
-            return $this->setController($fields, $sqlResponse);
+            return $this->setCrudController($fields, $sqlResponse);
         }
 
         return $fields;
@@ -70,7 +71,7 @@ trait Resolvable {
      * @param object $sqlResponse
      * @return Illuminate\Support\Collection
      */
-    public function setController(object $fields, object $sqlResponse)
+    public function setCrudController(object $fields, object $sqlResponse)
     {
         //Set fields attributes: Only for create and edit actions
         if($this->action === 'create' || $this->action === 'edit') {
