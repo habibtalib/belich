@@ -2,12 +2,16 @@
 
 namespace Daguilarm\Belich\Fields;
 
+use Daguilarm\Belich\Fields\Traits\Indexable\Booleanable;
+use Daguilarm\Belich\Fields\Traits\Indexable\Callabackable;
+use Daguilarm\Belich\Fields\Traits\Indexable\Fileable;
 use Daguilarm\Belich\Fields\Traits\Indexable\Linkeable;
-use Illuminate\Support\Collection;
+use Daguilarm\Belich\Fields\Traits\Indexable\Resolvable;
+use Daguilarm\Belich\Fields\Traits\Indexable\Softdeleteable;
 
 class FieldResolveIndex {
 
-    use Linkeable;
+    use Booleanable, Callabackable, Fileable, Linkeable, Resolvable, Softdeleteable;
 
     /**
      * Resolve fields: auth, visibility, value,...
@@ -18,6 +22,7 @@ class FieldResolveIndex {
      */
     public function make(object $fields, object $sqlResponse)
     {
-        dd($this->headerLabels($fields));
+        $labels = $this->headerLabels($fields);
+        dd($labels);
     }
 }

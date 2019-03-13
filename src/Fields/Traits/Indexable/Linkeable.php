@@ -34,7 +34,7 @@ trait Linkeable {
      *
      * @return string
      */
-    public function headerLinks(Field $field) : string
+    private function headerLinks(Field $field) : string
     {
         //Filter if the attribute is a relationship or is not sortable
         if(is_array($field->attribute) || $field->sortable === false) {
