@@ -34,6 +34,18 @@ class d_model_bPolicy
     }
 
     /**
+    * Determine if the user can access or download files
+    *
+    * @param  d_model_user_path_b  $user
+    * @param  d_model_path_b  $d_model_variable_b
+    * @return mixed
+    */
+    public function file(User $user, d_model_b $d_model_variable_b)
+    {
+        return true;
+    }
+
+    /**
     * Determine whether the User can force delete a d_model_b.
     *
     * @param  d_model_user_path_b  $user
