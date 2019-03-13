@@ -5,10 +5,13 @@ namespace Daguilarm\Belich\Fields\Types;
 use Daguilarm\Belich\Facades\Belich;
 use Daguilarm\Belich\Fields\Types\File;
 
-class Avatar extends File {
+class Image extends File {
 
     /** @var string */
     public $type = 'file';
+
+    /** @var string */
+    public $fileType = 'image';
 
     /**
      * Create a new field.
