@@ -126,12 +126,6 @@ class ServiceProvider extends Provider {
             //Set the resources
             __DIR__ . '/stubs/routes.stub' => base_path('app/Belich/Routes.php'),
         ]);
-
-        //Publish the navigation
-        $this->publishes([
-           __DIR__ . '/stubs/navbar.stub' => base_path('app/Belich/Navbar.php'),
-           __DIR__ . '/stubs/sidebar.stub' => base_path('app/Belich/Sidebar.php'),
-        ]);
     }
 
     /**
