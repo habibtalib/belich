@@ -61,7 +61,7 @@ class Html {
             $value = $field->value;
         }
 
-        //Avatar field
+        //File field
         if($field->type === 'file' && $value) {
             return $this->resolveFile($field, $value);
         }
@@ -114,14 +114,25 @@ class Html {
             return emptyResults();
         }
 
-        if(!filter_var($value, FILTER_VALIDATE_URL)) {
-            $value = Storage::disk($field->disk)->url($value);
-        }
+        //File policy
+        if(auth()->user()->can('file', Belich::getModel())) {
 
-        return sprintf(
-            '<img class="block h-10 rounded-full shadow-md" src="%s" alt="avatar">',
-            $value
-        );
+            // Image field
+            if($field->fileType === 'image') {
+                if(!filter_var($value, FILTER_VALIDATE_URL)) {
+                    $value = Storage::disk($field->disk)->url($value);
+                }
+
+                return sprintf(
+                    '<img class="block h-10 rounded-full shadow-md" src="%s" alt="avatar">',
+                    $value
+                );
+
+            //Regular file
+            } else {
+                return sprintf('<a href="#">download</a>');
+            }
+        }
     }
 
     /**
