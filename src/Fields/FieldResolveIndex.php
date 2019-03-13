@@ -2,16 +2,16 @@
 
 namespace Daguilarm\Belich\Fields;
 
-use Daguilarm\Belich\Fields\Traits\Indexable\Booleanable;
-use Daguilarm\Belich\Fields\Traits\Indexable\Callabackable;
-use Daguilarm\Belich\Fields\Traits\Indexable\Fileable;
-use Daguilarm\Belich\Fields\Traits\Indexable\Linkeable;
-use Daguilarm\Belich\Fields\Traits\Indexable\Resolvable;
-use Daguilarm\Belich\Fields\Traits\Indexable\Softdeleteable;
+use Daguilarm\Belich\Fields\Traits\Indexable\{Booleanable, Callbackable, Fileable, Linkeable, Resolvable, Softdeleteable};
 
 class FieldResolveIndex {
 
-    use Booleanable, Callabackable, Fileable, Linkeable, Resolvable, Softdeleteable;
+    use Booleanable,
+        Callbackable,
+        Fileable,
+        Linkeable,
+        Resolvable,
+        Softdeleteable;
 
     /**
      * Resolve fields: auth, visibility, value,...

@@ -2,15 +2,14 @@
 
 namespace Daguilarm\Belich\Core;
 
-use Daguilarm\Belich\Core\Helpers;
-use Daguilarm\Belich\Core\Traits\Connectable;
+use Daguilarm\Belich\Core\Traits\{Connectable, Modelable, Operationable, Resourceable, Routeable, Systemable};
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 
 class Belich {
 
-    use Helpers, Connectable;
+    use Connectable, Modelable, Operationable, Resourceable, Routeable, Systemable;
 
     /** @var string */
     private $request;

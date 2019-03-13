@@ -2,12 +2,16 @@
 
 namespace Daguilarm\Belich;
 
-use Daguilarm\Belich\Core\Helpers;
+use Daguilarm\Belich\Core\Traits\{Modelable, Operationable, Resourceable, Routeable, Systemable};
 use Illuminate\Http\Request;
 
 abstract class Resources {
 
-    use Helpers;
+    use Modelable,
+        Operationable,
+        Resourceable,
+        Routeable,
+        Systemable;
 
     /** @var bool */
     public static $accessToResource = true;

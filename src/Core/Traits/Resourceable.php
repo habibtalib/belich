@@ -172,8 +172,8 @@ trait Resourceable {
         return collect([
             'name'             => $className,
             'controllerAction' => static::action(),
-            'fields'           => (new FieldResolve)->make($class, $updateFields, $sqlResponse),
-            'results'          => $sqlResponse,
+            'fields'           => app(FieldResolve::class)->make($class, $updateFields, $sqlResponse),
+            // 'results'          => $sqlResponse,
             'values'           => $this->resourceValues($className),
         ]);
     }

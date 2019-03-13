@@ -28,7 +28,7 @@ trait Resolvable {
 
         //Prepare the field for the index response
         if($this->action === 'index') {
-            // return app(\Daguilarm\Belich\Fields\FieldResolveIndex::class)->make($fields, $sqlResponse);
+            return app(\Daguilarm\Belich\Fields\FieldResolveIndex::class)->make($fields, $sqlResponse);
             return $this->setControllerForIndex($fields);
 
         //Prepare the field for the the form response: create, edit and show

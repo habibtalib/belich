@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Fields\Traits\Indexable;
 
 use Daguilarm\Belich\Fields\Field;
 
-trait Callabackable {
+trait Callbackable {
 
     /**
      * Resolve field value through callbacks
