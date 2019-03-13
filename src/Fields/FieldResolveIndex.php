@@ -22,7 +22,21 @@ class FieldResolveIndex {
      */
     public function make(object $fields, object $sqlResponse)
     {
-        $labels = $this->headerLabels($fields);
-        dd($labels);
+        $fields = $fields->map(function($field) {
+           //Showing field relationship in index
+           //See blade template: dashboard.index
+           $field->attribute = $field->fieldRelationship
+               //Prepare field for relationship
+               ? [$field->fieldRelationship, $field->attribute]
+               //No relationship field
+               : $field->attribute;
+
+           return $field;
+       });
+
+        return collect([
+            'data' => $fields,
+            'labels' => $this->headerLabels($fields),
+        ]);
     }
 }

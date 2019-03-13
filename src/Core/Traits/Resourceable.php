@@ -173,7 +173,7 @@ trait Resourceable {
             'name'             => $className,
             'controllerAction' => static::action(),
             'fields'           => app(FieldResolve::class)->make($class, $updateFields, $sqlResponse),
-            // 'results'          => $sqlResponse,
+            'results'          => $sqlResponse,
             'values'           => $this->resourceValues($className),
         ]);
     }

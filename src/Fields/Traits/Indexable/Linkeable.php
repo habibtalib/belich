@@ -22,8 +22,8 @@ trait Linkeable {
      */
     protected function headerLabels($fields) : Collection
     {
-        return $fields->mapWithKeys(function($field) {
-            return [$field->label => $this->headerLinks($field)];
+        return $fields->map(function($field) {
+            return $this->headerLinks($field);
         });
     }
 
@@ -38,7 +38,7 @@ trait Linkeable {
     {
         //Filter if the attribute is a relationship or is not sortable
         if(is_array($field->attribute) || $field->sortable === false) {
-            return '';
+            return $field->label;
         }
 
         //Get url parameters

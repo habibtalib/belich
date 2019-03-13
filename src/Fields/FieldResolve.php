@@ -56,7 +56,18 @@ class FieldResolve {
 
         //Controller actions
         //Resolve fields base on the controller action
-        return $this->setControllerActionForFields($fields, $sqlResponse);
+        //No resolve field for not visual actions
+        if($this->action === 'store' || $this->action === 'update' || $this->action === 'destroy') {
+            return new Collection;
+        }
+
+        //Prepare the field for the index response
+        if($this->action === 'index') {
+            return app(\Daguilarm\Belich\Fields\FieldResolveIndex::class)->make($fields, $sqlResponse);
+        }
+
+        //Prepare the field for the the form response: create, edit and show
+        return $this->setCrudController($fields, $sqlResponse);
     }
 
     /**
