@@ -2,13 +2,9 @@
 
 namespace Daguilarm\Belich\Fields\Traits;
 
-use Daguilarm\Belich\Fields\Field;
 use Illuminate\Support\Collection;
 
 trait Resolvable {
-
-    /** @var array */
-    private $conditionalBag;
 
     /*
     |--------------------------------------------------------------------------
@@ -32,7 +28,7 @@ trait Resolvable {
 
         //Prepare the field for the index response
         if($this->action === 'index') {
-            return app(\Daguilarm\Belich\Fields\FieldResolveIndex::class)->make($fields, $sqlResponse);
+            // return app(\Daguilarm\Belich\Fields\FieldResolveIndex::class)->make($fields, $sqlResponse);
             return $this->setControllerForIndex($fields);
 
         //Prepare the field for the the form response: create, edit and show
@@ -90,64 +86,7 @@ trait Resolvable {
 
     /*
     |--------------------------------------------------------------------------
-    | Auth methods
-    |--------------------------------------------------------------------------
-    */
-
-    /**
-     * Determine if the field should be available for the given request.
-     *
-     * @param  object  $fields
-     * @return bool
-     */
-    private function setAuthorizationForFields(object $fields)
-    {
-        return $fields->map(function($field) {
-            if($this->canSeeField($field)) {
-                return $field;
-            }
-        })
-        ->filter();
-    }
-
-    /**
-     * Determine if the user has been authorized to see the field: $field->canSee()
-     *
-     * @param  object  $field
-     * @return bool
-     */
-    private function canSeeField(object $field)
-    {
-        return empty($field->seeCallback) || (is_callable($field->seeCallback) && call_user_func($field->seeCallback, request()) !== false);
-    }
-
-    /**
-     * Determine if the user can access to the resource
-     * See resource Policy
-     *
-     * @param  object  $sqlResponse
-     * @return bool
-     */
-    private function setAuthorizationFromPolicy(object $sqlResponse)
-    {
-        //Authorized access to show action
-        if($this->action === 'show') {
-            if(!request()->user()->can('view', $sqlResponse)) {
-                return abort(403);
-            }
-        }
-
-        //Authorized access to edit or update action
-        if($this->action === 'edit' || $this->action === 'update') {
-            if(!request()->user()->can('update', $sqlResponse)) {
-                return abort(403);
-            }
-        }
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Attributes
+    | Visibility
     |--------------------------------------------------------------------------
     */
 
@@ -168,6 +107,12 @@ trait Resolvable {
         //Delete all null results from the collection
         ->filter();
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Attributes
+    |--------------------------------------------------------------------------
+    */
 
     /**
      * Generate the attributes for the fields
@@ -206,111 +151,5 @@ trait Resolvable {
             //Render field
             return $this->renderField($field);
         });
-    }
-
-    /**
-     * When the action is update or show
-     * We have to update the field value
-     *
-     * @param Illuminate\Support\Collection $sqlResponse
-     * @return Illuminate\Support\Collection
-     */
-    private function setValueForFields(object $sqlResponse, Collection $fields) : Collection
-    {
-        return $fields->map(function($field) use ($sqlResponse) {
-            //Not resolve field value
-            //Mostly, this is a hidden field...
-            if($field->notResolveField) {
-                return $field;
-            }
-
-            //Set new value for the fields, even if has a fieldRelationship value
-            //This relationship method is only on forms
-            //Index has its own way in blade template
-            $field->value = self::setValuesWithFieldRelationship($sqlResponse, $field);
-
-            //Add the data for the show view
-            if($this->action === 'show') {
-                //Display using labels
-                if(!empty($field->displayUsingLabels) && !empty($field->options)) {
-                    $field->value = $field->options[$field->value] ?? $field->value;
-                }
-
-                //Regular
-                $field->data = $sqlResponse;
-            }
-
-            return $field;
-        });
-    }
-
-    /**
-     * Determine value with relationship if exists...
-     *
-     * @param Illuminate\Support\Collection $sqlResponse
-     * @param Illuminate\Support\Collection $fields
-     * @return Illuminate\Support\Collection
-     */
-    private function setValuesWithFieldRelationship(object $sqlResponse, object $field)
-    {
-        if($field->fieldRelationship) {
-            return $sqlResponse->{$field->fieldRelationship}->{$field->attribute} ?? null;
-        }
-
-        return $sqlResponse->{$field->attribute} ?? null;
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Render field attributes
-    |--------------------------------------------------------------------------
-    */
-
-    /**
-     * Render attributes for field
-     *
-     * @param array $field
-     * @return Illuminate\Support\Collection
-     */
-    private function setRenderFieldAttributes($field) : Collection
-    {
-        collect($field)
-            ->each(function($value, $attribute) use ($field) {
-                //Get the list of attributes to be rendered: name, dusk,...
-                if(in_array($attribute, $field->renderAttributes)) {
-                    $field->render[] = sprintf('%s=%s', $attribute, $value);
-                }
-            })
-            ->filter();
-
-        return collect($field->render);
-    }
-
-    /**
-     * Render data attributes for field
-     *
-     * @param array $field
-     * @return string
-     */
-    private function setRenderFieldAttributesData($field) : string
-    {
-        return collect($field->data)
-            ->map(function($value) {
-                return sprintf('data-%s=%s', $value[0], $value[1]);
-            })
-            ->implode(' ');
-    }
-
-    /**
-     * Render each field value
-     *
-     * @param array $field
-     * @return Daguilarm\Belich\Fields\Field
-     */
-    private function renderField($field) : Field
-    {
-        $field->render = $field->render->implode(' ');
-
-        return $field;
     }
 }

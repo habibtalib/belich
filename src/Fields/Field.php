@@ -6,7 +6,7 @@ use Daguilarm\Belich\Contracts\Maker;
 use Daguilarm\Belich\Fields\FieldAbstract;
 use Daguilarm\Belich\Fields\Traits\Attributable;
 use Daguilarm\Belich\Fields\Traits\Casteable;
-use Daguilarm\Belich\Fields\Traits\Messageable;
+use Daguilarm\Belich\Fields\Traits\Helpeable;
 use Daguilarm\Belich\Fields\Traits\Ruleable;
 use Daguilarm\Belich\Fields\Traits\Settingable;
 use Daguilarm\Belich\Fields\Traits\Visibilitable;
@@ -16,7 +16,7 @@ class Field extends FieldAbstract {
 
     use Attributable,
         Casteable,
-        Messageable,
+        Helpeable,
         Ruleable,
         Settingable,
         Visibilitable;
