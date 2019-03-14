@@ -30,7 +30,7 @@ class IndexRequest extends FormRequest
             'metrics'               => data_get($data, 'values.metrics'),
             'name'                  => data_get($data, 'name'),
             'results'               => data_get($data, 'results'),
-            'total'                 => $belich::count($fields, 2),
+            'total'                 => $belich::count($fields->get('data'), 2),
         ]);
 
         return $this;
