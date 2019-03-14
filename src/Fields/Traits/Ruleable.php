@@ -21,7 +21,7 @@ trait Ruleable {
      */
     public function rules(...$rules) : self
     {
-        $this->rules[]       = $rules;
+        $this->rules         = $rules;
         $this->creationRules = null;
         $this->updateRules   = null;
 
