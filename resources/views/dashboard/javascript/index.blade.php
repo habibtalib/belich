@@ -93,7 +93,7 @@
 
     /*
     Section: Delete
-    Description: Delete the a field
+    Description: Delete the field
     */
     function deleteField(form, url) {
         document.getElementById(form).setAttribute('action', url);
