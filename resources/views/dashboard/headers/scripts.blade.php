@@ -4,6 +4,12 @@
 {{-- Default functions --}}
 <script>
     {{-- Loading button --}}
+    function submitForm(item) {
+        loading(item);
+        item.closest('form').submit();
+    }
+
+    {{-- Loading button --}}
     function loading(item, event) {
         item.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
     }
