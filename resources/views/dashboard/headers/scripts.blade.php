@@ -6,7 +6,6 @@
     {{-- Loading button --}}
     function loading(item, event) {
         item.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-        event.stopPropagation();
     }
 
     //Close alert with fadeOut
