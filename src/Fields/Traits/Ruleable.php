@@ -4,6 +4,9 @@ namespace Daguilarm\Belich\Fields\Traits;
 
 trait Ruleable {
 
+    /** @var array [Set default rules from the field object] */
+    public $defaultRules;
+
     /** @var array [The validation rules for creation and updates] */
     public $rules;
 
@@ -21,7 +24,7 @@ trait Ruleable {
      */
     public function rules(...$rules) : self
     {
-        $this->rules[]       = $rules;
+        $this->rules         = $rules;
         $this->creationRules = null;
         $this->updateRules   = null;
 
