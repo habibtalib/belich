@@ -22,5 +22,8 @@ class Image extends File {
     public function __construct($name = null, $attribute = null)
     {
         parent::__construct($name, $attribute);
+
+        //Default rules
+        $this->rules('image');
     }
 }

@@ -14,9 +14,11 @@ trait Fileable {
     */
     public function handleFile($model = null)
     {
-        return collect($this->request->get('__file'))
+        $file = $this->request->get('__file');
+
+        return collect($file)
             ->map(function($values, $key) use ($model) {
-                return $this->uploadFile($key, $values, $model);
+                return $this->uploadFile($key, $model, $values);
             });
     }
 
@@ -25,41 +27,49 @@ trait Fileable {
     *
     * @param string $attribute [Field name]
     * @param array $values
-    * @param object $model
+    * @param null|object $model
     * @return self
     */
-    private function uploadFile(string $attribute, array $values, $model)
+    private function uploadFile(string $attribute, $model, array $values)
     {
-        //Default values
-        list($file, $fileName, $disk) = $this->fileAttributes($attribute, $values);
+        //Get the file
+        $file = $this->{$attribute};
 
-        //Upload file
-        if(Storage::disk($disk)->put($fileName, $file)) {
-            //Delete the previus file from storage
-            $this->deletePrevius($attribute, $disk, $model);
-
-            return $this->request->{$attribute} = $fileName;
+        //Upload the file
+        if(is_object($file)) {
+            return $this->storeFile($attribute, $file, $model, $values);
         }
 
-        return $this->request->{$attribute} = null;
+        //Keep the current file if not updated...
+        if(is_object($model)) {
+            return $this->request->{$attribute} = $model->{$attribute};
+        }
     }
 
     /**
-    * File attributes
+    * Store file
     *
-    * @param string $attribute [Field name]
+    * @param null|object $file
     * @param array $values
-    * @return array
+    * @param null|object $model
+    * @return null|string
     */
-    private function fileAttributes(string $attribute, array $values) : array
+    private function storeFile(string $attribute, $file, $model, array $values)
     {
-        $file = $this->{$attribute};
+        //Get default values
+        $fileName = $this->fileName($file, $values);
+        $disk = $values['disk'];
 
-        return [
-            file_get_contents($file->getRealPath()),
-            $this->fileName($file, $values),
-            $values['disk'],
-        ];
+        //Upload file
+        if(Storage::disk($disk)->put($fileName, file_get_contents($file))) {
+            //Delete the previus file from storage
+            $this->deletePrevius($attribute, $disk, $model);
+            //Update request attribute value
+            return $this->request->{$attribute} = $fileName;
+        }
+
+        //Empty attribute
+        return $this->request->{$attribute} = null;
     }
 
     /**
@@ -91,7 +101,7 @@ trait Fileable {
     private function deletePrevius(string $attribute, string $disk, $model) : void
     {
         //Delete the previus file from storage
-        if($model) {
+        if(!empty($model) && is_object($model)) {
             $previus = $model->{$attribute};
             $delete = Storage::disk($disk)->delete($previus);
         }

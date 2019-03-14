@@ -32,7 +32,7 @@ class File extends Field {
         $this->asHtml = true;
 
         //Default rules
-        $this->rules('image', 'mimes:jpeg,png,jpg,gif,svg');
+        $this->rules('file');
     }
 
     /**
