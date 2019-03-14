@@ -31,8 +31,8 @@ class File extends Field {
         //Set the html by default because we are showing icons as value (green or grey)
         $this->asHtml = true;
 
-        //Default rules
-        $this->rules('file');
+        //Set the default rules for the field
+        // $this->defaultRules = ['file'];
     }
 
     /**

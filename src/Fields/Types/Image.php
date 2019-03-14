@@ -23,7 +23,7 @@ class Image extends File {
     {
         parent::__construct($name, $attribute);
 
-        //Default rules
-        $this->rules('image');
+        //Set the default rules for the field
+        // $this->defaultRules = ['image'];
     }
 }
