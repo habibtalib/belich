@@ -62,7 +62,7 @@
             <belich::button
                 color="success"
                 :title="icon('trash', trans('belich::buttons.actions.confirm'))"
-                loading
+                onclick="submitForm(this);"
             />
         </slot>
     </belich::modal>
