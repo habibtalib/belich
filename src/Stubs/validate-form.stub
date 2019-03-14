@@ -11,6 +11,7 @@
             $.ajax({
                 url: ':validationRuoute',
                 method: 'post',
+                mimeType: 'multipart/form-data',
                 data: {
                     :values, validationRules::validationRules, validationAttributes::validationAttributes
                 },
