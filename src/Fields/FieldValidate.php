@@ -96,14 +96,16 @@ class FieldValidate {
     private function setRules($field)
     {
         if($this->controllerAction === 'create') {
-            return $field->creationRules ?? $field->rules ?? '';
+            $rules = $field->creationRules ?? $field->rules ?? [];
+
+        } elseif ($this->controllerAction === 'edit') {
+            $rules = $field->updateRules ?? $field->rules ?? [];
+
+        } else {
+            $rules = $field->rules ?? [];
         }
 
-        if($this->controllerAction === 'edit') {
-            return $field->updateRules ?? $field->rules ?? '';
-        }
-
-        return $field->rules ?? '';
+        return array_merge($rules, $field->defaultRules ?? []);
     }
 
     /**
