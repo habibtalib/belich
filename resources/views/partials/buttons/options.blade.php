@@ -1,10 +1,10 @@
 {{-- Options --}}
-<div class="btn btn-dropdown border border-grey mr-2 bg-grey-lighter text-grey-dark hover:bg-grey hover:text-white">
+<div class="btn btn-dropdown border border-grey-500 mr-2 bg-grey-200 text-grey-600 hover:bg-grey-500 hover:text-white">
     {{-- Set button icon --}}
     @icon('cogs', '', 'opacity-100')
 
     {{-- Start with form --}}
-    <form method="POST" action="{{ route('dashboard.users.settings') }}" name="belich-form-options" id="belich-form-options" dusk="dusk-form-options" class="btn-dropdown-content pin-r rounded-lg border border-grey shadow text-grey-dark text-left bg-white">
+    <form method="POST" action="{{ route('dashboard.users.settings') }}" name="belich-form-options" id="belich-form-options" dusk="dusk-form-options" class="btn-dropdown-content pin-r rounded-lg border border-grey-500 shadow text-grey-600 text-left bg-white">
         @csrf
 
         {{-- Per page component --}}

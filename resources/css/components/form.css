@@ -1,7 +1,7 @@
 .form-container input,
 .form-container select,
 .form-container textarea {
-    @apply w-full rounded text-grey-darker p-3 mt-1 appearance-none leading-normal;
+    @apply w-full rounded text-gray-700 p-3 mt-1 appearance-none leading-normal;
 }
 
 /*Default form fields*/
@@ -12,7 +12,7 @@
 .form-container input[type='year'],
 .form-container select,
 .form-container textarea {
-    @apply border bg-white border-grey-light;
+    @apply border bg-white border-gray-400;
 }
 
 input:focus,
@@ -26,5 +26,5 @@ textarea:focus {
 .form-container textarea:disabled,
 .form-container select:disabled,
 .form-container option:disabled {
-    @apply opacity-50 bg-grey-light cursor-not-allowed;
+    @apply opacity-50 bg-gray-400 cursor-not-allowed;
 }

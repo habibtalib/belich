@@ -1,9 +1,9 @@
 {{-- This section is segregate in case you want to customize --}}
-<nav id="navbar" class="h-16 {{ config('belich.navbar') === 'top' ? 'bg-teal-light' : 'bg-white' }}">
+<nav id="navbar" class="h-16 {{ config('belich.navbar') === 'top' ? 'bg-teal-400' : 'bg-white' }}">
     {{-- Top navbar --}}
     <ul>
         {{-- Logo --}}
-        <li class="bg-teal-dark">
+        <li class="bg-teal-700">
             <a class="text-white w-48" href="{{ Belich::url() }}">{{ Belich::name() }}</a>
         </li>
 
@@ -14,7 +14,7 @@
 
                 {{-- One level resource --}}
                 @if($resource->count() <= 1)
-                    <li class="hover:bg-teal">
+                    <li class="hover:bg-teal-600">
                         <a class="text-white" href="{{ sprintf('%s/%s', Belich::url(), $resource->first()->get('resource')) }}">
                             {{ $resource->first()->get('name') }}
                         </a>
@@ -22,15 +22,15 @@
 
                 {{-- two level resource --}}
                 @else
-                    <li class="hover:bg-teal">
+                    <li class="hover:bg-teal-600">
                         <a class="text-white" href="{{ sprintf('%s/%s', Belich::url(), $resource->first()->get('resource')) }}">
                             {{ $resource->first()->get('group') }}
                             <i class="fas fa-caret-down ml-1 icon"></i>
                         </a>
                         <ul>
                             @foreach($resource as $item)
-                                <li class="bg-teal-light hover:bg-teal-lighter">
-                                    <a class="text-white hover:text-teal-dark" href="{{ sprintf('%s/%s', Belich::url(), $item->get('resource')) }}">
+                                <li class="bg-teal-400 hover:bg-teal-200">
+                                    <a class="text-white hover:text-teal-600" href="{{ sprintf('%s/%s', Belich::url(), $item->get('resource')) }}">
                                         {{ $item->get('name') }}
                                     </a>
                                 </li>

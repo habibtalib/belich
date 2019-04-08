@@ -1,5 +1,5 @@
 nav#sidebar ul {
-    @apply list-reset bg-transparent;
+    @apply bg-transparent;
 }
 
 nav#sidebar ul li a {

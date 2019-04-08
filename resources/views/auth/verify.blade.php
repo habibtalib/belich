@@ -4,12 +4,12 @@
     <div class="container mx-auto h-full flex justify-center items-center">
         <div class="w-1/3 max-w-md">
             {{-- Title --}}
-            <h1 class="font-normal mb-6 text-center">@lang('belich::authorization.verify.email')</h1>
+            <h1 class="text-2xl text-teal-700 font-semibold mb-6 text-center">@lang('belich::authorization.verify.email')</h1>
             {{-- Container --}}
-            <div class="border-teal p-8 border-t-12 bg-white mb-6 rounded-lg shadow-lg">
+            <div class="p-8 bg-white mb-6 rounded-lg shadow-lg">
                 {{-- Alert --}}
                 @if (session('resent'))
-                    <div class="text-red text-xs italic" role="alert">
+                    <div class="text-red-500 text-xs italic" role="alert">
                         @lang('belich::authorization.verify.refresh')
                     </div>
                 @endif

@@ -2,9 +2,9 @@
 
     {{-- Search field --}}
     <div class="icon-search w-full">
-        <input type="text" name="_search" id="_search" class="p-2 pl-8 my-2 ml-2 rounded border border-grey-light shadow-md w-64" placeholder="search..." onkeydown="showResetSearch()">
+        <input type="text" name="_search" id="_search" class="p-2 pl-8 my-2 ml-2 rounded border border-gray-400 shadow-md w-64" placeholder="search..." onkeydown="showResetSearch()">
         <span class="hidden" id="icon-search-reset">
-            <i class="fas fa-times-circle text-grey cursor-pointer" onclick="resetSearch()"></i>
+            <i class="fas fa-times-circle text-gray-500 cursor-pointer" onclick="resetSearch()"></i>
         </span>
     </div>
 

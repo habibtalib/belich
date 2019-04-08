@@ -4,7 +4,7 @@
 }
 
 .ct-legend li {
-    @apply list-reset w-32;
+    @apply w-32;
     position: relative;
     padding-left: 23px;
     margin-bottom: 3px;

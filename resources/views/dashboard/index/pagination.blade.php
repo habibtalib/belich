@@ -1,6 +1,6 @@
 {{-- Pagination --}}
 @if($pagination = $request->results->links())
-    <tfoot class="bg-blue-lightest">
+    <tfoot class="bg-blue-200">
         <tr>
             <td colspan="{{ $request->total }}" class="text-center">{{ $pagination }}</td>
         </tr>

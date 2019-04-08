@@ -1,7 +1,7 @@
 {{-- Start / Table --}}
-<table class="table table-auto w-full text-sm text-left shadow-md bg-white text-grey-dark" id="belich-index-table">
+<table class="table table-auto w-full text-sm text-left shadow-md bg-white text-gray-600" id="belich-index-table">
     <thead class="uppercase">
-        <tr class="border-b border-t border-grey-light bg-blue-lightest text-grey-dark">
+        <tr class="border-b border-t border-gray-400 bg-blue-200 text-gray-600">
 
             {{-- Checkboxes --}}
             <th class="pt-4 pb-5 px-6">
@@ -23,12 +23,12 @@
     <tbody>
         {{-- Get the results --}}
         @forelse($request->results as $result)
-            <tr class="hover:bg-grey-lightest">
-                <td class="py-4 px-6 border-b border-solid border-grey-lighter"><input type="checkbox" name="item_selection[]" value="{{ $result->id }}" class="form-index-selector" onclick="checkForSelectedFields();"></td>
+            <tr class="hover:bg-gray-100">
+                <td class="py-4 px-6 border-b border-solid border-gray-200"><input type="checkbox" name="item_selection[]" value="{{ $result->id }}" class="form-index-selector" onclick="checkForSelectedFields();"></td>
 
                 {{-- Get the values --}}
                 @foreach($request->fields->get('data') as $field)
-                    <td class="py-4 px-6 border-b border-solid border-grey-lighter {!! Belich::html()->resolveSoftdeleting($field, $result) ? 'text-red line-through' : 'no-softdeleted' !!}">
+                    <td class="py-4 px-6 border-b border-solid border-gray-200 {!! Belich::html()->resolveSoftdeleting($field, $result) ? 'text-red line-through' : 'no-softdeleted' !!}">
                         @if($field->asHtml)
                             {!! Belich::html()->resolve($field, $result) !!}
                         @else
@@ -38,7 +38,7 @@
                 @endforeach
 
                 {{-- Get the button actions --}}
-                <td class="text-right py-4 px-6 border-b border-solid border-grey-lighter">
+                <td class="text-right py-4 px-6 border-b border-solid border-gray-200">
                     {!! Belich::actions($result, $request->actions) !!}
                 </td>
             </tr>

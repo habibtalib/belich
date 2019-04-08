@@ -1,6 +1,6 @@
 /* General values */
 body {
-    @apply bg-grey-lighter;
+    @apply bg-gray-200;
 }
 
 a {

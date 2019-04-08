@@ -1,10 +1,10 @@
 {{-- Options --}}
-<div id="exports-container" class="hidden button-selected btn btn-dropdown border border-green-light mr-2 bg-green-lightest text-green-dark hover:bg-green-light hover:text-white">
+<div id="exports-container" class="hidden button-selected btn btn-dropdown border border-green-400 mr-2 bg-green-200 text-green-600 hover:bg-green-400 hover:text-white">
     {{-- Set button icon --}}
     @icon('download', '', 'opacity-100')
 
     {{-- Start with form --}}
-    <form method="POST" action="{{ route('dashboard.exports.download') }}" name="belich-form-exports" id="belich-form-exports" dusk="dusk-form-exports" class="btn-dropdown-content pin-r rounded-lg border border-grey shadow text-grey-dark text-left bg-white">
+    <form method="POST" action="{{ route('dashboard.exports.download') }}" name="belich-form-exports" id="belich-form-exports" dusk="dusk-form-exports" class="btn-dropdown-content right-0 rounded-lg border border-gray-500 shadow text-gray-600 text-left bg-white">
         @csrf
         <input type="hidden" name="resource_model" value="{{ Belich::getModelPath() }}">
         <input type="hidden" id="exports_selected" name="exports_selected" value="">

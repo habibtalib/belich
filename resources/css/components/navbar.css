@@ -2,7 +2,7 @@
 
 /* Navbar */
 nav#navbar ul {
-    @apply list-reset shadow z-10;
+    @apply block shadow z-10;
 }
 
 nav#navbar ul li {

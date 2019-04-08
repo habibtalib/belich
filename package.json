@@ -15,10 +15,18 @@
     "easy-autocomplete": "*",
     "jquery-mask-plugin": "*",
     "jquery-validation": "1.19.0",
-    "vue": "^2.5.17"
+    "vue": "^2.6.10"
   },
   "devDependencies": {
+    "laravel-mix": "^4.0.15",
+    "laravel-mix-tailwind": "^0.1.0",
     "purify-css": "^1.2.5",
-    "purifycss-webpack": "^0.7.0"
+    "purifycss-webpack": "^0.7.0",
+    "resolve-url-loader": "^2.3.1",
+    "sass": "^1.17.4",
+    "sass-loader": "^7.1.0",
+    "tailwindcss": "^1.0.0-beta.4",
+    "vue-template-compiler": "^2.6.10",
+    "webpack": "^4.29.6"
   }
 }

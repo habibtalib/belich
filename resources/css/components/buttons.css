@@ -14,47 +14,47 @@
     /* Buttons types */
 
     .btn-primary {
-        @apply bg-blue text-white border border-blue;
+        @apply bg-blue-500 text-white border border-blue-500;
     }
 
     .btn-primary:hover {
-        @apply bg-blue-dark;
+        @apply bg-blue-600;
     }
 
     .btn-success {
-        @apply bg-green text-white border border-green;
+        @apply bg-green-500 text-white border border-green-500;
     }
 
     .btn-success:hover {
-        @apply bg-green-dark;
+        @apply bg-green-600;
     }
 
     .btn-danger {
-        @apply bg-red text-white border border-red;
+        @apply bg-red-500 text-white border border-red-500;
     }
 
     .btn-danger:hover {
-        @apply bg-red-dark;
+        @apply bg-red-600;
     }
 
     .btn-secondary {
-        @apply bg-blue-lightest text-blue-dark border border-blue-light;
+        @apply bg-blue-100 text-blue-600 border border-blue-400;
     }
 
     .btn-secondary:hover {
-        @apply bg-blue-light text-white;
+        @apply bg-blue-400 text-white;
     }
 
     .btn-default {
-        @apply bg-white text-grey-darker border border-grey-light;
+        @apply bg-white text-gray-700 border border-gray-400;
     }
 
     .btn-default:hover {
-        @apply bg-grey-lightest text-black;
+        @apply bg-gray-100 text-black;
     }
 
     .btn-icon {
-        @apply bg-white text-grey-darker border border-grey-light;
+        @apply bg-white text-gray-700 border border-gray-400;
     }
 
         .btn-icon i {
@@ -62,7 +62,7 @@
         }
 
     .btn-icon:hover {
-        @apply bg-grey-lightest text-black;
+        @apply bg-gray-100 text-black;
     }
 
 /* Dropdown buttons */

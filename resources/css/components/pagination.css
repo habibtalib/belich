@@ -1,6 +1,6 @@
 /*Pagination*/
 .pagination {
-    @apply flex justify-between items-center list-reset w-auto;
+    @apply flex justify-between items-center w-auto;
 }
 
     .pagination li.page-item {

@@ -1,14 +1,14 @@
 {{-- Options --}}
 <div id="mass-delete-container" class="hidden button-selected">
     {{-- Set button icon --}}
-    <a href="#modal-mass-delete" class="btn btn-dropdown border border-red-light mr-2 bg-red-lightest text-red-dark hover:bg-red-light hover:text-white" onclick="deleteSelectedFields('delete_selected');">
+    <a href="#modal-mass-delete" class="btn btn-dropdown border border-red-400 mr-2 bg-red-200 text-red-600 hover:bg-red-400 hover:text-white" onclick="deleteSelectedFields('delete_selected');">
         @icon('trash', '', 'opacity-100')
     </a>
 </div>
 
 @prepend('modals')
     {{-- Modal component: delete selected - mass --}}
-    <belich::modal form="true" id="mass-delete" hidden="delete_selected" background="red" color="white" :action="route('dashboard.' . $request->name . '.delete.selected')" :request="$request" :header="icon('exclamation-triangle', trans('belich::messages.delete.selected.title'))">
+    <belich::modal form="true" id="mass-delete" hidden="delete_selected" background="red-500" color="white" :action="route('dashboard.' . $request->name . '.delete.selected')" :request="$request" :header="icon('exclamation-triangle', trans('belich::messages.delete.selected.title'))">
 
         {{-- Modal content --}}
         <slot name="content">

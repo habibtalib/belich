@@ -6,7 +6,7 @@
         {{-- Calendar --}}
         <div class="w-32 flex-none text-center">
             <div class="block overflow-hidden shadow-md rounded-t">
-                <div class="bg-blue text-white text-xl py-2">
+                <div class="bg-blue-500 text-white text-xl py-2">
                     {{ now()->englishMonth }}
                 </div>
                 <div class="pt-1">

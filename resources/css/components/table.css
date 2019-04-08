@@ -1,5 +1,5 @@
 .table thead a {
-    @apply text-grey-darker;
+    @apply text-gray-700;
 }
 
 .table thead a:after {

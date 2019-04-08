@@ -1,5 +1,5 @@
 {{-- This section is segregate in case you want to customize --}}
-<nav id="sidebar" class="bg-grey-darker w-48">
+<nav id="sidebar" class="bg-gray-600 w-48">
     <ul class="text-lg">
         {{-- Get all the resources --}}
         @foreach(Belich::getGroupResources() as $resource)
@@ -21,7 +21,7 @@
                     <ul>
                         @foreach($resource as $item)
                             <li class="my-4 ml-6">
-                                <a class="text-grey-lighter" href="{{ sprintf('%s/%s', Belich::url(), $item->get('resource')) }}">
+                                <a class="text-gray-200" href="{{ sprintf('%s/%s', Belich::url(), $item->get('resource')) }}">
                                     {{-- {!! icon($item->get('icon'), $item->get('name')) !!} --}}
                                     {!! icon('caret-right', $item->get('name')) !!}
                                 </a>
