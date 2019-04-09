@@ -38,7 +38,7 @@
 @push('modals')
 
     {{-- Modal component: delete item --}}
-    <belich::modal form="true" id="item-delete" background="red" color="white" action="#" :request="$request" :header="icon('exclamation-triangle', trans('belich::messages.delete.item.title'))">
+    <belich::modal form="true" id="item-delete" background="red-500" action="#" :request="$request" :header="icon('exclamation-triangle', trans('belich::messages.delete.item.title'))">
 
         {{-- Form method field for DELETE --}}
         <slot name="method">
