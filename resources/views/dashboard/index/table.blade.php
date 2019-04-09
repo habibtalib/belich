@@ -1,7 +1,7 @@
 {{-- Start / Table --}}
 <table class="table table-auto w-full text-sm text-left shadow-md bg-white text-gray-600" id="belich-index-table">
     <thead class="uppercase">
-        <tr class="border-b border-t border-gray-400 bg-blue-200 text-gray-600">
+        <tr class="border-b border-t border-gray-400 bg-blue-100 text-gray-600">
 
             {{-- Checkboxes --}}
             <th class="pt-4 pb-5 px-6">
