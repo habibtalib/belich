@@ -1,7 +1,6 @@
 <div class="tabs">
     {{-- Create tabs links --}}
-    <ul class="list-reset bg-grey-100 py-4 shadow-md">
-
+    <ul class="list-reset bg-gray-100 py-4 shadow-md">
         {{-- List the tab links --}}
         @foreach($tabs as $label => $panel)
             <li class="inline m-0">
@@ -9,7 +8,7 @@
                     id="menu_{{ stringTokebab($label) }}"
                     onclick="javascript:switchTab('{{ stringTokebab($label) }}', '{{ md5(stringTokebab($label)) }}');"
                     href="#{{ md5(stringTokebab($label)) }}"
-                    class="p-4 px-6 text-grey-700 border border-b-0 border-grey-200 {{ $loop->first ? 'active' : '' }}"
+                    class="p-4 px-6 text-gray-700 border border-b-0 border-gray-200 {{ $loop->first ? 'active' : '' }}"
                 >
                     {{ $label }}
                 </a>
