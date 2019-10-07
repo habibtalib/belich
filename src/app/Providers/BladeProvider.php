@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Str;
+
 /**
  * Create a @icon directive
  *
@@ -85,10 +87,10 @@ Blade::if('hasSoftdeletedResults', function ($model) {
  * @return string
  */
 Blade::directive('mix', function ($arguments) {
-    if (ends_with($arguments, ".css'")) {
+    if (Str::endsWith($arguments, ".css'")) {
         return '<link rel="stylesheet" href="<?php echo mix('.$arguments.', \'vendor/belich\') ?>">';
     }
-    if (ends_with($arguments, ".js'")) {
+    if (Str::endsWith($arguments, ".js'")) {
         return '<script src="<?php echo mix('.$arguments.', \'vendor/belich\') ?>"></script>';
     }
 
