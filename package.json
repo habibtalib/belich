@@ -12,21 +12,23 @@
     "watch:test": "jest --watch"
   },
   "dependencies": {
+    "ajv": "^6.10.2",
     "easy-autocomplete": "*",
+    "fibers": "^4.0.1",
     "jquery-mask-plugin": "*",
     "jquery-validation": "1.19.0",
-    "vue": "^2.6.10"
+    "node-sass": "^4.12.0"
   },
   "devDependencies": {
-    "laravel-mix": "^4.0.15",
+    "laravel-mix": "^4.1.2",
     "laravel-mix-tailwind": "^0.1.0",
-    "purify-css": "^1.2.5",
+    "purify-css": "^1.2.6",
     "purifycss-webpack": "^0.7.0",
-    "resolve-url-loader": "^2.3.1",
-    "sass": "^1.17.4",
-    "sass-loader": "^7.1.0",
-    "tailwindcss": "^1.0.0-beta.4",
+    "resolve-url-loader": "^3.1.0",
+    "sass": "^1.23.0",
+    "sass-loader": "^8.0.0",
+    "tailwindcss": "^1.1.2",
     "vue-template-compiler": "^2.6.10",
-    "webpack": "^4.29.6"
+    "webpack": "^4.41.0"
   }
 }
