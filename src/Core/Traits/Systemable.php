@@ -25,6 +25,11 @@ trait Systemable {
         //This middleware need to be always available
         $baseMiddleware = ['belich', 'minify'];
 
+        //No results
+        if(empty(config('belich.middleware'))){
+            return $baseMiddleware;
+        }
+
         return array_merge(config('belich.middleware'), $baseMiddleware) ?? $this->defaultMiddleware;
     }
 

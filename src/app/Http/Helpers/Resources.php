@@ -15,6 +15,11 @@
 if (!function_exists('getAllTheResourcesFromFolder')) {
     function getAllTheResourcesFromFolder() : Illuminate\Support\Collection
     {
+        //No file ... install case
+        if(!file_exists(app_path('Belich/Resources'))) {
+            return new Illuminate\Support\Collection();
+        }
+
         //Get all the files from folder
         $files = scandir(app_path('Belich/Resources'));
 
