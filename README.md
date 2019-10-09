@@ -8,7 +8,7 @@ What has happened during this adventure, is that in the end, what started as an 
 
 Choosing to eliminate VueJS from the equation has been a very complicated decision, and in some cases, it has been a big headache.
 
-To this day, Belich has its own code structure designed from 0 and will include Livewire the [Caleb Porzio](https://github.com/calebporzio)
+To this day, Belich has its own code structure designed from 0 and will be 100% costomized by the user.
 
 The adventure is worth it, and I think I've learned great things!
 
@@ -18,8 +18,8 @@ Project in development. Still in the early stages...help will be great!!!
 
 ## Requirements
 
-- PHP 7.3
-- Laravel 5.8
+- PHP 7.2
+- Laravel 6.x
 
 ## Instalation (not yet...)
 
@@ -142,11 +142,10 @@ At the moment, Belich only has this type of charts:
 - Redesign the front-end with all the lesson from: https://refactoringui.com/
 - Refactoring all the code, because I am just writting code...
 - Complete the fields types:
-    + DependsOn fields (waiting for Livewire)
+    + DependsOn fields
     + Maps.
 - Create the relationship fields.
 - Writting test... I know but...
 - Preset cards.
-- Removing all jquery and start with Livewire.
-
+- Index search.
 ...
