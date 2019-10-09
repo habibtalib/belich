@@ -53,12 +53,11 @@ trait Templates {
      */
     private static function templateLineGraphOptions() : string
     {
-        return <<<EOT
-            {
-                showArea: true,
-                low: 0,
-            }
-        EOT;
+        return '{showArea:true,low:0,}';
+        //     {
+        //         showArea: true,
+        //         low: 0,
+        //     }
     }
 
     /**
@@ -68,21 +67,20 @@ trait Templates {
      */
     private static function templateBarGraphOptions() : string
     {
-        return <<<EOT
-            {
-                seriesBarDistance:10,
-                axisX: {
-                    offset: 30
-                },
-                axisY: {
-                    offset: 40,
-                    labelInterpolationFnc: function(value) {
-                        return value
-                    },
-                    scaleMinSpace: 15,
-                }
-            }
-       EOT;
+        return '{seriesBarDistance:10,axisX:{offset:30},seriesBarDistance:10,axisX:{offset: 30},axisY:{offset:40,labelInterpolationFnc:function(value){return value},scaleMinSpace: 15,}}';
+            //{
+            //     seriesBarDistance:10,
+            //     axisX: {
+            //         offset: 30
+            //     },
+            //     axisY: {
+            //         offset: 40,
+            //         labelInterpolationFnc: function(value) {
+            //             return value
+            //         },
+            //         scaleMinSpace: 15,
+            //     }
+            // }
     }
 
     /**
@@ -92,19 +90,18 @@ trait Templates {
      */
     private function templateHorizontalBarGraphOptions() : string
     {
-        return <<<EOT
-            {
-                reverseData: true,
-                horizontalBars: true,
-                seriesBarDistance: 10,
-                axisX: {
-                    offset: 30
-                },
-                axisY: {
-                    offset: 100,
-                }
-            }
-        EOT;
+        return '{reverseData:true,horizontalBars:true,seriesBarDistance:10,axisX:{offset:30},axisY:{offset:100,}}';
+        //     {
+        //         reverseData: true,
+        //         horizontalBars: true,
+        //         seriesBarDistance: 10,
+        //         axisX: {
+        //             offset: 30
+        //         },
+        //         axisY: {
+        //             offset: 100,
+        //         }
+        //     }
     }
 
     /**
@@ -114,33 +111,32 @@ trait Templates {
      */
     private static function templatePieGraphOptions($key) : string
     {
-        return <<<EOT
-            {
-                labelInterpolationFnc: function(value) {
-                    return value
-                },
-                axisX: {
-                    offset: 30
-                },
-                axisY: {
-                    offset: 100,
-                },
-                plugins: [
-                    Chartist.plugins.legend()
-                ],
-                chartPadding: 15,
-                labelOffset: 50,
-                labelDirection: 'explode',
-                labelInterpolationFnc: function(value) {
-                    var series = data_{$key}.series.map(a => a.value).map(Number);
-                    var labels = data_{$key}.labels;
-                    var position = labels.indexOf(value);
-                    var total = series.map(Number).reduce((partial_sum, a) => partial_sum + a);
-                    var currentValue = series[position];
-                    var percent = Math.round(currentValue / total * 100);
-                    return currentValue ? value + ' (' + percent + '%)' : value;
-                },
-            }
-        EOT;
+        return "{labelInterpolationFnc:function(value){return value},axisX:{offset:30},axisY:{offset:100,},plugins:[Chartist.plugins.legend()],chartPadding:15,labelOffset:50,labelDirection:'explode',labelInterpolationFnc:function(value){var series=data_{$key}.series.map(a=>a.value).map(Number);var labels = data_{$key}.labels;var position = labels.indexOf(value);var total=series.map(Number).reduce((partial_sum,a)=>partial_sum+a);var currentValue=series[position];var percent = Math.round(currentValue/total*100);return currentValue ? value + ' ('+percent+'%)' : value;}},";
+        //     {
+        //         labelInterpolationFnc: function(value) {
+        //             return value
+        //         },
+        //         axisX: {
+        //             offset: 30
+        //         },
+        //         axisY: {
+        //             offset: 100,
+        //         },
+        //         plugins: [
+        //             Chartist.plugins.legend()
+        //         ],
+        //         chartPadding: 15,
+        //         labelOffset: 50,
+        //         labelDirection: 'explode',
+        //         labelInterpolationFnc: function(value) {
+        //             var series = data_{$key}.series.map(a => a.value).map(Number);
+        //             var labels = data_{$key}.labels;
+        //             var position = labels.indexOf(value);
+        //             var total = series.map(Number).reduce((partial_sum, a) => partial_sum + a);
+        //             var currentValue = series[position];
+        //             var percent = Math.round(currentValue / total * 100);
+        //             return currentValue ? value + ' (' + percent + '%)' : value;
+        //         },
+        //     }
     }
 }
