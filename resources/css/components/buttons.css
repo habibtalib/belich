@@ -75,7 +75,7 @@
 }
 
 .btn-dropdown-content {
-    @apply z-10 absolute invisible opacity-0 w-64 mt-5;
+    @apply z-10 absolute opacity-0 w-64 mt-4;
     transition: var(--transition)
 }
 
