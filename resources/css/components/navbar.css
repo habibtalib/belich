@@ -6,11 +6,12 @@ nav#navbar ul {
 }
 
 nav#navbar ul li {
-    @apply inline-block ml-1;
+    @apply inline-block m-0 p-0;
+    margin-left: var(--navbar-fixer-negative);
 }
 
 nav#navbar a {
-    @apply flex h-16 px-6 py-6 text-base leading-none no-underline;
+    @apply flex h-16 m-0 px-6 py-6 text-base leading-none no-underline;
 }
 
 nav#navbar ul li.sidebar-parent,
@@ -20,7 +21,7 @@ nav#navbar ul li.sidebar-child {
 
 /* Hide Dropdowns by Default */
 nav#navbar ul ul {
-    @apply z-10 absolute invisible opacity-0 ml-1;
+    @apply z-10 absolute invisible opacity-0;
     transition: var(--transition);
 }
 
@@ -28,6 +29,7 @@ nav#navbar ul ul li {
     @apply shadow-md w-auto;
     border-top: 1px solid transparent;
     min-width: 150px;
+    margin-left: var(--navbar-fixer-positve);
 }
 
 /* Display Dropdowns on Hover */

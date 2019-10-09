@@ -34,4 +34,8 @@
     --pagination-disabled: var(--30);
     --pagination-link: var(--info);
     --pagination-link-hover: var(--info-dark);
+
+    /*Navbar*/
+    --navbar-fixer-positive: 4px;
+    --navbar-fixer-negative: -4px;
 }

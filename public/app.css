@@ -33,6 +33,9 @@
   --pagination-disabled: var(--30);
   --pagination-link: var(--info);
   --pagination-link-hover: var(--info-dark);
+  /*Navbar*/
+  --navbar-fixer-positive: 4px;
+  --navbar-fixer-negative: -4px;
 }
 /* General values */
 
@@ -449,12 +452,15 @@ nav#navbar ul {
 
 nav#navbar ul li {
   display: inline-block;
-  margin-left: 0.25rem;
+  margin: 0;
+  padding: 0;
+  margin-left: var(--navbar-fixer-negative);
 }
 
 nav#navbar a {
   display: flex;
   height: 4rem;
+  margin: 0;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
   padding-top: 1.5rem;
@@ -476,7 +482,6 @@ nav#navbar ul ul {
   position: absolute;
   visibility: hidden;
   opacity: 0;
-  margin-left: 0.25rem;
   transition: var(--transition);
 }
 
@@ -485,6 +490,7 @@ nav#navbar ul ul li {
   width: auto;
   border-top: 1px solid transparent;
   min-width: 150px;
+  margin-left: var(--navbar-fixer-positve);
 }
 
 /* Display Dropdowns on Hover */
