@@ -17,7 +17,8 @@
     "fibers": "^4.0.1",
     "jquery-mask-plugin": "*",
     "jquery-validation": "1.19.0",
-    "node-sass": "^4.12.0"
+    "node-sass": "^4.12.0",
+    "turbolinks": "^5.2.0"
   },
   "devDependencies": {
     "laravel-mix": "^4.1.2",

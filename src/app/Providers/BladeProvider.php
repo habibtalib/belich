@@ -91,7 +91,7 @@ Blade::directive('mix', function ($arguments) {
         return '<link rel="stylesheet" href="<?php echo mix('.$arguments.', \'vendor/belich\') ?>">';
     }
     if (Str::endsWith($arguments, ".js'")) {
-        return '<script src="<?php echo mix('.$arguments.', \'vendor/belich\') ?>"></script>';
+        return '<script src="<?php echo mix('.$arguments.', \'vendor/belich\') ?>" defer></script>';
     }
 
     return "<?php echo mix({$arguments}); ?>";
