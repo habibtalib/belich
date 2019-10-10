@@ -39,3 +39,33 @@
     {{-- End right container --}}
 </div>
 {{-- End search container --}}
+
+@push('jquery')
+    <script>
+        function liveSearch(query = '')
+        {
+            //Min. search filter
+            if(query.length < 2) {
+                return;
+            }
+
+            $.ajax({
+                url: "../../../../ajax/search/",
+                method: 'GET',
+                data: {query:query},
+                dataType: 'json',
+                success: function(data) {
+                    // $('tbody').html(data.table_data);
+                    // $('#total_records').text(data.total_data);
+                    console.log(data);
+                }
+            })
+        }
+
+        $(function() {
+            $(document).on('keyup', '#_search', function() {
+                liveSearch($(this).val());
+            });
+        });
+    </script>
+@endpush

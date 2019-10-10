@@ -17,6 +17,10 @@ Route::group([
         Route::post(Belich::pathName() . '/ajax/form/validation', namespace_path('App\Http\Controllers\ValidationController'))
             ->name('ajax.form.validation');
 
+        //search routes
+        Route::get(Belich::pathName() . '/ajax/search', namespace_path('App\Http\Controllers\SearchController'))
+            ->name('ajax.search');
+
         //Generate routes from resources
         //The middleware can be setter from the config file
         $resources = getAllTheResourcesFromFolder()

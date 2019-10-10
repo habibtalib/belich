@@ -39,3 +39,6 @@
 
 {{-- User custom javascript --}}
 @stack('javascript')
+
+{{-- Add custom jquery --}}
+@stack('jquery')
