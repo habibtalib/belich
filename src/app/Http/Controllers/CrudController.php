@@ -20,15 +20,12 @@ class CrudController extends Controller
     /** @var Illuminate\Database\Eloquent\Model */
     protected $model;
 
-    /** @var Illuminate\Http\Request */
-    protected $request;
-
     /**
      * Generate crud controllers
      *
      * @param Daguilarm\Belich\Core\Belich $belich
      */
-    public function __construct(Belich $belich, Request $request)
+    public function __construct(Belich $belich)
     {
         //Get resource model
         $this->model = Belich::getModel();
