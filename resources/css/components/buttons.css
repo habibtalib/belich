@@ -67,7 +67,7 @@
 
 /* Dropdown buttons */
 .btn-dropdown {
-    @apply relative inline-block m-0;
+    @apply relative inline-block;
 }
 
 .btn-dropdown:hover {
@@ -75,11 +75,11 @@
 }
 
 .btn-dropdown-content {
-    @apply z-10 absolute opacity-0 w-64 mt-4;
+    @apply z-10 absolute opacity-0 w-64 mt-4 hidden;
     transition: var(--transition)
 }
 
 .btn-dropdown:hover .btn-dropdown-content {
-    @apply visible z-40 opacity-100;
+    @apply z-40 opacity-100 visible block;
     transition-delay: var(--transition-delay)
 }
