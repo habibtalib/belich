@@ -52,7 +52,12 @@
             $.ajax({
                 url: "{{ route('dashboard.ajax.search') }}",
                 method: 'GET',
-                data: {query: query, resource: 'users'},
+                data: {
+                    query: query,
+                    resourceName: '{{ Belich::resourceName() }}',
+                    type: 'search',
+                    fields: '{{ Belich::searchFields() }}'
+                },
                 dataType: 'json',
                 success: function(data) {
                     // $('tbody').html(data.table_data);
@@ -63,7 +68,8 @@
         }
 
         $(function() {
-            $(document).on('keyup', '#_search', function() {
+            $(document).on('keyup', '#_search', function(event) {
+                event.preventDefault();
                 liveSearch($(this).val());
             });
         });

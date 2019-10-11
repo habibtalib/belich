@@ -4,8 +4,11 @@ namespace Daguilarm\Belich\Core\Traits;
 
 use Daguilarm\Belich\Facades\Belich;
 use Illuminate\Support\Facades\Cookie;
+use Daguilarm\Belich\Core\Traits\Searchable;
 
 trait Connectable {
+
+    use Searchable;
 
     /**
     * Create the Sql Connection

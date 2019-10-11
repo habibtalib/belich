@@ -26,7 +26,7 @@ trait Searchable {
            && is_string($request['resourceName'])
            && strlen($request['query']) >= config('belich.minSearch')
            && !empty($request['type'])
-           && $request['type'] == 'search'
+           && $request['type'] === 'search'
        ) {
             return true;
         }

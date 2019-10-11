@@ -88,6 +88,23 @@ trait Resourceable {
     */
 
     /**
+     * Get the resource search fields as array.
+     *
+     * @return string
+     */
+    public static function searchFields() : string
+    {
+        $class = static::resourceClassPath();
+
+        //Get the search fields from the table
+        $searchFields = $class::$search;
+
+        return count($searchFields) > 0
+            ? collect($searchFields)->implode(',')
+            : '';
+    }
+
+    /**
      * Get the resource $downloable variable.
      *
      * @return string
@@ -166,8 +183,6 @@ trait Resourceable {
 
         //ClassName
         $className = static::resource();
-
-        dd($this->resourceValues($className));
 
         return collect([
             'name'             => $className,
