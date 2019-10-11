@@ -31,9 +31,11 @@ trait Resourceable {
      *
      * @return string
      */
-    public static function resourceClassPath() : string
+    public static function resourceClassPath($className = null) : string
     {
-        return '\\App\\Belich\\Resources\\' . static::className();
+        $class = $className ?? static::className();
+
+        return '\\App\\Belich\\Resources\\' . static::classFormat($class);
     }
 
     /**
@@ -261,6 +263,12 @@ trait Resourceable {
      */
     private function resourceValues($className, $forNavigation = false)
     {
+        //Get class name from request or from live search
+        $className = static::requestFromSearch()
+            ? static::className()
+            : $className;
+
+        //Get the class path
         $class = static::resourceClassPath($className);
 
         //If a resource is not accessible then cannot be listed in a menu
