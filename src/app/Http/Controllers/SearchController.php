@@ -3,7 +3,8 @@
 namespace Daguilarm\Belich\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Daguilarm\Belich\App\Http\Requests\SearchRequest;
+use Daguilarm\Belich\Core\Belich;
 
 class SearchController extends Controller
 {
@@ -13,8 +14,13 @@ class SearchController extends Controller
      * @param Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function __invoke(SearchRequest $request, Belich $belich)
     {
-        return response()->json(['searching...']);
+        dd($belich->currentResource($request));
+
+        // //Get all the data
+        // $request = $request->data($belich, $request);
+
+        // return response()->json($request);
     }
 }

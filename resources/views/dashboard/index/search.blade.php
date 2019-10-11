@@ -50,9 +50,9 @@
             }
 
             $.ajax({
-                url: "../../../../ajax/search/",
+                url: "{{ route('dashboard.ajax.search') }}",
                 method: 'GET',
-                data: {query:query},
+                data: {query: query, resource: 'users'},
                 dataType: 'json',
                 success: function(data) {
                     // $('tbody').html(data.table_data);

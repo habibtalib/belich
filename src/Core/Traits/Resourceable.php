@@ -31,13 +31,9 @@ trait Resourceable {
      *
      * @return string
      */
-    public static function resourceClassPath($className = null) : string
+    public static function resourceClassPath() : string
     {
-        if($className) {
-            $className = Str::title(Str::singular($className));
-        }
-
-        return '\\App\\Belich\\Resources\\' . ($className ?? static::resourceName());
+        return '\\App\\Belich\\Resources\\' . static::className();
     }
 
     /**
@@ -158,7 +154,7 @@ trait Resourceable {
     public function currentResource(Request $request) : Collection
     {
         //Default values
-        $class = $this->initResourceClass();
+        $class = $this->initResourceClass(request());
 
         //Update the fields
         $updateFields = collect($class->fields($request));
@@ -249,7 +245,7 @@ trait Resourceable {
      */
     private function resourceLabels() : string
     {
-        $initializedClass = $this->initResourceClass();
+        $initializedClass = $this->initResourceClass(request());
 
         return (static::action() === 'index')
             ? $initializedClass::$pluralLabel

@@ -3,8 +3,11 @@
 namespace Daguilarm\Belich\Core\Traits;
 
 use Illuminate\Support\Facades\Request;
+use Daguilarm\Belich\Core\Traits\Searchable;
 
 trait Routeable {
+
+    use Searchable;
 
     /*
     |--------------------------------------------------------------------------
@@ -21,6 +24,11 @@ trait Routeable {
     {
         //Cannot pass directly as reference!!
         $route = static::route();
+
+        //Search action
+        if(static::requestFromSearch()) {
+            return 'index';
+        }
 
         //Return last item from the array
         return end($route);

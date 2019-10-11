@@ -2,14 +2,14 @@
 
 namespace Daguilarm\Belich\Core;
 
-use Daguilarm\Belich\Core\Traits\{Connectable, Modelable, Operationable, Resourceable, Routeable, Systemable};
+use Daguilarm\Belich\Core\Traits\{Classable, Connectable, Modelable, Operationable, Resourceable, Routeable, Systemable};
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 
 class Belich {
 
-    use Connectable, Modelable, Operationable, Resourceable, Routeable, Systemable;
+    use Classable, Connectable, Modelable, Operationable, Resourceable, Routeable, Systemable;
 
     /** @var string */
     private $request;
@@ -18,7 +18,7 @@ class Belich {
     private $user;
 
     /** @var string */
-    private static $version = '1.0.0';
+    private static $version = '1.0.1';
 
     /**
      * Init the constuctor
@@ -49,11 +49,11 @@ class Belich {
      */
     private function initResourceClass() : object
     {
+        //Set the initial class
         $class = static::resourceClassPath();
 
         return new $class;
     }
-
 
     /*
     |--------------------------------------------------------------------------
@@ -113,4 +113,20 @@ class Belich {
     {
         return app(\Daguilarm\Belich\Fields\FieldResolveIndex::class);
     }
+
+     /*
+     |--------------------------------------------------------------------------
+     | Live search
+     |--------------------------------------------------------------------------
+     */
+
+    /**
+     * Initialize the live search from Belich
+     *
+     * @return \Daguilarm\Fields\FieldResolveIndex
+     */
+     public function search($resource, $query)
+     {
+         return app(\Daguilarm\Belich\Fields\LiveSearch::class);
+     }
 }
