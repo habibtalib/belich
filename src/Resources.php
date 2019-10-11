@@ -52,6 +52,9 @@ abstract class Resources {
     /** @var array */
     public static $softDeletes = false;
 
+    /** @var array */
+    public static $search;
+
     /** @var bool [Show with tabs] */
     public static $tabs;
 

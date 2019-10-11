@@ -167,6 +167,8 @@ trait Resourceable {
         //ClassName
         $className = static::resource();
 
+        dd($this->resourceValues($className));
+
         return collect([
             'name'             => $className,
             'controllerAction' => static::action(),
@@ -290,6 +292,7 @@ trait Resourceable {
             'label'                 => $class::$label ?? Str::title($className),
             'pluralLabel'           => $class::$pluralLabel ?? Str::plural(Str::title($className)),
             'resource'              => Str::plural(Str::lower($className)),
+            'search'                => $class::$search,
         ]);
 
         //Advanced values
@@ -301,6 +304,7 @@ trait Resourceable {
                 'cards'               => $class::cards(request()),
                 'model'               => $class::$model,
                 'metrics'             => $class::metrics(request()),
+                'search'              => $class::$search,
             ]);
         }
 
