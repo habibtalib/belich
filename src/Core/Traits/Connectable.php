@@ -29,6 +29,14 @@ trait Connectable {
                 //Add the current resource query
                 ->indexQuery($this->request)
 
+                //Live search
+                ->when(self::requestFromSearch(), function($query) {
+                    //Get the results
+                    foreach (self::requestTableFields() as $field) {
+                        $query->orWhere($field, 'LIKE', '%' . $this->request->query('query') . '%');
+                    }
+                })
+
                 //Order query
                 ->when(!empty($order) && !empty($direction), function ($query) use ($direction, $order) {
                     return $query->orderBy($order, $direction);
