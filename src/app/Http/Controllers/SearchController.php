@@ -16,11 +16,9 @@ class SearchController extends Controller
      */
     public function __invoke(SearchRequest $request, Belich $belich)
     {
-        dd($belich->currentResource($request)->get('results')->all());
+        //Get all the data
+        $request = $request->data($belich, $request);
 
-        // //Get all the data
-        // $request = $request->data($belich, $request);
-
-        // return response()->json($request);
+        return response()->json(view('belich::dashboard.index.table', compact('request'))->render());
     }
 }

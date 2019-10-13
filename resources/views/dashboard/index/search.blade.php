@@ -45,9 +45,9 @@
         function liveSearch(query = '')
         {
             //Min. search filter
-            if(query.length < 2) {
-                return;
-            }
+            // if(query.length < 2 || (!isNaN(query) && query.length ==)) {
+            //     return;
+            // }
 
             $.ajax({
                 url: "{{ route('dashboard.ajax.search') }}",
@@ -60,9 +60,7 @@
                 },
                 dataType: 'json',
                 success: function(data) {
-                    // $('tbody').html(data.table_data);
-                    // $('#total_records').text(data.total_data);
-                    console.log(data);
+                    $('#tableContainer').html(data);
                 }
             })
         }

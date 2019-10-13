@@ -22,6 +22,11 @@ trait Resourceable {
      */
     public static function resource() : string
     {
+        //Search action
+        if(static::requestFromSearch()) {
+            return stringPluralLower(request()->query('resourceName'));
+        }
+
         //Return middle item from the array
         return static::route()[1];
     }
