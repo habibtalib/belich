@@ -3,38 +3,42 @@
     {{-- Set button icon --}}
     @icon('cogs', '', 'opacity-100')
 
-    {{-- Start with form --}}
-    <form method="POST" action="{{ route('dashboard.users.settings') }}" name="belich-form-options" id="belich-form-options" dusk="dusk-form-options" class="btn-dropdown-content right-0 rounded-lg border border-gray-500 shadow text-gray-600 text-left bg-white">
-        @csrf
+    <div class="btn-dropdown-content">
+        <div class="btn-dropdown-content-item rounded-lg border border-gray-500 shadow text-gray-600 text-left bg-white">
+            {{-- Start with form --}}
+            <form method="POST" action="{{ route('dashboard.users.settings') }}" name="belich-form-options" id="belich-form-options" dusk="dusk-form-options">
+                @csrf
 
-        {{-- Per page component --}}
-        <belich::options field="perPage" css="rounded-t-lg" :text="trans('belich::default.perPage')">
-            <slot name="options">
-                {!! createFormSelectOptions([10, 20, 30, 50, 100, 200, 300, 500], 'perPage') !!}
-            </slot>
-        </belich::options>
-
-        {{-- Trashed component --}}
-        @can('withTrashed', $request->autorizedModel)
-            {{-- If the model has softdelete --}}
-            @hasSoftdelete($request->autorizedModel)
-                <belich::options field="withTrashed" css="rounded-t-lg" :text="trans('belich::default.trashed')">
+                {{-- Per page component --}}
+                <belich::options field="perPage" css="rounded-t-lg" :text="trans('belich::default.perPage')">
                     <slot name="options">
-                        {!! createFormSelectOptions([
-                            'none' => trans('belich::default.none'),
-                            'all'  => trans('belich::default.all'),
-                            'only' => trans('belich::default.trashedOnly'),
-                        ], 'withTrashed') !!}
+                        {!! createFormSelectOptions([10, 20, 30, 50, 100, 200, 300, 500], 'perPage') !!}
                     </slot>
                 </belich::options>
-            @endif
-        @endcan
 
-        {{-- Submit buttons --}}
-        <div class="float-right p-2 mb-2">
-            <button type="submit" class="btn btn-default" onclick="loading(this);">
-                {!! icon('redo-alt', trans('belich::buttons.base.configure')) !!}
-            </button>
+                {{-- Trashed component --}}
+                @can('withTrashed', $request->autorizedModel)
+                    {{-- If the model has softdelete --}}
+                    @hasSoftdelete($request->autorizedModel)
+                        <belich::options field="withTrashed" :text="trans('belich::default.trashed')">
+                            <slot name="options">
+                                {!! createFormSelectOptions([
+                                    'none' => trans('belich::default.none'),
+                                    'all'  => trans('belich::default.all'),
+                                    'only' => trans('belich::default.trashedOnly'),
+                                ], 'withTrashed') !!}
+                            </slot>
+                        </belich::options>
+                    @endif
+                @endcan
+
+                {{-- Submit buttons --}}
+                <div class="w-full flex flex-row-reverse p-2 mb-2">
+                    <button type="submit" class="btn btn-default" onclick="loading(this);">
+                        {!! icon('redo-alt', trans('belich::buttons.base.configure')) !!}
+                    </button>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>

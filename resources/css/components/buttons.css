@@ -75,11 +75,15 @@
 }
 
 .btn-dropdown-content {
-    @apply z-10 absolute opacity-0 w-64 mt-4 hidden;
+    @apply z-10 absolute right-0 opacity-0 w-64 hidden;
     transition: var(--transition)
 }
 
 .btn-dropdown:hover .btn-dropdown-content {
-    @apply z-40 opacity-100 visible block;
+    @apply z-40 opacity-100 visible block overflow-visible;
     transition-delay: var(--transition-delay)
+}
+
+.btn-dropdown-content-item {
+    @apply mt-4;
 }
