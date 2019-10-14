@@ -1,13 +1,4 @@
 /**
- * We'll load jQuery and the Bootstrap jQuery plugin which provides support
- * for JavaScript based Bootstrap features such as modals and tabs. This
- * code may be modified to fit the specific needs of your application.
- */
-try {
-    window.$ = window.jQuery = require('jquery');
-} catch (e) {}
-
-/**
  * Jquery automatically handles sending the CSRF token as a header based on
  * the value of the "XSRF" token cookie.
  */
@@ -16,10 +7,3 @@ try {
          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
      }
  });
-
- /**
-  * Now we will load the JavaScript Jquery dependency.
-  * It is a great starting point when
-  * building robust, powerful web applications using Jquery and Laravel.
-  */
- //require('./components/jquery/defaults.js')

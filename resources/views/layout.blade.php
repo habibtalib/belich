@@ -33,14 +33,11 @@
                 </section>
             </div>
 
-            {{-- Include footer --}}
-            @includeIf('belich::partials.footer')
-
             {{-- Add modals --}}
             @stack('modals')
         </div>
 
-        {{-- Javascript and libs --}}
-        @includeWhen(auth()->check(), 'belich::dashboard.headers.scripts')
+        {{-- Include footer --}}
+        @include('belich::dashboard.footer.default')
     </body>
 </html>

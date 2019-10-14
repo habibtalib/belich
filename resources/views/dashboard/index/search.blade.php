@@ -39,37 +39,3 @@
     {{-- End right container --}}
 </div>
 {{-- End search container --}}
-
-@push('jquery')
-    <script>
-        function liveSearch(query = '')
-        {
-            //Min. search filter
-            // if(query.length < 2 || (!isNaN(query) && query.length ==)) {
-            //     return;
-            // }
-
-            $.ajax({
-                url: "{{ route('dashboard.ajax.search') }}",
-                method: 'GET',
-                data: {
-                    query: query,
-                    resourceName: '{{ Belich::resourceName() }}',
-                    type: 'search',
-                    fields: '{{ Belich::searchFields() }}'
-                },
-                dataType: 'json',
-                success: function(data) {
-                    $('#tableContainer').html(data);
-                }
-            })
-        }
-
-        $(function() {
-            $(document).on('keyup', '#_search', function(event) {
-                event.preventDefault();
-                liveSearch($(this).val());
-            });
-        });
-    </script>
-@endpush
