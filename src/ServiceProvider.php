@@ -126,6 +126,18 @@ class ServiceProvider extends Provider {
             //Set the resources
             __DIR__ . '/stubs/routes.stub' => base_path('app/Belich/Routes.php'),
         ]);
+
+        //Publish the belich default resource: User
+        $this->publishes([
+            //Set the resources
+            __DIR__ . '/stubs/defaults/user_resource.stub' => base_path('app/Belich/Resources/User.php'),
+        ]);
+
+        //Publish the belich default policy: User
+        $this->publishes([
+            //Set the resources
+            __DIR__ . '/stubs/defaults/user_policy.stub' => base_path('app/Policies/UserPolicy.php'),
+        ]);
     }
 
     /**
