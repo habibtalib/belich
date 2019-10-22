@@ -28,7 +28,7 @@ trait Resourceable {
         }
 
         //Return middle item from the array
-        return static::route()[1];
+        return static::route()[1] ?? '';
     }
 
     /**

@@ -2,18 +2,19 @@
 <html lang="{{ app()->getLocale() }}" class="h-full font-sans antialiased">
     <head>
         {{-- Meta-tags --}}
-        @include('belich::dashboard.headers.metatags')
+        @include('belich::partials.headers.metatags')
 
         {{-- Title --}}
         <title>{{ config('app.name') }}</title>
 
         {{-- Styles --}}
-        @include('belich::dashboard.headers.styles')
+        @include('belich::partials.headers.styles')
 
         {{-- Add Font-awesome --}}
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
             integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
             crossorigin="anonymous"
+            turbolinks-track="true"
         >
     </head>
     <body>
@@ -38,6 +39,6 @@
         </div>
 
         {{-- Include footer --}}
-        @include('belich::dashboard.footer.default')
+        @include('belich::partials.footer.default')
     </body>
 </html>

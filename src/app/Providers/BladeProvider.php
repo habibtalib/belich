@@ -60,6 +60,17 @@ Blade::directive('listTextFromArray', function ($arguments) {
 });
 
 /**
+ * Create a Blade if directive for @hasMetrics
+ * Check if a request has a metric to show
+ *
+ * @return string
+ */
+Blade::if('hasMetrics', function ($request) {
+    //App\Http\Helpers\Blade.php
+    return hasMetrics($request);
+});
+
+/**
  * Create a Blade if directive for @hasSoftdelete
  * Check if a model has the softdelete trait
  *
@@ -87,11 +98,14 @@ Blade::if('hasSoftdeletedResults', function ($model) {
  * @return string
  */
 Blade::directive('mix', function ($arguments) {
+
+    $path = mix('/vendor/belich/' . str_replace("'", '', $arguments));
+
     if (Str::endsWith($arguments, ".css'")) {
-        return '<link rel="stylesheet" href="<?php echo mix('.$arguments.', \'vendor/belich\') ?>">';
+        return '<link rel="stylesheet" href="' . $path . '" media="all">';
     }
     if (Str::endsWith($arguments, ".js'")) {
-        return '<script src="<?php echo mix('.$arguments.', \'vendor/belich\') ?>"></script>';
+        return '<script src="' . $path . '"></script>';
     }
 
     return "<?php echo mix({$arguments}); ?>";

@@ -113,20 +113,4 @@ class Belich {
     {
         return app(\Daguilarm\Belich\Fields\FieldResolveIndex::class);
     }
-
-     /*
-     |--------------------------------------------------------------------------
-     | Live search
-     |--------------------------------------------------------------------------
-     */
-
-    /**
-     * Initialize the live search from Belich
-     *
-     * @return \Daguilarm\Fields\FieldResolveIndex
-     */
-     public function search($resource, $query)
-     {
-         return app(\Daguilarm\Belich\Fields\LiveSearch::class);
-     }
 }

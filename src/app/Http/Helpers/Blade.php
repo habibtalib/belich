@@ -70,8 +70,8 @@ if (!function_exists('hideMetricsForScreens')) {
  * @param object $request
  * @return bool
  */
-if (!function_exists('hasMetric')) {
-    function hasMetric($request) : bool
+if (!function_exists('hasMetrics')) {
+    function hasMetrics($request) : bool
     {
         return optional($request)->metrics
             ? count($request->metrics) > 0

@@ -22,6 +22,11 @@ trait Searchable {
     {
         $class = static::resourceClassPath();
 
+        //Stop search if the resource not exists
+        if (!class_exists($class)) {
+            return '';
+        }
+
         //Get the search fields from the table
         $searchFields = $class::$search;
 

@@ -11,10 +11,9 @@
         }
     ],
     "require": {
-        "php": ">=7.2",
-        "matthiasmullie/minify": "dev-master",
         "rap2hpoutre/fast-excel": "dev-master",
-        "spatie/laravel-blade-x": "^2.0.0"
+        "spatie/laravel-blade-x": "^2.0.0",
+        "matthiasmullie/minify": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "^7.4@dev"
