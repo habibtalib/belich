@@ -31,6 +31,10 @@ trait Connectable {
 
                 //Live search
                 ->when(self::requestFromSearch(), function($query) {
+                    //No results
+                    if($this->request->query('query') === 'resetSearch') {
+                        return $query;
+                    }
                     //Get the results
                     foreach (self::requestTableFields() as $field) {
                         $query->orWhere($field, 'LIKE', '%' . $this->request->query('query') . '%');
