@@ -4,7 +4,7 @@
 }
 
     .pagination li.page-item {
-        @apply block px-5 py-4 text-lg;
+        @apply block px-5 py-4 text-xl;
         color: var(--pagination-disabled);
     }
 

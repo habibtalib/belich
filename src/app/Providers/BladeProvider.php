@@ -99,7 +99,7 @@ Blade::if('hasSoftdeletedResults', function ($model) {
  */
 Blade::directive('mix', function ($arguments) {
 
-    $path = mix('/vendor/belich/' . str_replace("'", '', $arguments));
+    $path = mix('/vendor/belich/' . str_replace("'", '', $arguments) . '?v=' . Str::random(20));
 
     if (Str::endsWith($arguments, ".css'")) {
         return '<link rel="stylesheet" href="' . $path . '" media="all">';
