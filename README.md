@@ -18,7 +18,7 @@ Project in development. Still in the early stages...help will be great!!!
 
 ## Requirements
 
-- PHP 7.2
+- PHP 7.3
 - Laravel 6.x
 
 ## Instalation (not yet...)
@@ -46,6 +46,7 @@ Project in development. Still in the early stages...help will be great!!!
 - Cache.
 - Minify HTML (with filters by pages and Controller actions): https://github.com/nckg/laravel-minify-html
 - Metrics using: https://gionkunz.github.io/chartist-js/index.html a lightweight library for charts.
+- Life search from index with custom fields.
 
 ### Casting the fields before storage
 
@@ -139,7 +140,6 @@ At the moment, Belich only has this type of charts:
 
 ## TODO
 
-- Redesign the front-end with all the lesson from: https://refactoringui.com/
 - Refactoring all the code, because I am just writting code...
 - Complete the fields types:
     + DependsOn fields
@@ -147,5 +147,4 @@ At the moment, Belich only has this type of charts:
 - Create the relationship fields.
 - Writting test... I know but...
 - Preset cards.
-- Index search.
 ...
