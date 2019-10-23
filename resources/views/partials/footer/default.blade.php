@@ -79,10 +79,11 @@
             //Reset value
             document.getElementById('_search').value = '';
 
-            liveSearch('resetSearch');
-
             //Hide icon
             onSelection('#icon-search-reset', 'hide');
+
+            //Reset search
+            liveSearch('resetSearchAll');
         }
 
          /*
@@ -176,6 +177,12 @@
          Description: Live search
          */
         function liveSearch(query = '') {
+
+            //Hide icon
+            if(query.length === 0) {
+                onSelection('#icon-search-reset', 'hide');
+            }
+
             //Min. search filter
             if(query.length < minSearch) {
                 return;
@@ -252,22 +259,6 @@
             //Set current tab
             currentTab = key;
         }
-
-        /*
-        Section: Form
-        Description: Limit decimal in inputs
-        Example: <input class="fixed" type="text" decimals="2" />
-        */
-        var floatInputs = document.querySelectorAll('.float');
-
-        floatInputs.forEach(function(element) {
-            element.addEventListener('input', function() {
-                var decimals = element.getAttribute('decimals');
-                var regex = new RegExp('(\\.\\d{' + decimals + '})\\d+', 'g');
-                element.value = element.value.replace(regex, '$1');
-            });
-        });
-
     </script>
 
     {{-- User custom javascript --}}

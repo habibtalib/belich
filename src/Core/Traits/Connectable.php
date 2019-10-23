@@ -32,7 +32,7 @@ trait Connectable {
                 //Live search
                 ->when(self::requestFromSearch(), function($query) {
                     //No results
-                    if($this->request->query('query') === 'resetSearch') {
+                    if($this->request->query('query') === 'resetSearchAll') {
                         return $query;
                     }
                     //Get the results
