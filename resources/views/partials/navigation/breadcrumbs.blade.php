@@ -5,12 +5,12 @@
             {{-- Links --}}
             @if($label && $url)
                 <li>
-                    <a href="{{ $url }}" class="text-teal-600 font-medium underline">{{ $label }}</a>
+                    <a href="{{ $url }}" class="text-teal-600 font-medium underline" dusk="breadcrumbs-{{ strtolower($label) }}">{{ $label }}</a>
                 </li>
 
             {{-- Current --}}
             @else
-                <li class="text-gray-600">{{ $label }}</li>
+                <li class="text-gray-600" dusk="breadcrumbs-{{ strtolower($label) }}">{{ $label }}</li>
             @endif
 
             {{-- Set separator --}}
