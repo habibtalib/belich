@@ -29,6 +29,10 @@ Project in development. Still in the early stages...help will be great!!!
 
 `php artisan vendor:publish --provider="Daguilarm\Belich\BelichServiceProvider"`
 
+## Test
+
+All the tests are in https://github.com/daguilarm/belich-dashboard
+
 ## Features 
 
 - Sidebar or topbar from the `config` file.
