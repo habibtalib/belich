@@ -11,18 +11,21 @@
         }
     ],
     "require": {
+        "php" : "^7.2",
         "rap2hpoutre/fast-excel": "dev-master",
         "spatie/laravel-blade-x": "^2.0.0",
         "matthiasmullie/minify": "dev-master"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^7.4@dev"
     },
     "autoload": {
         "psr-4": {
             "Daguilarm\\Belich\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+          "Daguilarm\\Belich\\Tests\\": "tests/"
+        }
+      },
     "extra": {
         "laravel": {
             "providers": [
