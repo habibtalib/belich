@@ -125,5 +125,17 @@ return [
     |
     | Define the minimum number of characters for start a live search
     */
-    'minSearch' => 2,
+    'liveSearch' => [
+        'enable' => true,
+        'minChars' => 2,
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Turbolinks
+    |--------------------------------------------------------------------------
+    |
+    | Enable or disable turbolinks from Belich
+    */
+    'turbolinks' => true,
 ];

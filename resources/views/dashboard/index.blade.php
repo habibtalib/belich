@@ -14,9 +14,11 @@
     {{-- Search container --}}
     {{-- input: search field --}}
     {{-- buttons: options, export, delete,... --}}
-    <div id="search-container" class="p-4 shadow-md bg-gray-100">
-        @include('belich::dashboard.index.search')
-    </div>
+    @if(config('belich.liveSearch.enable') === true)
+        <div id="search-container" class="p-4 shadow-md bg-gray-100">
+            @include('belich::dashboard.index.search')
+        </div>
+    @endif
 
     {{-- Table --}}
     {{-- Pagination --}}
