@@ -1,9 +1,10 @@
 @push('javascript')
+    {{-- Include all the forms js --}}
     @mix('vendor/belich/sections/forms.js')
 
     <script>
         {{-- Custom jquery --}}
-        $(function() {
+        document.addEventListener('DOMContentLoaded', function(event) {
             /*
             Section: Form
             Description: Limit decimal in inputs
