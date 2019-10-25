@@ -36,9 +36,16 @@
     @include('belich::dashboard.javascript.index')
 @endpush
 
+{{-- Added the minimum css possible --}}
+@hasMetrics($request ?? null)
+    @push('css')
+        {{-- Load the css lib --}}
+        {!! Chart::assets('css') !!}
+    @endpush
+@endif
+
 {{-- Added the modals --}}
 @push('modals')
-
     {{-- Modal component: delete item --}}
     <belich::modal form="true" id="item-delete" background="red-500" action="#" :request="$request" :header="icon('exclamation-triangle', trans('belich::messages.delete.item.title'))">
 
