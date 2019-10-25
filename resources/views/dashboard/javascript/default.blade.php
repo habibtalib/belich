@@ -5,7 +5,7 @@
     window.minSearch = {{ config('belich.liveSearch.minChars') ?? 1 }};
     window.message_chart_left = '{{ trans('belich::forms.chart_left') }}';
     window.liveSearchRoute = '{{ route('dashboard.ajax.search') }}';
-    window.liveSearchResource = '{{ Belich::resourceName() }}';
+    window.resourceName = '{{ Belich::resourceName() }}';
     window.liveSearchFields = '{{ Belich::searchFields() }}';
 
     /**
@@ -183,20 +183,15 @@
             return;
         }
 
-        $.ajax({
-            url: "{{ route('dashboard.ajax.search') }}",
-            method: 'GET',
-            data: {
-                query: query,
-                resourceName: '{{ Belich::resourceName() }}',
-                type: 'search',
-                fields: '{{ Belich::searchFields() }}'
-            },
-            dataType: 'json',
-            success: function(data) {
-                document.getElementById('tableContainer').innerHTML = data;
+        var request = new XMLHttpRequest();
+        request.open('GET', '{{ route('dashboard.ajax.search') }}?type=search&query=' + query + '&resourceName={{ Belich::resourceName() }}&fields={{ Belich::searchFields() }}', true);
+
+        request.onload = function() {
+            if (this.status >= 200 && this.status < 400) {
+                document.getElementById('tableContainer').innerHTML = JSON.parse(this.response);
             }
-        })
+        };
+        request.send();
     }
 
     /**

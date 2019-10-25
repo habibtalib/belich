@@ -24,11 +24,11 @@
                 Section: Search
                 Description: Live search
                 */
-                if($('#_search')) {
-                    $('#_search').on('keyup', function(event) {
-                        event.preventDefault();
-                        liveSearch($(this).val());
-                    });
+                if(document.getElementById('_search')) {
+                    document.getElementById('_search')
+                        .addEventListener('keyup', function(event) {
+                            liveSearch($(this).val());
+                        });
                 }
             });
         </script>
