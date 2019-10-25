@@ -24,29 +24,35 @@
 
         {{-- Bottom container --}}
         <belich::bottom>
-            {{-- Button: create --}}
             <slot name="button">
-                <belich::button
-                    :title="icon('plus')"
-                    :url="Belich::actionRoute('create')"
-                    class="mr-2"
-                    color="icon"
-                    loading
-                />
+                {{-- Button: create --}}
+                @can('create', $request->autorizedModel)
+                    <belich::button
+                        :title="icon('plus')"
+                        :url="Belich::actionRoute('create')"
+                        class="mr-2"
+                        color="icon"
+                        loading
+                    />
+                @endcan
                 {{-- Button: show --}}
-                <belich::button
-                    :title="icon('eye')"
-                    :url="Belich::actionRoute('show', $request->id)"
-                    color="icon"
-                    loading
-                />
+                @can('view', $request->autorizedModel)
+                    <belich::button
+                        :title="icon('eye')"
+                        :url="Belich::actionRoute('show', $request->id)"
+                        color="icon"
+                        loading
+                    />
+                @endcan
                 {{-- Button: edit --}}
-                <belich::button
-                    id="button-form-edit"
-                    type="button"
-                    color="primary"
-                    :title="icon('edit', trans('belich::buttons.crud.update'))"
-                />
+                @can('update', $request->autorizedModel)
+                    <belich::button
+                        id="button-form-edit"
+                        type="button"
+                        color="primary"
+                        :title="icon('edit', trans('belich::buttons.crud.update'))"
+                    />
+                @endcan
             </slot>
         </belich::bottom>
     </form>

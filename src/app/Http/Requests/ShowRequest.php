@@ -20,10 +20,11 @@ class ShowRequest extends FormRequest
 
         //Add values to request
         $this->merge([
-            'breadcrumbs' => data_get($data, 'values.breadcrumbs'),
-            'fields'      => data_get($data, 'fields')->groupBy('panels'),
-            'id'          => $id,
-            'name'        => data_get($data, 'name'),
+            'autorizedModel'    => $belich::getModel(),
+            'breadcrumbs'       => data_get($data, 'values.breadcrumbs'),
+            'fields'            => data_get($data, 'fields')->groupBy('panels'),
+            'id'                => $id,
+            'name'              => data_get($data, 'name'),
         ]);
 
         return $this;

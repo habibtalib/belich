@@ -20,22 +20,26 @@
     {{-- Bottom container --}}
     {{-- Just empty because there is no button... --}}
     <belich::bottom>
-        {{-- Button: create --}}
         <slot name="button">
-            <belich::button
-                :title="icon('plus')"
-                :url="Belich::actionRoute('create')"
-                class="mr-2"
-                color="icon"
-                loading
-            />
+            {{-- Button: create --}}
+            @can('create', $request->autorizedModel)
+                <belich::button
+                    :title="icon('plus')"
+                    :url="Belich::actionRoute('create')"
+                    class="mr-2"
+                    color="icon"
+                    loading
+                />
+            @endcan
             {{-- Button: edit --}}
-            <belich::button
-                :title="icon('edit')"
-                :url="Belich::actionRoute('edit', $request->id)"
-                color="icon"
-                loading
-            />
+            @can('update', $request->autorizedModel)
+                <belich::button
+                    :title="icon('edit')"
+                    :url="Belich::actionRoute('edit', $request->id)"
+                    color="icon"
+                    loading
+                />
+            @endcan
         </slot>
     </belich::bottom>
 @endsection
