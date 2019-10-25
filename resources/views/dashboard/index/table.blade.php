@@ -47,8 +47,8 @@
             {{-- No results --}}
             @empty
                 <tr>
-                    <td colspan="{{ $request->total }}" class="text-center">
-                        {{ trans('belich::messages.resources.no_results') }}
+                    <td colspan="{{ $request->total }}" class="text-center p-4 text-lg">
+                        {{ trans('belich::messages.resources.no_results', ['resource' => strtoupper(Belich::resource())]) }}
                     </td>
                 </tr>
             @endforelse
