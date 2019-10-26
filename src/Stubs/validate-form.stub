@@ -1,6 +1,6 @@
 <script>
     //Validate the form fields and show error messages
-    function validateFields(button, url, request) {
+    function validateFields(form, button, url, request) {
         var ajaxResponse = window.responseAjaxRequest(request);
         //Ajax response
         fetch(url, ajaxResponse).then(response => {
@@ -16,10 +16,10 @@
                 }
                 //Set the errors
                 if(validationErrors) {
-                    window.validationErrorMessage(button, validationErrors);
+                    window.validationErrorMessage(form, button, validationErrors);
                 //Submit form
                 } else {
-                    window.submitForm(button);
+                    form.submit();
                 }
             });
     }
@@ -35,7 +35,7 @@
     }
 
     //Show all the error messages
-    function validationErrorMessage(button, errors) {
+    function validationErrorMessage(form, button, errors) {
         //Restore button title
         button.innerHTML = button.getAttribute('data-title');
         //Show errors if...
@@ -46,10 +46,11 @@
 
     //The validation event
     document.addEventListener('DOMContentLoaded', function(event) {
-        //Define button
-        var button = document.querySelector( '#form-:resource-:action #button-form-:action' );
+        //Define container
+        var belichForm = document.getElementById('form-:resource-:action');
+        var belichButton = document.getElementById('button-form-:action');
         //Handle click event
-        button.addEventListener('click', function(event) {
+        belichButton.addEventListener('click', function(event) {
             //Stop propagation
             event.preventDefault();
             //Start loading...
@@ -64,9 +65,9 @@
             var validationUrl = ':validationRuoute';
             //Check for browser support
             if(browserSupportsFetch()) {
-                validateFields(button, validationUrl, validationResquest)
+                validateFields(belichForm, belichButton, validationUrl, validationResquest)
             } else {
-                loadScript('/vendor/belich/fetch.min.js', validateFields(button, validationUrl, validationResquest));
+                loadScript('/vendor/belich/fetch.min.js', validateFields(belichForm, belichButton, validationUrl, validationResquest));
             }
         });
     });
