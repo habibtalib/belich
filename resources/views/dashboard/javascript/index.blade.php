@@ -27,7 +27,7 @@
                 if(document.getElementById('_search')) {
                     document.getElementById('_search')
                         .addEventListener('keyup', function(event) {
-                            liveSearch($(this).val());
+                            liveSearch(this.value);
                         });
                 }
             });
