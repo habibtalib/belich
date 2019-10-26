@@ -1,8 +1,9 @@
 <script>
     //Validate the form fields and show error messages
     function validateFields(button, url, request) {
+        var ajaxResponse = window.responseAjaxRequest(request);
         //Ajax response
-        fetch(url, validationRequest(request)).then(response => {
+        fetch(url, ajaxResponse).then(response => {
                 return response.json()
               }).then(data => {
                 //Clear default errors
@@ -11,22 +12,12 @@
                 let validationErrors = Object.entries(data.errors);
                 //Set the errors
                 if(validationErrors) {
-                    validationErrorMessage(button, validationErrors);
+                    window.validationErrorMessage(button, validationErrors);
                 //Submit form
                 } else {
                     button.submit();
                 }
             });
-    }
-
-    //Generate the validation request for AJAX
-    function validationRequest(request) {
-        return {
-            method: 'POST',
-            credentials: 'same-origin',
-            body: request,
-            headers: responseAjaxHeaders()
-        };
     }
 
     //Clear all the remained error messages
@@ -58,7 +49,7 @@
             //Stop propagation
             event.preventDefault();
             //Start loading...
-            loading(this, event);
+            window.loading(this, event);
             //Set the request validation values
             var validationResquest = JSON.stringify({
                 requestValues:{:values},

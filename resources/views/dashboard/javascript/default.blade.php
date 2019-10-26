@@ -13,6 +13,16 @@
     * Ajax javascript methods
     ****************************************
     */
+    //Generate the validation request for AJAX
+    function responseAjaxRequest(request) {
+        return {
+            method: 'POST',
+            credentials: 'same-origin',
+            body: request,
+            headers: responseAjaxHeaders()
+        };
+    }
+
     //Get csrf-token
     function csrfToken() {
         return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -53,7 +63,7 @@
 
     // Loading button
     function submitForm(item) {
-        loading(item);
+        window.loading(item);
         item.closest('form').submit();
     }
 
@@ -90,7 +100,7 @@
            }
        }
         //Toogle buttons
-        checkForSelectedFields();
+        window.checkForSelectedFields();
     }
 
      /*
@@ -100,7 +110,7 @@
     function checkForSelectedFields()
     {
         //Toogle buttons
-        toggleOnSelection('.button-selected', document.querySelectorAll('input[type="checkbox"]:checked.form-index-selector'));
+        window.toggleOnSelection('.button-selected', document.querySelectorAll('input[type="checkbox"]:checked.form-index-selector'));
     }
 
      /*
@@ -113,10 +123,10 @@
         document.getElementById('_search').value = '';
 
         //Hide icon
-        onSelection('#icon-search-reset', 'hide');
+        window.onSelection('#icon-search-reset', 'hide');
 
         //Reset search
-        liveSearch('resetSearchAll');
+        window.liveSearch('resetSearchAll');
     }
 
      /*
@@ -126,7 +136,7 @@
     function showResetSearch()
     {
         if(document.getElementById('_search').value.length > 0) {
-            onSelection('#icon-search-reset', 'show');
+            window.onSelection('#icon-search-reset', 'show');
         }
     }
 
@@ -203,87 +213,5 @@
                 ? elements[i].classList.add('hidden')
                 : elements[i].classList.remove('hidden');
         }
-    }
-
-     /*
-     Section: Search
-     Description: Live search
-     */
-    function liveSearch(query = '') {
-
-        //Hide icon
-        if(query.length === 0) {
-            onSelection('#icon-search-reset', 'hide');
-        }
-
-        //Min. search filter
-        if(query.length < minSearch) {
-            return;
-        }
-
-        var request = new XMLHttpRequest();
-        request.open('GET', '{{ route('dashboard.ajax.search') }}?type=search&query=' + query + '&resourceName={{ Belich::resourceName() }}&fields={{ Belich::searchFields() }}', true);
-
-        request.onload = function() {
-            if (this.status >= 200 && this.status < 400) {
-                document.getElementById('tableContainer').innerHTML = JSON.parse(this.response);
-            }
-        };
-        request.send();
-    }
-
-    /**
-    ****************************************
-    * Form javascript methods
-    ****************************************
-    */
-    /*
-    Section: Form
-    Description: Count textArea Characters.
-    */
-    function textAreaCount(container, id) {
-        document.getElementById('chars-' + id).innerHTML = window.message_chart_left + ": <b>" + (container.maxLength - container.value.length) + "</b>";
-    }
-
-    /*
-    Section: Form
-    Description: Toggle checkbox
-    */
-    function toggleCheckbox(id) {
-        var container = document.getElementById(id);
-        container.value = container.checked == 0 ? 0 : 1;
-    }
-
-    /*
-    Section: Tabs
-    Description: Tabs for forms
-    */
-    function switchTab(id, key) {
-
-        var currentTab;
-
-        // Prevent doubble click
-        if(currentTab === key) {
-            return false;
-        }
-
-        //Close all tabs
-        var elements = document.querySelectorAll('.content');
-        var container = document.getElementById('content_' + id);
-
-        //Hide all the containers
-        for (var i = 0; i < elements.length; i++) {
-            elements[i].classList.add('hidden'), elements[i].classList.remove('block');
-        }
-
-        //Set visible
-        container.classList.remove('hidden'), container.classList.add('block');
-
-        //Add active
-        document.querySelector('.tabs ul li a.active').classList.remove('active');
-        document.getElementById('menu_' + id).classList.add('active');
-
-        //Set current tab
-        currentTab = key;
     }
 </script>
