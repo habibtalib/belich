@@ -6,6 +6,7 @@
             {!! setAttribute($field, 'value') !!}
             {!! $field->render !!}
             maxlength="4"
+            onkeyup="javascript:onlyNumerics(this)"
         >
     </slot>
 </belich::fields>

@@ -8,6 +8,7 @@
             {!! setAttribute($field, 'max') !!}
             {!! setAttribute($field, 'step') !!}
             {!! $field->render !!}
+            onkeyup="javascript:onlyNumerics(this)"
         >
     </slot>
 </belich::fields>

@@ -27,50 +27,41 @@
         Description: Tabs for forms
         */
         function switchTab(id, key) {
-
+            //Default value
             var currentTab;
-
             // Prevent doubble click
-            if(currentTab === key) {
-                return false;
-            }
-
-            //Close all tabs
+            if(currentTab === key) { return false; }
+            //Get all the tabs and containers
             var elements = document.querySelectorAll('.content');
             var container = document.getElementById('content_' + id);
-
             //Hide all the containers
             for (var i = 0; i < elements.length; i++) {
                 elements[i].classList.add('hidden'), elements[i].classList.remove('block');
             }
-
             //Set visible
             container.classList.remove('hidden'), container.classList.add('block');
-
             //Add active
             document.querySelector('.tabs ul li a.active').classList.remove('active');
             document.getElementById('menu_' + id).classList.add('active');
-
             //Set current tab
             currentTab = key;
         }
 
-        {{-- Custom jquery --}}
-        document.addEventListener('DOMContentLoaded', function(event) {
-            /*
-            Section: Form
-            Description: Limit decimal in inputs
-            Example: <input class="fixed" type="text" decimals="2" />
-            */
-            var floatInputs = document.querySelectorAll('.float');
+        //Format number to decimals
+        function setDecimals(item, decimals) {
+            item.value = parseFloat(item.value).toFixed(decimals);
+        }
 
-            floatInputs.forEach(function(element) {
-                element.addEventListener('input', function() {
-                    var decimals = element.getAttribute('decimals');
-                    var regex = new RegExp('(\\.\\d{' + decimals + '})\\d+', 'g');
-                    element.value = element.value.replace(regex, '$1');
-                });
-            });
-        });
+        //Only allow numeric chars from keyword
+        function onlyNumerics(event) {
+            return (
+                event.ctrlKey || event.altKey
+                || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false)
+                || (95<event.keyCode && event.keyCode<106)
+                || (event.keyCode==8) || (event.keyCode==9)
+                || (event.keyCode>34 && event.keyCode<40)
+                || (event.keyCode==46)
+            );
+        }
     </script>
 @endpush
