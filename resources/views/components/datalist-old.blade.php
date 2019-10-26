@@ -1,38 +1,38 @@
-<belich::fields :field="$field">
-    <slot name="input">
+<belich::fields :label="$item->label">
+    <slot name="field">
         {{-- Set the autocomplete (visible) container --}}
         <input
-            id="input-{{ md5($field->attribute) }}"
-            list="list-{{ md5($field->attribute) }}"
+            id="input-{{ md5($item->attribute) }}"
+            list="list-{{ md5($item->attribute) }}"
             type="text"
             value="{{ $value ?? null }}"
-            @if($field->responseArray)
-                onchange="selectDatalist('{{ $field->attribute }}', '{{ md5($field->attribute) }}');"
-            @elseif($field->responseUrl)
-                onkeyup="requestAjax('{{ $field->responseUrl }}', '{{ md5($field->attribute) }}', '{{ $field->minChars }}', '{{ $field->addVars }}');"
-                onchange="selectDatalist('{{ $field->attribute }}', '{{ md5($field->attribute) }}');"
+            @if($item->responseArray)
+                onchange="selectDatalist('{{ $item->attribute }}', '{{ md5($item->attribute) }}');"
+            @elseif($item->responseUrl)
+                onkeyup="requestAjax('{{ $item->responseUrl }}', '{{ md5($item->attribute) }}', '{{ $item->minChars }}', '{{ $item->addVars }}');"
+                onchange="selectDatalist('{{ $item->attribute }}', '{{ md5($item->attribute) }}');"
             @endif
         >
 
         {{-- Hidden container with the value for storage --}}
-        <input type="hidden" {!! $field->render !!} value="{{ $field->value }}">
+        <input type="hidden" {!! $item->render !!} value="{{ $item->value }}">
 
         {{-- Create the data list --}}
-        <datalist id="list-{{ md5($field->attribute) }}">
-            @if($field->responseArray)
-                @foreach($field->responseArray as $value => $text)
-                    <option value="{{ $text }}" data-result="{{ $value }}">{{ $text }}</option>
+        <datalist id="list-{{ md5($item->attribute) }}">
+            @if($item->responseArray)
+                @foreach($item->responseArray as $value => $label)
+                    <option value="{{ $label }}" data-result="{{ $value }}">{{ $label }}</option>
                 @endforeach
             @endif
         </datalist>
 
         {{-- Help container --}}
-        @if($field->help)
-            <div class="help-text">{{ $field->help }}</div>
+        @if($item->help)
+            <div class="help-text">{{ $item->help }}</div>
         @endif
 
         {{-- Error container --}}
-        <p id="error-{{ $field->id }}" class="validation-error"></p>
+        <p id="error-{{ $item->id }}" class="validation-error"></p>
 
         {{-- Cast field --}}
         @include('belich::fields.cast')
@@ -81,7 +81,6 @@
                             var option = document.createElement('option');
                             option.value = item.label;
                             option.setAttribute('data-result', option.value);
-
                             // attach the option to the datalist element
                             container.appendChild(option);
                         });

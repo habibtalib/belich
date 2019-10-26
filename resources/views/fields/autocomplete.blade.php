@@ -1,5 +1,5 @@
 <belich::datalist
-    :item="$field"
+    :field="$field"
     :value="$field->responseArray[$field->value] ?? $field->value ?? null"
 >
 </belich::datalist>
