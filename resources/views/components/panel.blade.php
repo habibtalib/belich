@@ -29,11 +29,12 @@
                 <belich::fields :field="$field" :toField="$toField ?? null">
                     <slot name="input">
 
-                        {{-- Enable or disable html scape --}}
+                        {{-- Show as html --}}
                         @if($field->asHtml)
                             {!! Belich::html()->resolve($field) !!}
+                        {{-- Show as scaped field --}}
                         @else
-                            {{ Belich::html()->resolve($field)}}
+                            {{ Belich::html()->resolve($field) }}
                         @endif
 
                     </slot>

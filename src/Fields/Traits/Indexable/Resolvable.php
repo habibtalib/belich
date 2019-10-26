@@ -4,6 +4,7 @@ namespace Daguilarm\Belich\Fields\Traits\Indexable;
 
 use Daguilarm\Belich\Fields\Field;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 
 trait Resolvable {
 
