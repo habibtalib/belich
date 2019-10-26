@@ -42,7 +42,6 @@ class CrudController extends Controller
     {
         //Authorization
         $this->authorize('viewAny', $this->model);
-
         //Get all the data
         $request = $request->data($belich, $request);
 
@@ -60,7 +59,6 @@ class CrudController extends Controller
     {
         //Authorization
         $this->authorize('create', $this->model);
-
         //Get the data
         $request = $request->data($belich);
 
@@ -77,10 +75,9 @@ class CrudController extends Controller
     {
         //Authorization
         $this->authorize('create', $this->model);
-
         //Handle files
         $request = $request->handleFile();
-
+        //Create file
         $create = $this->model::create($request->all());
 
         return $this->redirectToAction($create, $actionSuccess = 'created', $actionFail = 'creating', $id = $create->id);
@@ -98,7 +95,6 @@ class CrudController extends Controller
     {
         //Authorization
         $this->authorize('view', $this->model);
-
         //Get the data
         $request = $request->data($belich, $id);
 
@@ -115,7 +111,6 @@ class CrudController extends Controller
     public function edit(Belich $belich, $id, EditRequest $request)
     {
         //The autorization happend in Daguilarm\Belich\Fields\FieldValidate
-
         //Get the data
         $request = $request->data($belich, $id);
 
@@ -132,12 +127,10 @@ class CrudController extends Controller
     public function update(UpdateRequest $request, $id)
     {
         //The autorization happend in Daguilarm\Belich\Fields\FieldValidate
-
         $model = $this->model->findOrFail($id);
-
         //Handle files
         $request = $request->handleFile($model);
-
+        //Update files
         $update = $model->update($request->all());
 
         return $this->redirectToAction($update, $actionSuccess = 'updated', $actionFail = 'updating', $id);
@@ -153,7 +146,7 @@ class CrudController extends Controller
     {
         //Authorization
         $this->authorize('delete', $this->model);
-
+        //Delete files
         $delete = $this->model->findOrFail($id)->delete();
 
         return $this->redirectToAction($delete, $actionSuccess = 'deleted', $actionFail = 'deleting', $id);

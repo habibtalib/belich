@@ -16,10 +16,12 @@ trait Fileable {
     {
         $file = $this->request->get('__file');
 
-        return collect($file)
+        $response = collect($file)
             ->map(function($values, $key) use ($model) {
                 return $this->uploadFile($key, $model, $values);
             });
+
+        return $this->request;
     }
 
     /**
@@ -37,13 +39,13 @@ trait Fileable {
 
         //Upload the file
         if(is_object($file)) {
-            return $this->storeFile($attribute, $file, $model, $values);
+            $this->storeFile($attribute, $file, $model, $values);
         }
 
-        //Keep the current file if not updated...
-        if(is_object($model)) {
-            return $this->request->{$attribute} = $model->{$attribute};
-        }
+        //Keep the current file if not updated or change...
+        $this->request->add([
+            $attribute => is_null($file) ? $model->{$attribute} : $this->request->{$attribute}
+        ]);
     }
 
     /**
