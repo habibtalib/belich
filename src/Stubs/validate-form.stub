@@ -9,13 +9,17 @@
                 //Clear default errors
                 validationClearDefaultErrors();
                 //Errors from validation
-                let validationErrors = Object.entries(data.errors);
+                if(typeof data.errors === 'object') {
+                    var validationErrors = Object.entries(data.errors);
+                } else {
+                    var validationErrors;
+                }
                 //Set the errors
                 if(validationErrors) {
                     window.validationErrorMessage(button, validationErrors);
                 //Submit form
                 } else {
-                    button.submit();
+                    window.submitForm(button);
                 }
             });
     }
