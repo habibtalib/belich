@@ -36,7 +36,9 @@
     </form>
 @endsection
 
-{{-- Javascript from packages --}}
+{{-- Added the minimum javascript possible --}}
 @push('javascript')
+    @include('belich::dashboard.javascript.forms')
+    {{-- Server side javascript --}}
     {!! $request->javascript !!}
 @endpush
