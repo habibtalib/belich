@@ -1,9 +1,12 @@
 <footer>
-    {{-- Load the vendor's scripts from webpack --}}
-    @mix('app.js')
+    {{-- Load the vendor's scripts from webpack: you can load all the dependecies you need --}}
+    {{-- @mix('app.js') --}}
 
-    {{-- Load all the custom js --}}
+    {{-- Load all the default js --}}
     @include('belich::dashboard.javascript.default')
+
+    {{-- Belich custom page javascript --}}
+    @stack('javascript')
 
     {{-- Javascript metrics --}}
     @hasMetrics($request ?? null)

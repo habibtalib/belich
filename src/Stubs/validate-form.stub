@@ -1,33 +1,78 @@
-<script type="text/javascript">
-     $( document ).ready(function() {
-        $( '#form-:resource-:action #button-form-:action' ).on( 'click', function( event ) {
+<script>
+    //Validate the form fields and show error messages
+    function validateFields(button, url, request) {
+        //Ajax response
+        fetch(url, validationRequest(request)).then(response => {
+                return response.json()
+              }).then(data => {
+                //Clear default errors
+                validationClearDefaultErrors();
+                //Errors from validation
+                let validationErrors = Object.entries(data.errors);
+                //Set the errors
+                if(validationErrors) {
+                    validationErrorMessage(button, validationErrors);
+                //Submit form
+                } else {
+                    button.submit();
+                }
+            });
+    }
+
+    //Generate the validation request for AJAX
+    function validationRequest(request) {
+        return {
+            method: 'POST',
+            credentials: 'same-origin',
+            body: request,
+            headers: responseAjaxHeaders()
+        };
+    }
+
+    //Clear all the remained error messages
+    function validationClearDefaultErrors() {
+        //Get default error messages
+        let defaultErrors = document.querySelectorAll('.validation-error');
+        //Reset all the error messages
+        if(defaultErrors) {
+            defaultErrors.innerHTML = '';
+        }
+    }
+
+    //Show all the error messages
+    function validationErrorMessage(button, errors) {
+        //Restore button title
+        button.innerHTML = button.getAttribute('data-title');
+        //Show errors if...
+        errors.forEach( function(value) {
+            document.querySelector( '#error-' + value[0] ).innerHTML = value[1];
+        });
+    }
+
+    //The validation event
+    document.addEventListener('DOMContentLoaded', function(event) {
+        //Define button
+        var button = document.querySelector( '#form-:resource-:action #button-form-:action' );
+        //Handle click event
+        button.addEventListener('click', function(event) {
             //Stop propagation
             event.preventDefault();
-            //Define button
-            var button = $( '#form-:resource-:action #button-form-:action' );
             //Start loading...
             loading(this, event);
-
-            $.ajax({
-                url: ':validationRuoute',
-                method: 'post',
-                data: {
-                    :values, validationRules::validationRules, validationAttributes::validationAttributes
-                },
-                success: function(data) {
-                    $( ".validation-error" ).html( '' );
-                    if(data.errors) {
-                        //Restore button title
-                        button.html(button.data('title'));
-                        //Send errors
-                        $.each(data.errors, function( key, value ) {
-                            $( '#error-' + key ).html( value );
-                        });
-                    } else {
-                        $( '#form-:resource-:action' ).submit();
-                    }
-                },
+            //Set the request validation values
+            var validationResquest = JSON.stringify({
+                requestValues:{:values},
+                requestRules::validationRules,
+                requestAttributes::validationAttributes
             });
+            //Get the url
+            var validationUrl = ':validationRuoute';
+            //Check for browser support
+            if(browserSupportsFetch()) {
+                validateFields(button, validationUrl, validationResquest)
+            } else {
+                loadScript('/vendor/belich/fetch.min.js', validateFields(button, validationUrl, validationResquest));
+            }
         });
     });
 </script>

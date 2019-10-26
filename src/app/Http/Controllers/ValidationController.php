@@ -18,12 +18,9 @@ class ValidationController extends Controller
     public function __invoke(Request $request)
     {
         //Define the request variables
-        $requestRules = $request->validationRules ?? [];
-        $requestAttributes = $request->validationAttributes;
-        $requestValues = $request->except([
-            'validationRules',
-            'validationAttributes'
-        ]);
+        $requestRules = $request->requestRules ?? [];
+        $requestAttributes = $request->requestAttributes;
+        $requestValues = $request->requestValues;
 
         //Do the validation...
         $validator = Validator::make($requestValues, $requestRules);

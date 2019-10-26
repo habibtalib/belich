@@ -10,9 +10,47 @@
 
     /**
     ****************************************
+    * Ajax javascript methods
+    ****************************************
+    */
+    //Get csrf-token
+    function csrfToken() {
+        return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    }
+
+    //Set the headers response
+    function responseAjaxHeaders() {
+        return {
+            "Content-Type": "application/json",
+            "Accept": "application/json, text-plain",
+            "X-Requested-With": "XMLHttpRequest",
+            "X-CSRF-TOKEN": csrfToken()
+        };
+    }
+
+    /**
+    ****************************************
     * Default javascript methods
     ****************************************
     */
+    // Load js script to head
+    function loadScript(src, done) {
+        var js = document.createElement('script');
+        js.src = src;
+        js.onload = function() {
+            done();
+        };
+        js.onerror = function() {
+            done(new Error('Failed to load script ' + src));
+        };
+        document.head.appendChild(js);
+    }
+
+    // browser support for fetch
+    function browserSupportsFetch() {
+        return window.Promise && window.fetch && window.Symbol;
+    }
+
     // Loading button
     function submitForm(item) {
         loading(item);
@@ -249,6 +287,3 @@
         currentTab = key;
     }
 </script>
-
-{{-- User custom javascript --}}
-@stack('javascript')

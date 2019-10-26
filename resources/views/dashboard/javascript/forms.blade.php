@@ -1,7 +1,4 @@
 @push('javascript')
-    {{-- Include all the forms js --}}
-    @mix('vendor/belich/sections/forms.js')
-
     <script>
         {{-- Custom jquery --}}
         document.addEventListener('DOMContentLoaded', function(event) {

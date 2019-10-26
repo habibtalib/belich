@@ -120,7 +120,8 @@ class FieldValidate {
         return collect($values)
             ->map(function($value, $attribute) {
                 if(!empty($value) && !empty($attribute)) {
-                    return sprintf("%s:$('#%s').val()", $attribute, $attribute);
+                    // return sprintf("%s:$('#%s').val()", $attribute, $attribute);
+                    return sprintf("%s:document.getElementById('%s').value", $attribute, $attribute);
                 }
             })
             ->filter()

@@ -39,7 +39,4 @@
 {{-- Javascript from packages --}}
 @push('javascript')
     {!! $request->javascript !!}
-
-    {{-- Javascript for tabs --}}
-    @include('belich::dashboard.javascript.forms')
 @endpush
