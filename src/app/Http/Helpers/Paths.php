@@ -35,6 +35,7 @@ if (!function_exists('route_path')) {
 /**
  * Built belich urls
  *
+ * @param string|null $resource
  * @return string
  */
 if (!function_exists('belich_path')) {
