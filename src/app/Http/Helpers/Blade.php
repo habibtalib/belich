@@ -164,7 +164,7 @@ if (!function_exists('setAttribute')) {
     {
         //Format attribute names for HTML5
         $filter = [
-            'addClass' => 'class'
+            'addClass' => 'class',
         ];
 
         //Checked field
@@ -182,6 +182,11 @@ if (!function_exists('setAttribute')) {
         //Value or default value
         } else {
             $value = $field->{$attribute} ?? $default;
+        }
+
+        //Pattern mask
+        if($filterAttribute === 'mask') {
+            return sprintf('data-mask="%s"', $value);
         }
 
         return $value
