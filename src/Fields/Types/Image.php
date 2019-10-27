@@ -17,7 +17,7 @@ class Image extends File {
     public $alt;
 
     /** @var string */
-    public $css;
+    public $addCss;
 
     /**
      * Create a new field.
@@ -46,12 +46,12 @@ class Image extends File {
     /**
      * Set the image css classes
      *
-     * @param string $css
+     * @param string $addCss
      * @return self
      */
-    public function css(string $css)  : self
+    public function addCss(string $addCss)  : self
     {
-        $this->css = $css;
+        $this->addCss = $addCss;
 
         return $this;
     }
