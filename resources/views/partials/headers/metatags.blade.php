@@ -1,5 +1,5 @@
 {{-- Title --}}
-<title>{{ config('app.name') }}</title>
+<title>{{ config('belich.name') }}</title>
 
 {{-- Metatags --}}
 <meta charset="utf-8">
