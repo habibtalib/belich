@@ -43,8 +43,12 @@ trait Fileable {
             if(!filter_var($value, FILTER_VALIDATE_URL)) {
                 $value = Storage::disk($field->disk)->url($value);
             }
+            //Set the image alt
+            $imageAlt = !empty($field->alt) ? sprintf('alt="%s"', $field->alt) : '';
+            //Set the css classes
+            $imageCss = !empty($field->css) ? $field->css : 'block h-10 rounded-full shadow-md';
 
-            return sprintf('<img class="block h-10 rounded-full shadow-md" src="%s" alt="avatar">', $value);
+            return sprintf('<img class="%s" src="%s" %s>', $imageCss, $value, $imageAlt);
         }
 
         //Download file

@@ -13,6 +13,12 @@ class Image extends File {
     /** @var string */
     public $fileType = 'image';
 
+    /** @var string */
+    public $alt;
+
+    /** @var string */
+    public $css;
+
     /**
      * Create a new field.
      *
@@ -22,5 +28,31 @@ class Image extends File {
     public function __construct($name = null, $attribute = null)
     {
         parent::__construct($name, $attribute);
+    }
+
+    /**
+     * Set image alt value
+     *
+     * @param string $alt
+     * @return self
+     */
+    public function alt(string $alt)  : self
+    {
+        $this->alt = $alt;
+
+        return $this;
+    }
+
+    /**
+     * Set the image css classes
+     *
+     * @param string $css
+     * @return self
+     */
+    public function css(string $css)  : self
+    {
+        $this->css = $css;
+
+        return $this;
     }
 }
