@@ -23,5 +23,10 @@
 
             belichMaskField.value = VMasker.toPattern(belichMaskField.value, belichMask);
         }
+
+        //Set default values
+        document.addEventListener("DOMContentLoaded", function() {
+            window.maskHandler(document.getElementById('{{ $field->id }}'));
+        })
     </script>
 @endpush
