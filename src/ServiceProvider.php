@@ -131,6 +131,7 @@ class ServiceProvider extends Provider {
         $this->publishes([
             //Set the resources
             __DIR__ . '/stubs/defaults/user_resource.stub' => base_path('app/Belich/Resources/User.php'),
+            __DIR__ . '/stubs/defaults/profile_resource.stub' => base_path('app/Belich/Resources/Profile.php'),
         ]);
 
         //Publish the belich default policy: User
@@ -164,7 +165,7 @@ class ServiceProvider extends Provider {
      */
     protected function registerMigrations()
     {
-        //$this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+        $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }
 
     /**
