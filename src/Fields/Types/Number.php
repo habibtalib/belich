@@ -50,7 +50,7 @@ class Number extends Field {
      * @param int $step
      * @return self
      */
-    public function step($step) : self
+    public function step(int $step) : self
     {
         $this->step = $step;
 
