@@ -26,6 +26,7 @@
                 <belich::button
                     :title="icon('plus')"
                     :url="Belich::actionRoute('create')"
+                    dusk="button-action-create"
                     class="mr-2"
                     color="icon"
                     loading
@@ -36,6 +37,7 @@
                 <belich::button
                     :title="icon('edit')"
                     :url="Belich::actionRoute('edit', $request->id)"
+                    dusk="button-action-edit"
                     color="icon"
                     loading
                 />

@@ -2,6 +2,9 @@
     <a
         {!! isset($id) ? 'id="' . $id . '"' : '' !!}
         href="{{ $url ?? '#' }}"
+        @isset($dusk)
+            dusk="{{ $dusk }}"
+        @endif
         class="btn btn-{{ $color ?? 'secondary' }} {{ $class ?? '' }} ml-2"
         data-title="{{ $title }}"
         {!! isset($loading) ? 'onclick="loading(this);"' : '' !!}
@@ -13,6 +16,9 @@
     <button
         {!! isset($id) ? 'id="' . $id . '"' : '' !!}
         type="{{ $type ?? 'button' }}"
+        @isset($dusk)
+            dusk="{{ $dusk }}"
+        @endif
         class="btn btn-{{ $color ?? 'secondary' }} mx-2 {{ $class ?? '' }} ml-4"
         data-title="{{ $title }}"
         {!! isset($loading) ? 'onclick="loading(this);"' : '' !!}

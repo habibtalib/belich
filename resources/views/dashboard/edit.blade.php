@@ -30,6 +30,7 @@
                     <belich::button
                         :title="icon('plus')"
                         :url="Belich::actionRoute('create')"
+                        dusk="button-action-create"
                         class="mr-2"
                         color="icon"
                         loading
@@ -40,6 +41,7 @@
                     <belich::button
                         :title="icon('eye')"
                         :url="Belich::actionRoute('show', $request->id)"
+                        dusk="button-action-show"
                         color="icon"
                         loading
                     />
@@ -48,6 +50,7 @@
                 @can('update', $request->autorizedModel)
                     <belich::button
                         id="button-form-edit"
+                        dusk="button-action-edit"
                         type="button"
                         color="primary"
                         :title="icon('edit', trans('belich::buttons.crud.update'))"

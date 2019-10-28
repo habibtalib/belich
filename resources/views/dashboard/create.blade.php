@@ -27,6 +27,7 @@
             <slot name="button">
                 <belich::button
                     type="button"
+                    dusk="button-action-create"
                     color="primary"
                     :title="icon('plus', trans('belich::buttons.crud.create'))"
                     id="button-form-create"

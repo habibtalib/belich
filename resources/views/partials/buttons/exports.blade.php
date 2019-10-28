@@ -1,5 +1,5 @@
 {{-- Options --}}
-<div id="exports-container" class="hidden button-selected btn btn-dropdown border border-green-400 mr-2 bg-green-200 text-green-600 hover:bg-green-400 hover:text-white">
+<div id="exports-container"  dusk="button-options-exports" class="hidden button-selected btn btn-dropdown border border-green-400 mr-2 bg-green-200 text-green-600 hover:bg-green-400 hover:text-white">
     {{-- Set button icon --}}
     @icon('download', '', 'opacity-100')
 

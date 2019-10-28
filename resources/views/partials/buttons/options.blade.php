@@ -1,5 +1,5 @@
 {{-- Options --}}
-<div class="btn btn-dropdown border border-gray-500 mr-2 bg-gray-200 text-gray-600 hover:bg-gray-500 hover:text-white">
+<div dusk="button-options-options" class="btn btn-dropdown border border-gray-500 mr-2 bg-gray-200 text-gray-600 hover:bg-gray-500 hover:text-white">
     {{-- Set button icon --}}
     @icon('cogs', '', 'opacity-100')
 
