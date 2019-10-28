@@ -5,7 +5,7 @@ namespace Daguilarm\Belich\Fields;
 abstract class FieldAbstract {
 
     /** @var array [List of allowed controller actions] */
-    private $allowedControllerActions = [
+    public $allowedControllerActions = [
         'index',
         'create',
         'edit',
