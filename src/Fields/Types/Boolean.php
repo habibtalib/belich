@@ -46,7 +46,7 @@ class Boolean extends Field {
      */
     public function color(string $color) : self
     {
-        $this->color = in_array($color, $this->defaultColors) ? $color : 'normal';
+        $this->color = in_array($color, $this->defaultColors) ? $color : 'green';
 
         return $this;
     }

@@ -24,7 +24,7 @@ trait Booleanable {
 
             // With color circles
             } else {
-                return sprintf('<i class="fas fa-circle text-%s"></i>', $value ? 'green' : 'grey-light');
+                return sprintf('<i class="fas fa-circle text-%s-500"></i>', $value ? 'green' : 'grey');
             }
         }
 
