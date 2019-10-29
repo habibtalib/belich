@@ -2,8 +2,8 @@
     <slot name="input">
         {{-- Set the autocomplete (visible) container --}}
         <input
-            id="input-{{ md5($field->attribute) }}"
-            list="list-{{ md5($field->attribute) }}"
+            id="input_{{ md5($field->attribute) }}"
+            list="list_{{ md5($field->attribute) }}"
             type="text"
             dusk="dusk-autocomplete-{{ $field->attribute }}"
             {!! setAttribute($field, 'addClass') !!}
@@ -21,7 +21,7 @@
         <input type="hidden" {!! $field->render !!} value="{{ $field->value }}">
 
         {{-- Create the data list --}}
-        <datalist id="list-{{ md5($field->attribute) }}">
+        <datalist id="list_{{ md5($field->attribute) }}">
             @if($field->responseArray)
                 @foreach($field->responseArray as $value => $text)
                     <option value="{{ $text }}" data-result="{{ $value }}">{{ $text }}</option>
@@ -41,9 +41,9 @@
     <script>
         {{-- Create the dataList --}}
         function selectDatalist(container, key) {
-            if(document.getElementById('input-' + key)) {
-                var val = document.getElementById('input-' + key).value;
-                var opts = document.getElementById('list-' + key).childNodes;
+            if(document.getElementById('input_' + key)) {
+                var val = document.getElementById('input_' + key).value;
+                var opts = document.getElementById('list_' + key).childNodes;
                 for(var i = 0; i < opts.length; i++) {
                     if(opts[i].value === val) {
                         // Update the value
@@ -56,7 +56,7 @@
 
         function requestAjax(url, key, min, vars) {
             //Set default values
-            const search = document.getElementById('input-' + key).value;
+            const search = document.getElementById('input_' + key).value;
             const ajaxUrl = url + '/?search=' + search + (vars ? '&' + vars : '');
             var response;
             console.log(ajaxUrl);
