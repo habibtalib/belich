@@ -2,7 +2,7 @@
 
 I started this project to improve my skills as a programmer, and for that, I immersed myself in the Laravel Nova code (it was something that changed my way of understanding programming).
 
-From that point, I decided as an exercise, to develop a version of Nova that did not use VueJS, in other words, focused on the back-end, and using Javascript only in cases where there was no other option available.
+From that point, I decided as an exercise, to develop a version of Nova that did not use VueJS, in other words, focused on the back-end, and using Javascript only in cases where there was no other option available. **The package uses only vanilla javascript, completely eliminating the use of javascript frameworks, although these can be used without any problem, according to the user's needs**.
 
 What has happened during this adventure, is that in the end, what started as an exercise, is becoming a real project, and gradually moving away from Nova, especially when I have added new features, which have made me (on several occasions) rebuild a good part of the code from the beginning.
 
