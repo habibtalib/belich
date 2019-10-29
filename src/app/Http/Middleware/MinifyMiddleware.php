@@ -28,19 +28,14 @@ class MinifyMiddleware
     ];
 
     private $htmlSpaces = [
-        ', ' => ',',
-        '; ' => ';',
-        ': ' => ':',
         '{ ' => '{',
-        ' {' => '{',
         ' }' => '}',
-        '} ' => '}',
-        ' = ' => '=',
         ' == ' => '==',
         ' === ' => '===',
         ' + ' => '+',
         'for (' => 'for(',
         'if (' => 'if(',
+        'while (' => 'while(',
     ];
 
     private $exceptedActions = [
