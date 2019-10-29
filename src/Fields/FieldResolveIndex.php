@@ -2,7 +2,7 @@
 
 namespace Daguilarm\Belich\Fields;
 
-use Daguilarm\Belich\Fields\Traits\Indexable\{Booleanable, Callbackable, Fileable, Linkeable, Resolvable, Softdeleteable};
+use Daguilarm\Belich\Fields\Traits\Constructable\{Booleanable, Callbackable, Fileable, Linkeable, Resolvable, Softdeleteable};
 use Illuminate\Support\Collection;
 
 class FieldResolveIndex {

@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Fields;
 
 use Daguilarm\Belich\Core\Traits\Routeable;
 use Daguilarm\Belich\Fields\Field;
-use Daguilarm\Belich\Fields\Traits\Crudable\{Authorizable, Renderable, Valuable};
+use Daguilarm\Belich\Fields\Traits\Constructable\{Authorizable, Renderable, Valuable};
 use Daguilarm\Belich\Fields\Traits\Resolvable;
 use Illuminate\Support\Collection;
 

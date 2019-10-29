@@ -1,6 +1,6 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Traits\Crudable;
+namespace Daguilarm\Belich\Fields\Traits\Constructable;
 
 use Illuminate\Support\Collection;
 
