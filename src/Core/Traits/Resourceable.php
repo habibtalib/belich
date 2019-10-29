@@ -161,7 +161,7 @@ trait Resourceable {
     public function currentResource(Request $request) : Collection
     {
         //Default values
-        $class = $this->initResourceClass(request());
+        $class = $this->initResourceClass($request);
 
         //Update the fields
         $updateFields = collect($class->fields($request));
@@ -296,6 +296,7 @@ trait Resourceable {
             'pluralLabel'           => $class::$pluralLabel ?? Str::plural(Str::title($className)),
             'resource'              => Str::plural(Str::lower($className)),
             'search'                => $class::$search,
+            'textAlign'             => $class::$textAlign ?? 'left',
         ]);
 
         //Advanced values
