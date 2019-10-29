@@ -2,7 +2,11 @@
 
 namespace Daguilarm\Belich\Fields\Traits;
 
+use Daguilarm\Belich\Fields\Traits\Filterable;
+
 trait Settingable {
+
+    use Filterable;
 
     /** @var string [Set the dusk value] */
     public $dusk;
@@ -39,7 +43,7 @@ trait Settingable {
     {
         //Check the value for conditional cases...
         if(!empty($value)) {
-            $this->id = $value;
+            $this->id = $this->stringSanitizeForPhpStructure($value);
         }
 
         return $this;

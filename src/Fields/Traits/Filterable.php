@@ -10,7 +10,7 @@ trait Filterable {
      * @param  string $string
      * @return bool
      */
-    private function stringHasValidPhpStructure(string $string) : bool
+    protected function stringHasValidPhpStructure(string $string) : bool
     {
         return (preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/', $string) === 1)
             ? true
@@ -23,7 +23,7 @@ trait Filterable {
      * @param  string $string
      * @return bool
      */
-    private function stringSanitizeForPhpStructure(string $string) : string
+    protected function stringSanitizeForPhpStructure(string $string) : string
     {
         $replace = ['!', '"', '/', '@', '#', '$', '%', '&', '(', ')', '€', '^', '*', '{', '}', '-', '.', ',', ';', ' '];
 
