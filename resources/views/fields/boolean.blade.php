@@ -8,7 +8,7 @@
                 {!! $field->render !!}
                 {!! setAttribute($field, 'checked') !!}
             >
-            <label for="{{ $field->id }}"></label>
+            <label for="{{ $field->id }}" dusk="label-{{ $field->id }}"></label>
         </p>
     </slot>
 </belich::fields>
