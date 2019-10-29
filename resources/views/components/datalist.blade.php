@@ -6,6 +6,7 @@
             list="list-{{ md5($field->attribute) }}"
             type="text"
             value="{{ $value ?? null }}"
+            {!! $field->render !!}
             @if($field->responseArray)
                 onchange="selectDatalist('{{ $field->attribute }}', '{{ md5($field->attribute) }}');"
             @elseif($field->responseUrl)
