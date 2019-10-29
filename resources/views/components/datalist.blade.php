@@ -5,7 +5,10 @@
             id="input-{{ md5($field->attribute) }}"
             list="list-{{ md5($field->attribute) }}"
             type="text"
-            value="{{ $value ?? null }}"
+            {!! setAttribute($field, 'addClass') !!}
+            {!! setAttribute($field, 'disabled') !!}
+            {!! setAttribute($field, 'readonly') !!}
+            {!! setAttribute($field, 'value') !!}
             {!! $field->render !!}
             @if($field->responseArray)
                 onchange="selectDatalist('{{ $field->attribute }}', '{{ md5($field->attribute) }}');"
@@ -26,11 +29,6 @@
                 @endforeach
             @endif
         </datalist>
-
-        {{-- Help container --}}
-        @if($field->help)
-            <div class="help-text">{{ $field->help }}</div>
-        @endif
 
         {{-- Error container --}}
         <p id="error-{{ $field->id }}" class="validation-error"></p>
