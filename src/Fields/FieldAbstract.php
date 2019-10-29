@@ -222,10 +222,11 @@ abstract class FieldAbstract {
 
     /**
      * Remove attributes from $field
+     * Just for internal use
      * @param  array  $attributes
      * @return self
      */
-    public function removedAttr(...$attributes) : self
+    protected function removedAttr(...$attributes) : self
     {
         $this->removedAttr = $attributes;
 

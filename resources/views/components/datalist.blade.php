@@ -5,6 +5,7 @@
             id="input-{{ md5($field->attribute) }}"
             list="list-{{ md5($field->attribute) }}"
             type="text"
+            dusk="dusk-autocomplete-{{ $field->attribute }}"
             {!! setAttribute($field, 'addClass') !!}
             {!! setAttribute($field, 'disabled') !!}
             {!! setAttribute($field, 'readonly') !!}
