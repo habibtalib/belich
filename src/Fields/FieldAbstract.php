@@ -51,6 +51,9 @@ abstract class FieldAbstract {
     /** @var string [All the render attributes must be stored here...] */
     public $render;
 
+    /** @var array [All the attributes to be removed from $field] */
+    public $removedAttr = [];
+
     /** @var \Closure|null for manipulate data */
     public $resolveCallback;
 
@@ -213,6 +216,18 @@ abstract class FieldAbstract {
     public function notResolveField() : self
     {
         $this->notResolveField = true;
+
+        return $this;
+    }
+
+    /**
+     * Remove attributes from $field
+     * @param  array  $attributes
+     * @return self
+     */
+    public function removedAttr(...$attributes) : self
+    {
+        $this->removedAttr = $attributes;
 
         return $this;
     }

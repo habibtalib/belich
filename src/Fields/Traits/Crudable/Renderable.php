@@ -19,7 +19,10 @@ trait Renderable {
             ->each(function($value, $attribute) use ($field) {
                 //Get the list of attributes to be rendered: name, dusk,...
                 if(in_array($attribute, $field->renderAttributes)) {
-                    $field->render[] = sprintf('%s=%s', $attribute, $value);
+                    //Remove attributes from list
+                    if(!in_array($attribute, $field->removedAttr)) {
+                        $field->render[] = sprintf('%s=%s', $attribute, $value);
+                    }
                 }
             })
             ->filter();
