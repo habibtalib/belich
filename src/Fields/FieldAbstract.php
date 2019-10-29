@@ -77,6 +77,7 @@ abstract class FieldAbstract {
     public function asHtml() : self
     {
         $this->asHtml = true;
+        $this->visibleOn('index', 'show');
 
         return $this;
     }
