@@ -7,8 +7,6 @@
             type="text"
             dusk="dusk-autocomplete-{{ $field->attribute }}"
             {!! setAttribute($field, 'addClass') !!}
-            {!! setAttribute($field, 'disabled') !!}
-            {!! setAttribute($field, 'readonly') !!}
             {!! setAttribute($field, 'value') !!}
             {!! $field->render !!}
             @if($field->responseArray)
