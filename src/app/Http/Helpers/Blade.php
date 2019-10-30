@@ -167,6 +167,13 @@ if (!function_exists('setAttribute')) {
             'addClass' => 'class',
         ];
 
+        //Render css classes
+        if($attribute === 'addClass') {
+            $field->addClass = !empty($field->addClass)
+                ? implode(' ', $field->addClass)
+                : '';
+        }
+
         //Checked field
         if($attribute === 'checked') {
             return $field->value ? 'checked="checked"' : '';

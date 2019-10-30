@@ -6,6 +6,7 @@ use Daguilarm\Belich\Contracts\Maker;
 use Daguilarm\Belich\Fields\FieldAbstract;
 use Daguilarm\Belich\Fields\Traits\Attributable;
 use Daguilarm\Belich\Fields\Traits\Casteable;
+use Daguilarm\Belich\Fields\Traits\Formatable;
 use Daguilarm\Belich\Fields\Traits\Helpeable;
 use Daguilarm\Belich\Fields\Traits\Ruleable;
 use Daguilarm\Belich\Fields\Traits\Settingable;
@@ -16,6 +17,7 @@ class Field extends FieldAbstract {
 
     use Attributable,
         Casteable,
+        Formatable,
         Helpeable,
         Ruleable,
         Settingable,

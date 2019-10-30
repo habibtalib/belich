@@ -114,20 +114,6 @@ abstract class FieldAbstract {
     }
 
     /**
-     * Set the field align
-     * @param  bool  $value
-     * @return self
-     */
-    public function textAlign(string $value = 'left') : self
-    {
-        if(!empty($value)) {
-            $this->textAlign = $value;
-        }
-
-        return $this;
-    }
-
-    /**
      * Resolving field value in index and detailed
      * @param  object  $displayCallback
      * @return self

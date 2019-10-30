@@ -5,7 +5,7 @@ namespace Daguilarm\Belich\Fields\Traits;
 trait Attributable {
 
     /** @var array [Add new css classes to the current field] */
-    public $addClass;
+    public $addClass = [];
 
     /** @var string [Add to field the autofocus attribute] */
     public $autofocus;
@@ -26,7 +26,9 @@ trait Attributable {
      */
     public function addClass(...$values) : self
     {
-        $this->addClass = implode(' ', $values);
+        foreach($values as $value) {
+            $this->addClass[] = $value;
+        }
 
         return $this;
     }
