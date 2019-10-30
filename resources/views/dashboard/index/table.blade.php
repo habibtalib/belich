@@ -1,6 +1,6 @@
 {{-- Start / Table --}}
 <div id="tableContainer">
-    <table class="table table-auto w-full text-sm shadow-md bg-white text-gray-600 text-{{ $request->get('tableTextAlign') }}" id="belich-index-table">
+    <table class="table table-auto w-full text-sm shadow-md bg-white text-gray-600 {{ $request->get('tableTextAlign') }}" id="belich-index-table">
         <thead class="uppercase">
             <tr class="border-b border-t border-gray-400 bg-blue-100 text-gray-600">
 

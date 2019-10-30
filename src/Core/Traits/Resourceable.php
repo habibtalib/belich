@@ -296,7 +296,7 @@ trait Resourceable {
             'pluralLabel'           => $class::$pluralLabel ?? Str::plural(Str::title($className)),
             'resource'              => Str::plural(Str::lower($className)),
             'search'                => $class::$search,
-            'tableTextAlign'        => $class::$tableTextAlign ?? 'left',
+            'tableTextAlign'        => self::setTableTextAlign($class),
         ]);
 
         //Advanced values
@@ -314,5 +314,22 @@ trait Resourceable {
 
         //Navigation values
         return $resource;
+    }
+
+    /**
+     * Set the table text align
+     *
+     * @param string $class
+     * @return string
+     */
+    private function setTableTextAlign(string $class) : string
+    {
+        //Get the resource value
+        $align = $class::$tableTextAlign ?? null;
+
+        //Validate the value
+        return in_array($align, ['left', 'center', 'right', 'justify'])
+            ? 'text-' . $align
+            : 'text-left';
     }
 }
