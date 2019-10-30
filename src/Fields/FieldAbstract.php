@@ -67,7 +67,7 @@ abstract class FieldAbstract {
     public $suffix;
 
     /** @var string [Table text align. Only on controller action: index] */
-    public $textAlign = 'left';
+    public $tableTextAlign = 'left';
 
     /** @var mixed [The field value (Resolved and updated...)] */
     public $value;

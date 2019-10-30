@@ -296,7 +296,7 @@ trait Resourceable {
             'pluralLabel'           => $class::$pluralLabel ?? Str::plural(Str::title($className)),
             'resource'              => Str::plural(Str::lower($className)),
             'search'                => $class::$search,
-            'textAlign'             => $class::$textAlign ?? 'left',
+            'tableTextAlign'        => $class::$tableTextAlign ?? 'left',
         ]);
 
         //Advanced values
