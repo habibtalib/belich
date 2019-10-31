@@ -22,7 +22,7 @@
 
     {{-- Table --}}
     {{-- Pagination --}}
-    <div id="table-container">
+    <div id="table-container" class="w-full">
         @include('belich::dashboard.index.table')
     </div>
 @endsection

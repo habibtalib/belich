@@ -1,5 +1,5 @@
 {{-- This section is segregate in case you want to customize --}}
-<nav id="navbar" class="h-16 {{ config('belich.navbar') === 'top' ? 'bg-teal-400' : 'bg-white' }}">
+<nav id="navbar" class="w-full h-16 {{ config('belich.navbar') === 'top' ? 'bg-teal-400' : 'bg-white' }}">
     {{-- Top navbar --}}
     <ul>
         {{-- Logo --}}

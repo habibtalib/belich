@@ -1,12 +1,16 @@
 {{-- This section is segregate in case you want to customize --}}
-<nav id="sidebar" class="bg-gray-600 w-48">
-    <ul class="text-lg">
+<nav id="sidebar" class="h-full bg-teal-500">
+    <ul class="text-base">
+        {{-- Logo --}}
+        <li class="h-16 p-5 mb-4 bg-teal-800 text-center">
+            <a class="text-white text-lg font-bold" href="{{ Belich::url() }}" dusk="navbar-brand">{{ Belich::name() }}</a>
+        </li>
         {{-- Get all the resources --}}
         @foreach(Belich::getGroupResources() as $resource)
 
             {{-- One level resource --}}
             @if($resource->count() <= 1)
-                <li class="my-6 ml-6">
+                <li class="px-4 mb-4">
                     <a class="text-white font-medium" href="{{ sprintf('%s/%s', Belich::url(), $resource->first()->get('resource')) }}">
                         {!! icon($resource->first()->get('icon'), $resource->first()->get('name')) !!}
                     </a>
@@ -14,7 +18,7 @@
 
             {{-- two level resource --}}
             @else
-                <li class="my-6 ml-6">
+                <li class="px-4 mb-4">
                     <a class="text-white font-medium" href="{{ sprintf('%s/%s', Belich::url(), $resource->first()->get('resource')) }}">
                         {!! icon($resource->first()->get('icon'), $resource->first()->get('group')) !!}
                     </a>

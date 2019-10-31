@@ -5,25 +5,36 @@
         @include('belich::partials.headers.default')
     </head>
     <body>
-        <div id="app">
-            {{-- Navbar --}}
-            @includeWhen(auth()->check(), 'belich::partials.navigation.navbar')
-
-            {{-- Sidebar and Application container --}}
-            <div class="min-h-screen md:flex">
-                {{-- Sidebar --}}
-                @includeWhen(auth()->check() && config('belich.navbar') === 'sidebar', 'belich::partials.navigation.sidebar')
-
-                {{-- Application --}}
-                <section class="flex-1">
-                    @include('belich::partials.messages')
-                    @yield('content')
-                </section>
-            </div>
+            {{-- Top navbar --}}
+            @if(config('belich.navbar') === 'top')
+                <div id="app">
+                    {{-- Navbar --}}
+                    @includeWhen(auth()->check(), 'belich::partials.navigation.navbar')
+                    {{-- Sidebar and Application container --}}
+                    <div class="w-full min-h-screen">
+                        {{-- Messages --}}
+                        @include('belich::partials.messages')
+                        {{-- Application --}}
+                        @yield('content')
+                    </div>
+                </div>
+            @else
+                <div id="app" class="flex">
+                    <div class="flex-initial w-64">
+                        {{-- Sidebar --}}
+                        @includeWhen(auth()->check(), 'belich::partials.navigation.sidebar')
+                    </div>
+                    <div class="flex-initial w-full bg-gray-400">
+                        {{-- Messages --}}
+                        @include('belich::partials.messages')
+                        {{-- Application --}}
+                        @yield('content')
+                    </div>
+                </div>
+            @endif
 
             {{-- Add modals --}}
             @stack('modals')
-        </div>
 
         {{-- Include footer --}}
         <footer>

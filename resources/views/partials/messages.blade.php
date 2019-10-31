@@ -1,4 +1,4 @@
-<div class="flex justify-center w-full leading-normal mb-8">
+<div class="flex justify-center w-full leading-normal mt-4 mb-8">
     {{-- Success --}}
     @if(session()->has('success'))
         <belich::message
