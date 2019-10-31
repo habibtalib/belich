@@ -9,7 +9,7 @@
             @if(config('belich.navbar') === 'top')
                 <div id="app">
                     {{-- Navbar --}}
-                    @include('belich::partials.navigation.navbar')
+                    @includeWhen(auth()->check(), 'belich::partials.navigation.navbar')
                     {{-- Sidebar and Application container --}}
                     <div class="w-full min-h-screen">
                         {{-- Messages --}}
@@ -26,7 +26,7 @@
                     </div>
                     <div class="flex-initial w-full bg-white">
                         {{-- Navbar --}}
-                        @include('belich::partials.navigation.navbar')
+                        @includeWhen(auth()->check(), 'belich::partials.navigation.navbar')
                         {{-- Messages --}}
                         @include('belich::partials.messages')
                         {{-- Application --}}
