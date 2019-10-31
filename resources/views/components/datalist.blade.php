@@ -10,9 +10,9 @@
             {!! setAttribute($field, 'value') !!}
             {!! $field->render !!}
             @if($field->responseArray)
-                onchange="javascript:selectDatalist('{{ $field->attribute }}', '{{ md5($field->attribute) }}');"
+                onchange="javascript:createDatalistFromArray('{{ $field->attribute }}', '{{ md5($field->attribute) }}');"
             @elseif($field->responseUrl)
-                onkeyup="javascript:requestAjax('{{ $field->responseUrl }}', '{{ md5($field->attribute) }}', '{{ $field->minChars }}', '{{ $field->addVars }}');"
+                onkeyup="javascript:requestDatalistFromAjax('{{ $field->responseUrl }}', '{{ md5($field->attribute) }}', '{{ $field->minChars }}', '{{ $field->addVars }}');"
             @endif
         >
 
@@ -42,8 +42,8 @@
 
 @push('javascript')
     <script>
-        {{-- Create the dataList --}}
-        function selectDatalist(container, key) {
+        // Create a dataList from array
+        function createDatalistFromArray(container, key) {
             if(document.getElementById('input_' + key)) {
                 var val = document.getElementById('input_' + key).value;
                 var opts = document.getElementById('list_' + key).childNodes;
@@ -57,21 +57,44 @@
             }
         }
 
-        function clickDatalist(key, value) {
-            //Hide the container
+        // Select value from datalist
+        function selectFromDatalist(key, final, value) {
+            //Get the container
             var container = document.getElementById('list_' + key);
-            container.classList.remove('hidden', 'block');
-            container.classList.add('hidden');
+            //Hide the container
+            window.toogleContainer(container, 'hidden');
             //Add value to input
             document.getElementById('input_' + key).value = value;
-            document.getElementById('{!! $field->attribute !!}').value = value;
+            document.getElementById('{!! $field->attribute !!}').value = final;
         }
 
-        function requestAjax(url, key, min, vars) {
+        //Create the datalist container
+        function createDatalistContainer(container, key, id, value) {
+            // Create a new <li> element
+            var selector = document.createElement('li');
+            selector.setAttribute('class', 'py-4 px-5 border-b border-gray-300');
+            // Create a new <a> element
+            var link = document.createElement('a');
+            // Set value
+            var store = '{{ $field->store }}';
+            var final = (store === 'id' ? id : value);
+            window.setAttributes(link, {
+                'href': 'javascript:void(0)',
+                'class': 'datalist',
+                'onclick': 'javascript:selectFromDatalist("' + key + '", "' + final + '", "' + value + '")',
+                'value': value
+            });
+            // Create the container's childs
+            container.appendChild(selector);
+            selector.appendChild(link);
+        }
+
+        // Populate datalist from ajax
+        function requestDatalistFromAjax(url, key, min, vars) {
             //Set default values
             let response;
             let search = document.getElementById('input_' + key).value;
-            let ajaxUrl = url + '/?search=' + search + (vars ? '&' + vars : '');
+            let ajaxUrl = url + '/?store={{ $field->store }}&search=' + search + (vars ? '&' + vars : '');
             var container = document.getElementById('list_' + key);
 
             //Get ajax response
@@ -81,25 +104,15 @@
                 xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
                 xhr.onload = function() {
                     if(xhr.readyState == 4 && xhr.status == 200) {
-                        //Make visible the container
-                        container.classList.remove('hidden', 'block');
-                        container.classList.add('block');
-                        response = JSON.parse( xhr.responseText );
-                        // clear any previously loaded options in the datalist
+                        // Empty the container
                         container.innerHTML = "";
+                        //Show the container
+                        window.toogleContainer(container, 'block');
+                        //To json
+                        response = JSON.parse( xhr.responseText );
                         // Populate...
                         response.forEach(function(item) {
-                            // Create a new <li> element.
-                            var selector = document.createElement('li');
-                            selector.setAttribute('class', 'py-4 px-5 border-b border-gray-300');
-                            var link = document.createElement('a');
-                            link.setAttribute('href', 'javascript:void(0)');
-                            link.setAttribute('class', 'datalist');
-                            link.setAttribute('onclick', 'javascript:clickDatalist("' + key + '", "' + item.label + '")');
-                            link.innerHTML = item.label;
-                            // attach the selector to the datalist element
-                            container.appendChild(selector);
-                            selector.appendChild(link);
+                            window.createDatalistContainer(container, key, item.value, item.label);
                         });
                     }
                 };

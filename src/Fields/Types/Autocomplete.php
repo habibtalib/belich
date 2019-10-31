@@ -21,6 +21,9 @@ class Autocomplete extends Field {
     /** @var string */
     public $responseUrl;
 
+    /** @var string */
+    public $store = 'name';
+
     /**
      * Add variables to the url
      *
@@ -69,6 +72,21 @@ class Autocomplete extends Field {
     public function minChars(int $minChars) : self
     {
         $this->minChars = $minChars;
+
+        return $this;
+    }
+
+    /**
+     * Set the response value
+     *
+     * @param  string  $value
+     * @return self
+     */
+    public function store(string $value) : self
+    {
+        if(in_array($value, ['id', 'name'])) {
+            $this->store = $value;
+        }
 
         return $this;
     }

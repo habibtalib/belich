@@ -82,6 +82,23 @@
         setTimeout(function() {container.style.display = 'none';}, 500);
     }
 
+    //Add attributes to elements
+    function setAttributes(element, attrs) {
+        for(var key in attrs) {
+            if(key === 'value') {
+                element.innerHTML = attrs[key];
+            } else {
+                element.setAttribute(key, attrs[key]);
+            }
+        }
+    }
+
+    // Show or hide a container
+    function toogleContainer(container, value) {
+        container.classList.remove('hidden', 'block');
+        container.classList.add(value);
+    }
+
     /**
     ****************************************
     * Index javascript methods
