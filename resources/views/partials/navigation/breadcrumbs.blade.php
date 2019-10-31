@@ -1,5 +1,5 @@
 {{-- Customize your breadcrumbs --}}
-<nav class="w-full bg-white">
+<nav class="w-full bg-gray-100">
     <ul class="flex p-4 border-b border-gray-300 font-semibold">
         @foreach($request->breadcrumbs as $label => $url)
             {{-- Links --}}

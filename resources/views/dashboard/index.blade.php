@@ -15,7 +15,7 @@
     {{-- input: search field --}}
     {{-- buttons: options, export, delete,... --}}
     @if(config('belich.liveSearch.enable') === true)
-        <div id="search-container" class="p-4 shadow-md bg-gray-100">
+        <div id="search-container" class="p-4 shadow-md bg-white">
             @include('belich::dashboard.index.search')
         </div>
     @endif
