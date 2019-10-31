@@ -22,7 +22,7 @@ class Autocomplete extends Field {
     public $responseUrl;
 
     /** @var string */
-    public $store = 'name';
+    public $store;
 
     /**
      * Add variables to the url
@@ -79,14 +79,11 @@ class Autocomplete extends Field {
     /**
      * Set the response value
      *
-     * @param  string  $value
      * @return self
      */
-    public function store(string $value) : self
+    public function storeId() : self
     {
-        if(in_array($value, ['id', 'name'])) {
-            $this->store = $value;
-        }
+        $this->store = 'id';
 
         return $this;
     }
