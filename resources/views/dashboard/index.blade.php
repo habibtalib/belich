@@ -25,10 +25,6 @@
     <div id="table-container">
         @include('belich::dashboard.index.table')
     </div>
-
-    {{-- End / Table --}}
-    {{-- Table footer (bordered) --}}
-    <div class="bg-blue-100 rounded-b-lg h-1 mb-16 shadow-md"></div>
 @endsection
 
 {{-- Added the minimum javascript possible --}}

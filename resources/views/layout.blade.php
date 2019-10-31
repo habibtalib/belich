@@ -15,7 +15,7 @@
                 @includeWhen(auth()->check() && config('belich.navbar') === 'sidebar', 'belich::partials.navigation.sidebar')
 
                 {{-- Application --}}
-                <section class="flex-1 m-8">
+                <section class="flex-1">
                     @include('belich::partials.messages')
                     @yield('content')
                 </section>
@@ -26,6 +26,9 @@
         </div>
 
         {{-- Include footer --}}
-        @include('belich::partials.footer.default')
+        <footer>
+            @include('belich::partials.footer.content')
+            @include('belich::partials.footer.javascript')
+        </footer>
     </body>
 </html>
