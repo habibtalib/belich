@@ -1,8 +1,8 @@
-.table thead a {
+#table-container.table thead a {
     @apply text-gray-700;
 }
 
-.table thead a:after {
+#table-container.table thead a:after {
     content: "\f0dc";
     font-family: 'Font Awesome\ 5 Free';
     @apply ml-2;

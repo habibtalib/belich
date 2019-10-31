@@ -39,7 +39,7 @@
 
                 request.onload = function() {
                     if (this.status >= 200 && this.status < 400) {
-                        document.getElementById('tableContainer').innerHTML = JSON.parse(this.response);
+                        document.getElementById('table-container').innerHTML = JSON.parse(this.response);
                     }
                 };
                 request.send();
