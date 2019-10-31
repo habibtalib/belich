@@ -1,20 +1,23 @@
-<div id="menssage-alert" class="relative rounded-lg pt-4 pl-6 pr-8 pb-6 w-1/3 bg-{{ $color }}-100 shadow-md fade-out" role="alert">
-
-    {{-- Header --}}
-    <p class="text-lg text-{{ $color }}-600 border-b border-{{ $color }}-200 capitalize font-bold mb-3 pb-2">
-        {{-- Session header or custom --}}
-        {!! $header !!}
-    </p>
-
-    {{-- Messages --}}
-    {{-- App\Http\Helpsers\Messages --}}
-    @foreach(messages($type) as $message)
-        <li class="mb-2 text-black">{{ $message }}</li>
-    @endforeach
-
-    {{-- Close alert --}}
-    <a href="#" class="absolute top-0 bottom-0 right-0 px-4 py-3 cursor-pointer text-black" onclick="closeMenssage();">
-        @icon('times')
-    </a>
-
+<div id="menssage-alert" class="flex w-1/3 bg-{{ $color }}-100 p-4 shadow fade-out" role="alert">
+    <div class="mr-4">
+        <div class="flex justify-center items-center w-16 h-16 rounded-full bg-{{ $color }}-600 text-white">
+            <i class="fas fa-{!! $icon !!} fa-lg"></i>
+        </div>
+    </div>
+    <div class="flex justify-between w-full">
+        <div class="text-{{ $color }}-600">
+            {{-- Header --}}
+            <p class="mb-2 text-lg font-bold">
+                {{ $title }}
+            </p>
+            {{-- Messages --}}
+            {{-- App\Http\Helpsers\Messages --}}
+            @foreach(messages($type) as $message)
+                <p class="text-md">{{ $message }}</p>
+            @endforeach
+        </div>
+        <div class="text-md text-{{ $color }}-600 font-bold">
+            <a href="#" onclick="closeMenssage();">{!! icon('times') !!}</a>
+        </div>
+    </div>
 </div>
