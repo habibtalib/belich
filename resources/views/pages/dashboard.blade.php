@@ -1,7 +1,7 @@
 @extends('belich::layout')
 
 @section('content')
-    <div class="shadow-md bg-white rounded my-8 mx-6 p-4">
+    <div class="{{ config('belich.navbar') === 'top' ? 'shadow-md' : '' }} bg-white rounded my-8 mx-6 p-4">
 
         {{-- Calendar --}}
         <div class="w-32 flex-none text-center">

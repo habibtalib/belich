@@ -1,11 +1,11 @@
 {{-- Customize your breadcrumbs --}}
-<nav class="w-full shadow bg-white">
-    <ul class="flex my-3 p-4 font-semibold">
+<nav class="w-full bg-white">
+    <ul class="flex p-4 border-b border-gray-300 font-semibold">
         @foreach($request->breadcrumbs as $label => $url)
             {{-- Links --}}
             @if($label && $url)
                 <li>
-                    <a href="{{ $url }}" class="text-teal-600 font-medium underline" dusk="breadcrumbs-{{ strtolower($label) }}">{{ $label }}</a>
+                    <a href="{{ $url }}" class="{{ ($loop->first) ? 'ml-2' : ''}} text-teal-600 font-medium underline" dusk="breadcrumbs-{{ strtolower($label) }}">{{ $label }}</a>
                 </li>
 
             {{-- Current --}}

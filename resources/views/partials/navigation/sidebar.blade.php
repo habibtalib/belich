@@ -1,8 +1,8 @@
 {{-- This section is segregate in case you want to customize --}}
-<nav id="sidebar" class="h-full bg-teal-500">
+<nav id="sidebar" class="h-full bg-teal-500 pb-4">
     <ul class="text-base">
         {{-- Logo --}}
-        <li class="h-16 p-5 mb-4 bg-teal-800 text-center">
+        <li class="h-16 p-5 mb-4 bg-teal-800 text-center mb-2">
             <a class="text-white text-lg font-bold" href="{{ Belich::url() }}" dusk="navbar-brand">{{ Belich::name() }}</a>
         </li>
         {{-- Get all the resources --}}
@@ -18,7 +18,7 @@
 
             {{-- two level resource --}}
             @else
-                <li class="px-4 mb-4">
+                <li class="pl-2 py-3">
                     <a class="text-white font-medium" href="{{ sprintf('%s/%s', Belich::url(), $resource->first()->get('resource')) }}">
                         {!! icon($resource->first()->get('icon'), $resource->first()->get('group')) !!}
                     </a>
