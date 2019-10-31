@@ -1,0 +1,7 @@
+a.datalist {
+    @apply text-gray-700 block;
+}
+
+a.datalist:hover {
+    @apply text-black;
+}

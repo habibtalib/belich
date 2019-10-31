@@ -10,10 +10,9 @@
             {!! setAttribute($field, 'value') !!}
             {!! $field->render !!}
             @if($field->responseArray)
-                onchange="selectDatalist('{{ $field->attribute }}', '{{ md5($field->attribute) }}');"
+                onchange="javascript:selectDatalist('{{ $field->attribute }}', '{{ md5($field->attribute) }}');"
             @elseif($field->responseUrl)
-                onkeyup="requestAjax('{{ $field->responseUrl }}', '{{ md5($field->attribute) }}', '{{ $field->minChars }}', '{{ $field->addVars }}');"
-                onchange="selectDatalist('{{ $field->attribute }}', '{{ md5($field->attribute) }}');"
+                onkeyup="javascript:requestAjax('{{ $field->responseUrl }}', '{{ md5($field->attribute) }}', '{{ $field->minChars }}', '{{ $field->addVars }}');"
             @endif
         >
 
@@ -21,13 +20,17 @@
         <input type="hidden" {!! $field->render !!} value="{{ $field->value }}">
 
         {{-- Create the data list --}}
-        <datalist id="list_{{ md5($field->attribute) }}">
-            @if($field->responseArray)
-                @foreach($field->responseArray as $value => $text)
-                    <option value="{{ $text }}" data-result="{{ $value }}">{{ $text }}</option>
-                @endforeach
-            @endif
-        </datalist>
+        @if($field->responseArray)
+            <datalist id="list_{{ md5($field->attribute) }}">
+                    @foreach($field->responseArray as $value => $text)
+                        <option value="{{ $text }}" data-result="{{ $value }}">{{ $text }}</option>
+                    @endforeach
+            </datalist>
+        @else
+            <div class="relative">
+                <ul id="list_{{ md5($field->attribute) }}" class="absolute left-0 top-0 bg-white border border-t-0 border-gray-400 hidden mb-4"></ul>
+            </div>
+        @endif
 
         {{-- Error container --}}
         <p id="error-{{ $field->id }}" class="validation-error"></p>
@@ -54,34 +57,49 @@
             }
         }
 
+        function clickDatalist(key, value) {
+            //Hide the container
+            var container = document.getElementById('list_' + key);
+            container.classList.remove('hidden', 'block');
+            container.classList.add('hidden');
+            //Add value to input
+            document.getElementById('input_' + key).value = value;
+            document.getElementById('{!! $field->attribute !!}').value = value;
+        }
+
         function requestAjax(url, key, min, vars) {
             //Set default values
-            const search = document.getElementById('input_' + key).value;
-            const ajaxUrl = url + '/?search=' + search + (vars ? '&' + vars : '');
-            var response;
-            console.log(ajaxUrl);
+            let response;
+            let search = document.getElementById('input_' + key).value;
+            let ajaxUrl = url + '/?search=' + search + (vars ? '&' + vars : '');
+            var container = document.getElementById('list_' + key);
 
             //Get ajax response
             if(search && search.length >= min) {
                 const xhr = new XMLHttpRequest();
                 xhr.open('GET', ajaxUrl , true);
                 xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-                xhr.onreadystatechange = function() {
+                xhr.onload = function() {
                     if(xhr.readyState == 4 && xhr.status == 200) {
-                        var response = JSON.parse( xhr.responseText );
-                        var container = document.getElementById('list-' + key);
-
+                        //Make visible the container
+                        container.classList.remove('hidden', 'block');
+                        container.classList.add('block');
+                        response = JSON.parse( xhr.responseText );
                         // clear any previously loaded options in the datalist
                         container.innerHTML = "";
-
+                        // Populate...
                         response.forEach(function(item) {
-                            // Create a new <option> element.
-                            var option = document.createElement('option');
-                            option.value = item.label;
-                            option.setAttribute('data-result', option.value);
-
-                            // attach the option to the datalist element
-                            container.appendChild(option);
+                            // Create a new <li> element.
+                            var selector = document.createElement('li');
+                            selector.setAttribute('class', 'py-4 px-5 border-b border-gray-300');
+                            var link = document.createElement('a');
+                            link.setAttribute('href', 'javascript:void(0)');
+                            link.setAttribute('class', 'datalist');
+                            link.setAttribute('onclick', 'javascript:clickDatalist("' + key + '", "' + item.label + '")');
+                            link.innerHTML = item.label;
+                            // attach the selector to the datalist element
+                            container.appendChild(selector);
+                            selector.appendChild(link);
                         });
                     }
                 };
