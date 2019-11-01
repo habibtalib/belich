@@ -5,27 +5,18 @@
         * Form javascript methods
         ****************************************
         */
-        /*
-        Section: Form
-        Description: Count textArea Characters.
-        */
+        //Count textArea Characters
         function textAreaCount(container, id) {
             document.getElementById('chars-' + id).innerHTML = window.message_chart_left + ": <b>" + (container.maxLength - container.value.length) + "</b>";
         }
 
-        /*
-        Section: Form
-        Description: Toggle checkbox
-        */
+        //Toggle checkbox
         function toggleCheckbox(id) {
             var container = document.getElementById(id);
             container.value = container.checked == 0 ? 0 : 1;
         }
 
-        /*
-        Section: Tabs
-        Description: Tabs for forms
-        */
+        //Tabs system for forms
         function switchTab(id, key) {
             //Default value
             var currentTab;

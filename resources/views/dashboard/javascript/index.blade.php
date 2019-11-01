@@ -18,22 +18,17 @@
     {{-- Include life search --}}
     @if(config('belich.liveSearch.enable'))
         <script>
-             /*
-             Section: Search
-             Description: Live search
-             */
+            //Make a live search
             function liveSearch(query = '') {
-
                 //Hide icon
                 if(query.length === 0) {
                     window.onSelection('#icon-search-reset', 'hide');
                 }
-
                 //Min. search filter
                 if(query.length < minSearch) {
                     return;
                 }
-
+                //Ajax request
                 var request = new XMLHttpRequest();
                 request.open('GET', '{{ route('dashboard.ajax.search') }}?type=search&query=' + query + '&resourceName={{ Belich::resourceName() }}&fields={{ Belich::searchFields() }}', true);
                 request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
@@ -47,10 +42,7 @@
 
             {{-- Custom jquery --}}
             document.addEventListener('DOMContentLoaded', function(event) {
-                /*
-                Section: Search
-                Description: Live search
-                */
+                //live search
                 if(document.getElementById('_search')) {
                     document.getElementById('_search')
                         .addEventListener('keyup', function(event) {
