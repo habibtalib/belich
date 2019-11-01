@@ -49,14 +49,16 @@ class Autocomplete extends Field {
     /**
      * Set the response from the data
      *
-     * @param  string  $responseFrom
+     * @param  string|array  $responseFrom
      * @return self
      */
-    public function dataFrom(string $data) : self
+    public function dataFrom($data) : self
     {
         if(is_array($data)) {
             $this->responseArray = $data;
-        } elseif(is_string($data)) {
+        }
+
+        if(is_string($data)) {
             $this->responseUrl = $data;
         }
 
