@@ -5,7 +5,7 @@
             id="input_{{ $key }}"
             list="list_{{ $key }}"
             type="text"
-            dusk="dusk-datalist-input-{{ $id }}"
+            dusk="datalist-input-{{ $id }}"
             {!! setAttribute($field, 'addClass') !!}
             {!! setAttribute($field, 'value') !!}
             {!! $field->render !!}
@@ -25,13 +25,13 @@
         >
 
         {{-- Hidden container with the value for storage --}}
-        <input type="hidden" dusk="dusk-datalist-{{ $id }}" {!! $field->render !!} value="{{ $field->value }}">
+        <input type="hidden" dusk="datalist-{{ $id }}" {!! $field->render !!} value="{{ $field->value }}">
 
         {{-- Array response --}}
         @if($field->responseArray)
-            <datalist id="list_{{ $key }}" dusk="dusk-datalist-{{ $id }}" class="datalist">
+            <datalist id="list_{{ $key }}" dusk="datalist-info-{{ $id }}" class="datalist">
                 @foreach($field->responseArray as $value => $text)
-                    <option data-text = "{{ $text }}" data-value = "{{ $value }}">
+                    <option data-text="{{ $text }}" data-value="{{ $value }}">
                         {{ $text }}
                     </option>
                 @endforeach
@@ -39,7 +39,7 @@
         {{-- Ajax response --}}
         @else
             <div class="relative">
-                <ul id="list_{{ $key }}" dusk="dusk-datalist-{{ $id }}" class="datalist hidden rounded shadow-md"></ul>
+                <ul id="list_{{ $key }}" dusk="datalist-info-{{ $id }}" class="datalist hidden rounded shadow-md"></ul>
             </div>
         @endif
 
@@ -110,7 +110,7 @@
             for(var i = 0; i < datalist.length; i++) {
                 if(datalist[i].value === input.value) {
                     // Update the value
-                    input.value = datalist[i].getAttribute('data-text');
+                    input.value = datalist[i].dataset.text;
                     document.getElementById(field).value = setValueToStore(datalist[i].dataset.value, datalist[i].dataset.text, store);
                     break;
                 }
@@ -146,7 +146,7 @@
                         // Add setAttributes
                         JSON.parse(request.responseText).forEach(function(item) {
                             // Set values
-                            var finalValue = window.setValueToStore(item.id, item.label, store);
+                            var finalValue = window.setValueToStore(item.value, item.label, store);
                             // Create the <li>
                             var li = document.createElement('li');
                             window.setAttributes(li, {
