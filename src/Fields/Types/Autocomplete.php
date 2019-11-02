@@ -73,7 +73,7 @@ class Autocomplete extends Field {
      */
     public function minChars(int $minChars) : self
     {
-        $this->minChars = $minChars;
+        $this->minChars = empty($minChars) ? 0 : $minChars;
 
         return $this;
     }

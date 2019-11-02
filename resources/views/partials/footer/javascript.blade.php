@@ -4,8 +4,11 @@
 {{-- Load all the default js --}}
 @include('belich::dashboard.javascript.default')
 
-{{-- Belich custom page javascript --}}
+{{-- Stacks of scripts --}}
 @stack('javascript')
+
+{{-- Not repeat scripts (only one) --}}
+@yield('javascript-no-repeat')
 
 {{-- Javascript metrics --}}
 @hasMetrics($request ?? null)

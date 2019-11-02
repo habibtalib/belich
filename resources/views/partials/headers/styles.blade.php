@@ -11,5 +11,8 @@
 {{-- Vendor from webpack --}}
 @mix('app.css')
 
-{{-- Custom css --}}
+{{-- Stack of css --}}
 @stack('css')
+
+{{-- Not repeat css (only one) --}}
+@yield('css-no-repeat')
