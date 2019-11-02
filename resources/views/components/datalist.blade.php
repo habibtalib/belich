@@ -10,7 +10,7 @@
             {!! setAttribute($field, 'value') !!}
             {!! $field->render !!}
             @if($field->responseArray)
-                onchange="javascript:getDatalistValuesFromArray('{{ $id }}', '{{ $key }}', '{{ $store }}')"
+                onchange="javascript:setDatalistValuesFromArray('{{ $id }}', '{{ $key }}', '{{ $store }}')"
             @endif
             @if($field->responseUrl)
                 onkeyup = "javascript:datalistAjaxResponse(
@@ -31,10 +31,7 @@
         @if($field->responseArray)
             <datalist id="list_{{ $key }}" class="datalist">
                 @foreach($field->responseArray as $value => $text)
-                    <option
-                        data-text = "{{ $text }}"
-                        data-value = "{{ $value }}"
-                    >
+                    <option data-text = "{{ $text }}" data-value = "{{ $value }}">
                         {{ $text }}
                     </option>
                 @endforeach
@@ -84,6 +81,7 @@
 
 @push('javascript')
     <script>
+        //Close datalist when click outside the container
         document.addEventListener('click', function(e) {
             if (!document.getElementById('list_{{ $key }}').contains(e.target)) {
                 window.toogleContainer(document.getElementById('list_{{ $key }}'), 'hidden');
@@ -95,16 +93,20 @@
 @section('javascript-no-repeat')
     <script>
         // Get the values from the datalist (ajax)
-        function getDatalistValuesFromAjax(field, key, text, value) {
+        function setDatalistValuesFromAjax(field, key, text, value) {
+            //Toogle container
+            toogleContainer(document.getElementById('list_' + key), 'hidden');
+            // Set values
             document.getElementById(field).value = value;
             document.getElementById('input_' + key).value = text;
-            toogleContainer(document.getElementById('list_' + key), 'hidden');
         }
 
         // Get the values from the datalist (array)
-        function getDatalistValuesFromArray(field, key, store) {
+        function setDatalistValuesFromArray(field, key, store) {
+            // Get values
             var input = document.getElementById('input_' + key);
             var datalist = document.getElementById('list_' + key).childNodes;
+            // Search datalist values
             for(var i = 0; i < datalist.length; i++) {
                 if(datalist[i].value === input.value) {
                     // Update the value
@@ -126,8 +128,8 @@
         function datalistAjaxResponse(field, key, url, addVars, min, store) {
             // Default values
             var input = document.getElementById('input_' + key);
+            var datalist = document.getElementById('list_' + key);
             var search = input.value;
-            var ul = document.getElementById('list_' + key);
             // Set ajax request
             var request = new XMLHttpRequest();
             var ajaxUrl = url + '/?store=' + store + '&search=' + search + (addVars ? '&' + addVars : '');
@@ -138,9 +140,9 @@
                 request.onreadystatechange = function() {
                     if(request.readyState == 4 && request.status == 200) {
                         // Empty the container
-                        ul.innerHTML = "";
+                        datalist.innerHTML = "";
                         // Show the container
-                        window.toogleContainer(ul, 'block');
+                        window.toogleContainer(datalist, 'block');
                         // Add setAttributes
                         JSON.parse(request.responseText).forEach(function(item) {
                             // Set values
@@ -150,10 +152,10 @@
                             window.setAttributes(li, {
                                 'data-text': item.label,
                                 'data-value': finalValue,
-                                'onclick': "javascript:getDatalistValuesFromAjax('" + field + "', '" + key + "', '" + item.label + "', '" + finalValue + "')",
+                                'onclick': "javascript:setDatalistValuesFromAjax('" + field + "', '" + key + "', '" + item.label + "', '" + finalValue + "')",
                                 'value': item.label,
                             });
-                            ul.append(li);
+                            datalist.append(li);
                         });
                     }
                 };
