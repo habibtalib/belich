@@ -5,7 +5,7 @@
             id="input_{{ $key }}"
             list="list_{{ $key }}"
             type="text"
-            dusk="dusk-autocomplete-{{ $id }}"
+            dusk="dusk-datalist-input-{{ $id }}"
             {!! setAttribute($field, 'addClass') !!}
             {!! setAttribute($field, 'value') !!}
             {!! $field->render !!}
@@ -25,11 +25,11 @@
         >
 
         {{-- Hidden container with the value for storage --}}
-        <input type="hidden" {!! $field->render !!} value="{{ $field->value }}">
+        <input type="hidden" dusk="dusk-datalist-{{ $id }}" {!! $field->render !!} value="{{ $field->value }}">
 
         {{-- Array response --}}
         @if($field->responseArray)
-            <datalist id="list_{{ $key }}" class="datalist">
+            <datalist id="list_{{ $key }}" dusk="dusk-datalist-{{ $id }}" class="datalist">
                 @foreach($field->responseArray as $value => $text)
                     <option data-text = "{{ $text }}" data-value = "{{ $value }}">
                         {{ $text }}
@@ -39,7 +39,7 @@
         {{-- Ajax response --}}
         @else
             <div class="relative">
-                <ul id="list_{{ $key }}" class="datalist hidden rounded shadow-md"></ul>
+                <ul id="list_{{ $key }}" dusk="dusk-datalist-{{ $id }}" class="datalist hidden rounded shadow-md"></ul>
             </div>
         @endif
 
