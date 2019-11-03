@@ -222,10 +222,18 @@ if (!function_exists('renderWithPrefix')) {
                 array_splice($value, 1, 0, $prefix);
                 return [$item[0] => implode('-', $value)];
             }
-            return [$item[0] => implode('_', [$prefix, $item[1]])];
+            //Check for regular fields
+            if(count($item) > 1) {
+                return [$item[0] => implode('_', [$prefix, $item[1]])];
+            }
+            //Fields: readonly and disabled (this fields don't has an structure like: attribute=value)
+            return $item[0];
         })
         ->map(function($value) {
-            return sprintf('%s=%s', array_keys($value)[0], array_values($value)[0]);
+            if(is_array($value)) {
+                return sprintf('%s=%s', array_keys($value)[0], array_values($value)[0]);
+            }
+            return $value;
         })
         ->implode(' ');
     }

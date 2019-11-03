@@ -75,22 +75,22 @@ abstract class Graph {
      * Initialize the metrics
      *
      */
-    abstract function calculate(Request $request) : array;
+    abstract public function calculate(Request $request) : array;
 
     /**
      * Set the labels
      */
-    abstract function labels(Request $request) : array;
+    abstract public function labels(Request $request) : array;
 
     /**
      * Set the metric name
      */
-    abstract function name(Request $request);
+    abstract public function name(Request $request);
 
     /**
      * Set the urikey
      */
-    abstract function urikey() : string;
+    abstract public function urikey() : string;
 
     /**
      * Set the default card width

@@ -5,7 +5,6 @@
             <input
                 type="number"
                 {!! setAttribute($field, 'addClass') !!}
-                {!! setAttribute($field, 'value') !!}
                 {!! setAttribute($field, 'step') !!}
                 {!! renderWithPrefix($field, 'lat') !!}
                 placeholder="{{ trans('belich::units.lat') }}"
