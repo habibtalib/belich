@@ -11,7 +11,6 @@ use Daguilarm\Belich\Core\Traits\Operationable;
 use Daguilarm\Belich\Core\Traits\Resourceable;
 use Daguilarm\Belich\Core\Traits\Routeable;
 use Daguilarm\Belich\Core\Traits\Systemable;
-use Daguilarm\Belich\Fields\FieldResolveIndex;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
@@ -87,21 +86,5 @@ class Belich extends BelichAbstract
     public function components(Request $request): ?string
     {
         return (new Blade)->render($request);
-    }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Html helper
-    |--------------------------------------------------------------------------
-    */
-
-    /**
-     * Initialize the html helper in order to be accesible from Belich
-     *
-     * @return \Daguilarm\Fields\FieldResolveIndex
-     */
-    public function html(): FieldResolveIndex
-    {
-        return app(FieldResolveIndex::class);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Daguilarm\Belich\Core;
 
+use Daguilarm\Belich\Fields\FieldResolveIndex;
+
 class BelichAbstract
 {
     /** @var array */
@@ -22,11 +24,16 @@ class BelichAbstract
         return static::$allowedActions;
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Init resource class
-    |--------------------------------------------------------------------------
-    */
+    /**
+     * Initialize the html helper in order to be accesible from Belich
+     *
+     * @return \Daguilarm\Fields\FieldResolveIndex
+     */
+    public function html(): FieldResolveIndex
+    {
+        return app(FieldResolveIndex::class);
+    }
+
     /**
      * Init the current class
      *
