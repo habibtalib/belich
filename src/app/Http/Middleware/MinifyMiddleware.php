@@ -56,11 +56,11 @@ class MinifyMiddleware
 
         if (config('belich.minifyHtml.enable') && $this->isHtml($response)) {
             //Filter by exclusionary action
-            if(in_array(Belich::action(), $this->exceptedActions())) {
+            if (in_array(Belich::action(), $this->exceptedActions())) {
                 return $response;
             }
             //Filter by url path
-            if(in_array(trim($request->path(), '/'), config('belich.minifyHtml.except.paths'))) {
+            if (in_array(trim($request->path(), '/'), config('belich.minifyHtml.except.paths'))) {
                 return $response;
             }
 
@@ -84,7 +84,7 @@ class MinifyMiddleware
         );
     }
 
-     /**
+    /**
      * Check if the header response is text/html.
      *
      * @param \Illuminate\Http\Response $response

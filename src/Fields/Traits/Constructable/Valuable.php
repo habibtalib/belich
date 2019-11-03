@@ -15,10 +15,10 @@ trait Valuable
      */
     private function setValueForFields(object $sqlResponse, Collection $fields) : Collection
     {
-        return $fields->map(function($field) use ($sqlResponse) {
+        return $fields->map(function ($field) use ($sqlResponse) {
             //Not resolve field value
             //Mostly, this is a hidden field...
-            if($field->notResolveField) {
+            if ($field->notResolveField) {
                 return $field;
             }
 
@@ -28,9 +28,9 @@ trait Valuable
             $field->value = self::setValuesWithFieldRelationship($sqlResponse, $field);
 
             //Add the data for the show view
-            if($this->action === 'show') {
+            if ($this->action === 'show') {
                 //Display using labels
-                if(!empty($field->displayUsingLabels) && !empty($field->options)) {
+                if (!empty($field->displayUsingLabels) && !empty($field->options)) {
                     $field->value = $field->options[$field->value] ?? $field->value;
                 }
 
@@ -51,7 +51,7 @@ trait Valuable
      */
     private function setValuesWithFieldRelationship(object $sqlResponse, object $field)
     {
-        if($field->fieldRelationship) {
+        if ($field->fieldRelationship) {
             return $sqlResponse->{$field->fieldRelationship}->{$field->attribute} ?? null;
         }
 

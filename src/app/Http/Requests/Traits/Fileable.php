@@ -17,7 +17,7 @@ trait Fileable
         $file = $this->request->get('__file');
 
         $response = collect($file)
-            ->map(function($values, $key) use ($model) {
+            ->map(function ($values, $key) use ($model) {
                 return $this->uploadFile($key, $model, $values);
             });
 
@@ -38,7 +38,7 @@ trait Fileable
         $file = $this->{$attribute};
 
         //Upload the file
-        if(is_object($file)) {
+        if (is_object($file)) {
             $this->storeFile($attribute, $file, $model, $values);
         }
 
@@ -63,7 +63,7 @@ trait Fileable
         $disk = $values['disk'];
 
         //Upload file
-        if(Storage::disk($disk)->put($fileName, file_get_contents($file))) {
+        if (Storage::disk($disk)->put($fileName, file_get_contents($file))) {
             //Delete the previus file from storage
             $this->deletePrevius($attribute, $disk, $model);
             //Update request attribute value
@@ -103,7 +103,7 @@ trait Fileable
     private function deletePrevius(string $attribute, string $disk, $model) : void
     {
         //Delete the previus file from storage
-        if(!empty($model) && is_object($model)) {
+        if (!empty($model) && is_object($model)) {
             $previus = $model->{$attribute};
             $delete = Storage::disk($disk)->delete($previus);
         }

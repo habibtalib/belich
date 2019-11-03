@@ -23,7 +23,7 @@ trait Resourceable
     public static function resource() : string
     {
         //Search action
-        if(static::requestFromSearch()) {
+        if (static::requestFromSearch()) {
             return stringPluralLower(request()->query('resourceName'));
         }
 
@@ -65,11 +65,11 @@ trait Resourceable
         $resource = Str::singular(static::resource());
         $resourceId = request()->route($resource) ?? null;
 
-        if(is_null($resourceId)) {
+        if (is_null($resourceId)) {
             return null;
         }
 
-        if(is_numeric($resourceId)) {
+        if (is_numeric($resourceId)) {
             return $resourceId;
         }
 
@@ -140,7 +140,7 @@ trait Resourceable
         // This is for the views (like dashboard)
         // which has not a resouce class
         // so don't ever remove!
-        if(class_exists($class)) {
+        if (class_exists($class)) {
             return $class::$accessToResource;
         }
 
@@ -189,12 +189,12 @@ trait Resourceable
     public function resourcesAll() : Collection
     {
         return $this->resourceFiles()
-            ->map(function($file) {
+            ->map(function ($file) {
                 return $file;
-            })->filter(function($value, $key) {
+            })->filter(function ($value, $key) {
                 return $value !== '.' && $value !== '..';
-            })->mapWithKeys(function($file, $key) {
-                if($file) {
+            })->mapWithKeys(function ($file, $key) {
+                if ($file) {
                     //Define the current class name
                     $className = Str::title(explode('.', $file)[0]);
                     $resource = Str::plural(Str::lower($className));
@@ -218,7 +218,7 @@ trait Resourceable
 
                 $title = $item['pluralLabel'] ?? stringPluralUpper($item['class']);
 
-                if($item['displayInNavigation'] === true) {
+                if ($item['displayInNavigation'] === true) {
                     return collect([
                         'group' => $item['group'] ?? $title,
                         'icon' => $item['icon'],
@@ -277,7 +277,7 @@ trait Resourceable
         $class = static::resourceClassPath($className);
 
         //If a resource is not accessible then cannot be listed in a menu
-        if($class::$accessToResource === false) {
+        if ($class::$accessToResource === false) {
             $accessToResource = $displayInNavigation = false;
 
         //Default values
@@ -300,7 +300,7 @@ trait Resourceable
         ]);
 
         //Advanced values
-        if($forNavigation === false) {
+        if ($forNavigation === false) {
             return $resource->merge([
                 'accessToResource' => $accessToResource,
                 'actions' => $class::$actions,

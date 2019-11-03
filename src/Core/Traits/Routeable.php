@@ -26,7 +26,7 @@ trait Routeable
         $route = static::route();
 
         //Search action
-        if(static::requestFromSearch()) {
+        if (static::requestFromSearch()) {
             return 'index';
         }
 
@@ -44,7 +44,7 @@ trait Routeable
     {
         //Hack for artisan route:list
         //I don't know why... WTF!
-        if(is_null(Request::route())){
+        if (is_null(Request::route())){
             return ['dashboard', 'users', 'index'];
         }
 
@@ -63,11 +63,11 @@ trait Routeable
     {
         $route = sprintf('%s.%s.%s', static::pathName(), static::resource(), $controllerAction);
 
-        if(is_object($data) && optional($data)->id > 0) {
+        if (is_object($data) && optional($data)->id > 0) {
             return route($route, $data->id);
         }
 
-        if(is_numeric($data)) {
+        if (is_numeric($data)) {
             return route($route, $data);
         }
 

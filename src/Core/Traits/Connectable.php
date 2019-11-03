@@ -24,15 +24,15 @@ trait Connectable
         $policy = request()->user()->can('withTrashed', Belich::getModel());
 
         //Sql for index
-        if(static::action() === 'index') {
+        if (static::action() === 'index') {
             return $class
                 //Add the current resource query
                 ->indexQuery($this->request)
 
                 //Live search
-                ->when(self::requestFromSearch(), function($query) {
+                ->when(self::requestFromSearch(), function ($query) {
                     //No results
-                    if($this->request->query('query') === 'resetSearchAll') {
+                    if ($this->request->query('query') === 'resetSearchAll') {
                         return $query;
                     }
                     //Get the results
@@ -64,7 +64,7 @@ trait Connectable
         }
 
         //Sql for edit and show
-        if(static::action() === 'edit' || static::action() === 'show' && is_numeric(static::resourceId())) {
+        if (static::action() === 'edit' || static::action() === 'show' && is_numeric(static::resourceId())) {
             return $class
                 ->model()
                 ->findOrFail(static::resourceId());

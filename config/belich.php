@@ -15,7 +15,7 @@ return [
     'path' => '/dashboard',
 
     //Application url
-    'url'  => env('APP_URL', '/'),
+    'url' => env('APP_URL', '/'),
 
     /*
     Application with profile as resource
@@ -31,7 +31,7 @@ return [
     | Options: 'top' or 'sidebar'
     |--------------------------------------------------------------------------
     */
-    'navbar'  => 'top',
+    'navbar' => 'top',
 
     /*
     |--------------------------------------------------------------------------
@@ -110,10 +110,10 @@ return [
     | Don't worry about slashes... there is no different between dashboard/2/users or /dashboard/2/users/ for Belich!
     */
     'minifyHtml' => [
-        'enable'    => true,
-        'except'  => [
+        'enable' => true,
+        'except' => [
             'actions' => [], //['index', 'show']
-            'paths'   => [], //['dashboard/', 'dashboard/users/create']
+            'paths' => [], //['dashboard/', 'dashboard/users/create']
         ],
     ],
 

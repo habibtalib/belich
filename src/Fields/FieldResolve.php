@@ -59,12 +59,12 @@ final class FieldResolve
         //Controller actions
         //Resolve fields base on the controller action
         //No resolve field for not visual actions
-        if($this->action === 'store' || $this->action === 'update' || $this->action === 'destroy') {
+        if ($this->action === 'store' || $this->action === 'update' || $this->action === 'destroy') {
             return new Collection;
         }
 
         //Prepare the field for the index response
-        if($this->action === 'index') {
+        if ($this->action === 'index') {
             return app(\Daguilarm\Belich\Fields\FieldResolveIndex::class)->make($fields, $sqlResponse);
         }
 

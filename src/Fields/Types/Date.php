@@ -27,7 +27,7 @@ class Date extends Field
         $this->toDate('Y-m-d');
 
         //Resolving the date
-        $this->resolveUsing(function($model) {
+        $this->resolveUsing(function ($model) {
             // Get the current date
             $date = $model->{$this->attribute};
             //Get the format

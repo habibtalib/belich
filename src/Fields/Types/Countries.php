@@ -18,13 +18,13 @@ class Countries extends Autocomplete
 
         //Get the countries
         $this->responseArray = collect(trans('belich::metrics.countriesOfTheWorldWithCodes'))
-            ->flatMap(function($country) {
+            ->flatMap(function ($country) {
                 return [$country['code'] => $country['name']];
             })
             ->all();
 
         //Resolve value for: index and show
-        $this->resolveUsing(function($model) use ($attribute) {
+        $this->resolveUsing(function ($model) use ($attribute) {
             //Get the sql value
             $attribute = $model->{$attribute};
             //Set the label value

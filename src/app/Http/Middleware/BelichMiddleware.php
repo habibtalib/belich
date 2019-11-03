@@ -31,12 +31,12 @@ class BelichMiddleware
         $response = $next($request);
 
         // Default results per page cookie
-        if(!$request->cookie('belich_perPage')) {
+        if (!$request->cookie('belich_perPage')) {
             $response = $response->withCookie(cookie('belich_perPage', $this->perPage, setTimeForCookie()));
         }
 
         // Default trashed results cookie
-        if(!$request->cookie('belich_withTrashed')) {
+        if (!$request->cookie('belich_withTrashed')) {
             $response = $response->withCookie(cookie('belich_withTrashed', $this->withTrashed, setTimeForCookie()));
         }
 

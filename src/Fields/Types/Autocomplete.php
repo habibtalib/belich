@@ -33,7 +33,7 @@ class Autocomplete extends Field
     public function addVars(...$vars) : self
     {
         $this->addVars = collect($vars)
-            ->map(function($value) {
+            ->map(function ($value) {
                 return sprintf(
                     '%s=%s',
                     collect($value)->keys()->first(),
@@ -54,11 +54,11 @@ class Autocomplete extends Field
      */
     public function dataFrom($data) : self
     {
-        if(is_array($data)) {
+        if (is_array($data)) {
             $this->responseArray = $data;
         }
 
-        if(is_string($data)) {
+        if (is_string($data)) {
             $this->responseUrl = $data;
         }
 

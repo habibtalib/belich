@@ -118,14 +118,14 @@ abstract class Resources
         $home = [trans('belich::belich.navigation.home') => static::url()];
 
         //Set index
-        if(static::action() === 'index') {
+        if (static::action() === 'index') {
             return array_merge($home,
                 [static::$pluralLabel => null]
             );
         }
 
         //Set edit
-        if(static::action() === 'edit') {
+        if (static::action() === 'edit') {
             return array_merge($home,
                 [static::$label => static::resourceUrl()],
                 [trans('belich::buttons.crud.update') => null]
@@ -133,7 +133,7 @@ abstract class Resources
         }
 
         //Set create
-        if(static::action() === 'create') {
+        if (static::action() === 'create') {
             return array_merge($home,
                 [static::$label => static::resourceUrl()],
                 [trans('belich::buttons.crud.create') => null]
@@ -141,7 +141,7 @@ abstract class Resources
         }
 
         //Set show
-        if(static::action() === 'show') {
+        if (static::action() === 'show') {
             return array_merge($home,
                 [static::$label => static::resourceUrl()],
                 [trans('belich::buttons.crud.show') => null]

@@ -17,7 +17,7 @@ class Excel
          * @Driver: Laravel Maatwebsite excel
          * @Github: https://laravel-excel.maatwebsite.nl/
          */
-        if(static::getDriver() === 'maatwebsite') {
+        if (static::getDriver() === 'maatwebsite') {
             return new \Daguilarm\Belich\Components\Export\Drivers\MaatwebsiteDriver;
         }
 
@@ -25,7 +25,7 @@ class Excel
          * @Driver: FastExcel
          * @Github: https://github.com/rap2hpoutre/fast-excel
          */
-        if(static::getDriver() === 'fast-excel') {
+        if (static::getDriver() === 'fast-excel') {
             return new \Daguilarm\Belich\Components\Export\Drivers\FastExcelDriver;
         }
 

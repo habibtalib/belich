@@ -20,12 +20,12 @@ trait Resolvable
     public function resolve(Field $field, object $data = null)
     {
         //Resolve Relationship
-        if(is_array($field->attribute) && count($field->attribute) === 2 && !empty($data)) {
+        if (is_array($field->attribute) && count($field->attribute) === 2 && !empty($data)) {
             $relationship = $data->{$field->attribute[0]};
             $value = optional($relationship)->{$field->attribute[1]} ?? emptyResults();
 
         //Resolve value for action controller: edit
-        } elseif(!empty($data)) {
+        } elseif (!empty($data)) {
             $value = $data->{$field->attribute} ?? emptyResults();
 
         //Resolve value for action controller: show
@@ -34,7 +34,7 @@ trait Resolvable
         }
 
         //File field
-        if($field->type === 'file' && $value) {
+        if ($field->type === 'file' && $value) {
             return $this->resolveFile($field, $value);
         }
 
@@ -42,7 +42,7 @@ trait Resolvable
         $value = $this->resolveBoolean($field, $value);
 
         //Display using labels
-        if(!empty($field->displayUsingLabels) && !empty($field->options)) {
+        if (!empty($field->displayUsingLabels) && !empty($field->options)) {
             $value = $field->options[$value] ?? $value;
         }
 

@@ -16,11 +16,11 @@ trait Renderable
     private function setRenderFieldAttributes($field) : Collection
     {
         collect($field)
-            ->each(function($value, $attribute) use ($field) : void {
+            ->each(function ($value, $attribute) use ($field) : void {
                 //Get the list of attributes to be rendered: name, dusk,...
-                if(in_array($attribute, $field->renderAttributes)) {
+                if (in_array($attribute, $field->renderAttributes)) {
                     //Remove attributes from list
-                    if(!in_array($attribute, $field->removedAttr)) {
+                    if (!in_array($attribute, $field->removedAttr)) {
                         $field->render[] = sprintf('%s=%s', $attribute, $value);
                     }
                 }
@@ -39,7 +39,7 @@ trait Renderable
     private function setRenderFieldAttributesData($field) : string
     {
         return collect($field->data)
-            ->map(function($value) {
+            ->map(function ($value) {
                 return sprintf('data-%s=%s', $value[0], $value[1]);
             })
             ->implode(' ');

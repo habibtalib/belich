@@ -49,7 +49,7 @@ trait Searchable
     {
         $request = request()->query();
 
-        if(!empty($request['query'])
+        if (!empty($request['query'])
            && !empty($request['resourceName'])
            && is_string($request['resourceName'])
            && strlen($request['query']) >= config('belich.minSearch')
@@ -71,7 +71,7 @@ trait Searchable
     {
         $fields = explode(',', trim(request()->query('fields')));
 
-        return collect($fields)->map(function($value) {
+        return collect($fields)->map(function ($value) {
             return $value;
         })
             ->filter()

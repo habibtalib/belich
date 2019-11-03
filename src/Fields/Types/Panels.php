@@ -16,7 +16,7 @@ class Panels
     public static function create(string $name, callable $fields) : array
     {
         return static::getFields($fields)
-            ->map(function($field) use ($name) {
+            ->map(function ($field) use ($name) {
                 return $field
                     ->panels($name);
             })

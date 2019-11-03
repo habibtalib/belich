@@ -15,7 +15,7 @@ class Eloquent
     public static function query(Request $request) : Collection
     {
         //Selected fields
-        if($request->quantity === 'selected') {
+        if ($request->quantity === 'selected') {
             return static::model($request)
                 //App\Http\Helpers\Utils
                 ->whereIn('id', fieldToArray($request->exports_selected))

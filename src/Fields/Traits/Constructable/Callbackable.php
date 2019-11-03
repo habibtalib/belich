@@ -33,9 +33,9 @@ trait Callbackable
      */
     private function displayCallback(Field $field, $value = '')
     {
-        if(!empty($field->displayCallback)) {
-            foreach($field->displayCallback as $callback) {
-                if(is_callable($callback)) {
+        if (!empty($field->displayCallback)) {
+            foreach ($field->displayCallback as $callback) {
+                if (is_callable($callback)) {
                     $value = call_user_func($callback, $value);
                 }
             }
@@ -55,10 +55,10 @@ trait Callbackable
     private function resolveCallback(Field $field, object $data = null, $value = '')
     {
         //Resolve value when using the method: $field->resolveUsing()
-        if(is_callable($field->resolveCallback)) {
+        if (is_callable($field->resolveCallback)) {
             //Add the data for the show view
             //No need to resolve for index because the $data variable is already available
-            if(Belich::action() === 'show') {
+            if (Belich::action() === 'show') {
                 $data = $field->data;
             }
 

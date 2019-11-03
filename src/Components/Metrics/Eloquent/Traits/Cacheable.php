@@ -21,7 +21,7 @@ trait Cacheable
     private function getDataFromCache($dateType, $type)
     {
         //Cache for ever
-        if($this->cacheForEver === true) {
+        if ($this->cacheForEver === true) {
             return Cache::rememberForever($this->cacheKey, function () use ($dateType, $type) {
                 return $this->getDataFromStorage($dateType, $type);
             });

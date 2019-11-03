@@ -212,22 +212,22 @@ trait DatesForHumans
     private function filterDateFormat($date) : Carbon
     {
         //Carbon format
-        if($date instanceof Carbon) {
+        if ($date instanceof Carbon) {
             return $date;
         }
 
         //Sql format
-        if(DateTime::createFromFormat('Y-m-d', $date, config('app.timezone'))) {
+        if (DateTime::createFromFormat('Y-m-d', $date, config('app.timezone'))) {
             return DateTime::createFromFormat('Y-m-d', $date, config('app.timezone'));
         }
 
         //European format
-        if(DateTime::createFromFormat('d/m/Y', $date, config('app.timezone'))) {
+        if (DateTime::createFromFormat('d/m/Y', $date, config('app.timezone'))) {
             return DateTime::createFromFormat('d/m/Y', $date, config('app.timezone'));
         }
 
         //English format
-        if(DateTime::createFromFormat('Y/m/d', $date, config('app.timezone'))) {
+        if (DateTime::createFromFormat('Y/m/d', $date, config('app.timezone'))) {
             return DateTime::createFromFormat('Y/m/d', $date, config('app.timezone'));
         }
     }

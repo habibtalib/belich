@@ -11,13 +11,13 @@ return [
         'reset' => 'Reset Password',
     ],
     'login' => [
-        'email'=> 'Email',
+        'email' => 'Email',
         'link' => 'Go to login?',
         'password' => 'Password',
-        'title'=> 'Login to :name',
+        'title' => 'Login to :name',
     ],
     'placeholder' => [
-        'email'=> 'Your email',
+        'email' => 'Your email',
         'name' => 'Your name',
         'password' => 'Your password',
     ],
@@ -33,8 +33,8 @@ return [
     'verify' => [
         'check' => 'Before proceeding, please check your email for a verification link.',
         'email' => 'Verify Your Email Address',
-        'fail'=> 'If you did not receive the email',
+        'fail' => 'If you did not receive the email',
         'refresh' => 'A fresh verification link has been sent to your email address.',
-        'resend'  => 'click here to request another',
+        'resend' => 'click here to request another',
     ],
 ];

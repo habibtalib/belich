@@ -4,11 +4,11 @@ return [
     'crud' => [
         'success' => [
             'title' => 'Congrats!',
-            'text'  => 'The resource has been successfully :action.'
+            'text' => 'The resource has been successfully :action.'
         ],
         'fail' => [
             'title' => 'Error detected..',
-            'text'  => [
+            'text' => [
                 'An error occurred during the :action process, and the operation can not be carried out successfully.',
                 'If the error persists, please contact the system administrator: :email',
             ],
@@ -17,11 +17,11 @@ return [
     'delete' => [
         'item' => [
             'title' => 'Delete item',
-            'confirm'  => 'Are you sure you want to delete the selected item?',
+            'confirm' => 'Are you sure you want to delete the selected item?',
         ],
         'selected' => [
             'title' => 'Delete selection',
-            'confirm'  => 'Are you sure you want to delete all the selected fields?',
+            'confirm' => 'Are you sure you want to delete all the selected fields?',
         ],
     ],
     'options' => [

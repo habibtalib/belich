@@ -4,8 +4,8 @@ namespace Daguilarm\Belich\App\Http\Controllers\Traits;
 
 use Illuminate\Database\Eloquent\Builder;
 
-trait Deletedable {
-
+trait Deletedable
+{
    /**
     * Sql query from soft deleted rows
     *

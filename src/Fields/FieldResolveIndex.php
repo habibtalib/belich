@@ -28,17 +28,17 @@ class FieldResolveIndex
      */
     public function make(object $fields, object $sqlResponse) : Collection
     {
-        $fields = $fields->map(function($field) {
-           //Showing field relationship in index
-           //See blade template: dashboard.index
-           $field->attribute = $field->fieldRelationship
-               //Prepare field for relationship
-               ? [$field->fieldRelationship, $field->attribute]
-               //No relationship field
-               : $field->attribute;
+        $fields = $fields->map(function ($field) {
+            //Showing field relationship in index
+            //See blade template: dashboard.index
+            $field->attribute = $field->fieldRelationship
+                //Prepare field for relationship
+                ? [$field->fieldRelationship, $field->attribute]
+                //No relationship field
+                : $field->attribute;
 
-           return $field;
-       });
+            return $field;
+        });
 
         return collect([
             'data' => $fields,

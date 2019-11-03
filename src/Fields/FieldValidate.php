@@ -75,7 +75,7 @@ final class FieldValidate
     private function setValues($resource) : Collection
     {
         return $resource['fields']
-            ->mapWithKeys(function($field, $key) {
+            ->mapWithKeys(function ($field, $key) {
                 return [
                     $field->id => [
                         $field->label,
@@ -84,7 +84,7 @@ final class FieldValidate
                         $this->setRules($field)
                     ]
                 ];
-        });
+            });
     }
 
     /**
@@ -95,12 +95,10 @@ final class FieldValidate
      */
     private function setRules($field)
     {
-        if($this->controllerAction === 'create') {
+        if ($this->controllerAction === 'create') {
             $rules = $field->creationRules ?? $field->rules ?? [];
-
         } elseif ($this->controllerAction === 'edit') {
             $rules = $field->updateRules ?? $field->rules ?? [];
-
         } else {
             $rules = $field->rules ?? [];
         }
@@ -118,8 +116,8 @@ final class FieldValidate
     private function setFormValues($values) : string
     {
         return collect($values)
-            ->map(function($value, $attribute) {
-                if(!empty($value) && !empty($attribute)) {
+            ->map(function ($value, $attribute) {
+                if (!empty($value) && !empty($attribute)) {
                     // return sprintf("%s:$('#%s').val()", $attribute, $attribute);
                     return sprintf("%s:document.getElementById('%s').value", $attribute, $attribute);
                 }
@@ -138,7 +136,7 @@ final class FieldValidate
     private function formValidationRules($values) : string
     {
         return collect($values)
-            ->map(function($value) {
+            ->map(function ($value) {
                 //Get the current rule
                 return collect($value)->last();
             })
@@ -156,7 +154,7 @@ final class FieldValidate
     private function formValidationAttributes($values) : string
     {
         return collect($values)
-            ->map(function($attribute) {
+            ->map(function ($attribute) {
                 return collect($attribute)->first();
             });
     }

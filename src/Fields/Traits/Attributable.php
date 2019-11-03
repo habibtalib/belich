@@ -26,7 +26,7 @@ trait Attributable
      */
     public function addClass(...$values) : self
     {
-        foreach($values as $value) {
+        foreach ($values as $value) {
             $this->addClass[] = $value;
         }
 
@@ -65,7 +65,7 @@ trait Attributable
      */
     public function disabled(bool $value = true) : self
     {
-        if(!empty($value)) {
+        if (!empty($value)) {
             $this->disabled = true;
         }
 
@@ -81,7 +81,7 @@ trait Attributable
     public function defaultValue($value = null) : self
     {
         //Check the value for conditional cases...
-        if(!empty($value)) {
+        if (!empty($value)) {
             $this->value = $value;
         }
 
@@ -96,7 +96,7 @@ trait Attributable
      */
     public function readOnly(bool $value = true) : self
     {
-        if(!empty($value)) {
+        if (!empty($value)) {
             $this->readonly = true;
         }
 

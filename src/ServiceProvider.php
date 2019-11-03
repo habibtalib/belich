@@ -53,7 +53,7 @@ final class ServiceProvider extends Provider
     protected function registerBootstrap() : void
     {
         //Include the package classmap autoloader
-        if(file_exists(__DIR__ . '/../vendor/autoload.php')) {
+        if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
             require_once(__DIR__ . '/../vendor/autoload.php');
         }
 
@@ -76,12 +76,12 @@ final class ServiceProvider extends Provider
     protected function registerRoutes() : void
     {
         //Auth routes
-        if(file_exists(__DIR__ . '/../routes/AuthRoutes.php')) {
+        if (file_exists(__DIR__ . '/../routes/AuthRoutes.php')) {
             require_once(__DIR__ . '/../routes/AuthRoutes.php');
         }
 
         //Dashboard routes
-        if(file_exists(__DIR__ . '/../routes/ResolveRoutes.php')) {
+        if (file_exists(__DIR__ . '/../routes/ResolveRoutes.php')) {
             require_once(__DIR__ . '/../routes/ResolveRoutes.php');
         }
     }

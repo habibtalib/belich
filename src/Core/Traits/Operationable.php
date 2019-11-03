@@ -20,11 +20,11 @@ trait Operationable
      */
     public static function count($value, int $initialValue = 0) : int
     {
-        if(is_array($value)) {
+        if (is_array($value)) {
             return count($value) + $initialValue;
         }
 
-        if(is_object($value)) {
+        if (is_object($value)) {
             return $value->count() + $initialValue;
         }
 

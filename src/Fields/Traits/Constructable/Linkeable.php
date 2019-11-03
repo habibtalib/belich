@@ -22,7 +22,7 @@ trait Linkeable
      */
     protected function headerLabels($fields) : Collection
     {
-        return $fields->map(function($field) {
+        return $fields->map(function ($field) {
             return $this->headerLinks($field);
         });
     }
@@ -37,7 +37,7 @@ trait Linkeable
     private function headerLinks(Field $field) : string
     {
         //Filter if the attribute is a relationship or is not sortable
-        if(is_array($field->attribute) || $field->sortable === false) {
+        if (is_array($field->attribute) || $field->sortable === false) {
             return $field->label;
         }
 
@@ -76,11 +76,11 @@ trait Linkeable
         //Get the url parameters
         $parameters = collect(request()->query())
             //Only the allowed parameters
-            ->filter(function($value, $key) {
+            ->filter(function ($value, $key) {
                 return in_array($key, $this->allowedUrlParameters());
             })
             ->unique()
-            ->map(function($value, $key) use ($field) {
+            ->map(function ($value, $key) use ($field) {
                 return $this->setOrderAndDirection($field, $key, $value);
             });
 
@@ -100,11 +100,11 @@ trait Linkeable
      */
     private function setUrlParametersDefaultValues(Field $field, Collection $parameters) : Collection
     {
-        if(!$parameters->get('orderBy')) {
+        if (!$parameters->get('orderBy')) {
             $parameters->put('orderBy', $field->attribute);
         }
 
-        if(!$parameters->get('direction')) {
+        if (!$parameters->get('direction')) {
             $parameters->put('direction', 'DESC');
         }
 
@@ -120,7 +120,7 @@ trait Linkeable
     private function setUrlParametersSerialized(Collection $parameters) : string
     {
         return $parameters
-            ->map(function($value, $key) {
+            ->map(function ($value, $key) {
                 return sprintf('%s=%s', $key, $value);
             })
             ->implode('&');
@@ -136,7 +136,7 @@ trait Linkeable
     private function setValueFromDirection(string $key, string $value) : string
     {
         //Set only the allowed direction values
-        if($value !== 'DESC' && $value !== 'ASC') {
+        if ($value !== 'DESC' && $value !== 'ASC') {
             return 'DESC';
         }
 
@@ -155,12 +155,12 @@ trait Linkeable
     private function setOrderAndDirection(Field $field, string $key, string $value) : string
     {
         //Set orderBy
-        if($key === 'orderBy') {
+        if ($key === 'orderBy') {
             return $field->attribute;
         }
 
         //Set direction
-        if($key === 'direction') {
+        if ($key === 'direction') {
             return $this->setValueFromDirection($key, $value);
         }
 

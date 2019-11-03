@@ -15,7 +15,7 @@ trait Formatable
     public function textAlign(string $value) : self
     {
         //Check the value for conditional cases...
-        if(in_array($value, $this->textAlignAllowed)) {
+        if (in_array($value, $this->textAlignAllowed)) {
             $this->addClass[] = 'text-' . $value;
         }
 

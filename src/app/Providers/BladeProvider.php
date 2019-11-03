@@ -35,7 +35,7 @@ Blade::directive('icon', function ($arguments) {
 Blade::directive('listTextFromArray', function ($arguments) {
     $text = explode(',', str_replace(['(',')',' ', "'"], '', $arguments));
     $list = collect(trans($text[0]))
-        ->map(function($item) {
+        ->map(function ($item) {
             return sprintf('<div>%s</div>', icon('check-square', $item));
         })
         ->implode('');

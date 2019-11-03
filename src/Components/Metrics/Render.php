@@ -28,7 +28,7 @@ class Render
     {
         //Render the metric view
         $metrics = collect($request->metrics)
-            ->map(function($metric) {
+            ->map(function ($metric) {
                 return view('belich::components.metrics.chart', compact('metric'))->render();
             });
 
@@ -85,19 +85,19 @@ class Render
     */
     private function graphSelector(string $type, string $key)
     {
-        if($type === 'bars') {
+        if ($type === 'bars') {
             return $this->barGraph($key);
         }
 
-        if($type === 'horizontal-bars') {
+        if ($type === 'horizontal-bars') {
             return $this->horizontalBarGraph($key);
         }
 
-        if($type === 'pie') {
+        if ($type === 'pie') {
             return $this->pieGraph($key);
         }
 
-        if($type === 'line') {
+        if ($type === 'line') {
             return $this->lineGraph($key);
         }
 
@@ -195,7 +195,7 @@ class Render
 
         //Serialize the values
         return $values
-            ->map(function($value) {
+            ->map(function ($value) {
                 return sprintf("'%s'", $value);
             })->implode(',');
     }
@@ -212,15 +212,17 @@ class Render
         $collection = is_array($series) ? collect($series) : $series;
 
         //Serialize the values
-        return sprintf('[%s]', $collection->map(function($value) {
+        return sprintf('[%s]',
+            $collection->map(function ($value) {
                 //Multilevel loop for arrays
-                if(is_array($value)) {
+                if (is_array($value)) {
                     return $this->formatSeries($value);
                 }
                 //Regular value
                 return sprintf("'%s'", $value);
             //To string
-            })->implode(',')
+            })
+                ->implode(',')
         );
     }
 }

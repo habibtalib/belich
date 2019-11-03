@@ -17,12 +17,12 @@ trait Fileable
      */
     protected function resolveFile(Field $field, string $value)
     {
-        if(empty($value) || $value === emptyResults()) {
+        if (empty($value) || $value === emptyResults()) {
             return emptyResults();
         }
 
         //File policy
-        if(auth()->user()->can('file', Belich::getModel())) {
+        if (auth()->user()->can('file', Belich::getModel())) {
             // Image by type
             return $this->resolveFileType($field, $value);
         }
@@ -38,9 +38,9 @@ trait Fileable
     private function resolveFileType(Field $field, $value) : string
     {
         // Image field
-        if($field->fileType === 'image') {
+        if ($field->fileType === 'image') {
             //Value is not an url
-            if(!filter_var($value, FILTER_VALIDATE_URL)) {
+            if (!filter_var($value, FILTER_VALIDATE_URL)) {
                 $value = Storage::disk($field->disk)->url($value);
             }
             //Set the image alt

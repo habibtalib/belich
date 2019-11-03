@@ -106,7 +106,7 @@ class FieldAbstract
      */
     public function sortable(bool $value = true) : self
     {
-        if(!empty($value)) {
+        if (!empty($value)) {
             $this->sortable = true;
         }
 
@@ -120,7 +120,7 @@ class FieldAbstract
      */
     public function displayUsing(callable $displayCallback) : self
     {
-        if(!empty($displayCallback)) {
+        if (!empty($displayCallback)) {
             $this->displayCallback[] = $displayCallback;
         }
 
@@ -134,7 +134,7 @@ class FieldAbstract
      */
     public function resolveUsing(callable $resolveCallback) : self
     {
-        if(!empty($resolveCallback)) {
+        if (!empty($resolveCallback)) {
             $this->resolveCallback = $resolveCallback;
         }
 
@@ -161,7 +161,7 @@ class FieldAbstract
      */
     public function prefix(string $prefix, bool $space = false) : self
     {
-        $this->displayUsing(function($value) use ($prefix, $space) {
+        $this->displayUsing(function ($value) use ($prefix, $space) {
             return sprintf(
                 '%s%s%s',
                 $prefix, $space ? ' ' : '',
@@ -180,7 +180,7 @@ class FieldAbstract
      */
     public function suffix(string $suffix, bool $space = false) : self
     {
-        $this->displayUsing(function($value) use ($suffix, $space) {
+        $this->displayUsing(function ($value) use ($suffix, $space) {
             return sprintf(
                 '%s%s%s',
                 $value,

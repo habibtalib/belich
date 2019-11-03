@@ -22,13 +22,13 @@ trait Resolvable
     protected function setCrudController(object $fields, object $sqlResponse)
     {
         //Set fields attributes: Only for create and edit actions
-        if($this->action === 'create' || $this->action === 'edit') {
+        if ($this->action === 'create' || $this->action === 'edit') {
             // Creating all the render attributes for the forms
             $fields = $this->setAttributesForFields($fields);
         }
 
         //Resolve values for fields: Only for Edit or Show actions
-        if($this->action === 'edit' || $this->action === 'show') {
+        if ($this->action === 'edit' || $this->action === 'show') {
             //Fill the field value with the model
             return $this->setValueForFields($sqlResponse, $fields);
         }
@@ -50,7 +50,7 @@ trait Resolvable
      */
     private function setVisibilityForFields(Collection $fields) : Collection
     {
-        return $fields->map(function($field) {
+        return $fields->map(function ($field) {
             //If the field has the visibility for this controller action on true...
             return $field->visibility[$this->action]
                 ? $field
@@ -75,28 +75,28 @@ trait Resolvable
     private function setAttributesForFields(Collection $fields) : Collection
     {
         //Set attributes for each field
-        return $fields->map(function($field) {
+        return $fields->map(function ($field) {
 
             //Add attributes dynamically from the list
             $field->render = $this->setRenderFieldAttributes($field);
 
             //Add autofocus attribute
-            if($field->autofocus) {
+            if ($field->autofocus) {
                 $field->render->push('autofocus');
             }
 
             //Add the data attributes
-            if($field->data) {
+            if ($field->data) {
                 $field->render->push($this->setRenderFieldAttributesData($field));
             }
 
             //Add readonly attribute
-            if($field->readonly) {
+            if ($field->readonly) {
                 $field->render->push('readonly');
             }
 
             //Add disabled attribute
-            if($field->disabled) {
+            if ($field->disabled) {
                 $field->render->push('disabled');
             }
 

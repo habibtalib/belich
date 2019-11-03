@@ -111,15 +111,15 @@ class Labels
 
     private static function arrayFilter(string $value)
     {
-        if($value === 'lower') {
+        if ($value === 'lower') {
             return 'strtolower';
         }
 
-        if($value === 'capitalize') {
+        if ($value === 'capitalize') {
             return 'strtoupper';
         }
 
-        if($value === 'title') {
+        if ($value === 'title') {
             return 'ucfirst';
         }
     }

@@ -114,7 +114,6 @@ trait Casteable
         $this->request->set($key, (float) request($key));
     }
 
-
     /**
      * Converts JSON to an associated array using jscon_decode (json)
      *

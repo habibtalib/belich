@@ -38,7 +38,7 @@ class Belich extends BelichAbstract
         $this->user = \Illuminate\Support\Facades\Auth::user();
 
         //Set pagination
-        if($this->request->has('perPage')) {
+        if ($this->request->has('perPage')) {
             $this->perPage = $this->request->perPage;
         }
     }
@@ -49,7 +49,7 @@ class Belich extends BelichAbstract
     |--------------------------------------------------------------------------
     */
 
-   /**
+    /**
      * Prepare the actions for the view
      *
      * @param object $model
@@ -62,7 +62,7 @@ class Belich extends BelichAbstract
         $actionView = 'belich::actions.' . $view;
 
         //Custom action
-        if(view()->exists($actionView)) {
+        if (view()->exists($actionView)) {
             return view($actionView, ['model' => $model]);
         }
 
@@ -92,7 +92,7 @@ class Belich extends BelichAbstract
     |--------------------------------------------------------------------------
     */
 
-   /**
+    /**
      * Initialize the html helper in order to be accesible from Belich
      *
      * @return \Daguilarm\Fields\FieldResolveIndex

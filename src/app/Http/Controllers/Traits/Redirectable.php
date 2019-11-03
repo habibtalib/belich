@@ -5,8 +5,8 @@ namespace Daguilarm\Belich\App\Http\Controllers\Traits;
 use Daguilarm\Belich\Facades\Belich;
 use Illuminate\Http\RedirectResponse;
 
-trait Redirectable {
-
+trait Redirectable
+{
     /** @var array */
     private $allowedActions = [
         'index',

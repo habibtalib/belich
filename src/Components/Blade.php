@@ -37,8 +37,8 @@ class Blade
     public function renderMetrics(Request $request)
     {
         return collect($request->metrics)
-            ->map(function($metric) {
-                if($metric) {
+            ->map(function ($metric) {
+                if ($metric) {
                     //Return the metric view
                     return View::make('belich::components.metrics.chart', compact('metric'))->render();
                 }
@@ -54,12 +54,11 @@ class Blade
     public function renderCards(Request $request)
     {
         return collect($request->cards)
-            ->map(function($card) {
-                if($card) {
+            ->map(function ($card) {
+                if ($card) {
                     //Return the card view
                     return View::make($card->view)->with($card->withMeta);
                 }
             });
     }
 }
-

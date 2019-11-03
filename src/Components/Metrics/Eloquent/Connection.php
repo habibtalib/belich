@@ -115,7 +115,7 @@ class Connection
             ])
             ->groupBy($dateType)
             ->orderBy($dateType, 'DESC')
-            ->when(is_numeric($this->take), function($query) {
+            ->when(is_numeric($this->take), function ($query) {
                 return $query->take($this->take);
             })
             ->get();
@@ -140,7 +140,7 @@ class Connection
             : $this->getDataFromStorage($dateType, $type);
 
         return collect($total)
-            ->map(function($value, $date) use($sql, $dateType) {
+            ->map(function ($value, $date) use ($sql, $dateType) {
                 //Search the days with results
                 return $sql->where($dateType, $date)->first()->total ?? 0;
             })

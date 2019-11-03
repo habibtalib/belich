@@ -162,8 +162,8 @@ trait Visibilitable
         //Reset the values
         self::hideFromAll();
 
-        foreach($attributes as $attribute) {
-            if(in_array($attribute, $this->allowedControllerActions)) {
+        foreach ($attributes as $attribute) {
+            if (in_array($attribute, $this->allowedControllerActions)) {
                 $this->visibility[$attribute] = true;
             }
         }
@@ -178,7 +178,7 @@ trait Visibilitable
      */
     public function hideFrom(...$attributes) : self
     {
-        foreach($attributes as $attribute) {
+        foreach ($attributes as $attribute) {
             $this->visibility[$attribute] = false;
         }
 
@@ -198,7 +198,7 @@ trait Visibilitable
      */
     protected function hideFromAll() : void
     {
-        foreach($this->visibility as $attribute => $value) {
+        foreach ($this->visibility as $attribute => $value) {
             $this->visibility[$attribute] = false;
         }
     }
@@ -210,7 +210,7 @@ trait Visibilitable
      */
     protected function showInAll() : void
     {
-        foreach($this->visibility as $attribute => $value) {
+        foreach ($this->visibility as $attribute => $value) {
             $this->visibility[$attribute] = true;
         }
     }

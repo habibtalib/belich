@@ -23,7 +23,7 @@ Route::group([
         //Generate routes from resources
         //The middleware can be setter from the config file
         $resources = getAllTheResourcesFromFolder()
-            ->map(function($route) : void {
+            ->map(function ($route) : void {
                 //Get route ID
                 $routeID = sprintf('{%s}', Str::singular($route));
                 if($route) {

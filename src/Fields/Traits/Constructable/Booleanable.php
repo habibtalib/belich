@@ -16,10 +16,10 @@ trait Booleanable
     protected function resolveBoolean(Field $field, $value)
     {
         // If boolean
-        if($field->type === 'boolean') {
+        if ($field->type === 'boolean') {
 
             // With default labels
-            if(isset($field->trueValue) && isset($field->falseValue)) {
+            if (isset($field->trueValue) && isset($field->falseValue)) {
                 return $value ? $field->trueValue : $field->falseValue;
 
             // With color circles
