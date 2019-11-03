@@ -30,9 +30,10 @@ class CrudExtendedController extends Controller
      * Force delete a resource.
      *
      * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function forceDelete($id)
+    public function forceDelete(int $id)
     {
         //Authorization
         $this->authorize('forceDelete', $this->model);
@@ -46,6 +47,7 @@ class CrudExtendedController extends Controller
      * Force delete a resource.
      *
      * @param Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function deleteSelected(Request $request)
@@ -62,9 +64,10 @@ class CrudExtendedController extends Controller
      * Restore a deleted a resource.
      *
      * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function restore($id)
+    public function restore(int $id)
     {
         //Authorization
         $this->authorize('restore', $this->model);

@@ -11,6 +11,7 @@ class OptionController extends Controller
      * Configure the Belich options
      *
      * @param Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function __invoke(Request $request)
@@ -18,12 +19,12 @@ class OptionController extends Controller
         $redirect = redirect()
             ->back();
 
-        if(!empty($request->perPage)) {
+        if (!empty($request->perPage)) {
             $cookie = cookie('belich_perPage', $request->perPage, setTimeForCookie());
             $redirect = $redirect->withCookie($cookie);
         }
 
-        if(!empty($request->withTrashed)) {
+        if (!empty($request->withTrashed)) {
             $cookie = cookie('belich_withTrashed', $request->withTrashed, setTimeForCookie());
             $redirect = $redirect->withCookie($cookie);
         }

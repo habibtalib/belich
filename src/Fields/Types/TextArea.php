@@ -42,7 +42,7 @@ class TextArea extends Field
      *
      * @return  self
      */
-    public function alwaysShow() : self
+    public function alwaysShow(): self
     {
         $this->showInAll();
 
@@ -54,7 +54,7 @@ class TextArea extends Field
      *
      * @return  self
      */
-    public function count(int $chars = 0) : self
+    public function count(int $chars = 0): self
     {
         $this->count = true;
         $this->maxlength = $chars;
@@ -67,7 +67,7 @@ class TextArea extends Field
      *
      * @return  self
      */
-    public function maxlength(int $maxlength) : self
+    public function maxlength(int $maxlength): self
     {
         $this->maxlength = $maxlength;
 
@@ -79,7 +79,7 @@ class TextArea extends Field
      *
      * @return  self
      */
-    public function rows(int $rows) : self
+    public function rows(int $rows): self
     {
         $this->rows = $rows;
 
@@ -92,7 +92,7 @@ class TextArea extends Field
      *
      * @return  self
      */
-    public function show() : self
+    public function show(): self
     {
         $this->visibility['show'] = true;
 

@@ -14,9 +14,10 @@ trait Connectable
      * Create the Sql Connection
      *
      * @param string $class
+     *
      * @return object
      */
-    private function sqlConnectionResponse(object $class) : object
+    private function sqlConnectionResponse(object $class): object
     {
         //Set variables
         $direction = request()->query('direction');
@@ -42,17 +43,17 @@ trait Connectable
                 })
 
                 //Order query
-                ->when(!empty($order) && !empty($direction), function ($query) use ($direction, $order) {
+                ->when(!empty($order) && !empty($direction), static function ($query) use ($direction, $order) {
                     return $query->orderBy($order, $direction);
                 })
 
                 //Show the trashed results
-                ->when($policy && hasSoftdelete(Belich::getModel()) && Cookie::get('belich_withTrashed') === 'all', function ($query) {
+                ->when($policy && hasSoftdelete(Belich::getModel()) && Cookie::get('belich_withTrashed') === 'all', static function ($query) {
                     return $query->withTrashed();
                 })
 
                 //Only show the trashed results
-                ->when($policy && hasSoftdelete(Belich::getModel()) && Cookie::get('belich_withTrashed') === 'only', function ($query) {
+                ->when($policy && hasSoftdelete(Belich::getModel()) && Cookie::get('belich_withTrashed') === 'only', static function ($query) {
                     return $query->onlyTrashed();
                 })
 

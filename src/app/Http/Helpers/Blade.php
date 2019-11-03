@@ -14,15 +14,16 @@ use Illuminate\Http\Request;
  * Hide content base on screen size
  *
  * @param object $hideFor
- * @return bool
+ *
+ * @return string
  */
 if (!function_exists('hideContainerForScreens')) {
-    function hideContainerForScreens(array $hideFor)
+    function hideContainerForScreens(array $hideFor): string
     {
         $screens = collect(['sm', 'md', 'lg', 'xl']);
 
         return $screens
-            ->map(function($size) use ($hideFor) {
+            ->map(static function ($size) use ($hideFor) {
                 $status = in_array($size, $hideFor) ? 'hidden' : 'flex';
                 return sprintf('%s:%s', $size, $status);
             })
@@ -36,10 +37,11 @@ if (!function_exists('hideContainerForScreens')) {
  * Hide cards base on screen size
  *
  * @param object $request
- * @return bool
+ *
+ * @return string
  */
 if (!function_exists('hideCardsForScreens')) {
-    function hideCardsForScreens()
+    function hideCardsForScreens(): string
     {
         return hideContainerForScreens(config('belich.hideCardsForScreens'));
     }
@@ -49,10 +51,11 @@ if (!function_exists('hideCardsForScreens')) {
  * Hide metrics base on screen size
  *
  * @param object $request
- * @return bool
+ *
+ * @return string
  */
 if (!function_exists('hideMetricsForScreens')) {
-    function hideMetricsForScreens()
+    function hideMetricsForScreens(): string
     {
         return hideContainerForScreens(config('belich.hideMetricsForScreens'));
     }
@@ -68,10 +71,11 @@ if (!function_exists('hideMetricsForScreens')) {
  * Determine if the view has a metric chart
  *
  * @param object $request
+ *
  * @return bool
  */
 if (!function_exists('hasMetrics')) {
-    function hasMetrics($request) : bool
+    function hasMetrics($request): bool
     {
         return optional($request)->metrics
             ? count($request->metrics) > 0
@@ -83,10 +87,11 @@ if (!function_exists('hasMetrics')) {
  * Determine if the view has a metric legend
  *
  * @param object $request
+ *
  * @return bool
  */
 if (!function_exists('hasMetricsLegends')) {
-    function hasMetricsLegends(object $request) : bool
+    function hasMetricsLegends(object $request): bool
     {
         return (($request->legend_h || $request->legend_v) && $request->type !== 'pie')
             ? true
@@ -105,10 +110,11 @@ if (!function_exists('hasMetricsLegends')) {
  *
  * @param Daguilarm\Belich\Components\Metrics\Graph $metric
  * @param string $type
+ *
  * @return string
  */
 if (!function_exists('setColor')) {
-    function setColor(Graph $metric, string $type) : string
+    function setColor(Graph $metric, string $type): string
     {
         return $metric->defineColor[$type] ?? $metric->color;
     }
@@ -126,12 +132,12 @@ if (!function_exists('setColor')) {
  * @return string
  */
 if (!function_exists('createFormSelectOptions')) {
-    function createFormSelectOptions($options, $field, $emptyField = false)
+    function createFormSelectOptions($options, $field, $emptyField = false): string
     {
         $cookie = Cookie::get('belich_' . $field);
 
         return collect($options)
-            ->map(function($label, $value) use ($cookie, $field) {
+            ->map(static function ($label, $value) use ($cookie, $field) {
                 //Default values
                 $defaultValue = !is_array($value) ? strtolower($label) : $value;
                 $selected = ($cookie == $defaultValue || $cookie == $value)
@@ -157,10 +163,11 @@ if (!function_exists('createFormSelectOptions')) {
  * @param Daguilarm\Belich\Fields\Field $field
  * @param string $attribute
  * @param mixed $default
+ *
  * @return string
  */
 if (!function_exists('setAttribute')) {
-    function setAttribute(Field $field, string $attribute, $default = null)
+    function setAttribute(Field $field, string $attribute, $default = null): string
     {
         //Format attribute names for HTML5
         $filter = [
@@ -168,14 +175,14 @@ if (!function_exists('setAttribute')) {
         ];
 
         //Render css classes
-        if($attribute === 'addClass') {
+        if ($attribute === 'addClass') {
             $field->addClass = !empty($field->addClass)
                 ? implode(' ', $field->addClass)
                 : '';
         }
 
         //Checked field
-        if($attribute === 'checked') {
+        if ($attribute === 'checked') {
             return $field->value ? 'checked="checked"' : '';
         }
 
@@ -183,7 +190,7 @@ if (!function_exists('setAttribute')) {
         $filterAttribute = str_replace(array_keys($filter), array_values($filter), $attribute);
 
         //Add classes
-        if(isset($field->{$attribute}) && $attribute === 'addClass' && isset($default)) {
+        if (isset($field->{$attribute}) && $attribute === 'addClass' && isset($default)) {
             $value = $field->{$attribute} . ', ' . $default;
 
         //Value or default value
@@ -192,7 +199,7 @@ if (!function_exists('setAttribute')) {
         }
 
         //Pattern mask
-        if($filterAttribute === 'mask') {
+        if ($filterAttribute === 'mask') {
             return sprintf('data-mask="%s"', $value);
         }
 
@@ -207,30 +214,31 @@ if (!function_exists('setAttribute')) {
  *
  * @param Daguilarm\Belich\Fields\Field $field
  * @param string $prefix
+ *
  * @return string
  */
 if (!function_exists('renderWithPrefix')) {
-    function renderWithPrefix(Field $field, string $prefix)
+    function renderWithPrefix(Field $field, string $prefix): string
     {
-        return collect(explode(' ', $field->render))->map(function($item) use ($prefix) {
+        return collect(explode(' ', $field->render))->map(static function ($item) use ($prefix) {
             //Get the fields
             $item = explode('=', $item);
             //Prefixed dusk field
-            if($item[0] === 'dusk') {
+            if ($item[0] === 'dusk') {
                 $value = explode('-', $item[1]);
                 //Format: dusk-$prefix-$attribute
                 array_splice($value, 1, 0, $prefix);
                 return [$item[0] => implode('-', $value)];
             }
             //Check for regular fields
-            if(count($item) > 1) {
+            if (count($item) > 1) {
                 return [$item[0] => implode('_', [$prefix, $item[1]])];
             }
             //Fields: readonly and disabled (this fields don't has an structure like: attribute=value)
             return $item[0];
         })
-            ->map(function($value) {
-                if(is_array($value)) {
+            ->map(static function ($value) {
+                if (is_array($value)) {
                     return sprintf('%s=%s', array_keys($value)[0], array_values($value)[0]);
                 }
                 return $value;

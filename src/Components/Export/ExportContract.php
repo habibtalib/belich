@@ -11,9 +11,10 @@ interface ExportContract
      * Prepare the file for download
      *
      * @param Illuminate\Http\Request $request
+     *
      * @return array
      */
-    public function handle(Request $request);
+    public function handle(Request $request): array;
 
     /**
      * Add collection from model

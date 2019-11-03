@@ -20,13 +20,13 @@ trait Systemable
      *
      * @return array
      */
-    public static function middleware() : array
+    public static function middleware(): array
     {
         //This middleware need to be always available
         $baseMiddleware = ['belich', 'minify'];
 
         //No results
-        if (empty(config('belich.middleware'))){
+        if (empty(config('belich.middleware'))) {
             return $baseMiddleware;
         }
 
@@ -38,7 +38,7 @@ trait Systemable
      *
      * @return string
      */
-    public static function name() : string
+    public static function name(): string
     {
         return config('belich.name', 'Belich Dashboard');
     }
@@ -48,7 +48,7 @@ trait Systemable
      *
      * @return string
      */
-    public static function path() : string
+    public static function path(): string
     {
         return config('belich.path', '/dashboard');
     }
@@ -58,7 +58,7 @@ trait Systemable
      *
      * @return string
      */
-    public static function pathName() : string
+    public static function pathName(): string
     {
         return str_replace('/', '', static::path());
     }
@@ -68,7 +68,7 @@ trait Systemable
      *
      * @return string
      */
-    public static function url() : string
+    public static function url(): string
     {
         return Request::root() . static::path();
     }
@@ -78,7 +78,7 @@ trait Systemable
      *
      * @return string
      */
-    public static function version() : string
+    public static function version(): string
     {
         return static::$version;
     }

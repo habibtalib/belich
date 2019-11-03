@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Core;
 
+use Daguilarm\Belich\Components\Blade;
 use Daguilarm\Belich\Core\BelichAbstract;
 use Daguilarm\Belich\Core\Traits\Classable;
 use Daguilarm\Belich\Core\Traits\Connectable;
@@ -10,6 +11,7 @@ use Daguilarm\Belich\Core\Traits\Operationable;
 use Daguilarm\Belich\Core\Traits\Resourceable;
 use Daguilarm\Belich\Core\Traits\Routeable;
 use Daguilarm\Belich\Core\Traits\Systemable;
+use Daguilarm\Belich\Fields\FieldResolveIndex;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
@@ -54,9 +56,10 @@ class Belich extends BelichAbstract
      *
      * @param object $model
      * @param string $view
+     *
      * @return Illuminate\View\View
      */
-    public function actions(object $model, string $view) : View
+    public function actions(object $model, string $view): View
     {
         //Set view path
         $actionView = 'belich::actions.' . $view;
@@ -79,12 +82,12 @@ class Belich extends BelichAbstract
     /**
      * Initialize the Cards and the Metrics
      *
-     * @return null|Blade
+     * @return null|string
      */
-     public function components(Request $request)
-     {
-        return (new \Daguilarm\Belich\Components\Blade)->render($request);
-     }
+    public function components(Request $request): ?string
+    {
+        return (new Blade)->render($request);
+    }
 
     /*
     |--------------------------------------------------------------------------
@@ -97,9 +100,9 @@ class Belich extends BelichAbstract
      *
      * @return \Daguilarm\Fields\FieldResolveIndex
      */
-    public function html()
+    public function html(): FieldResolveIndex
     {
-        return app(\Daguilarm\Belich\Fields\FieldResolveIndex::class);
+        return app(FieldResolveIndex::class);
     }
 
     /*
@@ -113,7 +116,7 @@ class Belich extends BelichAbstract
      *
      * @return object
      */
-    private function initResourceClass() : object
+    private function initResourceClass(): object
     {
         //Set the initial class
         $class = static::resourceClassPath();

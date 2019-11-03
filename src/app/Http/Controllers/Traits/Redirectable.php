@@ -21,9 +21,10 @@ trait Redirectable
      * @param boll $condition
      * @param string $success
      * @param string $error
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function redirectToAction(bool $condition, string $success, string $error, $id = '') : RedirectResponse
+    protected function redirectToAction(bool $condition, string $success, string $error, $id = ''): RedirectResponse
     {
         //Get current Controller action
         $action = Belich::action();
@@ -50,16 +51,16 @@ trait Redirectable
      *
      * @param string $action
      * @param string $redirectTo
-     * @param integer $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\RedirectResponse
      */
-    private function setRedirection(string $action, string $redirectTo, $id = '') : RedirectResponse
+    private function setRedirection(string $action, string $redirectTo, $id = ''): RedirectResponse
     {
         //Validate the resource action
-        if(!in_array($redirectTo, $this->allowedActions) || $action === 'delete' || $action === 'forceDelete' || $action === 'restore') {
+        if (!in_array($redirectTo, $this->allowedActions) || $action === 'delete' || $action === 'forceDelete' || $action === 'restore') {
             //Action not allowed
             return redirect()->back();
-
         //Allowed action and redirect to action
         } else {
             return redirect()->to(Belich::actionRoute($redirectTo, $id));

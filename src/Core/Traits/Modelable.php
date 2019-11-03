@@ -18,7 +18,7 @@ trait Modelable
      *
      * @return Illuminate\Database\Eloquent\Model
      */
-    public static function getModel()
+    public static function getModel(): object
     {
         return app(static::getModelPath());
     }
@@ -28,7 +28,7 @@ trait Modelable
      *
      * @return string
      */
-    public static function getModelPath() : string
+    public static function getModelPath(): string
     {
         $resourceClass = static::resourceClassPath();
 
@@ -40,7 +40,7 @@ trait Modelable
      *
      * @return string
      */
-    public static function getModelKeyName() : string
+    public static function getModelKeyName(): string
     {
         return static::getModel()->getKeyName();
     }

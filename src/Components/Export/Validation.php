@@ -18,15 +18,16 @@ class Validation
      * Do the field validation
      *
      * @param Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
-    public static function make(Request $request)
+    public static function make(Request $request) : Validator
     {
         return Validator::make($request->all(), [
             'format' => ['required', Rule::in(static::$formats)],
             'quantity' => ['required', Rule::in(static::$selects)],
             'resource_model' => ['required',
-                function ($attribute, $value, $fail) : void {
+                static function ($attribute, $value, $fail) : void {
                     if (!class_exists($value)) {
                         $fail(trans('belich::messages.options.fail.class', ['value' => $value]));
                     }

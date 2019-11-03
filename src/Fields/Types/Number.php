@@ -22,9 +22,10 @@ class Number extends Field
      * Set min value
      *
      * @param int $min
+     *
      * @return self
      */
-    public function min(int $min) : self
+    public function min(int $min): self
     {
         $this->min = $min;
 
@@ -35,9 +36,10 @@ class Number extends Field
      * Set max value
      *
      * @param int $max
+     *
      * @return self
      */
-    public function max(int $max) : self
+    public function max(int $max): self
     {
         $this->max = $max;
 
@@ -48,9 +50,10 @@ class Number extends Field
      * Set step value
      *
      * @param int $step
+     *
      * @return self
      */
-    public function step(int $step) : self
+    public function step(int $step): self
     {
         $this->step = $step;
 

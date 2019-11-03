@@ -36,9 +36,9 @@ class ResourceCommand extends BelichCommand
      *
      * @return void
      */
-    public function handle() : void
+    public function handle(): void
     {
-        if(!File::exists($this->path())) {
+        if (!File::exists($this->path())) {
             File::makeDirectory($this->path());
         }
 
@@ -60,7 +60,7 @@ class ResourceCommand extends BelichCommand
         );
 
         //Create the model
-        if($this->option('create')) {
+        if ($this->option('create')) {
             $this->createModel();
         }
     }
@@ -70,7 +70,7 @@ class ResourceCommand extends BelichCommand
      *
      * @return void
      */
-    protected function createModel() : void
+    protected function createModel(): void
     {
         $storedStub = $this->calculateModel() . '.stub';
         $storedModel = $this->calculateModel() . '.php';
@@ -93,11 +93,11 @@ class ResourceCommand extends BelichCommand
     }
 
     /**
-     * Create model
+     * Calculate model
      *
-     * @return void
+     * @return : string
      */
-    protected function calculateModel()
+    protected function calculateModel(): string
     {
         $path = str_replace(['App'], 'app', $this->modelPath());
         $path = explode('\\', $path);
@@ -110,7 +110,7 @@ class ResourceCommand extends BelichCommand
      *
      * @return string
      */
-    protected function getStub()
+    protected function getStub(): string
     {
         return __DIR__ . '/../../../stubs/resource.stub';
     }
@@ -120,7 +120,7 @@ class ResourceCommand extends BelichCommand
      *
      * @return string
      */
-    protected function path()
+    protected function path(): string
     {
         return app_path('Belich/Resources');
     }
@@ -130,7 +130,7 @@ class ResourceCommand extends BelichCommand
      *
      * @return string
      */
-    protected function setStub($ext = 'stub')
+    protected function setStub($ext = 'stub'): string
     {
         return $this->path() . '/' . $this->classModel() . '.' . $ext;
     }
@@ -140,7 +140,7 @@ class ResourceCommand extends BelichCommand
      *
      * @return string
      */
-    protected function modelPath()
+    protected function modelPath(): string
     {
         return $this->option('model') ?? 'App\\' . $this->className();
     }
@@ -150,7 +150,7 @@ class ResourceCommand extends BelichCommand
      *
      * @return string
      */
-    protected function modelNamespace()
+    protected function modelNamespace(): string
     {
         $namespace = str_replace('\\' . $this->className(), '', $this->modelPath());
 

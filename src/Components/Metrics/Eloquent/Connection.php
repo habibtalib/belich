@@ -42,9 +42,10 @@ class Connection
      * Set the end date
      *
      * @param string $date
+     *
      * @return string
      */
-    public function endDate(Carbon $date) : self
+    public function endDate(Carbon $date): self
     {
         $this->endDate = $date;
 
@@ -55,9 +56,10 @@ class Connection
      * Set the start date
      *
      * @param string $date
+     *
      * @return string
      */
-    public function startDate(Carbon $date) : self
+    public function startDate(Carbon $date): self
     {
         $this->startDate = $date;
 
@@ -69,9 +71,10 @@ class Connection
      * By default 'create_at'
      *
      * @param string $date
+     *
      * @return string
      */
-    public function dateTable($tableName) : self
+    public function dateTable($tableName): self
     {
         $this->dateTable = $tableName;
 
@@ -82,9 +85,10 @@ class Connection
      * Get only a number of results from storage
      *
      * @param string $take
+     *
      * @return string
      */
-    public function take(int $take) : self
+    public function take(int $take): self
     {
         $this->take = $take;
 
@@ -104,9 +108,10 @@ class Connection
      *
      * @param string $dateType ['day', 'month', 'year']
      * @param string $type ['average', 'total', 'trent']
+     *
      * @return Collection
      */
-    private function getDataFromStorage(string $dateType, string $type) : Collection
+    private function getDataFromStorage(string $dateType, string $type): Collection
     {
         return $this->model::whereBetween($this->dateTable, [$this->startDate, $this->endDate])
             ->select([
@@ -127,9 +132,10 @@ class Connection
      * @param array $totals
      * @param string $dateType ['day', 'month', 'year']
      * @param string $type ['average', 'total', 'trent']
+     *
      * @return array
      */
-    private function resultsByDate(array $total, string $dateType, string $type) : array
+    private function resultsByDate(array $total, string $dateType, string $type): array
     {
         //Set the total days, months or years and reset to 0
         $total = array_fill_keys($total, 0);
@@ -140,7 +146,7 @@ class Connection
             : $this->getDataFromStorage($dateType, $type);
 
         return collect($total)
-            ->map(function ($value, $date) use ($sql, $dateType) {
+            ->map(static function ($value, $date) use ($sql, $dateType) {
                 //Search the days with results
                 return $sql->where($dateType, $date)->first()->total ?? 0;
             })

@@ -21,9 +21,10 @@ trait Settingable
      * Set the attribute dusk
      *
      * @param  string|null  $value
+     *
      * @return self
      */
-    public function dusk($value = null)
+    public function dusk($value = null): self
     {
         //Check the value for conditional cases...
         if (!empty($value)) {
@@ -37,9 +38,10 @@ trait Settingable
      * Set the attribute id
      *
      * @param  string|null  $value
+     *
      * @return self
      */
-    public function id($value = null)
+    public function id($value = null): self
     {
         //Check the value for conditional cases...
         if (!empty($value)) {
@@ -53,9 +55,10 @@ trait Settingable
      * Set the attribute name
      *
      * @param  string|null  $value
+     *
      * @return self
      */
-    public function name($value = null)
+    public function name($value = null): self
     {
         //Check the value for conditional cases...
         if (!empty($value)) {

@@ -18,9 +18,10 @@ trait Linkeable
      * Get the table header labels
      *
      * @param Illuminate\Support\Collection $fields
+     *
      * @return Illuminate\Support\Collection
      */
-    protected function headerLabels($fields) : Collection
+    protected function headerLabels($fields): Collection
     {
         return $fields->map(function ($field) {
             return $this->headerLinks($field);
@@ -34,7 +35,7 @@ trait Linkeable
      *
      * @return string
      */
-    private function headerLinks(Field $field) : string
+    private function headerLinks(Field $field): string
     {
         //Filter if the attribute is a relationship or is not sortable
         if (is_array($field->attribute) || $field->sortable === false) {
@@ -69,9 +70,10 @@ trait Linkeable
      * Get all the url parameters
      *
      * @param Daguilarm\Belich\Fields\Field $field
+     *
      * @return string
      */
-    private function getUrlParameters(Field $field) : string
+    private function getUrlParameters(Field $field): string
     {
         //Get the url parameters
         $parameters = collect(request()->query())
@@ -96,9 +98,10 @@ trait Linkeable
      *
      * @param Daguilarm\Belich\Fields\Field $field
      * @param Illuminate\Support\Collection $parameters
+     *
      * @return Illuminate\Support\Collection
      */
-    private function setUrlParametersDefaultValues(Field $field, Collection $parameters) : Collection
+    private function setUrlParametersDefaultValues(Field $field, Collection $parameters): Collection
     {
         if (!$parameters->get('orderBy')) {
             $parameters->put('orderBy', $field->attribute);
@@ -115,12 +118,13 @@ trait Linkeable
      * Serialize the url parameters
      *
      * @param Illuminate\Support\Collection $parameters
+     *
      * @return string
      */
-    private function setUrlParametersSerialized(Collection $parameters) : string
+    private function setUrlParametersSerialized(Collection $parameters): string
     {
         return $parameters
-            ->map(function ($value, $key) {
+            ->map(static function ($value, $key) {
                 return sprintf('%s=%s', $key, $value);
             })
             ->implode('&');
@@ -131,9 +135,10 @@ trait Linkeable
      *
      * @param string $key
      * @param string $value
+     *
      * @return string
      */
-    private function setValueFromDirection(string $key, string $value) : string
+    private function setValueFromDirection(string $key, string $value): string
     {
         //Set only the allowed direction values
         if ($value !== 'DESC' && $value !== 'ASC') {
@@ -150,9 +155,10 @@ trait Linkeable
      * @param Daguilarm\Belich\Fields\Field $field
      * @param string $key
      * @param string $value
+     *
      * @return string
      */
-    private function setOrderAndDirection(Field $field, string $key, string $value) : string
+    private function setOrderAndDirection(Field $field, string $key, string $value): string
     {
         //Set orderBy
         if ($key === 'orderBy') {

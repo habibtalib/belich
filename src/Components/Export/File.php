@@ -11,9 +11,10 @@ class File
      * Exporting format
      *
      * @param Illuminate\Http\Request $request
+     *
      * @return string
      */
-    public static function format(Request $request) : string
+    public static function format(Request $request): string
     {
         return $request->format ?? 'xlsx';
     }
@@ -22,9 +23,10 @@ class File
      * Get the file name
      *
      * @param Illuminate\Http\Request $request
+     *
      * @return string
      */
-    public static function name(Request $request) : string
+    public static function name(Request $request): string
     {
         return sprintf('%s.%s', Eloquent::tableName($request), static::format($request));
     }

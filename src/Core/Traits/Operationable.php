@@ -16,9 +16,9 @@ trait Operationable
      * @param  array|object $value
      * @param  int $initialValue
      *
-     * @return integer
+     * @return int
      */
-    public static function count($value, int $initialValue = 0) : int
+    public static function count($value, int $initialValue = 0): int
     {
         if (is_array($value)) {
             return count($value) + $initialValue;

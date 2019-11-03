@@ -12,6 +12,7 @@ class DownloadController extends Controller
      * Configure the Belich options
      *
      * @param Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function __invoke(Request $request)

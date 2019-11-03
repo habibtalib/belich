@@ -28,12 +28,13 @@ class Autocomplete extends Field
      * Add variables to the url
      *
      * @param  array  $vars
+     *
      * @return self
      */
-    public function addVars(...$vars) : self
+    public function addVars(...$vars): self
     {
         $this->addVars = collect($vars)
-            ->map(function ($value) {
+            ->map(static function ($value) {
                 return sprintf(
                     '%s=%s',
                     collect($value)->keys()->first(),
@@ -50,9 +51,10 @@ class Autocomplete extends Field
      * Set the response from the data
      *
      * @param  string|array  $responseFrom
+     *
      * @return self
      */
-    public function dataFrom($data) : self
+    public function dataFrom($data): self
     {
         if (is_array($data)) {
             $this->responseArray = $data;
@@ -69,9 +71,10 @@ class Autocomplete extends Field
      * Set the min number of charts to start the ajax query
      *
      * @param  int  $number
+     *
      * @return self
      */
-    public function minChars(int $minChars) : self
+    public function minChars(int $minChars): self
     {
         $this->minChars = empty($minChars) ? 0 : $minChars;
 
@@ -83,7 +86,7 @@ class Autocomplete extends Field
      *
      * @return self
      */
-    public function storeId() : self
+    public function storeId(): self
     {
         $this->store = 'id';
 

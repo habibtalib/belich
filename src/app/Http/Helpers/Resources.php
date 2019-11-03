@@ -13,10 +13,10 @@
  * @return Illuminate\Support\Collection
  */
 if (!function_exists('getAllTheResourcesFromFolder')) {
-    function getAllTheResourcesFromFolder() : Illuminate\Support\Collection
+    function getAllTheResourcesFromFolder(): Illuminate\Support\Collection
     {
         //No file ... install case
-        if(!file_exists(app_path('Belich/Resources'))) {
+        if (!file_exists(app_path('Belich/Resources'))) {
             return new Illuminate\Support\Collection();
         }
 
@@ -24,11 +24,11 @@ if (!function_exists('getAllTheResourcesFromFolder')) {
         $files = scandir(app_path('Belich/Resources'));
 
         return collect($files)
-            ->map(function($file) {
+            ->map(static function ($file) {
                 return $file;
-            })->filter(function($value, $key) {
+            })->filter(static function ($value, $key) {
                 return $value !== '.' && $value !== '..';
-            })->map(function($file) {
+            })->map(static function ($file) {
                 $getFile = getFileAttributes($file);
                 return stringPluralLower($getFile);
             });
@@ -46,11 +46,12 @@ if (!function_exists('getAllTheResourcesFromFolder')) {
  *
  * @param string $fileName
  * @param bool $extension
+ *
  * @return string
  */
 if (!function_exists('parseTextWithResource')) {
     //Example of use: parseTextWithResource('form-%s-create', 'name') => form-resourceName-create
-    function parseTextWithResource(string $text, $resourceType = 'name') : string
+    function parseTextWithResource(string $text, $resourceType = 'name'): string
     {
         $type = $resourceType === 'name'
             ? Belich::resource()

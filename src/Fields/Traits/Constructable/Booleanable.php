@@ -11,6 +11,7 @@ trait Booleanable
      *
      * @param  Daguilarm\Belich\Fields\Field $field
      * @param  mixed $value
+     *
      * @return mixed
      */
     protected function resolveBoolean(Field $field, $value)

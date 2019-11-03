@@ -9,10 +9,12 @@ trait Fileable
 {
     /**
      * Called by validate() method, it maps all the methods used to perform the operations
+     *
      * @param object $model
+     *
      * @return self
      */
-    public function handleFile($model = null)
+    public function handleFile($model = null): self
     {
         $file = $this->request->get('__file');
 
@@ -30,9 +32,10 @@ trait Fileable
      * @param string $attribute [Field name]
      * @param array $values
      * @param null|object $model
+     *
      * @return self
      */
-    private function uploadFile(string $attribute, $model, array $values)
+    private function uploadFile(string $attribute, $model, array $values): self
     {
         //Get the file
         $file = $this->{$attribute};
@@ -54,6 +57,7 @@ trait Fileable
      * @param null|object $file
      * @param array $values
      * @param null|object $model
+     *
      * @return null|string
      */
     private function storeFile(string $attribute, $file, $model, array $values)
@@ -79,9 +83,10 @@ trait Fileable
      *
      * @param object $file
      * @param array $values
+     *
      * @return string
      */
-    private function fileName(object $file, array $values) : string
+    private function fileName(object $file, array $values): string
     {
         $originalName = $file->getClientOriginalName();
         $extension = $file->getClientOriginalExtension();
@@ -98,9 +103,10 @@ trait Fileable
      * @param string $attribute
      * @param string $disk
      * @param object $model
+     *
      * @return void
      */
-    private function deletePrevius(string $attribute, string $disk, $model) : void
+    private function deletePrevius(string $attribute, string $disk, $model): void
     {
         //Delete the previus file from storage
         if (!empty($model) && is_object($model)) {

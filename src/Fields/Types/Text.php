@@ -28,7 +28,7 @@ class Text extends Field
      *
      * @return self
      */
-    public function withRelationship($relationship) : self
+    public function withRelationship($relationship): self
     {
         $this->fieldRelationship = $relationship;
 

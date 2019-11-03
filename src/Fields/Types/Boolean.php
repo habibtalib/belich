@@ -42,9 +42,10 @@ class Boolean extends Field
      * Set the boolean color
      *
      * @param  string  $color
+     *
      * @return self
      */
-    public function color(string $color) : self
+    public function color(string $color): self
     {
         $this->color = in_array($color, $this->defaultColors) ? $color : 'green';
 
@@ -55,9 +56,10 @@ class Boolean extends Field
      * Set the label for false
      *
      * @param  string  $value
+     *
      * @return self
      */
-    public function falseValue(string $value) : self
+    public function falseValue(string $value): self
     {
         $this->falseValue = $value;
 
@@ -68,9 +70,10 @@ class Boolean extends Field
      * Set the label for true
      *
      * @param  string  $value
+     *
      * @return self
      */
-    public function trueValue(string $value) : self
+    public function trueValue(string $value): self
     {
         $this->trueValue = $value;
 

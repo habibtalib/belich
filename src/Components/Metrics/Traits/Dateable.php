@@ -10,11 +10,12 @@ trait Dateable
      * Set an array with all the daily hours
      *
      * @param  string  $filter
+     *
      * @return array
      */
-    public static function getRangeOfHours() : array
+    public static function getRangeOfHours(): array
     {
-        foreach(range(1, 24) as $hour) {
+        foreach (range(1, 24) as $hour) {
             $range[] = $hour;
         };
 
@@ -26,9 +27,9 @@ trait Dateable
      *
      * @return array
      */
-    protected static function getRangeOfDays() : array
+    protected static function getRangeOfDays(): array
     {
-        foreach(range(1, static::getDaysOfTheMonth()) as $day) {
+        foreach (range(1, static::getDaysOfTheMonth()) as $day) {
             $range[] = $day;
         };
 
@@ -40,9 +41,9 @@ trait Dateable
      *
      * @return array
      */
-    protected static function getRangeOfMonths() : array
+    protected static function getRangeOfMonths(): array
     {
-        foreach(range(1, 12) as $month) {
+        foreach (range(1, 12) as $month) {
             $range[] = $month;
         };
 
@@ -54,12 +55,12 @@ trait Dateable
      *
      * @return array
      */
-    protected static function getRangeOfYears(int $years) : array
+    protected static function getRangeOfYears(int $years): array
     {
         $firstYear = now()->subYear($years)->year;
         $lastYear = now()->year;
 
-        foreach(range($firstYear, $lastYear) as $month) {
+        foreach (range($firstYear, $lastYear) as $month) {
             $range[] = $month;
         };
 
@@ -71,7 +72,7 @@ trait Dateable
      *
      * @return int
      */
-    protected static function getDaysOfTheMonth() : int
+    protected static function getDaysOfTheMonth(): int
     {
         return Carbon::now()->daysInMonth;
     }
@@ -81,7 +82,7 @@ trait Dateable
      *
      * @return Carbon\Carbon
      */
-    protected static function getFirstDayOfTheMonth() : Carbon
+    protected static function getFirstDayOfTheMonth(): Carbon
     {
         return new Carbon('first day of this month');
     }
@@ -91,7 +92,7 @@ trait Dateable
      *
      * @return Carbon\Carbon
      */
-    protected static function getLastDayOfTheMonth() : Carbon
+    protected static function getLastDayOfTheMonth(): Carbon
     {
         return new Carbon('last day of this month');
     }
@@ -101,7 +102,7 @@ trait Dateable
      *
      * @return Carbon\Carbon
      */
-    protected static function getFirstDayOfTheLastMonth() : Carbon
+    protected static function getFirstDayOfTheLastMonth(): Carbon
     {
         return new Carbon('first day of last month');
     }
@@ -111,7 +112,7 @@ trait Dateable
      *
      * @return Carbon\Carbon
      */
-    protected static function getLastDayOfTheLastMonth() : Carbon
+    protected static function getLastDayOfTheLastMonth(): Carbon
     {
         return new Carbon('last day of last month');
     }
@@ -121,7 +122,7 @@ trait Dateable
      *
      * @return self
      */
-    protected function startDate(Carbon $date) : self
+    protected function startDate(Carbon $date): self
     {
         $this->startDate = $date;
 
@@ -133,7 +134,7 @@ trait Dateable
      *
      * @return self
      */
-    protected function endDate(Carbon $date) : self
+    protected function endDate(Carbon $date): self
     {
         $this->endDate = $date;
 
@@ -145,7 +146,7 @@ trait Dateable
      *
      * @return self
      */
-    protected function thisMonth() : self
+    protected function thisMonth(): self
     {
         $this->startDate = static::getFirstDayOfTheMonth();
         $this->endDate = now();
@@ -158,7 +159,7 @@ trait Dateable
      *
      * @return self
      */
-    protected function lastMonth() : self
+    protected function lastMonth(): self
     {
         $this->startDate = static::getFirstDayOfTheLastMonth();
         $this->endDate = static::getLastDayOfTheLastMonth();
@@ -171,7 +172,7 @@ trait Dateable
      *
      * @return self
      */
-    protected function lastMonths($number = 3) : self
+    protected function lastMonths($number = 3): self
     {
         $this->startDate = now()->subMonth($number);
         $this->endDate = now();
@@ -184,7 +185,7 @@ trait Dateable
      *
      * @return self
      */
-    protected function thisWeek() : self
+    protected function thisWeek(): self
     {
         $this->startDate = now()->startOfWeek();
         $this->endDate = now();
@@ -197,7 +198,7 @@ trait Dateable
      *
      * @return self
      */
-    protected function thisYear() : self
+    protected function thisYear(): self
     {
         $this->startDate = now()->firstOfYear();
         $this->endDate = now();
@@ -210,7 +211,7 @@ trait Dateable
      *
      * @return self
      */
-    protected function lastYears(int $years) : self
+    protected function lastYears(int $years): self
     {
         $this->startDate = now()->subYear($years);
         $this->endDate = now();
@@ -223,7 +224,7 @@ trait Dateable
      *
      * @return self
      */
-    protected function toDay() : self
+    protected function toDay(): self
     {
         $this->startDate = now()->startOfDay();
         $this->endDate = now();

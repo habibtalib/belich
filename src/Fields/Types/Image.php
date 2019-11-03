@@ -34,9 +34,10 @@ class Image extends File
      * Set image alt value
      *
      * @param string $alt
+     *
      * @return self
      */
-    public function alt(string $alt)  : self
+    public function alt(string $alt): self
     {
         $this->alt = $alt;
 
@@ -47,9 +48,10 @@ class Image extends File
      * Set the image css classes
      *
      * @param string $addCss
+     *
      * @return self
      */
-    public function addCss(string $addCss)  : self
+    public function addCss(string $addCss): self
     {
         $this->addCss = $addCss;
 

@@ -20,7 +20,7 @@ class Select extends Field
      *
      * @return self
      */
-    public function displayUsingLabels() : self
+    public function displayUsingLabels(): self
     {
         $this->displayUsingLabels = true;
 
@@ -31,9 +31,10 @@ class Select extends Field
      * Add option values to the select
      *
      * @param array $options
+     *
      * @return self
      */
-    public function options(array $options = []) : self
+    public function options(array $options = []): self
     {
         //Check the text for conditional cases...
         if (!empty($options)) {

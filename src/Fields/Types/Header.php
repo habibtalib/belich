@@ -36,9 +36,10 @@ class Header extends Field
      * Set the background color
      *
      * @param  string $background
+     *
      * @return  self
      */
-    public function background(string $background) : self
+    public function background(string $background): self
     {
         $this->background = $background;
 
@@ -49,9 +50,10 @@ class Header extends Field
      * Set the color
      *
      * @param  string $color
+     *
      * @return  self
      */
-    public function color(string $color) : self
+    public function color(string $color): self
     {
         $this->color = $color;
 
@@ -62,9 +64,10 @@ class Header extends Field
      * Set the icon
      *
      * @param  string $icon
+     *
      * @return  self
      */
-    public function icon(string $icon) : self
+    public function icon(string $icon): self
     {
         $this->icon = $icon;
 
@@ -75,9 +78,10 @@ class Header extends Field
      * Set the text size
      *
      * @param  string $size
+     *
      * @return  self
      */
-    public function size(string $size) : self
+    public function size(string $size): self
     {
         $this->size = $size;
 

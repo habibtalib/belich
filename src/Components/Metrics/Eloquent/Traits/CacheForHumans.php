@@ -9,7 +9,7 @@ trait CacheForHumans
     /**
      * Set cache in seconds
      */
-    public function cacheInSeconds(int $seconds, string $key)
+    public function cacheInSeconds(int $seconds, string $key): self
     {
         $this->cache = Carbon::now()->addSeconds($seconds);
         $this->cacheKey = md5($key);
@@ -20,7 +20,7 @@ trait CacheForHumans
     /**
      * Set cache in minutes
      */
-    public function cacheInMinutes(int $minutes, string $key)
+    public function cacheInMinutes(int $minutes, string $key): self
     {
         if ($minutes === 1) {
             $this->cache = Carbon::now()->addMinute();
@@ -36,7 +36,7 @@ trait CacheForHumans
     /**
      * Set cache in hours
      */
-    public function cacheInHours(int $hours, string $key)
+    public function cacheInHours(int $hours, string $key): self
     {
         if ($minutes === 1) {
             $this->cache = Carbon::now()->addHour();
@@ -52,7 +52,7 @@ trait CacheForHumans
     /**
      * Set cache in days
      */
-    public function cacheInDays(int $days, string $key)
+    public function cacheInDays(int $days, string $key): self
     {
         if ($minutes === 1) {
             $this->cache = Carbon::now()->addDay();
@@ -68,7 +68,7 @@ trait CacheForHumans
     /**
      * Set cache for ever
      */
-    public function cacheForEver(string $key)
+    public function cacheForEver(string $key): self
     {
         $this->cacheForEver = true;
         $this->cacheKey = md5($key);

@@ -40,7 +40,7 @@ class File extends Field
      *
      * @return self
      */
-    public function disk(string $disk) : self
+    public function disk(string $disk): self
     {
         $this->disk = $disk;
 
@@ -52,7 +52,7 @@ class File extends Field
      *
      * @return self
      */
-    public function prunable() : self
+    public function prunable(): self
     {
         $this->prunable = true;
 
@@ -64,7 +64,7 @@ class File extends Field
      *
      * @return self
      */
-    public function storeOriginalName() : self
+    public function storeOriginalName(): self
     {
         $this->storeOriginalName = true;
 

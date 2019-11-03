@@ -18,9 +18,11 @@ trait DatesForHumans
     /**
      * Set the start date for the query
      *
+     * @param Carbon\Carbon $date
+     *
      * @return self
      */
-    public function startDate(Carbon $date) : self
+    public function startDate(Carbon $date): self
     {
         $this->startDate = $this->filterDateFormat($date);
 
@@ -30,9 +32,11 @@ trait DatesForHumans
     /**
      * Set the end date for the query
      *
+     * @param Carbon\Carbon $date
+     *
      * @return self
      */
-    public function endDate(Carbon $date) : self
+    public function endDate(Carbon $date): self
     {
         $this->endDate = $this->filterDateFormat($date);
 
@@ -50,7 +54,7 @@ trait DatesForHumans
      *
      * @return self
      */
-    public function toDay() : self
+    public function toDay(): self
     {
         $this->startDate = Carbon::now()->startOfDay();
         $this->endDate = Carbon::now()->endOfDay();
@@ -64,9 +68,10 @@ trait DatesForHumans
      * @param int $day
      * @param int $month
      * @param int $year
+     *
      * @return self
      */
-    public function oneDay(int $day, int $month, int $year) : self
+    public function oneDay(int $day, int $month, int $year): self
     {
         $this->startDate = Carbon::createFromDate($year, $month, $day, config('app.timezone'))->startOfDay();
         $this->endDate = Carbon::createFromDate($year, $month, $day, config('app.timezone'))->endOfDay();
@@ -78,9 +83,10 @@ trait DatesForHumans
      * Set last days for the query
      *
      * @param int $number [Set the number of days]
+     *
      * @return self
      */
-    public function lastDays(int $number) : self
+    public function lastDays(int $number): self
     {
         $this->startDate = Carbon::now()->subDay($number);
         $this->endDate = Carbon::now()->endOfDay();
@@ -99,7 +105,7 @@ trait DatesForHumans
      *
      * @return self
      */
-    public function thisWeek() : self
+    public function thisWeek(): self
     {
         $this->startDate = Carbon::now()->startOfWeek();
         $this->endDate = Carbon::now()->endOfDay();
@@ -118,7 +124,7 @@ trait DatesForHumans
      *
      * @return self
      */
-    public function thisMonth() : self
+    public function thisMonth(): self
     {
         $this->startDate = static::getFirstDayOfTheMonth()->startOfDay();
         $this->endDate = Carbon::now()->endOfDay();
@@ -131,7 +137,7 @@ trait DatesForHumans
      *
      * @return self
      */
-    public function lastMonth() : self
+    public function lastMonth(): self
     {
         $this->startDate = static::getFirstDayOfTheLastMonth()->startOfDay();
         $this->endDate = static::getLastDayOfTheLastMonth()->endOfDay();
@@ -143,9 +149,10 @@ trait DatesForHumans
      * Set last months for the query
      *
      * @param int $number [Set the number of months]
+     *
      * @return self
      */
-    public function lastMonths(int $number) : self
+    public function lastMonths(int $number): self
     {
         $this->startDate = Carbon::now()->subMonth($number)->startOfDay();
         $this->endDate = Carbon::now()->endOfDay();
@@ -164,7 +171,7 @@ trait DatesForHumans
      *
      * @return self
      */
-    public function thisYear() : self
+    public function thisYear(): self
     {
         $this->startDate = Carbon::now()->firstOfYear()->startOfDay();
         $this->endDate = Carbon::now()->endOfDay();
@@ -177,7 +184,7 @@ trait DatesForHumans
      *
      * @return self
      */
-    public function lastYear() : self
+    public function lastYear(): self
     {
         $this->lastYears(1);
 
@@ -189,7 +196,7 @@ trait DatesForHumans
      *
      * @return self
      */
-    public function lastYears(int $years) : self
+    public function lastYears(int $years): self
     {
         $this->startDate = Carbon::now()->subYear($years)->startOfDay();
         $this->endDate = Carbon::now()->endOfDay();
@@ -207,6 +214,7 @@ trait DatesForHumans
      * Filter date base on format
      *
      * @param mixed $date
+     *
      * @return self
      */
     private function filterDateFormat($date) : Carbon
@@ -231,5 +239,4 @@ trait DatesForHumans
             return DateTime::createFromFormat('Y/m/d', $date, config('app.timezone'));
         }
     }
-
 }

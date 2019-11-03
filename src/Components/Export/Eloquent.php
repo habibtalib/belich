@@ -10,9 +10,11 @@ class Eloquent
     /**
      * Get collection from model
      *
+     * @param Illuminate\Http\Request $request
+     *
      * @return Illuminate\Database\Eloquent\Collection
      */
-    public static function query(Request $request) : Collection
+    public static function query(Request $request): Collection
     {
         //Selected fields
         if ($request->quantity === 'selected') {
@@ -29,9 +31,11 @@ class Eloquent
     /**
      * Get table name from model
      *
+     * @param Illuminate\Http\Request $request
+     *
      * @return string
      */
-    public static function tableName(Request $request) : string
+    public static function tableName(Request $request): string
     {
         return static::model($request)->getTable();
     }
@@ -40,9 +44,10 @@ class Eloquent
      * Get the current model
      *
      * @param Illuminate\Http\Request $request
+     *
      * @return object
      */
-    private static function model(Request $request) : object
+    private static function model(Request $request): object
     {
         return app($request->resource_model);
     }

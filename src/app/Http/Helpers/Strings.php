@@ -14,7 +14,7 @@ use Illuminate\Support\Str;
  * @return string
  */
 if (!function_exists('stringPluralLower')) {
-    function stringPluralLower($string) : string
+    function stringPluralLower($string): string
     {
         return Str::plural(strtolower($string));
     }
@@ -26,7 +26,7 @@ if (!function_exists('stringPluralLower')) {
  * @return string
  */
 if (!function_exists('stringPluralUpper')) {
-    function stringPluralUpper($string) : string
+    function stringPluralUpper($string): string
     {
         return Str::plural(ucfirst($string));
     }
@@ -38,7 +38,7 @@ if (!function_exists('stringPluralUpper')) {
  * @return string
  */
 if (!function_exists('stringSingularUpper')) {
-    function stringSingularUpper($string) : string
+    function stringSingularUpper($string): string
     {
         return Str::singular(ucfirst($string));
     }
@@ -50,7 +50,7 @@ if (!function_exists('stringSingularUpper')) {
  * @return string
  */
 if (!function_exists('stringTokebab')) {
-    function stringTokebab($string) : string
+    function stringTokebab($string): string
     {
         return Str::kebab($string);
     }
@@ -62,7 +62,7 @@ if (!function_exists('stringTokebab')) {
  * @return string
  */
 if (!function_exists('emptyResults')) {
-    function emptyResults() : string
+    function emptyResults(): string
     {
         return '—';
     }

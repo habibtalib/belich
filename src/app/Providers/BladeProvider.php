@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
  *
  * @return string
  */
-Blade::directive('actionIcon', function ($arguments) {
+Blade::directive('actionIcon', static function ($arguments) {
     //App\Http\Helpers\Icons.php
     return "<?php echo actionIcon($arguments); ?>";
 });
@@ -17,7 +17,7 @@ Blade::directive('actionIcon', function ($arguments) {
  *
  * @return string
  */
-Blade::directive('icon', function ($arguments) {
+Blade::directive('icon', static function ($arguments) {
     $list = explode(',', str_replace(['(',')',' ', "'"], '', $arguments));
     $text = isset($list[1]) ? trans($list[1]) : '';
     $css = isset($list[2]) ? $list[2] : '';
@@ -32,10 +32,10 @@ Blade::directive('icon', function ($arguments) {
  *
  * @return string
  */
-Blade::directive('listTextFromArray', function ($arguments) {
+Blade::directive('listTextFromArray', static function ($arguments) {
     $text = explode(',', str_replace(['(',')',' ', "'"], '', $arguments));
     $list = collect(trans($text[0]))
-        ->map(function ($item) {
+        ->map(static function ($item) {
             return sprintf('<div>%s</div>', icon('check-square', $item));
         })
         ->implode('');
@@ -50,7 +50,7 @@ Blade::directive('listTextFromArray', function ($arguments) {
  *
  * @return string
  */
-Blade::if('hasMetrics', function ($request) {
+Blade::if('hasMetrics', static function ($request) {
     //App\Http\Helpers\Blade.php
     return hasMetrics($request);
 });
@@ -61,7 +61,7 @@ Blade::if('hasMetrics', function ($request) {
  *
  * @return string
  */
-Blade::if('hasSoftdelete', function ($model) {
+Blade::if('hasSoftdelete', static function ($model) {
     //App\Http\Helpers\Models.php
     return hasSoftdelete($model);
 });
@@ -72,7 +72,7 @@ Blade::if('hasSoftdelete', function ($model) {
  *
  * @return string
  */
-Blade::if('hasSoftdeletedResults', function ($model) {
+Blade::if('hasSoftdeletedResults', static function ($model) {
     //App\Http\Helpers\Models.php
     return hasSoftdeletedResults($model);
 });
@@ -82,8 +82,7 @@ Blade::if('hasSoftdeletedResults', function ($model) {
  *
  * @return string
  */
-Blade::directive('mix', function ($arguments) {
-
+Blade::directive('mix', static function ($arguments) {
     $path = '/vendor/belich/' . str_replace("'", '', $arguments) . '?v=' . Str::random(20);
 
     if (Str::endsWith($arguments, ".css'")) {
@@ -101,6 +100,6 @@ Blade::directive('mix', function ($arguments) {
  *
  * @return string
  */
-Blade::directive('trans', function ($arguments) {
+Blade::directive('trans', static function ($arguments) {
     return e(trans('belich::' . str_replace("'", '', $arguments)));
 });

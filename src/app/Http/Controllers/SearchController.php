@@ -12,6 +12,7 @@ class SearchController extends Controller
      * Validate fields from ajax
      *
      * @param Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function __invoke(SearchRequest $request, Belich $belich)

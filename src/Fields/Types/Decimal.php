@@ -30,9 +30,10 @@ class Decimal extends Field
      * Set the number of decimals
      *
      * @param int $decimals
+     *
      * @return self
      */
-    public function decimals(int $decimals) : self
+    public function decimals(int $decimals): self
     {
         $this->decimals = $decimals;
 

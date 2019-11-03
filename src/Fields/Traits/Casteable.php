@@ -12,7 +12,7 @@ trait Casteable
      *
      * @return self
      */
-    public function toBoolean() : self
+    public function toBoolean(): self
     {
         $this->cast = 'boolean';
 
@@ -24,7 +24,7 @@ trait Casteable
      *
      * @return self
      */
-    public function toDate(string $format) : self
+    public function toDate(string $format): self
     {
         $this->cast = 'date:' . $format;
 
@@ -36,7 +36,7 @@ trait Casteable
      *
      * @return self
      */
-    public function toInteger() : self
+    public function toInteger(): self
     {
         $this->cast = 'integer';
 
@@ -48,7 +48,7 @@ trait Casteable
      *
      * @return self
      */
-    public function toFloat() : self
+    public function toFloat(): self
     {
         $this->cast = 'float';
 
@@ -60,7 +60,7 @@ trait Casteable
      *
      * @return self
      */
-    public function toJson() : self
+    public function toJson(): self
     {
         $this->cast = 'json';
 
@@ -72,7 +72,7 @@ trait Casteable
      *
      * @return self
      */
-    public function toYear() : self
+    public function toYear(): self
     {
         $this->cast = 'year';
 
@@ -84,7 +84,7 @@ trait Casteable
      *
      * @return self
      */
-    public function toString() : self
+    public function toString(): self
     {
         $this->cast = 'string';
 

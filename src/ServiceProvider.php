@@ -13,7 +13,7 @@ final class ServiceProvider extends Provider
      *
      * @return void
      */
-    public function boot() : void
+    public function boot(): void
     {
         if ($this->app->runningInConsole()) {
             $this->registerPublishing();
@@ -34,7 +34,7 @@ final class ServiceProvider extends Provider
      *
      * @return void
      */
-    public function register() : void
+    public function register(): void
     {
         //Belich Facade
         $this->app->register(\Daguilarm\Belich\Facades\BelichProvider::class);
@@ -50,7 +50,7 @@ final class ServiceProvider extends Provider
      *
      * @return void
      */
-    protected function registerBootstrap() : void
+    protected function registerBootstrap(): void
     {
         //Include the package classmap autoloader
         if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
@@ -73,7 +73,7 @@ final class ServiceProvider extends Provider
      *
      * @return void
      */
-    protected function registerRoutes() : void
+    protected function registerRoutes(): void
     {
         //Auth routes
         if (file_exists(__DIR__ . '/../routes/AuthRoutes.php')) {
@@ -91,7 +91,7 @@ final class ServiceProvider extends Provider
      *
      * @return void
      */
-    protected function registerResources() : void
+    protected function registerResources(): void
     {
         //Load the views
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'belich');
@@ -109,7 +109,7 @@ final class ServiceProvider extends Provider
      *
      * @return void
      */
-    protected function registerPublishing() : void
+    protected function registerPublishing(): void
     {
         //Publish the config file
         $this->publishes([
@@ -163,7 +163,7 @@ final class ServiceProvider extends Provider
      *
      * @return void
      */
-    protected function registerConsole() : void
+    protected function registerConsole(): void
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
@@ -180,7 +180,7 @@ final class ServiceProvider extends Provider
      *
      * @return void
      */
-    protected function registerMigrations() : void
+    protected function registerMigrations(): void
     {
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     }

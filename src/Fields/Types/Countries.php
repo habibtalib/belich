@@ -18,7 +18,7 @@ class Countries extends Autocomplete
 
         //Get the countries
         $this->responseArray = collect(trans('belich::metrics.countriesOfTheWorldWithCodes'))
-            ->flatMap(function ($country) {
+            ->flatMap(static function ($country) {
                 return [$country['code'] => $country['name']];
             })
             ->all();

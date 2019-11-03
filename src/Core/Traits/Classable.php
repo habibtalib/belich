@@ -11,7 +11,7 @@ trait Classable
      *
      * @return string
      */
-    public static function className() : string
+    public static function className(): string
     {
         $resource = request()->query('resourceName');
 
@@ -26,9 +26,10 @@ trait Classable
      * Set the class name
      *
      * @param string $className
+     *
      * @return string
      */
-    public static function classFormat($className) : string
+    public static function classFormat($className): string
     {
         return Str::title(Str::singular($className));
     }

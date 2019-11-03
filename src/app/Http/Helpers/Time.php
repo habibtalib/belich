@@ -14,7 +14,7 @@ use Carbon\Carbon;
  * @return int
  */
 if (!function_exists('setTimeForCookie')) {
-    function setTimeForCookie() : int
+    function setTimeForCookie(): int
     {
         return Carbon::now()->addYear()->timestamp;
     }

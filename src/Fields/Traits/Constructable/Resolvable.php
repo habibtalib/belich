@@ -15,9 +15,10 @@ trait Resolvable
      *
      * @param  Daguilarm\Belich\Fields\Field $attribute
      * @param  object $data
+     *
      * @return null|string
      */
-    public function resolve(Field $field, object $data = null)
+    public function resolve(Field $field, object $data = null): ?string
     {
         //Resolve Relationship
         if (is_array($field->attribute) && count($field->attribute) === 2 && !empty($data)) {

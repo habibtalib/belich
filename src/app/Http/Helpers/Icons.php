@@ -13,10 +13,11 @@ use Illuminate\Support\Str;
  *
  * @param string $icon
  * @param string $text
+ *
  * @return string
  */
 if (!function_exists('icon')) {
-    function icon(string $icon, $text = '', $css = '') : string
+    function icon(string $icon, $text = '', $css = ''): string
     {
         // Set right margin if we have text
         $margin = $text ? ' mr-2' : '';
@@ -32,10 +33,11 @@ if (!function_exists('icon')) {
  * Render the action icons
  *
  * @param string $icon
+ *
  * @return string
  */
 if (!function_exists('actionIcon')) {
-    function actionIcon(string $icon) : string
+    function actionIcon(string $icon): string
     {
         return sprintf('<i class="fas fa-%s"></i>', $icon);
     }
@@ -55,9 +57,11 @@ if (!function_exists('actionIcon')) {
  * @param string $d Default imageset to use [ 404 | mp | identicon | monsterid | wavatar ]
  * @param string $r Maximum rating (inclusive) [ g | pg | r | x ]
  * @source https://gravatar.com/site/implement/images/php/
+ *
+ * @return  string
  */
 if (!function_exists('gravatar')) {
-    function gravatar($email = null, $size = 80, $imageSet = 'mp', $rating = 'g') : string
+    function gravatar($email = null, $size = 80, $imageSet = 'mp', $rating = 'g'): string
     {
         $email = $email
             ? md5(strtolower(trim($email)))

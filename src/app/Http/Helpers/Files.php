@@ -11,10 +11,11 @@
  *
  * @param string $fileName
  * @param bool $extension
+ *
  * @return string
  */
 if (!function_exists('getFileAttributes')) {
-    function getFileAttributes(string $fileName, $extension = false) : string
+    function getFileAttributes(string $fileName, $extension = false): string
     {
         $str = explode('.', $fileName);
 

@@ -37,9 +37,9 @@ class PolicyCommand extends BelichCommand
      *
      * @return void
      */
-    public function handle() : void
+    public function handle(): void
     {
-        if(!File::exists($this->path())) {
+        if (!File::exists($this->path())) {
             File::makeDirectory($this->path());
         }
 
@@ -67,7 +67,7 @@ class PolicyCommand extends BelichCommand
      *
      * @return string
      */
-    protected function getStub()
+    protected function getStub(): string
     {
         return __DIR__ . '/../../../stubs/policy.stub';
     }
@@ -77,7 +77,7 @@ class PolicyCommand extends BelichCommand
      *
      * @return string
      */
-    protected function path()
+    protected function path(): string
     {
         return app_path('Policies');
     }
@@ -87,7 +87,7 @@ class PolicyCommand extends BelichCommand
      *
      * @return string
      */
-    protected function setStub($ext = 'stub')
+    protected function setStub($ext = 'stub'): string
     {
         return $this->path() . '/' . $this->classModel() . '.' . $ext;
     }
@@ -97,7 +97,7 @@ class PolicyCommand extends BelichCommand
      *
      * @return string
      */
-    protected function modelPath()
+    protected function modelPath(): string
     {
         return $this->option('model') ?? '\\App\\' . $this->className();
     }

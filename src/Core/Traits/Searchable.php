@@ -18,7 +18,7 @@ trait Searchable
      *
      * @return string
      */
-    public static function searchFields() : string
+    public static function searchFields(): string
     {
         $class = static::resourceClassPath();
 
@@ -45,7 +45,7 @@ trait Searchable
      *
      * @return string
      */
-    public static function requestFromSearch() : bool
+    public static function requestFromSearch(): bool
     {
         $request = request()->query();
 
@@ -67,11 +67,11 @@ trait Searchable
      *
      * @return string
      */
-    public static function requestTableFields() : array
+    public static function requestTableFields(): array
     {
         $fields = explode(',', trim(request()->query('fields')));
 
-        return collect($fields)->map(function ($value) {
+        return collect($fields)->map(static function ($value) {
             return $value;
         })
             ->filter()

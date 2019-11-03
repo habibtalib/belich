@@ -17,9 +17,10 @@ trait Ruleable
      * Set a general rules for validation
      *
      * @param  array  $rules
+     *
      * @return self
      */
-    public function rules(...$rules) : self
+    public function rules(...$rules): self
     {
         $this->rules = $rules;
         $this->creationRules = null;
@@ -32,9 +33,10 @@ trait Ruleable
      * Set a creation rules for validation
      *
      * @param  array  $rules
+     *
      * @return self
      */
-    public function creationRules(...$rules) : self
+    public function creationRules(...$rules): self
     {
         $this->creationRules = $rules;
 
@@ -45,9 +47,10 @@ trait Ruleable
      * Set a update rules for validation
      *
      * @param  array  $rules
+     *
      * @return self
      */
-    public function updateRules(...$rules) : self
+    public function updateRules(...$rules): self
     {
         $this->updateRules = $rules;
 

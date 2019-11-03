@@ -55,7 +55,6 @@ abstract class Graph
      * Set the custom metrics cards
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return Illuminate\Support\Collection
      */
     public function __construct(Request $request)
     {
@@ -74,13 +73,16 @@ abstract class Graph
     /**
      * Initialize the metrics
      *
+     * @return  array
      */
-    abstract public function calculate(Request $request) : array;
+    abstract public function calculate(Request $request): array;
 
     /**
      * Set the labels
+     *
+     * @return  array
      */
-    abstract public function labels(Request $request) : array;
+    abstract public function labels(Request $request): array;
 
     /**
      * Set the metric name
@@ -89,6 +91,8 @@ abstract class Graph
 
     /**
      * Set the urikey
+     *
+     * @return  string
      */
     abstract public function urikey() : string;
 
@@ -96,9 +100,10 @@ abstract class Graph
      * Set the default card width
      *
      * @param string $width
+     *
      * @return self
      */
-    public function width(string $width) : self
+    public function width(string $width): self
     {
         $this->width = $width;
 
@@ -107,30 +112,38 @@ abstract class Graph
 
     /**
      * Set the default line color
+     *
+     * @return string
      */
-    private function color()
+    private function color(): string
     {
         return $this->color ?? 'lightseagreen';
     }
 
     /**
      * Set the default line color
+     *
+     * @return string
      */
-    private function marker()
+    private function marker(): string
     {
         return $this->marker ?? 'butt';
     }
 
     /**
      * Set the default graph type
+     *
+     * @return string
      */
-    private function type()
+    private function type(): string
     {
         return $this->type ?? 'line';
     }
 
     /**
      * Add a highlight area to graph
+     *
+     * @return string
      */
     private function withArea()
     {

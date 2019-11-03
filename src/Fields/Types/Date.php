@@ -44,9 +44,10 @@ class Date extends Field
      *
      * @param  string|null  $name
      * @param  string|null  $attribute
+     *
      * @return  self
      */
-    public function format(string $format) : self
+    public function format(string $format): self
     {
         $this->format = $format;
 

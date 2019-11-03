@@ -47,6 +47,7 @@ class MinifyMiddleware
      *
      * @param \Illuminate\Http\Request $request
      * @param \Closure $next
+     *
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -76,7 +77,7 @@ class MinifyMiddleware
      *
      * @return array
      */
-    private function exceptedActions() : array
+    private function exceptedActions(): array
     {
         return array_merge(
             $this->exceptedActions,
@@ -88,9 +89,10 @@ class MinifyMiddleware
      * Check if the header response is text/html.
      *
      * @param \Illuminate\Http\Response $response
+     *
      * @return bool
      */
-    private function isHtml($response) : bool
+    private function isHtml($response): bool
     {
         $type = strtolower(strtok($response->headers->get('Content-Type'), ';'));
 
@@ -98,11 +100,13 @@ class MinifyMiddleware
     }
 
     /**
+     * Filter the html
+     *
      * @param string $html
      *
      * @return string
      */
-    private function html(string $html) : string
+    private function html(string $html): string
     {
         $html = preg_replace(array_keys($this->htmlFilters), array_values($this->htmlFilters), $html);
 

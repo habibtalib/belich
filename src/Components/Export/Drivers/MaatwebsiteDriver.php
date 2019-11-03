@@ -24,9 +24,10 @@ class MaatwebsiteDriver implements ExportContract
      * Prepare the file for download
      *
      * @param Illuminate\Http\Request $request
+     *
      * @return array
      */
-    public function handle(Request $request) : array
+    public function handle(Request $request): array
     {
         // Handle the values
         return [];
@@ -37,7 +38,7 @@ class MaatwebsiteDriver implements ExportContract
      *
      * @return Daguilarm\Belich\Components\Export\Drivers\MaatwebsiteDriver
      */
-    public function collection(Collection $data) : MaatwebsiteDriver
+    public function collection(Collection $data): MaatwebsiteDriver
     {
         $this->data = $data;
 

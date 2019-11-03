@@ -37,6 +37,7 @@ final class FieldResolve
      * @param object $class
      * @param object $fields
      * @param object $sqlResponse
+     *
      * @return Illuminate\Support\Collection
      */
     public function make(object $class, object $fields, object $sqlResponse) : Collection

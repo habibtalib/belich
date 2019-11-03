@@ -14,9 +14,10 @@ trait Softdeleteable
      *
      * @param  Daguilarm\Belich\Fields\Field $attribute
      * @param  object $data
-     * @return null|string
+     *
+     * @return bool
      */
-    public function resolveSoftdeleting(Field $field, object $data = null)
+    public function resolveSoftdeleting(Field $field, object $data = null): bool
     {
         return method_exists(Belich::getModel(), 'trashed') && $data->trashed();
     }

@@ -17,7 +17,7 @@ trait Visibilitable
      *
      * @var self
      */
-    public function hideFromIndex() : self
+    public function hideFromIndex(): self
     {
         $this->visibility['index'] = false;
 
@@ -29,7 +29,7 @@ trait Visibilitable
      *
      * @var self
      */
-    public function hideFromShow() : self
+    public function hideFromShow(): self
     {
         $this->visibility['show'] = false;
 
@@ -41,7 +41,7 @@ trait Visibilitable
      *
      * @var self
      */
-    public function hideWhenCreating() : self
+    public function hideWhenCreating(): self
     {
         $this->visibility['create'] = false;
 
@@ -53,7 +53,7 @@ trait Visibilitable
      *
      * @var self
      */
-    public function hideWhenEditing() : self
+    public function hideWhenEditing(): self
     {
         $this->visibility['edit'] = false;
 
@@ -65,7 +65,7 @@ trait Visibilitable
      *
      * @var self
      */
-    public function exceptOnForms() : self
+    public function exceptOnForms(): self
     {
         //Reset the values
         self::hideFromAll();
@@ -81,7 +81,7 @@ trait Visibilitable
      *
      * @var self
      */
-    public function onlyOnForms() : self
+    public function onlyOnForms(): self
     {
         //Reset the values
         self::hideFromAll();
@@ -97,7 +97,7 @@ trait Visibilitable
      *
      * @var self
      */
-    public function onlyOnIndex() : self
+    public function onlyOnIndex(): self
     {
         //Reset the values
         self::hideFromAll();
@@ -112,7 +112,7 @@ trait Visibilitable
      *
      * @var self
      */
-    public function onlyOnShow() : self
+    public function onlyOnShow(): self
     {
         //Reset the values
         self::hideFromAll();
@@ -127,7 +127,7 @@ trait Visibilitable
      *
      * @var self
      */
-    public function onlyOnEditing() : self
+    public function onlyOnEditing(): self
     {
         //Reset the values
         self::hideFromAll();
@@ -142,7 +142,7 @@ trait Visibilitable
      *
      * @var self
      */
-    public function onlyOnCreating() : self
+    public function onlyOnCreating(): self
     {
         //Reset the values
         self::hideFromAll();
@@ -157,7 +157,7 @@ trait Visibilitable
      *
      * @var self
      */
-    public function visibleOn(...$attributes) : self
+    public function visibleOn(...$attributes): self
     {
         //Reset the values
         self::hideFromAll();
@@ -176,7 +176,7 @@ trait Visibilitable
      *
      * @var self
      */
-    public function hideFrom(...$attributes) : self
+    public function hideFrom(...$attributes): self
     {
         foreach ($attributes as $attribute) {
             $this->visibility[$attribute] = false;

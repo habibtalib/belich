@@ -24,7 +24,7 @@ trait Attributable
      *
      * @return self
      */
-    public function addClass(...$values) : self
+    public function addClass(...$values): self
     {
         foreach ($values as $value) {
             $this->addClass[] = $value;
@@ -38,7 +38,7 @@ trait Attributable
      *
      * @return self
      */
-    public function autofocus() : self
+    public function autofocus(): self
     {
         $this->autofocus = true;
 
@@ -50,7 +50,7 @@ trait Attributable
      *
      * @return self
      */
-    public function data($attribute, $value) : self
+    public function data($attribute, $value): self
     {
         $this->data[] = [$attribute, $value];
 
@@ -61,9 +61,10 @@ trait Attributable
      * Set the field with the attribute 'disabled'
      *
      * @param  bool  $value
+     *
      * @return self
      */
-    public function disabled(bool $value = true) : self
+    public function disabled(bool $value = true): self
     {
         if (!empty($value)) {
             $this->disabled = true;
@@ -76,9 +77,10 @@ trait Attributable
      * Set the field default value
      *
      * @param  string|null  $value
+     *
      * @return self
      */
-    public function defaultValue($value = null) : self
+    public function defaultValue($value = null): self
     {
         //Check the value for conditional cases...
         if (!empty($value)) {
@@ -92,9 +94,10 @@ trait Attributable
      * Set the field with the attribute 'readonly'
      *
      * @param  bool  $value
+     *
      * @return self
      */
-    public function readOnly(bool $value = true) : self
+    public function readOnly(bool $value = true): self
     {
         if (!empty($value)) {
             $this->readonly = true;

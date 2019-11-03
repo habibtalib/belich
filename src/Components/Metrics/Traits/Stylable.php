@@ -8,9 +8,10 @@ trait Stylable
      * Set the labels
      *
      * @param  object  $metric
+     *
      * @return string
      */
-    public function css(object $metric) : string
+    public function css(object $metric): string
     {
         //Set the unique key for the graph
         $key = md5($metric->uriKey);

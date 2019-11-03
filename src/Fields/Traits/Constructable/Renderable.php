@@ -11,12 +11,13 @@ trait Renderable
      * Render attributes for field
      *
      * @param array $field
+     *
      * @return Illuminate\Support\Collection
      */
-    private function setRenderFieldAttributes($field) : Collection
+    private function setRenderFieldAttributes($field): Collection
     {
         collect($field)
-            ->each(function ($value, $attribute) use ($field) : void {
+            ->each(static function ($value, $attribute) use ($field) : void {
                 //Get the list of attributes to be rendered: name, dusk,...
                 if (in_array($attribute, $field->renderAttributes)) {
                     //Remove attributes from list
@@ -34,12 +35,13 @@ trait Renderable
      * Render data attributes for field
      *
      * @param array $field
+     *
      * @return string
      */
-    private function setRenderFieldAttributesData($field) : string
+    private function setRenderFieldAttributesData($field): string
     {
         return collect($field->data)
-            ->map(function ($value) {
+            ->map(static function ($value) {
                 return sprintf('data-%s=%s', $value[0], $value[1]);
             })
             ->implode(' ');
@@ -49,9 +51,10 @@ trait Renderable
      * Render each field value
      *
      * @param array $field
+     *
      * @return Daguilarm\Belich\Fields\Field
      */
-    private function renderField($field) : Field
+    private function renderField($field): Field
     {
         $field->render = $field->render->implode(' ');
 

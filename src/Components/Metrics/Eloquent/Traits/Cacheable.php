@@ -18,7 +18,15 @@ trait Cacheable
     /** @var string */
     protected $cacheKey;
 
-    private function getDataFromCache($dateType, $type)
+    /**
+     * Get data from cache
+     *
+     * @param string $dateType
+     * @param string $type
+     *
+     * @return string
+     */
+    private function getDataFromCache(string $dateType, string $type): string
     {
         //Cache for ever
         if ($this->cacheForEver === true) {

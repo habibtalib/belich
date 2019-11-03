@@ -77,7 +77,7 @@ class FieldAbstract
      *
      * @return self
      */
-    public function asHtml() : self
+    public function asHtml(): self
     {
         $this->asHtml = true;
         $this->visibleOn('index', 'show');
@@ -89,9 +89,10 @@ class FieldAbstract
      * Set the callback to be run to authorize viewing the field.
      *
      * @param  \Closure  $callback
+     *
      * @return self
      */
-    public function canSee(\Closure $callback) : self
+    public function canSee(\Closure $callback): self
     {
         $this->seeCallback = $callback;
 
@@ -102,9 +103,10 @@ class FieldAbstract
      * Set the field sortable
      *
      * @param  bool  $value
+     *
      * @return self
      */
-    public function sortable(bool $value = true) : self
+    public function sortable(bool $value = true): self
     {
         if (!empty($value)) {
             $this->sortable = true;
@@ -115,10 +117,12 @@ class FieldAbstract
 
     /**
      * Resolving field value in index and detailed
+     *
      * @param  object  $displayCallback
+     *
      * @return self
      */
-    public function displayUsing(callable $displayCallback) : self
+    public function displayUsing(callable $displayCallback): self
     {
         if (!empty($displayCallback)) {
             $this->displayCallback[] = $displayCallback;
@@ -129,10 +133,12 @@ class FieldAbstract
 
     /**
      * Resolving field value (before processing) in all the fields
+     *
      * @param  object  $resolveCallback
+     *
      * @return self
      */
-    public function resolveUsing(callable $resolveCallback) : self
+    public function resolveUsing(callable $resolveCallback): self
     {
         if (!empty($resolveCallback)) {
             $this->resolveCallback = $resolveCallback;
@@ -143,10 +149,12 @@ class FieldAbstract
 
     /**
      * Group field into panels
+     *
      * @param  string  $panel
+     *
      * @return self
      */
-    public function panels(string $panel) : self
+    public function panels(string $panel): self
     {
         $this->panels = $panel;
 
@@ -155,13 +163,15 @@ class FieldAbstract
 
     /**
      * Prefix for field value
+     *
      * @param  string  $prefix
      * @param  bool  $space
+     *
      * @return self
      */
-    public function prefix(string $prefix, bool $space = false) : self
+    public function prefix(string $prefix, bool $space = false): self
     {
-        $this->displayUsing(function ($value) use ($prefix, $space) {
+        $this->displayUsing(static function ($value) use ($prefix, $space) {
             return sprintf(
                 '%s%s%s',
                 $prefix, $space ? ' ' : '',
@@ -174,32 +184,32 @@ class FieldAbstract
 
     /**
      * Suffix for field value
+     *
      * @param  string  $suffix
      * @param  bool  $space
+     *
      * @return self
      */
-    public function suffix(string $suffix, bool $space = false) : self
+    public function suffix(string $suffix, bool $space = false): self
     {
-        $this->displayUsing(function ($value) use ($suffix, $space) {
+        $this->displayUsing(static function ($value) use ($suffix, $space) {
             return sprintf(
                 '%s%s%s',
                 $value,
                 $space ? ' ' : '',
                 $suffix
-
             );
-            return $suffix ? $value . $suffix  : $value;
         });
-
         return $this;
     }
 
     /**
      * Not Resolving field value
      * This is (mostly) for hidden fields
+     *
      * @return self
      */
-    public function notResolveField() : self
+    public function notResolveField(): self
     {
         $this->notResolveField = true;
 
@@ -209,10 +219,12 @@ class FieldAbstract
     /**
      * Remove attributes from $field
      * Just for internal use
+     *
      * @param  array  $attributes
+     *
      * @return self
      */
-    protected function removedAttr(...$attributes) : self
+    protected function removedAttr(...$attributes): self
     {
         $this->removedAttr = $attributes;
 

@@ -20,7 +20,7 @@ trait Routeable
      *
      * @return string
      */
-    public static function action() : string
+    public static function action(): string
     {
         //Cannot pass directly as reference!!
         $route = static::route();
@@ -40,11 +40,11 @@ trait Routeable
      *
      * @return array
      */
-    public static function route() : array
+    public static function route(): array
     {
         //Hack for artisan route:list
         //I don't know why... WTF!
-        if (is_null(Request::route())){
+        if (is_null(Request::route())) {
             return ['dashboard', 'users', 'index'];
         }
 
@@ -57,9 +57,10 @@ trait Routeable
      *
      * @param string $controllerAction
      * @param int|object $data
+     *
      * @return string
      */
-    public static function actionRoute(string $controllerAction, $data = null) : string
+    public static function actionRoute(string $controllerAction, $data = null): string
     {
         $route = sprintf('%s.%s.%s', static::pathName(), static::resource(), $controllerAction);
 

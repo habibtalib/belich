@@ -20,7 +20,7 @@ trait Resourceable
      *
      * @return string
      */
-    public static function resource() : string
+    public static function resource(): string
     {
         //Search action
         if (static::requestFromSearch()) {
@@ -36,7 +36,7 @@ trait Resourceable
      *
      * @return string
      */
-    public static function resourceClassPath($className = null) : string
+    public static function resourceClassPath($className = null): string
     {
         $class = $className ?? static::className();
 
@@ -48,7 +48,7 @@ trait Resourceable
      *
      * @return string
      */
-    public static function resourceName() : string
+    public static function resourceName(): string
     {
         $className = Str::singular(static::resource());
 
@@ -81,7 +81,7 @@ trait Resourceable
      *
      * @return string
      */
-    public static function resourceUrl() : string
+    public static function resourceUrl(): string
     {
         return static::url() . '/' . static::resource();
     }
@@ -97,7 +97,7 @@ trait Resourceable
      *
      * @return string
      */
-    public static function downloable() : string
+    public static function downloable(): string
     {
         $class = static::resourceClassPath();
 
@@ -109,7 +109,7 @@ trait Resourceable
      *
      * @return bool
      */
-    public static function tabs() : bool
+    public static function tabs(): bool
     {
         $class = static::resourceClassPath();
 
@@ -121,7 +121,7 @@ trait Resourceable
      *
      * @return string
      */
-    public static function redirectTo() : string
+    public static function redirectTo(): string
     {
         $class = static::resourceClassPath();
 
@@ -133,7 +133,7 @@ trait Resourceable
      *
      * @return bool
      */
-    public static function accessToResource() : bool
+    public static function accessToResource(): bool
     {
         $class = static::resourceClassPath();
 
@@ -158,7 +158,7 @@ trait Resourceable
      *
      * @return Illuminate\Support\Collection
      */
-    public function currentResource(Request $request) : Collection
+    public function currentResource(Request $request): Collection
     {
         //Default values
         $class = $this->initResourceClass($request);
@@ -186,12 +186,12 @@ trait Resourceable
      *
      * @return Illuminate\Support\Collection
      */
-    public function resourcesAll() : Collection
+    public function resourcesAll(): Collection
     {
         return $this->resourceFiles()
-            ->map(function ($file) {
+            ->map(static function ($file) {
                 return $file;
-            })->filter(function ($value, $key) {
+            })->filter(static function ($value, $key) {
                 return $value !== '.' && $value !== '..';
             })->mapWithKeys(function ($file, $key) {
                 if ($file) {
@@ -214,8 +214,7 @@ trait Resourceable
     public function getGroupResources()
     {
         return collect($this->resourcesAll())
-            ->map(function ($item, $key) {
-
+            ->map(static function ($item, $key) {
                 $title = $item['pluralLabel'] ?? stringPluralUpper($item['class']);
 
                 if ($item['displayInNavigation'] === true) {
@@ -237,7 +236,7 @@ trait Resourceable
      *
      * @return Illuminate\Support\Collection
      */
-    private function resourceFiles() : Collection
+    private function resourceFiles(): Collection
     {
         $filePath = app_path('Belich/Resources');
 
@@ -250,7 +249,7 @@ trait Resourceable
      *
      * @return string
      */
-    private function resourceLabels() : string
+    private function resourceLabels(): string
     {
         $initializedClass = $this->initResourceClass(request());
 
@@ -264,9 +263,10 @@ trait Resourceable
      *
      * @param string $className
      * @param bool $forNavigation [only return the parameters needed for navigation]
-     * @return array
+     *
+     * @return Illuminate\Support\Collection
      */
-    private function resourceValues($className, $forNavigation = false)
+    private function resourceValues($className, $forNavigation = false): Collection
     {
         //Get class name from request or from live search
         $className = static::requestFromSearch()
@@ -320,9 +320,10 @@ trait Resourceable
      * Set the table text align
      *
      * @param string $class
+     *
      * @return string
      */
-    private function setTableTextAlign(string $class) : string
+    private function setTableTextAlign(string $class): string
     {
         //Get the resource value
         $align = $class::$tableTextAlign ?? null;

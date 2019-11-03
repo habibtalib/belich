@@ -5,6 +5,7 @@ namespace Daguilarm\Belich\App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Daguilarm\Belich\Core\Belich;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use Illuminate\View\View;
 
 class VerificationController extends Controller
 {
@@ -38,8 +39,10 @@ class VerificationController extends Controller
 
     /**
      * Set verify view
+     *
+     * @return  Illuminate\View\View
      */
-    public function show()
+    public function show(): View
     {
         return view('belich::auth.verify');
     }

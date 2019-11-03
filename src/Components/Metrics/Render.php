@@ -22,13 +22,14 @@ class Render
      * Render the metric card
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return string
      */
-    public function render(Request $request) : string
+    public function render(Request $request): string
     {
         //Render the metric view
         $metrics = collect($request->metrics)
-            ->map(function ($metric) {
+            ->map(static function ($metric) {
                 return view('belich::components.metrics.chart', compact('metric'))->render();
             });
 
@@ -39,9 +40,10 @@ class Render
      * Create the assets
      *
      * @param  string  $type
+     *
      * @return string
      */
-    public function assets(string $type = 'js') : string
+    public function assets(string $type = 'js'): string
     {
         $cssTemplate = '<link rel="stylesheet" href="%s">';
         $jsTemplate = '<script src="%s"></script>';
@@ -56,7 +58,7 @@ class Render
      *
      * @return string
      */
-    public function get()
+    public function get(): string
     {
         //Set javascript key
         $key = md5($this->uriKey);
@@ -76,13 +78,14 @@ class Render
     |--------------------------------------------------------------------------
     */
 
-   /**
-    * Graph type selector
-    *
-    * @param string $type
-    * @param string $key
-    * @return string
-    */
+    /**
+     * Graph type selector
+     *
+     * @param string $type
+     * @param string $key
+     *
+     * @return string
+     */
     private function graphSelector(string $type, string $key)
     {
         if ($type === 'bars') {
@@ -114,9 +117,10 @@ class Render
      * Create a Line Graph
      *
      * @param string $key
+     *
      * @return string
      */
-    private function lineGraph(string $key) : string
+    private function lineGraph(string $key): string
     {
         $withArea = $this->withArea ? static::templateLineGraphOptions() : '';
 
@@ -132,9 +136,10 @@ class Render
      * Create a Bar Graph
      *
      * @param string $key
+     *
      * @return string
      */
-    private function barGraph(string $key)  : string
+    private function barGraph(string $key): string
     {
         return sprintf(
             static::templateBarGraph(),
@@ -148,9 +153,10 @@ class Render
      * Create a Horizontal Bar Graph
      *
      * @param string $key
+     *
      * @return string
      */
-    private function horizontalBarGraph(string $key)  : string
+    private function horizontalBarGraph(string $key): string
     {
         return sprintf(
             static::templateBarGraph(),
@@ -164,9 +170,10 @@ class Render
      * Create a Pie Graph
      *
      * @param string $key
+     *
      * @return string
      */
-    private function pieGraph(string $key)
+    private function pieGraph(string $key): string
     {
         return sprintf(
             static::templatePieGraph(),
@@ -186,16 +193,17 @@ class Render
      * Format the labels to render
      *
      * @param  array|Collection  $values
+     *
      * @return string
      */
-    private function formatLabels($values) : string
+    private function formatLabels($values): string
     {
         //To collection
         $values = is_array($values) ? collect($values) : $values;
 
         //Serialize the values
         return $values
-            ->map(function ($value) {
+            ->map(static function ($value) {
                 return sprintf("'%s'", $value);
             })->implode(',');
     }
@@ -204,9 +212,10 @@ class Render
      * Format the series to render
      *
      * @param  array|Collection  $values
+     *
      * @return string
      */
-    private function formatSeries($series) : string
+    private function formatSeries($series): string
     {
         //To collection
         $collection = is_array($series) ? collect($series) : $series;
@@ -220,8 +229,8 @@ class Render
                 }
                 //Regular value
                 return sprintf("'%s'", $value);
-            //To string
             })
+                //To string
                 ->implode(',')
         );
     }

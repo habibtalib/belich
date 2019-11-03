@@ -10,21 +10,21 @@ trait Casteable
 {
     /**
      * Called by validate() method, it maps all the methods used to perform the operations
+     *
      * @return void
      */
-    public function mapCasts() : void
+    public function mapCasts(): void
     {
-        if(!$this->request->has('cast')) {
+        if (!$this->request->has('cast')) {
             return;
         }
-        foreach($this->request->get('cast') as $value) {
+        foreach ($this->request->get('cast') as $value) {
             //Get cast and attribute
             list($cast, $attribute) = explode('|', $value);
 
             // Cast to Date
-            if(Str::startsWith($cast, 'date:')) {
+            if (Str::startsWith($cast, 'date:')) {
                 $this->toDate($cast, $attribute);
-
             // Cast by method name
             } else {
                 $this->toMethod($attribute, $cast);
@@ -36,11 +36,12 @@ trait Casteable
      * Configure the validator instance.
      *
      * @param  \Illuminate\Validation\Validator  $validator
+     *
      * @return void
      */
-    public function withValidator($validator) : void
+    public function withValidator($validator): void
     {
-        $validator->after(function ($validator) : void {
+        $validator->after(function ($validator): void {
             $this->mapCasts();
         });
     }
@@ -50,6 +51,7 @@ trait Casteable
      *
      * @param string $attribute
      * @param string $cast
+     *
      * @return void
      */
     protected function toMethod(string $attribute, string $cast): void
@@ -58,7 +60,7 @@ trait Casteable
         $method = sprintf('to%s', ucfirst($cast));
 
         //Do the magic...
-        if(method_exists($this, $method)) {
+        if (method_exists($this, $method)) {
             $this->{$method}($attribute);
         }
     }
@@ -67,11 +69,12 @@ trait Casteable
      * Converts the request field into boolean using simple casting (bool)
      *
      * @param string $key
+     *
      * @return void
      */
     protected function toBoolean(string $key): void
     {
-        if(in_array(request($key), ['true', 'false', '1', '0', 1, 0])) {
+        if (in_array(request($key), ['true', 'false', '1', '0', 1, 0])) {
             $this->request->set($key, (bool) request($key));
         }
     }
@@ -81,6 +84,7 @@ trait Casteable
      * Format: date|format
      *
      * @param string $key
+     *
      * @return void
      */
     protected function toDate(string $cast, string $key): void
@@ -96,6 +100,7 @@ trait Casteable
      * Converts the request field into an integer using simple casting (int)
      *
      * @param string $key
+     *
      * @return void
      */
     protected function toInteger(string $key): void
@@ -107,6 +112,7 @@ trait Casteable
      * Converts the request field into floating-point value using simple casting (float)
      *
      * @param string $key
+     *
      * @return void
      */
     protected function toFloat(string $key): void
@@ -118,6 +124,7 @@ trait Casteable
      * Converts JSON to an associated array using jscon_decode (json)
      *
      * @param string $key
+     *
      * @return void
      */
     protected function toJson(string $key): void
@@ -129,6 +136,7 @@ trait Casteable
      * Converts the request field into an string using simple casting (string)
      *
      * @param string $key
+     *
      * @return void
      */
     protected function toString(string $key): void
@@ -140,6 +148,7 @@ trait Casteable
      * Converts the request field into a Carbon object (year)
      *
      * @param string $key
+     *
      * @return void
      */
     protected function toYear(string $key): void

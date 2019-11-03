@@ -11,12 +11,13 @@ class Panels
      *
      * @param  string  $name
      * @param  \Closure  $fields
+     *
      * @return array
      */
-    public static function create(string $name, callable $fields) : array
+    public static function create(string $name, callable $fields): array
     {
         return static::getFields($fields)
-            ->map(function ($field) use ($name) {
+            ->map(static function ($field) use ($name) {
                 return $field
                     ->panels($name);
             })
@@ -28,9 +29,10 @@ class Panels
      * Resolve closure
      *
      * @param  \Closure  $fields
+     *
      * @return Illuminate\Support\Collection
      */
-    private static function getFields(callable $fields) : Collection
+    private static function getFields(callable $fields): Collection
     {
         $listOfFields = call_user_func($fields);
 

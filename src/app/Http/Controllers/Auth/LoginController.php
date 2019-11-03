@@ -5,9 +5,11 @@ namespace Daguilarm\Belich\App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Daguilarm\Belich\Core\Belich;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\View\View;
 
 /**
  * Class LoginController
+ *
  * @package App\Http\Controllers\Auth
  */
 class LoginController extends Controller
@@ -37,8 +39,10 @@ class LoginController extends Controller
 
     /**
      * Set login view
+     *
+     * @return  Illuminate\View\View
      */
-    public function showLoginForm()
+    public function showLoginForm(): View
     {
         return view('belich::auth.login');
     }

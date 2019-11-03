@@ -24,11 +24,12 @@ class FieldResolveIndex
      *
      * @param object $fields
      * @param object $sqlResponse
+     *
      * @return Illuminate\Support\Collection
      */
-    public function make(object $fields, object $sqlResponse) : Collection
+    public function make(object $fields, object $sqlResponse): Collection
     {
-        $fields = $fields->map(function ($field) {
+        $fields = $fields->map(static function ($field) {
             //Showing field relationship in index
             //See blade template: dashboard.index
             $field->attribute = $field->fieldRelationship

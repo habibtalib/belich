@@ -9,9 +9,10 @@ trait Results
      *
      * @param string $dateType ['day', 'month', 'year']
      * @param string $type ['average', 'total', 'trent']
+     *
      * @return array
      */
-    public function totalByHour(string $dateType = 'hour', string $type = 'total') : array
+    public function totalByHour(string $dateType = 'hour', string $type = 'total'): array
     {
         $total = static::getRangeOfHours();
 
@@ -23,9 +24,10 @@ trait Results
      *
      * @param string $dateType ['day', 'month', 'year']
      * @param string $type ['average', 'total', 'trent']
+     *
      * @return array
      */
-    public function totalByDay(string $dateType = 'day', string $type = 'total') : array
+    public function totalByDay(string $dateType = 'day', string $type = 'total'): array
     {
         $total = static::getRangeOfDays();
 
@@ -37,9 +39,10 @@ trait Results
      *
      * @param string $dateType ['day', 'month', 'year']
      * @param string $type ['average', 'total', 'trent']
+     *
      * @return array
      */
-    public function totalByMonth(string $dateType = 'month', string $type = 'total') : array
+    public function totalByMonth(string $dateType = 'month', string $type = 'total'): array
     {
         $total = static::getRangeOfMonths();
 
@@ -52,9 +55,10 @@ trait Results
      * @param int $years
      * @param string $dateType ['day', 'month', 'year']
      * @param string $type ['average', 'total', 'trent']
+     *
      * @return array
      */
-    public function totalByYears(int $years, string $dateType = 'year', string $type = 'total') : array
+    public function totalByYears(int $years, string $dateType = 'year', string $type = 'total'): array
     {
         $total = static::getRangeOfYears($years);
 

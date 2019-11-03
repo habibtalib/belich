@@ -12,6 +12,8 @@ use Daguilarm\Belich\App\Http\Requests\StoreRequest;
 use Daguilarm\Belich\App\Http\Requests\UpdateRequest;
 use Daguilarm\Belich\Core\Belich;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class CrudController extends Controller
 {
@@ -36,9 +38,10 @@ class CrudController extends Controller
      *
      * @param Daguilarm\Belich\Core\Belich $belich
      * @param Daguilarm\Belich\App\Http\Requests\IndexRequest $request
-     * @return \Illuminate\Http\Response
+     *
+     * @return Illuminate\View\View
      */
-    public function index(Belich $belich, IndexRequest $request)
+    public function index(Belich $belich, IndexRequest $request): View
     {
         //Authorization
         $this->authorize('viewAny', $this->model);
@@ -53,9 +56,10 @@ class CrudController extends Controller
      *
      * @param Daguilarm\Belich\Core\Belich $belich
      * @param Daguilarm\Belich\App\Http\Requests\CreateRequest $request
-     * @return \Illuminate\Http\Response
+     *
+     * @return Illuminate\View\View
      */
-    public function create(Belich $belich, CreateRequest $request)
+    public function create(Belich $belich, CreateRequest $request): View
     {
         //Authorization
         $this->authorize('create', $this->model);
@@ -69,9 +73,10 @@ class CrudController extends Controller
      * Store a new resource.
      *
      * @param Illuminate\Http\StoreRequest $request
+     *
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreRequest $request)
+    public function store(StoreRequest $request): Response
     {
         //Authorization
         $this->authorize('create', $this->model);
@@ -89,9 +94,10 @@ class CrudController extends Controller
      * @param Daguilarm\Belich\Core\Belich $belich
      * @param int $id
      * @param Daguilarm\Belich\App\Http\Requests\ShowRequest $request
-     * @return \Illuminate\Http\Response
+     *
+     * @return Illuminate\View\View
      */
-    public function show(Belich $belich, $id, ShowRequest $request)
+    public function show(Belich $belich, int $id, ShowRequest $request): View
     {
         //Authorization
         $this->authorize('view', $this->model);
@@ -107,8 +113,10 @@ class CrudController extends Controller
      * @param Daguilarm\Belich\Core\Belich $belich
      * @param int $id
      * @param Daguilarm\Belich\App\Http\Requests\EditRequest $request
+     *
+     * @return Illuminate\View\View
      */
-    public function edit(Belich $belich, $id, EditRequest $request)
+    public function edit(Belich $belich, int $id, EditRequest $request): View
     {
         //The autorization happend in Daguilarm\Belich\Fields\FieldValidate
         //Get the data
@@ -122,9 +130,10 @@ class CrudController extends Controller
      *
      * @param Illuminate\Http\UpdateRequest $request
      * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateRequest $request, $id)
+    public function update(UpdateRequest $request, int $id): Response
     {
         //The autorization happend in Daguilarm\Belich\Fields\FieldValidate
         $model = $this->model->findOrFail($id);
@@ -140,9 +149,10 @@ class CrudController extends Controller
      * Delete a resource.
      *
      * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id): Response
     {
         //Authorization
         $this->authorize('delete', $this->model);

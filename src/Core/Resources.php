@@ -66,6 +66,7 @@ abstract class Resources
      * Get the fields displayed by the resource.
      *
      * @param \Illuminate\Http\Request $request
+     *
      * @return array
      */
     abstract public function fields(Request $request);
@@ -74,6 +75,7 @@ abstract class Resources
      * Set the custom cards
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return Illuminate\Support\Collection
      */
     abstract public static function cards(Request $request);
@@ -82,6 +84,7 @@ abstract class Resources
      * Set the custom metrics cards
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return Illuminate\Support\Collection
      */
     abstract public static function metrics(Request $request);
@@ -97,7 +100,7 @@ abstract class Resources
      *
      * @return Illuminate\Database\Eloquent\Builder
      */
-    public function model() : object
+    public function model(): object
     {
         $model = static::$model;
         $relationships = static::$relationships;
@@ -112,7 +115,7 @@ abstract class Resources
      *
      * @return array
      */
-    public static function breadcrumbs()
+    public static function breadcrumbs(): array
     {
         //Default home value
         $home = [trans('belich::belich.navigation.home') => static::url()];
@@ -147,17 +150,16 @@ abstract class Resources
                 [trans('belich::buttons.crud.show') => null]
             );
         }
-
-        return $home;
     }
 
     /**
      * Default actions
      *
      * @param  \Illuminate\Http\Request  $request
+     *
      * @return array
      */
-    public static function actions()
+    public static function actions(): array
     {
         return [
             Utils::icon('eye') => Utils::route('show'),

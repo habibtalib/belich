@@ -12,6 +12,7 @@ class Blade
      * Get the metric and the cards views
      *
      * @param Illuminate\Http\Request $request
+     *
      * @return string
      */
     public function render(Request $request)
@@ -32,12 +33,13 @@ class Blade
      * Get the metric views
      *
      * @param Illuminate\Http\Request $request
+     *
      * @return string
      */
     public function renderMetrics(Request $request)
     {
         return collect($request->metrics)
-            ->map(function ($metric) {
+            ->map(static function ($metric) {
                 if ($metric) {
                     //Return the metric view
                     return View::make('belich::components.metrics.chart', compact('metric'))->render();
@@ -49,12 +51,13 @@ class Blade
      * Get the cards views
      *
      * @param Illuminate\Http\Request $request
+     *
      * @return string
      */
     public function renderCards(Request $request)
     {
         return collect($request->cards)
-            ->map(function ($card) {
+            ->map(static function ($card) {
                 if ($card) {
                     //Return the card view
                     return View::make($card->view)->with($card->withMeta);

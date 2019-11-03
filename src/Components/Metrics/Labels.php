@@ -15,9 +15,10 @@ class Labels
      * Set an array with all the countries
      *
      * @param  string  $filter
+     *
      * @return array
      */
-    public static function countriesOfTheWorld(string $filter = '') : array
+    public static function countriesOfTheWorld(string $filter = ''): array
     {
         return static::get($filter, 'daysOfTheWeek');
     }
@@ -26,9 +27,10 @@ class Labels
      * Set an array with all the days of the week
      *
      * @param  string  $filter
+     *
      * @return array
      */
-    public static function daysOfTheWeek(string $filter = '') : array
+    public static function daysOfTheWeek(string $filter = ''): array
     {
         return static::get($filter, 'daysOfTheWeek');
     }
@@ -37,9 +39,10 @@ class Labels
      * Set an array with all the days of the week (abbreviations)
      *
      * @param  string  $filter
+     *
      * @return array
      */
-    public static function daysOfTheWeekMin(string $filter = '') : array
+    public static function daysOfTheWeekMin(string $filter = ''): array
     {
         return static::get($filter, 'daysOfTheWeekMin');
     }
@@ -48,9 +51,10 @@ class Labels
      * Set an array with all the months of the year
      *
      * @param  string  $filter
+     *
      * @return array
      */
-    public static function daysOfTheMonth() : array
+    public static function daysOfTheMonth(): array
     {
         return static::getRangeOfDays();
     }
@@ -59,9 +63,10 @@ class Labels
      * Set an array with all the daily hours
      *
      * @param  string  $filter
+     *
      * @return array
      */
-    public static function hoursOfTheday() : array
+    public static function hoursOfTheday(): array
     {
         return static::getRangeOfHours();
     }
@@ -70,9 +75,10 @@ class Labels
      * Set an array with all the months of the year
      *
      * @param  string  $filter
+     *
      * @return array
      */
-    public static function monthsOfTheYear(string $filter = '') : array
+    public static function monthsOfTheYear(string $filter = ''): array
     {
         return static::get($filter, 'monthsOfTheYear');
     }
@@ -81,9 +87,10 @@ class Labels
      * Set an array with all the months of the year (abbreviations)
      *
      * @param  string  $filter
+     *
      * @return array
      */
-    public static function monthsOfTheYearMin(string $filter = '') : array
+    public static function monthsOfTheYearMin(string $filter = ''): array
     {
         return static::get($filter, 'monthsOfTheYearMin');
     }
@@ -92,9 +99,10 @@ class Labels
      * Set an array with all the months of the year
      *
      * @param  int  $years
+     *
      * @return array
      */
-    public static function listOfYears(int $years) : array
+    public static function listOfYears(int $years): array
     {
         return static::getRangeOfYears($years);
     }
@@ -105,11 +113,27 @@ class Labels
     |--------------------------------------------------------------------------
     */
 
-    private static function get(string $filter = 'title', string $name) {
+    /**
+     * Helper for get value from localization
+     *
+     * @param  string  $filter
+     * @param  string  $name
+     *
+     * @return array
+     */
+    private static function get(string $filter = 'title', string $name): array
+    {
         return array_map(static::arrayFilter($filter), trans('belich::metrics.' . $name));
     }
 
-    private static function arrayFilter(string $value)
+    /**
+     * Array filter helper
+     *
+     * @param  int  $value
+     *
+     * @return string
+     */
+    private static function arrayFilter(string $value): string
     {
         if ($value === 'lower') {
             return 'strtolower';

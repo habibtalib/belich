@@ -11,7 +11,7 @@ if (file_exists(__DIR__ . '/../routes/AuthRoutes.php')) {
 Route::group([
         'as' => Belich::pathName() . '.',
         'middleware' => Belich::middleware(),
-    ], function () : void {
+    ], static function (): void {
         //Validation routes
         Route::post(Belich::pathName() . '/ajax/form/validation', namespace_path('App\Http\Controllers\ValidationController'))
             ->name('ajax.form.validation');
@@ -23,10 +23,10 @@ Route::group([
         //Generate routes from resources
         //The middleware can be setter from the config file
         $resources = getAllTheResourcesFromFolder()
-            ->map(function ($route) : void {
+            ->map(static function ($route): void {
                 //Get route ID
                 $routeID = sprintf('{%s}', Str::singular($route));
-                if($route) {
+                if ($route) {
                     Route::resource(route_path($route), namespace_path('App\Http\Controllers\CrudController'));
                     Route::get(route_path($route) . '/' . $routeID . '/restore', namespace_path('App\Http\Controllers\CrudExtendedController@restore'))
                         ->name($route . '.restore');
@@ -49,4 +49,4 @@ Route::group([
         if (file_exists(app_path('/Belich/Routes.php'))) {
             require_once(app_path('/Belich/Routes.php'));
         }
-});
+    });

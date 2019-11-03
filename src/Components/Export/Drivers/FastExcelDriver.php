@@ -25,9 +25,10 @@ class FastExcelDriver extends FastExcel implements ExportContract
      * Prepare the file for download
      *
      * @param Illuminate\Http\Request $request
+     *
      * @return array
      */
-    public function handle(Request $request) : array
+    public function handle(Request $request): array
     {
         // Handle the values
         return [
@@ -42,7 +43,7 @@ class FastExcelDriver extends FastExcel implements ExportContract
      *
      * @return Daguilarm\Belich\Components\Export\Drivers\FastExcelDriver
      */
-    public function collection(Collection $data) : FastExcelDriver
+    public function collection(Collection $data): FastExcelDriver
     {
         $this->data = $data;
 

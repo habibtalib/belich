@@ -25,9 +25,10 @@ trait Javascriptable
      * Set the labels
      *
      * @param  array  $labels
+     *
      * @return self
      */
-    public function labels(array $labels = []) : self
+    public function labels(array $labels = []): self
     {
         $this->labels = $labels;
 
@@ -37,10 +38,11 @@ trait Javascriptable
     /**
      * Set the serie
      *
-     * @param  array  $serie
+     * @param  array  $series
+     *
      * @return self
      */
-    public function series(array $series = []) : self
+    public function series(array $series = []): self
     {
         $this->series = $series;
 
@@ -51,9 +53,10 @@ trait Javascriptable
      * Set the type
      *
      * @param  string  $type
+     *
      * @return self
      */
-    public function type(string $type) : self
+    public function type(string $type): self
     {
         $this->type = $type;
 
@@ -64,9 +67,10 @@ trait Javascriptable
      * Set the uriKey
      *
      * @param  string  $uriKey
+     *
      * @return self
      */
-    public function uriKey(string $uriKey) : self
+    public function uriKey(string $uriKey): self
     {
         $this->uriKey = $uriKey;
 
@@ -77,9 +81,10 @@ trait Javascriptable
      * Set the withArea
      *
      * @param  bool  $withArea
+     *
      * @return self
      */
-    public function withArea(bool $withArea) : self
+    public function withArea(bool $withArea): self
     {
         $this->withArea = $withArea;
 

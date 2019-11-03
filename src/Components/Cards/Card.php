@@ -34,19 +34,19 @@ abstract class Card
      *
      * @return string
      */
-    abstract public function view() : string;
+    abstract public function view(): string;
 
     /**
      * Get the URI key for the card
      *
      * @return string
      */
-    abstract public function uriKey() : string;
+    abstract public function uriKey(): string;
 
     /**
      * Get the URI key for the card
      *
      * @return string
      */
-    abstract public function withMeta() : array;
+    abstract public function withMeta(): array;
 }

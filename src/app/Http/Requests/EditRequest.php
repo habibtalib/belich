@@ -12,9 +12,10 @@ class EditRequest extends FormRequest
      * List the resource values for detail and index.
      *
      * @param Daguilarm\Belich\Core\Belich $belich
-     * @return array
+     *
+     * @return self
      */
-    public function data(Belich $belich, $id)
+    public function data(Belich $belich, $id): self
     {
         //Get the values for the resource
         $data = $belich->currentResource($this);

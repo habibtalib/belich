@@ -5,6 +5,7 @@ namespace Daguilarm\Belich\App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Daguilarm\Belich\Core\Belich;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\View\View;
 
 class ForgotPasswordController extends Controller
 {
@@ -33,8 +34,10 @@ class ForgotPasswordController extends Controller
 
     /**
      * Set forgot password view
+     *
+     * @return  Illuminate\View\View
      */
-    public function showLinkRequestForm()
+    public function showLinkRequestForm(): View
     {
         return view('belich::auth.passwords.email');
     }

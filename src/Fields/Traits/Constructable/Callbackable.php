@@ -13,6 +13,7 @@ trait Callbackable
      * @param Daguilarm\Belich\Fields\Field $field
      * @param object $data
      * @param null|string $value
+     *
      * @return null|string
      */
     protected function getCallbackValue(Field $field, object $data = null, $value = '')
@@ -29,6 +30,7 @@ trait Callbackable
      *
      * @param Daguilarm\Belich\Fields\Field $field
      * @param null|string $value
+     *
      * @return null|string
      */
     private function displayCallback(Field $field, $value = '')
@@ -50,6 +52,7 @@ trait Callbackable
      * @param Daguilarm\Belich\Fields\Field $field
      * @param object $data
      * @param null|string $value
+     *
      * @return null|string
      */
     private function resolveCallback(Field $field, object $data = null, $value = '')

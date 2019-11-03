@@ -11,9 +11,10 @@ trait Valuable
      * We have to update the field value
      *
      * @param Illuminate\Support\Collection $sqlResponse
+     *
      * @return Illuminate\Support\Collection
      */
-    private function setValueForFields(object $sqlResponse, Collection $fields) : Collection
+    private function setValueForFields(object $sqlResponse, Collection $fields): Collection
     {
         return $fields->map(function ($field) use ($sqlResponse) {
             //Not resolve field value
@@ -25,7 +26,7 @@ trait Valuable
             //Set new value for the fields, even if has a fieldRelationship value
             //This relationship method is only on forms
             //Index has its own way in blade template
-            $field->value = self::setValuesWithFieldRelationship($sqlResponse, $field);
+            $field->value = $this->setValuesWithFieldRelationship($sqlResponse, $field);
 
             //Add the data for the show view
             if ($this->action === 'show') {
@@ -47,6 +48,7 @@ trait Valuable
      *
      * @param Illuminate\Support\Collection $sqlResponse
      * @param Illuminate\Support\Collection $fields
+     *
      * @return Illuminate\Support\Collection
      */
     private function setValuesWithFieldRelationship(object $sqlResponse, object $field)

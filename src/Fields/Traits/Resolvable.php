@@ -17,9 +17,10 @@ trait Resolvable
      *
      * @param Illuminate\Support\Collection $fields
      * @param object $sqlResponse
+     *
      * @return Illuminate\Support\Collection
      */
-    protected function setCrudController(object $fields, object $sqlResponse)
+    protected function setCrudController(object $fields, object $sqlResponse): object
     {
         //Set fields attributes: Only for create and edit actions
         if ($this->action === 'create' || $this->action === 'edit') {
@@ -46,9 +47,10 @@ trait Resolvable
      * Show or Hide field base on the controller action
      *
      * @param Illuminate\Support\Collection $fields
+     *
      * @return array|null
      */
-    private function setVisibilityForFields(Collection $fields) : Collection
+    private function setVisibilityForFields(Collection $fields): Collection
     {
         return $fields->map(function ($field) {
             //If the field has the visibility for this controller action on true...
@@ -70,9 +72,10 @@ trait Resolvable
      * Generate the attributes for the fields
      *
      * @param Illuminate\Support\Collection $fields
+     *
      * @return \Illuminate\Support\Collection
      */
-    private function setAttributesForFields(Collection $fields) : Collection
+    private function setAttributesForFields(Collection $fields): Collection
     {
         //Set attributes for each field
         return $fields->map(function ($field) {

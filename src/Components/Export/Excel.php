@@ -11,7 +11,7 @@ class Excel
      *
      * @return object
      */
-    public static function make() : object
+    public static function make(): object
     {
         /**
          * @Driver: Laravel Maatwebsite excel
@@ -37,7 +37,7 @@ class Excel
      *
      * @return string|null
      */
-    public static function getDriver()
+    public static function getDriver(): ?string
     {
         return config('belich.export.driver') ?? null;
     }

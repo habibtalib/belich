@@ -11,9 +11,10 @@ trait Helpeable
      * Set a help text for the field
      *
      * @param  string  $text
+     *
      * @return self
      */
-    public function help($value = null) : self
+    public function help($value = null): self
     {
         //Check the value for conditional cases...
         if (!empty($value)) {

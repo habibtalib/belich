@@ -12,7 +12,7 @@ abstract class BelichCommand extends Command
      *
      * @return string
      */
-    protected function classType()
+    protected function classType(): string
     {
         return explode(':', Str::lower($this->argument('command')))[1];
     }
@@ -22,7 +22,7 @@ abstract class BelichCommand extends Command
      *
      * @return string
      */
-    protected function className()
+    protected function className(): string
     {
         $class = str_replace($this->classType(), '', Str::lower($this->argument('className')));
 
@@ -34,7 +34,7 @@ abstract class BelichCommand extends Command
      *
      * @return string
      */
-    protected function classModel()
+    protected function classModel(): string
     {
         return ucfirst($this->argument('className'));
     }
@@ -44,7 +44,7 @@ abstract class BelichCommand extends Command
      *
      * @return string
      */
-    protected function classLower()
+    protected function classLower(): string
     {
         return strtolower($this->argument('className'));
     }
@@ -54,7 +54,7 @@ abstract class BelichCommand extends Command
      *
      * @return string
      */
-    protected function classSnake()
+    protected function classSnake(): string
     {
         return Str::snake($this->classLower());
     }
@@ -65,9 +65,10 @@ abstract class BelichCommand extends Command
      * @param  string  $search
      * @param  string  $replace
      * @param  string  $path
+     *
      * @return void
      */
-    protected function replace($search, $replace, $path) : void
+    protected function replace($search, $replace, $path): void
     {
         file_put_contents($path, str_replace($search, $replace, file_get_contents($path)));
     }

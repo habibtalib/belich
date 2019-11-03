@@ -8,6 +8,7 @@ trait Authorizable
      * Determine if the field should be available for the given request.
      *
      * @param  object  $fields
+     *
      * @return bool
      */
     private function setAuthorizationForFields(object $fields)
@@ -24,6 +25,7 @@ trait Authorizable
      * Determine if the user has been authorized to see the field: $field->canSee()
      *
      * @param  object  $field
+     *
      * @return bool
      */
     private function canSeeField(object $field)
@@ -36,6 +38,7 @@ trait Authorizable
      * See resource Policy
      *
      * @param  object  $sqlResponse
+     *
      * @return bool
      */
     private function setAuthorizationFromPolicy(object $sqlResponse)
