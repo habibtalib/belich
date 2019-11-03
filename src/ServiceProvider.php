@@ -135,7 +135,7 @@ final class ServiceProvider extends Provider
 
         //Publish the public folder
         $this->publishes([
-            __DIR__ . '/../public/' => public_path('vendor/belich')
+            __DIR__ . '/../public/' => public_path('vendor/belich'),
         ]);
 
         //Publish the belich directory and the dashboard constructor

@@ -19,7 +19,7 @@ trait Stylable
         //Set the grid
         $grid = $metric->grid === false ? 'none' : 'var(--10)';
 
-        return  sprintf(
+        return sprintf(
             '#graph-%s .ct-grids line{stroke:%s}' .
             '#graph-%s .ct-label{font-weight:bold;fill:white}' .
             '#graph-%s .ct-series .ct-bar,' .
