@@ -6,7 +6,7 @@
 
     {{-- Metrics And Cards --}}
     @if($request->metrics || $request->cards)
-        <div class="{{ hideMetricsForScreens() }} flex-wrap mb-3">
+        <div class="{{ Helper::hideMetricsForScreens() }} flex-wrap mb-3">
             {!! Belich::components($request) !!}
         </div>
     @endif

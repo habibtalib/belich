@@ -63,13 +63,11 @@ class Belich extends BelichAbstract
         //Set view path
         $actionView = 'belich::actions.' . $view;
 
-        //Custom action
-        if (view()->exists($actionView)) {
-            return view($actionView, ['model' => $model]);
-        }
-
-        //Default action
-        return view('belich::actions.default', ['model' => $model]);
+        return view()->exists($actionView)
+            //Custom action
+            ? view($actionView, ['model' => $model])
+            //Default action
+            : view('belich::actions.default', ['model' => $model]);
     }
 
     /*

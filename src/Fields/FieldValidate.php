@@ -29,7 +29,7 @@ final class FieldValidate
         ':values',
         ':validationRules',
         ':validationAttributes',
-        ':validationRuoute'
+        ':validationRuoute',
     ];
 
     /**
@@ -207,7 +207,8 @@ final class FieldValidate
             $this->controllerAction,
             $values,
             $rules,
-            $attributes, $route
+            $attributes,
+            $route,
         ];
 
         //Get the javascript code

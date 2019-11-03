@@ -2,7 +2,7 @@
     <slot name="input">
         <input
             type="file"
-            {!! setAttribute($field, 'addClass') !!}
+            {!! Helper::setFormAttribute($field, 'addClass') !!}
             {!! $field->render !!}
         >
         <input type="hidden" name="__file[{{ $field->attribute }}][disk]" value="{{ $field->disk }}">

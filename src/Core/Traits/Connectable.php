@@ -64,13 +64,10 @@ trait Connectable
                 ->appends(request()->query());
         }
 
-        //Sql for edit and show
-        if (static::action() === 'edit' || static::action() === 'show' && is_numeric(static::resourceId())) {
-            return $class
-                ->model()
-                ->findOrFail(static::resourceId());
-        }
-
-        return new \Illuminate\Database\Eloquent\Collection();
+        return (static::action() === 'edit' || static::action() === 'show' && is_numeric(static::resourceId()))
+            //Sql for edit and show
+            ? $class->model()->findOrFail(static::resourceId())
+            // Default value
+            : new \Illuminate\Database\Eloquent\Collection();
     }
 }

@@ -3,9 +3,9 @@
         <div class="flex w-full">
             <input
                 type="number"
-                {!! setAttribute($field, 'addClass') !!}
-                {!! setAttribute($field, 'value') !!}
-                {!! setAttribute($field, 'step') !!}
+                {!! Helper::setFormAttribute($field, 'addClass') !!}
+                {!! Helper::setFormAttribute($field, 'value') !!}
+                {!! Helper::setFormAttribute($field, 'step') !!}
                 {!! $field->render !!}
                 class="mr-3"
                 onkeyup="javascript:onlyNumerics(this)"

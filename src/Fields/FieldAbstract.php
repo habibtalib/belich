@@ -13,7 +13,7 @@ class FieldAbstract
         'index',
         'create',
         'edit',
-        'show'
+        'show',
     ];
 
     /**
@@ -280,6 +280,7 @@ class FieldAbstract
                 $suffix
             );
         });
+
         return $this;
     }
 

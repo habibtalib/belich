@@ -1,9 +1,9 @@
 <belich::fields :field="$field">
     <slot name="input">
         <textarea
-            {!! setAttribute($field, 'addClass') !!}
-            {!! setAttribute($field, 'rows', 3) !!}
-            {!! setAttribute($field, 'maxlength') !!}
+            {!! Helper::setFormAttribute($field, 'addClass') !!}
+            {!! Helper::setFormAttribute($field, 'rows', 3) !!}
+            {!! Helper::setFormAttribute($field, 'maxlength') !!}
             {!! $field->count ? 'onkeyup="textAreaCount(this, \'' . $field->id . '\');"' : '' !!}
             {!! $field->render !!}
         >

@@ -7,12 +7,6 @@ use Illuminate\Support\Str;
 
 trait Modelable
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Public Static Methods
-    |--------------------------------------------------------------------------
-    */
-
     /**
      * Get the resource model instance.
      *

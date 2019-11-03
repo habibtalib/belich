@@ -1,12 +1,12 @@
 <belich::fields :field="$field">
     <slot name="input">
         <input
-            {!! setAttribute($field, 'addClass') !!}
-            {!! setAttribute($field, 'type') !!}
-            {!! setAttribute($field, 'value') !!}
-            {!! setAttribute($field, 'min') !!}
-            {!! setAttribute($field, 'max') !!}
-            {!! setAttribute($field, 'step') !!}
+            {!! Helper::setFormAttribute($field, 'addClass') !!}
+            {!! Helper::setFormAttribute($field, 'type') !!}
+            {!! Helper::setFormAttribute($field, 'value') !!}
+            {!! Helper::setFormAttribute($field, 'min') !!}
+            {!! Helper::setFormAttribute($field, 'max') !!}
+            {!! Helper::setFormAttribute($field, 'step') !!}
             {!! $field->render !!}
             onkeyup="javascript:onlyNumerics(this)"
         >

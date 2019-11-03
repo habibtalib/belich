@@ -9,12 +9,6 @@ use Illuminate\Support\Str;
 
 trait Resourceable
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Public Static Methods
-    |--------------------------------------------------------------------------
-    */
-
     /**
      * Get the resource name ['users', 'billings',...]
      *
@@ -22,13 +16,11 @@ trait Resourceable
      */
     public static function resource(): string
     {
-        //Search action
-        if (static::requestFromSearch()) {
-            return stringPluralLower(request()->query('resourceName'));
-        }
-
-        //Return middle item from the array
-        return static::route()[1] ?? '';
+        return static::requestFromSearch()
+            //Search action
+            ? stringPluralLower(request()->query('resourceName'))
+            //Return middle item from the array
+            : static::route()[1] ?? '';
     }
 
     /**
@@ -73,7 +65,7 @@ trait Resourceable
             return $resourceId;
         }
 
-        throw new \InvalidArgumentException('The resource ID is invalid.');
+        throw new \InvalidArgumentException(trans('belich::exceptions.invalid.resourceId'));
     }
 
     /**
@@ -137,14 +129,12 @@ trait Resourceable
     {
         $class = static::resourceClassPath();
 
-        // This is for the views (like dashboard)
-        // which has not a resouce class
-        // so don't ever remove!
-        if (class_exists($class)) {
-            return $class::$accessToResource;
-        }
-
-        return true;
+        return class_exists($class)
+            // This is for the views (like dashboard)
+            // which has not a resouce class
+            // so don't ever remove!
+            ? $class::$accessToResource
+            : true;
     }
 
     /*
@@ -222,7 +212,7 @@ trait Resourceable
                         'group' => $item['group'] ?? $title,
                         'icon' => $item['icon'],
                         'name' => $title,
-                        'resource' => $item['resource']
+                        'resource' => $item['resource'],
                     ]);
                 }
             })
@@ -279,7 +269,6 @@ trait Resourceable
         //If a resource is not accessible then cannot be listed in a menu
         if ($class::$accessToResource === false) {
             $accessToResource = $displayInNavigation = false;
-
         //Default values
         } else {
             $accessToResource = $class::$accessToResource;

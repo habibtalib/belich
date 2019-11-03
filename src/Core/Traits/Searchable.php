@@ -7,12 +7,6 @@ use Illuminate\Support\Facades\Request;
 
 trait Searchable
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Public Static Methods
-    |--------------------------------------------------------------------------
-    */
-
     /**
      * Get the resource search fields as array.
      *
@@ -29,7 +23,6 @@ trait Searchable
 
         //Get the search fields from the table
         $searchFields = $class::$search;
-
         //Defeault value: array
         $fields = is_array($searchFields)
           ? $searchFields
@@ -55,10 +48,9 @@ trait Searchable
            && strlen($request['query']) >= config('belich.minSearch')
            && !empty($request['type'])
            && $request['type'] === 'search'
-       ) {
+        ) {
             return true;
         }
-
         return false;
     }
 

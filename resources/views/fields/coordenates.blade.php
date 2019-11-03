@@ -4,9 +4,10 @@
             {{-- Lat --}}
             <input
                 type="number"
-                {!! setAttribute($field, 'addClass') !!}
-                {!! setAttribute($field, 'step') !!}
-                {!! renderWithPrefix($field, 'lat') !!}
+                {!! Helper::setFormAttribute($field, 'addClass') !!}
+                {!! Helper::setFormAttribute($field, 'value') !!}
+                {!! Helper::setFormAttribute($field, 'step') !!}
+                {!! Helper::renderWithPrefix($field, 'lat') !!}
                 placeholder="{{ trans('belich::units.lat') }}"
                 onkeyup="javascript:onlyNumerics(this)"
                 onblur="javascript:setDecimals(this, 6)"
@@ -17,10 +18,10 @@
             {{-- Lng --}}
             <input
                 type="number"
-                {!! setAttribute($field, 'addClass') !!}
-                {!! setAttribute($field, 'value') !!}
-                {!! setAttribute($field, 'step') !!}
-                {!! renderWithPrefix($field, 'lng') !!}
+                {!! Helper::setFormAttribute($field, 'addClass') !!}
+                {!! Helper::setFormAttribute($field, 'value') !!}
+                {!! Helper::setFormAttribute($field, 'step') !!}
+                {!! Helper::renderWithPrefix($field, 'lng') !!}
                 placeholder="{{ trans('belich::units.lng') }}"
                 onkeyup="javascript:onlyNumerics(this)"
                 onblur="javascript:setDecimals(this, 6)"

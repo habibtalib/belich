@@ -63,13 +63,12 @@ final class FieldResolve
             return new Collection();
         }
 
-        //Prepare the field for the index response
-        if ($this->action === 'index') {
-            return app(\Daguilarm\Belich\Fields\FieldResolveIndex::class)->make($fields, $sqlResponse);
-        }
-
-        //Prepare the field for the the form response: create, edit and show
-        return $this->setCrudController($fields, $sqlResponse);
+        // Check for action value
+        return ($this->action === 'index')
+            //Prepare the field for the index response
+            ? app(\Daguilarm\Belich\Fields\FieldResolveIndex::class)->make($fields, $sqlResponse)
+            //Prepare the field for the the form response: create, edit and show
+            : $this->setCrudController($fields, $sqlResponse);
     }
 
     /**

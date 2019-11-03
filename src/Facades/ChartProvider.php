@@ -22,7 +22,7 @@ class ChartProvider extends ServiceProvider
          * @return string
          */
         Blade::if('hasMetrics', static function ($request) {
-            return hasMetric($request);
+            return Helper::hasMetric($request);
         });
 
         /**
@@ -32,7 +32,7 @@ class ChartProvider extends ServiceProvider
          * @return string
          */
         Blade::if('hasMetricsLegends', static function ($request) {
-            return hasMetricsLegends($request);
+            return Helper::hasMetricsLegends($request);
         });
     }
 

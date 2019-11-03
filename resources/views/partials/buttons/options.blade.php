@@ -12,7 +12,7 @@
                 {{-- Per page component --}}
                 <belich::options field="perPage" css="rounded-t-lg" :text="trans('belich::default.perPage')">
                     <slot name="options">
-                        {!! createFormSelectOptions([10, 20, 30, 50, 100, 200, 300, 500], 'perPage') !!}
+                        {!! Helper::createFormSelectOptions([10, 20, 30, 50, 100, 200, 300, 500], 'perPage') !!}
                     </slot>
                 </belich::options>
 
@@ -22,7 +22,7 @@
                     @hasSoftdelete($request->autorizedModel)
                         <belich::options field="withTrashed" :text="trans('belich::default.trashed')">
                             <slot name="options">
-                                {!! createFormSelectOptions([
+                                {!! Helper::createFormSelectOptions([
                                     'none' => trans('belich::default.none'),
                                     'all'  => trans('belich::default.all'),
                                     'only' => trans('belich::default.trashedOnly'),

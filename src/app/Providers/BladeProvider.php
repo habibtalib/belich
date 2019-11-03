@@ -52,7 +52,7 @@ Blade::directive('listTextFromArray', static function ($arguments) {
  */
 Blade::if('hasMetrics', static function ($request) {
     //App\Http\Helpers\Blade.php
-    return hasMetrics($request);
+    return Helper::hasMetrics($request);
 });
 
 /**
@@ -63,7 +63,7 @@ Blade::if('hasMetrics', static function ($request) {
  */
 Blade::if('hasSoftdelete', static function ($model) {
     //App\Http\Helpers\Models.php
-    return hasSoftdelete($model);
+    return Helper::hasSoftdelete($model);
 });
 
 /**
@@ -74,7 +74,7 @@ Blade::if('hasSoftdelete', static function ($model) {
  */
 Blade::if('hasSoftdeletedResults', static function ($model) {
     //App\Http\Helpers\Models.php
-    return hasSoftdeletedResults($model);
+    return Helper::hasSoftdeletedResults($model);
 });
 
 /**

@@ -2,7 +2,7 @@
     <slot name="input">
         <div class="inline-block relative w-full">
             <select
-                {!! setAttribute($field, 'addClass', 'block px-4 py-2 pr-8') !!}
+                {!! Helper::setFormAttribute($field, 'addClass', 'block px-4 py-2 pr-8') !!}
                 {!! $field->render !!}
             >
                 @foreach($field->options as $value => $text)

@@ -1,5 +1,5 @@
 <input
-    {!! setAttribute($field, 'type') !!}
-    {!! setAttribute($field, 'value') !!}
+    {!! Helper::setFormAttribute($field, 'type') !!}
+    {!! Helper::setFormAttribute($field, 'value') !!}
     {!! $field->render !!}
 >

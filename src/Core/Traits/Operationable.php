@@ -4,12 +4,6 @@ namespace Daguilarm\Belich\Core\Traits;
 
 trait Operationable
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Public Static Methods
-    |--------------------------------------------------------------------------
-    */
-
     /**
      * Count the total results
      *
