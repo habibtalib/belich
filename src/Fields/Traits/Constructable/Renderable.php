@@ -17,7 +17,7 @@ trait Renderable
     private function setRenderFieldAttributes($field): Collection
     {
         collect($field)
-            ->each(static function ($value, $attribute) use ($field) : void {
+            ->each(static function ($value, $attribute) use ($field): void {
                 //Get the list of attributes to be rendered: name, dusk,...
                 if (in_array($attribute, $field->renderAttributes)) {
                     //Remove attributes from list

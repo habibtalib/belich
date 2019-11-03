@@ -11,9 +11,9 @@ class CreateProfilesTable extends Migration
      *
      * @return void
      */
-    public function up() : void
+    public function up(): void
     {
-        Schema::create('profiles', static function (Blueprint $table) : void {
+        Schema::create('profiles', static function (Blueprint $table): void {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
             $table->string('profile_avatar');
@@ -27,7 +27,7 @@ class CreateProfilesTable extends Migration
      *
      * @return void
      */
-    public function down() : void
+    public function down(): void
     {
         Schema::dropIfExists('profiles');
     }

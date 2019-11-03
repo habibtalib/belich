@@ -42,7 +42,7 @@ final class FieldResolve
      *
      * @return Illuminate\Support\Collection
      */
-    public function make(object $class, object $fields, object $sqlResponse) : Collection
+    public function make(object $class, object $fields, object $sqlResponse): Collection
     {
         //Filter
         //Prepare the fields for resolving...

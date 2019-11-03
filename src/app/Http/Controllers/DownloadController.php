@@ -21,7 +21,7 @@ class DownloadController extends Controller
         $excel = Excel::make();
 
         //Handle the excel values
-        list($file, $query, $validator) = $excel->handle($request);
+        [$file, $query, $validator] = $excel->handle($request);
 
         //Handle validation
         if ($validator->fails()) {

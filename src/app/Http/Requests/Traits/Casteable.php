@@ -20,7 +20,7 @@ trait Casteable
         }
         foreach ($this->request->get('cast') as $value) {
             //Get cast and attribute
-            list($cast, $attribute) = explode('|', $value);
+            [$cast, $attribute] = explode('|', $value);
 
             // Cast to Date
             if (Str::startsWith($cast, 'date:')) {

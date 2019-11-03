@@ -56,6 +56,7 @@ if (!function_exists('actionIcon')) {
  * @param string $s Size in pixels, defaults to 80px [ 1 - 2048 ]
  * @param string $d Default imageset to use [ 404 | mp | identicon | monsterid | wavatar ]
  * @param string $r Maximum rating (inclusive) [ g | pg | r | x ]
+ *
  * @source https://gravatar.com/site/implement/images/php/
  *
  * @return  string

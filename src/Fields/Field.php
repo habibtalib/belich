@@ -49,7 +49,7 @@ class Field extends FieldAbstract
      *
      * @return Daguilarm\Belich\Fields\Field
      */
-    public static function make(...$attributes) : Field
+    public static function make(...$attributes): Field
     {
         //Set the field values
         return new static(...$attributes);

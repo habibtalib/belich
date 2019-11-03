@@ -217,7 +217,7 @@ trait DatesForHumans
      *
      * @return self
      */
-    private function filterDateFormat($date) : Carbon
+    private function filterDateFormat($date): Carbon
     {
         //Carbon format
         if ($date instanceof Carbon) {

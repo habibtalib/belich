@@ -94,7 +94,7 @@ abstract class Graph
      *
      * @return  string
      */
-    abstract public function urikey() : string;
+    abstract public function urikey(): string;
 
     /**
      * Set the default card width
