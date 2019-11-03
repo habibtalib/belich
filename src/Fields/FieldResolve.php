@@ -85,8 +85,6 @@ final class FieldResolve
         $fields = $this->setAuthorizationForFields($fields);
 
         //Visibility: Show or hide fields base on Resource settings
-        $fields = $this->setVisibilityForFields($fields);
-
-        return $fields;
+        return $this->setVisibilityForFields($fields);
     }
 }
