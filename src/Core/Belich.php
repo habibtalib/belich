@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Core;
 
+use Daguilarm\Belich\Core\BelichAbstract;
 use Daguilarm\Belich\Core\Traits\Classable;
 use Daguilarm\Belich\Core\Traits\Connectable;
 use Daguilarm\Belich\Core\Traits\Modelable;
@@ -13,7 +14,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 
-class Belich
+class Belich extends BelichAbstract
 {
     use Classable, Connectable, Modelable, Operationable, Resourceable, Routeable, Systemable;
 

@@ -6,10 +6,10 @@ trait Visibilitable
 {
     /** @var array [Field visibility base on the action] */
     public $visibility = [
-        'index'  => true,
+        'index' => true,
         'create' => true,
-        'edit'   => true,
-        'show'   => true
+        'edit' => true,
+        'show' => true
     ];
 
     /**
@@ -71,7 +71,7 @@ trait Visibilitable
         self::hideFromAll();
 
         $this->visibility['index'] = true;
-        $this->visibility['show']  = true;
+        $this->visibility['show'] = true;
 
         return $this;
     }
@@ -87,7 +87,7 @@ trait Visibilitable
         self::hideFromAll();
 
         $this->visibility['create'] = true;
-        $this->visibility['edit']   = true;
+        $this->visibility['edit'] = true;
 
         return $this;
     }

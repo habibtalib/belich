@@ -34,7 +34,7 @@ class Text extends Field
 
         //Update attributes: hide from creating and disable from editing
         $this->visibility['create'] = false;
-        $this->disabled             = true;
+        $this->disabled = true;
 
         return $this;
     }

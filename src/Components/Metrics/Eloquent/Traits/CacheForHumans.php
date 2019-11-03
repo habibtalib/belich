@@ -71,7 +71,7 @@ trait CacheForHumans
     public function cacheForEver(string $key)
     {
         $this->cacheForEver = true;
-        $this->cacheKey     = md5($key);
+        $this->cacheKey = md5($key);
 
         return $this;
     }

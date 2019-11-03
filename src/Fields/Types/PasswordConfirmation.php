@@ -21,11 +21,11 @@ class PasswordConfirmation extends Field
         $title = 'password_confirmation';
 
         //Set the values
-        $this->label             = $label;
-        $this->attribute         = $title;
-        $this->dusk              = 'dusk-' . $title;
-        $this->id                = $title;
-        $this->name              = $title;
+        $this->label = $label;
+        $this->attribute = $title;
+        $this->dusk = 'dusk-' . $title;
+        $this->id = $title;
+        $this->name = $title;
 
         //Set visibility
         $this->onlyOnForms();

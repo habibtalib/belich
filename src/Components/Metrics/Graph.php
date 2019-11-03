@@ -61,14 +61,14 @@ abstract class Graph
     {
         // Set default values
         $this->calculate = $this->calculate($request);
-        $this->color     = $this->color($request);
-        $this->labels    = $this->labels($request);
-        $this->marker    = $this->marker();
-        $this->name      = $this->name($request);
-        $this->type      = $this->type($request);
-        $this->uriKey    = $this->uriKey();
-        $this->width     = 'w-1/3';
-        $this->withArea  = $this->withArea();
+        $this->color = $this->color($request);
+        $this->labels = $this->labels($request);
+        $this->marker = $this->marker();
+        $this->name = $this->name($request);
+        $this->type = $this->type($request);
+        $this->uriKey = $this->uriKey();
+        $this->width = 'w-1/3';
+        $this->withArea = $this->withArea();
     }
 
     /**

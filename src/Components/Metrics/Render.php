@@ -13,7 +13,7 @@ class Render
     use Javascriptable, Templates, Stylable;
 
     /** @var string */
-    private $javascript  = '//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js';
+    private $javascript = '//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js';
 
     /** @var string */
     private $css = '//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css';
@@ -44,7 +44,7 @@ class Render
     public function assets(string $type = 'js') : string
     {
         $cssTemplate = '<link rel="stylesheet" href="%s">';
-        $jsTemplate  = '<script src="%s"></script>';
+        $jsTemplate = '<script src="%s"></script>';
 
         return ($type === 'javascript' || $type === 'script' || $type === 'js')
             ? sprintf($jsTemplate, $this->javascript)

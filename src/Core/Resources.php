@@ -1,6 +1,6 @@
 <?php
 
-namespace Daguilarm\Belich;
+namespace Daguilarm\Belich\Core;
 
 use Daguilarm\Belich\Core\Traits\Modelable;
 use Daguilarm\Belich\Core\Traits\Operationable;
@@ -99,7 +99,7 @@ abstract class Resources
      */
     public function model() : object
     {
-        $model         = static::$model;
+        $model = static::$model;
         $relationships = static::$relationships;
 
         return $relationships
@@ -115,7 +115,7 @@ abstract class Resources
     public static function breadcrumbs()
     {
         //Default home value
-        $home  = [trans('belich::belich.navigation.home') => static::url()];
+        $home = [trans('belich::belich.navigation.home') => static::url()];
 
         //Set index
         if(static::action() === 'index') {
@@ -160,8 +160,8 @@ abstract class Resources
     public static function actions()
     {
         return [
-            Utils::icon('eye')   => Utils::route('show'),
-            Utils::icon('edit')  => Utils::route('edit'),
+            Utils::icon('eye') => Utils::route('show'),
+            Utils::icon('edit') => Utils::route('edit'),
             Utils::icon('trash') => Utils::route('destroy'),
         ];
     }

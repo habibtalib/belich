@@ -23,7 +23,7 @@ class Validation
     public static function make(Request $request)
     {
         return Validator::make($request->all(), [
-            'format'   => ['required', Rule::in(static::$formats)],
+            'format' => ['required', Rule::in(static::$formats)],
             'quantity' => ['required', Rule::in(static::$selects)],
             'resource_model' => ['required',
                 function ($attribute, $value, $fail) : void {

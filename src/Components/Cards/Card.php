@@ -24,8 +24,8 @@ abstract class Card
      */
     public function __construct()
     {
-        $this->uriKey   = $this->uriKey();
-        $this->view     = $this->view();
+        $this->uriKey = $this->uriKey();
+        $this->view = $this->view();
         $this->withMeta = $this->withMeta();
     }
 

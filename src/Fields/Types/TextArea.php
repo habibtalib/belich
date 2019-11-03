@@ -56,7 +56,7 @@ class TextArea extends Field
      */
     public function count(int $chars = 0) : self
     {
-        $this->count     = true;
+        $this->count = true;
         $this->maxlength = $chars;
 
         return $this;

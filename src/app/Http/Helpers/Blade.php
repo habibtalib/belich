@@ -235,6 +235,6 @@ if (!function_exists('renderWithPrefix')) {
                 }
                 return $value;
             })
-                ->implode(' ');
+            ->implode(' ');
     }
 }

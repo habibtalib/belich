@@ -62,7 +62,7 @@ trait Resourceable
      */
     public static function resourceId()
     {
-        $resource   = Str::singular(static::resource());
+        $resource = Str::singular(static::resource());
         $resourceId = request()->route($resource) ?? null;
 
         if(is_null($resourceId)) {
@@ -173,11 +173,11 @@ trait Resourceable
         $className = static::resource();
 
         return collect([
-            'name'             => $className,
+            'name' => $className,
             'controllerAction' => static::action(),
-            'fields'           => app(FieldResolve::class)->make($class, $updateFields, $sqlResponse),
-            'results'          => $sqlResponse,
-            'values'           => $this->resourceValues($className),
+            'fields' => app(FieldResolve::class)->make($class, $updateFields, $sqlResponse),
+            'results' => $sqlResponse,
+            'values' => $this->resourceValues($className),
         ]);
     }
 
@@ -197,7 +197,7 @@ trait Resourceable
                 if($file) {
                     //Define the current class name
                     $className = Str::title(explode('.', $file)[0]);
-                    $resource  = Str::plural(Str::lower($className));
+                    $resource = Str::plural(Str::lower($className));
 
                     return [
                         $resource => $this->resourceValues($className, $forNavigation = true)
@@ -282,33 +282,33 @@ trait Resourceable
 
         //Default values
         } else {
-            $accessToResource    = $class::$accessToResource;
+            $accessToResource = $class::$accessToResource;
             $displayInNavigation = $class::$displayInNavigation;
         }
 
         //Set the basic values for navigation
         $resource = collect([
-            'class'                 => $className,
-            'displayInNavigation'   => $displayInNavigation,
-            'group'                 => $class::$group,
-            'icon'                  => $class::$icon ?? 'angle-right',
-            'label'                 => $class::$label ?? Str::title($className),
-            'pluralLabel'           => $class::$pluralLabel ?? Str::plural(Str::title($className)),
-            'resource'              => Str::plural(Str::lower($className)),
-            'search'                => $class::$search,
-            'tableTextAlign'        => self::setTableTextAlign($class),
+            'class' => $className,
+            'displayInNavigation' => $displayInNavigation,
+            'group' => $class::$group,
+            'icon' => $class::$icon ?? 'angle-right',
+            'label' => $class::$label ?? Str::title($className),
+            'pluralLabel' => $class::$pluralLabel ?? Str::plural(Str::title($className)),
+            'resource' => Str::plural(Str::lower($className)),
+            'search' => $class::$search,
+            'tableTextAlign' => self::setTableTextAlign($class),
         ]);
 
         //Advanced values
         if($forNavigation === false) {
             return $resource->merge([
-                'accessToResource'    => $accessToResource,
-                'actions'             => $class::$actions,
-                'breadcrumbs'         => $class::breadcrumbs(),
-                'cards'               => $class::cards(request()),
-                'model'               => $class::$model,
-                'metrics'             => $class::metrics(request()),
-                'search'              => $class::$search,
+                'accessToResource' => $accessToResource,
+                'actions' => $class::$actions,
+                'breadcrumbs' => $class::breadcrumbs(),
+                'cards' => $class::cards(request()),
+                'model' => $class::$model,
+                'metrics' => $class::metrics(request()),
+                'search' => $class::$search,
             ]);
         }
 

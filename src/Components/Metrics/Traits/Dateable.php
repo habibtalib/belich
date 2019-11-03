@@ -57,7 +57,7 @@ trait Dateable
     protected static function getRangeOfYears(int $years) : array
     {
         $firstYear = now()->subYear($years)->year;
-        $lastYear  = now()->year;
+        $lastYear = now()->year;
 
         foreach(range($firstYear, $lastYear) as $month) {
             $range[] = $month;
@@ -148,7 +148,7 @@ trait Dateable
     protected function thisMonth() : self
     {
         $this->startDate = static::getFirstDayOfTheMonth();
-        $this->endDate   = now();
+        $this->endDate = now();
 
         return $this;
     }
@@ -161,7 +161,7 @@ trait Dateable
     protected function lastMonth() : self
     {
         $this->startDate = static::getFirstDayOfTheLastMonth();
-        $this->endDate   = static::getLastDayOfTheLastMonth();
+        $this->endDate = static::getLastDayOfTheLastMonth();
 
         return $this;
     }
@@ -174,7 +174,7 @@ trait Dateable
     protected function lastMonths($number = 3) : self
     {
         $this->startDate = now()->subMonth($number);
-        $this->endDate   = now();
+        $this->endDate = now();
 
         return $this;
     }
@@ -187,7 +187,7 @@ trait Dateable
     protected function thisWeek() : self
     {
         $this->startDate = now()->startOfWeek();
-        $this->endDate   = now();
+        $this->endDate = now();
 
         return $this;
     }
@@ -200,7 +200,7 @@ trait Dateable
     protected function thisYear() : self
     {
         $this->startDate = now()->firstOfYear();
-        $this->endDate   = now();
+        $this->endDate = now();
 
         return $this;
     }
@@ -213,7 +213,7 @@ trait Dateable
     protected function lastYears(int $years) : self
     {
         $this->startDate = now()->subYear($years);
-        $this->endDate   = now();
+        $this->endDate = now();
 
         return $this;
     }
@@ -226,7 +226,7 @@ trait Dateable
     protected function toDay() : self
     {
         $this->startDate = now()->startOfDay();
-        $this->endDate   = now();
+        $this->endDate = now();
 
         return $this;
     }

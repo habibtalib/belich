@@ -20,8 +20,8 @@ trait Connectable
     {
         //Set variables
         $direction = request()->query('direction');
-        $order     = request()->query('orderBy');
-        $policy    = request()->user()->can('withTrashed', Belich::getModel());
+        $order = request()->query('orderBy');
+        $policy = request()->user()->can('withTrashed', Belich::getModel());
 
         //Sql for index
         if(static::action() === 'index') {
