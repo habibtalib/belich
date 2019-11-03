@@ -88,9 +88,10 @@ class ResourcesRepository
         }
         // For the rest of the action, if it is allowed
         if (in_array(static::action(), Belich::allowedActions())) {
+            $action = str_replace('edit', 'update', static::action());
             return array_merge($home,
                 [static::$label => static::resourceUrl()],
-                [trans('belich::buttons.crud.' . static::action()) => null]
+                [trans('belich::buttons.crud.' . $action) => null]
             );
         }
     }
