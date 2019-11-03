@@ -4,12 +4,14 @@ namespace Daguilarm\Belich\Fields;
 
 use Daguilarm\Belich\Core\Traits\Routeable;
 use Daguilarm\Belich\Fields\Field;
-use Daguilarm\Belich\Fields\Traits\Constructable\{Authorizable, Renderable, Valuable};
+use Daguilarm\Belich\Fields\Traits\Constructable\Authorizable;
+use Daguilarm\Belich\Fields\Traits\Constructable\Renderable;
+use Daguilarm\Belich\Fields\Traits\Constructable\Valuable;
 use Daguilarm\Belich\Fields\Traits\Resolvable;
 use Illuminate\Support\Collection;
 
-class FieldResolve {
-
+final class FieldResolve
+{
     use Authorizable,
         Renderable,
         Resolvable,

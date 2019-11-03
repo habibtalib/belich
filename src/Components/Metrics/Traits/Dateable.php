@@ -4,8 +4,8 @@ namespace Daguilarm\Belich\Components\Metrics\Traits;
 
 use Carbon\Carbon;
 
-trait Dateable {
-
+trait Dateable
+{
     /**
      * Set an array with all the daily hours
      *
@@ -59,7 +59,7 @@ trait Dateable {
         $firstYear = now()->subYear($years)->year;
         $lastYear  = now()->year;
 
-        foreach(range($firstYear , $lastYear) as $month) {
+        foreach(range($firstYear, $lastYear) as $month) {
             $range[] = $month;
         };
 

@@ -11,9 +11,9 @@ class BelichProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot() : void
     {
-        //
+        //Nothing
     }
 
     /**
@@ -21,9 +21,9 @@ class BelichProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register() : void
     {
-        $this->app->singleton('Belich',function()
+        $this->app->singleton('Belich', function()
         {
             return new \Daguilarm\Belich\Core\Belich;
         });

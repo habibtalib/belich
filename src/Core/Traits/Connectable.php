@@ -2,20 +2,20 @@
 
 namespace Daguilarm\Belich\Core\Traits;
 
+use Daguilarm\Belich\Core\Traits\Searchable;
 use Daguilarm\Belich\Facades\Belich;
 use Illuminate\Support\Facades\Cookie;
-use Daguilarm\Belich\Core\Traits\Searchable;
 
-trait Connectable {
-
+trait Connectable
+{
     use Searchable;
 
     /**
-    * Create the Sql Connection
-    *
-    * @param string $class
-    * @return object
-    */
+     * Create the Sql Connection
+     *
+     * @param string $class
+     * @return object
+     */
     private function sqlConnectionResponse(object $class) : object
     {
         //Set variables

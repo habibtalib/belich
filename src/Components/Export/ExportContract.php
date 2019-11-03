@@ -5,8 +5,8 @@ namespace Daguilarm\Belich\Components\Export;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
-interface ExportContract {
-
+interface ExportContract
+{
     /**
      * Prepare the file for download
      *

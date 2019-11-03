@@ -9,8 +9,8 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use MatthiasMullie\Minify;
 
-class FieldValidate {
-
+final class FieldValidate
+{
     use Filterable, Systemable;
 
     /** @var string */

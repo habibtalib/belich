@@ -16,15 +16,15 @@ class ShowRequest extends FormRequest
     public function data(Belich $belich, $id)
     {
         //Get the values for the resource
-        $data     = $belich->currentResource($this);
+        $data = $belich->currentResource($this);
 
         //Add values to request
         $this->merge([
-            'autorizedModel'    => $belich::getModel(),
-            'breadcrumbs'       => data_get($data, 'values.breadcrumbs'),
-            'fields'            => data_get($data, 'fields')->groupBy('panels'),
-            'id'                => $id,
-            'name'              => data_get($data, 'name'),
+            'autorizedModel' => $belich::getModel(),
+            'breadcrumbs' => data_get($data, 'values.breadcrumbs'),
+            'fields' => data_get($data, 'fields')->groupBy('panels'),
+            'id' => $id,
+            'name' => data_get($data, 'name'),
         ]);
 
         return $this;

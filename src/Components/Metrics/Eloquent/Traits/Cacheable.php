@@ -5,8 +5,8 @@ namespace Daguilarm\Belich\Components\Metrics\Eloquent\Traits;
 use Daguilarm\Belich\Components\Metrics\Eloquent\Traits\CacheForHumans;
 use Illuminate\Support\Facades\Cache;
 
-trait Cacheable {
-
+trait Cacheable
+{
     use CacheForHumans;
 
     /** @var int */

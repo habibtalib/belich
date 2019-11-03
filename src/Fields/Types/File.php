@@ -4,8 +4,8 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-class File extends Field {
-
+class File extends Field
+{
     /** @var string */
     public $type = 'file';
 

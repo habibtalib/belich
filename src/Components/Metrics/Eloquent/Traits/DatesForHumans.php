@@ -5,8 +5,8 @@ namespace Daguilarm\Belich\Components\Metrics\Eloquent\Traits;
 use Carbon\Carbon;
 use Daguilarm\Belich\Components\Metrics\Traits\Dateable;
 
-trait DatesForHumans {
-
+trait DatesForHumans
+{
     use Dateable;
 
     /*
@@ -37,35 +37,6 @@ trait DatesForHumans {
         $this->endDate = $this->filterDateFormat($date);
 
         return $this;
-    }
-
-    /**
-     * Filter date base on format
-     *
-     * @param mixed $date
-     * @return self
-     */
-    private function filterDateFormat($date) : Carbon
-    {
-        //Carbon format
-        if($date instanceof Carbon) {
-            return $date;
-        }
-
-        //Sql format
-        if(DateTime::createFromFormat('Y-m-d', $date, config('app.timezone'))) {
-            return DateTime::createFromFormat('Y-m-d', $date, config('app.timezone'));
-        }
-
-        //European format
-        if(DateTime::createFromFormat('d/m/Y', $date, config('app.timezone'))) {
-            return DateTime::createFromFormat('d/m/Y', $date, config('app.timezone'));
-        }
-
-        //English format
-        if(DateTime::createFromFormat('Y/m/d', $date, config('app.timezone'))) {
-            return DateTime::createFromFormat('Y/m/d', $date, config('app.timezone'));
-        }
     }
 
     /*
@@ -225,4 +196,40 @@ trait DatesForHumans {
 
         return $this;
     }
+
+    /*
+    |--------------------------------------------------------------------------
+    | Operations
+    |--------------------------------------------------------------------------
+    */
+
+    /**
+     * Filter date base on format
+     *
+     * @param mixed $date
+     * @return self
+     */
+    private function filterDateFormat($date) : Carbon
+    {
+        //Carbon format
+        if($date instanceof Carbon) {
+            return $date;
+        }
+
+        //Sql format
+        if(DateTime::createFromFormat('Y-m-d', $date, config('app.timezone'))) {
+            return DateTime::createFromFormat('Y-m-d', $date, config('app.timezone'));
+        }
+
+        //European format
+        if(DateTime::createFromFormat('d/m/Y', $date, config('app.timezone'))) {
+            return DateTime::createFromFormat('d/m/Y', $date, config('app.timezone'));
+        }
+
+        //English format
+        if(DateTime::createFromFormat('Y/m/d', $date, config('app.timezone'))) {
+            return DateTime::createFromFormat('Y/m/d', $date, config('app.timezone'));
+        }
+    }
+
 }

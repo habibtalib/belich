@@ -5,8 +5,8 @@ namespace Daguilarm\Belich\Fields\Traits\Constructable;
 use Daguilarm\Belich\Fields\Field;
 use Illuminate\Support\Collection;
 
-trait Linkeable {
-
+trait Linkeable
+{
     /** @var bool */
     protected $allowedParameters = [
         'direction',

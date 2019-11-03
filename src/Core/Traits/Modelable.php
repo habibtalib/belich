@@ -5,8 +5,8 @@ namespace Daguilarm\Belich\Core\Traits;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str;
 
-trait Modelable {
-
+trait Modelable
+{
     /*
     |--------------------------------------------------------------------------
     | Public Static Methods

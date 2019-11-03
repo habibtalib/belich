@@ -2,11 +2,16 @@
 
 namespace Daguilarm\Belich\Fields;
 
-use Daguilarm\Belich\Fields\Traits\Constructable\{Booleanable, Callbackable, Fileable, Linkeable, Resolvable, Softdeleteable};
+use Daguilarm\Belich\Fields\Traits\Constructable\Booleanable;
+use Daguilarm\Belich\Fields\Traits\Constructable\Callbackable;
+use Daguilarm\Belich\Fields\Traits\Constructable\Fileable;
+use Daguilarm\Belich\Fields\Traits\Constructable\Linkeable;
+use Daguilarm\Belich\Fields\Traits\Constructable\Resolvable;
+use Daguilarm\Belich\Fields\Traits\Constructable\Softdeleteable;
 use Illuminate\Support\Collection;
 
-class FieldResolveIndex {
-
+class FieldResolveIndex
+{
     use Booleanable,
         Callbackable,
         Fileable,

@@ -2,11 +2,15 @@
 
 namespace Daguilarm\Belich;
 
-use Daguilarm\Belich\Core\Traits\{Modelable, Operationable, Resourceable, Routeable, Systemable};
+use Daguilarm\Belich\Core\Traits\Modelable;
+use Daguilarm\Belich\Core\Traits\Operationable;
+use Daguilarm\Belich\Core\Traits\Resourceable;
+use Daguilarm\Belich\Core\Traits\Routeable;
+use Daguilarm\Belich\Core\Traits\Systemable;
 use Illuminate\Http\Request;
 
-abstract class Resources {
-
+abstract class Resources
+{
     use Modelable,
         Operationable,
         Resourceable,

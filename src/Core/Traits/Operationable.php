@@ -2,8 +2,8 @@
 
 namespace Daguilarm\Belich\Core\Traits;
 
-trait Operationable {
-
+trait Operationable
+{
     /*
     |--------------------------------------------------------------------------
     | Public Static Methods

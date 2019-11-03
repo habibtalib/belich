@@ -4,8 +4,8 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-class Autocomplete extends Field {
-
+class Autocomplete extends Field
+{
     /** @var string */
     public $type = 'autocomplete';
 

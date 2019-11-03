@@ -13,8 +13,8 @@ use Daguilarm\Belich\Fields\Traits\Settingable;
 use Daguilarm\Belich\Fields\Traits\Visibilitable;
 use Illuminate\Support\Str;
 
-class Field extends FieldAbstract {
-
+class Field extends FieldAbstract
+{
     use Attributable,
         Casteable,
         Formatable,
@@ -35,11 +35,11 @@ class Field extends FieldAbstract {
         $title = str_replace(' ', '_', Str::lower($attribute));
 
         //Set the values
-        $this->label             = $label;
-        $this->attribute         = $attribute ?? $title;
-        $this->dusk              = $this->dusk ?? 'dusk-' . $title;
-        $this->id                = $this->name ?? $title;
-        $this->name              = $this->name ?? $title;
+        $this->label = $label;
+        $this->attribute = $attribute ?? $title;
+        $this->dusk = $this->dusk ?? 'dusk-' . $title;
+        $this->id = $this->name ?? $title;
+        $this->name = $this->name ?? $title;
     }
 
     /**

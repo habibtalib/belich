@@ -2,8 +2,8 @@
 
 namespace Daguilarm\Belich\Fields;
 
-abstract class FieldAbstract {
-
+class FieldAbstract
+{
     /** @var array [List of allowed controller actions] */
     public $allowedControllerActions = [
         'index',
@@ -146,7 +146,7 @@ abstract class FieldAbstract {
      * @param  string  $panel
      * @return self
      */
-    public function panels(string $panel)
+    public function panels(string $panel) : self
     {
         $this->panels = $panel;
 
@@ -159,7 +159,7 @@ abstract class FieldAbstract {
      * @param  bool  $space
      * @return self
      */
-    public function prefix(string $prefix, bool $space = false)
+    public function prefix(string $prefix, bool $space = false) : self
     {
         $this->displayUsing(function($value) use ($prefix, $space) {
             return sprintf(
@@ -178,7 +178,7 @@ abstract class FieldAbstract {
      * @param  bool  $space
      * @return self
      */
-    public function suffix(string $suffix, bool $space = false)
+    public function suffix(string $suffix, bool $space = false) : self
     {
         $this->displayUsing(function($value) use ($suffix, $space) {
             return sprintf(

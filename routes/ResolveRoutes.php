@@ -11,7 +11,7 @@ if (file_exists(__DIR__ . '/../routes/AuthRoutes.php')) {
 Route::group([
         'as' => Belich::pathName() . '.',
         'middleware' => Belich::middleware(),
-    ], function () {
+    ], function () : void {
         //Validation routes
         Route::post(Belich::pathName() . '/ajax/form/validation', namespace_path('App\Http\Controllers\ValidationController'))
             ->name('ajax.form.validation');
@@ -23,7 +23,7 @@ Route::group([
         //Generate routes from resources
         //The middleware can be setter from the config file
         $resources = getAllTheResourcesFromFolder()
-            ->map(function($route) {
+            ->map(function($route) : void {
                 //Get route ID
                 $routeID = sprintf('{%s}', Str::singular($route));
                 if($route) {

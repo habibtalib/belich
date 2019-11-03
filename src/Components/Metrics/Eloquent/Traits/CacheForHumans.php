@@ -4,8 +4,8 @@ namespace Daguilarm\Belich\Components\Metrics\Eloquent\Traits;
 
 use Carbon\Carbon;
 
-trait CacheForHumans {
-
+trait CacheForHumans
+{
     /**
      * Set cache in seconds
      */

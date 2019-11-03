@@ -5,8 +5,8 @@ namespace Daguilarm\Belich\Components\Export;
 use Daguilarm\Belich\Components\Export\Eloquent;
 use Illuminate\Http\Request;
 
-class File {
-
+class File
+{
     /**
      * Exporting format
      *

@@ -2,8 +2,8 @@
 
 namespace Daguilarm\Belich\Fields\Traits;
 
-trait Formatable {
-
+trait Formatable
+{
     private $textAlignAllowed = ['left', 'center', 'right', 'justify'];
 
     /**

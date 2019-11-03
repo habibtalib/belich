@@ -2,8 +2,8 @@
 
 namespace Daguilarm\Belich\Fields\Traits;
 
-trait Casteable {
-
+trait Casteable
+{
     /** @var array */
     public $cast;
 

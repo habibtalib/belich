@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['middleware' => ['web']], function () {
+Route::group(['middleware' => ['web']], function () : void {
 
     // Authentication Routes...
     Route::get(Belich::path() . '/login', 'Daguilarm\Belich\App\Http\Controllers\Auth\LoginController@showLoginForm')->name('login');

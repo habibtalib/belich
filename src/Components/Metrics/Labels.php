@@ -5,8 +5,8 @@ namespace Daguilarm\Belich\Components\Metrics;
 use Carbon\Carbon;
 use Daguilarm\Belich\Components\Metrics\Traits\Dateable;
 
-class Labels {
-
+class Labels
+{
     use Dateable;
 
     // Filters: 'capitalize', 'lower', 'title'

@@ -2,8 +2,8 @@
 
 namespace Daguilarm\Belich\Fields\Traits;
 
-trait Visibilitable {
-
+trait Visibilitable
+{
     /** @var array [Field visibility base on the action] */
     public $visibility = [
         'index'  => true,
@@ -196,7 +196,7 @@ trait Visibilitable {
      *
      * @var void
      */
-    protected function hideFromAll()
+    protected function hideFromAll() : void
     {
         foreach($this->visibility as $attribute => $value) {
             $this->visibility[$attribute] = false;
@@ -208,7 +208,7 @@ trait Visibilitable {
      *
      * @var void
      */
-    protected function showInAll()
+    protected function showInAll() : void
     {
         foreach($this->visibility as $attribute => $value) {
             $this->visibility[$attribute] = true;

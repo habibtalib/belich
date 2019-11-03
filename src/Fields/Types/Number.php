@@ -4,8 +4,8 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-class Number extends Field {
-
+class Number extends Field
+{
     /** @var int */
     public $max;
 

@@ -9,12 +9,9 @@ use Daguilarm\Belich\Components\Metrics\Eloquent\Traits\Results;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
-class Connection {
-
+class Connection
+{
     use Cacheable, DatesForHumans, Results;
-
-    /** @var string */
-    private $model;
 
     /** @var object */
     public $startDate;
@@ -27,6 +24,9 @@ class Connection {
 
     /** @var string */
     private $dateTable = 'created_at';
+
+    /** @var string */
+    private $model;
 
     /**
      * Initialize the class

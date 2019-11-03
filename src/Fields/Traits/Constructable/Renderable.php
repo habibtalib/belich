@@ -5,8 +5,8 @@ namespace Daguilarm\Belich\Fields\Traits\Constructable;
 use Daguilarm\Belich\Fields\Field;
 use Illuminate\Support\Collection;
 
-trait Renderable {
-
+trait Renderable
+{
     /**
      * Render attributes for field
      *
@@ -16,7 +16,7 @@ trait Renderable {
     private function setRenderFieldAttributes($field) : Collection
     {
         collect($field)
-            ->each(function($value, $attribute) use ($field) {
+            ->each(function($value, $attribute) use ($field) : void {
                 //Get the list of attributes to be rendered: name, dusk,...
                 if(in_array($attribute, $field->renderAttributes)) {
                     //Remove attributes from list

@@ -6,8 +6,8 @@ use Daguilarm\Belich\Core\Belich;
 use Daguilarm\Belich\Fields\Field;
 use Illuminate\Support\Facades\Storage;
 
-trait Fileable {
-
+trait Fileable
+{
     /**
      * Resolve the avatar fields
      *

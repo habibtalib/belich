@@ -5,8 +5,8 @@ namespace Daguilarm\Belich\Core\Traits;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Request;
 
-trait Searchable {
-
+trait Searchable
+{
     /*
     |--------------------------------------------------------------------------
     | Public Static Methods
@@ -74,7 +74,7 @@ trait Searchable {
         return collect($fields)->map(function($value) {
             return $value;
         })
-        ->filter()
-        ->toArray();
+            ->filter()
+            ->toArray();
     }
 }

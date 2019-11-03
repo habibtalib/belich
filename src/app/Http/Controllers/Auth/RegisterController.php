@@ -2,12 +2,12 @@
 
 namespace Daguilarm\Belich\App\Http\Controllers\Auth;
 
-use App\User;
 use App\Http\Controllers\Controller;
+use App\User;
 use Daguilarm\Belich\Core\Belich;
+use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
@@ -38,6 +38,14 @@ class RegisterController extends Controller
     }
 
     /**
+     * Set register view
+     */
+    public function showRegistrationForm()
+    {
+       return view('belich::auth.register');
+    }
+
+    /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
@@ -65,13 +73,5 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
-    }
-
-    /**
-     * Set register view
-     */
-    public function showRegistrationForm()
-    {
-       return view('belich::auth.register');
     }
 }

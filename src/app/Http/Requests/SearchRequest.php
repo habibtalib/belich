@@ -16,17 +16,17 @@ class SearchRequest extends FormRequest
     public function data(Belich $belich)
     {
         //Get the values for the resource
-        $data   = $belich->currentResource($this);
+        $data = $belich->currentResource($this);
         $fields = data_get($data, 'fields');
 
         //Add values to request
         $this->merge([
-            'autorizedModel'        => $belich::getModel(),
-            'actions'               => data_get($data, 'values.actions'),
-            'fields'                => $fields,
-            'name'                  => data_get($data, 'name'),
-            'results'               => data_get($data, 'results'),
-            'total'                 => $belich::count($fields->get('data'), 2),
+            'autorizedModel' => $belich::getModel(),
+            'actions' => data_get($data, 'values.actions'),
+            'fields' => $fields,
+            'name' => data_get($data, 'name'),
+            'results' => data_get($data, 'results'),
+            'total' => $belich::count($fields->get('data'), 2),
         ]);
 
         return $this;

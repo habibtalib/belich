@@ -16,22 +16,22 @@ class IndexRequest extends FormRequest
     public function data(Belich $belich)
     {
         //Get the values for the resource
-        $data   = $belich->currentResource($this);
+        $data = $belich->currentResource($this);
         $fields = data_get($data, 'fields');
 
         //Add values to request
         $this->merge([
-            'autorizedModel'        => $belich::getModel(),
-            'actions'               => data_get($data, 'values.actions'),
-            'breadcrumbs'           => data_get($data, 'values.breadcrumbs'),
-            'cards'                 => data_get($data, 'values.cards'),
-            'fields'                => $fields,
+            'autorizedModel' => $belich::getModel(),
+            'actions' => data_get($data, 'values.actions'),
+            'breadcrumbs' => data_get($data, 'values.breadcrumbs'),
+            'cards' => data_get($data, 'values.cards'),
+            'fields' => $fields,
             'hideMetricsForScreens' => data_get($data, 'values.hideMetricsForScreens'),
-            'metrics'               => data_get($data, 'values.metrics'),
-            'name'                  => data_get($data, 'name'),
-            'results'               => data_get($data, 'results'),
-            'tableTextAlign'        => data_get($data, 'values.tableTextAlign'),
-            'total'                 => $belich::count($fields->get('data'), 2),
+            'metrics' => data_get($data, 'values.metrics'),
+            'name' => data_get($data, 'name'),
+            'results' => data_get($data, 'results'),
+            'tableTextAlign' => data_get($data, 'values.tableTextAlign'),
+            'total' => $belich::count($fields->get('data'), 2),
         ]);
 
         return $this;

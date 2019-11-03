@@ -4,8 +4,8 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Illuminate\Support\Collection;
 
-class Panels {
-
+class Panels
+{
     /**
      * Create a new panel
      *

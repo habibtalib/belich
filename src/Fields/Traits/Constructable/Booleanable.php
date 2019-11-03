@@ -4,8 +4,8 @@ namespace Daguilarm\Belich\Fields\Traits\Constructable;
 
 use Daguilarm\Belich\Fields\Field;
 
-trait Booleanable {
-
+trait Booleanable
+{
     /**
      * Resolve the boolean fields
      *

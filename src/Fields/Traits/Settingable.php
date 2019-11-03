@@ -4,8 +4,8 @@ namespace Daguilarm\Belich\Fields\Traits;
 
 use Daguilarm\Belich\Fields\Traits\Filterable;
 
-trait Settingable {
-
+trait Settingable
+{
     use Filterable;
 
     /** @var string [Set the dusk value] */

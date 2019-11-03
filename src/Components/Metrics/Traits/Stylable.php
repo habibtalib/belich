@@ -2,7 +2,8 @@
 
 namespace Daguilarm\Belich\Components\Metrics\Traits;
 
-trait Stylable {
+trait Stylable
+{
     /**
      * Set the labels
      *

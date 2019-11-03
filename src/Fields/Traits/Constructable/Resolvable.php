@@ -6,8 +6,8 @@ use Daguilarm\Belich\Fields\Field;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
 
-trait Resolvable {
-
+trait Resolvable
+{
     /**
      * Resolve field values for: relationship, displayUsing and resolveUsing
      * This method is used throw Belich Facade => Belich::html()->resolveField($field, $data);

@@ -33,6 +33,36 @@ class PolicyCommand extends BelichCommand
     protected $type = 'Policy';
 
     /**
+     * Execute the console command.
+     *
+     * @return void
+     */
+    public function handle() : void
+    {
+        if(!File::exists($this->path())) {
+            File::makeDirectory($this->path());
+        }
+
+        //Copy the file to folder while keeping the .stub extension
+        (new Filesystem)->copy(
+            $this->getStub(),
+            $this->setStub()
+        );
+
+        // Replacements
+        $this->replace('d_model_b', $this->className(), $this->setStub());
+        $this->replace('d_model_path_b', $this->modelPath(), $this->setStub());
+        $this->replace('d_model_variable_b', Str::lower($this->className()), $this->setStub());
+        $this->replace('d_model_user_path_b', config('auth.providers.users.model'), $this->setStub());
+
+        //Set the file
+        (new Filesystem)->move(
+            $this->setStub(),
+            $this->setStub('php')
+        );
+    }
+
+    /**
      * Get the stub file
      *
      * @return string
@@ -69,36 +99,6 @@ class PolicyCommand extends BelichCommand
      */
     protected function modelPath()
     {
-        return $this->option('model') ?? '\\App\\' . $this->className ();
-    }
-
-    /**
-     * Execute the console command.
-     *
-     * @return void
-     */
-    public function handle()
-    {
-        if(!File::exists($this->path())) {
-            File::makeDirectory($this->path());
-        }
-
-        //Copy the file to folder while keeping the .stub extension
-        (new Filesystem)->copy(
-            $this->getStub(),
-            $this->setStub()
-        );
-
-        // Replacements
-        $this->replace('d_model_b', $this->className(), $this->setStub());
-        $this->replace('d_model_path_b', $this->modelPath(), $this->setStub());
-        $this->replace('d_model_variable_b', Str::lower($this->className()), $this->setStub());
-        $this->replace('d_model_user_path_b', config('auth.providers.users.model'), $this->setStub());
-
-        //Set the file
-        (new Filesystem)->move(
-            $this->setStub(),
-            $this->setStub('php')
-        );
+        return $this->option('model') ?? '\\App\\' . $this->className();
     }
 }

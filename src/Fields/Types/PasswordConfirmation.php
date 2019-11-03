@@ -4,8 +4,8 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-class PasswordConfirmation extends Field {
-
+class PasswordConfirmation extends Field
+{
     /** @var string */
     public $type = 'password';
 

@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
-class Validation {
-
+class Validation
+{
     /** @var array */
     private static $formats = ['xls', 'xlsx', 'csv'];
 
@@ -26,7 +26,7 @@ class Validation {
             'format'   => ['required', Rule::in(static::$formats)],
             'quantity' => ['required', Rule::in(static::$selects)],
             'resource_model' => ['required',
-                function ($attribute, $value, $fail) {
+                function ($attribute, $value, $fail) : void {
                     if(!class_exists($value)) {
                         $fail(trans('belich::messages.options.fail.class', ['value' => $value]));
                     }

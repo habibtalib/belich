@@ -7,8 +7,8 @@ use Daguilarm\Belich\Components\Metrics\Traits\Resultable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
-abstract class Graph {
-
+abstract class Graph
+{
     /** @var object */
     public $calculate;
 

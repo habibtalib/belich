@@ -8,12 +8,12 @@ use Daguilarm\Belich\Components\Metrics\Traits\Stylable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 
-class Render {
-
+class Render
+{
     use Javascriptable, Templates, Stylable;
 
     /** @var string */
-    private $js  = '//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js';
+    private $javascript  = '//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js';
 
     /** @var string */
     private $css = '//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css';
@@ -47,7 +47,7 @@ class Render {
         $jsTemplate  = '<script src="%s"></script>';
 
         return ($type === 'javascript' || $type === 'script' || $type === 'js')
-            ? sprintf($jsTemplate, $this->js)
+            ? sprintf($jsTemplate, $this->javascript)
             : sprintf($cssTemplate, $this->css);
     }
 
@@ -62,7 +62,7 @@ class Render {
         $key = md5($this->uriKey);
 
         //Set var object
-        $varObject = sprintf("var data_%s={labels:[%s], series:%s};", $key, $this->formatLabels($this->labels), $this->formatSeries($this->series));
+        $varObject = sprintf('var data_%s={labels:[%s], series:%s};', $key, $this->formatLabels($this->labels), $this->formatSeries($this->series));
 
         //Set the chartist object
         $varChartist = $this->graphSelector($this->type, $key);

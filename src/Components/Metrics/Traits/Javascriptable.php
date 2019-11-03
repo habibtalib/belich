@@ -4,8 +4,8 @@ namespace Daguilarm\Belich\Components\Metrics\Traits;
 
 use Illuminate\Support\Collection;
 
-trait Javascriptable {
-
+trait Javascriptable
+{
     /** @var array */
     public $labels;
 

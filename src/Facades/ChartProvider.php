@@ -13,7 +13,7 @@ class ChartProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot() : void
     {
         /**
          * Create a Blade if directive for @ifMetrics
@@ -41,9 +41,9 @@ class ChartProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register() : void
     {
-        $this->app->singleton('Chart',function()
+        $this->app->singleton('Chart', function()
         {
             return new \Daguilarm\Belich\Components\Metrics\Render;
         });

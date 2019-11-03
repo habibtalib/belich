@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\View\View;
 
-abstract class Card {
-
+abstract class Card
+{
     /** @var string */
     public $view;
 

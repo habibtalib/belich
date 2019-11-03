@@ -29,7 +29,6 @@ trait Redirectable {
         $action = Belich::action();
         //Get the redirection action
         $redirectTo = Belich::redirectTo();
-
         //Creating the redirection
         $redirect = $this->setRedirection($action, $redirectTo, $id);
 
@@ -50,10 +49,11 @@ trait Redirectable {
      * Set the redirection base on action
      *
      * @param string $action
+     * @param string $redirectTo
      * @param integer $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    private function setRedirection(string $action, $redirectTo,  $id = '') : RedirectResponse
+    private function setRedirection(string $action, string $redirectTo, $id = '') : RedirectResponse
     {
         //Validate the resource action
         if(!in_array($redirectTo, $this->allowedActions) || $action === 'delete' || $action === 'forceDelete' || $action === 'restore') {

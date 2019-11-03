@@ -229,12 +229,12 @@ if (!function_exists('renderWithPrefix')) {
             //Fields: readonly and disabled (this fields don't has an structure like: attribute=value)
             return $item[0];
         })
-        ->map(function($value) {
-            if(is_array($value)) {
-                return sprintf('%s=%s', array_keys($value)[0], array_values($value)[0]);
-            }
-            return $value;
-        })
-        ->implode(' ');
+            ->map(function($value) {
+                if(is_array($value)) {
+                    return sprintf('%s=%s', array_keys($value)[0], array_values($value)[0]);
+                }
+                return $value;
+            })
+                ->implode(' ');
     }
 }

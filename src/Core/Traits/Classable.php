@@ -4,8 +4,8 @@ namespace Daguilarm\Belich\Core\Traits;
 
 use Illuminate\Support\Str;
 
-trait Classable {
-
+trait Classable
+{
     /**
      * Set the class name
      *

@@ -2,8 +2,8 @@
 
 namespace Daguilarm\Belich\Fields\Traits;
 
-trait Ruleable {
-
+trait Ruleable
+{
     /** @var array [The validation rules for creation and updates] */
     public $rules;
 

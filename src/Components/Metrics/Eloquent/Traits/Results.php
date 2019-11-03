@@ -2,8 +2,8 @@
 
 namespace Daguilarm\Belich\Components\Metrics\Eloquent\Traits;
 
-trait Results {
-
+trait Results
+{
     /**
      * Get the total items by day
      *

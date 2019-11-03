@@ -6,13 +6,14 @@ use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider as Provider;
 use Spatie\BladeX\Facades\BladeX;
 
-class ServiceProvider extends Provider {
+final class ServiceProvider extends Provider
+{
     /**
      * Bootstrap the application services.
      *
      * @return void
      */
-    public function boot()
+    public function boot() : void
     {
         if ($this->app->runningInConsole()) {
             $this->registerPublishing();
@@ -29,11 +30,27 @@ class ServiceProvider extends Provider {
     }
 
     /**
+     * Register the application services.
+     *
+     * @return void
+     */
+    public function register() : void
+    {
+        //Belich Facade
+        $this->app->register(\Daguilarm\Belich\Facades\BelichProvider::class);
+        AliasLoader::getInstance()->alias('Belich', \Daguilarm\Belich\Facades\Belich::class);
+
+        //Chart Facade
+        $this->app->register(\Daguilarm\Belich\Facades\ChartProvider::class);
+        AliasLoader::getInstance()->alias('Chart', \Daguilarm\Belich\Facades\Chart::class);
+    }
+
+    /**
      * Register the package bootstrap
      *
      * @return void
      */
-    protected function registerBootstrap()
+    protected function registerBootstrap() : void
     {
         //Include the package classmap autoloader
         if(file_exists(__DIR__ . '/../vendor/autoload.php')) {
@@ -56,7 +73,7 @@ class ServiceProvider extends Provider {
      *
      * @return void
      */
-    protected function registerRoutes()
+    protected function registerRoutes() : void
     {
         //Auth routes
         if(file_exists(__DIR__ . '/../routes/AuthRoutes.php')) {
@@ -74,7 +91,7 @@ class ServiceProvider extends Provider {
      *
      * @return void
      */
-    protected function registerResources()
+    protected function registerResources() : void
     {
         //Load the views
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'belich');
@@ -92,7 +109,7 @@ class ServiceProvider extends Provider {
      *
      * @return void
      */
-    protected function registerPublishing()
+    protected function registerPublishing() : void
     {
         //Publish the config file
         $this->publishes([
@@ -102,13 +119,13 @@ class ServiceProvider extends Provider {
 
         //Publish the views
         $this->publishes([
-            __DIR__ . '/../resources/views/actions'    => base_path('resources/views/vendor/belich/actions'),
-            __DIR__ . '/../resources/views/auth'       => base_path('resources/views/vendor/belich/auth'),
-            __DIR__ . '/../resources/views/cards'      => base_path('resources/views/vendor/belich/cards'),
-            __DIR__ . '/../resources/views/pages'      => base_path('resources/views/vendor/belich/pages'),
-            __DIR__ . '/../resources/views/partials'   => base_path('resources/views/vendor/belich/partials'),
+            __DIR__ . '/../resources/views/actions' => base_path('resources/views/vendor/belich/actions'),
+            __DIR__ . '/../resources/views/auth' => base_path('resources/views/vendor/belich/auth'),
+            __DIR__ . '/../resources/views/cards' => base_path('resources/views/vendor/belich/cards'),
+            __DIR__ . '/../resources/views/pages' => base_path('resources/views/vendor/belich/pages'),
+            __DIR__ . '/../resources/views/partials' => base_path('resources/views/vendor/belich/partials'),
             __DIR__ . '/../resources/views/components' => base_path('resources/views/vendor/belich/components'),
-            __DIR__ . '/../resources/views/dashboard'  => base_path('resources/views/vendor/belich/dashboard'),
+            __DIR__ . '/../resources/views/dashboard' => base_path('resources/views/vendor/belich/dashboard'),
         ]);
 
         //Publish the localization files
@@ -146,7 +163,7 @@ class ServiceProvider extends Provider {
      *
      * @return void
      */
-    protected function registerConsole()
+    protected function registerConsole() : void
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
@@ -163,24 +180,8 @@ class ServiceProvider extends Provider {
      *
      * @return void
      */
-    protected function registerMigrations()
+    protected function registerMigrations() : void
     {
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
-    }
-
-    /**
-     * Register the application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        //Belich Facade
-        $this->app->register(\Daguilarm\Belich\Facades\BelichProvider::class);
-        AliasLoader::getInstance()->alias('Belich', \Daguilarm\Belich\Facades\Belich::class);
-
-        //Chart Facade
-        $this->app->register(\Daguilarm\Belich\Facades\ChartProvider::class);
-        AliasLoader::getInstance()->alias('Chart', \Daguilarm\Belich\Facades\Chart::class);
     }
 }

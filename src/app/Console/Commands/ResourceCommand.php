@@ -32,6 +32,80 @@ class ResourceCommand extends BelichCommand
     protected $type = 'Resource';
 
     /**
+     * Execute the console command.
+     *
+     * @return void
+     */
+    public function handle() : void
+    {
+        if(!File::exists($this->path())) {
+            File::makeDirectory($this->path());
+        }
+
+        //Copy the file to folder while keeping the .stub extension
+        (new Filesystem)->copy(
+            $this->getStub(),
+            $this->setStub()
+        );
+
+        // Replacements
+        $this->replace('d_model_b', $this->className(), $this->setStub());
+        $this->replace('d_model_path_b', $this->modelPath(), $this->setStub());
+        $this->replace('d_model_plural_b', Str::plural($this->className()), $this->setStub());
+
+        //Set the file
+        (new Filesystem)->move(
+            $this->setStub(),
+            $this->setStub('php')
+        );
+
+        //Create the model
+        if($this->option('create')) {
+            $this->createModel();
+        }
+    }
+
+    /**
+     * Create model
+     *
+     * @return void
+     */
+    protected function createModel() : void
+    {
+        $storedStub = $this->calculateModel() . '.stub';
+        $storedModel = $this->calculateModel() . '.php';
+
+        //Copy the file to folder while keeping the .stub extension
+        (new Filesystem)->copy(
+            __DIR__ . '/../../../stubs/model.stub',
+            $storedStub
+        );
+
+        // Replacements
+        $this->replace('d_model_b', $this->className(), $storedStub);
+        $this->replace('d_model_namespace_b', $this->modelNamespace(), $storedStub);
+
+        //Set the file
+        (new Filesystem)->move(
+            $storedStub,
+            $storedModel
+        );
+    }
+
+    /**
+     * Create model
+     *
+     * @return void
+     */
+    protected function calculateModel()
+    {
+        $path = str_replace(['App'], 'app', $this->modelPath());
+        $path = explode('\\', $path);
+
+        return base_path(collect($path)->filter()->implode(DIRECTORY_SEPARATOR));
+    }
+
+    /**
      * Get the stub file
      *
      * @return string
@@ -81,69 +155,5 @@ class ResourceCommand extends BelichCommand
         $namespace = str_replace('\\' . $this->className(), '', $this->modelPath());
 
         return $namespace === '\\App' ? 'App' : $namespace;
-    }
-
-    /**
-     * Execute the console command.
-     *
-     * @return void
-     */
-    public function handle()
-    {
-        if(!File::exists($this->path())) {
-            File::makeDirectory($this->path());
-        }
-
-        //Copy the file to folder while keeping the .stub extension
-        (new Filesystem)->copy(
-            $this->getStub(),
-            $this->setStub()
-        );
-
-        // Replacements
-        $this->replace('d_model_b', $this->className(), $this->setStub());
-        $this->replace('d_model_path_b', $this->modelPath(), $this->setStub());
-        $this->replace('d_model_plural_b', Str::plural($this->className()), $this->setStub());
-
-        //Set the file
-        (new Filesystem)->move(
-            $this->setStub(),
-            $this->setStub('php')
-        );
-
-        //Create the model
-        if($this->option('create')) {
-            $this->createModel();
-        }
-    }
-
-    public function createModel()
-    {
-        $storedStub = $this->calculateModel() . '.stub';
-        $storedModel = $this->calculateModel() . '.php';
-
-        //Copy the file to folder while keeping the .stub extension
-        (new Filesystem)->copy(
-            __DIR__ . '/../../../stubs/model.stub',
-            $storedStub
-        );
-
-        // Replacements
-        $this->replace('d_model_b', $this->className(), $storedStub);
-        $this->replace('d_model_namespace_b', $this->modelNamespace(), $storedStub);
-
-        //Set the file
-        (new Filesystem)->move(
-            $storedStub,
-            $storedModel
-        );
-    }
-
-    public function calculateModel()
-    {
-        $path = str_replace(['App'], 'app', $this->modelPath());
-        $path = explode('\\', $path);
-
-        return base_path(collect($path)->filter()->implode(DIRECTORY_SEPARATOR));
     }
 }

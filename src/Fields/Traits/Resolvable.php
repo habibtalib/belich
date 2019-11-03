@@ -4,8 +4,8 @@ namespace Daguilarm\Belich\Fields\Traits;
 
 use Illuminate\Support\Collection;
 
-trait Resolvable {
-
+trait Resolvable
+{
     /*
     |--------------------------------------------------------------------------
     | Resolve controllers except index
@@ -56,8 +56,8 @@ trait Resolvable {
                 ? $field
                 : null;
         })
-        //Delete all null results from the collection
-        ->filter();
+            //Delete all null results from the collection
+            ->filter();
     }
 
     /*

@@ -2,8 +2,8 @@
 
 namespace Daguilarm\Belich\Components\Metrics;
 
-trait Templates {
-
+trait Templates
+{
     /*
     |--------------------------------------------------------------------------
     | Javascript templates for Graphs

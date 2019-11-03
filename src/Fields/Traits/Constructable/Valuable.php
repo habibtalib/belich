@@ -4,8 +4,8 @@ namespace Daguilarm\Belich\Fields\Traits\Constructable;
 
 use Illuminate\Support\Collection;
 
-trait Valuable {
-
+trait Valuable
+{
     /**
      * When the action is update or show
      * We have to update the field value

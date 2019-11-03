@@ -2,11 +2,11 @@
 
 namespace Daguilarm\Belich\Core\Traits;
 
-use Illuminate\Support\Facades\Request;
 use Daguilarm\Belich\Core\Traits\Searchable;
+use Illuminate\Support\Facades\Request;
 
-trait Routeable {
-
+trait Routeable
+{
     use Searchable;
 
     /*

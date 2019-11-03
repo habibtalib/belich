@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Fields\Traits\Relationable;
 
-trait BelongTo {
-
+trait BelongTo
+{
+    //Nothing
 }

@@ -17,15 +17,15 @@ class CreateRequest extends FormRequest
     public function data(Belich $belich)
     {
         //Get the values for the resource
-        $data     = $belich->currentResource($this);
+        $data = $belich->currentResource($this);
         $validate = new FieldValidate;
 
         //Add values to request
         $this->merge([
             'breadcrumbs' => data_get($data, 'values.breadcrumbs'),
-            'fields'      => data_get($data, 'fields')->groupBy('panels'),
-            'javascript'  => $validate->create($data)->get('javascript'),
-            'name'        => data_get($data, 'name'),
+            'fields' => data_get($data, 'fields')->groupBy('panels'),
+            'javascript' => $validate->create($data)->get('javascript'),
+            'name' => data_get($data, 'name'),
         ]);
 
         return $this;

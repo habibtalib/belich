@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\View;
 
-class Blade {
-
+class Blade
+{
     /**
      * Get the metric and the cards views
      *

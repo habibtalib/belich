@@ -2,8 +2,8 @@
 
 namespace Daguilarm\Belich\Fields\Traits;
 
-trait Filterable {
-
+trait Filterable
+{
     /**
      * String has a validad php structure
      *

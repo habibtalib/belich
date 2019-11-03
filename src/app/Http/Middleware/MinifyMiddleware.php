@@ -72,10 +72,10 @@ class MinifyMiddleware
     }
 
     /**
-    * Filter Controller actions to be excluded from minify
-    *
-    * @return array
-    */
+     * Filter Controller actions to be excluded from minify
+     *
+     * @return array
+     */
     private function exceptedActions() : array
     {
         return array_merge(
@@ -105,8 +105,7 @@ class MinifyMiddleware
     private function html(string $html) : string
     {
         $html = preg_replace(array_keys($this->htmlFilters), array_values($this->htmlFilters), $html);
-        $html = str_replace(array_keys($this->htmlSpaces), array_values($this->htmlSpaces), $html);
 
-        return $html;
+        return str_replace(array_keys($this->htmlSpaces), array_values($this->htmlSpaces), $html);
     }
 }
