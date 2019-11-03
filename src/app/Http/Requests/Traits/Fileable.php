@@ -3,6 +3,7 @@
 namespace Daguilarm\Belich\App\Http\Requests\Traits;
 
 use Illuminate\Support\Facades\Storage;
+use Symfony\Component\HttpFoundation\ParameterBag;
 
 // This trait is inspired by https://github.com/stahiralijan/request-caster/
 trait Fileable
@@ -12,9 +13,9 @@ trait Fileable
      *
      * @param object $model
      *
-     * @return self
+     * @return Symfony\Component\HttpFoundation\ParameterBag
      */
-    public function handleFile($model = null): self
+    public function handleFile($model = null): ParameterBag
     {
         $file = $this->request->get('__file');
 
@@ -33,9 +34,9 @@ trait Fileable
      * @param array $values
      * @param null|object $model
      *
-     * @return self
+     * @return self|null
      */
-    private function uploadFile(string $attribute, $model, array $values): self
+    private function uploadFile(string $attribute, $model, array $values)
     {
         //Get the file
         $file = $this->{$attribute};

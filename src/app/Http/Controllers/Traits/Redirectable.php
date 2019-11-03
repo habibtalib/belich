@@ -7,14 +7,6 @@ use Illuminate\Http\RedirectResponse;
 
 trait Redirectable
 {
-    /** @var array */
-    private $allowedActions = [
-        'index',
-        'create',
-        'edit',
-        'show'
-    ];
-
     /**
      * Redirect back with message
      *
@@ -58,7 +50,7 @@ trait Redirectable
     private function setRedirection(string $action, string $redirectTo, $id = ''): RedirectResponse
     {
         //Validate the resource action
-        if (!in_array($redirectTo, $this->allowedActions) || $action === 'delete' || $action === 'forceDelete' || $action === 'restore') {
+        if (!in_array($redirectTo, Belich::allowedActions()) || $action === 'delete' || $action === 'forceDelete' || $action === 'restore') {
             //Action not allowed
             return redirect()->back();
         //Allowed action and redirect to action

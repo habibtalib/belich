@@ -28,35 +28,48 @@ trait Valuable
             //Index has its own way in blade template
             $field->value = $this->setValuesWithFieldRelationship($sqlResponse, $field);
 
-            //Add the data for the show view
-            if ($this->action === 'show') {
-                //Display using labels
-                if (!empty($field->displayUsingLabels) && !empty($field->options)) {
-                    $field->value = $field->options[$field->value] ?? $field->value;
-                }
-
-                //Regular
-                $field->data = $sqlResponse;
-            }
-
-            return $field;
+            //filter the data for the show view and return the $field
+            return $this->setValueForFieldsForActionShow($field, $sqlResponse);
         });
     }
 
     /**
      * Determine value with relationship if exists...
      *
-     * @param Illuminate\Support\Collection $sqlResponse
-     * @param Illuminate\Support\Collection $fields
+     * @param object $sqlResponse
+     * @param object $fields
      *
-     * @return Illuminate\Support\Collection
+     * @return string|null
      */
-    private function setValuesWithFieldRelationship(object $sqlResponse, object $field)
+    private function setValuesWithFieldRelationship(object $sqlResponse, object $field): ?string
     {
         if ($field->fieldRelationship) {
             return $sqlResponse->{$field->fieldRelationship}->{$field->attribute} ?? null;
         }
 
         return $sqlResponse->{$field->attribute} ?? null;
+    }
+
+    /**
+     * Determine value for show view
+     *
+     * @param object $sqlResponse
+     * @param object $fields
+     *
+     * @return string|null
+     */
+    private function setValueForFieldsForActionShow(object $field, object $sqlResponse): object
+    {
+        if ($this->action === 'show') {
+            //Display using labels
+            if (!empty($field->displayUsingLabels) && !empty($field->options)) {
+                $field->value = $field->options[$field->value] ?? $field->value;
+            }
+
+            //Regular
+            $field->data = $sqlResponse;
+        }
+
+        return $field;
     }
 }

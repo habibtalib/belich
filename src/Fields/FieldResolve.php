@@ -18,7 +18,9 @@ final class FieldResolve
         Routeable,
         Valuable;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     private $action;
 
     /**
@@ -51,11 +53,8 @@ final class FieldResolve
         //This go here because we want to avoid duplicated sql queries...Don't remove!!!
         $this->setAuthorizationFromPolicy($sqlResponse);
 
-        //Authorized: $field->canSee()
-        $fields = $this->setAuthorizationForFields($fields);
-
-        //Visibility: Show or hide fields base on Resource settings
-        $fields = $this->setVisibilityForFields($fields);
+        //Authorization & Visibility
+        $fields = $this->filterFields($fields);
 
         //Controller actions
         //Resolve fields base on the controller action
@@ -71,5 +70,23 @@ final class FieldResolve
 
         //Prepare the field for the the form response: create, edit and show
         return $this->setCrudController($fields, $sqlResponse);
+    }
+
+    /**
+     * Resolve fields: authorization and visibility
+     *
+     * @param object $fields
+     *
+     * @return object
+     */
+    private function filterFields(object $fields): object
+    {
+        //Authorized: $field->canSee()
+        $fields = $this->setAuthorizationForFields($fields);
+
+        //Visibility: Show or hide fields base on Resource settings
+        $fields = $this->setVisibilityForFields($fields);
+
+        return $fields;
     }
 }

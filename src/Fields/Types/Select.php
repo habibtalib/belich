@@ -9,7 +9,7 @@ class Select extends Field
     /**  @var string */
     public $type = 'select';
 
-    /**  @var boolean */
+    /**  @var bool */
     public $displayUsingLabels;
 
     /** @var array */

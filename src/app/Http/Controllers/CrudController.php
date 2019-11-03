@@ -11,6 +11,7 @@ use Daguilarm\Belich\App\Http\Requests\ShowRequest;
 use Daguilarm\Belich\App\Http\Requests\StoreRequest;
 use Daguilarm\Belich\App\Http\Requests\UpdateRequest;
 use Daguilarm\Belich\Core\Belich;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
@@ -74,9 +75,9 @@ class CrudController extends Controller
      *
      * @param Illuminate\Http\StoreRequest $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreRequest $request): Response
+    public function store(StoreRequest $request): RedirectResponse
     {
         //Authorization
         $this->authorize('create', $this->model);
@@ -131,9 +132,9 @@ class CrudController extends Controller
      * @param Illuminate\Http\UpdateRequest $request
      * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\Http\RedirectResponse
      */
-    public function update(UpdateRequest $request, int $id): Response
+    public function update(UpdateRequest $request, int $id): RedirectResponse
     {
         //The autorization happend in Daguilarm\Belich\Fields\FieldValidate
         $model = $this->model->findOrFail($id);
@@ -150,9 +151,9 @@ class CrudController extends Controller
      *
      * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function destroy(int $id): Response
+    public function destroy(int $id): RedirectResponse
     {
         //Authorization
         $this->authorize('delete', $this->model);

@@ -104,23 +104,4 @@ class Belich extends BelichAbstract
     {
         return app(FieldResolveIndex::class);
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Init resource class
-    |--------------------------------------------------------------------------
-    */
-
-    /**
-     * Init the current class
-     *
-     * @return object
-     */
-    private function initResourceClass(): object
-    {
-        //Set the initial class
-        $class = static::resourceClassPath();
-
-        return new $class;
-    }
 }

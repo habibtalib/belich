@@ -4,7 +4,11 @@ namespace Daguilarm\Belich\Fields;
 
 class FieldAbstract
 {
-    /** @var array [List of allowed controller actions] */
+    /**
+     * List of allowed controller actions
+     *
+     * @var array
+     */
     public $allowedControllerActions = [
         'index',
         'create',
@@ -12,64 +16,140 @@ class FieldAbstract
         'show'
     ];
 
-    /** @var bool [Show as html] */
+    /**
+     * Show as html
+     *
+     * @var bool
+     */
     public $asHtml;
 
-    /** @var string [The attribute / column name of the field] */
+    /**
+     * The attribute / column name of the field
+     *
+     * @var string
+     */
     public $attribute;
 
-    /** @var string [The custom breadcrumbs for the field] */
+    /**
+     * The custom breadcrumbs for the field
+     *
+     * @var string
+     */
     public $breadcrumbs;
 
-    /** @var object model data */
+    /**
+     * The data from the model
+     *
+     * @var object
+     */
     public $data;
 
-    /** @var \Closure|null for manipulate data */
+    /**
+     * For manipulate data
+     *
+     * @var \Closure|null
+     */
     public $displayCallback;
 
-    /** @var string [The field relationship. Mostly for text fields wich want to show a relationship] */
+    /**
+     * The field relationship. Mostly for text fields wich want to show a relationship
+     *
+     * @var string
+     */
     public $fieldRelationship;
 
-    /** @var string [Set the field label tag] */
+    /**
+     * Set the field label tag
+     *
+     * @var string
+     */
     public $label;
 
-    /** @var bool */
+    /**
+     * @var bool
+     */
     public $notResolveField;
 
-    /** @var string [Group by panel] */
+    /**
+     * Group by panel
+     *
+     * @var string
+     */
     public $panel;
 
-    /** @var string [Prefix for field value] */
+    /**
+     * Prefix for field value
+     *
+     * @var string
+     */
     public $prefix;
 
-    /** @var string [The model relationships] */
+    /**
+     * The model relationships
+     *
+     * @var string
+     */
     public $relationships;
 
-    /** @var array [List of attributes to be dynamically render] */
+    /**
+     * List of attributes to be dynamically render
+     *
+     * @var array
+     */
     public $renderAttributes = ['id', 'name', 'dusk'];
 
-    /** @var string [All the render attributes must be stored here...] */
+    /**
+     * All the render attributes must be stored here...
+     *
+     * @var String
+     */
     public $render;
 
-    /** @var array [All the attributes to be removed from $field] */
+    /**
+     * All the attributes to be removed from $field
+     *
+     * @var array
+     */
     public $removedAttr = [];
 
-    /** @var \Closure|null for manipulate data */
+    /**
+     * For manipulate data
+     *
+     * @var \Closure|null
+     */
     public $resolveCallback;
 
-    /** @var \Closure|null */
+    /**
+     * @var \Closure|null
+     */
     public $seeCallback;
 
-    /** @var bool [Indicates if the field should be sortable] */
+    /**
+     * Indicates if the field should be sortable
+     *
+     * @var bool
+     */
     public $sortable = false;
 
-    /** @var string [Suffix for field value] */
+    /**
+     * Suffix for field value
+     *
+     * @var string
+     */
     public $suffix;
 
-    /** @var string [Table text align. Only on controller action: index] */
+    /**
+     * Table text align. Only on controller action: index
+     *
+     * @var string
+     */
     public $tableTextAlign = 'left';
 
-    /** @var mixed [The field value (Resolved and updated...)] */
+    /**
+     * The field value (Resolved and updated...)
+     *
+     * @var mixed
+     */
     public $value;
 
     /**
@@ -220,7 +300,7 @@ class FieldAbstract
      * Remove attributes from $field
      * Just for internal use
      *
-     * @param  array  $attributes
+     * @param array $attributes
      *
      * @return self
      */

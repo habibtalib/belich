@@ -13,10 +13,16 @@ final class FieldValidate
 {
     use Filterable, Systemable;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     private $controllerAction;
 
-    /** @var array [Stub replace values] */
+    /**
+     * Stub replace values
+     *
+     * @var array
+     */
     private static $stubReplace = [
         ':resource',
         ':action',
