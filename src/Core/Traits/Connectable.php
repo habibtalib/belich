@@ -71,6 +71,6 @@ trait Connectable
                 ->findOrFail(static::resourceId());
         }
 
-        return new \Illuminate\Database\Eloquent\Collection;
+        return new \Illuminate\Database\Eloquent\Collection();
     }
 }

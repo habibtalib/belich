@@ -19,7 +19,7 @@ class CreateRequest extends FormRequest
     {
         //Get the values for the resource
         $data = $belich->currentResource($this);
-        $validate = new FieldValidate;
+        $validate = new FieldValidate();
 
         //Add values to request
         $this->merge([

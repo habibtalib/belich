@@ -60,7 +60,7 @@ final class FieldResolve
         //Resolve fields base on the controller action
         //No resolve field for not visual actions
         if ($this->action === 'store' || $this->action === 'update' || $this->action === 'destroy') {
-            return new Collection;
+            return new Collection();
         }
 
         //Prepare the field for the index response

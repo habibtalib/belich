@@ -18,7 +18,7 @@ class Excel
          * @Github: https://laravel-excel.maatwebsite.nl/
          */
         if (static::getDriver() === 'maatwebsite') {
-            return new \Daguilarm\Belich\Components\Export\Drivers\MaatwebsiteDriver;
+            return new \Daguilarm\Belich\Components\Export\Drivers\MaatwebsiteDriver();
         }
 
         /**
@@ -26,7 +26,7 @@ class Excel
          * @Github: https://github.com/rap2hpoutre/fast-excel
          */
         if (static::getDriver() === 'fast-excel') {
-            return new \Daguilarm\Belich\Components\Export\Drivers\FastExcelDriver;
+            return new \Daguilarm\Belich\Components\Export\Drivers\FastExcelDriver();
         }
 
         throw new \InvalidArgumentException('Invalid Download driver. Please check your config file, and select a correct one.');

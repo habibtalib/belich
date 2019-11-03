@@ -44,6 +44,6 @@ class BelichAbstract
         //Set the initial class
         $class = static::resourceClassPath();
 
-        return new $class;
+        return new $class();
     }
 }

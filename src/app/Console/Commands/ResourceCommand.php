@@ -43,7 +43,7 @@ class ResourceCommand extends BelichCommand
         }
 
         //Copy the file to folder while keeping the .stub extension
-        (new Filesystem)->copy(
+        (new Filesystem())->copy(
             $this->getStub(),
             $this->setStub()
         );
@@ -54,7 +54,7 @@ class ResourceCommand extends BelichCommand
         $this->replace('d_model_plural_b', Str::plural($this->className()), $this->setStub());
 
         //Set the file
-        (new Filesystem)->move(
+        (new Filesystem())->move(
             $this->setStub(),
             $this->setStub('php')
         );
@@ -76,7 +76,7 @@ class ResourceCommand extends BelichCommand
         $storedModel = $this->calculateModel() . '.php';
 
         //Copy the file to folder while keeping the .stub extension
-        (new Filesystem)->copy(
+        (new Filesystem())->copy(
             __DIR__ . '/../../../stubs/model.stub',
             $storedStub
         );
@@ -86,7 +86,7 @@ class ResourceCommand extends BelichCommand
         $this->replace('d_model_namespace_b', $this->modelNamespace(), $storedStub);
 
         //Set the file
-        (new Filesystem)->move(
+        (new Filesystem())->move(
             $storedStub,
             $storedModel
         );

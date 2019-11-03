@@ -58,7 +58,7 @@ class CardCommand extends BelichCommand
         }
 
         //Copy the file to folder while keeping the .stub extension
-        (new Filesystem)->copy(
+        (new Filesystem())->copy(
             $this->getStub(),
             $this->setStub()
         );
@@ -69,7 +69,7 @@ class CardCommand extends BelichCommand
         $this->replace('d_view_b', Str::snake($this->argument('className')), $this->setStub());
 
         //Set the file
-        (new Filesystem)->move(
+        (new Filesystem())->move(
             $this->setStub(),
             $this->setStub('php')
         );

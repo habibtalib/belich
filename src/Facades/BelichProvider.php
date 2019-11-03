@@ -24,7 +24,7 @@ class BelichProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton('Belich', static function () {
-            return new \Daguilarm\Belich\Core\Belich;
+            return new \Daguilarm\Belich\Core\Belich();
         });
     }
 }

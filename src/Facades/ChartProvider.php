@@ -44,7 +44,7 @@ class ChartProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->singleton('Chart', static function () {
-            return new \Daguilarm\Belich\Components\Metrics\Render;
+            return new \Daguilarm\Belich\Components\Metrics\Render();
         });
     }
 }

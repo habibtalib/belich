@@ -85,6 +85,6 @@ class Belich extends BelichAbstract
      */
     public function components(Request $request): ?string
     {
-        return (new Blade)->render($request);
+        return (new Blade())->render($request);
     }
 }
