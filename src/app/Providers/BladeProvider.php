@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
  * @return string
  */
 Blade::directive('actionIcon', static function ($arguments) {
-    return "<?php echo Helper::actionIcon($arguments); ?>";
+    return "<?php echo Helper::actionIcon(${arguments}); ?>";
 });
 
 /**
@@ -19,9 +19,9 @@ Blade::directive('actionIcon', static function ($arguments) {
 Blade::directive('icon', static function ($arguments) {
     $list = explode(',', str_replace(['(',')',' ', "'"], '', $arguments));
     $text = isset($list[1]) ? trans($list[1]) : '';
-    $css = isset($list[2]) ? $list[2] : '';
+    $css = $list[2] ?? '';
 
-    return "<?php echo Helper::icon('$list[0]', '$text', '$css'); ?>";
+    return "<?php echo Helper::icon('{$list[0]}', '${text}', '${css}'); ?>";
 });
 
 /**
@@ -38,7 +38,7 @@ Blade::directive('listTextFromArray', static function ($arguments) {
         })
         ->implode('');
 
-    return "<?php echo '$list'; ?>";
+    return "<?php echo '${list}'; ?>";
 });
 
 /**

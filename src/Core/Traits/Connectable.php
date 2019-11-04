@@ -45,7 +45,7 @@ trait Connectable
                 })
 
                 //Order query
-                ->when(!empty($order) && !empty($direction), static function ($query) use ($direction, $order) {
+                ->when(isset($order) && isset($direction), static function ($query) use ($direction, $order) {
                     return $query->orderBy($order, $direction);
                 })
 
@@ -66,7 +66,7 @@ trait Connectable
                 ->appends(request()->query());
         }
 
-        return (static::action() === 'edit' || static::action() === 'show' && is_numeric(static::resourceId()))
+        return static::action() === 'edit' || static::action() === 'show' && is_numeric(static::resourceId())
             //Sql for edit and show
             ? $class->model()->findOrFail(static::resourceId())
             // Default value

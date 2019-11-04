@@ -37,7 +37,7 @@ class Select extends Field
     public function options(array $options = []): self
     {
         //Check the text for conditional cases...
-        if (!empty($options)) {
+        if (isset($options)) {
             $this->options = ['' => ''] + $options;
         }
 

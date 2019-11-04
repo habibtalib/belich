@@ -141,7 +141,7 @@ class Connection
         $total = array_fill_keys($total, 0);
 
         //Get the data from cache or storage
-        $sql = ($this->cache instanceof Carbon)
+        $sql = $this->cache instanceof Carbon
             ? $this->getDataFromCache($dateType, $type)
             : $this->getDataFromStorage($dateType, $type);
 

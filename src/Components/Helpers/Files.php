@@ -16,7 +16,7 @@ trait Files
     {
         $str = explode('.', $fileName);
 
-        return (!empty($str) && count($str) === 2)
+        return isset($str) && count($str) === 2
             ? ($extension ? $str[1] : $str[0])
             : Belich::emptyResults();
     }

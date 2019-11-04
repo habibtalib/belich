@@ -121,9 +121,9 @@ class Labels
      *
      * @return array
      */
-    private static function get(string $filter = 'title', string $name): array
+    private static function get(string $filter, string $name): array
     {
-        return array_map(static::arrayFilter($filter), trans('belich::metrics.' . $name));
+        return array_map(static::arrayFilter($filter ?? 'title'), trans('belich::metrics.' . $name));
     }
 
     /**

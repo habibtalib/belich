@@ -42,11 +42,11 @@ trait Searchable
     {
         $request = request()->query();
 
-        if (!empty($request['query'])
-           && !empty($request['resourceName'])
+        if (isset($request['query'])
+           && isset($request['resourceName'])
            && is_string($request['resourceName'])
            && strlen($request['query']) >= config('belich.minSearch')
-           && !empty($request['type'])
+           && isset($request['type'])
            && $request['type'] === 'search'
         ) {
             return true;

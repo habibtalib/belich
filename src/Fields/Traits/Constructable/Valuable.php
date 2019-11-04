@@ -62,7 +62,7 @@ trait Valuable
     {
         if ($this->action === 'show') {
             //Display using labels
-            if (!empty($field->displayUsingLabels) && !empty($field->options)) {
+            if (isset($field->displayUsingLabels) && isset($field->options)) {
                 $field->value = $field->options[$field->value] ?? $field->value;
             }
 

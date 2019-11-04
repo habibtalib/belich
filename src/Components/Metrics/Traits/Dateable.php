@@ -9,12 +9,12 @@ trait Dateable
     /**
      * Set an array with all the daily hours
      *
-     * @param  string  $filter
-     *
      * @return array
      */
     public static function getRangeOfHours(): array
     {
+        $range = [];
+
         foreach (range(1, 24) as $hour) {
             $range[] = $hour;
         }
@@ -29,6 +29,8 @@ trait Dateable
      */
     protected static function getRangeOfDays(): array
     {
+        $range = [];
+
         foreach (range(1, static::getDaysOfTheMonth()) as $day) {
             $range[] = $day;
         }
@@ -43,6 +45,8 @@ trait Dateable
      */
     protected static function getRangeOfMonths(): array
     {
+        $range = [];
+
         foreach (range(1, 12) as $month) {
             $range[] = $month;
         }
@@ -59,6 +63,7 @@ trait Dateable
     {
         $firstYear = now()->subYear($years)->year;
         $lastYear = now()->year;
+        $range = [];
 
         foreach (range($firstYear, $lastYear) as $month) {
             $range[] = $month;

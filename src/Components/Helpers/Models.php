@@ -23,7 +23,7 @@ trait Models
      */
     private function hasSoftdeletedResults($model): bool
     {
-        return (method_exists($model, 'trashed') && $model->trashed())
+        return method_exists($model, 'trashed') && $model->trashed()
             ? true
             : false;
     }

@@ -5,7 +5,7 @@ use Illuminate\Support\Str;
 
 //Load the auth routes
 if (file_exists(__DIR__ . '/../routes/AuthRoutes.php')) {
-    require_once(__DIR__ . '/../routes/AuthRoutes.php');
+    require_once __DIR__ . '/../routes/AuthRoutes.php';
 }
 
 /** Belich Routes */
@@ -48,6 +48,6 @@ Route::group([
 
     //Load all the custom routes
     if (file_exists(app_path('/Belich/Routes.php'))) {
-        require_once(app_path('/Belich/Routes.php'));
+        require_once app_path('/Belich/Routes.php');
     }
 });

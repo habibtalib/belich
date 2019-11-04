@@ -18,7 +18,7 @@ trait Utils
         return collect($listOfValues)
             ->map(static function ($value) {
                 // Only numeric values
-                if (!empty($value) && is_numeric($value)) {
+                if (isset($value) && is_numeric($value)) {
                     return (int) $value;
                 }
             })

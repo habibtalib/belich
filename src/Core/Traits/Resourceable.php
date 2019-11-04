@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Core\Traits;
 
+use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\FieldResolve;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -18,7 +19,7 @@ trait Resourceable
     {
         return static::requestFromSearch()
             //Search action
-            ? stringPluralLower(request()->query('resourceName'))
+            ? Helper::stringPluralLower(request()->query('resourceName'))
             //Return middle item from the array
             : static::route()[1] ?? '';
     }
@@ -243,7 +244,7 @@ trait Resourceable
     {
         $initializedClass = $this->initResourceClass(request());
 
-        return (static::action() === 'index')
+        return static::action() === 'index'
             ? $initializedClass::$pluralLabel
             : $initializedClass::$label;
     }

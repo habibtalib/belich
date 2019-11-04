@@ -48,7 +48,7 @@ class Render
         $cssTemplate = '<link rel="stylesheet" href="%s">';
         $jsTemplate = '<script src="%s"></script>';
 
-        return ($type === 'javascript' || $type === 'script' || $type === 'js')
+        return $type === 'javascript' || $type === 'script' || $type === 'js'
             ? sprintf($jsTemplate, $this->javascript)
             : sprintf($cssTemplate, $this->css);
     }

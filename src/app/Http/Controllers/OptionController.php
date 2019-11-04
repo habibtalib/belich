@@ -20,12 +20,12 @@ class OptionController extends Controller
         $redirect = redirect()
             ->back();
 
-        if (!empty($request->perPage)) {
+        if (isset($request->perPage)) {
             $cookie = cookie('belich_perPage', $request->perPage, Helper::setTimeForCookie());
             $redirect = $redirect->withCookie($cookie);
         }
 
-        if (!empty($request->withTrashed)) {
+        if (isset($request->withTrashed)) {
             $cookie = cookie('belich_withTrashed', $request->withTrashed, Helper::setTimeForCookie());
             $redirect = $redirect->withCookie($cookie);
         }

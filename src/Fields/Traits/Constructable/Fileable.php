@@ -19,7 +19,7 @@ trait Fileable
      */
     protected function resolveFile(Field $field, string $value)
     {
-        if (empty($value) || $value === Helper::emptyResults()) {
+        if (!isset($value) || $value === Helper::emptyResults()) {
             return Helper::emptyResults();
         }
 
@@ -46,9 +46,9 @@ trait Fileable
                 ? $value
                 : Storage::disk($field->disk)->url($value);
             //Set the image alt
-            $imageAlt = !empty($field->alt) ? sprintf('alt="%s"', $field->alt) : '';
+            $imageAlt = isset($field->alt) ? sprintf('alt="%s"', $field->alt) : '';
             //Set the css classes
-            $imageCss = !empty($field->addCss) ? $field->addCss : 'block h-10 rounded-full shadow-md';
+            $imageCss = $field->addCss ?? 'block h-10 rounded-full shadow-md';
 
             return sprintf('<img class="%s" src="%s" %s>', $imageCss, $value, $imageAlt);
         }

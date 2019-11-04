@@ -58,7 +58,7 @@ final class ServiceProvider extends Provider
     {
         //Include the package classmap autoloader
         if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
-            require_once(__DIR__ . '/../vendor/autoload.php');
+            require_once __DIR__ . '/../vendor/autoload.php';
         }
 
         // Middleware
@@ -76,12 +76,12 @@ final class ServiceProvider extends Provider
     {
         //Auth routes
         if (file_exists(__DIR__ . '/../routes/AuthRoutes.php')) {
-            require_once(__DIR__ . '/../routes/AuthRoutes.php');
+            require_once __DIR__ . '/../routes/AuthRoutes.php';
         }
 
         //Dashboard routes
         if (file_exists(__DIR__ . '/../routes/ResolveRoutes.php')) {
-            require_once(__DIR__ . '/../routes/ResolveRoutes.php');
+            require_once __DIR__ . '/../routes/ResolveRoutes.php';
         }
     }
 
@@ -96,7 +96,7 @@ final class ServiceProvider extends Provider
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'belich');
 
         //Load the blade service provider
-        require_once(__DIR__ . '/../src/app/Providers/BladeProvider.php');
+        require_once __DIR__ . '/../src/app/Providers/BladeProvider.php';
 
         //Load language translations...
         $this->loadTranslationsFrom(resource_path('lang/vendor/belich'), 'belich');

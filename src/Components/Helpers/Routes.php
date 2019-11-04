@@ -19,7 +19,7 @@ trait Routes
         $route = sprintf('%s.%s.%s', Belich::pathName(), Belich::resource(), $redirectTo);
         $id = Belich::resourceId() ?? 0;
 
-        return ($id > 0)
+        return $id > 0
             ? route($route, $id)
             : route($route);
     }

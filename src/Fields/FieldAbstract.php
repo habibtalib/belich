@@ -188,7 +188,7 @@ class FieldAbstract
      */
     public function sortable(bool $value = true): self
     {
-        if (!empty($value)) {
+        if (isset($value)) {
             $this->sortable = true;
         }
 
@@ -204,7 +204,7 @@ class FieldAbstract
      */
     public function displayUsing(callable $displayCallback): self
     {
-        if (!empty($displayCallback)) {
+        if (isset($displayCallback)) {
             $this->displayCallback[] = $displayCallback;
         }
 
@@ -220,7 +220,7 @@ class FieldAbstract
      */
     public function resolveUsing(callable $resolveCallback): self
     {
-        if (!empty($resolveCallback)) {
+        if (isset($resolveCallback)) {
             $this->resolveCallback = $resolveCallback;
         }
 

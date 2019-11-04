@@ -55,7 +55,7 @@ trait Resolvable
         $value = $this->resolveUsingLabels($field, $value);
 
         //Resolve Relationship
-        return !empty($data)
+        return isset($data)
             ? $this->resolveRelationship($field, $data)
             : $value;
     }
@@ -94,7 +94,7 @@ trait Resolvable
      */
     protected function resolveUsingLabels(Field $field, $value): ?string
     {
-        return !empty($field->displayUsingLabels) && !empty($field->options) && !empty($value)
+        return isset($field->displayUsingLabels) && isset($field->options) && isset($value)
             ? $field->options[$value]
             : $value;
     }

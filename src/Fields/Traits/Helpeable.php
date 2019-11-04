@@ -17,7 +17,7 @@ trait Helpeable
     public function help($value = null): self
     {
         //Check the value for conditional cases...
-        if (!empty($value)) {
+        if (isset($value)) {
             $this->help = $value;
         }
 

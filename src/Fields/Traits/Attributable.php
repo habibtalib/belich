@@ -66,7 +66,7 @@ trait Attributable
      */
     public function disabled(bool $value = true): self
     {
-        if (!empty($value)) {
+        if (isset($value)) {
             $this->disabled = true;
         }
 
@@ -83,7 +83,7 @@ trait Attributable
     public function defaultValue($value = null): self
     {
         //Check the value for conditional cases...
-        if (!empty($value)) {
+        if (isset($value)) {
             $this->value = $value;
         }
 
@@ -99,7 +99,7 @@ trait Attributable
      */
     public function readOnly(bool $value = true): self
     {
-        if (!empty($value)) {
+        if (isset($value)) {
             $this->readonly = true;
         }
 

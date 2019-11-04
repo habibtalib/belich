@@ -35,7 +35,7 @@ trait Callbackable
      */
     private function displayCallback(Field $field, $value = '')
     {
-        if (empty($field->displayCallback)) {
+        if (!isset($field->displayCallback)) {
             return $value;
         }
 

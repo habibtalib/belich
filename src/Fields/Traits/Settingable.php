@@ -27,7 +27,7 @@ trait Settingable
     public function dusk($value = null): self
     {
         //Check the value for conditional cases...
-        if (!empty($value)) {
+        if (isset($value)) {
             $this->dusk = $value;
         }
 
@@ -44,7 +44,7 @@ trait Settingable
     public function id($value = null): self
     {
         //Check the value for conditional cases...
-        if (!empty($value)) {
+        if (isset($value)) {
             $this->id = $this->stringSanitizeForPhpStructure($value);
         }
 
@@ -61,7 +61,7 @@ trait Settingable
     public function name($value = null): self
     {
         //Check the value for conditional cases...
-        if (!empty($value)) {
+        if (isset($value)) {
             $this->name = $value;
         }
 

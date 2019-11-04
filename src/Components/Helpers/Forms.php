@@ -25,10 +25,10 @@ trait Forms
         $cookie = Cookie::get('belich_' . $field);
 
         return collect($options)
-            ->map(static function ($label, $value) use ($cookie, $field) {
+            ->map(static function ($label, $value) use ($cookie) {
                 //Default values
                 $defaultValue = !is_array($value) ? strtolower($label) : $value;
-                $selected = ($cookie == $defaultValue || $cookie == $value)
+                $selected = $cookie === $defaultValue || $cookie === $value
                     ? ' selected'
                     : '';
 
@@ -54,7 +54,7 @@ trait Forms
         $field = $this->addClassAttribute($field, $attribute);
 
         //Add classes
-        $value = (isset($field->{$attribute}) && $attribute === 'addClass' && isset($default))
+        $value = isset($field->{$attribute}) && $attribute === 'addClass' && isset($default)
             ? $field->{$attribute} . ', ' . $default
             : $field->{$attribute} ?? $default;
 
@@ -87,7 +87,7 @@ trait Forms
     private function addClassAttribute($field, $attribute): Field
     {
         //Render css classes
-        $field->addClass = $attribute === 'addClass' && !empty($field->addClass)
+        $field->addClass = $attribute === 'addClass' && isset($field->addClass)
             ? implode(' ', $field->addClass)
             : '';
 
