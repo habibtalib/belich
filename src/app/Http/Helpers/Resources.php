@@ -1,5 +1,7 @@
 <?php
 
+use Daguilarm\Belich\Facades\Helper;
+
 /*
 |--------------------------------------------------------------------------
 | Resources
@@ -29,8 +31,8 @@ if (!function_exists('getAllTheResourcesFromFolder')) {
             })->filter(static function ($value, $key) {
                 return $value !== '.' && $value !== '..';
             })->map(static function ($file) {
-                $getFile = getFileAttributes($file);
-                return stringPluralLower($getFile);
+                $getFile = Helper::getFileAttributes($file);
+                return Helper::stringPluralLower($getFile);
             });
     }
 }

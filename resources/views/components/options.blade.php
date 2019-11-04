@@ -1,7 +1,7 @@
 {{-- Dropdown option --}}
 <div class="w-full mb-1">
     {{-- Title --}}
-    <div class="w-full p-4 bg-gray-200 border-b border-gray-200 {{ $css ?? null }}">{{ $text ?? emptyResults() }}</div>
+    <div class="w-full p-4 bg-gray-200 border-b border-gray-200 {{ $css ?? null }}">{{ $text ?? Helper::emptyResults() }}</div>
 
     {{-- Container --}}
     <div class="p-2 my-2 text-lg">
@@ -12,7 +12,7 @@
             </select>
         @else
             {{-- No results --}}
-            {{ $custom ?? emptyResults() }}
+            {{ $custom ?? Helper::emptyResults() }}
         @endisset
     </div>
 </div>

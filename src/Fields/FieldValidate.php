@@ -89,7 +89,7 @@ final class FieldValidate
                         $field->label,
                         $field->id ?? null,
                         //Define the rules base on the action
-                        $this->setRules($field)
+                        $this->setRules($field),
                     ]
                 ];
             });
@@ -104,15 +104,29 @@ final class FieldValidate
      */
     private function setRules($field): array
     {
-        if ($this->controllerAction === 'create') {
-            $rules = $field->creationRules ?? $field->rules ?? [];
-        } elseif ($this->controllerAction === 'edit') {
-            $rules = $field->updateRules ?? $field->rules ?? [];
-        } else {
-            $rules = $field->rules ?? [];
-        }
+        return array_merge($this->setCurrentRules($field), $field->defaultRules ?? []);
+    }
 
-        return array_merge($rules, $field->defaultRules ?? []);
+    /**
+     * Get the current rules for each controller action
+     * It is an helper for $this->setRules($field)
+     *
+     * @param string $action
+     *
+     * @return mixed array
+     */
+    public function setCurrentRules($field): array
+    {
+        $rules = [
+            'create' => $field->creationRules ?? $field->rules ?? [],
+            'edit' => $field->updateRules ?? $field->rules ?? [],
+        ];
+
+        return in_array($this->controllerAction, array_keys($rules))
+            //Create or edit rules
+            ? $rules[$this->controllerAction]
+            // Default rules
+            : $field->rules ?? [];
     }
 
     /**
@@ -128,6 +142,7 @@ final class FieldValidate
         return collect($values)
             ->map(static function ($value, $attribute) {
                 if (!empty($value) && !empty($attribute)) {
+                    // For jquery
                     // return sprintf("%s:$('#%s').val()", $attribute, $attribute);
                     return sprintf("%s:document.getElementById('%s').value", $attribute, $attribute);
                 }

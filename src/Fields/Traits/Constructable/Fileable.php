@@ -3,6 +3,7 @@
 namespace Daguilarm\Belich\Fields\Traits\Constructable;
 
 use Daguilarm\Belich\Core\Belich;
+use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Field;
 use Illuminate\Support\Facades\Storage;
 
@@ -18,15 +19,14 @@ trait Fileable
      */
     protected function resolveFile(Field $field, string $value)
     {
-        if (empty($value) || $value === emptyResults()) {
-            return emptyResults();
+        if (empty($value) || $value === Helper::emptyResults()) {
+            return Helper::emptyResults();
         }
 
         //File policy
-        if (auth()->user()->can('file', Belich::getModel())) {
-            // Image by type
-            return $this->resolveFileType($field, $value);
-        }
+        return auth()->user()->can('file', Belich::getModel())
+            ? $this->resolveFileType($field, $value)
+            : false;
     }
 
     /**
@@ -41,10 +41,10 @@ trait Fileable
     {
         // Image field
         if ($field->fileType === 'image') {
-            //Value is not an url
-            if (!filter_var($value, FILTER_VALIDATE_URL)) {
-                $value = Storage::disk($field->disk)->url($value);
-            }
+            //Value is not an url get from storage
+            $value = filter_var($value, FILTER_VALIDATE_URL)
+                ? $value
+                : Storage::disk($field->disk)->url($value);
             //Set the image alt
             $imageAlt = !empty($field->alt) ? sprintf('alt="%s"', $field->alt) : '';
             //Set the css classes

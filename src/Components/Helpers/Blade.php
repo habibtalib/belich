@@ -10,13 +10,6 @@ use Illuminate\Support\Facades\Cookie;
 trait Blade
 {
     /**
-     * @var array
-     */
-    private $attributeFilter = [
-        'addClass' => 'class',
-    ];
-
-    /**
      * Hide content base on screen size
      *
      * @param array $hideFor

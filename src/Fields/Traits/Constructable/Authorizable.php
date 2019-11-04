@@ -14,9 +14,9 @@ trait Authorizable
     private function setAuthorizationForFields(object $fields)
     {
         return $fields->map(function ($field) {
-            if ($this->canSeeField($field)) {
-                return $field;
-            }
+            return $this->canSeeField($field)
+                ? $field
+                : null;
         })
             ->filter();
     }
@@ -44,17 +44,13 @@ trait Authorizable
     private function setAuthorizationFromPolicy(object $sqlResponse)
     {
         //Authorized access to show action
-        if ($this->action === 'show') {
-            if (!request()->user()->can('view', $sqlResponse)) {
-                return abort(403);
-            }
+        if ($this->action === 'show' && !request()->user()->can('view', $sqlResponse)) {
+            return abort(403);
         }
 
         //Authorized access to edit or update action
-        if ($this->action === 'edit' || $this->action === 'update') {
-            if (!request()->user()->can('update', $sqlResponse)) {
-                return abort(403);
-            }
+        if (($this->action === 'edit' || $this->action === 'update') && !request()->user()->can('update', $sqlResponse)) {
+            return abort(403);
         }
     }
 }

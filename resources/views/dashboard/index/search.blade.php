@@ -14,7 +14,7 @@
         {{-- Buttons: create --}}
         @can('create', $request->autorizedModel)
             <belich::button
-                :title="icon('plus', trans('belich::buttons.crud.create'))"
+                :title="Helper::icon('plus', trans('belich::buttons.crud.create'))"
                 :url="Belich::actionRoute('create')"
                 class="mx-2"
                 color="secondary"

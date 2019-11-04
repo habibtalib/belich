@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\Cookie;
 trait Forms
 {
     /**
+     * @var array
+     */
+    private $attributeFilter = [
+        'addClass' => 'class',
+    ];
+
+    /**
      * Helper for the blade directive @optionFromArray
      * Set the default value for a empty string or result
      *
@@ -44,36 +51,52 @@ trait Forms
     private function setFormAttribute(Field $field, string $attribute, $default = null): string
     {
         //Render css classes
-        if ($attribute === 'addClass') {
-            $field->addClass = !empty($field->addClass)
-                ? implode(' ', $field->addClass)
-                : '';
+        $field = $this->addClassAttribute($field, $attribute);
+
+        //Add classes
+        $value = (isset($field->{$attribute}) && $attribute === 'addClass' && isset($default))
+            ? $field->{$attribute} . ', ' . $default
+            : $field->{$attribute} ?? $default;
+
+        //Apply the html format. Ex: Change the attribute addClass to class (for html render)...
+        $attribute = str_replace(array_keys($this->attributeFilter), array_values($this->attributeFilter), $attribute);
+
+        //Pattern mask
+        if ($attribute === 'mask') {
+            return sprintf('data-mask="%s"', $value);
         }
+
         //Checked field
         if ($attribute === 'checked') {
             return $field->value ? 'checked="checked"' : '';
         }
-        //Apply the format
-        $filterAttribute = str_replace(array_keys($this->attributeFilter), array_values($this->attributeFilter), $attribute);
-        //Add classes
-        if (isset($field->{$attribute}) && $attribute === 'addClass' && isset($default)) {
-            $value = $field->{$attribute} . ', ' . $default;
-        //Value or default value
-        } else {
-            $value = $field->{$attribute} ?? $default;
-        }
-        //Pattern mask
-        if ($filterAttribute === 'mask') {
-            return sprintf('data-mask="%s"', $value);
-        }
 
         return $value
-            ? sprintf('%s="%s"', $filterAttribute, $value)
+            ? sprintf('%s="%s"', $attribute, $value)
             : '';
     }
 
     /**
-     * Render the field attribute base on the value
+     * Render the class attribute
+     *
+     * @param Daguilarm\Belich\Fields\Field $field
+     * @param string $attribute
+     *
+     * @return Daguilarm\Belich\Fields\Field
+     */
+    private function addClassAttribute($field, $attribute): Field
+    {
+        //Render css classes
+        $field->addClass = $attribute === 'addClass' && !empty($field->addClass)
+            ? implode(' ', $field->addClass)
+            : '';
+
+        return $field;
+    }
+
+    /**
+     * Render the field attribute base on the value with a prefix
+     * This fields is mostly for Coordenate fields
      *
      * @param Daguilarm\Belich\Fields\Field $field
      * @param string $prefix
@@ -85,26 +108,40 @@ trait Forms
         return collect(explode(' ', $field->render))->map(static function ($item) use ($prefix) {
             //Get the fields
             $item = explode('=', $item);
-            //Prefixed dusk field
-            if ($item[0] === 'dusk') {
-                $value = explode('-', $item[1]);
-                //Format: dusk-$prefix-$attribute
-                array_splice($value, 1, 0, $prefix);
-                return [$item[0] => implode('-', $value)];
-            }
-            //Check for regular fields
-            if (count($item) > 1) {
-                return [$item[0] => implode('_', [$prefix, $item[1]])];
-            }
-            //Fields: readonly and disabled (this fields don't has an structure like: attribute=value)
-            return $item[0];
+
+            return count($item) > 1
+                //Prefixed regular fields
+                ? [$item[0] => implode('_', [$prefix, $item[1]])]
+                //Prefixed dusk field
+                : $this->renderWithPrefixForDuskAndReadonlyAndDisabled($item, $prefix);
         })
             ->map(static function ($value) {
-                if (is_array($value)) {
-                    return sprintf('%s=%s', array_keys($value)[0], array_values($value)[0]);
-                }
-                return $value;
+                return is_array($value)
+                    ? sprintf('%s=%s', array_keys($value)[0], array_values($value)[0])
+                    : $value;
             })
             ->implode(' ');
+    }
+
+    /**
+     * Helper for renderWithPrefix()
+     * This fields is mostly for Coordenate fields
+     *
+     * @param Daguilarm\Belich\Fields\Field $field
+     * @param string $prefix
+     *
+     * @return string
+     */
+    private function renderWithPrefixForDuskAndReadonlyAndDisabled($item, $prefix)
+    {
+        $value = explode('-', $item[1]);
+
+        //Format: dusk-$prefix-$attribute
+        array_splice($value, 1, 0, $prefix);
+
+        return $item[0] === 'dusk'
+            ? [$item[0] => implode('-', $value)]
+            //Fields: readonly and disabled (this fields don't has an structure like: attribute=value)
+            : $item[0];
     }
 }

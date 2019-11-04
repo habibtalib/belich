@@ -1,6 +1,6 @@
 {{-- Conditional form --}}
 @if(!empty($form))
-    <form method="POST" id="form-{{ \Illuminate\Support\Str::kebab($id) }}" name="form-{{ \Illuminate\Support\Str::kebab($id) }}" action="{{ $action }}">
+    <form method="POST" id="form-{{ Helper::stringTokebab($id) }}" name="form-{{ Helper::stringTokebab($id) }}" action="{{ $action }}">
         {{-- Form CSRF --}}
         @csrf
         {{-- Form method field --}}

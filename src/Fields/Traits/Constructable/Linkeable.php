@@ -131,25 +131,6 @@ trait Linkeable
     }
 
     /**
-     * Set value base on direction
-     *
-     * @param string $key
-     * @param string $value
-     *
-     * @return string
-     */
-    private function setValueFromDirection(string $key, string $value): string
-    {
-        //Set only the allowed direction values
-        if ($value !== 'DESC' && $value !== 'ASC') {
-            return 'DESC';
-        }
-
-        //Change order
-        return ($value === 'DESC') ? 'ASC' : 'DESC';
-    }
-
-    /**
      * Set the values for order and direction
      *
      * @param Daguilarm\Belich\Fields\Field $field
@@ -171,5 +152,21 @@ trait Linkeable
         }
 
         return $value;
+    }
+
+    /**
+     * Set value base on direction
+     *
+     * @param string $key
+     * @param string $value
+     *
+     * @return string
+     */
+    private function setValueFromDirection(string $key, string $value): string
+    {
+        //Change order
+        return $value === 'DESC'
+            ? 'ASC'
+            : 'DESC';
     }
 }

@@ -8,8 +8,7 @@ use Illuminate\Support\Str;
  * @return string
  */
 Blade::directive('actionIcon', static function ($arguments) {
-    //App\Http\Helpers\Icons.php
-    return "<?php echo actionIcon($arguments); ?>";
+    return "<?php echo Helper::actionIcon($arguments); ?>";
 });
 
 /**
@@ -22,8 +21,7 @@ Blade::directive('icon', static function ($arguments) {
     $text = isset($list[1]) ? trans($list[1]) : '';
     $css = isset($list[2]) ? $list[2] : '';
 
-    //App\Http\Helpers\Icons.php
-    return "<?php echo icon('$list[0]', '$text', '$css'); ?>";
+    return "<?php echo Helper::icon('$list[0]', '$text', '$css'); ?>";
 });
 
 /**
@@ -36,11 +34,10 @@ Blade::directive('listTextFromArray', static function ($arguments) {
     $text = explode(',', str_replace(['(',')',' ', "'"], '', $arguments));
     $list = collect(trans($text[0]))
         ->map(static function ($item) {
-            return sprintf('<div>%s</div>', icon('check-square', $item));
+            return sprintf('<div>%s</div>', Helper::icon('check-square', $item));
         })
         ->implode('');
 
-    //App\Http\Helpers\Icons.php
     return "<?php echo '$list'; ?>";
 });
 
@@ -51,7 +48,6 @@ Blade::directive('listTextFromArray', static function ($arguments) {
  * @return string
  */
 Blade::if('hasMetrics', static function ($request) {
-    //App\Http\Helpers\Blade.php
     return Helper::hasMetrics($request);
 });
 
@@ -62,7 +58,6 @@ Blade::if('hasMetrics', static function ($request) {
  * @return string
  */
 Blade::if('hasSoftdelete', static function ($model) {
-    //App\Http\Helpers\Models.php
     return Helper::hasSoftdelete($model);
 });
 
@@ -73,7 +68,6 @@ Blade::if('hasSoftdelete', static function ($model) {
  * @return string
  */
 Blade::if('hasSoftdeletedResults', static function ($model) {
-    //App\Http\Helpers\Models.php
     return Helper::hasSoftdeletedResults($model);
 });
 

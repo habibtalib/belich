@@ -11,11 +11,9 @@ trait Models
      */
     private function hasSoftdelete($model): bool
     {
-        if (method_exists($model, 'trashed')) {
-            return true;
-        }
-
-        return false;
+        return method_exists($model, 'trashed')
+            ? true
+            : false;
     }
 
     /**
@@ -25,11 +23,9 @@ trait Models
      */
     private function hasSoftdeletedResults($model): bool
     {
-        if (method_exists($model, 'trashed') && $model->trashed()) {
-            return true;
-        }
-
-        return false;
+        return (method_exists($model, 'trashed') && $model->trashed())
+            ? true
+            : false;
     }
 
 }

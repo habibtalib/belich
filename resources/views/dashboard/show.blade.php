@@ -24,7 +24,7 @@
             {{-- Button: create --}}
             @can('create', $request->autorizedModel)
                 <belich::button
-                    :title="icon('plus')"
+                    :title="Helper::icon('plus')"
                     :url="Belich::actionRoute('create')"
                     dusk="button-action-create"
                     class="mr-2"
@@ -35,7 +35,7 @@
             {{-- Button: edit --}}
             @can('update', $request->autorizedModel)
                 <belich::button
-                    :title="icon('edit')"
+                    :title="Helper::icon('edit')"
                     :url="Belich::actionRoute('edit', $request->id)"
                     dusk="button-action-edit"
                     color="icon"

@@ -30,7 +30,7 @@ trait Metrics
      */
     private function hasMetricsLegends(object $request): bool
     {
-        return (($request->legend_h || $request->legend_v) && $request->type !== 'pie')
+        return ($request->legend_h || $request->legend_v) && $request->type !== 'pie'
             ? true
             : false;
     }

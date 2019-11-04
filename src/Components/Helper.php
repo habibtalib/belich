@@ -3,13 +3,16 @@
 namespace Daguilarm\Belich\Components;
 
 use Daguilarm\Belich\Components\Helpers\Blade;
+use Daguilarm\Belich\Components\Helpers\Files;
 use Daguilarm\Belich\Components\Helpers\Forms;
+use Daguilarm\Belich\Components\Helpers\Icons;
 use Daguilarm\Belich\Components\Helpers\Metrics;
 use Daguilarm\Belich\Components\Helpers\Models;
+use Daguilarm\Belich\Components\Helpers\Strings;
 
 class Helper
 {
-    use Blade, Forms, Metrics, Models;
+    use Blade, Icons, Files, Forms, Metrics, Models, Strings;
 
     /**
      * Generate helper's methods

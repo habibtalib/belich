@@ -35,11 +35,13 @@ trait Callbackable
      */
     private function displayCallback(Field $field, $value = '')
     {
-        if (!empty($field->displayCallback)) {
-            foreach ($field->displayCallback as $callback) {
-                if (is_callable($callback)) {
-                    $value = call_user_func($callback, $value);
-                }
+        if (empty($field->displayCallback)) {
+            return $value;
+        }
+
+        foreach ($field->displayCallback as $callback) {
+            if (is_callable($callback)) {
+                $value = call_user_func($callback, $value);
             }
         }
 

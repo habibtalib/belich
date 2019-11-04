@@ -29,13 +29,13 @@ trait Redirectable
             //As array or will fail...
             //The resource has been successfuly :action
             ? $redirect
-            ->withMessageHeader(trans('belich::messages.crud.success.title'))
-            ->withSuccess([trans('belich::messages.crud.success.text', ['action' => $success])])
+                ->withMessageHeader(trans('belich::messages.crud.success.title'))
+                ->withSuccess([trans('belich::messages.crud.success.text', ['action' => $success])])
             //Is array by default so no need...
             //An error occurred during the :action process
             : $redirect
-            ->withMessageHeader(trans('belich::messages.crud.fail.title'))
-            ->withErrors(trans('belich::messages.crud.fail.text', ['action' => $error, 'email' => config('mail.from.address')]));
+                ->withMessageHeader(trans('belich::messages.crud.fail.title'))
+                ->withErrors(trans('belich::messages.crud.fail.text', ['action' => $error, 'email' => config('mail.from.address')]));
     }
 
     /**

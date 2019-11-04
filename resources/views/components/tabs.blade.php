@@ -6,8 +6,8 @@
             <li class="inline m-0">
                 <a
                     id="menu_{{ stringTokebab($label) }}"
-                    onclick="javascript:switchTab('{{ stringTokebab($label) }}', '{{ md5(stringTokebab($label)) }}');"
-                    href="#{{ md5(stringTokebab($label)) }}"
+                    onclick="javascript:switchTab('{{ Helper::stringTokebab($label) }}', '{{ md5(Helper::stringTokebab($label)) }}');"
+                    href="#{{ md5(Helper::stringTokebab($label)) }}"
                     class="p-4 px-6 text-gray-700 border border-b-0 border-gray-200 {{ $loop->first ? 'active' : '' }}"
                 >
                     {{ $label }}
@@ -18,7 +18,7 @@
 
     {{-- List the tab containers --}}
     @foreach($tabs as $label => $panel)
-        <div class="content {{ $loop->first ? 'block' : 'hidden' }}" id="content_{{ stringTokebab($label) }}">
+        <div class="content {{ $loop->first ? 'block' : 'hidden' }}" id="content_{{ Helper::stringTokebab($label) }}">
 
             {{-- Form --}}
             @isset($toField)
