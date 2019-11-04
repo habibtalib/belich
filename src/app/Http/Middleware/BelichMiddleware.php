@@ -5,7 +5,6 @@ namespace Daguilarm\Belich\App\Http\Middleware;
 use Closure;
 use Daguilarm\Belich\Core\Belich;
 use Daguilarm\Belich\Facades\Helper;
-use Illuminate\Support\Facades\Cookie;
 
 class BelichMiddleware
 {
@@ -20,8 +19,10 @@ class BelichMiddleware
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Closure  $next
+     *
+     * @return object
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next): object
     {
         // Authorized access to resource
         if (Belich::accessToResource() === false) {

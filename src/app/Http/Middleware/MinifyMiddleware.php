@@ -11,6 +11,9 @@ use Daguilarm\Belich\Facades\Belich;
  */
 class MinifyMiddleware
 {
+    /**
+     * @var array
+     */
     private $htmlFilters = [
         // Remove HTML comments except IE conditions
         '/<!--(?!\s*(?:\[if [^\]]+]|<!|>))(?:(?!-->).)*-->/s' => '',
@@ -27,6 +30,9 @@ class MinifyMiddleware
         '/(\.+\/)/' => '',
     ];
 
+    /**
+     * @var array
+     */
     private $htmlSpaces = [
         '{ ' => '{',
         ' }' => '}',
@@ -38,6 +44,9 @@ class MinifyMiddleware
         'while (' => 'while(',
     ];
 
+    /**
+     * @var array
+     */
     private $exceptedActions = [
         'download'
     ];
@@ -47,8 +56,10 @@ class MinifyMiddleware
      *
      * @param \Illuminate\Http\Request $request
      * @param \Closure $next
+     *
+     * @return object
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next): object
     {
         /** @var Response $response */
         $response = $next($request);
