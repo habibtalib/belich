@@ -5,7 +5,7 @@
     @include('belich::partials.navigation.breadcrumbs')
 
     {{-- Form --}}
-    <form method="POST" enctype="multipart/form-data" name="form-{{ $request->name }}-create" id="form-{{ $request->name }}-create" action="{{ toRoute('store') }}">
+    <form method="POST" enctype="multipart/form-data" name="form-{{ $request->name }}-create" id="form-{{ $request->name }}-create" action="{{ Helper::toRoute('store') }}">
         @csrf
 
         {{-- Building tabs --}}

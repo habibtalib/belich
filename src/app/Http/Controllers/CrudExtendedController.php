@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Daguilarm\Belich\App\Http\Controllers\Traits\Deletedable;
 use Daguilarm\Belich\App\Http\Controllers\Traits\Redirectable;
 use Daguilarm\Belich\Core\Belich;
+use Daguilarm\Belich\Facades\Helper;
 use Illuminate\Http\Request;
 
 class CrudExtendedController extends Controller
@@ -55,7 +56,7 @@ class CrudExtendedController extends Controller
         //Authorization
         $this->authorize('delete', $this->model);
 
-        $deleteSelected = $this->model->whereIn('id', fieldToArray($request->delete_selected))->delete();
+        $deleteSelected = $this->model->whereIn('id', Helper::fieldToArray($request->delete_selected))->delete();
 
         return $this->redirectToAction($deleteSelected, $actionSuccess = 'Mass deleted', $actionFail = 'Mass deleting');
     }

@@ -4,6 +4,7 @@ namespace Daguilarm\Belich\App\Http\Middleware;
 
 use Closure;
 use Daguilarm\Belich\Core\Belich;
+use Daguilarm\Belich\Facades\Helper;
 use Illuminate\Support\Facades\Cookie;
 
 class BelichMiddleware
@@ -32,12 +33,12 @@ class BelichMiddleware
 
         // Default results per page cookie
         if (!$request->cookie('belich_perPage')) {
-            $response = $response->withCookie(cookie('belich_perPage', $this->perPage, setTimeForCookie()));
+            $response = $response->withCookie(cookie('belich_perPage', $this->perPage, Helper::setTimeForCookie()));
         }
 
         // Default trashed results cookie
         if (!$request->cookie('belich_withTrashed')) {
-            $response = $response->withCookie(cookie('belich_withTrashed', $this->withTrashed, setTimeForCookie()));
+            $response = $response->withCookie(cookie('belich_withTrashed', $this->withTrashed, Helper::setTimeForCookie()));
         }
 
         return $response;

@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Components\Export;
 
+use Daguilarm\Belich\Facades\Helper;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
@@ -20,7 +21,7 @@ class Eloquent
         if ($request->quantity === 'selected') {
             return static::model($request)
                 //App\Http\Helpers\Utils
-                ->whereIn('id', fieldToArray($request->exports_selected))
+                ->whereIn('id', Helper::fieldToArray($request->exports_selected))
                 ->get();
         }
 

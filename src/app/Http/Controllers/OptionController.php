@@ -3,6 +3,7 @@
 namespace Daguilarm\Belich\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Daguilarm\Belich\Facades\Helper;
 use Illuminate\Http\Request;
 
 class OptionController extends Controller
@@ -20,12 +21,12 @@ class OptionController extends Controller
             ->back();
 
         if (!empty($request->perPage)) {
-            $cookie = cookie('belich_perPage', $request->perPage, setTimeForCookie());
+            $cookie = cookie('belich_perPage', $request->perPage, Helper::setTimeForCookie());
             $redirect = $redirect->withCookie($cookie);
         }
 
         if (!empty($request->withTrashed)) {
-            $cookie = cookie('belich_withTrashed', $request->withTrashed, setTimeForCookie());
+            $cookie = cookie('belich_withTrashed', $request->withTrashed, Helper::setTimeForCookie());
             $redirect = $redirect->withCookie($cookie);
         }
 
