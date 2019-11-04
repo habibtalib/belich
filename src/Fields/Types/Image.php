@@ -20,17 +20,6 @@ class Image extends File
     public $addCss;
 
     /**
-     * Create a new field.
-     *
-     * @param  string|null  $name
-     * @param  string|null  $attribute
-     */
-    public function __construct($name = null, $attribute = null)
-    {
-        parent::__construct($name, $attribute);
-    }
-
-    /**
      * Set image alt value
      *
      * @param string $alt
