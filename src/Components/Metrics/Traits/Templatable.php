@@ -1,8 +1,8 @@
 <?php
 
-namespace Daguilarm\Belich\Components\Metrics;
+namespace Daguilarm\Belich\Components\Metrics\Traits;
 
-trait Templates
+trait Templatable
 {
     /*
     |--------------------------------------------------------------------------
