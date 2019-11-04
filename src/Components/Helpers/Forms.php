@@ -29,7 +29,7 @@ trait Forms
                 //Default values
                 $defaultValue = !is_array($value) ? strtolower($label) : $value;
                 $selected = ($cookie == $defaultValue || $cookie == $value)
-                    ? ' ' . 'selected'
+                    ? ' selected'
                     : '';
 
                 return sprintf('<option value="%s"%s>%s</option>', $defaultValue, $selected, $label);
