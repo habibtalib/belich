@@ -66,7 +66,7 @@ trait Forms
      *
      * @param Daguilarm\Belich\Fields\Field $field
      * @param string $attribute
-     * @param null|string $default
+     * @param string|null $default
      *
      * @return string
      */

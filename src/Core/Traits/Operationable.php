@@ -7,7 +7,7 @@ trait Operationable
     /**
      * Count the total results
      *
-     * @param  array|object $value
+     * @param  mixed $value
      * @param  int $initialValue
      *
      * @return int

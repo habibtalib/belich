@@ -54,7 +54,8 @@ class d_model_b extends Resources {
      * @param  \Illuminate\Http\Request  $request
      * @return Illuminate\Support\Collection
      */
-    public function fields(Request $request) {
+    public function fields(Request $request): array
+    {
         return [
             ID::make('Id')
                 ->sortable(),
@@ -67,8 +68,9 @@ class d_model_b extends Resources {
      * @param  \Illuminate\Http\Request  $request
      * @return Illuminate\Support\Collection
      */
-    public function cards(Request $request) {
-        return;
+    public function cards(Request $request): array
+    {
+        return [];
     }
 
     /**
@@ -77,7 +79,8 @@ class d_model_b extends Resources {
      * @param  \Illuminate\Http\Request  $request
      * @return Illuminate\Support\Collection
      */
-    public function metrics(Request $request) {
-        return;
+    public function metrics(Request $request): array
+    {
+        return [];
     }
 }

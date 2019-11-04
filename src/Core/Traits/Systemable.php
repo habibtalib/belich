@@ -28,7 +28,7 @@ trait Systemable
         $baseMiddleware = ['belich', 'minify'];
 
         //No results
-        if (empty(config('belich.middleware'))) {
+        if (!config('belich.middleware')) {
             return $baseMiddleware;
         }
 
@@ -82,6 +82,6 @@ trait Systemable
      */
     public static function version(): string
     {
-        return static::$version;
+        return self::$version;
     }
 }

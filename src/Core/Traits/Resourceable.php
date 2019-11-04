@@ -258,7 +258,7 @@ trait Resourceable
      *
      * @return Illuminate\Support\Collection
      */
-    private function resourceValues(?string $className, $forNavigation = false): Collection
+    private function resourceValues(?string $className, bool $forNavigation = false): Collection
     {
         //Get class name from request or from live search
         $className = static::requestFromSearch()

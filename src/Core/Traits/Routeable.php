@@ -43,7 +43,7 @@ trait Routeable
         return is_null(Request::route())
             //Hack for artisan route:list
             //I don't know why... WTF!
-            ?  ['dashboard', 'users', 'index']
+            ? ['dashboard', 'users', 'index']
             //Get route name
             : explode('.', Request::route()->getName());
     }

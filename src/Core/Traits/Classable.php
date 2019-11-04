@@ -15,9 +15,7 @@ trait Classable
     {
         $resource = request()->query('resourceName');
 
-        $result = !empty($resource)
-            ? $resource
-            : static::resourceName();
+        $result = $resource ?? static::resourceName();
 
         return static::classFormat($result);
     }

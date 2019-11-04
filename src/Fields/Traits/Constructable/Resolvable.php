@@ -17,7 +17,7 @@ trait Resolvable
      * @param  Daguilarm\Belich\Fields\Field $attribute
      * @param  object $data
      *
-     * @return null|string
+     * @return string|null
      */
     public function resolve(Field $field, ?object $data = null): ?string
     {
@@ -42,9 +42,9 @@ trait Resolvable
      *
      * @param  Daguilarm\Belich\Fields\Field $field
      * @param object $data
-     * @param  null|string $value
+     * @param  string|null $value
      *
-     * @return null|string
+     * @return string|null
      */
     private function resolveValue(Field $field, ?object $data, ?string $value): ?string
     {
@@ -88,7 +88,7 @@ trait Resolvable
      * @param  Daguilarm\Belich\Fields\Field $field
      * @param  $value
      *
-     * @return null|string
+     * @return string|null
      */
     protected function resolveUsingLabels(Field $field, $value): ?string
     {
@@ -104,7 +104,7 @@ trait Resolvable
      * @param  Daguilarm\Belich\Fields\Field $field
      * @param  null|object $data
      *
-     * @return null|string
+     * @return string|null
      */
     private function resolveRelationship(Field $field, ?object $data): ?string
     {

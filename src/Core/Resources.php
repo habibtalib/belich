@@ -9,6 +9,7 @@ use Daguilarm\Belich\Core\Traits\Resourceable;
 use Daguilarm\Belich\Core\Traits\Routeable;
 use Daguilarm\Belich\Core\Traits\Systemable;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
 
 abstract class Resources extends ResourcesRepository
 {
@@ -23,19 +24,19 @@ abstract class Resources extends ResourcesRepository
      *
      * @param \Illuminate\Http\Request $request
      */
-    abstract public function fields(Request $request);
+    abstract public function fields(Request $request): array;
 
     /**
      * Set the custom cards
      *
      * @param  \Illuminate\Http\Request  $request
      */
-    abstract public static function cards(Request $request);
+    abstract public static function cards(Request $request): array;
 
     /**
      * Set the custom metrics cards
      *
      * @param  \Illuminate\Http\Request  $request
      */
-    abstract public static function metrics(Request $request);
+    abstract public static function metrics(Request $request): array;
 }

@@ -39,9 +39,9 @@ trait Connectable
                         return $query;
                     }
                     //Get the results
-                    foreach (self::requestTableFields() as $field) {
+                    collect(self::requestTableFields())->each(function ($field): void {
                         $query->orWhere($field, 'LIKE', '%' . $this->request->query('query') . '%');
-                    }
+                    });
                 })
 
                 //Order query

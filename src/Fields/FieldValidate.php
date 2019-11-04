@@ -23,7 +23,7 @@ final class FieldValidate
      *
      * @var array
      */
-    private static $stubReplace = [
+    private $stubReplace = [
         ':resource',
         ':action',
         ':values',
@@ -227,7 +227,7 @@ final class FieldValidate
         ];
 
         //Get the javascript code
-        $script = str_replace(static::$stubReplace, $stubValues, $stub);
+        $script = str_replace($this->stubReplace, $stubValues, $stub);
 
         //Minify the javascript code
         return $this->javascriptMinify($script);

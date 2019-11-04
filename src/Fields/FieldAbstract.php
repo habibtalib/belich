@@ -148,7 +148,7 @@ class FieldAbstract
     /**
      * The field value (Resolved and updated...)
      *
-     * @var null|string
+     * @var string|null
      */
     public $value;
 

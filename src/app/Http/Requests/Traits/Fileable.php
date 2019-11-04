@@ -33,11 +33,11 @@ trait Fileable
      *
      * @param string $attribute [Field name]
      * @param array $values
-     * @param null|object $model
+     * @param object|null $model
      *
-     * @return self|null
+     * @return void
      */
-    private function uploadFile(string $attribute, $model, array $values)
+    private function uploadFile(string $attribute, $model, array $values): void
     {
         //Get the file
         $file = $this->{$attribute};
@@ -56,13 +56,13 @@ trait Fileable
     /**
      * Store file
      *
-     * @param null|object $file
+     * @param object|null $file
      * @param array $values
-     * @param null|object $model
+     * @param object|null $model
      *
-     * @return null|string
+     * @return string|null
      */
-    private function storeFile(string $attribute, $file, $model, array $values)
+    private function storeFile(string $attribute, $file, $model, array $values): ?string
     {
         //Get default values
         $fileName = $this->fileName($file, $values);
@@ -111,7 +111,7 @@ trait Fileable
     private function deletePrevius(string $attribute, string $disk, $model): void
     {
         //Delete the previus file from storage
-        if (!empty($model) && is_object($model)) {
+        if (isset($model) && is_object($model)) {
             Storage::disk($disk)
                 ->delete($model->{$attribute});
         }
