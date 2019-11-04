@@ -19,21 +19,22 @@ trait Stylable
         //Set the grid
         $grid = $metric->grid === false ? 'none' : 'var(--10)';
 
+        $css = <<<EOD
+            #graph-%s .ct-grids line{stroke:%s
+            #graph-%s .ct-label{font-weight:bold;fill:white}
+            #graph-%s .ct-series .ct-bar,
+            #graph-%s .ct-series .ct-line,
+            #graph-%s .ct-series .ct-slice-donut {
+                stroke:%s;
+                stroke-linecap:%s;
+            }
+            #graph-%s .ct-series .ct-area {
+                fill:%s;
+            }
+        EOD;
+
         return sprintf(
-            '#graph-%s .ct-grids line{stroke:%s}' .
-            '#graph-%s .ct-label{font-weight:bold;fill:white}' .
-            '#graph-%s .ct-series .ct-bar,' .
-            '#graph-%s .ct-series .ct-line,' .
-            '#graph-%s .ct-series .ct-point,' .
-            '#graph-%s .ct-series .ct-slice-donut' .
-            '{' .
-                'stroke:%s;' .
-                'stroke-linecap:%s;' .
-            '}' .
-            '#graph-%s .ct-series .ct-area' .
-            '{' .
-                'fill:%s;' .
-            '}',
+            $css,
             $key, $grid,
             $key,
             $key,
