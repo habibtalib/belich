@@ -19,7 +19,7 @@ trait Utils
             ->map(static function ($value) {
                 // Only numeric values
                 if (!empty($value) && is_numeric($value)) {
-                    return (integer) $value;
+                    return (int) $value;
                 }
             })
             ->filter()
