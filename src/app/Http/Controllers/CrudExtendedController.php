@@ -10,7 +10,7 @@ use Daguilarm\Belich\Facades\Helper;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 
-class CrudExtendedController extends Controller
+final class CrudExtendedController extends Controller
 {
     use Deletedable, Redirectable;
 

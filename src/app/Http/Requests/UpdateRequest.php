@@ -6,7 +6,7 @@ use Daguilarm\Belich\App\Http\Requests\Traits\Casteable;
 use Daguilarm\Belich\App\Http\Requests\Traits\Fileable;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateRequest extends FormRequest
+final class UpdateRequest extends FormRequest
 {
     use Casteable, Fileable;
 

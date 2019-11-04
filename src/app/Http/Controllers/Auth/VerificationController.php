@@ -7,7 +7,7 @@ use Daguilarm\Belich\Core\Belich;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\View\View;
 
-class VerificationController extends Controller
+final class VerificationController extends Controller
 {
     /*
     |--------------------------------------------------------------------------

@@ -2,7 +2,7 @@
 
 namespace Daguilarm\Belich\Core;
 
-class ResourcesRepository
+abstract class ResourcesRepository
 {
     /**
      * @var bool

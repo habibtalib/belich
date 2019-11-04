@@ -6,7 +6,7 @@ use Closure;
 use Daguilarm\Belich\Core\Belich;
 use Daguilarm\Belich\Facades\Helper;
 
-class BelichMiddleware
+final class BelichMiddleware
 {
     /** @var int */
     private $perPage = 20;

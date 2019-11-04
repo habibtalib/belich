@@ -7,7 +7,7 @@ use Daguilarm\Belich\Core\Belich;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\View\View;
 
-class ForgotPasswordController extends Controller
+final class ForgotPasswordController extends Controller
 {
     /*
     |--------------------------------------------------------------------------

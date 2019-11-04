@@ -7,7 +7,7 @@ use Daguilarm\Belich\Facades\Helper;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-class OptionController extends Controller
+final class OptionController extends Controller
 {
     /**
      * Configure the Belich options

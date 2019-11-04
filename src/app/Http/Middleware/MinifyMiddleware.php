@@ -9,7 +9,7 @@ use Daguilarm\Belich\Facades\Belich;
  * @author: https://github.com/nckg/laravel-minify-html
  * It is not integrated as a package due to its simplicity (but it is a real awesome!)
  */
-class MinifyMiddleware
+final class MinifyMiddleware
 {
     /**
      * @var array

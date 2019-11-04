@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\App\Http\Middleware;
 
 use Closure;
 
-class HttpsMiddleware
+final class HttpsMiddleware
 {
     /**
      * Force to secure URL

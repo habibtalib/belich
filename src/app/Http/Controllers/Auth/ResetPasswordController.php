@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Daguilarm\Belich\Core\Belich;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
-class ResetPasswordController extends Controller
+final class ResetPasswordController extends Controller
 {
     /*
     |--------------------------------------------------------------------------

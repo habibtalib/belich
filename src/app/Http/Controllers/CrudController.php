@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\View\View;
 
-class CrudController extends Controller
+final class CrudController extends Controller
 {
     use Redirectable;
 

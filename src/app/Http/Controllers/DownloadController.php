@@ -7,7 +7,7 @@ use Daguilarm\Belich\Components\Export\Excel;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
-class DownloadController extends Controller
+final class DownloadController extends Controller
 {
     /**
      * Configure the Belich options

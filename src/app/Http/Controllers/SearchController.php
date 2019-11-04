@@ -7,7 +7,7 @@ use Daguilarm\Belich\App\Http\Requests\SearchRequest;
 use Daguilarm\Belich\Core\Belich;
 use Illuminate\Http\RedirectResponse;
 
-class SearchController extends Controller
+final class SearchController extends Controller
 {
     /**
      * Validate fields from ajax

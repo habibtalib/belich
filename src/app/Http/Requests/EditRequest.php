@@ -6,7 +6,7 @@ use Daguilarm\Belich\Core\Belich;
 use Daguilarm\Belich\Fields\FieldValidate;
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditRequest extends FormRequest
+final class EditRequest extends FormRequest
 {
     /**
      * List the resource values for detail and index.

@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
-class RegisterController extends Controller
+final class RegisterController extends Controller
 {
     /*
     |--------------------------------------------------------------------------

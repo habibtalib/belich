@@ -7,7 +7,7 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class ValidationController extends Controller
+final class ValidationController extends Controller
 {
     /**
      * Validate fields from ajax

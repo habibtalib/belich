@@ -5,7 +5,7 @@ namespace Daguilarm\Belich\App\Http\Requests;
 use Daguilarm\Belich\Core\Belich;
 use Illuminate\Foundation\Http\FormRequest;
 
-class IndexRequest extends FormRequest
+final class IndexRequest extends FormRequest
 {
     /**
      * List the resource values for detail and index.
