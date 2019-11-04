@@ -17,7 +17,7 @@ trait Dateable
     {
         foreach (range(1, 24) as $hour) {
             $range[] = $hour;
-        };
+        }
 
         return $range;
     }
@@ -31,7 +31,7 @@ trait Dateable
     {
         foreach (range(1, static::getDaysOfTheMonth()) as $day) {
             $range[] = $day;
-        };
+        }
 
         return $range;
     }
@@ -45,7 +45,7 @@ trait Dateable
     {
         foreach (range(1, 12) as $month) {
             $range[] = $month;
-        };
+        }
 
         return $range;
     }
@@ -62,7 +62,7 @@ trait Dateable
 
         foreach (range($firstYear, $lastYear) as $month) {
             $range[] = $month;
-        };
+        }
 
         return $range;
     }

@@ -19,7 +19,8 @@ trait Fileable
     {
         $file = $this->request->get('__file');
 
-        $response = collect($file)
+        //Upload the files
+        collect($file)
             ->map(function ($values, $key) use ($model) {
                 return $this->uploadFile($key, $model, $values);
             });
@@ -111,8 +112,8 @@ trait Fileable
     {
         //Delete the previus file from storage
         if (!empty($model) && is_object($model)) {
-            $previus = $model->{$attribute};
-            $delete = Storage::disk($disk)->delete($previus);
+            Storage::disk($disk)
+                ->delete($model->{$attribute});
         }
     }
 }

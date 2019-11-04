@@ -230,6 +230,6 @@ final class FieldValidate
         $script = str_replace(static::$stubReplace, $stubValues, $stub);
 
         //Minify the javascript code
-        return self::javascriptMinify($script);
+        return $this->javascriptMinify($script);
     }
 }

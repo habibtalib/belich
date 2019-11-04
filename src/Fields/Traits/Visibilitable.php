@@ -198,8 +198,8 @@ trait Visibilitable
      */
     protected function hideFromAll(): void
     {
-        foreach ($this->visibility as $attribute => $value) {
-            $this->visibility[$attribute] = false;
+        foreach ($this->visibility as $key => $value) {
+            $this->visibility[$key] = false;
         }
     }
 
@@ -210,8 +210,8 @@ trait Visibilitable
      */
     protected function showInAll(): void
     {
-        foreach ($this->visibility as $attribute => $value) {
-            $this->visibility[$attribute] = true;
+        foreach ($this->visibility as $key => $value) {
+            $this->visibility[$key] = true;
         }
     }
 }
