@@ -31,6 +31,6 @@ return [
         ],
     ],
     'resources' => [
-        'no_results' => 'No results found for the resource' . ': ' . ':resource.',
+        'no_results' => 'No results found for the resource: :resource.',
     ],
 ];
