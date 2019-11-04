@@ -11,10 +11,11 @@ class ShowRequest extends FormRequest
      * List the resource values for detail and index.
      *
      * @param Daguilarm\Belich\Core\Belich $belich
+     * @param int $id
      *
      * @return self
      */
-    public function data(Belich $belich, $id): self
+    public function data(Belich $belich, int $id): self
     {
         //Get the values for the resource
         $data = $belich->currentResource($this);
@@ -36,7 +37,7 @@ class ShowRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return true;
     }
@@ -46,7 +47,7 @@ class ShowRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [];
     }

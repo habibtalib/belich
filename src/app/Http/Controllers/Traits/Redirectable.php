@@ -13,10 +13,11 @@ trait Redirectable
      * @param bool $condition
      * @param string $success
      * @param string $error
+     * @param string $id
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function redirectToAction(bool $condition, string $success, string $error, $id = ''): RedirectResponse
+    protected function redirectToAction(bool $condition, string $success, string $error, string $id = ''): RedirectResponse
     {
         //Get current Controller action
         $action = Belich::action();
@@ -43,11 +44,11 @@ trait Redirectable
      *
      * @param string $action
      * @param string $redirectTo
-     * @param int $id
+     * @param string $id
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    private function setRedirection(string $action, string $redirectTo, $id = ''): RedirectResponse
+    private function setRedirection(string $action, string $redirectTo, string $id = ''): RedirectResponse
     {
         return !in_array($redirectTo, Belich::allowedActions()) || $action === 'delete' || $action === 'forceDelete' || $action === 'restore'
             //Action not allowed

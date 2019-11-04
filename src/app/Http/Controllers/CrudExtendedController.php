@@ -8,6 +8,7 @@ use Daguilarm\Belich\App\Http\Controllers\Traits\Redirectable;
 use Daguilarm\Belich\Core\Belich;
 use Daguilarm\Belich\Facades\Helper;
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 class CrudExtendedController extends Controller
 {
@@ -32,9 +33,9 @@ class CrudExtendedController extends Controller
      *
      * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function forceDelete(int $id)
+    public function forceDelete(int $id): RedirectResponse
     {
         //Authorization
         $this->authorize('forceDelete', $this->model);
@@ -49,9 +50,9 @@ class CrudExtendedController extends Controller
      *
      * @param Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function deleteSelected(Request $request)
+    public function deleteSelected(Request $request): RedirectResponse
     {
         //Authorization
         $this->authorize('delete', $this->model);
@@ -66,9 +67,9 @@ class CrudExtendedController extends Controller
      *
      * @param int $id
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function restore(int $id)
+    public function restore(int $id): RedirectResponse
     {
         //Authorization
         $this->authorize('restore', $this->model);

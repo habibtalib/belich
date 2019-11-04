@@ -3,7 +3,7 @@
 namespace Daguilarm\Belich\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Daguilarm\Belich\Validations\Validation;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -14,9 +14,9 @@ class ValidationController extends Controller
      *
      * @param Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): JsonResponse
     {
         //Define the request variables
         $requestRules = $request->requestRules ?? [];

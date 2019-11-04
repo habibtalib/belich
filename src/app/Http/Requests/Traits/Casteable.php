@@ -4,6 +4,7 @@ namespace Daguilarm\Belich\App\Http\Requests\Traits;
 
 use Carbon\Carbon;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Validator;
 
 // This trait is inspired by https://github.com/stahiralijan/request-caster/
 trait Casteable
@@ -48,7 +49,7 @@ trait Casteable
      *
      * @return void
      */
-    public function withValidator($validator): void
+    public function withValidator(Validator $validator): void
     {
         $validator->after(function ($validator): void {
             $this->mapCasts();

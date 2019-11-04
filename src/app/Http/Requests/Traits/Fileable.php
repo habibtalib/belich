@@ -11,11 +11,11 @@ trait Fileable
     /**
      * Called by validate() method, it maps all the methods used to perform the operations
      *
-     * @param object $model
+     * @param object|null $model
      *
      * @return Symfony\Component\HttpFoundation\ParameterBag
      */
-    public function handleFile($model = null): ParameterBag
+    public function handleFile(?object $model = null): ParameterBag
     {
         $file = $this->request->get('__file');
 
@@ -32,12 +32,12 @@ trait Fileable
      * Upload file to storage
      *
      * @param string $attribute [Field name]
-     * @param array $values
      * @param object|null $model
+     * @param array $values
      *
      * @return void
      */
-    private function uploadFile(string $attribute, $model, array $values): void
+    private function uploadFile(string $attribute, ?object $model, array $values): void
     {
         //Get the file
         $file = $this->{$attribute};
@@ -56,13 +56,15 @@ trait Fileable
     /**
      * Store file
      *
+     * @param string $attribute
      * @param object|null $file
      * @param array $values
      * @param object|null $model
+     * @param array $values
      *
      * @return string|null
      */
-    private function storeFile(string $attribute, $file, $model, array $values): ?string
+    private function storeFile(string $attribute, ?object $file, ?object $model, array $values): ?string
     {
         //Get default values
         $fileName = $this->fileName($file, $values);
@@ -72,6 +74,7 @@ trait Fileable
         if (Storage::disk($disk)->put($fileName, file_get_contents($file))) {
             //Delete the previus file from storage
             $this->deletePrevius($attribute, $disk, $model);
+
             //Update request attribute value
             return $this->request->{$attribute} = $fileName;
         }
@@ -104,11 +107,11 @@ trait Fileable
      *
      * @param string $attribute
      * @param string $disk
-     * @param object $model
+     * @param object|null $model
      *
      * @return void
      */
-    private function deletePrevius(string $attribute, string $disk, $model): void
+    private function deletePrevius(string $attribute, string $disk, ?object $model): void
     {
         //Delete the previus file from storage
         if (isset($model) && is_object($model)) {

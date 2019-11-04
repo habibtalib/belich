@@ -4,6 +4,7 @@ namespace Daguilarm\Belich\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Daguilarm\Belich\Components\Export\Excel;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class DownloadController extends Controller
@@ -15,7 +16,7 @@ class DownloadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function __invoke(Request $request): RedirectResponse
     {
         //Get the excel instance from the driver
         $excel = Excel::make();
@@ -23,14 +24,10 @@ class DownloadController extends Controller
         //Handle the excel values
         [$file, $query, $validator] = $excel->handle($request);
 
-        //Handle validation
-        if ($validator->fails()) {
-            return redirect()
-                ->back()
-                ->withErrors($validator->messages()->first());
-        }
-
-        //Download the file
-        return $excel->collection($query)->download($file);
+        return $validator->fails()
+            //Handle validation
+            ? redirect()->back()->withErrors($validator->messages()->first())
+            //Download the file
+            : $excel->collection($query)->download($file);
     }
 }
