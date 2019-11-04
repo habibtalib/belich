@@ -46,8 +46,18 @@ trait Resolvable
      */
     private function resolveValue(Field $field, ?object $data, ?string $value): ?string
     {
-        //Boolean custom labels
-        $value = $this->resolveBoolean($field, $value);
+        // If boolean
+        if ($field->type === 'boolean') {
+            // With default labels
+            if (isset($field->trueValue) && isset($field->falseValue)) {
+                return $value
+                    ? $field->trueValue
+                    : $field->falseValue;
+            }
+
+            // With color circles
+            return sprintf('<i class="fas fa-circle text-%s-500"></i>', $value ? 'green' : 'grey');
+        }
 
         //Resolve using labels
         $value = $this->resolveUsingLabels($field, $value);
@@ -56,28 +66,6 @@ trait Resolvable
         return isset($data)
             ? $this->resolveRelationship($field, $data)
             : $value;
-    }
-
-    /**
-     * Resolve the boolean fields
-     *
-     * @param  Daguilarm\Belich\Fields\Field $field
-     * @param  string|null $value
-     */
-    private function resolveBoolean(Field $field, ?string $value)
-    {
-        // If boolean
-        if ($field->type === 'boolean') {
-            // With default labels
-            if (isset($field->trueValue) && isset($field->falseValue)) {
-                return $value ? $field->trueValue : $field->falseValue;
-            }
-
-            // With color circles
-            return sprintf('<i class="fas fa-circle text-%s-500"></i>', $value ? 'green' : 'grey');
-        }
-
-        return $value;
     }
 
     /**
