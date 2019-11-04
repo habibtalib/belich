@@ -5,7 +5,7 @@ namespace Daguilarm\Belich\Components\Metrics;
 use Carbon\Carbon;
 use Daguilarm\Belich\Components\Metrics\Traits\Dateable;
 
-class Labels
+final class Labels
 {
     use Dateable;
 
