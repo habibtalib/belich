@@ -22,8 +22,6 @@ abstract class Resources extends ResourcesRepository
      * Get the fields displayed by the resource.
      *
      * @param \Illuminate\Http\Request $request
-     *
-     * @return array
      */
     abstract public function fields(Request $request);
 
@@ -31,8 +29,6 @@ abstract class Resources extends ResourcesRepository
      * Set the custom cards
      *
      * @param  \Illuminate\Http\Request  $request
-     *
-     * @return Illuminate\Support\Collection
      */
     abstract public static function cards(Request $request);
 
@@ -40,8 +36,6 @@ abstract class Resources extends ResourcesRepository
      * Set the custom metrics cards
      *
      * @param  \Illuminate\Http\Request  $request
-     *
-     * @return Illuminate\Support\Collection
      */
     abstract public static function metrics(Request $request);
 }

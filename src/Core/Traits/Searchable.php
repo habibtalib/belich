@@ -57,7 +57,7 @@ trait Searchable
     /**
      * Get the table fields for live search
      *
-     * @return string
+     * @return array
      */
     public static function requestTableFields(): array
     {

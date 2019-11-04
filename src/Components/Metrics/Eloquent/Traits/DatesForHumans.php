@@ -213,7 +213,7 @@ trait DatesForHumans
     /**
      * Filter date base on format
      *
-     * @param mixed $date
+     * @param Carbon\Carbon $date
      *
      * @return self
      */

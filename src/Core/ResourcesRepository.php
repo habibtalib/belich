@@ -4,49 +4,83 @@ namespace Daguilarm\Belich\Core;
 
 class ResourcesRepository
 {
-    /** @var bool */
+    /**
+     * @var bool
+     */
     public static $accessToResource = true;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public static $actions = 'default';
 
-    /** @var bool */
+    /**
+     * @var bool
+     */
     public static $displayInNavigation = true;
 
-    /** @var bool */
+    /**
+     * @var bool
+     */
     public static $downloable = false;
 
-    /** @var Illuminate\Support\Collection */
+    /**
+     * @var Illuminate\Support\Collection
+     */
     public static $fields;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public static $group;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public static $icon;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public static $label;
 
-    /** @var string [Model path] */
+    /**
+     * Model path
+     *
+     * @var string
+     */
     public static $model;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public static $pluralLabel;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public static $redirectTo = 'index';
 
-    /** @var array */
+    /**
+     * @var array
+     */
     public static $relationships;
 
-    /** @var array */
+    /**
+     * @var array
+     */
     public static $softDeletes = false;
 
-    /** @var array */
+    /**
+     * @var array
+     */
     public static $search;
 
-    /** @var bool [Show with tabs] */
+    /**
+     * Show with tabs
+     *
+     * @var bool
+     */
     public static $tabs;
 
     /*

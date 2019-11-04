@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\Request;
 
 trait Systemable
 {
-    /** @var array */
+    /**
+     * @var array
+     */
     private $defaultMiddleware = ['https', 'web', 'auth', 'belich', 'minify'];
 
     /*

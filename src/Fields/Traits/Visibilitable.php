@@ -162,11 +162,13 @@ trait Visibilitable
         //Reset the values
         self::hideFromAll();
 
-        foreach ($attributes as $attribute) {
-            if (in_array($attribute, $this->allowedControllerActions)) {
-                $this->visibility[$attribute] = true;
-            }
-        }
+        //Showing fields
+        collect($attributes)
+            ->each(function ($attribute): void {
+                $this->visibility[$attribute] = in_array($attribute, $this->allowedControllerActions)
+                    ? true
+                    : false;
+            });
 
         return $this;
     }
@@ -178,9 +180,16 @@ trait Visibilitable
      */
     public function hideFrom(...$attributes): self
     {
-        foreach ($attributes as $attribute) {
-            $this->visibility[$attribute] = false;
-        }
+        //Reset the values
+        self::showInAll();
+
+        //Hidding fields
+        collect($attributes)
+            ->each(function ($attribute): void {
+                $this->visibility[$attribute] = in_array($attribute, $this->allowedControllerActions)
+                    ? false
+                    : true;
+            });
 
         return $this;
     }
@@ -198,9 +207,11 @@ trait Visibilitable
      */
     protected function hideFromAll(): void
     {
-        foreach ($this->visibility as $key => $value) {
-            $this->visibility[$key] = false;
-        }
+        //Hidding all fields
+        collect($this->visibility)
+            ->each(function ($value, $key): void {
+                $this->visibility[$key] = false;
+            });
     }
 
     /**
@@ -210,8 +221,10 @@ trait Visibilitable
      */
     protected function showInAll(): void
     {
-        foreach ($this->visibility as $key => $value) {
-            $this->visibility[$key] = true;
-        }
+        //Showing all fields
+        collect($this->visibility)
+            ->each(function ($value, $key): void {
+                $this->visibility[$key] = true;
+            });
     }
 }

@@ -148,7 +148,7 @@ class FieldAbstract
     /**
      * The field value (Resolved and updated...)
      *
-     * @var mixed
+     * @var null|string
      */
     public $value;
 
@@ -182,15 +182,11 @@ class FieldAbstract
     /**
      * Set the field sortable
      *
-     * @param  bool  $value
-     *
      * @return self
      */
-    public function sortable(bool $value = true): self
+    public function sortable(): self
     {
-        if (isset($value)) {
-            $this->sortable = true;
-        }
+        $this->sortable = true;
 
         return $this;
     }
@@ -204,9 +200,7 @@ class FieldAbstract
      */
     public function displayUsing(callable $displayCallback): self
     {
-        if (isset($displayCallback)) {
-            $this->displayCallback[] = $displayCallback;
-        }
+        $this->displayCallback[] = $displayCallback ?? [];
 
         return $this;
     }

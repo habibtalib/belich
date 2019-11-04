@@ -25,8 +25,6 @@ class Helper
      *
      * @param  string $method
      * @param  array $parameters
-     *
-     * @return Boolean
      */
     public function __call($method, $parameters)
     {

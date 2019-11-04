@@ -18,24 +18,46 @@ trait Forms
      * Helper for the blade directive @optionFromArray
      * Set the default value for a empty string or result
      *
+     * @param array $options
+     * @param string $field
+     * @param bool $emptyField
+     *
      * @return string
      */
-    private function createFormSelectOptions($options, $field, $emptyField = false): string
+    private function createFormSelectOptions(array $options, string $field, bool $emptyField = false): string
     {
-        $cookie = Cookie::get('belich_' . $field);
+        $cache = Cookie::get('belich_' . $field);
 
         return collect($options)
-            ->map(static function ($label, $value) use ($cookie) {
+            ->map(static function ($label, $value) use ($cache) {
                 //Default values
                 $defaultValue = !is_array($value) ? strtolower($label) : $value;
-                $selected = $cookie === $defaultValue || $cookie === $value
-                    ? ' selected'
-                    : '';
 
-                return sprintf('<option value="%s"%s>%s</option>', $defaultValue, $selected, $label);
+                return sprintf(
+                    '<option value="%s"%s>%s</option>',
+                    $defaultValue,
+                    static::selectedValueForOption($cache, $value, $defaultValue),
+                    $label
+                );
             })
             ->prepend($emptyField ? '<option></option>' : '')
             ->implode('');
+    }
+
+    /**
+     * Helper for determine a selected option
+     *
+     * @param string|null $cache
+     * @param string $value
+     * @param string|null $defaultValue
+     *
+     * @return string
+     */
+    private static function selectedValueForOption(?string $cache, string $value, ?string $defaultValue): string
+    {
+        return $cache === $defaultValue || $cache === $value
+            ? ' selected'
+            : '';
     }
 
     /**
@@ -44,11 +66,11 @@ trait Forms
      *
      * @param Daguilarm\Belich\Fields\Field $field
      * @param string $attribute
-     * @param mixed $default
+     * @param null|string $default
      *
      * @return string
      */
-    private function setFormAttribute(Field $field, string $attribute, $default = null): string
+    private function setFormAttribute(Field $field, string $attribute, ?string $default = null): string
     {
         //Render css classes
         $field = $this->addClassAttribute($field, $attribute);

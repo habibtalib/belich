@@ -18,7 +18,7 @@ trait Softdeleteable
      *
      * @return bool
      */
-    public function resolveSoftdeleting(Field $field, object $data = null): bool
+    public function resolveSoftdeleting(Field $field, ?object $data = null): bool
     {
         return method_exists(Belich::getModel(), 'trashed') && $data->trashed();
     }

@@ -19,7 +19,7 @@ trait Resolvable
      *
      * @return null|string
      */
-    public function resolve(Field $field, object $data = null): ?string
+    public function resolve(Field $field, ?object $data = null): ?string
     {
         //Resolve value for action controller: show
         $value = $field->value;
@@ -64,9 +64,7 @@ trait Resolvable
      * Resolve the boolean fields
      *
      * @param  Daguilarm\Belich\Fields\Field $field
-     * @param  mixed $value
-     *
-     * @return mixed
+     * @param  $value
      */
     private function resolveBoolean(Field $field, $value)
     {
@@ -88,7 +86,7 @@ trait Resolvable
      * Resolve using labels
      *
      * @param  Daguilarm\Belich\Fields\Field $field
-     * @param  mixed $value
+     * @param  $value
      *
      * @return null|string
      */

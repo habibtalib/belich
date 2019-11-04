@@ -10,7 +10,7 @@ trait Redirectable
     /**
      * Redirect back with message
      *
-     * @param boll $condition
+     * @param bool $condition
      * @param string $success
      * @param string $error
      *
@@ -49,13 +49,10 @@ trait Redirectable
      */
     private function setRedirection(string $action, string $redirectTo, $id = ''): RedirectResponse
     {
-        //Validate the resource action
-        if (!in_array($redirectTo, Belich::allowedActions()) || $action === 'delete' || $action === 'forceDelete' || $action === 'restore') {
+        return !in_array($redirectTo, Belich::allowedActions()) || $action === 'delete' || $action === 'forceDelete' || $action === 'restore'
             //Action not allowed
-            return redirect()->back();
-        //Allowed action and redirect to action
-        } else {
-            return redirect()->to(Belich::actionRoute($redirectTo, $id));
-        }
+            ? redirect()->back()
+            //Allowed action and redirect to action
+            : redirect()->to(Belich::actionRoute($redirectTo, $id));
     }
 }

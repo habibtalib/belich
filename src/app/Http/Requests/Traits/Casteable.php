@@ -15,21 +15,30 @@ trait Casteable
      */
     public function mapCasts(): void
     {
-        if (!$this->request->has('cast')) {
-            return;
-        }
-        foreach ($this->request->get('cast') as $value) {
-            //Get cast and attribute
-            [$cast, $attribute] = explode('|', $value);
+        collect($this->request->get('cast'))
+            ->each(function ($value): void {
+                //Get cast and attribute
+                [$cast, $attribute] = explode('|', $value);
 
-            // Cast to Date
-            if (Str::startsWith($cast, 'date:')) {
-                $this->toDate($cast, $attribute);
-            // Cast by method name
-            } else {
-                $this->toMethod($attribute, $cast);
-            }
-        }
+                Str::startsWith($cast, 'date:')
+                    // Cast to Date
+                    ? $this->toDate($cast, $attribute)
+                    // Cast using the method name
+                    : $this->toMethod($attribute, $cast);
+            });
+        // foreach ($this->request->get('cast') as $value) {
+        //     //Get cast and attribute
+        //     [$cast, $attribute] = explode('|', $value);
+
+        //     // Cast to Date
+        //     if (Str::startsWith($cast, 'date:')) {
+        //         $this->toDate($cast, $attribute);
+        //         return;
+        //     }
+
+        //     // Cast by method name
+        //     $this->toMethod($attribute, $cast);
+        // }
     }
 
     /**

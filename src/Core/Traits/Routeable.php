@@ -25,13 +25,11 @@ trait Routeable
         //Cannot pass directly as reference!!
         $route = static::route();
 
-        //Search action
-        if (static::requestFromSearch()) {
-            return 'index';
-        }
-
-        //Return last item from the array
-        return end($route);
+        return static::requestFromSearch()
+            //Search action (is in index...)
+            ? 'index'
+            //Return last item from the array
+            : end($route);
     }
 
     /**
@@ -42,14 +40,12 @@ trait Routeable
      */
     public static function route(): array
     {
-        //Hack for artisan route:list
-        //I don't know why... WTF!
-        if (is_null(Request::route())) {
-            return ['dashboard', 'users', 'index'];
-        }
-
-        //Get route name
-        return explode('.', Request::route()->getName());
+        return is_null(Request::route())
+            //Hack for artisan route:list
+            //I don't know why... WTF!
+            ?  ['dashboard', 'users', 'index']
+            //Get route name
+            : explode('.', Request::route()->getName());
     }
 
     /**
@@ -68,10 +64,10 @@ trait Routeable
             return route($route, $data->id);
         }
 
-        if (is_numeric($data)) {
-            return route($route, $data);
-        }
-
-        return route($route);
+        return is_numeric($data)
+            // Numeric value
+            ? route($route, $data)
+            // Default value
+            : route($route);
     }
 }

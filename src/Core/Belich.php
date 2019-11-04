@@ -30,8 +30,6 @@ class Belich extends BelichAbstract
 
     /**
      * Init the constuctor
-     *
-     * @return string
      */
     public function __construct()
     {

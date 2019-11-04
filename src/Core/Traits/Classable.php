@@ -29,7 +29,7 @@ trait Classable
      *
      * @return string
      */
-    public static function classFormat($className): string
+    public static function classFormat(string $className): string
     {
         return Str::title(Str::singular($className));
     }

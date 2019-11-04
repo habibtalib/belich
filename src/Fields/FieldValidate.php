@@ -100,7 +100,7 @@ final class FieldValidate
      *
      * @param string $action
      *
-     * @return mixed array
+     * @return array
      */
     private function setRules($field): array
     {
@@ -113,7 +113,7 @@ final class FieldValidate
      *
      * @param string $action
      *
-     * @return mixed array
+     * @return array
      */
     public function setCurrentRules($field): array
     {

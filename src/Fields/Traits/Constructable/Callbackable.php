@@ -12,11 +12,11 @@ trait Callbackable
      *
      * @param Daguilarm\Belich\Fields\Field $field
      * @param object $data
-     * @param null|string $value
+     * @param string|null $value
      *
-     * @return null|string
+     * @return string|null
      */
-    protected function getCallbackValue(Field $field, object $data = null, $value = '')
+    protected function getCallbackValue(Field $field, ?object $data = null, $value = '')
     {
         //Resolve value when using the method: $field->displayUsing()
         $value = $this->displayCallback($field, $value);
@@ -29,20 +29,18 @@ trait Callbackable
      * Resolve field callback: $field->displayUsing()
      *
      * @param Daguilarm\Belich\Fields\Field $field
-     * @param null|string $value
+     * @param string|null $value
      *
-     * @return null|string
+     * @return string|null
      */
-    private function displayCallback(Field $field, $value = '')
+    private function displayCallback(Field $field, $value = ''): ?string
     {
         if (!isset($field->displayCallback)) {
             return $value;
         }
 
         foreach ($field->displayCallback as $callback) {
-            if (is_callable($callback)) {
-                $value = call_user_func($callback, $value);
-            }
+            $value = is_callable($callback) ? call_user_func($callback, $value) : null;
         }
 
         return $value;
@@ -53,23 +51,23 @@ trait Callbackable
      *
      * @param Daguilarm\Belich\Fields\Field $field
      * @param object $data
-     * @param null|string $value
+     * @param string|null $value
      *
-     * @return null|string
+     * @return string|null
      */
-    private function resolveCallback(Field $field, object $data = null, $value = '')
+    private function resolveCallback(Field $field, ?object $data = null, $value = ''): ?string
     {
-        //Resolve value when using the method: $field->resolveUsing()
-        if (is_callable($field->resolveCallback)) {
-            //Add the data for the show view
-            //No need to resolve for index because the $data variable is already available
-            if (Belich::action() === 'show') {
-                $data = $field->data;
-            }
-
-            $value = call_user_func($field->resolveCallback, $data);
+        if (!is_callable($field->resolveCallback)) {
+            return $value;
         }
 
-        return $value;
+        //Resolve value when using the method: $field->resolveUsing()
+        //Add the data for the show view
+        //No need to resolve for index because the $data variable is already available
+        $data = Belich::action() === 'show'
+            ? $field->data
+            : $data;
+
+        return call_user_func($field->resolveCallback, $data);
     }
 }

@@ -27,9 +27,11 @@ trait Resourceable
     /**
      * Get the current resource class path
      *
+     * @param string|null $className
+     *
      * @return string
      */
-    public static function resourceClassPath($className = null): string
+    public static function resourceClassPath(?string $className = null): string
     {
         $class = $className ?? static::className();
 
@@ -51,9 +53,9 @@ trait Resourceable
     /**
      * Get the resource id
      *
-     * @return int
+     * @return int|null
      */
-    public static function resourceId()
+    public static function resourceId(): ?int
     {
         $resource = Str::singular(static::resource());
         $resourceId = request()->route($resource) ?? null;
@@ -185,37 +187,36 @@ trait Resourceable
             })->filter(static function ($value, $key) {
                 return $value !== '.' && $value !== '..';
             })->mapWithKeys(function ($file, $key) {
-                if ($file) {
-                    //Define the current class name
-                    $className = Str::title(explode('.', $file)[0]);
-                    $resource = Str::plural(Str::lower($className));
+                //Define the current class name
+                $className = Str::title(explode('.', $file)[0]);
+                $resource = Str::plural(Str::lower($className));
 
-                    return [
-                        $resource => $this->resourceValues($className, $forNavigation = true)
-                    ];
-                }
+                return [
+                    $resource => $this->resourceValues($className, $forNavigation = true)
+                ];
             });
     }
 
     /**
      * Get all the resources grouped and prepare for navigation
      *
-     * @return string
+     * @return Illuminate\Support\Collection
      */
-    public function getGroupResources()
+    public function getGroupResources(): Collection
     {
         return collect($this->resourcesAll())
             ->map(static function ($item, $key) {
                 $title = $item['pluralLabel'] ?? stringPluralUpper($item['class']);
+                $resources = collect([
+                    'group' => $item['group'] ?? $title,
+                    'icon' => $item['icon'],
+                    'name' => $title,
+                    'resource' => $item['resource'],
+                ]);
 
-                if ($item['displayInNavigation'] === true) {
-                    return collect([
-                        'group' => $item['group'] ?? $title,
-                        'icon' => $item['icon'],
-                        'name' => $title,
-                        'resource' => $item['resource'],
-                    ]);
-                }
+                return $item['displayInNavigation'] === true
+                    ? $resources
+                    : null;
             })
             ->filter()
             ->values()
@@ -252,12 +253,12 @@ trait Resourceable
     /**
      * Get all the items from a resource
      *
-     * @param string $className
+     * @param string|null $className
      * @param bool $forNavigation [only return the parameters needed for navigation]
      *
      * @return Illuminate\Support\Collection
      */
-    private function resourceValues($className, $forNavigation = false): Collection
+    private function resourceValues(?string $className, $forNavigation = false): Collection
     {
         //Get class name from request or from live search
         $className = static::requestFromSearch()
@@ -267,17 +268,30 @@ trait Resourceable
         //Get the class path
         $class = static::resourceClassPath($className);
 
-        //If a resource is not accessible then cannot be listed in a menu
-        if ($class::$accessToResource === false) {
-            $accessToResource = $displayInNavigation = false;
-        //Default values
-        } else {
-            $accessToResource = $class::$accessToResource;
-            $displayInNavigation = $class::$displayInNavigation;
-        }
+        //Set values
+        [$accessToResource, $displayInNavigation] = self::resourceConfiguration($class);
 
         //Set the basic values for navigation
-        $resource = collect([
+        $resource = self::getResourceOnlyWithNavigationFields($class, $className, $displayInNavigation);
+
+        //Navigation values
+        return $forNavigation === false
+            ? self::getResourceWithAdvanceFields($class, $accessToResource, $resource)
+            : $resource;
+    }
+
+    /**
+     * Helper for basic resource (for navigation)
+     *
+     * @param string $className
+     * @param bool $forNavigation [only return the parameters needed for navigation]
+     * @param string $class
+     *
+     * @return Illuminate\Support\Collection
+     */
+    private function getResourceOnlyWithNavigationFields(string $class, string $className, bool $displayInNavigation): Collection
+    {
+        return collect([
             'class' => $className,
             'displayInNavigation' => $displayInNavigation,
             'group' => $class::$group,
@@ -288,22 +302,52 @@ trait Resourceable
             'search' => $class::$search,
             'tableTextAlign' => self::setTableTextAlign($class),
         ]);
+    }
 
-        //Advanced values
-        if ($forNavigation === false) {
-            return $resource->merge([
-                'accessToResource' => $accessToResource,
-                'actions' => $class::$actions,
-                'breadcrumbs' => $class::breadcrumbs(),
-                'cards' => $class::cards(request()),
-                'model' => $class::$model,
-                'metrics' => $class::metrics(request()),
-                'search' => $class::$search,
-            ]);
+    /**
+     * Helper for advanced resource
+     *
+     * @param string $className
+     * @param string $accessToResource
+     * @param Illuminate\Support\Collection $resource
+     *
+     * @return Illuminate\Support\Collection
+     */
+    private function getResourceWithAdvanceFields(string $class, string $accessToResource, Collection $resource): Collection
+    {
+        return $resource->merge([
+            'accessToResource' => $accessToResource,
+            'actions' => $class::$actions,
+            'breadcrumbs' => $class::breadcrumbs(),
+            'cards' => $class::cards(request()),
+            'model' => $class::$model,
+            'metrics' => $class::metrics(request()),
+            'search' => $class::$search,
+        ]);
+    }
+
+    /**
+     * Helper for configuration
+     *
+     * @param string $className
+     *
+     * @return Illuminate\Support\Collection
+     */
+    private function resourceConfiguration(string $class)
+    {
+        //If a resource is not accessible then cannot be listed in a menu
+        $accessToResource = $displayInNavigation = false;
+
+        //Default values
+        if ($class::$accessToResource === true) {
+            $accessToResource = $class::$accessToResource;
+            $displayInNavigation = $class::$displayInNavigation;
         }
 
-        //Navigation values
-        return $resource;
+        return [
+            $accessToResource,
+            $displayInNavigation,
+        ];
     }
 
     /**

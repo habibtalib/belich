@@ -6,7 +6,9 @@ use Daguilarm\Belich\Fields\FieldResolveIndex;
 
 class BelichAbstract
 {
-    /** @var array */
+    /**
+     * @var array
+     */
     public static $allowedActions = [
         'index',
         'create',

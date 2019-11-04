@@ -14,8 +14,6 @@ trait Fileable
      *
      * @param  Daguilarm\Belich\Fields\Field $field
      * @param  string $value
-     *
-     * @return mixed
      */
     protected function resolveFile(Field $field, string $value)
     {
@@ -33,11 +31,11 @@ trait Fileable
      * Resolve the field by type
      *
      * @param  Daguilarm\Belich\Fields\Field $field
-     * @param  mixed $value
+     * @param  null|string $value
      *
      * @return string
      */
-    private function resolveFileType(Field $field, $value): string
+    private function resolveFileType(Field $field, ?string $value): string
     {
         // Image field
         if ($field->fileType === 'image') {
