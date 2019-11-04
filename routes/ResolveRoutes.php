@@ -1,5 +1,6 @@
 <?php
 
+use Daguilarm\Belich\Facades\Helper;
 use Illuminate\Support\Str;
 
 //Load the auth routes
@@ -13,11 +14,11 @@ Route::group([
         'middleware' => Belich::middleware(),
     ], static function (): void {
         //Validation routes
-        Route::post(Belich::pathName() . '/ajax/form/validation', namespace_path('App\Http\Controllers\ValidationController'))
+        Route::post(Belich::pathName() . '/ajax/form/validation', Helper::namespace_path('App\Http\Controllers\ValidationController'))
             ->name('ajax.form.validation');
 
         //search routes
-        Route::get(Belich::pathName() . '/ajax/search', namespace_path('App\Http\Controllers\SearchController'))
+        Route::get(Belich::pathName() . '/ajax/search', Helper::namespace_path('App\Http\Controllers\SearchController'))
             ->name('ajax.search');
 
         //Generate routes from resources
@@ -27,22 +28,22 @@ Route::group([
                 //Get route ID
                 $routeID = sprintf('{%s}', Str::singular($route));
                 if ($route) {
-                    Route::resource(route_path($route), namespace_path('App\Http\Controllers\CrudController'));
-                    Route::get(route_path($route) . '/' . $routeID . '/restore', namespace_path('App\Http\Controllers\CrudExtendedController@restore'))
+                    Route::resource(Helper::route_path($route), Helper::namespace_path('App\Http\Controllers\CrudController'));
+                    Route::get(Helper::route_path($route) . '/' . $routeID . '/restore', Helper::namespace_path('App\Http\Controllers\CrudExtendedController@restore'))
                         ->name($route . '.restore');
-                    Route::get(route_path($route) . '/' . $routeID . '/forceDelete', namespace_path('App\Http\Controllers\CrudExtendedController@forceDelete'))
+                    Route::get(Helper::route_path($route) . '/' . $routeID . '/forceDelete', Helper::namespace_path('App\Http\Controllers\CrudExtendedController@forceDelete'))
                         ->name($route . '.forceDelete');
-                    Route::post(route_path($route) . '/delete/selected', namespace_path('App\Http\Controllers\CrudExtendedController@deleteSelected'))
+                    Route::post(Helper::route_path($route) . '/delete/selected', Helper::namespace_path('App\Http\Controllers\CrudExtendedController@deleteSelected'))
                         ->name($route . '.delete.selected');
                 }
             });
 
         //Belich options
-        Route::post(route_path('user/settings'), namespace_path('App\Http\Controllers\OptionController'))
+        Route::post(Helper::route_path('user/settings'), Helper::namespace_path('App\Http\Controllers\OptionController'))
             ->name('users.settings');
 
         //Belich export
-        Route::post(route_path('exports/download'), namespace_path('App\Http\Controllers\DownloadController'))
+        Route::post(Helper::route_path('exports/download'), Helper::namespace_path('App\Http\Controllers\DownloadController'))
             ->name('exports.download');
 
         //Load all the custom routes

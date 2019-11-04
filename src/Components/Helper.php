@@ -9,11 +9,12 @@ use Daguilarm\Belich\Components\Helpers\Icons;
 use Daguilarm\Belich\Components\Helpers\Messages;
 use Daguilarm\Belich\Components\Helpers\Metrics;
 use Daguilarm\Belich\Components\Helpers\Models;
+use Daguilarm\Belich\Components\Helpers\Paths;
 use Daguilarm\Belich\Components\Helpers\Strings;
 
 class Helper
 {
-    use Blade, Icons, Files, Forms, Messages, Metrics, Models, Strings;
+    use Blade, Icons, Files, Forms, Messages, Metrics, Models, Paths, Strings;
 
     /**
      * Generate helper's methods
