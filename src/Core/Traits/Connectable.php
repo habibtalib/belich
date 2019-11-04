@@ -4,6 +4,8 @@ namespace Daguilarm\Belich\Core\Traits;
 
 use Daguilarm\Belich\Core\Traits\Searchable;
 use Daguilarm\Belich\Facades\Belich;
+use Daguilarm\Belich\Facades\Helper;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cookie;
 
 trait Connectable
@@ -48,12 +50,12 @@ trait Connectable
                 })
 
                 //Show the trashed results
-                ->when($policy && hasSoftdelete(Belich::getModel()) && Cookie::get('belich_withTrashed') === 'all', static function ($query) {
+                ->when($policy && Helper::hasSoftdelete(Belich::getModel()) && Cookie::get('belich_withTrashed') === 'all', static function ($query) {
                     return $query->withTrashed();
                 })
 
                 //Only show the trashed results
-                ->when($policy && hasSoftdelete(Belich::getModel()) && Cookie::get('belich_withTrashed') === 'only', static function ($query) {
+                ->when($policy && Helper::hasSoftdelete(Belich::getModel()) && Cookie::get('belich_withTrashed') === 'only', static function ($query) {
                     return $query->onlyTrashed();
                 })
 
@@ -68,6 +70,6 @@ trait Connectable
             //Sql for edit and show
             ? $class->model()->findOrFail(static::resourceId())
             // Default value
-            : new \Illuminate\Database\Eloquent\Collection();
+            : new Collection();
     }
 }
