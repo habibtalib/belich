@@ -12,12 +12,12 @@
             </p>
             {{-- Messages --}}
             {{-- App\Http\Helpsers\Messages --}}
-            @foreach(messages($type) as $message)
+            @foreach(Helper::messages($type) as $message)
                 <p class="text-md">{{ $message }}</p>
             @endforeach
         </div>
         <div class="text-md text-{{ $color }}-600 font-bold">
-            <a href="#" onclick="closeMenssage();">{!! icon('times') !!}</a>
+            <a href="#" onclick="closeMenssage();">{!! Helper::icon('times') !!}</a>
         </div>
     </div>
 </div>
