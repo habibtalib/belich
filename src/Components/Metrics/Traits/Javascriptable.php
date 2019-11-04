@@ -6,19 +6,29 @@ use Illuminate\Support\Collection;
 
 trait Javascriptable
 {
-    /** @var array */
+    /**
+     * @var array
+     */
     public $labels;
 
-    /** @var array */
+    /**
+     * @var array
+     */
     public $series;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $type;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $uriKey;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $withArea;
 
     /**

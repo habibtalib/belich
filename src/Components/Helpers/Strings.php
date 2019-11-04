@@ -9,9 +9,11 @@ trait Strings
     /**
      * Set the string into migration format
      *
+     * @param string $string
+     *
      * @return string
      */
-    private function stringPluralLower($string): string
+    private function stringPluralLower(string $string): string
     {
         return Str::plural(strtolower($string));
     }
@@ -19,9 +21,11 @@ trait Strings
     /**
      * Set string into class name format
      *
+     * @param string $string
+     *
      * @return string
      */
-    private function stringPluralUpper($string): string
+    private function stringPluralUpper(string $string): string
     {
         return Str::plural(ucfirst($string));
     }
@@ -29,9 +33,11 @@ trait Strings
     /**
      * Set string into model format
      *
+     * @param string $string
+     *
      * @return string
      */
-    private function stringSingularUpper($string): string
+    private function stringSingularUpper(string $string): string
     {
         return Str::singular(ucfirst($string));
     }
@@ -39,9 +45,11 @@ trait Strings
     /**
      * Set string into kebab case
      *
+     * @param string $string
+     *
      * @return string
      */
-    private function stringTokebab($string): string
+    private function stringTokebab(string $string): string
     {
         return Str::kebab($string);
     }

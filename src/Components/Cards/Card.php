@@ -19,8 +19,6 @@ abstract class Card
 
     /**
      * Initialize the metric
-     *
-     * @return string
      */
     public function __construct()
     {
@@ -46,7 +44,7 @@ abstract class Card
     /**
      * Get the URI key for the card
      *
-     * @return string
+     * @return array
      */
     abstract public function withMeta(): array;
 }

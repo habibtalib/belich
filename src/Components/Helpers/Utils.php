@@ -9,9 +9,11 @@ trait Utils
      * Only works on numeric
      * This is for using mass selection and $model->whereIn($array)
      *
+     * @param string $values
+     *
      * @return array
      */
-    private function fieldToArray($values): array
+    private function fieldToArray(string $values): array
     {
         $listOfValues = explode(',', $values);
 

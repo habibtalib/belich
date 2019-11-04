@@ -9,8 +9,6 @@ class Labels
 {
     use Dateable;
 
-    // Filters: 'capitalize', 'lower', 'title'
-
     /**
      * Set an array with all the countries
      *

@@ -26,7 +26,7 @@ class Helper
      * @param  string $method
      * @param  array $parameters
      */
-    public function __call($method, $parameters)
+    public function __call(string $method, array $parameters)
     {
         if (method_exists($this, $method)) {
             return call_user_func_array([$this, $method], $parameters);

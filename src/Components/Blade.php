@@ -15,7 +15,7 @@ class Blade
      *
      * @return string
      */
-    public function render(Request $request)
+    public function render(Request $request): string
     {
         //Render the metric items
         $metrics = $this->renderMetrics($request);
@@ -34,16 +34,15 @@ class Blade
      *
      * @param Illuminate\Http\Request $request
      *
-     * @return string
+     * @return Illuminate\Support\Collection
      */
-    public function renderMetrics(Request $request)
+    public function renderMetrics(Request $request): Collection
     {
         return collect($request->metrics)
             ->map(static function ($metric) {
-                if ($metric) {
-                    //Return the metric view
-                    return View::make('belich::components.metrics.chart', compact('metric'))->render();
-                }
+                return $metric
+                    ? View::make('belich::components.metrics.chart', compact('metric'))->render()
+                    : null;
             });
     }
 
@@ -52,16 +51,15 @@ class Blade
      *
      * @param Illuminate\Http\Request $request
      *
-     * @return string
+     * @return Illuminate\Support\Collection
      */
-    public function renderCards(Request $request)
+    public function renderCards(Request $request): Collection
     {
         return collect($request->cards)
             ->map(static function ($card) {
-                if ($card) {
-                    //Return the card view
-                    return View::make($card->view)->with($card->withMeta);
-                }
+                return $card
+                    ? View::make($card->view)->with($card->withMeta)
+                    : null;
             });
     }
 }

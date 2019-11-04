@@ -68,7 +68,7 @@ abstract class BelichCommand extends Command
      *
      * @return void
      */
-    protected function replace($search, $replace, $path): void
+    protected function replace(string $search, string $replace, string $path): void
     {
         file_put_contents($path, str_replace($search, $replace, file_get_contents($path)));
     }

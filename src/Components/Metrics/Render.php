@@ -86,7 +86,7 @@ class Render
      *
      * @return string
      */
-    private function graphSelector(string $type, string $key)
+    private function graphSelector(string $type, string $key): string
     {
         if ($type === 'bars') {
             return $this->barGraph($key);
@@ -192,7 +192,7 @@ class Render
     /**
      * Format the labels to render
      *
-     * @param  array|Collection  $values
+     * @param  mixed  $values
      *
      * @return string
      */
@@ -211,7 +211,7 @@ class Render
     /**
      * Format the series to render
      *
-     * @param  array|Collection  $values
+     * @param  mixed  $values
      *
      * @return string
      */

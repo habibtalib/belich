@@ -74,7 +74,7 @@ class Connection
      *
      * @return string
      */
-    public function dateTable($tableName): self
+    public function dateTable(string $tableName): self
     {
         $this->dateTable = $tableName;
 
@@ -84,7 +84,7 @@ class Connection
     /**
      * Get only a number of results from storage
      *
-     * @param string $take
+     * @param int $take
      *
      * @return string
      */
@@ -97,8 +97,12 @@ class Connection
 
     /**
      * Initialize the connection
+     *
+     * @param object $model
+     *
+     * @return  object
      */
-    public static function make($model)
+    public static function make($model): object
     {
         return new Connection($model);
     }
@@ -129,7 +133,7 @@ class Connection
     /**
      * Get the total results filter by date and reset the value to 0 if no results
      *
-     * @param array $totals
+     * @param array $total
      * @param string $dateType ['day', 'month', 'year']
      * @param string $type ['average', 'total', 'trent']
      *

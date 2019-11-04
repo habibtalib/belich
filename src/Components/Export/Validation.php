@@ -8,10 +8,14 @@ use Illuminate\Validation\Rule;
 
 class Validation
 {
-    /** @var array */
+    /**
+     * @var array
+     */
     private static $formats = ['xls', 'xlsx', 'csv'];
 
-    /** @var array */
+    /**
+     * @var array
+     */
     private static $selects = ['all', 'selected'];
 
     /**
@@ -19,7 +23,7 @@ class Validation
      *
      * @param Illuminate\Http\Request $request
      *
-     * @return \Illuminate\Http\Response
+     * @return Illuminate\Support\Facades\Validator
      */
     public static function make(Request $request): Validator
     {

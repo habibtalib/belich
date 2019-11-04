@@ -107,9 +107,11 @@ trait Templates
     /**
      * Template Paie Graph options
      *
+     * @param string $key
+     *
      * @return string
      */
-    private static function templatePieGraphOptions($key): string
+    private static function templatePieGraphOptions(string $key): string
     {
         return "{labelInterpolationFnc:function(value){return value},axisX:{offset:30},axisY:{offset:100,},plugins:[Chartist.plugins.legend()],chartPadding:15,labelOffset:50,labelDirection:'explode',labelInterpolationFnc:function(value){var series=data_{$key}.series.map(a=>a.value).map(Number);var labels = data_{$key}.labels;var position = labels.indexOf(value);var total=series.map(Number).reduce((partial_sum,a)=>partial_sum+a);var currentValue=series[position];var percent = Math.round(currentValue/total*100);return currentValue ? value + ' ('+percent+'%)' : value;}},";
         //     {

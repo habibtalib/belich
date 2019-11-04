@@ -128,9 +128,10 @@ class ResourceCommand extends BelichCommand
     /**
      * Set the stub destination
      *
+     * @param string $ext
      * @return string
      */
-    protected function setStub($ext = 'stub'): string
+    protected function setStub(string $ext = 'stub'): string
     {
         return $this->path() . '/' . $this->classModel() . '.' . $ext;
     }

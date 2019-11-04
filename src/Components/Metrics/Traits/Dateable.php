@@ -57,6 +57,8 @@ trait Dateable
     /**
      * Get an array with all the month of the year
      *
+     * @param int $years
+     *
      * @return array
      */
     protected static function getRangeOfYears(int $years): array
@@ -175,9 +177,11 @@ trait Dateable
     /**
      * Set last months for the query
      *
+     * @param int $number
+     *
      * @return self
      */
-    protected function lastMonths($number = 3): self
+    protected function lastMonths(int $number = 3): self
     {
         $this->startDate = now()->subMonth($number);
         $this->endDate = now();

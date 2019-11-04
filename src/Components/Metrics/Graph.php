@@ -9,46 +9,76 @@ use Illuminate\Support\Collection;
 
 abstract class Graph
 {
-    /** @var object */
+    /**
+     * @var object
+     */
     public $calculate;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $color;
 
-    /** @var array ['area-color', 'line-color', 'title-color', 'legend-color'] */
+    /**
+     * ['area-color', 'line-color', 'title-color', 'legend-color']
+     * @var array
+     */
     public $defineColors;
 
-    /** @var bool */
+    /**
+     * @var bool
+     */
     public $grid;
 
-    /** @var array */
+    /**
+     * @var array
+     */
     public $labels;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $legend_h;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $legend_v;
 
-    /** @var string ['butt', 'square', 'round']*/
+    /**
+     * ['butt', 'square', 'round']
+     * @var string
+     */
     public $marker;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $name;
 
-    /** @var Illuminate\Http\Request */
+    /**
+     * @var Illuminate\Http\Request
+     */
     public $request;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $type;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $uriKey;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $width;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $withArea;
 
     /**

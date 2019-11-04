@@ -14,10 +14,11 @@ trait Icons
      *
      * @param string $icon
      * @param string $text
+     * @param string $css
      *
      * @return string
      */
-    private function icon(string $icon, $text = '', $css = ''): string
+    private function icon(string $icon, string $text = '', string $css = ''): string
     {
         // Set right margin if we have text
         $margin = $text ? ' mr-2' : '';
@@ -43,8 +44,8 @@ trait Icons
     /**
      * Get either a Gravatar URL or complete image tag for a specified email address.
      *
-     * @param string $email The email address
-     * @param string $s Size in pixels, defaults to 80px [ 1 - 2048 ]
+     * @param string|null $email The email address
+     * @param int $s Size in pixels, defaults to 80px [ 1 - 2048 ]
      * @param string $d Default imageset to use [ 404 | mp | identicon | monsterid | wavatar ]
      * @param string $r Maximum rating (inclusive) [ g | pg | r | x ]
      *
@@ -52,7 +53,7 @@ trait Icons
      *
      * @return  string
      */
-    private function gravatar($email = null, $size = 80, $imageSet = 'mp', $rating = 'g'): string
+    private function gravatar(?string $email = null, int $size = 80, string $imageSet = 'mp', string $rating = 'g'): string
     {
         $email = $email
             ? md5(strtolower(trim($email)))
