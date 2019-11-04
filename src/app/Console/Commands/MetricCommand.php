@@ -6,7 +6,6 @@ use Daguilarm\Belich\App\Console\BelichCommand;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use Symfony\Component\Console\Input\InputOption;
 
 class MetricCommand extends BelichCommand
 {
@@ -84,6 +83,7 @@ class MetricCommand extends BelichCommand
      * Set the stub destination
      *
      * @param string $ext
+     *
      * @return string
      */
     protected function setStub(string $ext = 'stub'): string

@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Facades;
 
 use Illuminate\Support\Facades\Facade;
 
-class Helper extends Facade
+final class Helper extends Facade
 {
     protected static function getFacadeAccessor()
     {

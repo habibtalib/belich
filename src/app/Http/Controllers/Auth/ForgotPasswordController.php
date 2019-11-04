@@ -3,7 +3,6 @@
 namespace Daguilarm\Belich\App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Daguilarm\Belich\Core\Belich;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 use Illuminate\View\View;
 

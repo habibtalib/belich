@@ -7,8 +7,8 @@ use Daguilarm\Belich\App\Http\Controllers\Traits\Deletedable;
 use Daguilarm\Belich\App\Http\Controllers\Traits\Redirectable;
 use Daguilarm\Belich\Core\Belich;
 use Daguilarm\Belich\Facades\Helper;
-use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 final class CrudExtendedController extends Controller
 {

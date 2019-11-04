@@ -4,7 +4,7 @@ return [
     'crud' => [
         'success' => [
             'title' => 'Congrats!',
-            'text' => 'The resource has been successfully :action.'
+            'text' => 'The resource has been successfully :action.',
         ],
         'fail' => [
             'title' => 'Error detected..',

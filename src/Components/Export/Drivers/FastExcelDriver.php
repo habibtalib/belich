@@ -15,12 +15,12 @@ use Rap2hpoutre\FastExcel\FastExcel;
  *
  * @Github: https://github.com/rap2hpoutre/fast-excel
  */
-class FastExcelDriver extends FastExcel implements ExportContract
+final class FastExcelDriver extends FastExcel implements ExportContract
 {
     /**
      * @var Collection
      */
-    protected $data;
+    private $data;
 
     /**
      * Prepare the file for download

@@ -13,7 +13,7 @@ class BelichRepository
         'index',
         'create',
         'edit',
-        'show'
+        'show',
     ];
 
     /**

@@ -2,8 +2,6 @@
 
 namespace Daguilarm\Belich\Components\Metrics\Traits;
 
-use Illuminate\Support\Collection;
-
 trait Javascriptable
 {
     /**

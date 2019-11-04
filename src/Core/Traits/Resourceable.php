@@ -192,7 +192,7 @@ trait Resourceable
                 $resource = Str::plural(Str::lower($className));
 
                 return [
-                    $resource => $this->resourceValues($className, $forNavigation = true)
+                    $resource => $this->resourceValues($className, $forNavigation = true),
                 ];
             });
     }

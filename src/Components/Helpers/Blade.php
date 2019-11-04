@@ -2,11 +2,6 @@
 
 namespace Daguilarm\Belich\Components\Helpers;
 
-use Daguilarm\Belich\Components\Metrics\Graph;
-use Daguilarm\Belich\Fields\Field;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cookie;
-
 trait Blade
 {
     /**

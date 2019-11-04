@@ -9,7 +9,7 @@ trait Visibilitable
         'index' => true,
         'create' => true,
         'edit' => true,
-        'show' => true
+        'show' => true,
     ];
 
     /**

@@ -5,7 +5,6 @@ namespace Daguilarm\Belich\App\Console\Commands;
 use Daguilarm\Belich\App\Console\BelichCommand;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
-use Symfony\Component\Console\Input\InputOption;
 
 class ResourceCommand extends BelichCommand
 {
@@ -129,6 +128,7 @@ class ResourceCommand extends BelichCommand
      * Set the stub destination
      *
      * @param string $ext
+     *
      * @return string
      */
     protected function setStub(string $ext = 'stub'): string

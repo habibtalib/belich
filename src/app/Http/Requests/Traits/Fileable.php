@@ -49,7 +49,7 @@ trait Fileable
 
         //Keep the current file if not updated or change...
         $this->request->add([
-            $attribute => is_null($file) ? $model->{$attribute} : $this->request->{$attribute}
+            $attribute => is_null($file) ? $model->{$attribute} : $this->request->{$attribute},
         ]);
     }
 

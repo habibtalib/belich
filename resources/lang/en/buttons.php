@@ -29,5 +29,5 @@ return [
         'previus' => 'Previus',
         'right' => 'Right',
         'top' => 'Top',
-    ]
+    ],
 ];

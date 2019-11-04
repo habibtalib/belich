@@ -2,7 +2,6 @@
 
 namespace Daguilarm\Belich\Fields;
 
-use Daguilarm\Belich\Contracts\Maker;
 use Daguilarm\Belich\Fields\FieldAbstract;
 use Daguilarm\Belich\Fields\Traits\Attributable;
 use Daguilarm\Belich\Fields\Traits\Casteable;
@@ -29,7 +28,7 @@ class Field extends FieldAbstract
      * @param  string  $name
      * @param  string|null  $attribute
      */
-    public function __construct($label, $attribute = null)
+    public function __construct(string $label, ?string $attribute = null)
     {
         //Set the default value
         $title = str_replace(' ', '_', Str::lower($attribute));

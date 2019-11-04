@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Facades;
 
 use Illuminate\Support\ServiceProvider;
 
-class HelperProvider extends ServiceProvider
+final class HelperProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.

@@ -6,7 +6,6 @@ use Daguilarm\Belich\Facades\Belich;
 
 trait Routes
 {
-
     /**
      * Generate the form route for the action attribute
      *

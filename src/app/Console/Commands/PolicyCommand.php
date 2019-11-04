@@ -6,7 +6,6 @@ use Daguilarm\Belich\App\Console\BelichCommand;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
-use Symfony\Component\Console\Input\InputOption;
 
 class PolicyCommand extends BelichCommand
 {

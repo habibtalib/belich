@@ -2,9 +2,6 @@
 
 namespace Daguilarm\Belich\Core\Traits;
 
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Facades\Request;
-
 trait Searchable
 {
     /**

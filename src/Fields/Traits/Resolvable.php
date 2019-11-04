@@ -48,7 +48,7 @@ trait Resolvable
      *
      * @param Illuminate\Support\Collection $fields
      *
-     * @return array|null
+     * @return Illuminate\Support\Collection
      */
     private function setVisibilityForFields(Collection $fields): Collection
     {

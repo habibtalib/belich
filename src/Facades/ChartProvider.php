@@ -2,11 +2,10 @@
 
 namespace Daguilarm\Belich\Facades;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
-class ChartProvider extends ServiceProvider
+final class ChartProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.

@@ -6,7 +6,7 @@ use Daguilarm\Belich\Facades\Helper;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
-class Eloquent
+final class Eloquent
 {
     /**
      * Get collection from model

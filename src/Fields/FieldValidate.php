@@ -3,7 +3,6 @@
 namespace Daguilarm\Belich\Fields;
 
 use Daguilarm\Belich\Core\Traits\Systemable;
-use Daguilarm\Belich\Fields\ResolveFields as Fields;
 use Daguilarm\Belich\Fields\Traits\Filterable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
@@ -35,9 +34,11 @@ final class FieldValidate
     /**
      * Return the javascript
      *
+     * @param Illuminate\Support\Collection $resource
+     *
      * @return Illuminate\Support\Collection
      */
-    public function create($resource): Collection
+    public function create(Collection $resource): Collection
     {
         //Set the resource name
         $this->resource = $resource['name'];
@@ -62,7 +63,7 @@ final class FieldValidate
 
         //Render the javascript
         return collect([
-            'javascript' => $this->javascript($formValues, $formValidationRules, $formValidationAttributes)
+            'javascript' => $this->javascript($formValues, $formValidationRules, $formValidationAttributes),
         ]);
     }
 
@@ -80,17 +81,17 @@ final class FieldValidate
      *
      * @return Illuminate\Support\Collection
      */
-    private function setValues($resource): Collection
+    private function setValues(Collection $resource): Collection
     {
         return $resource['fields']
-            ->mapWithKeys(function ($field, $key) {
+            ->mapWithKeys(function ($field) {
                 return [
                     $field->id => [
                         $field->label,
                         $field->id ?? null,
                         //Define the rules base on the action
                         $this->setRules($field),
-                    ]
+                    ],
                 ];
             });
     }
@@ -98,11 +99,11 @@ final class FieldValidate
     /**
      * Set the validation rules for the field base on the current action
      *
-     * @param string $action
+     * @param object $field
      *
      * @return array
      */
-    private function setRules($field): array
+    private function setRules(object $field): array
     {
         return array_merge($this->setCurrentRules($field), $field->defaultRules ?? []);
     }
@@ -111,11 +112,11 @@ final class FieldValidate
      * Get the current rules for each controller action
      * It is an helper for $this->setRules($field)
      *
-     * @param string $action
+     * @param object $field
      *
      * @return array
      */
-    public function setCurrentRules($field): array
+    private function setCurrentRules(object $field): array
     {
         $rules = [
             'create' => $field->creationRules ?? $field->rules ?? [],
@@ -133,11 +134,11 @@ final class FieldValidate
      * Set javascript form values.
      * Just completing the javascript code with the vales from the form fields
      *
-     * @param array $values
+     * @param Illuminate\Support\Collection $values
      *
      * @return string
      */
-    private function setFormValues($values): string
+    private function setFormValues(Collection $values): string
     {
         return collect($values)
             ->map(static function ($value, $attribute) {
@@ -155,11 +156,11 @@ final class FieldValidate
      * Set form validation rules
      * Generate an array with the validation rules for each field
      *
-     * @param array $values
+     * @param Illuminate\Support\Collection $values
      *
-     * @return string|json
+     * @return string
      */
-    private function formValidationRules($values): string
+    private function formValidationRules(Collection $values): string
     {
         return collect($values)
             ->map(static function ($value) {
@@ -174,11 +175,11 @@ final class FieldValidate
      * Set form validation attributes
      * This is helpful for project with localization
      *
-     * @param array $values
+     * @param Illuminate\Support\Collection $values
      *
      * @return string|json
      */
-    private function formValidationAttributes($values): string
+    private function formValidationAttributes(Collection $values): string
     {
         return collect($values)
             ->map(static function ($attribute) {
@@ -193,7 +194,7 @@ final class FieldValidate
      *
      * @return string
      */
-    private function javascriptMinify($script): string
+    private function javascriptMinify(string $script): string
     {
         //Minify the javascript code
         $minifier = new Minify\Js($script);
@@ -204,11 +205,13 @@ final class FieldValidate
     /**
      * Render the javascript code
      *
-     * @param array $values
+     * @param string $values
+     * @param string $rules
+     * @param string $values
      *
      * @return string
      */
-    private function javascript($values, $rules, $attributes): string
+    private function javascript(string $values, string $rules, string $attributes): string
     {
         //Get the javascript stub
         $stub = File::get(config_path('belich/stubs/validate-form.stub'));

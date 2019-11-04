@@ -16,7 +16,7 @@ use Daguilarm\Belich\Components\Helpers\Strings;
 use Daguilarm\Belich\Components\Helpers\Time;
 use Daguilarm\Belich\Components\Helpers\Utils;
 
-class Helper
+final class Helper
 {
     use Blade, Icons, Files, Forms, Messages, Metrics, Models, Paths, Resources, Routes, Strings, Time, Utils;
 

@@ -2,7 +2,6 @@
 
 namespace Daguilarm\Belich\Fields\Types;
 
-use Daguilarm\Belich\Facades\Belich;
 use Daguilarm\Belich\Fields\Types\File;
 
 class Image extends File

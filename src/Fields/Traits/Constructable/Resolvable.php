@@ -4,8 +4,6 @@ namespace Daguilarm\Belich\Fields\Traits\Constructable;
 
 use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Field;
-use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Storage;
 
 trait Resolvable
 {
@@ -64,9 +62,9 @@ trait Resolvable
      * Resolve the boolean fields
      *
      * @param  Daguilarm\Belich\Fields\Field $field
-     * @param  $value
+     * @param  string|null $value
      */
-    private function resolveBoolean(Field $field, $value)
+    private function resolveBoolean(Field $field, ?string $value)
     {
         // If boolean
         if ($field->type === 'boolean') {
@@ -90,7 +88,7 @@ trait Resolvable
      *
      * @return string|null
      */
-    protected function resolveUsingLabels(Field $field, $value): ?string
+    private function resolveUsingLabels(Field $field, $value): ?string
     {
         return isset($field->displayUsingLabels) && isset($field->options) && isset($value)
             ? $field->options[$value]

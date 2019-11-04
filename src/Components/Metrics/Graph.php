@@ -21,6 +21,7 @@ abstract class Graph
 
     /**
      * ['area-color', 'line-color', 'title-color', 'legend-color']
+     *
      * @var array
      */
     public $defineColors;
@@ -47,6 +48,7 @@ abstract class Graph
 
     /**
      * ['butt', 'square', 'round']
+     *
      * @var string
      */
     public $marker;

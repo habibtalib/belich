@@ -2,9 +2,7 @@
 
 namespace Daguilarm\Belich\Components\Export;
 
-use Illuminate\Http\Request;
-
-class Excel
+final class Excel
 {
     /**
      * Select driver from config file

@@ -4,7 +4,9 @@ namespace Daguilarm\Belich\Fields\Traits;
 
 trait Casteable
 {
-    /** @var array */
+    /**
+     * @var array
+     */
     public $cast;
 
     /**

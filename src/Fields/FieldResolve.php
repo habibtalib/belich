@@ -3,7 +3,6 @@
 namespace Daguilarm\Belich\Fields;
 
 use Daguilarm\Belich\Core\Traits\Routeable;
-use Daguilarm\Belich\Fields\Field;
 use Daguilarm\Belich\Fields\Traits\Constructable\Authorizable;
 use Daguilarm\Belich\Fields\Traits\Constructable\Renderable;
 use Daguilarm\Belich\Fields\Traits\Constructable\Valuable;
@@ -25,8 +24,6 @@ final class FieldResolve
 
     /**
      * Get controller action
-     *
-     * @return string
      */
     public function __construct()
     {

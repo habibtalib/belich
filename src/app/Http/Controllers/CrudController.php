@@ -12,8 +12,6 @@ use Daguilarm\Belich\App\Http\Requests\StoreRequest;
 use Daguilarm\Belich\App\Http\Requests\UpdateRequest;
 use Daguilarm\Belich\Core\Belich;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 final class CrudController extends Controller

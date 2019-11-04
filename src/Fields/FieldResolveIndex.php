@@ -9,7 +9,7 @@ use Daguilarm\Belich\Fields\Traits\Constructable\Resolvable;
 use Daguilarm\Belich\Fields\Traits\Constructable\Softdeleteable;
 use Illuminate\Support\Collection;
 
-class FieldResolveIndex
+final class FieldResolveIndex
 {
     use Callbackable,
         Fileable,
@@ -21,11 +21,10 @@ class FieldResolveIndex
      * Resolve fields: auth, visibility, value,...
      *
      * @param object $fields
-     * @param object $sqlResponse
      *
      * @return Illuminate\Support\Collection
      */
-    public function make(object $fields, object $sqlResponse): Collection
+    public function make(object $fields): Collection
     {
         $fields = $fields->map(static function ($field) {
             //Showing field relationship in index

@@ -2,7 +2,7 @@
 
 namespace Daguilarm\Belich\Fields;
 
-class FieldAbstract
+abstract class FieldAbstract
 {
     /**
      * List of allowed controller actions
@@ -299,7 +299,7 @@ class FieldAbstract
      *
      * @return self
      */
-    protected function removedAttr(...$attributes): self
+    protected function removedAttr(array ...$attributes): self
     {
         $this->removedAttr = $attributes;
 
