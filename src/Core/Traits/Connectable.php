@@ -39,7 +39,7 @@ trait Connectable
                         return $query;
                     }
                     //Get the results
-                    collect(self::requestTableFields())->each(function ($field): void {
+                    collect(self::requestTableFields())->each(function ($field) use ($query): void {
                         $query->orWhere($field, 'LIKE', '%' . $this->request->query('query') . '%');
                     });
                 })
