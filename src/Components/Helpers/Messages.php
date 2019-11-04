@@ -9,7 +9,7 @@ trait Messages
      *
      * @return array
      */
-    function messages(string $type): array
+    private function messages(string $type): array
     {
         return $type === 'errors'
             ? session()->get($type)->all()
