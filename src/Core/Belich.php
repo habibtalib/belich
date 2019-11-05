@@ -73,7 +73,7 @@ final class Belich extends BelichRepository
     /**
      * Initialize the Cards and the Metrics
      *
-     * @return null|string
+     * @return string|null
      */
     public function components(Request $request): ?string
     {
