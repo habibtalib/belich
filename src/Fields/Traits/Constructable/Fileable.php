@@ -31,7 +31,7 @@ trait Fileable
      * Resolve the field by type
      *
      * @param  Daguilarm\Belich\Fields\Field $field
-     * @param  null|string $value
+     * @param  string|null $value
      *
      * @return string
      */
