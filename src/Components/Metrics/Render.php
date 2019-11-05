@@ -6,7 +6,6 @@ use Daguilarm\Belich\Components\Metrics\Traits\Javascriptable;
 use Daguilarm\Belich\Components\Metrics\Traits\Stylable;
 use Daguilarm\Belich\Components\Metrics\Traits\Templatable;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 
 final class Render
 {
