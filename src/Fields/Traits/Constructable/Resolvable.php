@@ -81,7 +81,7 @@ trait Resolvable
         }
 
         // With color circles
-        return sprintf('<i class="fas fa-circle text-%s-500"></i>', $value ? 'green' : 'grey');
+        return sprintf('<i class="fas fa-circle text-%s-500"></i>', $value ? $field->color : 'grey');
     }
 
     /**
