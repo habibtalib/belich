@@ -70,18 +70,13 @@ trait Forms
      *
      * @return string
      */
-    private function setFormAttribute(Field $field, string $attribute, ?string $default = null): string
+    private function setFormAttribute(Field $field, string $attribute, ?string $default = null, ?string $prefix = null): string
     {
-        //Render css classes
-        $field = $this->addClassAttribute($field, $attribute);
+        //Get the attribute
+        $attribute = $this->getAttribute($attribute);
 
-        //Add classes
-        $value = isset($field->{$attribute}) && $attribute === 'addClass' && isset($default)
-            ? $field->{$attribute} . ', ' . $default
-            : $field->{$attribute} ?? $default;
-
-        //Apply the html format. Ex: Change the attribute addClass to class (for html render)...
-        $attribute = str_replace(array_keys($this->attributeFilter), array_values($this->attributeFilter), $attribute);
+        //Get the value
+        $value = $this->getValue($field, $attribute, $default);
 
         //Pattern mask
         if ($attribute === 'mask') {
@@ -93,77 +88,57 @@ trait Forms
             return $field->value ? 'checked="checked"' : '';
         }
 
-        return $value
-            ? sprintf('%s="%s"', $attribute, $value)
-            : '';
+        return $this->renderAttribute($attribute, $value, $prefix);
     }
 
     /**
-     * Render the class attribute
+     * Get the attribute name
      *
-     * @param Daguilarm\Belich\Fields\Field $field
      * @param string $attribute
      *
-     * @return Daguilarm\Belich\Fields\Field
+     * @return string
      */
-    private function addClassAttribute($field, $attribute): Field
+    private function getAttribute(string $attribute): string
     {
-        //Render css classes
-        $field->addClass = $attribute === 'addClass' && isset($field->addClass)
-            ? implode(' ', $field->addClass)
-            : '';
-
-        return $field;
+        //Apply the html format. Ex: Change the attribute addClass to class (for html render)...
+        return str_replace(
+            array_keys($this->attributeFilter),
+            array_values($this->attributeFilter),
+            $attribute,
+        );
     }
 
     /**
-     * Render the field attribute base on the value with a prefix
-     * This fields is mostly for Coordenate fields
+     * Get the attribute name
      *
      * @param Daguilarm\Belich\Fields\Field $field
-     * @param string $prefix
+     * @param string|null $attribute
+     * @param string|null $default
      *
      * @return string
      */
-    private function renderWithPrefix(Field $field, string $prefix): string
+    private function getValue(Field $field, string $attribute, ?string $default = null): ?string
     {
-        return collect(explode(' ', $field->render))->map(static function ($item) use ($prefix) {
-            //Get the fields
-            $item = explode('=', $item);
-
-            return count($item) > 1
-                //Prefixed regular fields
-                ? [$item[0] => implode('_', [$prefix, $item[1]])]
-                //Prefixed dusk field
-                : $this->renderWithPrefixForDuskAndReadonlyAndDisabled($item, $prefix);
-        })
-            ->map(static function ($value) {
-                return is_array($value)
-                    ? sprintf('%s=%s', array_keys($value)[0], array_values($value)[0])
-                    : $value;
-            })
-            ->implode(' ');
+        return (isset($field->addClass) && is_array($field->addClass) && $attribute === 'class')
+            // Css class attribute
+            ? collect($field->addClass)->push($default)->filter()->join(' ')
+            // Regular attribute
+            : $default ?? $field->{$attribute} ?? null;
     }
 
     /**
-     * Helper for renderWithPrefix()
-     * This fields is mostly for Coordenate fields
+     * Render the attribute
      *
-     * @param Daguilarm\Belich\Fields\Field $field
-     * @param string $prefix
+     * @param string $attribute
+     * @param string|null $value
+     * @param string|null $prefix
      *
      * @return string
      */
-    private function renderWithPrefixForDuskAndReadonlyAndDisabled($item, $prefix)
+    private function renderAttribute(string $attribute, ?string $value, ?string $prefix): string
     {
-        $value = explode('-', $item[1]);
-
-        //Format: dusk-$prefix-$attribute
-        array_splice($value, 1, 0, $prefix);
-
-        return $item[0] === 'dusk'
-            ? [$item[0] => implode('-', $value)]
-            //Fields: readonly and disabled (this fields don't has an structure like: attribute=value)
-            : $item[0];
+        return $value
+            ? sprintf('%s%s="%s"', $prefix, $attribute, $value)
+            : sprintf('%s%s', $prefix, $attribute);
     }
 }
