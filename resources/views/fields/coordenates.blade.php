@@ -1,33 +1,33 @@
-<belich::fields :field="$field">
-    <slot name="input">
-        <div class="flex w-full">
-            {{-- Lat --}}
-            <input
-                type="number"
-                {!! Helper::setFormAttribute($field, 'addClass') !!}
-                {!! Helper::setFormAttribute($field, 'value') !!}
-                {!! Helper::setFormAttribute($field, 'step') !!}
-                {!! Helper::renderWithPrefix($field, 'lat') !!}
-                placeholder="{{ trans('belich::units.lat') }}"
-                onkeyup="javascript:onlyNumerics(this)"
-                onblur="javascript:setDecimals(this, 6)"
-                class="mr-3"
-            >
-            <input type="hidden" name="cast[]" value="float|lat_{{ $field->attribute }}">
+{{-- Convert coordenates Latlng to Degrees --}}
+@push('javascript')
+    <script>
+        function toDegreesMinutesAndSeconds(coordinate, type) {
+            var absolute = Math.abs(coordinate);
+            var degrees = Math.floor(absolute);
+            var minutesNotTruncated = (absolute - degrees) * 60;
+            var minutes = Math.floor(minutesNotTruncated);
+            var seconds = Math.floor((minutesNotTruncated - minutes) * 60);
+            var direction;
 
-            {{-- Lng --}}
-            <input
-                type="number"
-                {!! Helper::setFormAttribute($field, 'addClass') !!}
-                {!! Helper::setFormAttribute($field, 'value') !!}
-                {!! Helper::setFormAttribute($field, 'step') !!}
-                {!! Helper::renderWithPrefix($field, 'lng') !!}
-                placeholder="{{ trans('belich::units.lng') }}"
-                onkeyup="javascript:onlyNumerics(this)"
-                onblur="javascript:setDecimals(this, 6)"
-                class="ml-3"
-            >
-            <input type="hidden" name="cast[]" value="float|lng_{{ $field->attribute }}">
-        </div>
-    </slot>
-</belich::fields>
+            if(type === 'latitude') {
+                direction = coordinate >= 0 ? 'N' : 'S';
+            } else {
+                direction = lng >= 0 ? 'E' : 'W';
+            }
+
+            return degrees + '&#176; ' + minutes + "' " + seconds + '" ' + direction;
+        }
+
+        function updateCoordenates(item, key, type, decimals = 6) {
+            window.setDecimals(item, decimals);
+            document.getElementById(key).innerHTML = toDegreesMinutesAndSeconds(item.value, type);
+        }
+
+        // Default setup
+        document.addEventListener('DOMContentLoaded', function() {
+            if(document.getElementById('{{ md5($field->id . '-to-degrees') }}')) {
+                document.getElementById('{{ md5($field->id . '-to-degrees') }}').innerHTML = toDegreesMinutesAndSeconds('{{ $field->value }}', '{{ $field->coordenateType }}');
+            }
+        });
+    </script>
+@endpush

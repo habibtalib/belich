@@ -6,6 +6,10 @@
         {{-- Displaying the field --}}
         {{ $input ?? null }}
 
+        @if($field->toDegrees ?? false)
+            <div id="{{ md5($field->id . '-to-degrees') }}" class="font-normal lowercase font-bold mt-2 capitalize"></div>
+        @endif
+
         @isset($field->help)
             <div class="font-normal lowercase italic mt-2 uppercase-first-letter">{{ $field->help }}</div>
         @endisset
