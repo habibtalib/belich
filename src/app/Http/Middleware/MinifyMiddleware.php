@@ -48,7 +48,7 @@ final class MinifyMiddleware
      * @var array
      */
     private $exceptedActions = [
-        'download'
+        'download',
     ];
 
     /**
