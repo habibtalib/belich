@@ -45,22 +45,6 @@ trait Forms
     }
 
     /**
-     * Helper for determine a selected option
-     *
-     * @param string|null $cache
-     * @param string $value
-     * @param string|null $defaultValue
-     *
-     * @return string
-     */
-    private static function selectedValueForOption(?string $cache, string $value, ?string $defaultValue): string
-    {
-        return $cache === $defaultValue || $cache === $value
-            ? ' selected'
-            : '';
-    }
-
-    /**
      * Render the field attribute base on the value
      * Helper for the belich fields: ./resources/fields
      *
@@ -148,5 +132,21 @@ trait Forms
         return $value
             ? sprintf('%s%s="%s"', $prefix, $attribute, $value)
             : sprintf('%s%s', $prefix, $attribute);
+    }
+
+    /**
+     * Helper for determine a selected option
+     *
+     * @param string|null $cache
+     * @param string $value
+     * @param string|null $defaultValue
+     *
+     * @return string
+     */
+    private static function selectedValueForOption(?string $cache, string $value, ?string $defaultValue): string
+    {
+        return $cache === $defaultValue || $cache === $value
+            ? ' selected'
+            : '';
     }
 }
