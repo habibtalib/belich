@@ -24,7 +24,7 @@ trait Forms
      *
      * @return string
      */
-    private function createFormSelectOptions(array $options, string $field, bool $emptyField = false): string
+    public function createFormSelectOptions(array $options, string $field, bool $emptyField = false): string
     {
         $cache = Cookie::get('belich_' . $field);
 
@@ -70,7 +70,7 @@ trait Forms
      *
      * @return string
      */
-    private function setFormAttribute(Field $field, string $attribute, ?string $default = null, ?string $prefix = null): string
+    public function setFormAttribute(Field $field, string $attribute, ?string $default = null, ?string $prefix = null): string
     {
         //Get the attribute
         $attribute = $this->getAttribute($attribute);
@@ -78,17 +78,13 @@ trait Forms
         //Get the value
         $value = $this->getValue($field, $attribute, $default);
 
-        //Pattern mask
-        if ($attribute === 'mask') {
-            return sprintf('data-mask="%s"', $value);
-        }
+        //Render a specific list of attributes: boolean, mask,...
+        $renderFromArray = $this->renderAttributeFromArray($field, $attribute, $value);
 
-        //Checked field
-        if ($attribute === 'checked') {
-            return $field->value ? 'checked="checked"' : '';
-        }
+        //Render the default attributes: dusk, id, name,...
+        $render = $this->renderAttribute($attribute, $value, $prefix);
 
-        return $this->renderAttribute($attribute, $value, $prefix);
+        return $renderFromArray ?? $render;
     }
 
     /**
@@ -124,6 +120,18 @@ trait Forms
             ? collect($field->addClass)->push($default)->filter()->join(' ')
             // Regular attribute
             : $default ?? $field->{$attribute} ?? null;
+    }
+
+    private function renderAttributeFromArray(Field $field, string $attribute, $value): ?string
+    {
+        $response = [
+            'mask' => sprintf('data-mask="%s"', $value),
+            'checked' => $field->value ? 'checked="checked"' : '',
+        ];
+
+        return in_array($attribute, array_keys($response))
+            ? $response[$attribute]
+            : null;
     }
 
     /**

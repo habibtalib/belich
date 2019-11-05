@@ -18,7 +18,19 @@ use Daguilarm\Belich\Components\Helpers\Utils;
 
 final class Helper
 {
-    use Blade, Icons, Files, Forms, Messages, Metrics, Models, Paths, Resources, Routes, Strings, Time, Utils;
+    use Blade,
+        Icons,
+        Files,
+        Forms,
+        Messages,
+        Metrics,
+        Models,
+        Paths,
+        Resources,
+        Routes,
+        Strings,
+        Time,
+        Utils;
 
     /**
      * Generate helper's methods
@@ -29,8 +41,12 @@ final class Helper
     public function __call(string $method, array $parameters)
     {
         if (method_exists($this, $method)) {
-            return call_user_func_array([$this, $method], $parameters);
+            $reflection = new \ReflectionMethod($this, $method);
+            if ($reflection->isPublic()) {
+                return call_user_func_array([$this, $method], $parameters);
+            }
         }
-        throw new \InvalidArgumentException('The method ' . $method . '() not exists');
+
+        abort(403, sprintf('The method %s() not exists', $method));
     }
 }

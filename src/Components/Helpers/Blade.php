@@ -11,7 +11,7 @@ trait Blade
      *
      * @return string
      */
-    private function hideContainerForScreens(array $hideFor): string
+    public function hideContainerForScreens(array $hideFor): string
     {
         $screens = collect(['sm', 'md', 'lg', 'xl']);
 
@@ -32,7 +32,7 @@ trait Blade
      *
      * @return string
      */
-    private function hideCardsForScreens(): string
+    public function hideCardsForScreens(): string
     {
         return self::hideContainerForScreens(config('belich.hideCardsForScreens'));
     }
@@ -44,7 +44,7 @@ trait Blade
      *
      * @return string
      */
-    private function hideMetricsForScreens(): string
+    public function hideMetricsForScreens(): string
     {
         return self::hideContainerForScreens(config('belich.hideMetricsForScreens'));
     }

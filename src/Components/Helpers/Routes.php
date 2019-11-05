@@ -13,7 +13,7 @@ trait Routes
      *
      * @return string
      */
-    private function toRoute(string $redirectTo): string
+    public function toRoute(string $redirectTo): string
     {
         $route = sprintf('%s.%s.%s', Belich::pathName(), Belich::resource(), $redirectTo);
         $id = Belich::resourceId() ?? 0;

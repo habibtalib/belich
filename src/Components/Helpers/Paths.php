@@ -11,7 +11,7 @@ trait Paths
      *
      * @return string
      */
-    private function namespace_path(string $file): string
+    public function namespace_path(string $file): string
     {
         return '\\Daguilarm\\Belich\\' . $file;
     }
@@ -23,7 +23,7 @@ trait Paths
      *
      * @return string
      */
-    private function route_path(string $file): string
+    public function route_path(string $file): string
     {
         return sprintf('%s/%s', config('belich.path'), $file);
     }
@@ -35,7 +35,7 @@ trait Paths
      *
      * @return string
      */
-    private function belich_path(?string $resource = null): string
+    public function belich_path(?string $resource = null): string
     {
         return sprintf(
             '%s%s/%s',

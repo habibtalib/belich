@@ -13,7 +13,7 @@ trait Utils
      *
      * @return array
      */
-    private function fieldToArray(string $values): array
+    public function fieldToArray(string $values): array
     {
         $listOfValues = explode(',', $values);
 

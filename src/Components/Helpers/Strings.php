@@ -13,7 +13,7 @@ trait Strings
      *
      * @return string
      */
-    private function stringPluralLower(string $string): string
+    public function stringPluralLower(string $string): string
     {
         return Str::plural(strtolower($string));
     }
@@ -25,7 +25,7 @@ trait Strings
      *
      * @return string
      */
-    private function stringPluralUpper(string $string): string
+    public function stringPluralUpper(string $string): string
     {
         return Str::plural(ucfirst($string));
     }
@@ -37,7 +37,7 @@ trait Strings
      *
      * @return string
      */
-    private function stringSingularUpper(string $string): string
+    public function stringSingularUpper(string $string): string
     {
         return Str::singular(ucfirst($string));
     }
@@ -49,7 +49,7 @@ trait Strings
      *
      * @return string
      */
-    private function stringTokebab(string $string): string
+    public function stringTokebab(string $string): string
     {
         return Str::kebab($string);
     }
@@ -59,7 +59,7 @@ trait Strings
      *
      * @return string
      */
-    private function emptyResults(): string
+    public function emptyResults(): string
     {
         return '—';
     }

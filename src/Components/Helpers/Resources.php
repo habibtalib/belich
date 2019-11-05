@@ -13,7 +13,7 @@ trait Resources
      *
      * @return Illuminate\Support\Collection
      */
-    private function getAllTheResourcesFromFolder(): Collection
+    public function getAllTheResourcesFromFolder(): Collection
     {
         //No file ... install case
         if (!file_exists(app_path('Belich/Resources'))) {

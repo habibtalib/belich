@@ -11,7 +11,7 @@ trait Models
      *
      * @return bool
      */
-    private function hasSoftdelete(string $model): bool
+    public function hasSoftdelete(string $model): bool
     {
         return method_exists($model, 'trashed')
             ? true
@@ -25,7 +25,7 @@ trait Models
      *
      * @return bool
      */
-    private function hasSoftdeletedResults(string $model): bool
+    public function hasSoftdeletedResults(string $model): bool
     {
         return method_exists($model, 'trashed') && $model->trashed()
             ? true

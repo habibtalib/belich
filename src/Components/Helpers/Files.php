@@ -12,7 +12,7 @@ trait Files
      *
      * @return string
      */
-    private function getFileAttributes(string $fileName, bool $extension = false): string
+    public function getFileAttributes(string $fileName, bool $extension = false): string
     {
         $str = explode('.', $fileName);
 

@@ -18,7 +18,7 @@ trait Icons
      *
      * @return string
      */
-    private function icon(string $icon, string $text = '', string $css = ''): string
+    public function icon(string $icon, string $text = '', string $css = ''): string
     {
         // Set right margin if we have text
         $margin = $text ? ' mr-2' : '';
@@ -36,7 +36,7 @@ trait Icons
      *
      * @return string
      */
-    private function actionIcon(string $icon): string
+    public function actionIcon(string $icon): string
     {
         return sprintf('<i class="fas fa-%s"></i>', $icon);
     }
@@ -53,7 +53,7 @@ trait Icons
      *
      * @return  string
      */
-    private function gravatar(?string $email = null, int $size = 80, string $imageSet = 'mp', string $rating = 'g'): string
+    public function gravatar(?string $email = null, int $size = 80, string $imageSet = 'mp', string $rating = 'g'): string
     {
         $email = $email
             ? md5(strtolower(trim($email)))
