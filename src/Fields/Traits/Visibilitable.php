@@ -6,6 +6,7 @@ trait Visibilitable
 {
     /**
      * Field visibility base on the action
+     *
      * @var array
      */
     public $visibility = [

@@ -9,7 +9,6 @@ use Daguilarm\Belich\Core\Traits\Resourceable;
 use Daguilarm\Belich\Core\Traits\Routeable;
 use Daguilarm\Belich\Core\Traits\Systemable;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 
 abstract class Resources extends ResourcesRepository
 {
