@@ -4,21 +4,31 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-class Boolean extends Field
+final class Boolean extends Field
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     public $color = 'green';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $falseValue;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $trueValue;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $type = 'boolean';
 
-    /** @var array */
+    /**
+     * @var array
+     */
     private $defaultColors = ['green', 'red', 'blue'];
 
     /**

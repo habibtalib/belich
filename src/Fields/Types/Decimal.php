@@ -4,12 +4,16 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-class Decimal extends Field
+final class Decimal extends Field
 {
-    /** @var int|float */
+    /**
+     * @var int|float
+     */
     public $decimals;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $type = 'decimal';
 
     /**

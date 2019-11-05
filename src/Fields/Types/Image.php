@@ -4,18 +4,26 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Types\File;
 
-class Image extends File
+final class Image extends File
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     public $type = 'file';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $fileType = 'image';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $alt;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $addCss;
 
     /**

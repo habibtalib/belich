@@ -4,8 +4,10 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-class Password extends Field
+final class Password extends Field
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     public $type = 'password';
 }

@@ -4,9 +4,11 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-class Year extends Field
+final class Year extends Field
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     public $type = 'year';
 
     /**

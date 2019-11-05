@@ -5,12 +5,16 @@ namespace Daguilarm\Belich\Fields\Types;
 use Carbon\Carbon;
 use Daguilarm\Belich\Fields\Field;
 
-class Date extends Field
+final class Date extends Field
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     public $type = 'date';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $format;
 
     /**

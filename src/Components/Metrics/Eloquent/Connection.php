@@ -9,7 +9,7 @@ use Daguilarm\Belich\Components\Metrics\Eloquent\Traits\Results;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 
-class Connection
+final class Connection
 {
     use Cacheable, DatesForHumans, Results;
 

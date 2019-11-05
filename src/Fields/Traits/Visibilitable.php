@@ -4,7 +4,10 @@ namespace Daguilarm\Belich\Fields\Traits;
 
 trait Visibilitable
 {
-    /** @var array [Field visibility base on the action] */
+    /**
+     * Field visibility base on the action
+     * @var array
+     */
     public $visibility = [
         'index' => true,
         'create' => true,
@@ -67,7 +70,6 @@ trait Visibilitable
      */
     public function exceptOnForms(): self
     {
-        //Reset the values
         self::hideFromAll();
 
         $this->visibility['index'] = true;
@@ -83,7 +85,6 @@ trait Visibilitable
      */
     public function onlyOnForms(): self
     {
-        //Reset the values
         self::hideFromAll();
 
         $this->visibility['create'] = true;
@@ -99,7 +100,6 @@ trait Visibilitable
      */
     public function onlyOnIndex(): self
     {
-        //Reset the values
         self::hideFromAll();
 
         $this->visibility['index'] = true;
@@ -114,7 +114,6 @@ trait Visibilitable
      */
     public function onlyOnShow(): self
     {
-        //Reset the values
         self::hideFromAll();
 
         $this->visibility['show'] = true;
@@ -129,7 +128,6 @@ trait Visibilitable
      */
     public function onlyOnEditing(): self
     {
-        //Reset the values
         self::hideFromAll();
 
         $this->visibility['edit'] = true;
@@ -144,7 +142,6 @@ trait Visibilitable
      */
     public function onlyOnCreating(): self
     {
-        //Reset the values
         self::hideFromAll();
 
         $this->visibility['create'] = true;
@@ -159,7 +156,6 @@ trait Visibilitable
      */
     public function visibleOn(...$attributes): self
     {
-        //Reset the values
         self::hideFromAll();
 
         //Showing fields
@@ -180,7 +176,6 @@ trait Visibilitable
      */
     public function hideFrom(...$attributes): self
     {
-        //Reset the values
         self::showInAll();
 
         //Hidding fields
@@ -193,12 +188,6 @@ trait Visibilitable
 
         return $this;
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Private methods
-    |--------------------------------------------------------------------------
-    */
 
     /**
      * Hide field for all actions

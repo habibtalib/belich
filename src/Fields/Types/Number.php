@@ -4,18 +4,26 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-class Number extends Field
+final class Number extends Field
 {
-    /** @var int */
+    /**
+     * @var int
+     */
     public $max;
 
-    /** @var int */
+    /**
+     * @var int
+     */
     public $min;
 
-    /** @var int|float */
+    /**
+     * @var int|float
+     */
     public $step;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $type = 'number';
 
     /**

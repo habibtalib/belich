@@ -4,19 +4,28 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-class File extends Field
+abstract class File extends Field
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     public $type = 'file';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $fileType = 'file';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $disk = 'public';
 
-    /** @var bool */
-    public $storeOriginalName = 0;
+    /**
+     * @var bool
+     */
+    // public $storeOriginalName = 0;
+    public $storeOriginalName = false;
 
     /**
      * Create a new field.

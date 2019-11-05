@@ -4,11 +4,15 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-class Coordenates extends Field
+final class Coordenates extends Field
 {
-    /** @var int|float */
+    /**
+     * @var int|float
+     */
     public $step = '.000001';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $type = 'coordenates';
 }

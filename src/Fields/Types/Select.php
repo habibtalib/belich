@@ -4,15 +4,21 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-class Select extends Field
+final class Select extends Field
 {
-    /**  @var string */
+    /**
+     * @var string
+     */
     public $type = 'select';
 
-    /**  @var bool */
+    /**
+     * @var bool
+     */
     public $displayUsingLabels;
 
-    /** @var array */
+    /**
+     * @var array
+     */
     public $options;
 
     /**

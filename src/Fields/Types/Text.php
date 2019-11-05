@@ -4,9 +4,11 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-class Text extends Field
+final class Text extends Field
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     public $type = 'text';
 
     /**

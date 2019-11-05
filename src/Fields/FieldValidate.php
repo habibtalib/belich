@@ -67,12 +67,6 @@ final class FieldValidate
         ]);
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Private methods
-    |--------------------------------------------------------------------------
-    */
-
     /**
      * Set the values from the fields.
      * This is only to store all the data in one place...

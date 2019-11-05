@@ -4,18 +4,26 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-class TextArea extends Field
+final class TextArea extends Field
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     public $type = 'textArea';
 
-    /** @var bool */
+    /**
+     * @var bool
+     */
     public $count;
 
-    /** @var int */
+    /**
+     * @var int
+     */
     public $maxlength;
 
-    /** @var int */
+    /**
+     * @var int
+     */
     public $rows;
 
     /**

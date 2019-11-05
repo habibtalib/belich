@@ -2,7 +2,7 @@
 
 namespace Daguilarm\Belich\Fields;
 
-abstract class FieldAbstract
+class FieldAbstract
 {
     /**
      * List of allowed controller actions

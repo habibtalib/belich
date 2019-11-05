@@ -5,7 +5,7 @@ namespace Daguilarm\Belich\App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Daguilarm\Belich\App\Http\Requests\SearchRequest;
 use Daguilarm\Belich\Core\Belich;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\JsonResponse;
 
 final class SearchController extends Controller
 {
@@ -17,7 +17,7 @@ final class SearchController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(SearchRequest $request, Belich $belich): RedirectResponse
+    public function __invoke(SearchRequest $request, Belich $belich): JsonResponse
     {
         //Get all the data
         $request = $request->data($belich, $request);

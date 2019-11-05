@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Types\Autocomplete;
 
-class Countries extends Autocomplete
+final class Countries extends Autocomplete
 {
     /**
      * Create a new field.

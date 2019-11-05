@@ -4,12 +4,16 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-class Pattern extends Field
+final class Pattern extends Field
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     public $type = 'pattern';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $mask;
 
     /**

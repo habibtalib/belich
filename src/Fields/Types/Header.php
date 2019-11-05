@@ -4,21 +4,31 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-class Header extends Field
+final class Header extends Field
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     public $type = 'header';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $background;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $color;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $icon;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $size;
 
     /**

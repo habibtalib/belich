@@ -7,7 +7,7 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
-class PolicyCommand extends BelichCommand
+final class PolicyCommand extends BelichCommand
 {
     /**
      * The name and signature of the console command.

@@ -4,9 +4,11 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-class Hidden extends Field
+final class Hidden extends Field
 {
-    /** @var string */
+    /**
+     * @var string
+     */
     public $type = 'hidden';
 
     /**

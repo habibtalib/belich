@@ -7,7 +7,7 @@ use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
-class CardCommand extends BelichCommand
+final class CardCommand extends BelichCommand
 {
     /**
      * The name and signature of the console command.

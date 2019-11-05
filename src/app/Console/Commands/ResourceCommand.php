@@ -6,7 +6,7 @@ use Daguilarm\Belich\App\Console\BelichCommand;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 
-class ResourceCommand extends BelichCommand
+final class ResourceCommand extends BelichCommand
 {
     /**
      * The name and signature of the console command.
