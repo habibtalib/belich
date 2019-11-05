@@ -30,6 +30,13 @@ trait Resolvable
         //Resolve value
         $value = $this->resolveValue($field, $data, $value);
 
+        // If boolean
+        // Please respect this orden -> first $this->resolveValue($field, $data, $value)
+        // then $this->resolveBoolean($field, $value)
+        if ($field->type === 'boolean') {
+            return $this->resolveBoolean($field, $value);
+        }
+
         //Resolve the field value through callbacks
         return $this->getCallbackValue($field, $data, $value);
     }
@@ -46,19 +53,6 @@ trait Resolvable
      */
     private function resolveValue(Field $field, ?object $data, ?string $value): ?string
     {
-        // If boolean
-        if ($field->type === 'boolean') {
-            // With default labels
-            if (isset($field->trueValue) && isset($field->falseValue)) {
-                return $value
-                    ? $field->trueValue
-                    : $field->falseValue;
-            }
-
-            // With color circles
-            return sprintf('<i class="fas fa-circle text-%s-500"></i>', $value ? 'green' : 'grey');
-        }
-
         //Resolve using labels
         $value = $this->resolveUsingLabels($field, $value);
 
@@ -69,10 +63,32 @@ trait Resolvable
     }
 
     /**
+     * Resolve boolean fields
+     * This method is helper for $this->resolve()
+     *
+     * @param  Daguilarm\Belich\Fields\Field $field
+     * @param  mixed $value
+     *
+     * @return string|null
+     */
+    private function resolveBoolean(Field $field, $value): ?string
+    {
+        // With default labels
+        if (isset($field->trueValue) && isset($field->falseValue)) {
+            return $value
+                ? $field->trueValue
+                : $field->falseValue;
+        }
+
+        // With color circles
+        return sprintf('<i class="fas fa-circle text-%s-500"></i>', $value ? 'green' : 'grey');
+    }
+
+    /**
      * Resolve using labels
      *
      * @param  Daguilarm\Belich\Fields\Field $field
-     * @param  $value
+     * @param  mixed $value
      *
      * @return string|null
      */
@@ -88,7 +104,7 @@ trait Resolvable
      * This method is helper for $this->resolve()
      *
      * @param  Daguilarm\Belich\Fields\Field $field
-     * @param  null|object $data
+     * @param  object|null $data
      *
      * @return string|null
      */
@@ -102,8 +118,6 @@ trait Resolvable
         }
 
         //Resolve value for action controller: edit
-        $resolveForActionControllerEdit = $data->{$field->attribute} ?? Helper::emptyResults();
-
-        return $value ?? $resolveForActionControllerEdit;
+        return $data->{$field->attribute} ?? Helper::emptyResults();
     }
 }
