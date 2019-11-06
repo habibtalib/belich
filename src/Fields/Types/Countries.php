@@ -28,7 +28,7 @@ final class Countries extends Autocomplete
             //Get the sql value
             $attribute = $model->{$attribute};
             //Set the label value
-            return $this->responseArray[$attribute];
+            return $this->responseArray[$attribute] ?? null;
         });
     }
 }
