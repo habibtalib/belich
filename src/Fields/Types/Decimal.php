@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-class Decimal extends Field
+abstract class Decimal extends Field
 {
     /**
      * @var int|float
