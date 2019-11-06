@@ -16,7 +16,7 @@ trait Callbackable
      *
      * @return string|null
      */
-    protected function getCallbackValue(Field $field, ?object $data = null, $value = '')
+    protected function getCallbackValue(Field $field, ?object $data = null, $value = ''): ?string
     {
         //Resolve value when using the method: $field->displayUsing()
         $value = $this->displayCallback($field, $value);

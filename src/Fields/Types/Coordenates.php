@@ -2,7 +2,6 @@
 
 namespace Daguilarm\Belich\Fields\Types;
 
-use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Types\Decimal;
 
 final class Coordenates extends Decimal
@@ -27,6 +26,8 @@ final class Coordenates extends Decimal
      *
      * @param  string|null  $name
      * @param  string|null  $attribute
+     *
+     * @return  void
      */
     public function __construct($name = null, $attribute = null)
     {
@@ -48,7 +49,7 @@ final class Coordenates extends Decimal
     {
         $this->toDegrees = true;
 
-        if($type === 'lat' || $type === 'Lat' || $type === 'Latitude' || $type === 'latitude') {
+        if ($type === 'lat' || $type === 'Lat' || $type === 'Latitude' || $type === 'latitude') {
             $this->coordenateType = 'latitude';
         } else {
             $this->coordenateType = 'longitude';

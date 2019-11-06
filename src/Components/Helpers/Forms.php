@@ -163,7 +163,7 @@ trait Forms
             // Set the value
             collect($countries)
                 ->each(static function ($country) use ($field): void {
-                    if($field->value === $country['code']) {
+                    if ($field->value === $country['code']) {
                         $field->inputValue = $country['name'];
                     }
                 })->filter();

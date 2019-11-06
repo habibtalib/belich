@@ -27,6 +27,8 @@ class Field extends FieldAbstract
      *
      * @param  string  $name
      * @param  string|null  $attribute
+     *
+     * @return  void
      */
     public function __construct(string $label, ?string $attribute = null)
     {

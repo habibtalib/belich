@@ -14,8 +14,10 @@ trait Fileable
      *
      * @param  Daguilarm\Belich\Fields\Field $field
      * @param  string $value
+     *
+     * @return  $string
      */
-    protected function resolveFile(Field $field, string $value)
+    protected function resolveFile(Field $field, string $value): string
     {
         if (!isset($value) || $value === Helper::emptyResults()) {
             return Helper::emptyResults();
@@ -24,7 +26,7 @@ trait Fileable
         //File policy
         return auth()->user()->can('file', Belich::getModel())
             ? $this->resolveFileType($field, $value)
-            : false;
+            : '';
     }
 
     /**
