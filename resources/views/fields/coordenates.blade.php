@@ -12,7 +12,7 @@
             if(type === 'latitude') {
                 direction = coordinate >= 0 ? 'N' : 'S';
             } else {
-                direction = lng >= 0 ? 'E' : 'W';
+                direction = coordinate >= 0 ? 'E' : 'W';
             }
 
             return degrees + '&#176; ' + minutes + "' " + seconds + '" ' + direction;
