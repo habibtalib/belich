@@ -40,25 +40,19 @@ final class Coordenates extends Decimal
     }
 
     /**
-     * Latlng to degrees
+     * Convert Latlng to degrees
      *
      * @return  self
      */
-    public function latitude(): self
+    public function toDegrees(string $type): self
     {
-        $this->coordenateType = 'latitude';
+        $this->toDegrees = true;
 
-        return $this;
-    }
-
-    /**
-     * Set to lng
-     *
-     * @return  self
-     */
-    public function longitude(): self
-    {
-        $this->coordenateType = 'latitude';
+        if($type === 'lat' || $type === 'Lat' || $type === 'Latitude' || $type === 'latitude') {
+            $this->coordenateType = 'latitude';
+        } else {
+            $this->coordenateType = 'longitude';
+        }
 
         return $this;
     }
