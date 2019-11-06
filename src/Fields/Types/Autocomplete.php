@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-abstract class Autocomplete extends Field
+class Autocomplete extends Field
 {
     /**
      * @var string
