@@ -7,7 +7,7 @@
             type="text"
             dusk="datalist-input-{{ $id }}"
             {!! Helper::setFormAttribute($field, 'addClass') !!}
-            {!! Helper::setFormAttribute($field, 'value') !!}
+            {!! Helper::setFormAttribute($field, 'value', $field->inputValue ?? null) !!}
             {!! $field->render !!}
             @if($field->responseArray)
                 onchange="javascript:setDatalistValuesFromArray('{{ $id }}', '{{ $key }}', '{{ $store }}')"

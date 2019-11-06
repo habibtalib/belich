@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Components\Helpers;
 
+use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Field;
 use Illuminate\Support\Facades\Cookie;
 
@@ -62,11 +63,14 @@ trait Forms
         //Get the value
         $value = $this->getValue($field, $attribute, $default);
 
-        //Render a specific list of attributes: boolean, mask,...
+        //Render a specific list of attributes: boolean, mask, country input...
         $renderFromArray = $this->renderAttributeFromArray($field, $attribute, $value);
 
         //Render the default attributes: dusk, id, name,...
         $render = $this->renderAttribute($attribute, $value, $prefix);
+
+        //Render value for Country field
+        $this->renderCountry($field);
 
         return $renderFromArray ?? $render;
     }
@@ -95,7 +99,7 @@ trait Forms
      * @param string|null $attribute
      * @param string|null $default
      *
-     * @return string
+     * @return string|null
      */
     private function getValue(Field $field, string $attribute, ?string $default = null): ?string
     {
@@ -106,6 +110,15 @@ trait Forms
             : $default ?? $field->{$attribute} ?? null;
     }
 
+    /**
+     * Render attributes from an array of tasks
+     *
+     * @param Daguilarm\Belich\Fields\Field $field
+     * @param string|null $attribute
+     * @param $value
+     *
+     * @return string|null
+     */
     private function renderAttributeFromArray(Field $field, string $attribute, $value): ?string
     {
         $response = [
@@ -132,6 +145,29 @@ trait Forms
         return $value
             ? sprintf('%s%s="%s"', $prefix, $attribute, $value)
             : sprintf('%s%s', $prefix, $attribute);
+    }
+
+    /**
+     * Get the attribute name
+     *
+     * @param Daguilarm\Belich\Fields\Field $field
+     *
+     * @return void
+     */
+    private function renderCountry($field): void
+    {
+        //Value for countries
+        if (Helper::objectName($field) === 'Countries') {
+            // Get the countries
+            $countries = trans('belich::metrics.countriesOfTheWorldWithCodes');
+            // Set the value
+            collect($countries)
+                ->each(static function ($country) use ($field): void {
+                    if($field->value === $country['code']) {
+                        $field->inputValue = $country['name'];
+                    }
+                })->filter();
+        }
     }
 
     /**

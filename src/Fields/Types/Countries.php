@@ -7,6 +7,11 @@ use Daguilarm\Belich\Fields\Types\Autocomplete;
 final class Countries extends Autocomplete
 {
     /**
+     * @var string
+     */
+    public $inputValue;
+
+    /**
      * Create a new field.
      *
      * @param  string|null  $name
@@ -30,5 +35,20 @@ final class Countries extends Autocomplete
             //Set the label value
             return $this->responseArray[$attribute] ?? null;
         });
+
+        //Store the country ID
+        $this->storeId();
+    }
+
+    /**
+     * Display using labels
+     *
+     * @return self
+     */
+    public function displayUsingLabels(): self
+    {
+        $this->displayUsingLabels = true;
+
+        return $this;
     }
 }

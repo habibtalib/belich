@@ -27,4 +27,18 @@ trait Utils
             ->filter()
             ->toArray();
     }
+
+    /**
+     * Get the object name
+     *
+     * @param object $object
+     *
+     * @return string
+     */
+    public function objectName(object $object): string
+    {
+        $array = explode('\\', get_class($object));
+
+        return end($array);
+    }
 }
