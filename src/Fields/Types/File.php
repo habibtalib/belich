@@ -39,6 +39,11 @@ class File extends Field
     /**
      * @var string
      */
+    public $storeMime;
+
+    /**
+     * @var string
+     */
     public $storeName;
 
     /**
@@ -60,9 +65,6 @@ class File extends Field
 
         //Set the html by default because we are showing icons as value (green or grey)
         $this->asHtml = true;
-
-        //Set the default rules for the field
-        $this->defaultRules = ['file'];
     }
 
     /**
@@ -149,9 +151,9 @@ class File extends Field
      *
      * @return self
      */
-    public function storeType(string $tableName): self
+    public function storeMime(string $tableName): self
     {
-        $this->storeSize = $tableName;
+        $this->storeMime = $tableName;
 
         return $this;
     }

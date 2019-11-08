@@ -10,14 +10,14 @@ trait Redirectable
     /**
      * Redirect back with message
      *
-     * @param bool $condition
+     * @param bool|object $condition
      * @param string $success
      * @param string $error
      * @param string $id
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    protected function redirectToAction(bool $condition, string $success, string $error, string $id = ''): RedirectResponse
+    protected function redirectToAction($condition, string $success, string $error, string $id = ''): RedirectResponse
     {
         //Get current Controller action
         $action = Belich::action();

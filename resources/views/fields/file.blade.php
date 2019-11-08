@@ -7,14 +7,14 @@
         >
         {{-- Hidden fields --}}
         <input type="hidden" name="__file[{{ $field->attribute }}][disk]" value="{{ $field->disk }}">
-        @isset($field->storeNameValue)
-            <input type="hidden" name="__file[{{ $field->attribute }}][storeName]" value="{{ $field->storeNameValue}}">
+        @isset($field->storeName)
+            <input type="hidden" name="__file[{{ $field->attribute }}][storeName]" value="{{ $field->storeName }}">
         @endisset
-        @isset($field->storeSizeValue)
-            <input type="hidden" name="__file[{{ $field->attribute }}][storeSize]" value="{{ $field->storeSizeValue }}">
+        @isset($field->storeSize)
+            <input type="hidden" name="__file[{{ $field->attribute }}][storeSize]" value="{{ $field->storeSize }}">
         @endisset
-        @isset($field->storeMimeValue)
-            <input type="hidden" name="__file[{{ $field->attribute }}][storeMime]" value="{{ $field->storeMimeValue }}">
+        @isset($field->storeMime)
+            <input type="hidden" name="__file[{{ $field->attribute }}][storeMime]" value="{{ $field->storeMime }}">
         @endisset
     </slot>
 </belich::fields>

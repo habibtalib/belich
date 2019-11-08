@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\App\Http\Requests\Traits;
 
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
@@ -17,12 +18,13 @@ trait Fileable
      */
     public function handleFile(?object $model = null): ParameterBag
     {
-        $file = $this->request->get('__file');
+        $fileAttributes = $this->request->get('__file');
 
         //Upload the files
-        collect($file)
-            ->map(function ($values, $key) use ($model) {
-                return $this->uploadFile($key, $model, $values);
+        collect($fileAttributes)
+            // Values contain all the hidden field values
+            ->map(function ($values, $key) use ($fileAttributes, $model) {
+                return $this->uploadFile($key, $model, $values, $fileAttributes);
             });
 
         return $this->request;
@@ -34,23 +36,37 @@ trait Fileable
      * @param string $attribute [Field name]
      * @param object|null $model
      * @param array $values
+     * @param array $fileAttributes
      *
      * @return void
      */
-    private function uploadFile(string $attribute, ?object $model, array $values): void
+    private function uploadFile(string $attribute, ?object $model, array $values, array $fileAttributes): void
     {
-        //Get the file
-        $file = $this->{$attribute};
+        // Get the file object
+        $fileObject = $this->{$attribute};
+
+        //Not file uploaded
+        if (is_null($fileObject)) {
+            return;
+        }
+
+        // Get default values
+        $fileName = $this->fileName($fileObject);
+
+        // Get the file attributes
+        $fileAttributes = $fileAttributes[$attribute];
+
+        // Update the parameters
+        $values = $this->getVariables($attribute, $fileAttributes, $fileName, $fileObject, $values);
 
         //Upload the file
-        if (is_object($file)) {
-            $this->storeFile($attribute, $file, $model, $values);
+        if (is_object($fileObject)) {
+            // Store file
+            $this->storeFile($attribute, $fileObject, $model, $values);
         }
 
         //Keep the current file if not updated or change...
-        $this->request->add([
-            $attribute => is_null($file) ? $model->{$attribute} : $this->request->{$attribute},
-        ]);
+        $this->request->add($values);
     }
 
     /**
@@ -58,7 +74,6 @@ trait Fileable
      *
      * @param string $attribute
      * @param object|null $file
-     * @param array $values
      * @param object|null $model
      * @param array $values
      *
@@ -67,7 +82,7 @@ trait Fileable
     private function storeFile(string $attribute, ?object $file, ?object $model, array $values): ?string
     {
         //Get default values
-        $fileName = $this->fileName($file, $values);
+        $fileName = $values[$attribute];
         $disk = $values['disk'];
 
         //Upload file
@@ -87,19 +102,37 @@ trait Fileable
      * File name
      *
      * @param object $file
-     * @param array $values
      *
      * @return string
      */
-    private function fileName(object $file, array $values): string
+    private function fileName(object $file): string
     {
-        $originalName = $file->getClientOriginalName();
         $extension = $file->getClientOriginalExtension();
         $name = time() . basename($file);
 
-        return $values['originalName']
-            ? $originalName
-            : sprintf('%s.%s', $name, $extension);
+        return sprintf('%s.%s', $name, $extension);
+    }
+
+    /**
+     * Store file
+     *
+     * @param string $attribute
+     * @param array $fileAttributes
+     * @param string $fileName
+     * @param object $fileObject
+     * @param array $values
+     *
+     * @return array
+     */
+    private function getVariables(string $attribute, array $fileAttributes, string $fileName, object $fileObject, array $values): array
+    {
+        return [
+            $attribute => empty($fileObject) ? $model->{$attribute} : $fileName,
+            $values['storeSize'] => $fileAttributes['storeSize'] ? $fileObject->getSize() : null,
+            $values['storeName'] => $fileAttributes['storeName'] ? $fileObject->getClientOriginalName() : null,
+            $values['storeMime'] => $fileAttributes['storeMime'] ? $fileObject->getMimeType() : null,
+            'disk' => $fileAttributes[$attribute]['disk'] ?? 'public',
+        ];
     }
 
     /**
