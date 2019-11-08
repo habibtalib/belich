@@ -62,7 +62,7 @@ trait Fileable
 
         //Download file
         return $value
-            ? sprintf('%s <a href="%s">%s</a>', $value, $value, Helper::icon('download'))
+            ? sprintf('%s <a href="%s" target="_blank">%s</a>', $value, $value, Helper::icon('download'))
             : Helper::emptyResults();
     }
 }
