@@ -60,9 +60,26 @@ trait Fileable
             return $value;
         }
 
-        //Download file
+        //Return file value
         return $value
-            ? sprintf('%s <a href="%s" target="_blank">%s</a>', $value, $value, Helper::icon('download'))
+            //With download or not
+            ? sprintf('%s %s', $value, $this->fileDownload($field, $value))
+            //With empty value
             : Helper::emptyResults();
+    }
+
+    /**
+     *Download file
+     *
+     * @param  Daguilarm\Belich\Fields\Field $field
+     * @param  string|null $file
+     *
+     * @return string
+     */
+    private function fileDownload(Field $field, ?string $file)
+    {
+        if($field->downloadable && $file) {
+            return sprintf('<a href="%s" target="_blank" dusk="downloadable-file">%s</a>', $file, Helper::icon('download'));
+        }
     }
 }
