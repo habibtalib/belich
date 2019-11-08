@@ -6,15 +6,15 @@
             {!! $field->render !!}
         >
         {{-- Hidden fields --}}
-        <input type="hidden" name="__file[{{ $field->attribute }}][disk]" value="{{ $field->disk }}">
+        <input type="hidden" name="__file[{{ $field->attribute }}][disk]" value="{{ $field->disk }}" dusk="disk-{{ md5($field->id) }}">
         @isset($field->storeName)
-            <input type="hidden" name="__file[{{ $field->attribute }}][storeName]" value="{{ $field->storeName }}">
+            <input type="hidden" name="__file[{{ $field->attribute }}][storeName]" value="{{ $field->storeName }}" dusk="storeName-{{ md5($field->id) }}">
         @endisset
         @isset($field->storeSize)
-            <input type="hidden" name="__file[{{ $field->attribute }}][storeSize]" value="{{ $field->storeSize }}">
+            <input type="hidden" name="__file[{{ $field->attribute }}][storeSize]" value="{{ $field->storeSize }}" dusk="storeSize-{{ md5($field->id) }}">
         @endisset
         @isset($field->storeMime)
-            <input type="hidden" name="__file[{{ $field->attribute }}][storeMime]" value="{{ $field->storeMime }}">
+            <input type="hidden" name="__file[{{ $field->attribute }}][storeMime]" value="{{ $field->storeMime }}" dusk="storeMime-{{ md5($field->id) }}">
         @endisset
     </slot>
 </belich::fields>
