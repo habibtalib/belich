@@ -47,7 +47,7 @@ trait Fileable
                 ? $value
                 : Storage::disk($field->disk)->url($value);
 
-            if($field->render()) {
+            if($field->render) {
                 //Set the image alt
                 $imageAlt = isset($field->alt) ? sprintf('alt="%s"', $field->alt) : '';
 

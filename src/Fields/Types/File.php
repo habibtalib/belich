@@ -155,17 +155,4 @@ class File extends Field
 
         return $this;
     }
-
-    /**
-     * Store the file type MIME (text/css, image/gif, image/x-icon,...) as metadata
-     * The name of the table row must be provided
-     *
-     * @return self
-     */
-    public function openInNewWindow(): self
-    {
-        $this->storeSize = $tableName;
-
-        return $this;
-    }
 }
