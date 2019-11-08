@@ -47,7 +47,7 @@ trait Fileable
                 ? $value
                 : Storage::disk($field->disk)->url($value);
 
-            if($field->render) {
+            if ($field->render) {
                 //Set the image alt
                 $imageAlt = isset($field->alt) ? sprintf('alt="%s"', $field->alt) : '';
 
@@ -78,8 +78,12 @@ trait Fileable
      */
     private function fileDownload(Field $field, ?string $file)
     {
-        if($field->downloadable && $file) {
-            return sprintf('<a href="%s" target="_blank" dusk="downloadable-file">%s</a>', $file, Helper::icon('download'));
+        if ($field->downloadable && $file) {
+            return sprintf(
+                '<a href="%s" target="_blank" dusk="downloadable-file">%s</a>',
+                $file,
+                Helper::icon('download'),
+            );
         }
     }
 }
