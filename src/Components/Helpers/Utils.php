@@ -41,4 +41,16 @@ trait Utils
 
         return end($array);
     }
+
+    /**
+     * Validate url
+     *
+     * @param string $url
+     *
+     * @return string
+     */
+    function validateUrl($url)
+    {
+        return filter_var($url, FILTER_VALIDATE_URL);
+    }
 }
