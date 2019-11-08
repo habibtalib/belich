@@ -22,11 +22,6 @@ trait Resolvable
         //Resolve value for action controller: show
         $value = $field->value;
 
-        //File field
-        if ($field->type === 'file' && $value) {
-            return $this->resolveFile($field, $value);
-        }
-
         //Resolve value
         $value = $this->resolveValue($field, $data, $value);
 
@@ -35,6 +30,11 @@ trait Resolvable
         // then $this->resolveBoolean($field, $value)
         if ($field->type === 'boolean') {
             return $this->resolveBoolean($field, $value);
+        }
+
+        //File field
+        if ($field->type === 'file') {
+            return $this->resolveFile($field, $value);
         }
 
         //Resolve the field value through callbacks

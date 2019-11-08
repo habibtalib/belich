@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-abstract class File extends Field
+class File extends Field
 {
     /**
      * @var string
@@ -25,6 +25,16 @@ abstract class File extends Field
      * @var string
      */
     public $fileType = 'file';
+
+    /**
+     * @var  bool
+     */
+    // public $prunable = false;
+
+    /**
+     * @var bool
+     */
+    public $render = false;
 
     /**
      * @var string
@@ -79,14 +89,26 @@ abstract class File extends Field
         return $this;
     }
 
+    // /**
+    //  * Delete file when delete related model
+    //  *
+    //  * @return self
+    //  */
+    // public function prunable(): self
+    // {
+    //     $this->prunable = true;
+
+    //     return $this;
+    // }
+
     /**
-     * Delete file when delete related model
+     * Render image in views
      *
      * @return self
      */
-    public function prunable(): self
+    public function render(): self
     {
-        $this->prunable = true;
+        $this->render = true;
 
         return $this;
     }
@@ -94,6 +116,8 @@ abstract class File extends Field
     /**
      * Store the file original name as metadata
      * The name of the table row must be provided
+     *
+     * @param string $tableName
      *
      * @return self
      */
@@ -107,6 +131,8 @@ abstract class File extends Field
     /**
      * Store the file size as metadata
      * The name of the table row must be provided
+     *
+     * @param string $tableName
      *
      * @return self
      */

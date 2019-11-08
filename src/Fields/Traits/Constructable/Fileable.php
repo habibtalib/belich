@@ -13,12 +13,13 @@ trait Fileable
      * Resolve the avatar fields
      *
      * @param  Daguilarm\Belich\Fields\Field $field
-     * @param  string $value
+     * @param  string|null $value
      *
      * @return  $string
      */
-    protected function resolveFile(Field $field, string $value): string
+    protected function resolveFile(Field $field, ?string $value): string
     {
+        // No results
         if (!isset($value) || $value === Helper::emptyResults()) {
             return Helper::emptyResults();
         }
@@ -42,18 +43,26 @@ trait Fileable
         // Image field
         if ($field->fileType === 'image') {
             //Value is not an url get from storage
-            $value = filter_var($value, FILTER_VALIDATE_URL)
+            $value = Helper::validateUrl($value)
                 ? $value
                 : Storage::disk($field->disk)->url($value);
-            //Set the image alt
-            $imageAlt = isset($field->alt) ? sprintf('alt="%s"', $field->alt) : '';
-            //Set the css classes
-            $imageCss = $field->addCss ?? 'block h-10 rounded-full shadow-md';
 
-            return sprintf('<img class="%s" src="%s" %s>', $imageCss, $value, $imageAlt);
+            if($field->render()) {
+                //Set the image alt
+                $imageAlt = isset($field->alt) ? sprintf('alt="%s"', $field->alt) : '';
+
+                //Set the css classes
+                $imageCss = $field->addCss ?? 'block h-10 rounded-full shadow-md';
+
+                return sprintf('<img class="%s" src="%s" %s>', $imageCss, $value, $imageAlt);
+            }
+
+            return $value;
         }
 
         //Download file
-        return sprintf('<a href="#">download</a>');
+        return $value
+            ? sprintf('%s <a href="%s">%s</a>', $value, $value, Helper::icon('download'))
+            : Helper::emptyResults();
     }
 }
