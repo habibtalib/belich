@@ -14,18 +14,27 @@ abstract class File extends Field
     /**
      * @var string
      */
+    public $disk = 'public';
+
+    /**
+     * @var string
+     */
+    public $downloadable = false;
+
+    /**
+     * @var string
+     */
     public $fileType = 'file';
 
     /**
      * @var string
      */
-    public $disk = 'public';
+    public $storeName;
 
     /**
-     * @var bool
+     * @var string
      */
-    // public $storeOriginalName = 0;
-    public $storeOriginalName = false;
+    public $storeSize;
 
     /**
      * Create a new field.
@@ -43,7 +52,7 @@ abstract class File extends Field
         $this->asHtml = true;
 
         //Set the default rules for the field
-        // $this->defaultRules = ['file'];
+        $this->defaultRules = ['file'];
     }
 
     /**
@@ -59,7 +68,19 @@ abstract class File extends Field
     }
 
     /**
-     * Set storage disk
+     * Show a download link in views
+     *
+     * @return self
+     */
+    public function downloadable(): self
+    {
+        $this->downloadable = true;
+
+        return $this;
+    }
+
+    /**
+     * Delete file when delete related model
      *
      * @return self
      */
@@ -71,13 +92,40 @@ abstract class File extends Field
     }
 
     /**
-     * Set original storage name
+     * Store the file original name as metadata
+     * The name of the table row must be provided
      *
      * @return self
      */
-    public function storeOriginalName(): self
+    public function storeName(string $tableName): self
     {
-        $this->storeOriginalName = true;
+        $this->storeName = $tableName;
+
+        return $this;
+    }
+
+    /**
+     * Store the file size as metadata
+     * The name of the table row must be provided
+     *
+     * @return self
+     */
+    public function storeSize(string $tableName): self
+    {
+        $this->storeSize = $tableName;
+
+        return $this;
+    }
+
+    /**
+     * Store the file type MIME (text/css, image/gif, image/x-icon,...) as metadata
+     * The name of the table row must be provided
+     *
+     * @return self
+     */
+    public function storeType(string $tableName): self
+    {
+        $this->storeSize = $tableName;
 
         return $this;
     }
