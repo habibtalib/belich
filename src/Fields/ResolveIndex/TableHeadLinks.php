@@ -5,7 +5,7 @@ namespace Daguilarm\Belich\Fields\ResolveIndex;
 use Daguilarm\Belich\Fields\Field;
 use Illuminate\Support\Collection;
 
-class TableHeadLinks
+final class TableHeadLinks
 {
     /** @var bool */
     protected $allowedParameters = [

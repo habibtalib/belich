@@ -5,7 +5,7 @@ namespace Daguilarm\Belich\Fields\ResolveIndex;
 use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Field;
 
-class Resolve
+final class Resolve
 {
     /**
      * Resolve field values for: relationship
