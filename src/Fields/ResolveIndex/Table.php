@@ -5,10 +5,10 @@ namespace Daguilarm\Belich\Fields\ResolveIndex;
 use Daguilarm\Belich\Fields\Field;
 use Illuminate\Support\Collection;
 
-final class TableHeadLinks
+final class Table
 {
     /** @var bool */
-    protected $allowedParameters = [
+    private $allowedParameters = [
         'direction',
         'orderBy',
         'page',

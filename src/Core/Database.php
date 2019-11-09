@@ -35,13 +35,13 @@ final class Database
                 ->indexQuery($request)
 
                 //Live search
-                ->when($search->requestFromSearch(), function ($query) use ($request, $search) {
+                ->when($search->requestFromSearch(), static function ($query) use ($request, $search) {
                     //No results
                     if ($request->query('query') === 'resetSearchAll') {
                         return $query;
                     }
                     //Get the results
-                    collect($search->requestTableFields())->each(function ($field) use ($query, $request): void {
+                    collect($search->requestTableFields())->each(static function ($field) use ($query, $request): void {
                         $query->orWhere($field, 'LIKE', '%' . $request->query('query') . '%');
                     });
                 })

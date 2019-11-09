@@ -4,10 +4,9 @@ namespace Daguilarm\Belich\Fields;
 
 use Daguilarm\Belich\Facades\Belich;
 use Daguilarm\Belich\Fields\ResolveIndex\Resolve;
-use Daguilarm\Belich\Fields\ResolveIndex\TableHeadLinks;
+use Daguilarm\Belich\Fields\ResolveIndex\Table;
 use Daguilarm\Belich\Fields\Traits\Constructable\Callbackable;
 use Daguilarm\Belich\Fields\Traits\Constructable\Fileable;
-use Daguilarm\Belich\Fields\Traits\ResolveIndex\Resolvable;
 use Illuminate\Support\Collection;
 
 final class FieldResolveIndex
@@ -37,7 +36,7 @@ final class FieldResolveIndex
 
         return collect([
             'data' => $fields,
-            'labels' => app(TableHeadLinks::class)->headerLabels($fields),
+            'labels' => app(Table::class)->headerLabels($fields),
         ]);
     }
 

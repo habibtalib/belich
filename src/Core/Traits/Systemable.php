@@ -11,12 +11,6 @@ trait Systemable
      */
     private $defaultMiddleware = ['https', 'web', 'auth', 'belich', 'minify'];
 
-    /*
-    |--------------------------------------------------------------------------
-    | Public Static Methods
-    |--------------------------------------------------------------------------
-    */
-
     /**
      * Get the config middleware
      *

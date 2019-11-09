@@ -6,7 +6,7 @@
             <a class="text-white text-lg font-bold" href="{{ Belich::url() }}" dusk="navbar-brand">{{ Belich::name() }}</a>
         </li>
         {{-- Get all the resources --}}
-        @foreach(Belich::getGroupResources() as $resource)
+        @foreach(Belich::groupResources() as $resource)
 
             {{-- One level resource --}}
             @if($resource->count() <= 1)

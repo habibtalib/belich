@@ -124,7 +124,7 @@ class ResourcesBase
         if (in_array(static::action(), Belich::allowedActions())) {
             $action = str_replace('edit', 'update', static::action());
             return array_merge($home,
-                [static::$label => static::resourceUrl()],
+                [static::$label => Belich::resourceUrl()],
                 [trans('belich::buttons.crud.' . $action) => null]
             );
         }

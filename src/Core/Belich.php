@@ -3,7 +3,7 @@
 namespace Daguilarm\Belich\Core;
 
 use Daguilarm\Belich\Components\Blade;
-use Daguilarm\Belich\Core\Traits\Classable;
+use Daguilarm\Belich\Core\BelichBase;
 use Daguilarm\Belich\Core\Traits\Modelable;
 use Daguilarm\Belich\Core\Traits\Operationable;
 use Daguilarm\Belich\Core\Traits\Resourceable;
@@ -13,10 +13,9 @@ use Daguilarm\Belich\Fields\FieldResolveIndex;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-final class Belich
+final class Belich extends BelichBase
 {
-    use Classable,
-        Modelable,
+    use Modelable,
         Operationable,
         Resourceable,
         Routeable,
@@ -35,12 +34,12 @@ final class Belich
     /**
      * @var object
      */
-    private $request;
+    protected $request;
 
     /**
      * @var string
      */
-    private static $version = '1.0.1';
+    protected static $version = '1.0.2';
 
     /**
      * Init the constuctor
@@ -104,18 +103,5 @@ final class Belich
     public function html(): FieldResolveIndex
     {
         return app(FieldResolveIndex::class);
-    }
-
-    /**
-     * Init the current class
-     *
-     * @return object
-     */
-    protected function initResourceClass(): object
-    {
-        //Set the initial class
-        $class = static::resourceClassPath();
-
-        return new $class();
     }
 }

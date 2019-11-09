@@ -7,12 +7,6 @@ use Illuminate\Support\Facades\Request;
 
 trait Routeable
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Public Static Methods
-    |--------------------------------------------------------------------------
-    */
-
     /**
      * Get Controller action ['index', 'edit', 'create' or 'show'] from the route
      *

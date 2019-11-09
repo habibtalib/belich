@@ -10,7 +10,7 @@
             </li>
             @if(config('belich.navbar') === 'top')
                 {{-- Get all the resources --}}
-                @foreach(Belich::getGroupResources() as $resource)
+                @foreach(Belich::groupResources() as $resource)
                     {{-- One level resource --}}
                     @if($resource->count() <= 1)
                         <li class="hover:bg-teal-600">
