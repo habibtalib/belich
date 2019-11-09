@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Storage;
 trait Fileable
 {
     /**
-     * Resolve the avatar fields
+     * Resolve file fields for Index and Show
      *
      * @param  Daguilarm\Belich\Fields\Field $field
      * @param  string|null $value

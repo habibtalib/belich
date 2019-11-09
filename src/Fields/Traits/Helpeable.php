@@ -4,7 +4,11 @@ namespace Daguilarm\Belich\Fields\Traits;
 
 trait Helpeable
 {
-    /** @var string [Field help text] */
+    /**
+     * Field help text
+     *
+     * @var string
+     */
     public $help;
 
     /**

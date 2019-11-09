@@ -1,6 +1,6 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Traits\Constructable;
+namespace Daguilarm\Belich\Fields\Traits\ResolveIndex;
 
 use Daguilarm\Belich\Core\Belich;
 use Daguilarm\Belich\Fields\Field;

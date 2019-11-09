@@ -3,14 +3,13 @@
 namespace Daguilarm\Belich\Fields;
 
 use Daguilarm\Belich\Core\Traits\Systemable;
-use Daguilarm\Belich\Fields\Traits\Filterable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\File;
 use MatthiasMullie\Minify;
 
 final class FieldValidate
 {
-    use Filterable, Systemable;
+    use Systemable;
 
     /**
      * @var string

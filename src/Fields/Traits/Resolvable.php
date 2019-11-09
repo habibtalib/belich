@@ -37,12 +37,6 @@ trait Resolvable
         return $fields;
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Resolve visibility
-    |--------------------------------------------------------------------------
-    */
-
     /**
      * Show or Hide field base on the controller action
      *
@@ -61,12 +55,6 @@ trait Resolvable
             //Delete all null results from the collection
             ->filter();
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Resolve attributes
-    |--------------------------------------------------------------------------
-    */
 
     /**
      * Generate the attributes for the fields
@@ -106,5 +94,55 @@ trait Resolvable
             //Render field
             return $this->renderField($field);
         });
+    }
+
+    /**
+     * Determine if the field should be available for the given request.
+     *
+     * @param  object  $fields
+     *
+     * @return bool
+     */
+    private function setAuthorizationForFields(object $fields)
+    {
+        return $fields->map(function ($field) {
+            return $this->canSeeField($field)
+                ? $field
+                : null;
+        })
+            ->filter();
+    }
+
+    /**
+     * Determine if the user has been authorized to see the field: $field->canSee()
+     *
+     * @param  object  $field
+     *
+     * @return bool
+     */
+    private function canSeeField(object $field)
+    {
+        return !isset($field->seeCallback) || (is_callable($field->seeCallback) && call_user_func($field->seeCallback, request()) !== false);
+    }
+
+    /**
+     * Determine if the user can access to the resource
+     * See resource Policy
+     *
+     * @param  object  $sqlResponse
+     *
+     * @return bool
+     */
+    private function setAuthorizationFromPolicy(object $sqlResponse)
+    {
+        //Authorized access to show action
+        if ($this->action === 'show' && !request()->user()->can('view', $sqlResponse)) {
+            return abort(403);
+        }
+
+        //Authorized access to edit or update action
+        if (($this->action === 'edit' || $this->action === 'update') && !request()->user()->can('update', $sqlResponse)) {
+            return abort(403);
+        }
     }
 }

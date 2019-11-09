@@ -4,6 +4,9 @@ namespace Daguilarm\Belich\Fields\Traits;
 
 trait Formatable
 {
+    /**
+     * @var array
+     */
     private $textAlignAllowed = ['left', 'center', 'right', 'justify'];
 
     /**

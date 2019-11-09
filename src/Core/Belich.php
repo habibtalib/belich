@@ -16,12 +16,22 @@ use Illuminate\View\View;
 
 final class Belich extends BelichRepository
 {
-    use Classable, Connectable, Modelable, Operationable, Resourceable, Routeable, Systemable;
+    use Classable,
+        Connectable,
+        Modelable,
+        Operationable,
+        Resourceable,
+        Routeable,
+        Systemable;
 
-    /** @var string */
+    /**
+     * @var object
+     */
     private $request;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     private static $version = '1.0.1';
 
     /**
@@ -37,12 +47,6 @@ final class Belich extends BelichRepository
             $this->perPage = $this->request->perPage;
         }
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Actions
-    |--------------------------------------------------------------------------
-    */
 
     /**
      * Prepare the actions for the view
@@ -63,12 +67,6 @@ final class Belich extends BelichRepository
             //Default action
             : view('belich::actions.default', ['model' => $model]);
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Cards and Metrics
-    |--------------------------------------------------------------------------
-    */
 
     /**
      * Initialize the Cards and the Metrics

@@ -4,9 +4,9 @@ namespace Daguilarm\Belich\Fields;
 
 use Daguilarm\Belich\Fields\Traits\Constructable\Callbackable;
 use Daguilarm\Belich\Fields\Traits\Constructable\Fileable;
-use Daguilarm\Belich\Fields\Traits\Constructable\Linkeable;
-use Daguilarm\Belich\Fields\Traits\Constructable\Resolvable;
-use Daguilarm\Belich\Fields\Traits\Constructable\Softdeleteable;
+use Daguilarm\Belich\Fields\Traits\ResolveIndex\Linkeable;
+use Daguilarm\Belich\Fields\Traits\ResolveIndex\Resolvable;
+use Daguilarm\Belich\Fields\Traits\ResolveIndex\Softdeleteable;
 use Illuminate\Support\Collection;
 
 final class FieldResolveIndex

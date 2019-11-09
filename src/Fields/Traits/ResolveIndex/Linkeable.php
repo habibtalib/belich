@@ -1,6 +1,6 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Traits\Constructable;
+namespace Daguilarm\Belich\Fields\Traits\ResolveIndex;
 
 use Daguilarm\Belich\Fields\Field;
 use Illuminate\Support\Collection;
@@ -47,12 +47,6 @@ trait Linkeable
 
         return sprintf('<a href="%s?%s">%s</a>', url()->current(), $parameters, $field->label);
     }
-
-    /*
-    |--------------------------------------------------------------------------
-    | Url parameters
-    |--------------------------------------------------------------------------
-    */
 
     /**
      * Allowed url parameters

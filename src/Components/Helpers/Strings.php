@@ -7,6 +7,16 @@ use Illuminate\Support\Str;
 trait Strings
 {
     /**
+     * Set the default value for a empty string or result
+     *
+     * @return string
+     */
+    public function emptyResults(): string
+    {
+        return '—';
+    }
+
+    /**
      * Set the string into migration format
      *
      * @param string $string
@@ -55,12 +65,30 @@ trait Strings
     }
 
     /**
-     * Set the default value for a empty string or result
+     * String has a validad php structure
+     *
+     * @param  string $string
+     *
+     * @return bool
+     */
+    public function stringIsValidPhp(string $string): bool
+    {
+        return preg_match('/^[a-zA-Z_\x7f-\xff][a-zA-Z0-9_\x7f-\xff]*$/', $string) === 1
+            ? true
+            : false;
+    }
+
+    /**
+     * Remove stuff that may bother to Mr. php
+     *
+     * @param  string $string
      *
      * @return string
      */
-    public function emptyResults(): string
+    public function stringSanitize(string $string): string
     {
-        return '—';
+        $replace = ['!', '"', '/', '@', '#', '$', '%', '&', '(', ')', '€', '^', '*', '{', '}', '-', '.', ',', ';', ' '];
+
+        return str_replace($replace, '_', $string);
     }
 }
