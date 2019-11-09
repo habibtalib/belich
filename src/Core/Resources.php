@@ -2,7 +2,7 @@
 
 namespace Daguilarm\Belich\Core;
 
-use Daguilarm\Belich\Core\ResourcesRepository;
+use Daguilarm\Belich\Core\ResourcesBase;
 use Daguilarm\Belich\Core\Traits\Modelable;
 use Daguilarm\Belich\Core\Traits\Operationable;
 use Daguilarm\Belich\Core\Traits\Resourceable;
@@ -10,7 +10,7 @@ use Daguilarm\Belich\Core\Traits\Routeable;
 use Daguilarm\Belich\Core\Traits\Systemable;
 use Illuminate\Http\Request;
 
-abstract class Resources extends ResourcesRepository
+abstract class Resources extends ResourcesBase
 {
     use Modelable,
         Operationable,
