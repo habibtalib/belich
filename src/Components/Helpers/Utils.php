@@ -2,6 +2,8 @@
 
 namespace Daguilarm\Belich\Components\Helpers;
 
+use Daguilarm\Belich\Core\Search;
+
 trait Utils
 {
     /**
@@ -40,6 +42,16 @@ trait Utils
         $array = explode('\\', get_class($object));
 
         return end($array);
+    }
+
+    /**
+     * Get the search fields
+     *
+     * @return string
+     */
+    public function searchFields(): string
+    {
+        return Search::searchFields();
     }
 
     /**

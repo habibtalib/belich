@@ -2,6 +2,8 @@
 
 namespace Daguilarm\Belich\Core\Traits;
 
+use Daguilarm\Belich\Core\Database;
+use Daguilarm\Belich\Core\Search;
 use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\FieldResolve;
 use Illuminate\Http\Request;
@@ -17,7 +19,7 @@ trait Resourceable
      */
     public static function resource(): string
     {
-        return static::requestFromSearch()
+        return app(Search::class)->requestFromSearch()
             //Search action
             ? Helper::stringPluralLower(request()->query('resourceName'))
             //Return middle item from the array
@@ -81,12 +83,6 @@ trait Resourceable
         return static::url() . '/' . static::resource();
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Resource Operations
-    |--------------------------------------------------------------------------
-    */
-
     /**
      * Get the resource $downloable variable.
      *
@@ -140,12 +136,6 @@ trait Resourceable
             : true;
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Resources
-    |--------------------------------------------------------------------------
-    */
-
     /**
      * Get the current resource
      *
@@ -160,7 +150,7 @@ trait Resourceable
         $updateFields = collect($class->fields($request));
 
         //Sql Response
-        $sqlResponse = $this->SqlConnectionResponse($class, $request);
+        $sqlResponse = app(Database::class)->response($class, $request);
 
         //ClassName
         $className = static::resource();
@@ -261,7 +251,7 @@ trait Resourceable
     private function resourceValues(?string $className, bool $forNavigation = false): Collection
     {
         //Get class name from request or from live search
-        $className = static::requestFromSearch()
+        $className = app(Search::class)->requestFromSearch()
             ? static::className()
             : $className;
 

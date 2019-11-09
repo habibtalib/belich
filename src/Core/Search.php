@@ -1,8 +1,8 @@
 <?php
 
-namespace Daguilarm\Belich\Core\Traits;
+namespace Daguilarm\Belich\Core;
 
-trait Searchable
+final class Search
 {
     /**
      * Get the resource search fields as array.
@@ -11,7 +11,7 @@ trait Searchable
      */
     public static function searchFields(): string
     {
-        $class = static::resourceClassPath();
+        $class = Belich::resourceClassPath();
 
         //Stop search if the resource not exists
         if (!class_exists($class)) {
@@ -20,6 +20,7 @@ trait Searchable
 
         //Get the search fields from the table
         $searchFields = $class::$search;
+
         //Defeault value: array
         $fields = is_array($searchFields)
           ? $searchFields

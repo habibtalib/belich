@@ -1,46 +1,48 @@
 <?php
 
-namespace Daguilarm\Belich\Core\Traits;
+namespace Daguilarm\Belich\Core;
 
-use Daguilarm\Belich\Core\Traits\Searchable;
+use Daguilarm\Belich\Core\Search;
 use Daguilarm\Belich\Facades\Belich;
 use Daguilarm\Belich\Facades\Helper;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Cookie;
 
-trait Connectable
+final class Database
 {
-    use Searchable;
-
     /**
      * Create the Sql Connection
      *
      * @param string $class
+     * @param string $request
      *
      * @return object
      */
-    private function sqlConnectionResponse(object $class): object
+    public function response(object $class, $request): object
     {
+        //Init search helper
+        $search = app(Search::class);
+
         //Set variables
-        $direction = request()->query('direction');
-        $order = request()->query('orderBy');
-        $policy = request()->user()->can('withTrashed', Belich::getModel());
+        $direction = $request->query('direction');
+        $order = $request->query('orderBy');
+        $policy = $request->user()->can('withTrashed', Belich::getModel());
 
         //Sql for index
-        if (static::action() === 'index') {
+        if (Belich::action() === 'index') {
             return $class
                 //Add the current resource query
-                ->indexQuery($this->request)
+                ->indexQuery($request)
 
                 //Live search
-                ->when(self::requestFromSearch(), function ($query) {
+                ->when($search->requestFromSearch(), function ($query) use ($request, $search) {
                     //No results
-                    if ($this->request->query('query') === 'resetSearchAll') {
+                    if ($request->query('query') === 'resetSearchAll') {
                         return $query;
                     }
                     //Get the results
-                    collect(self::requestTableFields())->each(function ($field) use ($query): void {
-                        $query->orWhere($field, 'LIKE', '%' . $this->request->query('query') . '%');
+                    collect($search->requestTableFields())->each(function ($field) use ($query, $request): void {
+                        $query->orWhere($field, 'LIKE', '%' . $request->query('query') . '%');
                     });
                 })
 
@@ -63,12 +65,12 @@ trait Connectable
                 ->simplePaginate(Cookie::get('belich_perPage'))
 
                 //Add all the url variables
-                ->appends(request()->query());
+                ->appends($request->query());
         }
 
-        return static::action() === 'edit' || static::action() === 'show' && is_numeric(static::resourceId())
+        return Belich::action() === 'edit' || Belich::action() === 'show' && is_numeric(Belich::resourceId())
             //Sql for edit and show
-            ? $class->model()->findOrFail(static::resourceId())
+            ? $class->model()->findOrFail(Belich::resourceId())
             // Default value
             : new Collection();
     }

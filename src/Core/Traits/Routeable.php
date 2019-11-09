@@ -2,13 +2,11 @@
 
 namespace Daguilarm\Belich\Core\Traits;
 
-use Daguilarm\Belich\Core\Traits\Searchable;
+use Daguilarm\Belich\Core\Search;
 use Illuminate\Support\Facades\Request;
 
 trait Routeable
 {
-    use Searchable;
-
     /*
     |--------------------------------------------------------------------------
     | Public Static Methods
@@ -25,7 +23,7 @@ trait Routeable
         //Cannot pass directly as reference!!
         $route = static::route();
 
-        return static::requestFromSearch()
+        return app(Search::class)->requestFromSearch()
             //Search action (is in index...)
             ? 'index'
             //Return last item from the array

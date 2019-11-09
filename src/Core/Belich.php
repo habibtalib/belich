@@ -3,26 +3,34 @@
 namespace Daguilarm\Belich\Core;
 
 use Daguilarm\Belich\Components\Blade;
-use Daguilarm\Belich\Core\BelichAbstract;
 use Daguilarm\Belich\Core\Traits\Classable;
-use Daguilarm\Belich\Core\Traits\Connectable;
 use Daguilarm\Belich\Core\Traits\Modelable;
 use Daguilarm\Belich\Core\Traits\Operationable;
 use Daguilarm\Belich\Core\Traits\Resourceable;
 use Daguilarm\Belich\Core\Traits\Routeable;
 use Daguilarm\Belich\Core\Traits\Systemable;
+use Daguilarm\Belich\Fields\FieldResolveIndex;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-final class Belich extends BelichAbstract
+final class Belich
 {
     use Classable,
-        Connectable,
         Modelable,
         Operationable,
         Resourceable,
         Routeable,
         Systemable;
+
+    /**
+     * @var array
+     */
+    public static $allowedActions = [
+        'index',
+        'create',
+        'edit',
+        'show',
+    ];
 
     /**
      * @var object
@@ -46,6 +54,16 @@ final class Belich extends BelichAbstract
         if ($this->request->has('perPage')) {
             $this->perPage = $this->request->perPage;
         }
+    }
+
+    /**
+     * Get the allowed actions
+     *
+     * @return array
+     */
+    public static function allowedActions(): array
+    {
+        return static::$allowedActions;
     }
 
     /**
@@ -76,5 +94,28 @@ final class Belich extends BelichAbstract
     public function components(Request $request): ?string
     {
         return (new Blade())->render($request);
+    }
+
+    /**
+     * Initialize the html helper in order to be accesible from Belich
+     *
+     * @return \Daguilarm\Fields\FieldResolveIndex
+     */
+    public function html(): FieldResolveIndex
+    {
+        return app(FieldResolveIndex::class);
+    }
+
+    /**
+     * Init the current class
+     *
+     * @return object
+     */
+    protected function initResourceClass(): object
+    {
+        //Set the initial class
+        $class = static::resourceClassPath();
+
+        return new $class();
     }
 }

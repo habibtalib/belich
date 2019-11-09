@@ -6,7 +6,7 @@
     window.message_chart_left = '{{ trans('belich::forms.chart_left') }}';
     window.liveSearchRoute = '{{ route('dashboard.ajax.search') }}';
     window.resourceName = '{{ Belich::resourceName() }}';
-    window.liveSearchFields = '{{ Belich::searchFields() }}';
+    window.liveSearchFields = '{{ Helper::searchFields() }}';
 
     /**
     ****************************************
