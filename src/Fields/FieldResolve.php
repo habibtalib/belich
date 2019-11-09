@@ -3,11 +3,12 @@
 namespace Daguilarm\Belich\Fields;
 
 use Daguilarm\Belich\Core\Traits\Routeable;
+use Daguilarm\Belich\Fields\FieldResolveBase;
 use Daguilarm\Belich\Fields\Traits\Constructable\Renderable;
 use Daguilarm\Belich\Fields\Traits\Constructable\Valuable;
 use Illuminate\Support\Collection;
 
-final class FieldResolve extends FieldResolvableAbstract
+final class FieldResolve extends FieldResolveBase
 {
     use Renderable,
         Routeable,

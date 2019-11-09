@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Fields;
 
 use Illuminate\Support\Collection;
 
-abstract class FieldResolvableAbstract
+class FieldResolveBase
 {
     /**
      * Set the values base on the controllers action (except for index)
