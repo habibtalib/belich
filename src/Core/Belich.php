@@ -3,7 +3,7 @@
 namespace Daguilarm\Belich\Core;
 
 use Daguilarm\Belich\Components\Blade;
-use Daguilarm\Belich\Core\BelichBase;
+use Daguilarm\Belich\Core\BelichAbstract;
 use Daguilarm\Belich\Core\Traits\Classable;
 use Daguilarm\Belich\Core\Traits\Connectable;
 use Daguilarm\Belich\Core\Traits\Modelable;
@@ -14,7 +14,7 @@ use Daguilarm\Belich\Core\Traits\Systemable;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-final class Belich extends BelichBase
+final class Belich extends BelichAbstract
 {
     use Classable,
         Connectable,

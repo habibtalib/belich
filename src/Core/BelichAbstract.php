@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Core;
 
 use Daguilarm\Belich\Fields\FieldResolveIndex;
 
-abstract class BelichBase
+abstract class BelichAbstract
 {
     /**
      * @var array

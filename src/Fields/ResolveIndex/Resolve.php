@@ -1,46 +1,12 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Traits\ResolveIndex;
+namespace Daguilarm\Belich\Fields\ResolveIndex;
 
 use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Field;
 
-trait Resolvable
+class Resolve
 {
-    /**
-     * Resolve field values for: relationship, displayUsing and resolveUsing
-     * This method is used throw Belich Facade => Belich::html()->resolveField($field, $data);
-     * This method is for refactoring the blade templates.
-     *
-     * @param  Daguilarm\Belich\Fields\Field $attribute
-     * @param  object $data
-     *
-     * @return string|null
-     */
-    public function resolve(Field $field, ?object $data = null): ?string
-    {
-        //Resolve value for action controller: show
-        $value = $field->value;
-
-        //Resolve value
-        $value = $this->resolveValue($field, $data, $value);
-
-        // If boolean
-        // Please respect this orden -> first $this->resolveValue($field, $data, $value)
-        // then $this->resolveBoolean($field, $value)
-        if ($field->type === 'boolean') {
-            return $this->resolveBoolean($field, $value);
-        }
-
-        //File field
-        if ($field->type === 'file') {
-            return $this->resolveFile($field, $value);
-        }
-
-        //Resolve the field value through callbacks
-        return $this->getCallbackValue($field, $data, $value);
-    }
-
     /**
      * Resolve field values for: relationship
      * This method is helper for $this->resolve()
@@ -51,7 +17,7 @@ trait Resolvable
      *
      * @return string|null
      */
-    private function resolveValue(Field $field, ?object $data, ?string $value): ?string
+    public function resolveValue(Field $field, ?object $data, ?string $value): ?string
     {
         //Resolve using labels
         $value = $this->resolveUsingLabels($field, $value);
@@ -71,7 +37,7 @@ trait Resolvable
      *
      * @return string|null
      */
-    private function resolveBoolean(Field $field, $value): ?string
+    public function resolveBoolean(Field $field, $value): ?string
     {
         // With default labels
         if (isset($field->trueValue) && isset($field->falseValue)) {

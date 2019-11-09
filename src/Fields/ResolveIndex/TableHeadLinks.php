@@ -1,11 +1,11 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Traits\ResolveIndex;
+namespace Daguilarm\Belich\Fields\ResolveIndex;
 
 use Daguilarm\Belich\Fields\Field;
 use Illuminate\Support\Collection;
 
-trait Linkeable
+class TableHeadLinks
 {
     /** @var bool */
     protected $allowedParameters = [
@@ -21,7 +21,7 @@ trait Linkeable
      *
      * @return Illuminate\Support\Collection
      */
-    protected function headerLabels($fields): Collection
+    public function headerLabels($fields): Collection
     {
         return $fields->map(function ($field) {
             return $this->headerLinks($field);
