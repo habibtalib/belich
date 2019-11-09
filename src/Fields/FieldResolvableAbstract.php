@@ -1,35 +1,30 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Traits;
+namespace Daguilarm\Belich\Fields;
 
 use Illuminate\Support\Collection;
 
-trait Resolvable
+abstract class FieldResolvableAbstract
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Resolve controllers except index
-    |--------------------------------------------------------------------------
-    */
-
     /**
      * Set the values base on the controllers action (except for index)
      *
      * @param Illuminate\Support\Collection $fields
      * @param object $sqlResponse
+     * @param string $action
      *
      * @return Illuminate\Support\Collection
      */
-    protected function setCrudController(object $fields, object $sqlResponse): object
+    protected function setCrudController(object $fields, object $sqlResponse, string $action): object
     {
         //Set fields attributes: Only for create and edit actions
-        if ($this->action === 'create' || $this->action === 'edit') {
+        if ($action === 'create' || $action === 'edit') {
             // Creating all the render attributes for the forms
             $fields = $this->setAttributesForFields($fields);
         }
 
         //Resolve values for fields: Only for Edit or Show actions
-        if ($this->action === 'edit' || $this->action === 'show') {
+        if ($action === 'edit' || $action === 'show') {
             //Fill the field value with the model
             return $this->setValueForFields($sqlResponse, $fields);
         }
@@ -41,19 +36,71 @@ trait Resolvable
      * Show or Hide field base on the controller action
      *
      * @param Illuminate\Support\Collection $fields
+     * @param  string  $action
      *
      * @return Illuminate\Support\Collection
      */
-    private function setVisibilityForFields(Collection $fields): Collection
+    protected function setVisibilityForFields(Collection $fields, string $action): Collection
     {
-        return $fields->map(function ($field) {
+        return $fields->map(static function ($field) use ($action) {
             //If the field has the visibility for this controller action on true...
-            return $field->visibility[$this->action]
+            return $field->visibility[$action]
                 ? $field
                 : null;
         })
             //Delete all null results from the collection
             ->filter();
+    }
+
+    /**
+     * Determine if the field should be available for the given request.
+     *
+     * @param  object  $fields
+     *
+     * @return bool
+     */
+    protected function setAuthorizationForFields(object $fields)
+    {
+        return $fields->map(function ($field) {
+            return $this->canSeeField($field)
+                ? $field
+                : null;
+        })
+            ->filter();
+    }
+
+    /**
+     * Determine if the user can access to the resource
+     * See resource Policy
+     *
+     * @param  object  $sqlResponse
+     * @param  string  $action
+     *
+     * @return bool
+     */
+    protected function setAuthorizationFromPolicy(object $sqlResponse, string $action)
+    {
+        //Authorized access to show action
+        if ($action === 'show' && !request()->user()->can('view', $sqlResponse)) {
+            return abort(403);
+        }
+
+        //Authorized access to edit or update action
+        if (($action === 'edit' || $action === 'update') && !request()->user()->can('update', $sqlResponse)) {
+            return abort(403);
+        }
+    }
+
+    /**
+     * Determine if the user has been authorized to see the field: $field->canSee()
+     *
+     * @param  object  $field
+     *
+     * @return bool
+     */
+    private function canSeeField(object $field)
+    {
+        return !isset($field->seeCallback) || (is_callable($field->seeCallback) && call_user_func($field->seeCallback, request()) !== false);
     }
 
     /**
@@ -94,55 +141,5 @@ trait Resolvable
             //Render field
             return $this->renderField($field);
         });
-    }
-
-    /**
-     * Determine if the field should be available for the given request.
-     *
-     * @param  object  $fields
-     *
-     * @return bool
-     */
-    private function setAuthorizationForFields(object $fields)
-    {
-        return $fields->map(function ($field) {
-            return $this->canSeeField($field)
-                ? $field
-                : null;
-        })
-            ->filter();
-    }
-
-    /**
-     * Determine if the user has been authorized to see the field: $field->canSee()
-     *
-     * @param  object  $field
-     *
-     * @return bool
-     */
-    private function canSeeField(object $field)
-    {
-        return !isset($field->seeCallback) || (is_callable($field->seeCallback) && call_user_func($field->seeCallback, request()) !== false);
-    }
-
-    /**
-     * Determine if the user can access to the resource
-     * See resource Policy
-     *
-     * @param  object  $sqlResponse
-     *
-     * @return bool
-     */
-    private function setAuthorizationFromPolicy(object $sqlResponse)
-    {
-        //Authorized access to show action
-        if ($this->action === 'show' && !request()->user()->can('view', $sqlResponse)) {
-            return abort(403);
-        }
-
-        //Authorized access to edit or update action
-        if (($this->action === 'edit' || $this->action === 'update') && !request()->user()->can('update', $sqlResponse)) {
-            return abort(403);
-        }
     }
 }

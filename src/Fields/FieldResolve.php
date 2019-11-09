@@ -5,13 +5,11 @@ namespace Daguilarm\Belich\Fields;
 use Daguilarm\Belich\Core\Traits\Routeable;
 use Daguilarm\Belich\Fields\Traits\Constructable\Renderable;
 use Daguilarm\Belich\Fields\Traits\Constructable\Valuable;
-use Daguilarm\Belich\Fields\Traits\Resolvable;
 use Illuminate\Support\Collection;
 
-final class FieldResolve
+final class FieldResolve extends FieldResolvableAbstract
 {
     use Renderable,
-        Resolvable,
         Routeable,
         Valuable;
 
@@ -46,13 +44,13 @@ final class FieldResolve
         //Policies
         //Authorization for 'show', 'edit' and 'update' actions
         //This go here because we want to avoid duplicated sql queries...Don't remove!!!
-        $this->setAuthorizationFromPolicy($sqlResponse);
+        $this->setAuthorizationFromPolicy($sqlResponse, $this->action);
 
         //Authorization for fields
         $fields = $this->setAuthorizationForFields($fields);
 
         //Visibility for fields
-        $fields = $this->setVisibilityForFields($fields);
+        $fields = $this->setVisibilityForFields($fields, $this->action);
 
         //Controller actions
         //Resolve fields base on the controller action
@@ -66,6 +64,6 @@ final class FieldResolve
             //Prepare the field for the index response
             ? app(\Daguilarm\Belich\Fields\FieldResolveIndex::class)->make($fields, $sqlResponse)
             //Prepare the field for the the form response: create, edit and show
-            : $this->setCrudController($fields, $sqlResponse);
+            : $this->setCrudController($fields, $sqlResponse, $this->action);
     }
 }

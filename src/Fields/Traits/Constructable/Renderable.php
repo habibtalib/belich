@@ -14,7 +14,7 @@ trait Renderable
      *
      * @return Illuminate\Support\Collection
      */
-    private function setRenderFieldAttributes($field): Collection
+    protected function setRenderFieldAttributes($field): Collection
     {
         collect($field)
             ->each(static function ($value, $attribute) use ($field): void {
@@ -29,32 +29,32 @@ trait Renderable
     }
 
     /**
-     * Render data attributes for field
-     *
-     * @param array $field
-     *
-     * @return string
-     */
-    private function setRenderFieldAttributesData($field): string
-    {
-        return collect($field->data)
-            ->map(static function ($value) {
-                return sprintf('data-%s=%s', $value[0], $value[1]);
-            })
-            ->implode(' ');
-    }
-
-    /**
      * Render each field value
      *
      * @param array $field
      *
      * @return Daguilarm\Belich\Fields\Field
      */
-    private function renderField($field): Field
+    protected function renderField($field): Field
     {
         $field->render = $field->render->implode(' ');
 
         return $field;
+    }
+
+    /**
+     * Render data attributes for field
+     *
+     * @param array $field
+     *
+     * @return string
+     */
+    protected function setRenderFieldAttributesData($field): string
+    {
+        return collect($field->data)
+            ->map(static function ($value) {
+                return sprintf('data-%s=%s', $value[0], $value[1]);
+            })
+            ->implode(' ');
     }
 }

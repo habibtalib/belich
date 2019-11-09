@@ -14,7 +14,7 @@ trait Valuable
      *
      * @return Illuminate\Support\Collection
      */
-    private function setValueForFields(object $sqlResponse, Collection $fields): Collection
+    protected function setValueForFields(object $sqlResponse, Collection $fields): Collection
     {
         return $fields->map(function ($field) use ($sqlResponse) {
             //Not resolve field value
