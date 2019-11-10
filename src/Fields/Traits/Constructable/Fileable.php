@@ -50,12 +50,11 @@ trait Fileable
             if ($field->renderImage) {
                 //Set the image alt
                 $imageAlt = isset($field->alt) ? sprintf('alt="%s"', $field->alt) : '';
-                //In case of...
-                $imageCss = is_array($field->imageCss)
-                    ? implode(' ', $field->imageCss)
-                    : $field->imageCss;
 
-                return sprintf('<img class="%s" src="%s" %s>', $imageCss, $value, $imageAlt);
+                return view('belich::components.thumbnails', [
+                    'url' => $value,
+                    'alt' => $imageAlt
+                ])->render();
             }
         }
 

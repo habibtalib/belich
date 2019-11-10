@@ -20,11 +20,6 @@ final class Image extends File
     /**
      * @var string
      */
-    public $imageCss = 'block h-10 rounded-full shadow-md';
-
-    /**
-     * @var string
-     */
     public $fileType = 'image';
 
     /**
@@ -37,20 +32,6 @@ final class Image extends File
     public function alt(string $alt): self
     {
         $this->alt = $alt;
-
-        return $this;
-    }
-
-    /**
-     * Set image css
-     *
-     * @param string $alt
-     *
-     * @return Daguilarm\Belich\Fields\Field
-     */
-    public function addClass(...$css): Field
-    {
-        $this->imageCss = $css;
 
         return $this;
     }
