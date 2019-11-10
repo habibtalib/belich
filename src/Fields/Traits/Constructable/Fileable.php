@@ -57,8 +57,6 @@ trait Fileable
 
                 return sprintf('<img class="%s" src="%s" %s>', $imageCss, $value, $imageAlt);
             }
-
-            return $value;
         }
 
         //Return file value
