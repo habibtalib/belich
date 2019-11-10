@@ -14,22 +14,7 @@ final class Header extends Field
     /**
      * @var string
      */
-    public $background;
-
-    /**
-     * @var string
-     */
     public $color;
-
-    /**
-     * @var string
-     */
-    public $icon;
-
-    /**
-     * @var string
-     */
-    public $size;
 
     /**
      * Create a new field.
@@ -42,18 +27,18 @@ final class Header extends Field
     public function __construct($name = null)
     {
         parent::__construct($name, null);
+
+        $this->onlyOnForms();
     }
 
     /**
-     * Set the background color
+     * Resolve the value as HTML (without scape)
      *
-     * @param  string $background
-     *
-     * @return  self
+     * @return \Daguilarm\Belich\Fields\FieldBase
      */
-    public function background(string $background): self
+    public function asHtml(): \Daguilarm\Belich\Fields\FieldBase
     {
-        $this->background = $background;
+        $this->asHtml = true;
 
         return $this;
     }
@@ -68,34 +53,6 @@ final class Header extends Field
     public function color(string $color): self
     {
         $this->color = $color;
-
-        return $this;
-    }
-
-    /**
-     * Set the icon
-     *
-     * @param  string $icon
-     *
-     * @return  self
-     */
-    public function icon(string $icon): self
-    {
-        $this->icon = $icon;
-
-        return $this;
-    }
-
-    /**
-     * Set the text size
-     *
-     * @param  string $size
-     *
-     * @return  self
-     */
-    public function size(string $size): self
-    {
-        $this->size = $size;
 
         return $this;
     }
