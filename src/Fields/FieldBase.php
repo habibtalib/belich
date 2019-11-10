@@ -110,9 +110,9 @@ class FieldBase
     /**
      * All the render attributes must be stored here...
      *
-     * @var String
+     * @var array
      */
-    public $render;
+    public $render = [];
 
     /**
      * All the attributes to be removed from $field

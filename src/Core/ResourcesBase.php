@@ -42,6 +42,11 @@ class ResourcesBase
     /**
      * @var string
      */
+    public static $imageCss = 'block h-10 rounded-full shadow-md';
+
+    /**
+     * @var string
+     */
     public static $label;
 
     /**

@@ -3,6 +3,7 @@
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
+use Daguilarm\Belich\Fields\FieldBase;
 
 class File extends Field
 {
@@ -34,7 +35,7 @@ class File extends Field
     /**
      * @var bool
      */
-    public $render = false;
+    public $renderImage = false;
 
     /**
      * @var string
@@ -109,11 +110,11 @@ class File extends Field
     /**
      * Render image in views
      *
-     * @return self
+     * @return \Daguilarm\Belich\Fields\FieldBase
      */
-    public function render(): self
+    public function asHtml(): FieldBase
     {
-        $this->render = true;
+        $this->renderImage = true;
 
         return $this;
     }

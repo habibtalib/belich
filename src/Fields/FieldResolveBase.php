@@ -42,8 +42,8 @@ class FieldResolveBase
      */
     protected function setVisibilityForFields(Collection $fields, string $action): Collection
     {
-        return $fields->map(function ($field) use ($action) {
-            if(in_array($action, $field->forceVisibility)) {
+        return $fields->map(static function ($field) use ($action) {
+            if (in_array($action, $field->forceVisibility)) {
                 //If the field has the visibility for this controller action on true...
                 return $field->visibility[$action]
                     ? $field

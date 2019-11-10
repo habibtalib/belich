@@ -47,12 +47,13 @@ trait Fileable
                 ? $value
                 : Storage::disk($field->disk)->url($value);
 
-            if ($field->render) {
+            if ($field->renderImage) {
                 //Set the image alt
                 $imageAlt = isset($field->alt) ? sprintf('alt="%s"', $field->alt) : '';
-
-                //Set the css classes
-                $imageCss = $field->addCss ?? 'block h-10 rounded-full shadow-md';
+                //In case of...
+                $imageCss = is_array($field->imageCss)
+                    ? implode(' ', $field->imageCss)
+                    : $field->imageCss;
 
                 return sprintf('<img class="%s" src="%s" %s>', $imageCss, $value, $imageAlt);
             }

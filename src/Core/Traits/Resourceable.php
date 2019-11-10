@@ -23,15 +23,15 @@ trait Resourceable
         //Update the fields
         $updateFields = collect($class->fields($request));
         //Sql Response
-        $sqlResponse = app(Database::class)->response($class, $request);
+        $sql = app(Database::class)->response($class, $request);
         //ClassName
         $className = static::resource();
 
         return collect([
             'name' => $className,
             'controllerAction' => static::action(),
-            'fields' => app(FieldResolve::class)->make($class, $updateFields, $sqlResponse),
-            'results' => $sqlResponse,
+            'fields' => app(FieldResolve::class)->make($class, $updateFields, $sql),
+            'results' => $sql,
             'values' => $this->valueResources($className),
         ]);
     }

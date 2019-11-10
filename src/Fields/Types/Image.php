@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Fields\Types;
 
+use Daguilarm\Belich\Fields\Field;
 use Daguilarm\Belich\Fields\Types\File;
 
 final class Image extends File
@@ -14,17 +15,17 @@ final class Image extends File
     /**
      * @var string
      */
-    public $fileType = 'image';
-
-    /**
-     * @var string
-     */
     public $alt;
 
     /**
      * @var string
      */
-    public $addCss;
+    public $imageCss = 'block h-10 rounded-full shadow-md';
+
+    /**
+     * @var string
+     */
+    public $fileType = 'image';
 
     /**
      * Set image alt value
@@ -41,15 +42,15 @@ final class Image extends File
     }
 
     /**
-     * Set the image css classes
+     * Set image css
      *
-     * @param string $addCss
+     * @param string $alt
      *
-     * @return self
+     * @return Daguilarm\Belich\Fields\Field
      */
-    public function addCss(string $addCss): self
+    public function addClass(...$css): Field
     {
-        $this->addCss = $addCss;
+        $this->imageCss = $css;
 
         return $this;
     }
