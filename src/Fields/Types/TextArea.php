@@ -95,17 +95,4 @@ final class TextArea extends Field
 
         return $this;
     }
-
-    /**
-     * Show textArea in show action
-     * Alias for alwaysShow()
-     *
-     * @return  self
-     */
-    public function show(): self
-    {
-        $this->visibility['show'] = true;
-
-        return $this;
-    }
 }

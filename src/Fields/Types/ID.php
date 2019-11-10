@@ -25,6 +25,9 @@ final class ID extends Field
         parent::__construct($name ?? 'ID', $attribute ?? Belich::getModelKeyName());
 
         //Set visibility
-        $this->exceptOnForms();
+        $this->forceVisibility('index', 'show');
+
+        //Not resolve or display field
+        $this->notResolveField();
     }
 }

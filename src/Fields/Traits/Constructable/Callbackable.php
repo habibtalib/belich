@@ -21,7 +21,7 @@ trait Callbackable
         //Resolve value when using the method: $field->displayUsing()
         $value = $this->displayCallback($field, $value);
 
-        //Resolve value when using the method: $field->resolveUsingg()
+        //Resolve value when using the method: $field->resolveUsing()
         return $this->resolveCallback($field, $data, $value);
     }
 
@@ -35,7 +35,7 @@ trait Callbackable
      */
     private function displayCallback(Field $field, $value = ''): ?string
     {
-        if (!isset($field->displayCallback)) {
+        if (!isset($field->displayCallback) || $field->notDisplayUsing === true) {
             return $value;
         }
 
@@ -57,7 +57,7 @@ trait Callbackable
      */
     private function resolveCallback(Field $field, ?object $data = null, $value = ''): ?string
     {
-        if (!is_callable($field->resolveCallback)) {
+        if (!is_callable($field->resolveCallback) || $field->notResolveUsing === false) {
             return $value;
         }
 

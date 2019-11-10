@@ -66,9 +66,18 @@ class FieldBase
     public $label;
 
     /**
+     * Disable $this->displayUsing()
+     *
      * @var bool
      */
-    public $notResolveField;
+    public $notDisplayUsing;
+
+    /**
+     * Disable $this->resolveUsing()
+     *
+     * @var bool
+     */
+    public $notResolveUsing;
 
     /**
      * Group by panel
@@ -214,9 +223,7 @@ class FieldBase
      */
     public function resolveUsing(callable $resolveCallback): self
     {
-        if (isset($resolveCallback)) {
-            $this->resolveCallback = $resolveCallback;
-        }
+        $this->resolveCallback = $resolveCallback;
 
         return $this;
     }
@@ -286,7 +293,11 @@ class FieldBase
      */
     public function notResolveField(): self
     {
-        $this->notResolveField = true;
+        //Not display using
+        $this->notDisplayUsing = false;
+
+        //Not resolve using
+        $this->notResolveUsing = false;
 
         return $this;
     }

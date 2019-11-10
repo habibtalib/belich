@@ -66,7 +66,7 @@ class File extends Field
         //Set the html by default because we are showing icons as value (green or grey)
         $this->asHtml = true;
 
-        //Not resolve field
+        //Not resolve or display field
         $this->notResolveField();
     }
 

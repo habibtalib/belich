@@ -38,6 +38,9 @@ final class Coordenates extends Decimal
 
         //Set key
         $this->key = md5($this->id . '-to-degrees');
+
+        //Not resolve or display field
+        $this->notResolveField();
     }
 
     /**

@@ -5,6 +5,15 @@ namespace Daguilarm\Belich\Fields\Traits;
 trait Visibilitable
 {
     /**
+     * Force visibility
+     * This is to allow the field visibility, directly from field's constructor
+     * All the visibility methods will be useless if activate this
+     *
+     * @var array
+     */
+    public $forceVisibility = ['index', 'create', 'edit', 'show'];
+
+    /**
      * Field visibility base on the action
      *
      * @var array
@@ -202,6 +211,22 @@ trait Visibilitable
             ->each(function ($value, $key): void {
                 $this->visibility[$key] = false;
             });
+    }
+
+    /**
+     * Force visibility
+     * This is to allow the field visibility, directly from field's constructor
+     * All the visibility methods will be useless if activate this
+     *
+     * @param array $values
+     *
+     * @return self
+     */
+    protected function forceVisibility(...$values): self
+    {
+        $this->forceVisibility = $values;
+
+        return $this;
     }
 
     /**

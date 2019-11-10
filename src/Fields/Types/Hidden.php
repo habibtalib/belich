@@ -25,5 +25,8 @@ final class Hidden extends Field
 
         // Only visible on forms
         $this->onlyOnForms();
+
+        //Not resolve or display field
+        $this->notResolveField();
     }
 }
