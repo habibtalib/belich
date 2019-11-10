@@ -86,8 +86,8 @@ final class FieldValidate
                         $this->setRules($field),
                     ],
                 ];
-            // Removed empty fields with database relation, like: Header::make().
-            })->filter(function($field) {
+            })->filter(static function ($field): bool {
+                // Removed empty fields with database relation, like: Header::make().
                 return isset($field[0]) && $field[0] && isset($field[1]) && $field[1];
             });
     }
