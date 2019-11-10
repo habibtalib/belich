@@ -28,7 +28,11 @@ final class Header extends Field
     {
         parent::__construct($name, null);
 
+        // Only visible on forms
         $this->onlyOnForms();
+
+        //Not resolve field
+        $this->notResolveField();
     }
 
     /**

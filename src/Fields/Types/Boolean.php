@@ -48,6 +48,9 @@ final class Boolean extends Field
 
         //Cast the field as bool
         $this->toBoolean();
+
+        //Not resolve field
+        $this->notResolveField();
     }
 
     /**

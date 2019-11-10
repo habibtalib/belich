@@ -23,7 +23,7 @@ final class Hidden extends Field
     {
         parent::__construct($name, $attribute);
 
-        //Set configuration
-        $this->onlyOnForms()->notResolveField();
+        // Only visible on forms
+        $this->onlyOnForms();
     }
 }
