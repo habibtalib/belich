@@ -129,7 +129,7 @@ class FieldResolveBase
             }
 
             //Add readonly attribute
-            if ($field->readonly) {
+            if ($field->readonly && $field->type !== 'hidden') {
                 $field->render->push('readonly');
             }
 
