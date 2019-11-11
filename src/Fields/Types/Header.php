@@ -35,6 +35,7 @@ final class Header extends Field
 
         // Only visible on forms and show
         $this->forceVisibility('create', 'edit', 'show');
+
         // But by default, the show view is disabled...
         $this->hideFromShow();
 
