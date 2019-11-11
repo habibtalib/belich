@@ -23,6 +23,9 @@ final class Password extends Field
     {
         parent::__construct($name, $attribute);
 
+        // Only visible on forms and show
+        $this->forceVisibility('create', 'edit');
+
         // Hash the value
         $this->toHash();
     }
