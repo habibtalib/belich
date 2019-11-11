@@ -10,4 +10,20 @@ final class Password extends Field
      * @var string
      */
     public $type = 'password';
+
+    /**
+     * Create a new field.
+     *
+     * @param  string|null  $name
+     * @param  string|null  $attribute
+     *
+     * @return  void
+     */
+    public function __construct($name = null, $attribute = null)
+    {
+        parent::__construct($name, $attribute);
+
+        // Hash the value
+        $this->toHash();
+    }
 }
