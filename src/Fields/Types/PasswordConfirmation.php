@@ -31,7 +31,7 @@ final class PasswordConfirmation extends Field
         $this->id = $title;
         $this->name = $title;
 
-        // Set visibility
-        $this->onlyOnForms();
+        // Only visible on forms and show
+        $this->forceVisibility('create', 'edit');
     }
 }
