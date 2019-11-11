@@ -82,7 +82,7 @@ final class CrudController extends Controller
         //Handle files
         $request = $request->handleFile();
         //Create file
-        $create = $this->model::create($request->all());
+        $create = $this->model::create(array_filter($request->all()));
 
         return $this->redirectToAction($create, $actionSuccess = 'created', $actionFail = 'creating', $id = $create->id);
     }
@@ -139,7 +139,7 @@ final class CrudController extends Controller
         //Handle files
         $request = $request->handleFile($model);
         //Update files
-        $update = $model->update($request->all());
+        $update = $model->update(array_filter($request->all()));
 
         return $this->redirectToAction($update, $actionSuccess = 'updated', $actionFail = 'updating', $id);
     }
