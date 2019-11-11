@@ -19,7 +19,7 @@ trait Models
     /**
      * Set if the model has softdeleting results
      *
-     * @param string $model
+     * @param object $model
      *
      * @return bool
      */
