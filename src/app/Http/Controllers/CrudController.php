@@ -81,6 +81,7 @@ final class CrudController extends Controller
         $this->authorize('create', $this->model);
         //Handle files
         $request = $request->handleFile();
+
         //Create file
         $create = $this->model::create(array_filter($request->all()));
 
