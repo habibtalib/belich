@@ -53,7 +53,7 @@ trait Fileable
 
                 return view('belich::components.thumbnails', [
                     'url' => $value,
-                    'alt' => $imageAlt
+                    'alt' => $imageAlt,
                 ])->render();
             }
         }

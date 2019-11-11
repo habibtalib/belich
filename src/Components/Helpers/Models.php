@@ -7,15 +7,13 @@ trait Models
     /**
      * Set if the model has the trait softdelete
      *
-     * @param string $model
+     * @param object $model
      *
      * @return bool
      */
-    public function hasSoftdelete(string $model): bool
+    public function hasSoftdelete(object $model): bool
     {
-        return method_exists($model, 'trashed')
-            ? true
-            : false;
+        return method_exists($model, 'bootSoftDeletes');
     }
 
     /**
@@ -27,8 +25,6 @@ trait Models
      */
     public function hasSoftdeletedResults(string $model): bool
     {
-        return method_exists($model, 'trashed') && $model->trashed()
-            ? true
-            : false;
+        return method_exists($model, 'trashed') && $model->trashed();
     }
 }

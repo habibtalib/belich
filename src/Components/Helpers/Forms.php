@@ -103,7 +103,7 @@ trait Forms
      */
     private function getValue(Field $field, string $attribute, ?string $default = null): ?string
     {
-        return (isset($field->addClass) && is_array($field->addClass) && $attribute === 'class')
+        return isset($field->addClass) && is_array($field->addClass) && $attribute === 'class'
             // Css class attribute
             ? collect($field->addClass)->push($default)->filter()->join(' ')
             // Regular attribute

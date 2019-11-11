@@ -14,7 +14,12 @@ final class Header extends Field
     /**
      * @var string
      */
-    public $color;
+    public $background = 'gray-300';
+
+    /**
+     * @var string
+     */
+    public $color = 'gray-600';
 
     /**
      * Create a new field.
@@ -28,8 +33,10 @@ final class Header extends Field
     {
         parent::__construct($name, null);
 
-        // Only visible on forms
-        $this->forceVisibility('create', 'edit');
+        // Only visible on forms and show
+        $this->forceVisibility('create', 'edit', 'show');
+        // But by default, the show view is disabled...
+        $this->hideFromShow();
 
         //Not resolve field
         $this->notResolveField();
@@ -48,15 +55,33 @@ final class Header extends Field
     }
 
     /**
-     * Set the color
+     * Set the background
      *
-     * @param  string $color
+     * @param  string|null $background
      *
      * @return  self
      */
-    public function color(string $color): self
+    public function background(?string $background): self
     {
-        $this->color = $color;
+        if ($background) {
+            $this->background = $background;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Set the color
+     *
+     * @param  string|null $color
+     *
+     * @return  self
+     */
+    public function color(?string $color): self
+    {
+        if ($color) {
+            $this->color = $color;
+        }
 
         return $this;
     }

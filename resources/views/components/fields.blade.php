@@ -1,4 +1,9 @@
-<div class="w-full flex items-center py-8 px-6 bg-white text-gray-600 border-b border-gray-200 text-sm shadow-md">
+{{-- Header fixer --}}
+<div class="w-full flex items-center py-8 px-6
+    bg-{{ $field->type === 'header' && isset($field->background) ? $field->background : 'white' }}
+    text-{{ $field->type === 'header' && isset($field->color) ? $field->color : 'gray-600' }}
+    border-b border-gray-200 text-sm shadow-md"
+>
     <div class="w-1/3">
         <label class="capitalize font-bold">{{ $field->label ?? null }}</label>
     </div>

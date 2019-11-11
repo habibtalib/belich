@@ -61,7 +61,7 @@ trait Utils
      *
      * @return string
      */
-    function validateUrl($url)
+    public function validateUrl($url)
     {
         return filter_var($url, FILTER_VALIDATE_URL);
     }

@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Fields\Types;
 
+use Daguilarm\Belich\Fields\Types\Header;
 use Illuminate\Support\Collection;
 
 final class Panels
@@ -14,10 +15,19 @@ final class Panels
      *
      * @return array
      */
-    public static function create(string $name, callable $fields): array
+    public static function create(string $name, callable $fields, ?string $background = null, ?string $color = null): array
     {
-        return static::getFields($fields)
-            ->map(static function ($field) use ($name) {
+        // Get all the fields and create the header
+        $fields = static::getFields($fields)
+            ->prepend(
+                Header::make($name)
+                    ->visibleOn('show', 'create', 'edit')
+                    ->background($background)
+                    ->color($color)
+            );
+
+        return $fields
+            ->map(static function ($field) use ($color, $name) {
                 return $field
                     ->panels($name);
             })
