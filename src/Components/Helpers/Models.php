@@ -23,8 +23,8 @@ trait Models
      *
      * @return bool
      */
-    public function hasSoftdeletedResults(string $model): bool
+    public function hasSoftdeletedResults(object $model): bool
     {
-        return method_exists($model, 'trashed') && $model->trashed();
+        return method_exists($model, 'bootSoftDeletes') && $model->trashed();
     }
 }
