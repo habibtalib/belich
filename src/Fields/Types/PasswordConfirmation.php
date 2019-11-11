@@ -21,18 +21,17 @@ final class PasswordConfirmation extends Field
      */
     public function __construct($label, $attribute = null)
     {
-        //Set the default value
+        // Set the default value
         $title = 'password_confirmation';
 
-        //Set the values
+        // Set the values
         $this->label = $label;
         $this->attribute = $title;
         $this->dusk = 'dusk-' . $title;
         $this->id = $title;
         $this->name = $title;
 
-        //Set visibility
+        // Set visibility
         $this->onlyOnForms();
-        $this->rules('required');
     }
 }
