@@ -4,7 +4,7 @@
 
 {{-- For Panels --}}
 @else
-    <div class="form-container {{ $loop->first ? '' : 'mt-4' }} {{ $loop->last ? '' : 'mb-4' }}">
+    <div class="form-container">
 @endif
     {{-- Get all the fields --}}
     @foreach($panel as $key => $field)
