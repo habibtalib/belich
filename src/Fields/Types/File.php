@@ -20,7 +20,7 @@ class File extends Field
     /**
      * @var string
      */
-    public $downloadable = false;
+    public $link = false;
 
     /**
      * @var string
@@ -88,9 +88,9 @@ class File extends Field
      *
      * @return self
      */
-    public function downloadable(): self
+    public function link(): self
     {
-        $this->downloadable = true;
+        $this->link = true;
 
         return $this;
     }

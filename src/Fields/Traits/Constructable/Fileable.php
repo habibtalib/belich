@@ -76,9 +76,9 @@ trait Fileable
      */
     private function fileDownload(Field $field, ?string $file)
     {
-        if ($field->downloadable && $file) {
+        if ($field->link && $file) {
             return sprintf(
-                '<a href="%s" target="_blank" dusk="downloadable-file">%s</a>',
+                '<a href="%s" target="_blank" dusk="downloable-file">%s</a>',
                 $file,
                 Helper::icon('download'),
             );
