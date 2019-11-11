@@ -21,12 +21,13 @@ final class Panels
                 return $field
                     ->panels($name);
             })
+            // Not repeat attributes
             ->unique('attribute')
             ->toArray();
     }
 
     /**
-     * Resolve closure
+     * Resolve fields in callback
      *
      * @param  \Closure  $fields
      *
