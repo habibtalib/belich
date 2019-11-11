@@ -165,4 +165,16 @@ trait Casteable
     {
         $this->request->set($key, Carbon::createFromFormat('Y', request($key))->year);
     }
+
+    /**
+     * Converts the request field into a Hash value
+     *
+     * @param string $key
+     *
+     * @return void
+     */
+    protected function toHash(string $key): void
+    {
+        $this->request->set($key, bcrypt(request($key)));
+    }
 }

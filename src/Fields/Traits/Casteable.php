@@ -58,6 +58,18 @@ trait Casteable
     }
 
     /**
+     * Cast as Hash
+     *
+     * @return self
+     */
+    public function toHash(): self
+    {
+        $this->cast = 'hash';
+
+        return $this;
+    }
+
+    /**
      * Cast as json
      *
      * @return self
