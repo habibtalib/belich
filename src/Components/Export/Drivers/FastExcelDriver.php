@@ -20,7 +20,7 @@ final class FastExcelDriver extends FastExcel implements ExportContract
     /**
      * @var Collection
      */
-    private $data;
+    protected $data;
 
     /**
      * Prepare the file for download

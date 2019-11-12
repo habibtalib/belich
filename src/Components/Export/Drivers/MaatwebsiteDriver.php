@@ -16,7 +16,7 @@ final class MaatwebsiteDriver implements ExportContract
     /**
      * @var Collection
      */
-    private $data;
+    protected $data;
 
     /**
      * Prepare the file for download

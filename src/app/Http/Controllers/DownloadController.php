@@ -4,8 +4,8 @@ namespace Daguilarm\Belich\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Daguilarm\Belich\Components\Export\Excel;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 final class DownloadController extends Controller
 {
@@ -16,7 +16,7 @@ final class DownloadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request): RedirectResponse
+    public function __invoke(Request $request): StreamedResponse
     {
         //Get the excel instance from the driver
         $excel = Excel::make();
