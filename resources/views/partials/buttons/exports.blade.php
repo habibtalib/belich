@@ -28,7 +28,7 @@
             </belich::options>
 
             <div class="w-full flex flex-row-reverse p-2 mb-2">
-                <button type="submit" class="btn btn-default" onclick="addCheckboxesToField('exports_selected');">{!! icon('download', trans('belich::buttons.base.download')) !!}</button>
+                <button type="submit" class="btn btn-default" onclick="addCheckboxesToField('exports_selected');">{!! Helper::icon('download', trans('belich::buttons.base.download')) !!}</button>
             </div>
         </form>
     </div>
