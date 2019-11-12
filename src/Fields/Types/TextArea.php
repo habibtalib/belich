@@ -17,6 +17,21 @@ final class TextArea extends Field
     public $count;
 
     /**
+     * @var bool
+     */
+    public $fullText = false;
+
+    /**
+     * @var bool
+     */
+    public $fullTextOnIndex = false;
+
+    /**
+     * @var bool
+     */
+    public $fullTextOnShow = false;
+
+    /**
      * @var int
      */
     public $maxlength;
@@ -39,22 +54,46 @@ final class TextArea extends Field
         //Set the values
         parent::__construct($label, $attribute);
 
-        //Set visibility
-        //Hide from detail by default
-        $this->hideFromShow();
-
         //Cast the field as string
         $this->toString();
+
+        if($this->fullText === false) {
+            $this->asHtml();
+        }
     }
 
     /**
-     * Show textArea in all the actions
+     * Show textArea full text in index and show views
      *
      * @return  self
      */
-    public function alwaysShow(): self
+    public function fullText(): self
     {
-        $this->showInAll();
+        $this->fullText = true;
+
+        return $this;
+    }
+
+    /**
+     * Show textArea full text on index view
+     *
+     * @return  self
+     */
+    public function fullTextOnIndex(): self
+    {
+        $this->fullTextOnIndex = true;
+
+        return $this;
+    }
+
+    /**
+     * Show textArea full text on show view
+     *
+     * @return  self
+     */
+    public function fullTextOnShow(): self
+    {
+        $this->fullTextOnShow = true;
 
         return $this;
     }

@@ -73,6 +73,11 @@ final class FieldResolveIndex
             return $this->resolveFile($field, $value);
         }
 
+        //TextArea field
+        if ($field->type === 'textArea') {
+            return $resolve->resolveTextArea($field, $value);
+        }
+
         //File field
         if (isset($field->displayUsingLabels) && $field->displayUsingLabels) {
             return $resolve->displayUsingLabels($field, $value);

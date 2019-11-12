@@ -4,9 +4,12 @@ namespace Daguilarm\Belich\Fields\ResolveIndex;
 
 use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Field;
+use Daguilarm\Belich\Fields\Traits\Resolvable;
 
 final class Resolve
 {
+    use Resolvable;
+
     /**
      * Resolve field values for: relationship
      * This method is helper for $this->resolve()
@@ -45,20 +48,6 @@ final class Resolve
 
         // With color circles
         return sprintf('<i class="fas fa-circle text-%s-500"></i>', $value ? $field->color : 'grey');
-    }
-
-    /**
-     * Resolve select field using labels
-     * This method is helper for $this->resolve()
-     *
-     * @param  Daguilarm\Belich\Fields\Field $field
-     * @param  mixed $value
-     *
-     * @return string|null
-     */
-    public function displayUsingLabels(Field $field, $value): ?string
-    {
-        return $field->options[$value] ?? null;
     }
 
     /**

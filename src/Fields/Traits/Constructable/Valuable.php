@@ -2,10 +2,13 @@
 
 namespace Daguilarm\Belich\Fields\Traits\Constructable;
 
+use Daguilarm\Belich\Fields\Traits\Resolvable;
 use Illuminate\Support\Collection;
 
 trait Valuable
 {
+    use Resolvable;
+
     /**
      * When the action is update or show
      * We have to update the field value
@@ -57,7 +60,12 @@ trait Valuable
         if ($this->action === 'show') {
             //Display using labels
             if (isset($field->displayUsingLabels) && isset($field->options)) {
-                $field->value = $field->options[$field->value] ?? $field->value;
+                $field->value = $this->displayUsingLabels($field, $field->value);
+            }
+
+            //Text areas
+            if ($field->type === 'textArea') {
+                $field->value = $this->resolveTextArea($field);
             }
 
             //Regular
