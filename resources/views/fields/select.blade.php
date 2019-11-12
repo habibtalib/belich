@@ -5,9 +5,11 @@
                 {!! Helper::setFormAttribute($field, 'addClass', 'block px-4 py-2 pr-8') !!}
                 {!! $field->render !!}
             >
-                @foreach($field->options as $value => $text)
-                    <option value="{{ $value }}" {{ $field->value === $value ? 'selected="selected"' : '' }}>{{ $text }}</option>
-                @endforeach
+                @isset($field->options)
+                    @foreach($field->options as $value => $text)
+                        <option value="{{ $value }}" {{ $field->value === $value ? 'selected="selected"' : '' }}>{{ $text }}</option>
+                    @endforeach
+                @endisset
             </select>
             <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2">
                 <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
