@@ -147,5 +147,5 @@ return [
     | For example, if the textArea value is: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     | IF the textAreaChars value is 20, will show: "Lorem ipsum dolor si..."
     */
-    'textAreaChars' => 20,
+    'textAreaChars' => 25,
 ];
