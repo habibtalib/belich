@@ -20,13 +20,13 @@ final class Eloquent
         // Get the model
         $model = static::model($request);
 
-        // Download fields
-        $fields = $model->downloable ?? '*';
+        // Download table columns
+        $columns = $model->downloable ?? '*';
 
         //Selected fields
         if ($request->quantity === 'selected') {
-            return $model->select($fields)
-                ->select($fields)
+            return $model
+                ->select($columns)
                 //App\Http\Helpers\Utils
                 ->whereIn('id', Helper::fieldToArray($request->exports_selected))
                 ->get();
@@ -34,7 +34,7 @@ final class Eloquent
 
         //All the fields
         return $model
-            ->select($fields)
+            ->select($columns)
             ->get();
     }
 
