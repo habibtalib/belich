@@ -5,7 +5,7 @@
 
             {{-- Checkboxes --}}
             <th class="pt-4 pb-5 px-6">
-                <input type="checkbox" name="item_selection" onclick="checkAll(this)">
+                <input type="checkbox" name="item_selection" onclick="checkAll(this)" dusk="index-table-select-all">
             </th>
 
             {{-- Headers --}}
@@ -24,7 +24,7 @@
         {{-- Get the results --}}
         @forelse($request->results as $result)
             <tr class="hover:bg-gray-100">
-                <td class="py-4 px-6 border-b border-solid border-gray-200"><input type="checkbox" name="item_selection[]" value="{{ $result->id }}" class="form-index-selector" onclick="checkForSelectedFields();"></td>
+                <td class="py-4 px-6 border-b border-solid border-gray-200"><input type="checkbox" name="item_selection[]" value="{{ $result->id }}" dusk="index-table-select-{{ $result->id }}" class="form-index-selector" onclick="checkForSelectedFields();"></td>
 
                 {{-- Get the values --}}
                 @foreach($request->fields->get('data') as $field)
