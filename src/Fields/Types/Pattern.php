@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-final class Pattern extends Field
+class Pattern extends Field
 {
     /**
      * @var string
