@@ -21,7 +21,7 @@ final class Eloquent
         $model = static::model($request);
 
         // Download table columns
-        $columns = $model->downloable ?? '*';
+        $columns = $model->download ?? '*';
 
         //Selected fields
         if ($request->quantity === 'selected') {
