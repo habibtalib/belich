@@ -18,6 +18,7 @@
                 :url="Belich::actionRoute('create')"
                 class="mx-2"
                 color="secondary"
+                dusk="table-create-button"
                 loading
             />
         @endcan

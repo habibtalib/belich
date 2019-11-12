@@ -34,7 +34,7 @@
 
                 {{-- Submit buttons --}}
                 <div class="w-full flex flex-row-reverse p-2 mb-2">
-                    <button type="submit" class="btn btn-default" onclick="loading(this);">
+                    <button type="submit" class="btn btn-default" dusk="table-options-submit" onclick="loading(this);">
                         {!! Helper::icon('redo-alt', trans('belich::buttons.base.configure')) !!}
                     </button>
                 </div>
