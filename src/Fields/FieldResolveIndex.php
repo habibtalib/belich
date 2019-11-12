@@ -74,7 +74,7 @@ final class FieldResolveIndex
         }
 
         //File field
-        if ($field->displayUsingLabels) {
+        if (isset($field->displayUsingLabels) && $field->displayUsingLabels) {
             return $resolve->displayUsingLabels($field, $value);
         }
 
