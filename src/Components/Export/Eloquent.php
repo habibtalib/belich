@@ -20,13 +20,10 @@ final class Eloquent
         // Get the model
         $model = static::model($request);
 
-        // Download table columns
-        $columns = $model->download ?? '*';
-
         //Selected fields
         if ($request->quantity === 'selected') {
             return $model
-                ->select($columns)
+                ->select(static::columns($model))
                 //App\Http\Helpers\Utils
                 ->whereIn('id', Helper::fieldToArray($request->exports_selected))
                 ->get();
@@ -34,7 +31,7 @@ final class Eloquent
 
         //All the fields
         return $model
-            ->select($columns)
+            ->select(static::columns($model))
             ->get();
     }
 
@@ -60,5 +57,19 @@ final class Eloquent
     private static function model(Request $request): object
     {
         return app($request->resource_model);
+    }
+
+    /**
+     * Get the current model
+     *
+     * @param object $model
+     *
+     * @return object
+     */
+    private static function columns(object $model): array
+    {
+        return method_exists($model, 'download') && is_array($model->download())
+            ? $model->download() ?? ['*']
+            : ['*'];
     }
 }
