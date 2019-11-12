@@ -37,7 +37,7 @@ trait Resolvable
         $shortValue = mb_strimwidth($value, 0, config('belich.textAreaChars'), '...');
 
         // Index and show resolve
-        if((Belich::action() === 'index' && $field->fullTextOnIndex) || (Belich::action() === 'show' && $field->fullTextOnShow)) {
+        if ((Belich::action() === 'index' && $field->fullTextOnIndex) || (Belich::action() === 'show' && $field->fullTextOnShow)) {
             return $value;
         }
 
