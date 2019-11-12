@@ -8,7 +8,7 @@
 
 @prepend('modals')
     {{-- Modal component: delete selected - mass --}}
-    <belich::modal form="true" id="mass-delete" hidden="delete_selected" background="red-400" color="white" :action="route('dashboard.' . $request->name . '.delete.selected')" :request="$request" :header="Helper::icon('exclamation-triangle', trans('belich::messages.delete.selected.title'))">
+    <belich::modal form="true" id="mass-delete" dusk="modal-mass-delete" hidden="delete_selected" background="red-400" color="white" :action="route('dashboard.' . $request->name . '.delete.selected')" :request="$request" :header="Helper::icon('exclamation-triangle', trans('belich::messages.delete.selected.title'))">
 
         {{-- Modal content --}}
         <slot name="content">
@@ -18,7 +18,7 @@
         {{-- Modal footer --}}
         <slot name="footer">
             <a href="#" class="btn btn-default mx-2 close">@lang('belich::buttons.actions.cancel')</a>
-            <button class="btn btn-success mx-2" onclick="loading(this);">@lang('belich::buttons.actions.confirm')</button>
+            <button class="btn btn-success mx-2" dusk="modal-mass-delete-confirm-button" onclick="loading(this);">@lang('belich::buttons.actions.confirm')</button>
         </slot>
 
     </belich::modal>
