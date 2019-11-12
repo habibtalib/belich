@@ -73,6 +73,11 @@ final class FieldResolveIndex
             return $this->resolveFile($field, $value);
         }
 
+        //File field
+        if ($field->displayUsingLabels) {
+            return $resolve->displayUsingLabels($field, $value);
+        }
+
         //Resolve the field value through callbacks
         return $this->getCallbackValue($field, $data, $value);
     }

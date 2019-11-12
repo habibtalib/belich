@@ -19,9 +19,6 @@ final class Resolve
      */
     public function resolveValue(Field $field, ?object $data, ?string $value): ?string
     {
-        //Resolve using labels
-        $value = $this->resolveUsingLabels($field, $value);
-
         //Resolve Relationship
         return isset($data)
             ? $this->resolveRelationship($field, $data)
@@ -51,18 +48,17 @@ final class Resolve
     }
 
     /**
-     * Resolve using labels
+     * Resolve select field using labels
+     * This method is helper for $this->resolve()
      *
      * @param  Daguilarm\Belich\Fields\Field $field
      * @param  mixed $value
      *
      * @return string|null
      */
-    private function resolveUsingLabels(Field $field, $value): ?string
+    public function displayUsingLabels(Field $field, $value): ?string
     {
-        return isset($field->displayUsingLabels) && isset($field->options) && isset($value)
-            ? $field->options[$value]
-            : $value;
+        return $field->options[$value] ?? null;
     }
 
     /**
