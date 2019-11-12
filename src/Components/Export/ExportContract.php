@@ -19,6 +19,8 @@ interface ExportContract
     /**
      * Add collection from model
      *
+     * @param Illuminate\Database\Eloquent\Collection $data
+     *
      * @return Daguilarm\Belich\Components\Export\Drivers\FastExcelDriver
      */
     public function collection(Collection $data);

@@ -17,16 +17,25 @@ final class Eloquent
      */
     public static function query(Request $request): Collection
     {
+        // Get the model
+        $model = static::model($request);
+
+        // Download fields
+        $fields = $model->downloable ?? '*';
+
         //Selected fields
         if ($request->quantity === 'selected') {
-            return static::model($request)
+            return $model->select($fields)
+                ->select($fields)
                 //App\Http\Helpers\Utils
                 ->whereIn('id', Helper::fieldToArray($request->exports_selected))
                 ->get();
         }
 
         //All the fields
-        return static::model($request)->all();
+        return $model
+            ->select($fields)
+            ->get();
     }
 
     /**

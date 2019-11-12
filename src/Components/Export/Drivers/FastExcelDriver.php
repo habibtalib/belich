@@ -23,6 +23,11 @@ final class FastExcelDriver extends FastExcel implements ExportContract
     protected $data;
 
     /**
+     * @var array
+     */
+    protected $select = [];
+
+    /**
      * Prepare the file for download
      *
      * @param Illuminate\Http\Request $request
@@ -46,7 +51,9 @@ final class FastExcelDriver extends FastExcel implements ExportContract
      */
     public function collection(Collection $data): FastExcelDriver
     {
-        $this->data = $data;
+        $this->data = $this->select
+            ? $data->select($this->select)
+            : $data;
 
         return $this;
     }
