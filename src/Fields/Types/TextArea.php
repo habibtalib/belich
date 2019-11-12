@@ -56,10 +56,6 @@ final class TextArea extends Field
 
         //Cast the field as string
         $this->toString();
-
-        if($this->fullText === false) {
-            $this->asHtml();
-        }
     }
 
     /**
