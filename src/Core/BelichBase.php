@@ -175,16 +175,4 @@ abstract class BelichBase
             ? 'text-' . $align
             : 'text-left';
     }
-
-    /**
-     * Get the resource $tabs variable.
-     *
-     * @return bool
-     */
-    public static function tabs(): bool
-    {
-        $class = static::resourceClassPath();
-
-        return $class::$tabs ?? false;
-    }
 }

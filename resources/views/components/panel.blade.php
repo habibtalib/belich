@@ -1,11 +1,4 @@
-{{-- For Tabs --}}
-@if(Belich::tabs() === true)
-    <div class="form-container">
-
-{{-- For Panels --}}
-@else
-    <div class="form-container">
-@endif
+<div class="form-container">
     {{-- Get all the fields --}}
     @foreach($panel as $key => $field)
 
