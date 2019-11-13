@@ -20,7 +20,13 @@
         @endisset
 
         @isset($field->id)
-            <p id="error-{{ $field->id }}" class="text-red-500 font-normal italic mt-2"></p>
+            <p id="error-{{ $field->id }}"
+                class="validation-error text-red-500 font-normal italic mt-2"
+                @isset($field->tabulationID)
+                    data-tab="{{ $field->tabulationID }}"
+                @endisset
+            >
+            </p>
         @endif
 
         @include('belich::fields.cast')

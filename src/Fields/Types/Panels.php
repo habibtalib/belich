@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Fields\Types;
 
+use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Types\Header;
 use Illuminate\Support\Collection;
 
@@ -59,6 +60,9 @@ class Panels
     {
         return $fields
             ->map(static function ($field) use ($name) {
+                // Add the tabs id
+                $field->tabulationID = md5(Helper::stringTokebab($name));
+
                 return $field->panels($name);
             })
             // Not repeat attributes

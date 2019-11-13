@@ -16,28 +16,6 @@
             container.value = container.checked == 0 ? 0 : 1;
         }
 
-        //Tabs system for forms
-        function switchTab(id, key) {
-            //Default value
-            var currentTab;
-            // Prevent doubble click
-            if(currentTab === key) { return false; }
-            //Get all the tabs and containers
-            var elements = document.querySelectorAll('.content');
-            var container = document.getElementById('content_' + id);
-            //Hide all the containers
-            for (var i = 0; i < elements.length; i++) {
-                elements[i].classList.add('hidden'), elements[i].classList.remove('block');
-            }
-            //Set visible
-            container.classList.remove('hidden'), container.classList.add('block');
-            //Add active
-            document.querySelector('.tabs ul li a.active').classList.remove('active');
-            document.getElementById('menu_' + id).classList.add('active');
-            //Set current tab
-            currentTab = key;
-        }
-
         //Format number to decimals
         function setDecimals(item, decimals) {
             item.value = parseFloat(item.value).toFixed(decimals);
