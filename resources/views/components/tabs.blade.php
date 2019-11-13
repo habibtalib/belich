@@ -5,7 +5,7 @@
         @foreach($tabs as $label => $panel)
             <li class="inline m-0">
                 <a
-                    id="menu_{{ stringTokebab($label) }}"
+                    id="menu_{{ Helper::stringTokebab($label) }}"
                     onclick="javascript:switchTab('{{ Helper::stringTokebab($label) }}', '{{ md5(Helper::stringTokebab($label)) }}');"
                     href="#{{ md5(Helper::stringTokebab($label)) }}"
                     class="p-4 px-6 text-gray-700 border border-b-0 border-gray-200 {{ $loop->first ? 'active' : '' }}"
