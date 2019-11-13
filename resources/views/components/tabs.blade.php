@@ -72,9 +72,14 @@
             color: #3490dc;
             border-bottom: 2px solid #3490dc;
         }
-        .tab-error {
+        a.tab-error {
             color: red !important;
             border-color: red !important;
+            animation: .5s shake infinite alternate;
+        }
+        @keyframes shake {
+            from {color: red; border-color: red;}
+            to {color: orange; border-color: orange;}
         }
     </style>
 @endpush
