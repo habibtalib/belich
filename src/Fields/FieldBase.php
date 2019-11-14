@@ -291,7 +291,7 @@ class FieldBase
      *
      * @return self
      */
-    public function notResolveField(): self
+    protected function notResolveField(): self
     {
         //Not display using
         $this->notDisplayUsing = false;
