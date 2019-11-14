@@ -115,30 +115,16 @@ class FieldResolveBase
      */
     private function setAttributesForFields(Collection $fields): Collection
     {
-        //Set attributes for each field
+        // Set attributes for each field
         return $fields->map(function ($field) {
 
-            //Add attributes dynamically from the list
+            // Add attributes dynamically from the list: name, id, dusk,...
+            // Daguilarm\Belich\Fields\Traits\Constructable\Renderable
             $field->render = $this->setRenderFieldAttributes($field);
-
-            //Add autofocus attribute
-            if ($field->autofocus) {
-                $field->render->push('autofocus');
-            }
-
-            //Add the data attributes
-            if ($field->data) {
-                $field->render->push($this->setRenderFieldAttributesData($field));
-            }
 
             //Add readonly attribute
             if ($field->readonly && $field->type !== 'hidden') {
                 $field->render->push('readonly');
-            }
-
-            //Add disabled attribute
-            if ($field->disabled) {
-                $field->render->push('disabled');
             }
 
             //Render field
