@@ -10,6 +10,10 @@
 .form-container input[type='number'],
 .form-container input[type='date'],
 .form-container input[type='year'],
+.form-container input[type='email'],
+.form-container input[type='color'],
+.form-container input[type='range'],
+.form-container input[type='url'],
 .form-container select,
 .form-container textarea {
     @apply border bg-white border-gray-400;
