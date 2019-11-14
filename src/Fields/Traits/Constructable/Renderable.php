@@ -46,9 +46,12 @@ trait Renderable
             'autofocus' => 'autofocus',
             'disabled' => 'disabled',
             'data' => $this->setRenderFieldAttributesData($field),
+            'max' => sprintf('max="%s"', $field->max),
+            'min' => sprintf('min="%s"', $field->min),
             'multiple' => 'multiple',
             'placeholder' => sprintf('placeholder="%s"', $field->placeholder),
             'pattern' => sprintf('pattern="%s"', $field->pattern),
+            'step' => sprintf('step="%s"', $field->step),
         ]);
 
         $keys = $customAttributes->keys();
