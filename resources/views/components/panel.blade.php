@@ -6,7 +6,11 @@
         @isset($toField)
 
             {{-- Render field by type --}}
-            @includeIf('belich::fields.' . $field->type, ['field' => $field])
+            @if(View::exists('belich::fields.' . $field->type))
+                @include('belich::fields.' . $field->type, ['field' => $field])
+            @else
+                @include('belich::fields.text', ['field' => $field])
+            @endif
 
         {{-- Render values: show --}}
         @else
