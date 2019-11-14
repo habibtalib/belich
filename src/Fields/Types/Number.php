@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-final class Number extends Field
+class Number extends Field
 {
     /**
      * @var int
@@ -57,11 +57,11 @@ final class Number extends Field
     /**
      * Set step value
      *
-     * @param int $step
+     * @param string $step
      *
      * @return self
      */
-    public function step(int $step): self
+    public function step(string $step): self
     {
         $this->step = $step;
 
