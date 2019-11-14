@@ -47,6 +47,8 @@ trait Renderable
             'disabled' => 'disabled',
             'data' => $this->setRenderFieldAttributesData($field),
             'multiple' => 'multiple',
+            'placeholder' => sprintf('placeholder="%s"', $field->placeholder),
+            'pattern' => sprintf('pattern="%s"', $field->pattern),
         ]);
 
         $keys = $customAttributes->keys();

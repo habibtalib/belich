@@ -4,19 +4,39 @@ namespace Daguilarm\Belich\Fields\Traits;
 
 trait Attributable
 {
-    /** @var array [Add new css classes to the current field] */
+    /**
+     * @var array
+     */
     public $addClass = [];
 
-    /** @var string [Add to field the autofocus attribute] */
+    /**
+     * @var string
+     */
     public $autofocus;
 
-    /** @var array [Generate de data attributes] */
+    /**
+     * @var array
+     */
     public $data;
 
-    /** @var bool [Disabled field] */
+    /**
+     * @var bool
+     */
     public $disabled = false;
 
-    /** @var bool [Read only field] */
+    /**
+     * @var string
+     */
+    public $pattern;
+
+    /**
+     * @var string
+     */
+    public $placeholder;
+
+    /**
+     * @var bool
+     */
     public $readonly = false;
 
     /**
@@ -34,7 +54,7 @@ trait Attributable
     }
 
     /**
-     * Add to field the autofocus attribute
+     * Add to attribute the autofocus attribute
      *
      * @return self
      */
@@ -58,7 +78,7 @@ trait Attributable
     }
 
     /**
-     * Set the field with the attribute 'disabled'
+     * Set the attribute with the attribute 'disabled'
      *
      * @param  bool  $value
      *
@@ -74,7 +94,7 @@ trait Attributable
     }
 
     /**
-     * Set the field default value
+     * Set the attribute default value
      *
      * @param  string|null  $value
      *
@@ -86,6 +106,34 @@ trait Attributable
         if (isset($value)) {
             $this->value = $value;
         }
+
+        return $this;
+    }
+
+    /**
+     * Set the attribute pattern
+     *
+     * @param  string  $value
+     *
+     * @return self
+     */
+    public function pattern(string $value): self
+    {
+        $this->pattern = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set the attribute placeholder
+     *
+     * @param  string|null  $value [sometimes we need a empty placeholder for javascript or else... so we can just create an empty one]
+     *
+     * @return self
+     */
+    public function placeholder(?string $value = null): self
+    {
+        $this->placeholder = $value;
 
         return $this;
     }
