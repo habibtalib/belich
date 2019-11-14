@@ -17,22 +17,6 @@ final class Email extends Text implements FieldMultipleContract
     public $multiple = false;
 
     /**
-     * Create a new field.
-     *
-     * @param  string|null  $name
-     * @param  string|null  $attribute
-     *
-     * @return  void
-     */
-    public function __construct($name = null, $attribute = null)
-    {
-        parent::__construct($name, $attribute);
-
-        //Cast the field as string
-        $this->toString();
-    }
-
-    /**
      * Allow multiple emails (coma separate)
      *
      * @return self
