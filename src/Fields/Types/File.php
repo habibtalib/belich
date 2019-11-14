@@ -2,15 +2,21 @@
 
 namespace Daguilarm\Belich\Fields\Types;
 
+use Daguilarm\Belich\Contracts\FieldMultipleContract;
 use Daguilarm\Belich\Fields\Field;
 use Daguilarm\Belich\Fields\FieldBase;
 
-class File extends Field
+class File extends Field implements FieldMultipleContract
 {
     /**
      * @var string
      */
     public $type = 'file';
+
+    /**
+     * @var bool
+     */
+    public $multiple = false;
 
     /**
      * @var string
@@ -115,6 +121,18 @@ class File extends Field
     public function asHtml(): FieldBase
     {
         $this->renderImage = true;
+
+        return $this;
+    }
+
+    /**
+     * Allow multiple files
+     *
+     * @return self
+     */
+    public function multiple(): self
+    {
+        $this->multiple = true;
 
         return $this;
     }
