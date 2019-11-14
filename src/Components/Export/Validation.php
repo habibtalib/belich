@@ -33,7 +33,7 @@ final class Validation
             'quantity' => ['required', Rule::in(static::$selects)],
             'resource_model' => ['required',
                 static function ($attribute, $value, $fail): void {
-                    if (!class_exists($value)) {
+                    if (! class_exists($value)) {
                         $fail(trans('belich::messages.options.fail.class', ['value' => $value]));
                     }
                 },

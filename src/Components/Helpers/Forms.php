@@ -32,7 +32,7 @@ trait Forms
         return collect($options)
             ->map(static function ($label, $value) use ($cache) {
                 //Default values
-                $defaultValue = !is_array($value) ? strtolower($label) : $value;
+                $defaultValue = ! is_array($value) ? strtolower($label) : $value;
 
                 return sprintf(
                     '<option value="%s"%s>%s</option>',

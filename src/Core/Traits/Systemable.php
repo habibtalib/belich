@@ -22,7 +22,7 @@ trait Systemable
         $baseMiddleware = ['belich', 'minify'];
 
         //No results
-        if (!config('belich.middleware')) {
+        if (! config('belich.middleware')) {
             return $baseMiddleware;
         }
 

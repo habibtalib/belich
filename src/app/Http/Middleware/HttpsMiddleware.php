@@ -16,7 +16,7 @@ final class HttpsMiddleware
      */
     public function handle($request, Closure $next): object
     {
-        if (!$request->secure()) {
+        if (! $request->secure()) {
             return redirect()->secure($request->getRequestUri());
         }
 

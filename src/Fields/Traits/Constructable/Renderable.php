@@ -20,7 +20,7 @@ trait Renderable
         collect($field)
             ->each(static function ($value, $attribute) use ($field): void {
                 //Get the list of attributes to be rendered: name, dusk,... and remove the attributes from the removed list
-                $field->render[] = in_array($attribute, $field->renderAttributes) && !in_array($attribute, $field->removedAttr)
+                $field->render[] = in_array($attribute, $field->renderAttributes) && ! in_array($attribute, $field->removedAttr)
                     ? sprintf('%s=%s', $attribute, $value)
                     : null;
             })
@@ -56,7 +56,7 @@ trait Renderable
         $keys->filter(static function ($key) use ($customAttributes, $field) {
             //Only if the attribute exists
             return isset($field->{$key}) && $field->{$key} && $customAttributes[$key];
-        })->each(static function ($key) use ($customAttributes, $field) {
+        })->each(static function ($key) use ($customAttributes, $field): void {
             // Add the custom attribute
             $field->render[] = $customAttributes[$key];
         });

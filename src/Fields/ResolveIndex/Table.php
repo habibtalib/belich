@@ -97,11 +97,11 @@ final class Table
      */
     private function setUrlParametersDefaultValues(Field $field, Collection $parameters): Collection
     {
-        if (!$parameters->get('orderBy')) {
+        if (! $parameters->get('orderBy')) {
             $parameters->put('orderBy', $field->attribute);
         }
 
-        if (!$parameters->get('direction')) {
+        if (! $parameters->get('direction')) {
             $parameters->put('direction', 'DESC');
         }
 

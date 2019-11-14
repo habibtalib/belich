@@ -105,7 +105,7 @@ final class Belich extends BelichBase
         return app(FieldResolveIndex::class);
     }
 
-     /**
+    /**
      * Get the resource $tabs variable.
      *
      * @return bool

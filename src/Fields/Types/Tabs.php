@@ -3,7 +3,6 @@
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Types\Panels;
-use Illuminate\Support\Collection;
 
 final class Tabs extends Panels
 {

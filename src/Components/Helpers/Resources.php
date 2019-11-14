@@ -16,7 +16,7 @@ trait Resources
     public function getAllTheResourcesFromFolder(): Collection
     {
         //No file ... install case
-        if (!file_exists(app_path('Belich/Resources'))) {
+        if (! file_exists(app_path('Belich/Resources'))) {
             return new Collection();
         }
 

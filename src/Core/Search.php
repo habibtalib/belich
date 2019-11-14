@@ -14,7 +14,7 @@ final class Search
         $class = Belich::resourceClassPath();
 
         //Stop search if the resource not exists
-        if (!class_exists($class)) {
+        if (! class_exists($class)) {
             return '';
         }
 

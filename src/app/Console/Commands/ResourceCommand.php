@@ -37,7 +37,7 @@ final class ResourceCommand extends BelichCommand
      */
     public function handle(): void
     {
-        if (!File::exists($this->path())) {
+        if (! File::exists($this->path())) {
             File::makeDirectory($this->path());
         }
 

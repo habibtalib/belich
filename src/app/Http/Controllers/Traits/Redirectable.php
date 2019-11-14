@@ -50,7 +50,7 @@ trait Redirectable
      */
     private function setRedirection(string $action, string $redirectTo, string $id = ''): RedirectResponse
     {
-        return !in_array($redirectTo, Belich::allowedActions()) || $action === 'delete' || $action === 'forceDelete' || $action === 'restore'
+        return ! in_array($redirectTo, Belich::allowedActions()) || $action === 'delete' || $action === 'forceDelete' || $action === 'restore'
             //Action not allowed
             ? redirect()->back()
             //Allowed action and redirect to action

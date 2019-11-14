@@ -88,7 +88,7 @@ class Autocomplete extends Field
      */
     public function minChars(int $minChars): self
     {
-        $this->minChars = !isset($minChars) ? $this->minChars : $minChars;
+        $this->minChars = ! isset($minChars) ? $this->minChars : $minChars;
 
         return $this;
     }

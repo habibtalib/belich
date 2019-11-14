@@ -20,7 +20,7 @@ trait Fileable
     protected function resolveFile(Field $field, ?string $value): string
     {
         // No results
-        if (!isset($value) || $value === Helper::emptyResults()) {
+        if (! isset($value) || $value === Helper::emptyResults()) {
             return Helper::emptyResults();
         }
 

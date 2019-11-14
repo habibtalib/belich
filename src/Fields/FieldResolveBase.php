@@ -84,12 +84,12 @@ class FieldResolveBase
     protected function setAuthorizationFromPolicy(object $sqlResponse, string $action)
     {
         //Authorized access to show action
-        if ($action === 'show' && !request()->user()->can('view', $sqlResponse)) {
+        if ($action === 'show' && ! request()->user()->can('view', $sqlResponse)) {
             return abort(403);
         }
 
         //Authorized access to edit or update action
-        if (($action === 'edit' || $action === 'update') && !request()->user()->can('update', $sqlResponse)) {
+        if (($action === 'edit' || $action === 'update') && ! request()->user()->can('update', $sqlResponse)) {
             return abort(403);
         }
     }
@@ -103,7 +103,7 @@ class FieldResolveBase
      */
     private function canSeeField(object $field)
     {
-        return !isset($field->seeCallback) || (is_callable($field->seeCallback) && call_user_func($field->seeCallback, request()) !== false);
+        return ! isset($field->seeCallback) || (is_callable($field->seeCallback) && call_user_func($field->seeCallback, request()) !== false);
     }
 
     /**

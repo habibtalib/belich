@@ -35,7 +35,7 @@ trait Callbackable
      */
     private function displayCallback(Field $field, $value = ''): ?string
     {
-        if (!isset($field->displayCallback) || $field->notDisplayUsing === true) {
+        if (! isset($field->displayCallback) || $field->notDisplayUsing === true) {
             return $value;
         }
 
@@ -57,7 +57,7 @@ trait Callbackable
      */
     private function resolveCallback(Field $field, ?object $data = null, $value = ''): ?string
     {
-        if (!is_callable($field->resolveCallback) || $field->notResolveUsing === false) {
+        if (! is_callable($field->resolveCallback) || $field->notResolveUsing === false) {
             return $value;
         }
 
