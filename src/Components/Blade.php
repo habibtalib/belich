@@ -3,11 +3,22 @@
 namespace Daguilarm\Belich\Components;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\View;
 
 final class Blade
 {
+    protected $render;
+
+    /**
+     * Init class
+     *
+     * @return  void
+     */
+    public function __construct()
+    {
+        $this->render = collect([]);
+    }
+
     /**
      * Get the metric and the cards views
      *
@@ -17,16 +28,13 @@ final class Blade
      */
     public function render(Request $request): string
     {
-        //Render the metric items
-        $metrics = $this->renderMetrics($request);
+        // Render the metric items
+        $this->renderMetrics($request);
 
-        //Render the cards items
-        $cards = $this->renderCards($request);
+        // Render the cards items
+        $this->renderCards($request);
 
-        //Render values
-        return $metrics->count() > 0
-            ? $metrics->merge($cards)->implode('')
-            : $cards;
+        return $this->render->implode('');
     }
 
     /**
@@ -34,16 +42,17 @@ final class Blade
      *
      * @param Illuminate\Http\Request $request
      *
-     * @return Illuminate\Support\Collection
+     * @return void
      */
-    public function renderMetrics(Request $request): Collection
+    public function renderMetrics(Request $request): void
     {
-        return collect($request->metrics)
+        $metrics = collect($request->metrics)
             ->map(static function ($metric) {
-                return $metric
-                    ? View::make('belich::components.metrics.chart', compact('metric'))->render()
-                    : null;
-            });
+                return View::make('belich::components.metrics.chart', compact('metric'))->render();
+            })
+            ->filter();
+
+        $this->render = $this->render->merge($metrics);
     }
 
     /**
@@ -51,15 +60,16 @@ final class Blade
      *
      * @param Illuminate\Http\Request $request
      *
-     * @return Illuminate\Support\Collection
+     * @return void
      */
-    public function renderCards(Request $request): Collection
+    public function renderCards(Request $request): void
     {
-        return collect($request->cards)
+        $cards = collect($request->cards)
             ->map(static function ($card) {
-                return $card
-                    ? View::make($card->view)->with($card->withMeta)
-                    : null;
-            });
+                return View::make($card->view)->with($card->withMeta)->render();
+            })
+            ->filter();
+
+        $this->render = $this->render->merge($cards);
     }
 }
