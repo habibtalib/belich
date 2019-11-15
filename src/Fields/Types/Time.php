@@ -2,9 +2,10 @@
 
 namespace Daguilarm\Belich\Fields\Types;
 
+use Daguilarm\Belich\Contracts\FieldNumberContract;
 use Daguilarm\Belich\Fields\Types\Text;
 
-final class Time extends Text
+final class Time extends Text implements FieldNumberContract
 {
     /**
      * @var string

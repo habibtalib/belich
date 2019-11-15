@@ -2,7 +2,9 @@
 
 namespace Daguilarm\Belich\Components\Cards;
 
-abstract class Card
+use Daguilarm\Belich\Contracts\ComponentContract;
+
+abstract class Card implements ComponentContract
 {
     /**
      * @var string
@@ -35,7 +37,7 @@ abstract class Card
     }
 
     /**
-     * Initialize the card
+     * Render the card view
      *
      * @return string
      */

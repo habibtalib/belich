@@ -2,9 +2,10 @@
 
 namespace Daguilarm\Belich\Fields\Types;
 
+use Daguilarm\Belich\Contracts\FieldNumberContract;
 use Daguilarm\Belich\Fields\Field;
 
-class Number extends Field
+class Number extends Field implements FieldNumberContract
 {
     /**
      * @var int
@@ -29,11 +30,11 @@ class Number extends Field
     /**
      * Set min value
      *
-     * @param int $min
+     * @param string $min
      *
      * @return self
      */
-    public function min(int $min): self
+    public function min(string $min): self
     {
         $this->min = $min;
 
@@ -43,11 +44,11 @@ class Number extends Field
     /**
      * Set max value
      *
-     * @param int $max
+     * @param string $max
      *
      * @return self
      */
-    public function max(int $max): self
+    public function max(string $max): self
     {
         $this->max = $max;
 

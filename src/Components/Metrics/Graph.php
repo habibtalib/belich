@@ -2,9 +2,10 @@
 
 namespace Daguilarm\Belich\Components\Metrics;
 
+use Daguilarm\Belich\Contracts\ComponentContract;
 use Illuminate\Http\Request;
 
-abstract class Graph
+abstract class Graph implements ComponentContract
 {
     /**
      * @var object
