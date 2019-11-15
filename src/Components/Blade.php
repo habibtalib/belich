@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\View;
 
 final class Blade
 {
-    protected $render;
+    private $render;
 
     /**
      * Init class

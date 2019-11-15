@@ -59,6 +59,7 @@ abstract class Card
      * Get the width for the card
      *
      * @param string $width
+     *
      * @return self
      */
     public function width(string $width): self
