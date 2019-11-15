@@ -8,7 +8,7 @@
 
 {{-- Model to table --}}
 @isset($columns, $model)
-    <div id="tool-{{ $id ?? $key = md5(rand(1, 10000000)) }}" dusk="tool-{{ $id ?? $key }}" class="{{ $width ?? 'w-full' }} p-4">
+    <div id="{{ $id ?? $key = md5(rand(1, 10000000)) }}" dusk="{{ $id ?? $key }}" class="{{ $width ?? 'w-full' }} p-4">
         <table class="w-full text-sm bg-white text-gray-600">
             <thead class="uppercase">
                 <tr class="border-b border-t border-gray-300 bg-blue-100 text-gray-600">
