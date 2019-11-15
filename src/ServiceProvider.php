@@ -26,7 +26,10 @@ final class ServiceProvider extends Provider
         $this->registerMigrations();
 
         //Blade X components
-        BladeX::component('belich::components.*');
+        BladeX::component([
+            'belich::components.*',
+            'belich::components.tools.*',
+        ]);
     }
 
     /**
