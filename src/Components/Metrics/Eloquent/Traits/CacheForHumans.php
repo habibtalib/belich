@@ -12,7 +12,7 @@ trait CacheForHumans
     public function cacheInSeconds(int $seconds, string $key): self
     {
         $this->cache = Carbon::now()->addSeconds($seconds);
-        $this->cacheKey = md5($key);
+        $this->initCacheKey($key);
 
         return $this;
     }
@@ -22,13 +22,11 @@ trait CacheForHumans
      */
     public function cacheInMinutes(int $minutes, string $key): self
     {
-        if ($minutes === 1) {
-            $this->cache = Carbon::now()->addMinute();
-        } else {
-            $this->cache = Carbon::now()->addMinutes($minutes);
-        }
+        $this->cache = ($minutes === 1)
+            ? Carbon::now()->addMinute()
+            : Carbon::now()->addMinutes($minutes);
 
-        $this->cacheKey = md5($key);
+        $this->initCacheKey($key);
 
         return $this;
     }
@@ -38,13 +36,11 @@ trait CacheForHumans
      */
     public function cacheInHours(int $hours, string $key): self
     {
-        if ($minutes === 1) {
-            $this->cache = Carbon::now()->addHour();
-        } else {
-            $this->cache = Carbon::now()->addHours($hours);
-        }
+        $this->cache = ($minutes === 1)
+            ? Carbon::now()->addHour()
+            : Carbon::now()->addHours($hours);
 
-        $this->cacheKey = md5($key);
+        $this->initCacheKey($key);
 
         return $this;
     }
@@ -54,13 +50,11 @@ trait CacheForHumans
      */
     public function cacheInDays(int $days, string $key): self
     {
-        if ($minutes === 1) {
-            $this->cache = Carbon::now()->addDay();
-        } else {
-            $this->cache = Carbon::now()->addDays($days);
-        }
+        $this->cache = ($minutes === 1)
+            ? Carbon::now()->addDay()
+            : Carbon::now()->addDays($days);
 
-        $this->cacheKey = md5($key);
+        $this->initCacheKey($key);
 
         return $this;
     }
@@ -71,8 +65,20 @@ trait CacheForHumans
     public function cacheForEver(string $key): self
     {
         $this->cacheForEver = true;
-        $this->cacheKey = md5($key);
+        $this->initCacheKey($key);
 
         return $this;
+    }
+
+    /**
+     * Set cache key
+     *
+     * @param string $key
+     *
+     * @return  void
+     */
+    private function initCacheKey(string $key): void
+    {
+        $this->cacheKey = md5($key);
     }
 }

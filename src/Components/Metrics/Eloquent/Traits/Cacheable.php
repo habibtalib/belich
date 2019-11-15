@@ -2,42 +2,61 @@
 
 namespace Daguilarm\Belich\Components\Metrics\Eloquent\Traits;
 
-use Daguilarm\Belich\Components\Metrics\Eloquent\Traits\CacheForHumans;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 
 trait Cacheable
 {
-    use CacheForHumans;
-
-    /** @var int */
+    /**
+     * @var int
+     */
     protected $cache;
 
-    /** @var bool */
+    /**
+     * @var bool
+     */
     protected $cacheForEver = false;
 
-    /** @var string */
+    /**
+     * @var string
+     */
     protected $cacheKey;
 
     /**
      * Get data from cache
      *
      * @param string $dateType
-     * @param string $type
      *
      * @return string
      */
-    private function getDataFromCache(string $dateType, string $type): string
+    private function getDataFromCache(string $dateType): string
     {
         //Cache for ever
         if ($this->cacheForEver === true) {
-            return Cache::rememberForever($this->cacheKey, function () use ($dateType, $type) {
-                return $this->getDataFromStorage($dateType, $type);
+            return Cache::rememberForever($this->cacheKey, function () use ($dateType) {
+                return $this->getDataFromStorage($dateType);
             });
         }
 
         //Cache by time
-        return Cache::remember($this->cacheKey, $this->cache, function () use ($dateType, $type) {
-            return $this->getDataFromStorage($dateType, $type);
+        return Cache::remember($this->cacheKey, $this->cache, function () use ($dateType) {
+            return $this->getDataFromStorage($dateType);
         });
+    }
+
+    /**
+     * Parse cache
+     *
+     * @param string $dateType
+     *
+     * @return Illuminate\Support\Collection
+     */
+    private function parseCache($dateType): Collection
+    {
+        $cache = $this->getDataFromCache($dateType);
+
+        return $cache instanceof Collection
+            ? $cache
+            : collect(json_decode($cache));
     }
 }
