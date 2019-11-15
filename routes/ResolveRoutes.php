@@ -13,9 +13,6 @@ Route::group([
     'as' => Belich::pathName() . '.',
     'middleware' => Belich::middleware(),
 ], static function (): void {
-    //Dashboard/Home route
-    Route::get(Belich::path(), '\App\Belich\Dashboard');
-
     //Validation routes
     Route::post(Belich::pathName() . '/ajax/form/validation', Helper::namespace_path('App\Http\Controllers\ValidationController'))
         ->name('ajax.form.validation');

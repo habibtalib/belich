@@ -6,9 +6,7 @@
 |--------------------------------------------------------------------------
 */
 
-//Dashboard route
-Route::get(Belich::path(), function() {
-    return view('belich::pages.dashboard');
-});
+// Dashboard / Home route
+Route::get(Belich::path(), '\App\Belich\Dashboard');
 
 //Maybe, you can create your own controller or view and start the magic!
