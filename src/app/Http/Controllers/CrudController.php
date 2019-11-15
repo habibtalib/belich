@@ -18,7 +18,9 @@ final class CrudController extends Controller
 {
     use Redirectable;
 
-    /** @var Illuminate\Database\Eloquent\Model */
+    /**
+     * @var Illuminate\Database\Eloquent\Model
+     */
     protected $model;
 
     /**
@@ -29,7 +31,7 @@ final class CrudController extends Controller
     public function __construct(Belich $belich)
     {
         //Get resource model
-        $this->model = Belich::getModel();
+        $this->model = $belich->getModel();
     }
 
     /**

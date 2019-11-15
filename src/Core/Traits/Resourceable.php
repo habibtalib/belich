@@ -46,9 +46,9 @@ trait Resourceable
         return $this->folderResources()
             ->map(static function ($file) {
                 return $file;
-            })->filter(static function ($value, $key) {
+            })->filter(static function ($value) {
                 return $value !== '.' && $value !== '..';
-            })->mapWithKeys(function ($file, $key) {
+            })->mapWithKeys(function ($file) {
                 //Define the current class name
                 $className = Str::title(explode('.', $file)[0]);
                 $resource = Str::plural(Str::lower($className));
@@ -67,7 +67,7 @@ trait Resourceable
     public function groupResources(): Collection
     {
         return collect($this->allResources())
-            ->map(static function ($item, $key) {
+            ->map(static function ($item) {
                 $title = $item['pluralLabel'] ?? stringPluralUpper($item['class']);
                 $resources = collect([
                     'group' => $item['group'] ?? $title,

@@ -19,7 +19,7 @@ final class PasswordConfirmation extends Field
      *
      * @return  void
      */
-    public function __construct($label, $attribute = null)
+    public function __construct($label)
     {
         // Set the default value
         $title = 'password_confirmation';

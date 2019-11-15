@@ -51,7 +51,7 @@ trait Casteable
      */
     public function withValidator(Validator $validator): void
     {
-        $validator->after(function ($validator): void {
+        $validator->after(function (): void {
             $this->mapCasts();
         });
     }

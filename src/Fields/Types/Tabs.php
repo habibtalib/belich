@@ -11,6 +11,8 @@ final class Tabs extends Panels
      *
      * @param  string  $name
      * @param  \Closure  $fields
+     * @param  string|null  $background
+     * @param  string|null  $color
      *
      * @return array
      */

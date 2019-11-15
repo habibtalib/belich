@@ -25,7 +25,7 @@ final class CrudExtendedController extends Controller
     public function __construct(Belich $belich)
     {
         //Get resource model
-        $this->model = Belich::getModel();
+        $this->model = $belich->getModel();
     }
 
     /**

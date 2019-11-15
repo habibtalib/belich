@@ -24,7 +24,7 @@ trait Resources
         return collect(scandir(app_path('Belich/Resources')))
             ->map(static function ($file) {
                 return $file;
-            })->filter(static function ($value, $key) {
+            })->filter(static function ($value) {
                 return $value !== '.' && $value !== '..';
             })->map(static function ($file) {
                 //Get the file
