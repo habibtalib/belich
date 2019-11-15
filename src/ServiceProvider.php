@@ -149,6 +149,12 @@ final class ServiceProvider extends Provider
             //Set the resources
             __DIR__ . '/stubs/defaults/user_policy.stub' => base_path('app/Policies/UserPolicy.php'),
         ]);
+
+        //Publish the belich dashboard
+        $this->publishes([
+            //Set the resources
+            __DIR__ . '/stubs/dashboard.stub' => base_path('app/Belich/Dashboard.php'),
+        ]);
     }
 
     /**
