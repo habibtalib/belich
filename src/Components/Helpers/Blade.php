@@ -18,6 +18,7 @@ trait Blade
         return $screens
             ->map(static function ($size) use ($hideFor) {
                 $status = in_array($size, $hideFor) ? 'hidden' : 'flex';
+
                 return sprintf('%s:%s', $size, $status);
             })
             ->filter()
@@ -26,26 +27,14 @@ trait Blade
     }
 
     /**
-     * Hide cards base on screen size
+     * Hide cards or metrics base on screen size
      *
      * @param object $request
      *
      * @return string
      */
-    public function hideCardsForScreens(): string
+    public function hideComponentsForScreens(): string
     {
-        return self::hideContainerForScreens(config('belich.hideCardsForScreens'));
-    }
-
-    /**
-     * Hide metrics base on screen size
-     *
-     * @param object $request
-     *
-     * @return string
-     */
-    public function hideMetricsForScreens(): string
-    {
-        return self::hideContainerForScreens(config('belich.hideMetricsForScreens'));
+        return self::hideContainerForScreens(config('belich.hideComponentsForScreens'));
     }
 }
