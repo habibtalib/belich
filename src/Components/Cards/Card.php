@@ -4,14 +4,25 @@ namespace Daguilarm\Belich\Components\Cards;
 
 abstract class Card
 {
-    /** @var string */
+    /**
+     * @var string
+     */
+    public $uriKey;
+
+    /**
+     * @var string
+     */
     public $view;
 
-    /** @var array */
-    public $withMeta;
+    /**
+     * @var string
+     */
+    public $width = 'w-full';
 
-    /** @var string */
-    public $uriKey;
+    /**
+     * @var array
+     */
+    public $withMeta;
 
     /**
      * Initialize the metric
@@ -43,4 +54,17 @@ abstract class Card
      * @return array
      */
     abstract public function withMeta(): array;
+
+    /**
+     * Get the width for the card
+     *
+     * @param string $width
+     * @return self
+     */
+    public function width(string $width): self
+    {
+        $this->width = $width;
+
+        return $this;
+    }
 }

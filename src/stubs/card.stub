@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 class d_class_b extends Card {
 
     /**
+     *
+     * @var string
+     */
+    // It can be accessible in the view through the variable $card->width
+    public $width = 'w-full';
+
+    /**
      * Initialize the card
      *
      * @return string
@@ -37,6 +44,7 @@ class d_class_b extends Card {
      */
     public function withMeta() : array
     {
+        // It can be accessible in the view through the variable $card->withMeta
         return [
             //
         ];
@@ -49,6 +57,7 @@ class d_class_b extends Card {
      */
     public function uriKey() : string
     {
+        // It can be accessible in the view through the variable $card->uriKey
         return 'd_key_b';
     }
 }

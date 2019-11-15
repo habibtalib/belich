@@ -66,7 +66,7 @@ final class Blade
     {
         $cards = collect($request->cards)
             ->map(static function ($card) {
-                return View::make($card->view)->with($card->withMeta)->render();
+                return View::make($card->view, compact('card'))->render();
             })
             ->filter();
 
