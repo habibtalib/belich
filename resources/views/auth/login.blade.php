@@ -12,7 +12,7 @@
                     {{-- Email --}}
                     <div class="mb-6">
                         <label class="font-bold text-grey-darker block mb-2">@lang('belich::authorization.login.email')</label>
-                        <input type="text" name="email" class="block appearance-none w-full bg-white border border-grey-light hover:border-grey-500 px-2 py-2 rounded shadow" placeholder="{{ trans('belich::authorization.placeholder.email') }}" autofocus>
+                        <input type="text" name="email" class="block appearance-none w-full bg-white border border-grey-light hover:border-grey-500 px-2 py-2 rounded shadow" placeholder="{{ trans('belich::authorization.placeholder.email') }}" autofocus autocomplete>
                         @if(isset($errors) && $errors->has('email'))
                             <span class="text-red text-xs italic" role="alert">
                                 <strong>{{ $errors->first('email') }}</strong>
@@ -22,7 +22,7 @@
                     {{-- Password --}}
                     <div class="mb-6">
                         <label class="font-bold text-grey-700 block mb-2">@lang('belich::authorization.login.password')</label>
-                        <input type="password" name="password" class="block appearance-none w-full bg-white border border-grey-light hover:border-grey-500 px-2 py-2 rounded shadow" placeholder="{{ trans('belich::authorization.placeholder.password') }}">
+                        <input type="password" name="password" class="block appearance-none w-full bg-white border border-grey-light hover:border-grey-500 px-2 py-2 rounded shadow" placeholder="{{ trans('belich::authorization.placeholder.password') }}" autocomplete>
                         @if(isset($errors) && $errors->has('password'))
                             <span class="text-red text-xs italic" role="alert">
                                 <strong>{{ $errors->first('password') }}</strong>
