@@ -30,7 +30,7 @@ trait Resourceable
         return collect([
             'name' => $className,
             'controllerAction' => static::action(),
-            'fields' => app(FieldResolve::class)->make($class, $updateFields, $sql),
+            'fields' => app(FieldResolve::class)->make($updateFields, $sql),
             'results' => $sql,
             'values' => $this->valueResources($className),
         ]);

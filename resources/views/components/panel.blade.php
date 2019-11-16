@@ -22,10 +22,10 @@
 
                         {{-- Show as html --}}
                         @if($field->asHtml)
-                            {!! Belich::html()->resolve($field) !!}
+                            {!! Belich::value($field) !!}
                         {{-- Show as scaped field --}}
                         @else
-                            {{ Belich::html()->resolve($field) }}
+                            {{ Belich::value($field) }}
                         @endif
 
                     </slot>

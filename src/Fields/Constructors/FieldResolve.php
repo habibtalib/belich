@@ -1,10 +1,10 @@
 <?php
 
-namespace Daguilarm\Belich\Fields;
+namespace Daguilarm\Belich\Fields\Constructors;
 
 use Illuminate\Support\Collection;
 
-class FieldResolveBase
+class FieldResolve
 {
     /**
      * Set the values base on the controllers action (except for index)

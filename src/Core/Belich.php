@@ -9,7 +9,9 @@ use Daguilarm\Belich\Core\Traits\Operationable;
 use Daguilarm\Belich\Core\Traits\Resourceable;
 use Daguilarm\Belich\Core\Traits\Routeable;
 use Daguilarm\Belich\Core\Traits\Systemable;
+use Daguilarm\Belich\Fields\Field;
 use Daguilarm\Belich\Fields\FieldResolveIndex;
+use Daguilarm\Belich\Fields\ResolveIndex\Resolve;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -96,13 +98,16 @@ final class Belich extends BelichBase
     }
 
     /**
-     * Initialize the html helper in order to be accesible from Belich
+     * Initialize the html helper (for resolving value) in order to be accesible from Belich
      *
-     * @return \Daguilarm\Fields\FieldResolveIndex
+     * @param Daguilarm\Belich\Fields\Field $field
+     * @param object $data
+     *
+     * @return string|null
      */
-    public function html(): FieldResolveIndex
+    public function value(Field $field, ?object $data = null): ?string
     {
-        return app(FieldResolveIndex::class);
+        return (new FieldResolveIndex())->resolve(new Resolve(), $field, $data);
     }
 
     /**

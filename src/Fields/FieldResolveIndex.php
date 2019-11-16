@@ -2,7 +2,6 @@
 
 namespace Daguilarm\Belich\Fields;
 
-use Daguilarm\Belich\Facades\Belich;
 use Daguilarm\Belich\Fields\ResolveIndex\Resolve;
 use Daguilarm\Belich\Fields\ResolveIndex\Table;
 use Daguilarm\Belich\Fields\Traits\Constructable\Callbackable;
@@ -45,18 +44,16 @@ final class FieldResolveIndex
      * This method is used throw Belich Facade => Belich::html()->resolveField($field, $data);
      * This method is for refactoring the blade templates.
      *
+     * @param Daguilarm\Belich\Fields\ResolveIndex\Resolve $resolve
      * @param  Daguilarm\Belich\Fields\Field $attribute
      * @param  object $data
      *
      * @return string|null
      */
-    public function resolve(Field $field, ?object $data = null): ?string
+    public function resolve(Resolve $resolve, Field $field, ?object $data = null): ?string
     {
         //Resolve value for action controller: show
         $value = $field->value;
-
-        //Handle the resolve class
-        $resolve = new Resolve();
 
         //Resolve value
         $value = $resolve->resolveValue($field, $data, $value);
@@ -87,19 +84,25 @@ final class FieldResolveIndex
         return $this->getCallbackValue($field, $data, $value);
     }
 
-    /**
-     * Resolve if the row is softdeleted
-     * This method is used throw Belich Facade => Belich::html()->resolveSoftdeleting($field, $data);
-     * This method is for refactoring the blade templates.
-     * It is use for @hasSofdeleting
-     *
-     * @param  Daguilarm\Belich\Fields\Field $attribute
-     * @param  object $data
-     *
-     * @return bool
-     */
-    public function resolveSoftdeleting(Field $field, ?object $data = null): bool
-    {
-        return method_exists(Belich::getModel(), 'trashed') && $data->trashed();
-    }
+    // /**
+    //  * Resolve helper conditional
+    //  *
+    //  * @param  Daguilarm\Belich\Fields\ResolveIndex\Resolve $resolve
+    //  * @param  Daguilarm\Belich\Fields\Field $attribute
+    //  * @param  string|null $value
+    //  *
+    //  * @return string|null
+    //  */
+    // private function resolveConditional(Resolve $resolve, Field $field, ?string $value = null): ?string
+    // {
+    //     $condition = [
+    //         'boolean' => $resolve->resolveBoolean($field, $value),
+    //         'file' => $this->resolveFile($field, $value),
+    //         'textArea' => $resolve->resolveTextArea($field, $value),
+    //     ];
+
+    //     return in_array($field->type, array_keys($condition))
+    //         ? $condition[$field->type]
+    //         : null;
+    // }
 }

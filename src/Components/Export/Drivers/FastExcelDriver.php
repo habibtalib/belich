@@ -3,9 +3,9 @@
 namespace Daguilarm\Belich\Components\Export\Drivers;
 
 use Daguilarm\Belich\Components\Export\Eloquent;
-use Daguilarm\Belich\Components\Export\ExportContract;
 use Daguilarm\Belich\Components\Export\File;
 use Daguilarm\Belich\Components\Export\Validation;
+use Daguilarm\Belich\Contracts\ExportContract;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Rap2hpoutre\FastExcel\FastExcel;

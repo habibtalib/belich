@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Fields\Types;
 
+use Daguilarm\Belich\Fields\Constructors\Field as FieldBase;
 use Daguilarm\Belich\Fields\Field;
 
 final class Header extends Field
@@ -46,9 +47,9 @@ final class Header extends Field
     /**
      * Resolve the value as HTML (without scape)
      *
-     * @return \Daguilarm\Belich\Fields\FieldBase
+     * @return Daguilarm\Belich\Fields\Constructors\Field as FieldBase
      */
-    public function asHtml(): \Daguilarm\Belich\Fields\FieldBase
+    public function asHtml(): FieldBase
     {
         $this->asHtml = true;
 

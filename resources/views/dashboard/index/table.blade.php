@@ -28,11 +28,11 @@
 
                 {{-- Get the values --}}
                 @foreach($request->fields->get('data') as $field)
-                    <td class="py-4 px-6 border-b border-solid border-gray-200 {!! Belich::html()->resolveSoftdeleting($field, $result) ? 'text-red-500 line-through' : 'no-softdeleted' !!}">
+                    <td class="py-4 px-6 border-b border-solid border-gray-200 {!! Helper::hasSoftdeletedResults($result) ? 'text-red-500 line-through' : 'no-softdeleted' !!}">
                         @if($field->asHtml)
-                            {!! Belich::html()->resolve($field, $result) !!}
+                            {!! Belich::value($field, $result) !!}
                         @else
-                            {{ Belich::html()->resolve($field, $result)}}
+                            {{ Belich::value($field, $result)}}
                         @endif
                     </td>
                 @endforeach

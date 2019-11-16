@@ -40,11 +40,9 @@ trait Valuable
      */
     private function setValuesWithFieldRelationship(object $sql, object $field): ?string
     {
-        if ($field->fieldRelationship) {
-            return $sql->{$field->fieldRelationship}->{$field->attribute} ?? null;
-        }
-
-        return $sql->{$field->attribute} ?? null;
+        return $field->fieldRelationship
+            ? $sql->{$field->fieldRelationship}->{$field->attribute} ?? null
+            : $sql->{$field->attribute} ?? null;
     }
 
     /**
@@ -63,12 +61,12 @@ trait Valuable
                 $field->value = $this->displayUsingLabels($field, $field->value);
             }
 
-            //Text areas
+            //TextArea field
             if ($field->type === 'textArea') {
                 $field->value = $this->resolveTextArea($field);
             }
 
-            //Regular
+            //Regular field
             $field->data = $sql;
         }
 

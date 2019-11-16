@@ -1,8 +1,8 @@
 <?php
 
-namespace Daguilarm\Belich\Fields;
+namespace Daguilarm\Belich\Fields\Constructors;
 
-class FieldBase
+class Field
 {
     /**
      * List of allowed controller actions

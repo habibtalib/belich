@@ -3,8 +3,8 @@
 namespace Daguilarm\Belich\Components\Metrics\Eloquent;
 
 use Carbon\Carbon;
-use Daguilarm\Belich\Components\Metrics\Eloquent\Traits\CacheForHumans;
 use Daguilarm\Belich\Components\Metrics\Eloquent\Traits\Cacheable;
+use Daguilarm\Belich\Components\Metrics\Eloquent\Traits\CacheForHumans;
 use Daguilarm\Belich\Components\Metrics\Eloquent\Traits\DatesForHumans;
 use Daguilarm\Belich\Components\Metrics\Eloquent\Traits\Results;
 use Daguilarm\Belich\Components\Metrics\Eloquent\Traits\Sql;

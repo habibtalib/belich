@@ -3,12 +3,12 @@
 namespace Daguilarm\Belich\Fields;
 
 use Daguilarm\Belich\Core\Traits\Routeable;
-use Daguilarm\Belich\Fields\FieldResolveBase;
+use Daguilarm\Belich\Fields\Constructors\FieldResolve as FieldResolveConstructor;
 use Daguilarm\Belich\Fields\Traits\Constructable\Renderable;
 use Daguilarm\Belich\Fields\Traits\Constructable\Valuable;
 use Illuminate\Support\Collection;
 
-final class FieldResolve extends FieldResolveBase
+final class FieldResolve extends FieldResolveConstructor
 {
     use Renderable,
         Routeable,
@@ -30,13 +30,12 @@ final class FieldResolve extends FieldResolveBase
     /**
      * Resolve fields: auth, visibility, value,...
      *
-     * @param object $class
      * @param object $fields
-     * @param object $sqlResponse
+     * @param object $sql
      *
      * @return Illuminate\Support\Collection
      */
-    public function make(object $class, object $fields, object $sqlResponse): Collection
+    public function make(object $fields, object $sql): Collection
     {
         //Filter
         //Prepare the fields for resolving...
@@ -45,7 +44,7 @@ final class FieldResolve extends FieldResolveBase
         //Policies
         //Authorization for 'show', 'edit' and 'update' actions
         //This go here because we want to avoid duplicated sql queries...Don't remove!!!
-        $this->setAuthorizationFromPolicy($sqlResponse, $this->action);
+        $this->setAuthorizationFromPolicy($sql, $this->action);
 
         //Authorization for fields
         $fields = $this->setAuthorizationForFields($fields);
@@ -63,8 +62,8 @@ final class FieldResolve extends FieldResolveBase
         // Check for action value
         return $this->action === 'index'
             //Prepare the field for the index response
-            ? app(\Daguilarm\Belich\Fields\FieldResolveIndex::class)->make($fields, $sqlResponse)
+            ? app(\Daguilarm\Belich\Fields\FieldResolveIndex::class)->make($fields, $sql)
             //Prepare the field for the the form response: create, edit and show
-            : $this->setCrudController($fields, $sqlResponse, $this->action);
+            : $this->setCrudController($fields, $sql, $this->action);
     }
 }

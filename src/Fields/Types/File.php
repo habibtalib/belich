@@ -3,8 +3,8 @@
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Contracts\FieldMultipleContract;
+use Daguilarm\Belich\Fields\Constructors\Field as FieldBase;
 use Daguilarm\Belich\Fields\Field;
-use Daguilarm\Belich\Fields\FieldBase;
 
 class File extends Field implements FieldMultipleContract
 {
@@ -116,7 +116,7 @@ class File extends Field implements FieldMultipleContract
     /**
      * Render image in views
      *
-     * @return \Daguilarm\Belich\Fields\FieldBase
+     * @return Daguilarm\Belich\Fields\Constructors\Field as FieldBase
      */
     public function asHtml(): FieldBase
     {
