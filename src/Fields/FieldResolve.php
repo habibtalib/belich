@@ -3,7 +3,7 @@
 namespace Daguilarm\Belich\Fields;
 
 use Daguilarm\Belich\Core\Traits\Routeable;
-use Daguilarm\Belich\Fields\Abstracts\FieldResolveAbstract;
+use Daguilarm\Belich\Fields\Abstracts\FieldResolve as FieldResolveAbstract;
 use Daguilarm\Belich\Fields\Traits\Constructable\Renderable;
 use Daguilarm\Belich\Fields\Traits\Constructable\Valuable;
 use Illuminate\Support\Collection;
@@ -44,13 +44,13 @@ final class FieldResolve extends FieldResolveAbstract
         //Policies
         //Authorization for 'show', 'edit' and 'update' actions
         //This go here because we want to avoid duplicated sql queries...Don't remove!!!
-        $this->setAuthorizationFromPolicy($sql, $this->action);
+        $this->authorizationFromPolicy($sql, $this->action);
 
         //Authorization for fields
-        $fields = $this->setAuthorizationForFields($fields);
+        $fields = $this->authorizationForFields($fields);
 
         //Visibility for fields
-        $fields = $this->setVisibilityForFields($fields, $this->action);
+        $fields = $this->visibilityForFields($fields, $this->action);
 
         //Controller actions
         //Resolve fields base on the controller action
@@ -64,6 +64,6 @@ final class FieldResolve extends FieldResolveAbstract
             //Prepare the field for the index response
             ? app(\Daguilarm\Belich\Fields\FieldResolveIndex::class)->make($fields)
             //Prepare the field for the the form response: create, edit and show
-            : $this->setCrudController($fields, $sql, $this->action);
+            : $this->crudController($fields, $sql, $this->action);
     }
 }

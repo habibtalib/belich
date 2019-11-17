@@ -44,20 +44,20 @@ final class PolicyCommand extends BelichCommand
 
         //Copy the file to folder while keeping the .stub extension
         (new Filesystem())->copy(
-            $this->getStub(),
-            $this->setStub()
+            $this->packageStub(),
+            $this->destinationStub()
         );
 
         // Replacements
-        $this->replace('d_model_b', $this->className(), $this->setStub());
-        $this->replace('d_model_path_b', $this->modelPath(), $this->setStub());
-        $this->replace('d_model_variable_b', Str::lower($this->className()), $this->setStub());
-        $this->replace('d_model_user_path_b', config('auth.providers.users.model'), $this->setStub());
+        $this->replace('d_model_b', $this->className(), $this->destinationStub());
+        $this->replace('d_model_path_b', $this->modelPath(), $this->destinationStub());
+        $this->replace('d_model_variable_b', Str::lower($this->className()), $this->destinationStub());
+        $this->replace('d_model_user_path_b', config('auth.providers.users.model'), $this->destinationStub());
 
         //Set the file
         (new Filesystem())->move(
-            $this->setStub(),
-            $this->setStub('php')
+            $this->destinationStub(),
+            $this->destinationStub('php')
         );
     }
 
@@ -66,7 +66,7 @@ final class PolicyCommand extends BelichCommand
      *
      * @return string
      */
-    protected function getStub(): string
+    protected function packageStub(): string
     {
         return __DIR__ . '/../../../stubs/policy.stub';
     }
@@ -88,7 +88,7 @@ final class PolicyCommand extends BelichCommand
      *
      * @return string
      */
-    protected function setStub(string $ext = 'stub'): string
+    protected function destinationStub(string $ext = 'stub'): string
     {
         return $this->path() . '/' . $this->classModel() . '.' . $ext;
     }

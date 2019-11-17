@@ -3,7 +3,6 @@
 namespace Daguilarm\Belich\Fields\ResolveIndex;
 
 use Daguilarm\Belich\Facades\Helper;
-use Daguilarm\Belich\Fields\Field;
 use Daguilarm\Belich\Fields\Traits\Resolvable;
 
 final class Resolve

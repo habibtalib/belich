@@ -3,7 +3,6 @@
 namespace Daguilarm\Belich\Components\Helpers;
 
 use Daguilarm\Belich\Facades\Helper;
-use Daguilarm\Belich\Fields\Field;
 use Illuminate\Support\Facades\Cookie;
 
 trait Forms
@@ -55,7 +54,7 @@ trait Forms
      *
      * @return string
      */
-    public function setFormAttribute(object $field, string $attribute, ?string $default = null, ?string $prefix = null): string
+    public function formAttribute(object $field, string $attribute, ?string $default = null, ?string $prefix = null): string
     {
         //Get the attribute
         $attribute = $this->getAttribute($attribute);

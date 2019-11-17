@@ -43,19 +43,19 @@ final class ResourceCommand extends BelichCommand
 
         //Copy the file to folder while keeping the .stub extension
         (new Filesystem())->copy(
-            $this->getStub(),
-            $this->setStub()
+            $this->packageStub(),
+            $this->destinationStub()
         );
 
         // Replacements
-        $this->replace('d_model_b', $this->className(), $this->setStub());
-        $this->replace('d_model_path_b', $this->modelPath(), $this->setStub());
-        $this->replace('d_model_plural_b', Str::plural($this->className()), $this->setStub());
+        $this->replace('d_model_b', $this->className(), $this->destinationStub());
+        $this->replace('d_model_path_b', $this->modelPath(), $this->destinationStub());
+        $this->replace('d_model_plural_b', Str::plural($this->className()), $this->destinationStub());
 
         //Set the file
         (new Filesystem())->move(
-            $this->setStub(),
-            $this->setStub('php')
+            $this->destinationStub(),
+            $this->destinationStub('php')
         );
 
         //Create the model
@@ -109,7 +109,7 @@ final class ResourceCommand extends BelichCommand
      *
      * @return string
      */
-    protected function getStub(): string
+    protected function packageStub(): string
     {
         return __DIR__ . '/../../../stubs/resource.stub';
     }
@@ -131,7 +131,7 @@ final class ResourceCommand extends BelichCommand
      *
      * @return string
      */
-    protected function setStub(string $ext = 'stub'): string
+    protected function destinationStub(string $ext = 'stub'): string
     {
         return $this->path() . '/' . $this->classModel() . '.' . $ext;
     }

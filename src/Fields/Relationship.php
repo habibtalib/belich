@@ -37,7 +37,7 @@ class Relationship extends FieldAbstract
         $this->attribute = $this->typeRelation;
         $this->resource = $this->getResource($resource);
         $this->label = $label ?? $this->resource;
-        $this->model = $this->setModel($model);
+        $this->model = $this->createModel($model);
     }
 
     /**

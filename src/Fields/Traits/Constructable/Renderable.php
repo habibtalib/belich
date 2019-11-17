@@ -2,7 +2,6 @@
 
 namespace Daguilarm\Belich\Fields\Traits\Constructable;
 
-use Daguilarm\Belich\Fields\Field;
 use Illuminate\Support\Collection;
 
 trait Renderable
@@ -14,7 +13,7 @@ trait Renderable
      *
      * @return Illuminate\Support\Collection
      */
-    protected function setRenderFieldAttributes($field): Collection
+    protected function renderFieldAttributes($field): Collection
     {
         // Render attributes from default list. This are render in all the fields
         collect($field)
@@ -27,7 +26,7 @@ trait Renderable
             ->filter();
 
         // Render custom (special) attributes. Only if exists.
-        $this->setRenderFieldCustomAttributes($field);
+        $this->renderFieldCustomAttributes($field);
 
         return collect($field->render);
     }
@@ -39,13 +38,13 @@ trait Renderable
      *
      * @return void
      */
-    protected function setRenderFieldCustomAttributes($field): void
+    protected function renderFieldCustomAttributes($field): void
     {
         // Set custom attributes
         $customAttributes = collect([
             'autofocus' => 'autofocus',
             'disabled' => 'disabled',
-            'data' => $this->setRenderFieldAttributesData($field),
+            'data' => $this->renderFieldAttributesData($field),
             'max' => sprintf('max="%s"', $field->max ?? null),
             'min' => sprintf('min="%s"', $field->min ?? null),
             'multiple' => 'multiple',
@@ -86,7 +85,7 @@ trait Renderable
      *
      * @return string
      */
-    protected function setRenderFieldAttributesData($field): string
+    protected function renderFieldAttributesData($field): string
     {
         return collect($field->data)
             ->map(static function ($value) {

@@ -144,7 +144,7 @@ trait Resourceable
             'pluralLabel' => $class::$pluralLabel ?? Str::plural(Str::title($className)),
             'resource' => Str::plural(Str::lower($className)),
             'search' => $class::$search,
-            'tableTextAlign' => self::setTableTextAlign($class),
+            'tableTextAlign' => self::tableTextAlign($class),
         ]);
     }
 

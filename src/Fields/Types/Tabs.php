@@ -21,6 +21,6 @@ final class Tabs extends Panels
         // Get all the fields
         $fields = static::getFields($fields);
 
-        return static::setFields($name, $fields);
+        return static::createFields($name, $fields);
     }
 }

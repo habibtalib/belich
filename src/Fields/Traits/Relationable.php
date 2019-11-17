@@ -3,7 +3,6 @@
 namespace Daguilarm\Belich\Fields\Traits;
 
 use Daguilarm\Belich\Facades\Helper;
-use Daguilarm\Belich\Fields\Traits\Visibilitable;
 use Illuminate\Support\Str;
 
 trait Relationable
@@ -63,46 +62,50 @@ trait Relationable
     }
 
     /**
-     *  Format/Set/Parse the current model
-     *
-     * @param string $model
-     *
-     * @return string
-     */
-    protected function getModel(string $model): string
-    {
-        return Helper::stringSingularUpper($model);
-    }
-
-    /**
      * Get the Foreing key from the resource (by default)
      *
      * @return string|null
      */
-    protected function setForeignKey(): ?string
+    protected function getForeignKey(): ?string
     {
-        $column = sprintf('%s_id', Helper::stringSingularLower($this->resource));
+        if(!$this->foreignKey) {
+            $column = sprintf('%s_id', Helper::stringSingularLower($this->resource));
 
-        return Schema::hasColumn(Helper::stringPluralLower($this->resource), $column)
-            ? $column
-            : null;
+            return Schema::hasColumn(Helper::stringPluralLower($this->resource), $column)
+                ? $column
+                : null;
+        }
+
+        return $this->foreignKey;
     }
 
     /**
-     * Get the model from the resource (by default)
+     * Create the model from the resource (by default)
      *
      * @param string|null $model
      *
      * @return string|null
      */
-    protected function setModel(?string $model): ?string
+    protected function createModel(?string $model): ?string
     {
-        $defaultModel = sprintf('%s\%s', config('belich.models'), $this->getModel($this->resource));
+        $defaultModel = sprintf('%s\%s', config('belich.models'), $this->getModel());
 
         if (Str::endsWith($defaultModel, '\\')) {
             $defaultModel = str_replace('\\', '', $defaultModel);
         }
 
         return $model ?? $defaultModel ?? null;
+    }
+
+    /**
+     *  Format/Set/Parse the current model
+     *
+     * @param string|null $model
+     *
+     * @return string
+     */
+    protected function getModel(?string $model = null): string
+    {
+        return Helper::stringSingularUpper($model ?? $this->resource);
     }
 }

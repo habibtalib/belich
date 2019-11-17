@@ -46,11 +46,11 @@ final class FieldValidate
         $this->controllerAction = $resource['controllerAction'];
 
         //Get the data from the fields
-        $fields = $this->setValues($resource);
+        $fields = $this->values($resource);
 
         //Generate the javascript code to get the current
         //value of each field and pass it to the validation
-        $formValues = $this->setFormValues($fields);
+        $formValues = $this->formValues($fields);
 
         //Generate the validation rules
         //The rules are stored in a javascript variable (validationRules) and formated with json
@@ -74,7 +74,7 @@ final class FieldValidate
      *
      * @return Illuminate\Support\Collection
      */
-    private function setValues(Collection $resource): Collection
+    private function values(Collection $resource): Collection
     {
         return $resource['fields']
             ->mapWithKeys(function ($field) {
@@ -83,7 +83,7 @@ final class FieldValidate
                         $field->label,
                         $field->id ?? null,
                         //Define the rules base on the action
-                        $this->setRules($field),
+                        $this->createRules($field),
                     ],
                 ];
             })->filter(static function ($field): bool {
@@ -99,20 +99,20 @@ final class FieldValidate
      *
      * @return array
      */
-    private function setRules(object $field): array
+    private function createRules(object $field): array
     {
-        return array_merge($this->setCurrentRules($field), $field->defaultRules ?? []);
+        return array_merge($this->currentRules($field), $field->defaultRules ?? []);
     }
 
     /**
      * Get the current rules for each controller action
-     * It is an helper for $this->setRules($field)
+     * It is an helper for $this->createRules($field)
      *
      * @param object $field
      *
      * @return array
      */
-    private function setCurrentRules(object $field): array
+    private function currentRules(object $field): array
     {
         $rules = [
             'create' => $field->creationRules ?? $field->rules ?? [],
@@ -134,7 +134,7 @@ final class FieldValidate
      *
      * @return string
      */
-    private function setFormValues(Collection $values): string
+    private function formValues(Collection $values): string
     {
         return collect($values)
             ->map(static function ($value, $attribute) {

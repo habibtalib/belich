@@ -3,9 +3,9 @@
         <div class="flex w-full">
             <input
                 type="number"
-                {!! Helper::setFormAttribute($field, 'addClass', 'mr-3') !!}
-                {!! Helper::setFormAttribute($field, 'value') !!}
-                {!! Helper::setFormAttribute($field, 'step') !!}
+                {!! Helper::formAttribute($field, 'addClass', 'mr-3') !!}
+                {!! Helper::formAttribute($field, 'value') !!}
+                {!! Helper::formAttribute($field, 'step') !!}
                 {!! $field->render !!}
                 onkeyup="javascript:onlyNumerics(this)"
                 @if($field->toDegrees ?? false)

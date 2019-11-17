@@ -4,9 +4,9 @@
             <input
                 type="checkbox"
                 value="{{ $field->value ?? 0 }}"
-                {!! Helper::setFormAttribute($field, 'addClass', 'itoggle ' . $field->color) !!}
+                {!! Helper::formAttribute($field, 'addClass', 'itoggle ' . $field->color) !!}
                 {!! $field->render !!}
-                {!! Helper::setFormAttribute($field, 'checked') !!}
+                {!! Helper::formAttribute($field, 'checked') !!}
             >
             <label for="{{ $field->id }}" dusk="label-{{ $field->id }}"></label>
         </p>

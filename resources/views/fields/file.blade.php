@@ -2,7 +2,7 @@
     <slot name="input">
         <input
             type="file"
-            {!! Helper::setFormAttribute($field, 'addClass', 'mr-3') !!}
+            {!! Helper::formAttribute($field, 'addClass', 'mr-3') !!}
             {!! $field->render !!}
         >
         {{-- Hidden fields --}}

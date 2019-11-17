@@ -3,7 +3,7 @@
     @includeWhen(Helper::hasMetricsLegends($metric), 'belich::components.metrics.legend')
 
     {{-- Header --}}
-    <h4 class="text-{{ Helper::setMetricsColor($metric, 'title-color') }}-600 mt-2 px-4 ml-2">{{ $metric->name }}</h4>
+    <h4 class="text-{{ Helper::metricsColor($metric, 'title-color') }}-600 mt-2 px-4 ml-2">{{ $metric->name }}</h4>
 
     {{-- Graph --}}
     <div class="h-full py-4 pr-4">

@@ -11,7 +11,7 @@ trait Time
      *
      * @return int
      */
-    public function setTimeForCookie(): int
+    public function timeForCookie(): int
     {
         return Carbon::now()->addYear()->timestamp;
     }

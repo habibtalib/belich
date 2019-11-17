@@ -37,14 +37,14 @@ trait Metrics
 
     /**
      * Set the color between the options, for the metrics in blade template
-     * Helper for the blade Metrics. Components\metrics\chart.blade.php
+     * Helper for the blade Metrics. Components\metrics\chart.blade.php and Components/metrics/legend.blade.php
      *
      * @param Daguilarm\Belich\Components\Metrics\Graph $metric
      * @param string $type
      *
      * @return string
      */
-    public function setMetricsColor(Graph $metric, string $type): string
+    public function metricsColor(Graph $metric, string $type): string
     {
         return $metric->defineColor[$type] ?? $metric->color;
     }

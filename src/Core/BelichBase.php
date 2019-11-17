@@ -165,7 +165,7 @@ abstract class BelichBase
      *
      * @return string
      */
-    public function setTableTextAlign(string $class): string
+    public function tableTextAlign(string $class): string
     {
         //Get the resource value
         $align = $class::$tableTextAlign ?? null;

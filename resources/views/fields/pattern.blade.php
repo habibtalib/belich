@@ -1,9 +1,9 @@
 <belich::fields :field="$field">
     <slot name="input">
         <input
-            {!! Helper::setFormAttribute($field, 'addClass', 'mr-3') !!}
-            {!! Helper::setFormAttribute($field, 'value') !!}
-            {!! Helper::setFormAttribute($field, 'mask') !!}
+            {!! Helper::formAttribute($field, 'addClass', 'mr-3') !!}
+            {!! Helper::formAttribute($field, 'value') !!}
+            {!! Helper::formAttribute($field, 'mask') !!}
             {!! $field->render !!}
             onkeyup="javascript:maskHandler(this);"
             type="text"

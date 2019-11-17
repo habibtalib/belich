@@ -3,7 +3,6 @@
 namespace Daguilarm\Belich\Fields\Traits\Constructable;
 
 use Daguilarm\Belich\Facades\Belich;
-use Daguilarm\Belich\Fields\Field;
 
 trait Callbackable
 {

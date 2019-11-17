@@ -77,14 +77,14 @@ final class Table
             })
             ->unique()
             ->map(function ($value, $key) use ($field) {
-                return $this->setOrderAndDirection($field, $key, $value);
+                return $this->orderAndDirection($field, $key, $value);
             });
 
         //Set the default parameters values for the urls
-        $parameters = $this->setUrlParametersDefaultValues($field, $parameters);
+        $parameters = $this->urlParametersDefaultValues($field, $parameters);
 
         //Serialize the parameters
-        return $this->setUrlParametersSerialized($parameters);
+        return $this->urlParametersSerialized($parameters);
     }
 
     /**
@@ -95,7 +95,7 @@ final class Table
      *
      * @return Illuminate\Support\Collection
      */
-    private function setUrlParametersDefaultValues(Field $field, Collection $parameters): Collection
+    private function urlParametersDefaultValues(Field $field, Collection $parameters): Collection
     {
         if (! $parameters->get('orderBy')) {
             $parameters->put('orderBy', $field->attribute);
@@ -115,7 +115,7 @@ final class Table
      *
      * @return string
      */
-    private function setUrlParametersSerialized(Collection $parameters): string
+    private function urlParametersSerialized(Collection $parameters): string
     {
         return $parameters
             ->map(static function ($value, $key) {
@@ -133,7 +133,7 @@ final class Table
      *
      * @return string
      */
-    private function setOrderAndDirection(Field $field, string $key, string $value): string
+    private function orderAndDirection(Field $field, string $key, string $value): string
     {
         //Set orderBy
         if ($key === 'orderBy') {
@@ -142,7 +142,7 @@ final class Table
 
         //Set direction
         if ($key === 'direction') {
-            return $this->setValueFromDirection($key, $value);
+            return $this->valueFromDirection($key, $value);
         }
 
         return $value;
@@ -156,7 +156,7 @@ final class Table
      *
      * @return string
      */
-    private function setValueFromDirection(string $key, string $value): string
+    private function valueFromDirection(string $key, string $value): string
     {
         //Change order
         return $value === 'DESC'

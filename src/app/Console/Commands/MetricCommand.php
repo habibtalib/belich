@@ -44,18 +44,18 @@ final class MetricCommand extends BelichCommand
 
         //Copy the file to folder while keeping the .stub extension
         (new Filesystem())->copy(
-            $this->getStub(),
-            $this->setStub()
+            $this->packgeStub(),
+            $this->destinationStub()
         );
 
         // Replacements
-        $this->replace('d_class_b', $this->argument('className'), $this->setStub());
-        $this->replace('d_key_b', Str::kebab($this->argument('className')), $this->setStub());
+        $this->replace('d_class_b', $this->argument('className'), $this->destinationStub());
+        $this->replace('d_key_b', Str::kebab($this->argument('className')), $this->destinationStub());
 
         //Set the file
         (new Filesystem())->move(
-            $this->setStub(),
-            $this->setStub('php')
+            $this->destinationStub(),
+            $this->destinationStub('php')
         );
     }
 
@@ -64,7 +64,7 @@ final class MetricCommand extends BelichCommand
      *
      * @return string
      */
-    protected function getStub(): string
+    protected function packgeStub(): string
     {
         return __DIR__ . '/../../../stubs/metric.stub';
     }
@@ -86,7 +86,7 @@ final class MetricCommand extends BelichCommand
      *
      * @return string
      */
-    protected function setStub(string $ext = 'stub'): string
+    protected function destinationStub(string $ext = 'stub'): string
     {
         return $this->path() . '/' . $this->argument('className') . '.' . $ext;
     }

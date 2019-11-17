@@ -17,16 +17,16 @@ trait Valuable
      *
      * @return Illuminate\Support\Collection
      */
-    protected function setValueForFields(object $sql, Collection $fields): Collection
+    protected function valueForFields(object $sql, Collection $fields): Collection
     {
         return $fields->map(function ($field) use ($sql) {
             //Set new value for the fields, even if has a fieldRelationship value
             //This relationship method is only on forms
             //Index has its own way in blade template
-            $field->value = $this->setValuesWithFieldRelationship($sql, $field);
+            $field->value = $this->valuesWithFieldRelationship($sql, $field);
 
             //filter the data for the show view and return the $field
-            return $this->setValueForFieldsForActionShow($field, $sql);
+            return $this->valueForFieldsForActionShow($field, $sql);
         });
     }
 
@@ -38,7 +38,7 @@ trait Valuable
      *
      * @return string|null
      */
-    private function setValuesWithFieldRelationship(object $sql, object $field): ?string
+    private function valuesWithFieldRelationship(object $sql, object $field): ?string
     {
         return $field->fieldRelationship
             ? $sql->{$field->fieldRelationship}->{$field->attribute} ?? null
@@ -53,7 +53,7 @@ trait Valuable
      *
      * @return string|null
      */
-    private function setValueForFieldsForActionShow(object $field, object $sql): object
+    private function valueForFieldsForActionShow(object $field, object $sql): object
     {
         if ($this->action === 'show') {
             //Display using labels

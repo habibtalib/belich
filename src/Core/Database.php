@@ -55,7 +55,7 @@ final class Database
     private function query(object $class, Request $request): object
     {
         //Set variables
-        [$direction, $order, $policy, $search, $model] = $this->setVariables($request);
+        [$direction, $order, $policy, $search, $model] = $this->prepareVariables($request);
 
         return $class
             //Add the current resource query
@@ -96,7 +96,7 @@ final class Database
      *
      * @return array
      */
-    private function setVariables(Request $request): array
+    private function prepareVariables(Request $request): array
     {
         // Set values;
         $model = Belich::getModel();

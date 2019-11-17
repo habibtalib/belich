@@ -4,29 +4,29 @@ namespace Daguilarm\Belich\Fields\Abstracts;
 
 use Illuminate\Support\Collection;
 
-abstract class FieldResolveAbstract
+abstract class FieldResolve
 {
     /**
-     * Set the values base on the controllers action (except for index)
+     * Get the values base on the controllers action (except for index)
      *
      * @param Illuminate\Support\Collection $fields
-     * @param object $sqlResponse
+     * @param object $sql
      * @param string $action
      *
      * @return Illuminate\Support\Collection
      */
-    protected function setCrudController(object $fields, object $sqlResponse, string $action): object
+    protected function crudController(object $fields, object $sql, string $action): object
     {
         //Set fields attributes: Only for create and edit actions
         if ($action === 'create' || $action === 'edit') {
             // Creating all the render attributes for the forms
-            $fields = $this->setAttributesForFields($fields);
+            $fields = $this->attributesForFields($fields);
         }
 
         //Resolve values for fields: Only for Edit or Show actions
         if ($action === 'edit' || $action === 'show') {
             //Fill the field value with the model
-            return $this->setValueForFields($sqlResponse, $fields);
+            return $this->valueForFields($sql, $fields);
         }
 
         return $fields;
@@ -40,7 +40,7 @@ abstract class FieldResolveAbstract
      *
      * @return Illuminate\Support\Collection
      */
-    protected function setVisibilityForFields(Collection $fields, string $action): Collection
+    protected function visibilityForFields(Collection $fields, string $action): Collection
     {
         return $fields->map(static function ($field) use ($action) {
             if (in_array($action, $field->forceVisibility)) {
@@ -62,7 +62,7 @@ abstract class FieldResolveAbstract
      *
      * @return bool
      */
-    protected function setAuthorizationForFields(object $fields)
+    protected function authorizationForFields(object $fields)
     {
         return $fields->map(function ($field) {
             return $this->canSeeField($field)
@@ -76,20 +76,20 @@ abstract class FieldResolveAbstract
      * Determine if the user can access to the resource
      * See resource Policy
      *
-     * @param  object  $sqlResponse
+     * @param  object  $sql
      * @param  string  $action
      *
      * @return bool
      */
-    protected function setAuthorizationFromPolicy(object $sqlResponse, string $action)
+    protected function authorizationFromPolicy(object $sql, string $action)
     {
         //Authorized access to show action
-        if ($action === 'show' && ! request()->user()->can('view', $sqlResponse)) {
+        if ($action === 'show' && ! request()->user()->can('view', $sql)) {
             return abort(403);
         }
 
         //Authorized access to edit or update action
-        if (($action === 'edit' || $action === 'update') && ! request()->user()->can('update', $sqlResponse)) {
+        if (($action === 'edit' || $action === 'update') && ! request()->user()->can('update', $sql)) {
             return abort(403);
         }
     }
@@ -113,14 +113,14 @@ abstract class FieldResolveAbstract
      *
      * @return \Illuminate\Support\Collection
      */
-    private function setAttributesForFields(Collection $fields): Collection
+    private function attributesForFields(Collection $fields): Collection
     {
         // Set attributes for each field
         return $fields->map(function ($field) {
 
             // Add attributes dynamically from the list: name, id, dusk,...
             // Daguilarm\Belich\Fields\Traits\Constructable\Renderable
-            $field->render = $this->setRenderFieldAttributes($field);
+            $field->render = $this->renderFieldAttributes($field);
 
             //Add readonly attribute
             if ($field->readonly && $field->type !== 'hidden') {

@@ -30,7 +30,7 @@ class Panels
                     ->color($color)
             );
 
-        return static::setFields($name, $fields);
+        return static::createFields($name, $fields);
     }
 
     /**
@@ -56,7 +56,7 @@ class Panels
      *
      * @return array
      */
-    protected static function setFields(string $name, Collection $fields): array
+    protected static function createFields(string $name, Collection $fields): array
     {
         return $fields
             ->map(static function ($field) use ($name) {

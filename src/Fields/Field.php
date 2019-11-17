@@ -2,7 +2,7 @@
 
 namespace Daguilarm\Belich\Fields;
 
-use Daguilarm\Belich\Fields\Abstracts\FieldAbstract;
+use Daguilarm\Belich\Fields\Abstracts\Field as FieldAbstract;
 use Daguilarm\Belich\Fields\Traits\Attributable;
 use Daguilarm\Belich\Fields\Traits\Casteable;
 use Daguilarm\Belich\Fields\Traits\Formatable;
