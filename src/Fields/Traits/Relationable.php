@@ -68,7 +68,7 @@ trait Relationable
      */
     protected function getForeignKey(): ?string
     {
-        if(!$this->foreignKey) {
+        if (! $this->foreignKey) {
             $column = sprintf('%s_id', Helper::stringSingularLower($this->resource));
 
             return Schema::hasColumn(Helper::stringPluralLower($this->resource), $column)
