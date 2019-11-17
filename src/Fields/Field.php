@@ -27,10 +27,11 @@ class Field extends FieldAbstract
      *
      * @param  string  $name
      * @param  string|null  $attribute
+     * @param  string|null  $model [The relational model]
      *
      * @return  void
      */
-    public function __construct(string $label, ?string $attribute = null)
+    public function __construct(string $label, ?string $attribute = null, ?string $model = null)
     {
         //Set the default value
         $title = str_replace(' ', '_', Str::lower($attribute));

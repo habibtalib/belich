@@ -10,13 +10,13 @@ trait Callbackable
     /**
      * Resolve field value through callbacks
      *
-     * @param Daguilarm\Belich\Fields\Field $field
+     * @param object $field
      * @param object $data
      * @param string|null $value
      *
      * @return string|null
      */
-    protected function getCallbackValue(Field $field, ?object $data = null, $value = ''): ?string
+    protected function getCallbackValue(object $field, ?object $data = null, $value = ''): ?string
     {
         //Resolve value when using the method: $field->displayUsing()
         $value = $this->displayCallback($field, $value);
@@ -28,12 +28,12 @@ trait Callbackable
     /**
      * Resolve field callback: $field->displayUsing()
      *
-     * @param Daguilarm\Belich\Fields\Field $field
+     * @param object $field
      * @param string|null $value
      *
      * @return string|null
      */
-    private function displayCallback(Field $field, $value = ''): ?string
+    private function displayCallback(object $field, $value = ''): ?string
     {
         if (! isset($field->displayCallback) || $field->notDisplayUsing === true) {
             return $value;
@@ -49,13 +49,13 @@ trait Callbackable
     /**
      * Resolve field callback: $field->resolveUsing()
      *
-     * @param Daguilarm\Belich\Fields\Field $field
+     * @param object $field
      * @param object $data
      * @param string|null $value
      *
      * @return string|null
      */
-    private function resolveCallback(Field $field, ?object $data = null, $value = ''): ?string
+    private function resolveCallback(object $field, ?object $data = null, $value = ''): ?string
     {
         if (! is_callable($field->resolveCallback) || $field->notResolveUsing === false) {
             return $value;

@@ -41,16 +41,16 @@ final class FieldResolveIndex
 
     /**
      * Resolve field values for: relationship, displayUsing and resolveUsing
-     * This method is used throw Belich Facade => Belich::html()->resolveField($field, $data);
+     * This method is used throw Belich Facade => Belich::value($field, $data);
      * This method is for refactoring the blade templates.
      *
      * @param Daguilarm\Belich\Fields\ResolveIndex\Resolve $resolve
-     * @param  Daguilarm\Belich\Fields\Field $attribute
+     * @param  object $field
      * @param  object $data
      *
      * @return string|null
      */
-    public function resolve(Resolve $resolve, Field $field, ?object $data = null): ?string
+    public function resolve(Resolve $resolve, object $field, ?object $data = null): ?string
     {
         //Resolve value for action controller: show
         $value = $field->value;

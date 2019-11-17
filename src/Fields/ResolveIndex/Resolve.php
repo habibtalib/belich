@@ -14,13 +14,13 @@ final class Resolve
      * Resolve field values for: relationship
      * This method is helper for $this->resolve()
      *
-     * @param  Daguilarm\Belich\Fields\Field $field
+     * @param  object $field
      * @param object $data
      * @param  string|null $value
      *
      * @return string|null
      */
-    public function resolveValue(Field $field, ?object $data, ?string $value): ?string
+    public function resolveValue(object $field, ?object $data, ?string $value): ?string
     {
         //Resolve Relationship
         return isset($data)
@@ -32,12 +32,12 @@ final class Resolve
      * Resolve boolean fields
      * This method is helper for $this->resolve()
      *
-     * @param  Daguilarm\Belich\Fields\Field $field
+     * @param  object $field
      * @param  mixed $value
      *
      * @return string|null
      */
-    public function resolveBoolean(Field $field, $value): ?string
+    public function resolveBoolean(object $field, $value): ?string
     {
         // With default labels
         if (isset($field->trueValue) && isset($field->falseValue)) {
@@ -54,12 +54,12 @@ final class Resolve
      * Resolve field values for: relationship
      * This method is helper for $this->resolve()
      *
-     * @param  Daguilarm\Belich\Fields\Field $field
+     * @param  object $field
      * @param  object|null $data
      *
      * @return string|null
      */
-    private function resolveRelationship(Field $field, ?object $data): ?string
+    private function resolveRelationship(object $field, ?object $data): ?string
     {
         //Resolve Relationship
         if (is_array($field->attribute)) {

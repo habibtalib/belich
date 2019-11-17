@@ -100,12 +100,12 @@ final class Belich extends BelichBase
     /**
      * Initialize the html helper (for resolving value) in order to be accesible from Belich
      *
-     * @param Daguilarm\Belich\Fields\Field $field
+     * @param object $field
      * @param object $data
      *
      * @return string|null
      */
-    public function value(Field $field, ?object $data = null): ?string
+    public function value(object $field, ?object $data = null): ?string
     {
         return (new FieldResolveIndex())->resolve(new Resolve(), $field, $data);
     }

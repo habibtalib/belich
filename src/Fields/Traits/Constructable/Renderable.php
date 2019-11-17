@@ -70,9 +70,9 @@ trait Renderable
      *
      * @param array $field
      *
-     * @return Daguilarm\Belich\Fields\Field
+     * @return object
      */
-    protected function renderField($field): Field
+    protected function renderField($field): object
     {
         $field->render = $field->render->implode(' ');
 

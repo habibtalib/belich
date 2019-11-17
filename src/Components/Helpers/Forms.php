@@ -49,13 +49,13 @@ trait Forms
      * Render the field attribute base on the value
      * Helper for the belich fields: ./resources/fields
      *
-     * @param Daguilarm\Belich\Fields\Field $field
+     * @param object $field
      * @param string $attribute
      * @param string|null $default
      *
      * @return string
      */
-    public function setFormAttribute(Field $field, string $attribute, ?string $default = null, ?string $prefix = null): string
+    public function setFormAttribute(object $field, string $attribute, ?string $default = null, ?string $prefix = null): string
     {
         //Get the attribute
         $attribute = $this->getAttribute($attribute);
@@ -95,13 +95,13 @@ trait Forms
     /**
      * Get the attribute name
      *
-     * @param Daguilarm\Belich\Fields\Field $field
+     * @param object $field
      * @param string|null $attribute
      * @param string|null $default
      *
      * @return string|null
      */
-    private function getValue(Field $field, string $attribute, ?string $default = null): ?string
+    private function getValue(object $field, string $attribute, ?string $default = null): ?string
     {
         return isset($field->addClass) && is_array($field->addClass) && $attribute === 'class'
             // Css class attribute
@@ -113,13 +113,13 @@ trait Forms
     /**
      * Render attributes from an array of tasks
      *
-     * @param Daguilarm\Belich\Fields\Field $field
+     * @param object $field
      * @param string|null $attribute
      * @param $value
      *
      * @return string|null
      */
-    private function renderAttributeFromArray(Field $field, string $attribute, $value): ?string
+    private function renderAttributeFromArray(object $field, string $attribute, $value): ?string
     {
         $response = [
             'mask' => sprintf('data-mask="%s"', $value),

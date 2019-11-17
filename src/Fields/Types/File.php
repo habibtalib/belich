@@ -3,7 +3,7 @@
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Contracts\FieldMultipleContract;
-use Daguilarm\Belich\Fields\Constructors\Field as FieldBase;
+use Daguilarm\Belich\Fields\Abstracts\FieldAbstract;
 use Daguilarm\Belich\Fields\Field;
 
 class File extends Field implements FieldMultipleContract
@@ -116,9 +116,9 @@ class File extends Field implements FieldMultipleContract
     /**
      * Render image in views
      *
-     * @return Daguilarm\Belich\Fields\Constructors\Field as FieldBase
+     * @return Daguilarm\Belich\Fields\Abstracts\FieldAbstract
      */
-    public function asHtml(): FieldBase
+    public function asHtml(): FieldAbstract
     {
         $this->renderImage = true;
 

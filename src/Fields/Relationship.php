@@ -2,10 +2,27 @@
 
 namespace Daguilarm\Belich\Fields;
 
-use Daguilarm\Belich\Fields\Abstracts\RelationshipAbstract;
+use Daguilarm\Belich\Fields\Abstracts\FieldAbstract;
+use Daguilarm\Belich\Fields\Traits\Attributable;
+use Daguilarm\Belich\Fields\Traits\Casteable;
+use Daguilarm\Belich\Fields\Traits\Formatable;
+use Daguilarm\Belich\Fields\Traits\Helpeable;
+use Daguilarm\Belich\Fields\Traits\Relationable;
+use Daguilarm\Belich\Fields\Traits\Ruleable;
+use Daguilarm\Belich\Fields\Traits\Settingable;
+use Daguilarm\Belich\Fields\Traits\Visibilitable;
 
-class Relationship extends RelationshipAbstract
+class Relationship extends FieldAbstract
 {
+    use Attributable,
+        Casteable,
+        Formatable,
+        Helpeable,
+        Relationable,
+        Ruleable,
+        Settingable,
+        Visibilitable;
+
     /**
      * Create a new relationship field
      *
@@ -17,6 +34,7 @@ class Relationship extends RelationshipAbstract
      */
     public function __construct(string $label, string $resource, ?string $model = null)
     {
+        $this->attribute = $this->typeRelation;
         $this->resource = $this->getResource($resource);
         $this->label = $label ?? $this->resource;
         $this->model = $this->setModel($model);

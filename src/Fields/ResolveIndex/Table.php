@@ -21,7 +21,7 @@ final class Table
      *
      * @return Illuminate\Support\Collection
      */
-    public function headerLabels($fields): Collection
+    public function headerLabels(Collection $fields): Collection
     {
         return $fields->map(function ($field) {
             return $this->headerLinks($field);
@@ -31,11 +31,11 @@ final class Table
     /**
      * Generate the link with all the parameters for the table header
      *
-     * @param  Daguilarm\Belich\Fields\Field $field
+     * @param  object $field
      *
      * @return string
      */
-    private function headerLinks(Field $field): string
+    private function headerLinks(object $field): string
     {
         //Filter if the attribute is a relationship or is not sortable
         if (is_array($field->attribute) || $field->sortable === false) {

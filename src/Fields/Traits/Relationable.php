@@ -1,14 +1,17 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Abstracts;
+namespace Daguilarm\Belich\Fields\Traits;
 
 use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Traits\Visibilitable;
 use Illuminate\Support\Str;
 
-abstract class RelationshipAbstract
+trait Relationable
 {
-    use Visibilitable;
+    /**
+     * @var string
+     */
+    public $attribute;
 
     /**
      * @var string
@@ -34,6 +37,13 @@ abstract class RelationshipAbstract
      * @var object
      */
     public $perPageViaRelationship = 10;
+
+    /**
+     * This is for regular fields. In this case has to be empty.
+     *
+     * @var string|null
+     */
+    public $fieldRelationship;
 
     /**
      * @var string
@@ -89,7 +99,7 @@ abstract class RelationshipAbstract
     {
         $defaultModel = sprintf('%s\%s', config('belich.models'), $this->getModel($this->resource));
 
-        if(Str::endsWith($defaultModel, '\\')) {
+        if (Str::endsWith($defaultModel, '\\')) {
             $defaultModel = str_replace('\\', '', $defaultModel);
         }
 
