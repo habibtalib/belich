@@ -75,7 +75,7 @@ final class FieldResolveIndex
             return $resolve->resolveTextArea($field, $value);
         }
 
-        //File field
+        //displayUsingLabels filter
         if (isset($field->displayUsingLabels) && $field->displayUsingLabels) {
             return $resolve->displayUsingLabels($field, $value);
         }
@@ -83,26 +83,4 @@ final class FieldResolveIndex
         //Resolve the field value through callbacks
         return $this->getCallbackValue($field, $data, $value);
     }
-
-    // /**
-    //  * Resolve helper conditional
-    //  *
-    //  * @param  Daguilarm\Belich\Fields\ResolveIndex\Resolve $resolve
-    //  * @param  Daguilarm\Belich\Fields\Field $attribute
-    //  * @param  string|null $value
-    //  *
-    //  * @return string|null
-    //  */
-    // private function resolveConditional(Resolve $resolve, Field $field, ?string $value = null): ?string
-    // {
-    //     $condition = [
-    //         'boolean' => $resolve->resolveBoolean($field, $value),
-    //         'file' => $this->resolveFile($field, $value),
-    //         'textArea' => $resolve->resolveTextArea($field, $value),
-    //     ];
-
-    //     return in_array($field->type, array_keys($condition))
-    //         ? $condition[$field->type]
-    //         : null;
-    // }
 }

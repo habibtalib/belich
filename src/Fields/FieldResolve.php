@@ -3,12 +3,12 @@
 namespace Daguilarm\Belich\Fields;
 
 use Daguilarm\Belich\Core\Traits\Routeable;
-use Daguilarm\Belich\Fields\Constructors\FieldResolve as FieldResolveConstructor;
+use Daguilarm\Belich\Fields\Abstracts\FieldResolveAbstract;
 use Daguilarm\Belich\Fields\Traits\Constructable\Renderable;
 use Daguilarm\Belich\Fields\Traits\Constructable\Valuable;
 use Illuminate\Support\Collection;
 
-final class FieldResolve extends FieldResolveConstructor
+final class FieldResolve extends FieldResolveAbstract
 {
     use Renderable,
         Routeable,
@@ -62,7 +62,7 @@ final class FieldResolve extends FieldResolveConstructor
         // Check for action value
         return $this->action === 'index'
             //Prepare the field for the index response
-            ? app(\Daguilarm\Belich\Fields\FieldResolveIndex::class)->make($fields, $sql)
+            ? app(\Daguilarm\Belich\Fields\FieldResolveIndex::class)->make($fields)
             //Prepare the field for the the form response: create, edit and show
             : $this->setCrudController($fields, $sql, $this->action);
     }

@@ -2,7 +2,7 @@
 
 namespace Daguilarm\Belich\Fields;
 
-use Daguilarm\Belich\Fields\Constructors\Field as FieldConstructor;
+use Daguilarm\Belich\Fields\Abstracts\FieldAbstract;
 use Daguilarm\Belich\Fields\Traits\Attributable;
 use Daguilarm\Belich\Fields\Traits\Casteable;
 use Daguilarm\Belich\Fields\Traits\Formatable;
@@ -12,7 +12,7 @@ use Daguilarm\Belich\Fields\Traits\Settingable;
 use Daguilarm\Belich\Fields\Traits\Visibilitable;
 use Illuminate\Support\Str;
 
-class Field extends FieldConstructor
+class Field extends FieldAbstract
 {
     use Attributable,
         Casteable,
