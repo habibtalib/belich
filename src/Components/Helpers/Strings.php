@@ -29,6 +29,18 @@ trait Strings
     }
 
     /**
+     * Set the string into table column format
+     *
+     * @param string $string
+     *
+     * @return string
+     */
+    public function stringSingularLower(string $string): string
+    {
+        return Str::singular(strtolower($string));
+    }
+
+    /**
      * Set string into class name format
      *
      * @param string $string
