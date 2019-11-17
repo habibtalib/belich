@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Fields;
 
+use Daguilarm\Belich\Fields\RelationshipResolve;
 use Daguilarm\Belich\Fields\ResolveIndex\Resolve;
 use Daguilarm\Belich\Fields\ResolveIndex\Table;
 use Daguilarm\Belich\Fields\Traits\Constructable\Callbackable;
@@ -52,6 +53,11 @@ final class FieldResolveIndex
      */
     public function resolve(Resolve $resolve, object $field, ?object $data = null): ?string
     {
+        // Resolve for relationship fields
+        if ($field->type === 'relationship') {
+            return $field->index($field, $data);
+        }
+
         //Resolve value for action controller: show
         $value = $field->value;
 

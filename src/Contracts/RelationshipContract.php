@@ -22,5 +22,14 @@ interface RelationshipContract
      *
      * @return Daguilarm\Belich\Fields\Relationship
      */
-    public static function foreignKey(string $key): Relationship;
+    public function foreignKey(string $key): Relationship;
+
+    /**
+     * Get the table row
+     *
+     * @param string $table
+     *
+     * @return Daguilarm\Belich\Fields\Relationship
+     */
+    public function table(string $table): Relationship;
 }

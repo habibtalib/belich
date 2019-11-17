@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Fields;
 
+use Daguilarm\Belich\Facades\Belich;
 use Daguilarm\Belich\Fields\Abstracts\Field as FieldAbstract;
 use Daguilarm\Belich\Fields\Traits\Attributable;
 use Daguilarm\Belich\Fields\Traits\Casteable;
@@ -28,16 +29,21 @@ class Relationship extends FieldAbstract
      *
      * @param  string  $label
      * @param  string  $resource [The relational resource in plural]
-     * @param  string|null  $model [The relational model]
+     * @param  string|null  $relationship [The relational model]
      *
      * @return  void
      */
-    public function __construct(string $label, string $resource, ?string $model = null)
+    public function __construct(string $label, string $resource, ?string $relationship = null)
     {
-        $this->attribute = $this->typeRelation;
+        // Setup
         $this->resource = $this->getResource($resource);
         $this->label = $label ?? $this->resource;
-        $this->model = $this->createModel($model);
+        $this->model = $this->createRelationshipModel($relationship);
+        $this->fieldRelationship = $this->resource;
+        $this->table = $this->table ?? Belich::table() ?? null;
+
+        // Resolve as html
+        $this->asHtml();
     }
 
     /**
@@ -60,9 +66,23 @@ class Relationship extends FieldAbstract
      *
      * @return self
      */
-    public static function foreignKey(string $key): self
+    public function foreignKey(string $key): self
     {
         $this->foreignKey = $key;
+
+        return $this;
+    }
+
+    /**
+     * Get the table row
+     *
+     * @param string $table
+     *
+     * @return self
+     */
+    public function table(string $table): self
+    {
+        $this->table = $table;
 
         return $this;
     }

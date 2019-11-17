@@ -50,6 +50,31 @@ trait Relationable
     public $resource;
 
     /**
+     * @var string
+     */
+    public $resolveIndex;
+
+    /**
+     * @var string
+     */
+    public $resolveShow;
+
+    /**
+     * @var string
+     */
+    public $resolveCreate;
+
+    /**
+     * @var string
+     */
+    public $resolveEdit;
+
+    /**
+     * @var string
+     */
+    public $table;
+
+    /**
      * Format/Set/Parse the current resource
      *
      * @param string $resource
@@ -80,21 +105,21 @@ trait Relationable
     }
 
     /**
-     * Create the model from the resource (by default)
+     * Create the relationship model (by default)
      *
      * @param string|null $model
      *
      * @return string|null
      */
-    protected function createModel(?string $model): ?string
+    protected function createRelationshipModel(?string $model): ?string
     {
-        $defaultModel = sprintf('%s\%s', config('belich.models'), $this->getModel());
+        $defaultRelationship = sprintf('%s\%s', config('belich.models'), $this->getModelRelationship());
 
-        if (Str::endsWith($defaultModel, '\\')) {
-            $defaultModel = str_replace('\\', '', $defaultModel);
+        if (Str::endsWith($defaultRelationship, '\\')) {
+            $defaultRelationship = str_replace('\\', '', $defaultRelationship);
         }
 
-        return $model ?? $defaultModel ?? null;
+        return $model ?? $defaultRelationship ?? null;
     }
 
     /**
@@ -104,7 +129,7 @@ trait Relationable
      *
      * @return string
      */
-    protected function getModel(?string $model = null): string
+    protected function getModelRelationship(?string $model = null): string
     {
         return Helper::stringSingularUpper($model ?? $this->resource);
     }
