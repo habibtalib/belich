@@ -14,6 +14,11 @@ class HasOne extends Relationship implements RelationshipContract
     public $subType = 'HasOne';
 
     /**
+     * @var string
+     */
+    public $attribute;
+
+    /**
      * Create a new relationship field
      *
      * @param  string  $label
@@ -67,11 +72,20 @@ class HasOne extends Relationship implements RelationshipContract
      */
     public function create(object $field, ?object $data = null): string
     {
-        $result = app($this->model)
-            ->pluck($this->table, 'id');
-
-        $field->options = ['' => ''] + $result->toArray();
+        $field->options = $this->populateSelect();
 
         return view('belich::fields.select', ['field' => $field]);
+    }
+
+    /**
+     * Populate relationship select
+     *
+     * @return array
+     */
+    private function populateSelect(): array
+    {
+        return $this->modelRelationship::select($this->table, 'id')
+            ->pluck($this->table, 'id')
+            ->toArray();
     }
 }

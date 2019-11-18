@@ -4,6 +4,7 @@ namespace Daguilarm\Belich\Fields\Traits;
 
 use Daguilarm\Belich\Facades\Belich;
 use Daguilarm\Belich\Facades\Helper;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
 trait Relationable
@@ -27,6 +28,11 @@ trait Relationable
      * @var object
      */
     public $model;
+
+    /**
+     * @var object
+     */
+    public $modelRelationship;
 
     /**
      * @var object
@@ -140,5 +146,19 @@ trait Relationable
     protected function getTable(?string $table): ?string
     {
         return $table ?? Belich::table() ?? null;
+    }
+
+    /**
+     *  Get the default attribute
+     *
+     * @param string $table
+     *
+     * @return string
+     */
+    protected function getDefaultVariables(string $label): void
+    {
+        $name = sprintf('relationship-%s-%s', $this->subType, Helper::stringTokebab($label));
+
+        $this->attribute = $this->id = $this->name = $this->dusk = strtolower($name);
     }
 }

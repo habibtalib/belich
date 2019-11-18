@@ -40,9 +40,11 @@ class Relationship extends FieldAbstract
         $this->resource = $this->getResource($resource);
         $this->resources = Str::plural($this->resource);
         $this->label = $label ?? $this->resource;
-        $this->model = $this->createRelationshipModel($relationship);
+        $this->model = Belich::getModel();
+        $this->modelRelationship = $this->createRelationshipModel($relationship);
         $this->fieldRelationship = $this->resource;
         $this->table = $this->getTable($this->table);
+        $this->getDefaultVariables($label, $this->subType);
 
         // Resolve as html
         $this->asHtml();
