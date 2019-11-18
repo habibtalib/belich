@@ -1,4 +1,4 @@
-# belich (working on it...)
+# belich (working on it...Released on January 1, 2020)
 
 I started this project to improve my skills as a programmer, and for that, I immersed myself in the Laravel Nova code (it was something that changed my way of understanding programming).
 
