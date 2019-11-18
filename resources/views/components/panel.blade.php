@@ -9,7 +9,13 @@
             @if(View::exists('belich::fields.' . $field->type))
                 @include('belich::fields.' . $field->type, ['field' => $field])
             @else
-                @include('belich::fields.text', ['field' => $field])
+                {{-- Relationship --}}
+                @if($field->type === 'relationship')
+                    @includeIf('belich::fields.' . $field->subType . '.' . Belich::action(), ['field' => $field])
+                {{-- Text field / Default --}}
+                @else
+                    @include('belich::fields.text', ['field' => $field])
+                @endif
             @endif
 
         {{-- Render values: show --}}

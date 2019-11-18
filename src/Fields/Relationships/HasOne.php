@@ -9,6 +9,11 @@ use Daguilarm\Belich\Fields\Relationship;
 class HasOne extends Relationship implements RelationshipContract
 {
     /**
+     * @var string
+     */
+    public $subType = 'HasOne';
+
+    /**
      * Create a new relationship field
      *
      * @param  string  $label
@@ -51,17 +56,5 @@ class HasOne extends Relationship implements RelationshipContract
     public function show(?object $data = null): string
     {
         return $this->index($data);
-    }
-
-    /**
-     * Resolve value for create
-     *
-     * @param  object $data
-     *
-     * @return string
-     */
-    public function create(?object $data = null): string
-    {
-        dd('hellow');
     }
 }
