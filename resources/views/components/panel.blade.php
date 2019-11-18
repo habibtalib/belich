@@ -21,16 +21,10 @@
                     <slot name="input">
                         {{-- Show as html --}}
                         @if($field->asHtml)
-                            {{-- Show relationship fields --}}
-                            @if($field->type === 'relationship')
-                                {!! $field->value !!}
-                            {{-- Regular fields --}}
-                            @else
-                                {!! Belich::value($field) !!}
-                            @endif
+                            {!! $field->value !!}
                         {{-- Show as scaped field --}}
                         @else
-                            {{ Belich::value($field) }}
+                            {{ $field->value }}
                         @endif
 
                     </slot>

@@ -2,7 +2,6 @@
 
 namespace Daguilarm\Belich\Fields;
 
-use Daguilarm\Belich\Fields\RelationshipResolve;
 use Daguilarm\Belich\Fields\ResolveIndex\Resolve;
 use Daguilarm\Belich\Fields\ResolveIndex\Table;
 use Daguilarm\Belich\Fields\Traits\Constructable\Callbackable;
