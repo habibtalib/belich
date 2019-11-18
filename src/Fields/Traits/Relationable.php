@@ -2,16 +2,12 @@
 
 namespace Daguilarm\Belich\Fields\Traits;
 
+use Daguilarm\Belich\Facades\Belich;
 use Daguilarm\Belich\Facades\Helper;
 use Illuminate\Support\Str;
 
 trait Relationable
 {
-    /**
-     * @var string
-     */
-    public $attribute;
-
     /**
      * @var string
      */
@@ -132,5 +128,17 @@ trait Relationable
     protected function getModelRelationship(?string $model = null): string
     {
         return Helper::stringSingularUpper($model ?? $this->resource);
+    }
+
+    /**
+     *  Get the default value for table
+     *
+     * @param string|null $table
+     *
+     * @return string
+     */
+    protected function getTable(?string $table): ?string
+    {
+        return $table ?? Belich::table() ?? null;
     }
 }

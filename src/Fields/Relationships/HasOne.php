@@ -52,4 +52,16 @@ class HasOne extends Relationship implements RelationshipContract
     {
         return $this->index($data);
     }
+
+    /**
+     * Resolve value for create
+     *
+     * @param  object $data
+     *
+     * @return string
+     */
+    public function create(?object $data = null): string
+    {
+        dd('hellow');
+    }
 }

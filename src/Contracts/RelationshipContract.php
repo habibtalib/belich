@@ -32,4 +32,22 @@ interface RelationshipContract
      * @return Daguilarm\Belich\Fields\Relationship
      */
     public function table(string $table): Relationship;
+
+    /**
+     * Resolve value for index
+     *
+     * @param  object $data
+     *
+     * @return string
+     */
+    public function index(?object $data = null): string;
+
+    /**
+     * Resolve value for show
+     *
+     * @param  object $data
+     *
+     * @return string
+     */
+    public function show(?object $data = null): string;
 }

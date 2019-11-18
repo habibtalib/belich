@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Fields\Abstracts;
 
+use Daguilarm\Belich\Facades\Belich;
 use Illuminate\Support\Collection;
 
 abstract class FieldResolve
@@ -117,7 +118,6 @@ abstract class FieldResolve
     {
         // Set attributes for each field
         return $fields->map(function ($field) {
-
             // Add attributes dynamically from the list: name, id, dusk,...
             // Daguilarm\Belich\Fields\Traits\Constructable\Renderable
             $field->render = $this->renderFieldAttributes($field);
