@@ -27,6 +27,7 @@ final class ShowRequest extends FormRequest
             'fields' => data_get($data, 'fields')->groupBy('panels'),
             'id' => $id,
             'name' => data_get($data, 'name'),
+            'results' => data_get($data, 'results'),
         ]);
 
         return $this;

@@ -101,10 +101,10 @@ final class CrudController extends Controller
      */
     public function show(Belich $belich, int $id, ShowRequest $request): View
     {
-        //Authorization
-        $this->authorize('view', $this->model);
         //Get the data
         $request = $request->data($belich, $id);
+        //Authorization
+        $this->authorize('view', $request->results);
 
         return view('belich::dashboard.show', compact('request'));
     }
