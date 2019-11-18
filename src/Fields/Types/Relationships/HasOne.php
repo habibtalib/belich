@@ -65,8 +65,13 @@ class HasOne extends Relationship implements RelationshipContract
      *
      * @return string
      */
-    public function create(?object $data = null): string
+    public function create(object $field, ?object $data = null): string
     {
-        return view('belich::fields.HasOne.create');
+        $result = app($this->model)
+            ->pluck($this->table, 'id');
+
+        $field->options = ['' => ''] + $result->toArray();
+
+        return view('belich::fields.select', ['field' => $field]);
     }
 }

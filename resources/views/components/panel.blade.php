@@ -11,7 +11,7 @@
             @else
                 {{-- Relationship --}}
                 @if($field->type === 'relationship')
-                    {!! $field->{Belich::action()}() ?? Helper::emptyResults() !!}
+                    {!! $field->{Belich::action()}($field) ?? Helper::emptyResults() !!}
                 {{-- Text field / Default --}}
                 @else
                     @include('belich::fields.text', ['field' => $field])
