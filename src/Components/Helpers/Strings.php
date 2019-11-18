@@ -77,6 +77,18 @@ trait Strings
     }
 
     /**
+     * Set string into kebab case
+     *
+     * @param string $string
+     *
+     * @return string
+     */
+    public function stringTokebabLower(string $string): string
+    {
+        return Str::kebab(strtolower($string));
+    }
+
+    /**
      * String has a validad php structure
      *
      * @param  string $string
