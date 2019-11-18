@@ -14,9 +14,10 @@ class d_model_bPolicy
     * Determine whether the User can create the a d_model_b.
     *
     * @param  d_model_user_path_b  $user
-    * @return mixed
+    *
+    * @return bool
     */
-    public function create(User $user)
+    public function create(User $user): bool
     {
         return true;
     }
@@ -26,11 +27,13 @@ class d_model_bPolicy
     *
     * @param  d_model_user_path_b  $user
     * @param  d_model_path_b  $d_model_variable_b
-    * @return mixed
+    *
+    * @return bool
     */
-    public function delete(User $user, d_model_b $d_model_variable_b)
+    public function delete(User $user, d_model_b $d_model_variable_b): bool
     {
         return true;
+        // return $user->id === $d_model_variable_b->user_id;
     }
 
     /**
@@ -38,11 +41,13 @@ class d_model_bPolicy
     *
     * @param  d_model_user_path_b  $user
     * @param  d_model_path_b  $d_model_variable_b
-    * @return mixed
+    *
+    * @return bool
     */
-    public function file(User $user, d_model_b $d_model_variable_b)
+    public function file(User $user, d_model_b $d_model_variable_b): bool
     {
         return true;
+        // return $user->id === $d_model_variable_b->user_id;
     }
 
     /**
@@ -50,11 +55,13 @@ class d_model_bPolicy
     *
     * @param  d_model_user_path_b  $user
     * @param  d_model_path_b  $d_model_variable_b
-    * @return mixed
+    *
+    * @return bool
     */
-    public function forceDelete(User $user, d_model_b $d_model_variable_b)
+    public function forceDelete(User $user, d_model_b $d_model_variable_b): bool
     {
         return true;
+        // return $user->id === $d_model_variable_b->user_id;
     }
 
     /**
@@ -62,11 +69,13 @@ class d_model_bPolicy
     *
     * @param  d_model_user_path_b  $user
     * @param  d_model_path_b  $d_model_variable_b
-    * @return mixed
+    *
+    * @return bool
     */
-    public function restore(User $user, d_model_b $d_model_variable_b)
+    public function restore(User $user, d_model_b $d_model_variable_b): bool
     {
         return true;
+        // return $user->id === $d_model_variable_b->user_id;
     }
 
     /**
@@ -74,11 +83,13 @@ class d_model_bPolicy
     *
     * @param  d_model_user_path_b  $user
     * @param  d_model_path_b  $d_model_variable_b
-    * @return mixed
+    *
+    * @return bool
     */
-    public function update(User $user, d_model_b $d_model_variable_b)
+    public function update(User $user, d_model_b $d_model_variable_b): bool
     {
         return true;
+        //return $user->id === $d_model_variable_b->user_id;
     }
 
     /**
@@ -86,11 +97,14 @@ class d_model_bPolicy
     * This method will affect the controller 'show' action
     *
     * @param  d_model_user_path_b  $user
-    * @return mixed
+    * @param  d_model_path_b  $d_model_variable_b
+    *
+    * @return bool
     */
-    public function view(User $user)
+    public function view(User $user, d_model_b $d_model_variable_b): bool
     {
        return true;
+       // return $user->id === $d_model_variable_b->user_id;
     }
 
     /**
@@ -98,9 +112,10 @@ class d_model_bPolicy
     * This method will affect the controller 'index' action
     *
     * @param  d_model_user_path_b  $user
-    * @return mixed
+    *
+    * @return bool
     */
-    public function viewAny(User $user)
+    public function viewAny(User $user): bool
     {
         return true;
     }
@@ -109,9 +124,10 @@ class d_model_bPolicy
     * Determine whether the User can see the trashed model.
     *
     * @param  d_model_user_path_b  $user
-    * @return mixed
+    *
+    * @return bool
     */
-    public function withTrashed(User $user)
+    public function withTrashed(User $user): bool
     {
         return true;
     }
