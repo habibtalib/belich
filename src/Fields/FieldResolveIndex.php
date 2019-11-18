@@ -55,7 +55,7 @@ final class FieldResolveIndex
     {
         // Resolve for relationship fields
         if ($field->type === 'relationship') {
-            return $field->index($field, $data);
+            return $field->index($data);
         }
 
         //Resolve value for action controller: show

@@ -19,10 +19,15 @@
             @if(!empty($field->label))
                 <belich::fields :field="$field" :toField="$toField ?? null">
                     <slot name="input">
-
                         {{-- Show as html --}}
                         @if($field->asHtml)
-                            {!! Belich::value($field) !!}
+                            {{-- Show relationship fields --}}
+                            @if($field->type === 'relationship')
+                                {!! $field->value !!}
+                            {{-- Regular fields --}}
+                            @else
+                                {!! Belich::value($field) !!}
+                            @endif
                         {{-- Show as scaped field --}}
                         @else
                             {{ Belich::value($field) }}

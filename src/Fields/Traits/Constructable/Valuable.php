@@ -20,6 +20,11 @@ trait Valuable
     protected function valueForFields(object $sql, Collection $fields): Collection
     {
         return $fields->map(function ($field) use ($sql) {
+            if ($field->type === 'relationship') {
+                $field->value = $field->{$this->action}($sql);
+
+                return $field;
+            }
             //Set new value for the fields, even if has a fieldRelationship value
             //This relationship method is only on forms
             //Index has its own way in blade template

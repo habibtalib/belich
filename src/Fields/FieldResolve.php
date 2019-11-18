@@ -58,7 +58,6 @@ final class FieldResolve extends FieldResolveAbstract
         if ($this->action === 'store' || $this->action === 'update' || $this->action === 'destroy') {
             return new Collection();
         }
-
         // Check for action value
         return $this->action === 'index'
             //Prepare the field for the index response

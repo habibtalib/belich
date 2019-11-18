@@ -25,15 +25,31 @@ class HasOne extends Relationship implements RelationshipContract
     /**
      * Resolve value for index
      *
-     * @param  object $field
      * @param  object $data
      *
-     * @return string|null
+     * @return string
      */
-    public function index(object $field, ?object $data = null)
+    public function index(?object $data = null): string
     {
-        $result = $data->{$this->fieldRelationship}->{$this->table} ?? Helper::emptyResults();
+        $result = optional($data)->{$this->fieldRelationship};
+        $value = optional($result)->{$this->table};
+        $id = optional($result)->id;
+        $url = sprintf('%s/%s/%s', config('belich.path'), $this->resources, $id);
 
-        return sprintf('<a href="#" class="text-blue-500 font-bold hover:text-black">%s</a>', $result);
+        return $value
+            ? view('belich::fields.HasOne.index', compact('value', 'url'))
+            : Helper::emptyResults();
+    }
+
+    /**
+     * Resolve value for show
+     *
+     * @param  object $data
+     *
+     * @return string
+     */
+    public function show(?object $data = null): string
+    {
+        return $this->index($data);
     }
 }

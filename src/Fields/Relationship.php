@@ -12,6 +12,7 @@ use Daguilarm\Belich\Fields\Traits\Relationable;
 use Daguilarm\Belich\Fields\Traits\Ruleable;
 use Daguilarm\Belich\Fields\Traits\Settingable;
 use Daguilarm\Belich\Fields\Traits\Visibilitable;
+use Illuminate\Support\Str;
 
 class Relationship extends FieldAbstract
 {
@@ -37,6 +38,7 @@ class Relationship extends FieldAbstract
     {
         // Setup
         $this->resource = $this->getResource($resource);
+        $this->resources = Str::plural($this->resource);
         $this->label = $label ?? $this->resource;
         $this->model = $this->createRelationshipModel($relationship);
         $this->fieldRelationship = $this->resource;
