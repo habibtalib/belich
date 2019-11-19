@@ -10,6 +10,7 @@
                         <option
                             value="{{ $value }}"
                             {{ $field->value == $value ? 'selected="selected"' : '' }}
+                            {{ $field->valueRelationship == $value ? 'selected="selected"' : '' }}
                         >
                             {{ $text }}
                         </option>
