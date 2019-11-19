@@ -25,15 +25,6 @@ interface RelationshipContract
     public function foreignKey(string $key): Relationship;
 
     /**
-     * Get the table row
-     *
-     * @param string $table
-     *
-     * @return Daguilarm\Belich\Fields\Relationship
-     */
-    public function table(string $table): Relationship;
-
-    /**
      * Resolve value for index
      *
      * @param  object $data
