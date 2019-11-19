@@ -162,6 +162,13 @@ abstract class Field
     public $value;
 
     /**
+     * The field value for relationships (is the relation ID)
+     *
+     * @var string
+     */
+    public $valueRelationship;
+
+    /**
      * Resolve the value as HTML (without scape)
      *
      * @return self
