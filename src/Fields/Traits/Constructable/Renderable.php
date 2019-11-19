@@ -20,7 +20,7 @@ trait Renderable
             ->each(static function ($value, $attribute) use ($field): void {
                 //Get the list of attributes to be rendered: name, dusk,... and remove the attributes from the removed list
                 $field->render[] = in_array($attribute, $field->renderAttributes) && ! in_array($attribute, $field->removedAttr)
-                    ? sprintf('%s=%s', $attribute, $value)
+                    ? sprintf('%s="%s"', $attribute, $value)
                     : null;
             })
             ->filter();
@@ -89,7 +89,7 @@ trait Renderable
     {
         return collect($field->data)
             ->map(static function ($value) {
-                return sprintf('data-%s=%s', $value[0], $value[1]);
+                return sprintf('data-%s="%s"', $value[0], $value[1]);
             })
             ->implode(' ');
     }
