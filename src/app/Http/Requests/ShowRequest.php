@@ -22,7 +22,7 @@ final class ShowRequest extends FormRequest
 
         //Add values to request
         $this->merge([
-            'autorizedModel' => $belich::getModel(),
+            'autorizedModel' => data_get($data, 'results'),
             'breadcrumbs' => data_get($data, 'values.breadcrumbs'),
             'fields' => data_get($data, 'fields')->groupBy('panels'),
             'id' => $id,

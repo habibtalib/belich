@@ -101,10 +101,9 @@ final class CrudController extends Controller
      */
     public function show(Belich $belich, int $id, ShowRequest $request): View
     {
+        //The autorization happend in Daguilarm\Belich\Fields\Abstracts\FieldResolve::authorizationFromPolicy()
         //Get the data
         $request = $request->data($belich, $id);
-        //Authorization
-        $this->authorize('view', $request->results);
 
         return view('belich::dashboard.show', compact('request'));
     }
@@ -120,7 +119,7 @@ final class CrudController extends Controller
      */
     public function edit(Belich $belich, int $id, EditRequest $request): View
     {
-        //The autorization happend in Daguilarm\Belich\Fields\FieldValidate
+        //The autorization happend in Daguilarm\Belich\Fields\Abstracts\FieldResolve::authorizationFromPolicy()
         //Get the data
         $request = $request->data($belich, $id);
 
