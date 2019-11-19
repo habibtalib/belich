@@ -9,8 +9,8 @@
                     @foreach($field->options as $value => $text)
                         <option
                             value="{{ $value }}"
-                            {{ $field->value == $value ? 'selected="selected"' : '' }}
-                            {{ $field->valueRelationship == $value ? 'selected="selected"' : '' }}
+                            {{ !empty($value) && $field->value == $value ? 'selected="selected"' : '' }}
+                            {{ !empty($value) && $field->valueRelationship == $value ? 'selected="selected"' : '' }}
                         >
                             {{ $text }}
                         </option>
