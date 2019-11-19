@@ -7,7 +7,12 @@
             >
                 @isset($field->options)
                     @foreach($field->options as $value => $text)
-                        <option value="{{ $value }}" {{ $field->value === $value ? 'selected="selected"' : '' }}>{{ $text }}</option>
+                        <option
+                            value="{{ $value }}"
+                            {{ $field->value == $value ? 'selected="selected"' : '' }}
+                        >
+                            {{ $text }}
+                        </option>
                     @endforeach
                 @endisset
             </select>
