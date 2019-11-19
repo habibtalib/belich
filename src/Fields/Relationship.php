@@ -36,15 +36,11 @@ class Relationship extends FieldAbstract
      */
     public function __construct(string $label, string $resource, ?string $relationship = null)
     {
-        // Setup
-        $this->resource = $this->getResource($resource);
-        $this->resources = Str::plural($this->resource);
-        $this->label = $label ?? $this->resource;
-        $this->model = Belich::getModel();
-        $this->modelRelationship = $this->createRelationshipModel($relationship);
-        $this->fieldRelationship = $this->resource;
-        $this->table = $this->getTable($this->table);
-        $this->getDefaultVariables($label, $this->subType);
+        // Default values
+        $this->getSetUp($label, $resource);
+
+        // Default table
+        $this->table = Belich::table();
 
         // Resolve as html
         $this->asHtml();
@@ -81,15 +77,13 @@ class Relationship extends FieldAbstract
     }
 
     /**
-     * Get the table row
-     *
-     * @param string $table
+     * Show relationship as a searchable datalist
      *
      * @return self
      */
-    public function table(string $table): self
+    public function searchable(): self
     {
-        $this->table = $table;
+        $this->searchable = true;
 
         return $this;
     }

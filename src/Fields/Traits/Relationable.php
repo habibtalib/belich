@@ -32,11 +32,6 @@ trait Relationable
     /**
      * @var object
      */
-    public $modelRelationship;
-
-    /**
-     * @var object
-     */
     public $perPageViaRelationship = 10;
 
     /**
@@ -49,27 +44,39 @@ trait Relationable
     /**
      * @var string
      */
+    public $minChars = 2;
+
+    /**
+     * @var string
+     */
     public $resource;
 
     /**
-     * @var string
+     * @var object
      */
-    public $resolveIndex;
+    public $relationshipClass;
 
     /**
-     * @var string
+     * @var array
      */
-    public $resolveShow;
+    public $responseArray;
 
     /**
-     * @var string
+     * @var array
      */
-    public $resolveCreate;
+    public $responseUrl;
 
     /**
+     * @var bool
+     */
+    public $searchable = false;
+
+    /**
+     * Store as ID (Check autocomplete)
+     *
      * @var string
      */
-    public $resolveEdit;
+    public $store = 'id';
 
     /**
      * @var string
@@ -95,33 +102,15 @@ trait Relationable
      */
     protected function getForeignKey(): ?string
     {
-        if (! $this->foreignKey) {
-            $column = sprintf('%s_id', Helper::stringSingularLower($this->resource));
-
-            return Schema::hasColumn(Helper::stringPluralLower($this->resource), $column)
-                ? $column
-                : null;
+        if ($this->foreignKey) {
+            return $this->foreignKey;
         }
 
-        return $this->foreignKey;
-    }
+        $column = sprintf('%s_id', Helper::stringSingularLower($this->resource));
 
-    /**
-     * Create the relationship model (by default)
-     *
-     * @param string|null $model
-     *
-     * @return string|null
-     */
-    protected function createRelationshipModel(?string $model): ?string
-    {
-        $defaultRelationship = sprintf('%s\%s', config('belich.models'), $this->getModelRelationship());
-
-        if (Str::endsWith($defaultRelationship, '\\')) {
-            $defaultRelationship = str_replace('\\', '', $defaultRelationship);
-        }
-
-        return $model ?? $defaultRelationship ?? null;
+        return Schema::hasColumn(Helper::stringPluralLower($this->resource), $column)
+            ? $column
+            : null;
     }
 
     /**
@@ -137,13 +126,11 @@ trait Relationable
     }
 
     /**
-     *  Get the default value for table
-     *
-     * @param string|null $table
+     *  Get the default value for table in the current Resource
      *
      * @return string
      */
-    protected function getTable(?string $table): ?string
+    protected function getTable(): ?string
     {
         return $table ?? Belich::table() ?? null;
     }
@@ -151,14 +138,67 @@ trait Relationable
     /**
      *  Get the default attribute
      *
-     * @param string $table
-     *
      * @return string
      */
-    protected function getDefaultVariables(string $label): void
+    protected function getRelationAttribute(): string
     {
-        $name = sprintf('relationship-%s-%s', $this->subType, Helper::stringTokebab($label));
+        return sprintf(
+            '%s.%s',
+            strtolower($this->resource),
+            $this->getTable(),
+        );
+    }
 
-        $this->attribute = $this->id = $this->name = $this->dusk = strtolower($name);
+    /**
+     *  Get the relationship resource class
+     *
+     * @param string $resource
+     *
+     * @return object
+     */
+    protected function getRelationshipClass(string $resource): object
+    {
+        $resourceClass = Belich::resourceClassPath($resource);
+
+        return new $resourceClass();
+    }
+
+    /**
+     * Populate relationship select
+     *
+     * @return array
+     */
+    protected function getQuery(): array
+    {
+        return $this->relationshipClass
+            ->indexQuery()
+            ->select($this->table, 'id')
+            ->pluck($this->table, 'id')
+            ->toArray();
+    }
+
+    /**
+     *  Get the default values for variables
+     *
+     * @param string $label
+     * @param string $resource
+     *
+     * @return void
+     */
+    protected function getSetUp(string $label, string $resource): void
+    {
+        // Get relationship resource class
+        $this->relationshipClass = $this->getRelationshipClass($resource);
+
+        // Setup
+        $this->resource = $this->getResource($resource);
+        $this->label = $label ?? $this->resource;
+        $this->fieldRelationship = $this->resource;
+
+        // Multiple assignment
+        $this->attribute = $this->getTable();
+        $this->id = $this->getRelationAttribute();
+        $this->name = $this->getRelationAttribute();
+        $this->dusk = $this->getRelationAttribute();
     }
 }

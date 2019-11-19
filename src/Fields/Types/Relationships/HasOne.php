@@ -5,18 +5,14 @@ namespace Daguilarm\Belich\Fields\Types\Relationships;
 use Daguilarm\Belich\Contracts\RelationshipContract;
 use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Relationship;
+use Illuminate\Support\Str;
 
 class HasOne extends Relationship implements RelationshipContract
 {
     /**
      * @var string
      */
-    public $subType = 'HasOne';
-
-    /**
-     * @var string
-     */
-    public $attribute;
+    public $subType = 'hasOne';
 
     /**
      * Create a new relationship field
@@ -44,10 +40,15 @@ class HasOne extends Relationship implements RelationshipContract
         $result = optional($data)->{$this->fieldRelationship};
         $value = optional($result)->{$this->table};
         $id = optional($result)->id;
-        $url = sprintf('%s/%s/%s', config('belich.path'), $this->resources, $id);
+        $url = sprintf(
+            '%s/%s/%s',
+            config('belich.path'),
+            Str::plural($this->resource),
+            $id,
+        );
 
         return $value
-            ? view('belich::fields.HasOne.index', compact('value', 'url'))
+            ? view('belich::fields.' . $this->subType . '.index', compact('value', 'url'))
             : Helper::emptyResults();
     }
 
@@ -72,20 +73,28 @@ class HasOne extends Relationship implements RelationshipContract
      */
     public function create(object $field, ?object $data = null): string
     {
-        $field->options = $this->populateSelect();
+        // Searchable
+        if ($this->searchable) {
+            $field->responseArray = $this->getQuery();
+
+            return view('belich::fields.autocomplete', ['field' => $field]);
+        }
+
+        // Select
+        $field->options = $this->getQuery();
 
         return view('belich::fields.select', ['field' => $field]);
     }
 
     /**
-     * Populate relationship select
+     * Resolve value for create
      *
-     * @return array
+     * @param  object $data
+     *
+     * @return string
      */
-    private function populateSelect(): array
+    public function edit(object $field, ?object $data = null): string
     {
-        return $this->modelRelationship::select($this->table, 'id')
-            ->pluck($this->table, 'id')
-            ->toArray();
+        return $this->create($field, $data);
     }
 }
