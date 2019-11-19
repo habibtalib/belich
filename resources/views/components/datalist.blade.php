@@ -7,7 +7,7 @@
             type="text"
             dusk="datalist-input-{{ $id }}"
             {!! Helper::formAttribute($field, 'addClass') !!}
-            {!! Helper::formAttribute($field, 'value', $field->inputValue ?? null) !!}
+            {!! Helper::formAttribute($field, 'value', $field->defaultValue ?? null) !!}
             {!! $field->render !!}
             @if($field->responseArray)
                 onchange="javascript:setDatalistValuesFromArray('{{ $id }}', '{{ $key }}', '{{ $store }}')"
@@ -25,7 +25,7 @@
         >
 
         {{-- Hidden container with the value for storage --}}
-        <input type="hidden" dusk="datalist-{{ $id }}" {!! $field->render !!} value="{{ $field->value }}">
+        <input type="hidden" dusk="datalist-{{ $id }}" {!! $field->render !!} value="{{ $field->valueRelationship ?? $field->value }}">
 
         {{-- Array response --}}
         @if($field->responseArray)
