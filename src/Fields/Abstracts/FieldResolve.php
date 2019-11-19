@@ -2,7 +2,6 @@
 
 namespace Daguilarm\Belich\Fields\Abstracts;
 
-use Daguilarm\Belich\Facades\Belich;
 use Illuminate\Support\Collection;
 
 abstract class FieldResolve

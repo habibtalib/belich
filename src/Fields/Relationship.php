@@ -12,7 +12,6 @@ use Daguilarm\Belich\Fields\Traits\Relationable;
 use Daguilarm\Belich\Fields\Traits\Ruleable;
 use Daguilarm\Belich\Fields\Traits\Settingable;
 use Daguilarm\Belich\Fields\Traits\Visibilitable;
-use Illuminate\Support\Str;
 
 class Relationship extends FieldAbstract
 {
