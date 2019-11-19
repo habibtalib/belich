@@ -130,11 +130,11 @@ abstract class FieldResolve
             //Render field
             return $this->renderField($field);
         })
-        // Spaces removed
-        ->filter(static function ($field) {
-            $field->render = trim($field->render);
+            // Spaces removed
+            ->filter(static function ($field) {
+                $field->render = trim($field->render);
 
-            return $field;
-        });
+                return $field;
+            });
     }
 }
