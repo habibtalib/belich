@@ -143,7 +143,7 @@ trait Forms
     {
         return $value
             ? sprintf('%s%s="%s"', $prefix, $attribute, $value)
-            : sprintf('%s%s', $prefix, $attribute);
+            : '';
     }
 
     /**
