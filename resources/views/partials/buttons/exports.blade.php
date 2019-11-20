@@ -5,7 +5,7 @@
 
     <div class="btn-dropdown-content">
         {{-- Start with form --}}
-        <form method="POST" action="{{ route('dashboard.exports.download') }}" name="belich-form-exports" id="belich-form-exports" dusk="dusk-form-exports" class="btn-dropdown-content-item rounded-lg border border-gray-500 shadow text-gray-600 text-left bg-white">
+        <form method="POST" action="{{ route('dashboard.exports.download') }}" name="belich-form-exports" id="belich-form-exports" dusk="dusk-form-exports" class="btn-dropdown-content-item rounded-lg border border-gray-300 shadow-md text-gray-600 text-left bg-white">
             @csrf
             <input type="hidden" name="resource_model" value="{{ Belich::getModelPath() }}">
             <input type="hidden" id="exports_selected" name="exports_selected" value="">
@@ -28,7 +28,7 @@
             </belich::options>
 
             <div class="w-full flex flex-row-reverse p-2 mb-2">
-                <button type="submit" class="btn btn-default" dusk="table-export-submit" onclick="addCheckboxesToField('exports_selected');">{!! Helper::icon('download', trans('belich::buttons.base.download')) !!}</button>
+                <button type="submit" class="btn bg-green-400 text-white" dusk="table-export-submit" onclick="addCheckboxesToField('exports_selected');">{!! Helper::icon('download', trans('belich::buttons.base.download')) !!}</button>
             </div>
         </form>
     </div>

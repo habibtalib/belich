@@ -5,7 +5,7 @@
         {{-- Top navbar --}}
         <ul>
             {{-- Logo --}}
-            <li class="bg-teal-700">
+            <li class="bg-gray-600">
                 <a class="text-white w-48" href="{{ Belich::url() }}" dusk="navbar-brand">{{ Belich::name() }}</a>
             </li>
             @if(config('belich.navbar') === 'top')
