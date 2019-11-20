@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Fields\ResolveIndex;
 
+use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Field;
 use Illuminate\Support\Collection;
 
@@ -44,8 +45,9 @@ final class Table
 
         //Get url parameters
         $parameters = $this->getUrlParameters($field);
+        $icon = Helper::icon('sort', $field->label);
 
-        return sprintf('<a href="%s?%s">%s</a>', url()->current(), $parameters, $field->label);
+        return sprintf('<a href="%s?%s" class="text-blue-600">%s</a>', url()->current(), $parameters, $icon);
     }
 
     /**
