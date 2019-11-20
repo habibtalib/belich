@@ -96,7 +96,6 @@ abstract class Graph implements ComponentContract
         $this->name = $this->name($request);
         $this->type = $this->type($request);
         $this->uriKey = $this->uriKey();
-        $this->width = 'w-1/3';
         $this->withArea = $this->withArea();
     }
 

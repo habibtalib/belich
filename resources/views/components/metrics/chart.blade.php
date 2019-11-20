@@ -1,4 +1,4 @@
-<div id="metrics-{{ $metric->uriKey }}" class="{{ $metric->width }} h-80 p-2 overflow-hidden bg-white border border-gray-200">
+<div id="metrics-{{ $metric->uriKey }}" class="{{ $metric->width ?? 'w-1/3' }} h-80 p-2 overflow-hidden bg-white border border-gray-200">
     {{-- Legends --}}
     @includeWhen(Helper::hasMetricsLegends($metric), 'belich::components.metrics.legend')
 
