@@ -139,9 +139,12 @@ final class FieldValidate
         return collect($values)
             ->map(static function ($value, $attribute) {
                 if (isset($value) && isset($attribute)) {
-                    // For jquery
-                    // return sprintf("%s:$('#%s').val()", $attribute, $attribute);
-                    return sprintf("%s:document.getElementById('%s').value", $attribute, $attribute);
+                    // Filter for relationships
+                    $attr = explode('.', $attribute);
+
+                    return count($attr) <= 1
+                        ? sprintf("%s:document.getElementById('%s').value", $attribute, $attribute)
+                        : '';
                 }
             })
             ->filter()
