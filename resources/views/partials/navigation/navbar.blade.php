@@ -28,9 +28,9 @@
                             </a>
                             <ul>
                                 @foreach($resource as $item)
-                                    <li class="bg-teal-400 hover:bg-teal-200">
-                                        <a class="text-white hover:text-teal-600" href="{{ sprintf('%s/%s', Belich::url(), $item->get('resource')) }}" dusk="navbar-{{ strtolower($item->get('name')) }}">
-                                            {{ $item->get('name') }}
+                                    <li class="bg-teal-600 hover:bg-teal-700">
+                                        <a class="text-white" href="{{ sprintf('%s/%s', Belich::url(), $item->get('resource')) }}" dusk="navbar-{{ strtolower($item->get('name')) }}">
+                                            {!! Helper::icon($item->get('icon'), $item->get('name')) !!}
                                         </a>
                                     </li>
                                 @endforeach
