@@ -115,7 +115,7 @@ https://github.com/daguilarm/belich-documents
 
 Most recent screenshot from the current design:
 
-![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/screenshots/2019-11-20.png)
+![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/2019-11-20.png)
 
 #### With stats 
 
