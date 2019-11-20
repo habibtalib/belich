@@ -2,9 +2,8 @@
 .pagination {
     @apply flex justify-between items-center w-auto;
 }
-
     .pagination li.page-item {
-        @apply block py-5 px-10 text-lg;
+        @apply block m-4 px-4 py-3 text-lg font-bold;
         color: var(--pagination-disabled);
     }
 
