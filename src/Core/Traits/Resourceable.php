@@ -139,7 +139,7 @@ trait Resourceable
             'class' => $className,
             'displayInNavigation' => $displayInNavigation,
             'group' => $class::$group,
-            'icon' => $class::$icon ?? 'angle-right',
+            'icon' => $class::$icon ?? config('belich.navbar.defaultIcon') ?? '',
             'label' => $class::$label ?? Str::title($className),
             'pluralLabel' => $class::$pluralLabel ?? Str::plural(Str::title($className)),
             'resource' => Str::plural(Str::lower($className)),

@@ -1,5 +1,5 @@
 {{-- <li> --}}
-    <div dusk="logout" class="flex items-center h-16 w-auto font-medium cursor-pointer {{ config('belich.navbar') === 'top' ? 'text-white' : 'text-gray-600' }}">
+    <div dusk="logout" class="flex items-center h-16 w-auto font-medium cursor-pointer {{ config('belich.navbar.display') === 'top' ? 'text-white' : 'text-gray-600' }}">
         @if(config('belich.profile'))
             <div class="pr-4">
                 {{-- Gravatar --}}

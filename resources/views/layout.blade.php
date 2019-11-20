@@ -6,7 +6,7 @@
     </head>
     <body>
             {{-- Top navbar --}}
-            @if(config('belich.navbar') === 'top')
+            @if(config('belich.navbar.display') === 'top')
                 <div id="app">
                     {{-- Navbar --}}
                     @includeWhen(auth()->check(), 'belich::partials.navigation.navbar')

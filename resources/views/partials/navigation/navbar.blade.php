@@ -1,6 +1,6 @@
 {{-- This section is segregate in case you want to customize --}}
 {{-- Top navbar --}}
-@if(config('belich.navbar') === 'top')
+@if(config('belich.navbar.display') === 'top')
     <nav id="navbar" class="w-full h-16 bg-teal-400">
         {{-- Top navbar --}}
         <ul>
@@ -8,7 +8,7 @@
             <li class="bg-gray-600">
                 <a class="text-white w-48" href="{{ Belich::url() }}" dusk="navbar-brand">{{ Belich::name() }}</a>
             </li>
-            @if(config('belich.navbar') === 'top')
+            @if(config('belich.navbar.display') === 'top')
                 {{-- Get all the resources --}}
                 @foreach(Belich::groupResources() as $resource)
                     {{-- One level resource --}}

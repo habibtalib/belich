@@ -12,7 +12,7 @@
             @if($resource->count() <= 1)
                 <li class="px-4 mb-4">
                     <a class="text-white font-medium" href="{{ sprintf('%s/%s', Belich::url(), $resource->first()->get('resource')) }}">
-                        {!! icon($resource->first()->get('icon'), $resource->first()->get('name')) !!}
+                        {!! Helper::icon($resource->first()->get('icon'), $resource->first()->get('name')) !!}
                     </a>
                 </li>
 
@@ -20,14 +20,14 @@
             @else
                 <li class="pl-2 py-3">
                     <a class="text-white font-medium" href="{{ sprintf('%s/%s', Belich::url(), $resource->first()->get('resource')) }}">
-                        {!! icon($resource->first()->get('icon'), $resource->first()->get('group')) !!}
+                        {!! Helper::icon($resource->first()->get('icon'), $resource->first()->get('group')) !!}
                     </a>
                     <ul>
                         @foreach($resource as $item)
                             <li class="my-4 ml-6">
                                 <a class="text-gray-200" href="{{ sprintf('%s/%s', Belich::url(), $item->get('resource')) }}">
                                     {{-- {!! icon($item->get('icon'), $item->get('name')) !!} --}}
-                                    {!! icon('caret-right', $item->get('name')) !!}
+                                    {!! Helper::icon('caret-right', $item->get('name')) !!}
                                 </a>
                             </li>
                         @endforeach
