@@ -15,11 +15,6 @@ class HasOne extends Relationship implements RelationshipContract
     public $subType = 'hasOne';
 
     /**
-     * @var object
-     */
-    public $customQuery;
-
-    /**
      * Create a new relationship field
      *
      * @param  string  $label
@@ -80,13 +75,13 @@ class HasOne extends Relationship implements RelationshipContract
     {
         // Searchable
         if ($this->searchable) {
-            $field->responseArray = $this->customQuery ?? $this->getQuery();
+            $field->responseArray = $this->getQuery();
 
             return view('belich::fields.autocomplete', ['field' => $field]);
         }
 
         // Select
-        $field->options = $this->customQuery ?? $this->getQuery();
+        $field->options = $this->getQuery();
 
         return view('belich::fields.select', ['field' => $field]);
     }
@@ -101,12 +96,5 @@ class HasOne extends Relationship implements RelationshipContract
     public function edit(object $field, ?object $data = null): string
     {
         return $this->create($field, $data);
-    }
-
-    public function query(\Closure $query)
-    {
-        $this->customQuery = call_user_func($query, $value = '');
-
-        return $this;
     }
 }
