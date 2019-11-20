@@ -21,7 +21,7 @@ nav#navbar ul li.sidebar-child {
 
 /* Hide Dropdowns by Default */
 nav#navbar ul ul {
-    @apply z-10 absolute invisible opacity-0;
+    @apply z-10 absolute invisible shadow-md opacity-0;
     transition: var(--transition);
 }
 
@@ -38,7 +38,6 @@ nav#navbar ul li:hover ul {
     transition-delay: var(--transition-delay);
 }
 
-/* Fisrt Tier Dropdown */
 nav#navbar ul ul li {
     @apply relative block;
 }
@@ -46,6 +45,10 @@ nav#navbar ul ul li {
 /* Fisrt Tier Dropdown */
 nav#navbar ul ul li a {
     @apply h-12 py-4;
+}
+
+nav#navbar ul ul li:last-child {
+    @apply rounded-b;
 }
 
 /* Second, Third and more Tiers */
