@@ -4,26 +4,28 @@
     {{-- Breadcrumbs --}}
     @include('belich::partials.navigation.breadcrumbs')
 
-    {{-- Metrics And Cards --}}
-    @if($request->metrics || $request->cards)
-        <div class="{{ Helper::hideComponentsForScreens() }} flex-wrap mb-3">
-            {!! Belich::components($request) !!}
-        </div>
-    @endif
+    <div class="px-4">
+        {{-- Metrics And Cards --}}
+        @if($request->metrics || $request->cards)
+            <div class="{{ Helper::hideComponentsForScreens() }} flex-wrap mb-3 shadow-md bg-white">
+                {!! Belich::components($request) !!}
+            </div>
+        @endif
 
-    {{-- Search container --}}
-    {{-- input: search field --}}
-    {{-- buttons: options, export, delete,... --}}
-    @if(config('belich.liveSearch.enable') === true)
-        <div id="search-container" class="p-4 shadow-md bg-white">
-            @include('belich::dashboard.index.search')
-        </div>
-    @endif
+        {{-- Search container --}}
+        {{-- input: search field --}}
+        {{-- buttons: options, export, delete,... --}}
+        @if(config('belich.liveSearch.enable') === true)
+            <div id="search-container" class="p-4 shadow-md bg-white">
+                @include('belich::dashboard.index.search')
+            </div>
+        @endif
 
-    {{-- Table --}}
-    {{-- Pagination --}}
-    <div id="table-container" class="w-full">
-        @include('belich::dashboard.index.table')
+        {{-- Table --}}
+        {{-- Pagination --}}
+        <div id="table-container" class="w-full">
+            @include('belich::dashboard.index.table')
+        </div>
     </div>
 @endsection
 

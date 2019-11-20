@@ -1,7 +1,7 @@
 {{-- Delete --}}
 <div id="mass-delete-container" class="hidden button-selected">
     {{-- Set button icon --}}
-    <a href="#modal-mass-delete" dusk="button-options-delete" class="btn btn-dropdown border border-red-400 mr-2 bg-red-200 text-red-600 hover:bg-red-400 hover:text-white" onclick="deleteSelectedFields('delete_selected');">
+    <a href="#modal-mass-delete" dusk="button-options-delete" class="btn btn-dropdown rounded-lg mr-2 bg-red-200 text-red-600 hover:bg-red-400 hover:text-white" onclick="deleteSelectedFields('delete_selected');">
         @icon('trash', '', 'opacity-100')
     </a>
 </div>

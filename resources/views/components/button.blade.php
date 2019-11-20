@@ -5,7 +5,7 @@
         @isset($dusk)
             dusk="{{ $dusk }}"
         @endif
-        class="btn btn-{{ $color ?? 'secondary' }} {{ $class ?? '' }} ml-2"
+        class="btn btn-{{ $color ?? 'secondary' }} {{ $class ?? '' }} ml-2 rounded-lg hover:bg-gray-100 hover:text-gray-800"
         data-title="{{ $title }}"
         {!! isset($loading) ? 'onclick="loading(this);"' : '' !!}
         {!! isset($onclick) ? 'onclick="' . $onclick . '"' : '' !!}

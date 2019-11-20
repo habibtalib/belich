@@ -35,3 +35,7 @@ textarea:focus {
 .form-container option:disabled {
     @apply opacity-50 bg-gray-400 cursor-not-allowed;
 }
+
+.form-container .form-item-field:last-child {
+    border: 0;
+}

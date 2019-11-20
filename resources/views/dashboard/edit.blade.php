@@ -5,7 +5,7 @@
     @include('belich::partials.navigation.breadcrumbs')
 
     {{-- Form --}}
-    <form method="POST" enctype="multipart/form-data" name="form-{{ $request->name }}-edit" id="form-{{ $request->name }}-edit" action="{{ Helper::toRoute('update') }}">
+    <form method="POST" enctype="multipart/form-data" name="form-{{ $request->name }}-edit" id="form-{{ $request->name }}-edit" action="{{ Helper::toRoute('update') }}" class="px-4">
         @csrf
         @method('PATCH')
 

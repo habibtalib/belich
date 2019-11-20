@@ -1,5 +1,5 @@
 {{-- Header fixer --}}
-<div class="w-full flex items-center py-8 px-6
+<div class="form-item-field w-full flex items-center py-8 px-6
     bg-{{ $field->type === 'header' && isset($field->background) ? $field->background : 'white' }}
     text-{{ $field->type === 'header' && isset($field->color) ? $field->color : 'gray-600' }}
     border-b border-gray-200 text-sm shadow-md"

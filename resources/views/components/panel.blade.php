@@ -1,4 +1,5 @@
 <div class="form-container">
+    <div class="rounded-t-lg h-4 bg-white shadow"></div>
     {{-- Get all the fields --}}
     @foreach($panel as $key => $field)
 
