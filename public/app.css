@@ -272,6 +272,11 @@ textarea:focus {
   cursor: not-allowed;
 }
 
+.form-container .form-item-field:first-child {
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+}
+
 .form-container .form-item-field:last-child {
   border: 0;
 }

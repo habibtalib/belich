@@ -4,7 +4,7 @@
     {{-- Breadcrumbs --}}
     @include('belich::partials.navigation.breadcrumbs')
 
-    <div class="px-4">
+    <div id="form-container-group" class="px-4">
         {{-- Building tabs --}}
         @if(Belich::tabs())
             <belich::tabs :tabs="$request->fields"></belich::tabs>
