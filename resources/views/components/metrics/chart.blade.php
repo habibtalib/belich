@@ -27,7 +27,9 @@
     !!}
 @endprepend
 
-@prepend('css-metrics')
-    {{-- Load the custom css styles for the lib --}}
-    {!! Chart::css($metric) !!}
-@endprepend
+@push('css-metrics')
+    <style>
+        {{-- Load the custom css styles for the lib --}}
+        {!! Chart::css($metric) !!}
+    </style>
+@endpush

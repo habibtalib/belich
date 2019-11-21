@@ -14,5 +14,7 @@
 {{-- Stack of css --}}
 @stack('css')
 
+@stack('css-metrics')
+
 {{-- Not repeat css (only one) --}}
 @yield('css-no-repeat')
