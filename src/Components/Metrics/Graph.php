@@ -146,7 +146,7 @@ abstract class Graph implements ComponentContract
      */
     private function color(): string
     {
-        return $this->color ?? 'lightseagreen';
+        return $this->color ?? 'gray';
     }
 
     /**
