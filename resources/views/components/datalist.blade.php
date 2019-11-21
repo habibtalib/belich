@@ -6,6 +6,7 @@
             list="list_{{ $key }}"
             type="text"
             dusk="datalist-input-{{ $id }}"
+            name="datalist-{{ $field->name }}"
             {!! Helper::formAttribute($field, 'addClass') !!}
             {!! Helper::formAttribute($field, 'value', $field->defaultValue ?? null) !!}
             {!! $field->render !!}
@@ -25,7 +26,7 @@
         >
 
         {{-- Hidden container with the value for storage --}}
-        <input type="hidden" name="{{ $id }}" dusk="datalist-{{ $id }}" {!! $field->render !!} value="{{ $field->valueRelationship ?? $field->value }}">
+        <input type="hidden" name="{{ $field->name }}" dusk="datalist-{{ $id }}" {!! $field->render !!} value="{{ $field->valueRelationship ?? $field->value }}">
 
         {{-- Array response --}}
         @if($field->responseArray)
