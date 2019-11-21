@@ -145,11 +145,25 @@ trait Relationable
      */
     protected function getQuery(): array
     {
-        return $this->relationshipClass
+        return ['' => ''] + $this->relationshipClass
             ->indexQuery()
             ->select($this->table, 'id')
             ->pluck($this->table, 'id')
             ->toArray();
+    }
+
+    /**
+     *  Get the default attribute
+     *
+     * @return string
+     */
+    protected function getRelationAttribute(string $table): string
+    {
+        return sprintf(
+            '%s.%s',
+            strtolower($this->resource),
+            $table,
+        );
     }
 
     /**
@@ -171,6 +185,7 @@ trait Relationable
         $this->fieldRelationship = $this->resource;
 
         // Multiple assignment
-        $this->attribute = $this->id = $this->name = $this->dusk = $table;
+        $this->attribute = $this->id = $this->dusk = $table;
+        $this->name = $this->getRelationAttribute($table);
     }
 }
