@@ -25,7 +25,7 @@
         >
 
         {{-- Hidden container with the value for storage --}}
-        <input type="hidden" dusk="datalist-{{ $id }}" {!! $field->render !!} value="{{ $field->valueRelationship ?? $field->value }}">
+        <input type="hidden" name="{{ $id }}" dusk="datalist-{{ $id }}" {!! $field->render !!} value="{{ $field->valueRelationship ?? $field->value }}">
 
         {{-- Array response --}}
         @if($field->responseArray)
@@ -42,9 +42,6 @@
                 <ul id="list_{{ $key }}" dusk="datalist-info-{{ $id }}" class="datalist hidden rounded shadow-md"></ul>
             </div>
         @endif
-
-        {{-- Error container --}}
-        <p id="error-{{ $id }}" class="validation-error"></p>
 
         {{-- Cast field --}}
         @include('belich::fields.cast')
