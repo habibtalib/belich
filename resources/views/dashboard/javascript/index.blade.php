@@ -30,7 +30,7 @@
                 }
                 //Ajax request
                 var request = new XMLHttpRequest();
-                request.open('GET', '{{ route('dashboard.ajax.search') }}?type=search&query=' + query + '&resourceName={{ Belich::resourceName() }}&fields={{ Helper::searchFields() }}', true);
+                request.open('GET', '{{ route('dashboard.ajax.search') }}?type=search&tableTextAlign={{ $request->get('tableTextAlign') }}&query=' + query + '&resourceName={{ Belich::resourceName() }}&fields={{ Helper::searchFields() }}', true);
                 request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
                 request.onload = function() {
                     if (this.status == 200 && this.readyState == 4) {

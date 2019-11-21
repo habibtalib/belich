@@ -1,4 +1,4 @@
-<div id="belich-table-search" class="flex items-center">
+<div id="belich-table-search" class="w-full flex items-center">
 
     {{-- Search field --}}
     <div class="icon-search w-full relative">
