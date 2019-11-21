@@ -72,6 +72,11 @@ class ResourcesBase
     public static $relationships;
 
     /**
+     * @var string
+     */
+    public static $controllerAction;
+
+    /**
      * @var array
      */
     public static $softDeletes = false;

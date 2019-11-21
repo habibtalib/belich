@@ -115,6 +115,20 @@ abstract class BelichBase
     }
 
     /**
+     * Get the current resource form action (to Controller)
+     *
+     * @param string|null $className
+     *
+     * @return string|null
+     */
+    public static function controllerAction(?string $className = null): ?string
+    {
+        $class = static::resourceClassPath();
+
+        return $class::$controllerAction ?? null;
+    }
+
+    /**
      * Get the current resource class name: User
      *
      * @return string
