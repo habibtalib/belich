@@ -125,30 +125,6 @@ trait Relationable
     }
 
     /**
-     *  Get the default value for table in the current Resource
-     *
-     * @return string
-     */
-    protected function getTable(): ?string
-    {
-        return $table ?? Belich::table() ?? null;
-    }
-
-    /**
-     *  Get the default attribute
-     *
-     * @return string
-     */
-    protected function getRelationAttribute(): string
-    {
-        return sprintf(
-            '%s.%s',
-            strtolower($this->resource),
-            $this->getTable(),
-        );
-    }
-
-    /**
      *  Get the relationship resource class
      *
      * @param string $resource
@@ -184,7 +160,7 @@ trait Relationable
      *
      * @return void
      */
-    protected function getSetUp(string $label, string $resource): void
+    protected function getSetUp(string $label, string $resource, ?string $table): void
     {
         // Get relationship resource class
         $this->relationshipClass = $this->getRelationshipClass($resource);
@@ -195,9 +171,6 @@ trait Relationable
         $this->fieldRelationship = $this->resource;
 
         // Multiple assignment
-        $this->attribute = $this->getTable();
-        $this->id = $this->getRelationAttribute();
-        $this->name = $this->getRelationAttribute();
-        $this->dusk = $this->getRelationAttribute();
+        $this->attribute = $this->id = $this->name = $this->dusk = $table;
     }
 }
