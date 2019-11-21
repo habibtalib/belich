@@ -30,16 +30,17 @@ class Relationship extends FieldAbstract
      * @param  string  $label
      * @param  string  $resource [The relational resource in plural]
      * @param  string|null  $relationship [The relational model]
+     * @param  string|null  $table [The relational table from the model]
      *
      * @return  void
      */
-    public function __construct(string $label, string $resource, ?string $relationship = null)
+    public function __construct(string $label, string $resource, ?string $relationship = null, ?string $table = null)
     {
         // Default values
-        $this->getSetUp($label, $resource);
+        $this->getSetUp($label, $resource, $table ?? Belich::table() ?? null);
 
         // Default table
-        $this->table = Belich::table();
+        $this->table = $table ?? Belich::table();
 
         // Resolve as html
         $this->asHtml();

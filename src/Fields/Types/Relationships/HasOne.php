@@ -20,12 +20,13 @@ class HasOne extends Relationship implements RelationshipContract
      * @param  string  $label
      * @param  string  $resource [The relational resource in plural]
      * @param  string|null  $relationship [The relational model]
+     * @param  string|null  $table [The relational table from the model]
      *
      * @return  void
      */
-    public function __construct(string $label, string $resource, ?string $relationship = null)
+    public function __construct(string $label, string $resource, ?string $relationship = null, ?string $table = null)
     {
-        parent::__construct($label, $resource, $relationship);
+        parent::__construct($label, $resource, $relationship, $table);
     }
 
     /**
