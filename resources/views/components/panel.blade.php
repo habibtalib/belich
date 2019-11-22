@@ -28,9 +28,11 @@
                     <slot name="input">
                         {{-- Show as html --}}
                         @if($field->asHtml)
+                            {{-- Added filter for relationship field -> showValue --}}
                             {!! $field->showValue ?? $field->value !!}
                         {{-- Show as scaped field --}}
                         @else
+                            {{-- Added filter for relationship field -> showValue --}}
                             {{ $field->showValue ?? $field->value }}
                         @endif
 
