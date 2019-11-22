@@ -2,7 +2,7 @@
 
 namespace Daguilarm\Belich\Contracts;
 
-use Daguilarm\Belich\Fields\Relationship;
+use Daguilarm\Belich\Fields\Types\Relationship;
 
 interface RelationshipContract
 {
