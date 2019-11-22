@@ -113,20 +113,6 @@ trait Relationable
     }
 
     /**
-     * Populate relationship select
-     *
-     * @return array
-     */
-    protected function getQuery(): array
-    {
-        return ['' => ''] + $this->relationshipClass
-            ->indexQuery()
-            ->select($this->tableColumn, 'id')
-            ->pluck($this->tableColumn, 'id')
-            ->toArray();
-    }
-
-    /**
      *  Format/Set/Parse the current model
      *
      * @param string|null $model

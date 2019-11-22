@@ -98,4 +98,18 @@ class HasOne extends Relationship implements RelationshipContract
     {
         return $this->create($field, $data);
     }
+
+    /**
+     * Populate relationship select
+     *
+     * @return array
+     */
+    private function getQuery(): array
+    {
+        return ['' => ''] + $this->relationshipClass
+            ->indexQuery()
+            ->select($this->tableColumn, 'id')
+            ->pluck($this->tableColumn, 'id')
+            ->toArray();
+    }
 }
