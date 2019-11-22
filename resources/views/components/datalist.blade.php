@@ -26,7 +26,7 @@
         >
 
         {{-- Hidden container with the value for storage --}}
-        <input type="hidden" name="{{ $field->name }}" dusk="datalist-{{ $id }}" {!! $field->render !!} value="{{ $field->valueRelationship ?? $field->value }}">
+        <input type="hidden" name="{{ $field->name }}" dusk="datalist-{{ $id }}" {!! $field->render !!} value="{{ $field->value }}">
 
         {{-- Array response --}}
         @if($field->responseArray)
