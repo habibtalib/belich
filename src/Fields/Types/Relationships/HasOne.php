@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Fields\Types\Relationships;
 
 use Daguilarm\Belich\Contracts\RelationshipContract;
 use Daguilarm\Belich\Facades\Helper;
-use Daguilarm\Belich\Fields\Relationship;
+use Daguilarm\Belich\Fields\Types\Relationship;
 use Illuminate\Support\Str;
 
 class HasOne extends Relationship implements RelationshipContract
@@ -20,13 +20,13 @@ class HasOne extends Relationship implements RelationshipContract
      * @param  string  $label
      * @param  string  $resource [The relational resource in plural]
      * @param  string|null  $relationship [The relational model]
-     * @param  string|null  $table [The relational table from the model]
+     * @param  string|null  $tableColumn [The relational table from the model]
      *
      * @return  void
      */
-    public function __construct(string $label, string $resource, ?string $relationship = null, ?string $table = null)
+    public function __construct(string $label, string $resource, ?string $relationship = null, ?string $tableColumn = null)
     {
-        parent::__construct($label, $resource, $relationship, $table);
+        parent::__construct($label, $resource, $relationship, $tableColumn);
     }
 
     /**
@@ -39,7 +39,7 @@ class HasOne extends Relationship implements RelationshipContract
     public function index(?object $data = null): string
     {
         $result = optional($data)->{$this->fieldRelationship};
-        $value = optional($result)->{$this->table};
+        $value = optional($result)->{$this->tableColumn};
         $id = optional($result)->id;
         $url = sprintf(
             '%s/%s/%s',

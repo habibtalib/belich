@@ -80,7 +80,7 @@ trait Relationable
     /**
      * @var string
      */
-    public $table;
+    public $tableColumn;
 
     /**
      * Format/Set/Parse the current resource
@@ -113,6 +113,20 @@ trait Relationable
     }
 
     /**
+     * Populate relationship select
+     *
+     * @return array
+     */
+    protected function getQuery(): array
+    {
+        return ['' => ''] + $this->relationshipClass
+            ->indexQuery()
+            ->select($this->tableColumn, 'id')
+            ->pluck($this->tableColumn, 'id')
+            ->toArray();
+    }
+
+    /**
      *  Format/Set/Parse the current model
      *
      * @param string|null $model
@@ -139,30 +153,18 @@ trait Relationable
     }
 
     /**
-     * Populate relationship select
-     *
-     * @return array
-     */
-    protected function getQuery(): array
-    {
-        return ['' => ''] + $this->relationshipClass
-            ->indexQuery()
-            ->select($this->table, 'id')
-            ->pluck($this->table, 'id')
-            ->toArray();
-    }
-
-    /**
      *  Get the default attribute
+     *
+     * @param string $tableColumn
      *
      * @return string
      */
-    protected function getRelationAttribute(string $table): string
+    protected function getRelationAttribute(string $tableColumn): string
     {
         return sprintf(
-            '%s.%s',
+            '%s[%s]',
             strtolower($this->resource),
-            $table,
+            $tableColumn,
         );
     }
 
@@ -171,10 +173,11 @@ trait Relationable
      *
      * @param string $label
      * @param string $resource
+     * @param string|null $tableColumn
      *
      * @return void
      */
-    protected function getSetUp(string $label, string $resource, ?string $table): void
+    protected function getSetUp(string $label, string $resource, ?string $tableColumn): void
     {
         // Get relationship resource class
         $this->relationshipClass = $this->getRelationshipClass($resource);
@@ -185,7 +188,7 @@ trait Relationable
         $this->fieldRelationship = $this->resource;
 
         // Multiple assignment
-        $this->attribute = $this->id = $this->dusk = $table;
-        $this->name = $this->getRelationAttribute($table);
+        $this->attribute = $this->id = $this->dusk = $tableColumn;
+        $this->name = $this->getRelationAttribute($tableColumn);
     }
 }

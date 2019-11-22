@@ -122,14 +122,14 @@ final class Belich extends BelichBase
     }
 
     /**
-     * Get the resource relationship table for render value
+     * Get the resource relationship table column for render value
      *
      * @return string|null
      */
-    public static function table(): ?string
+    public static function tableColumn(): ?string
     {
         $class = static::resourceClassPath();
 
-        return $class::$table ?? null;
+        return $class::$column ?? null;
     }
 }
