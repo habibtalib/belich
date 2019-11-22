@@ -36,11 +36,12 @@ interface RelationshipContract
     /**
      * Resolve value for show
      *
-     * @param  object $data
+     * @param  object $field
+     * @param  object|null $data
      *
-     * @return string
+     * @return object
      */
-    public function show(?object $data = null): string;
+    public function show(object $field, ?object $data = null): object;
 
     /**
      * Resolve value for create
