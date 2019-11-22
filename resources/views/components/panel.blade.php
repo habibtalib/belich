@@ -28,10 +28,10 @@
                     <slot name="input">
                         {{-- Show as html --}}
                         @if($field->asHtml)
-                            {!! $field->value !!}
+                            {!! $field->showValue ?? $field->value !!}
                         {{-- Show as scaped field --}}
                         @else
-                            {{ $field->value }}
+                            {{ $field->showValue ?? $field->value }}
                         @endif
 
                     </slot>
