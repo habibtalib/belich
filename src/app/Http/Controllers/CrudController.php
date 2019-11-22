@@ -4,6 +4,7 @@ namespace Daguilarm\Belich\App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Daguilarm\Belich\App\Http\Controllers\Traits\Redirectable;
+use Daguilarm\Belich\App\Http\Controllers\Traits\Relationable;
 use Daguilarm\Belich\App\Http\Requests\CreateRequest;
 use Daguilarm\Belich\App\Http\Requests\EditRequest;
 use Daguilarm\Belich\App\Http\Requests\IndexRequest;
@@ -16,7 +17,7 @@ use Illuminate\View\View;
 
 final class CrudController extends Controller
 {
-    use Redirectable;
+    use Redirectable, Relationable;
 
     /**
      * @var Illuminate\Database\Eloquent\Model
@@ -142,6 +143,8 @@ final class CrudController extends Controller
         $request = $request->handleFile($model);
         //Update files
         $update = $model->update(array_filter($request->all()));
+        //Update relationships
+        $this->updateRelationship($model, $request);
 
         return $this->redirectToAction($update, $actionSuccess = 'updated', $actionFail = 'updating', $id);
     }
