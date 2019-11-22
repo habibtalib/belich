@@ -35,6 +35,9 @@ class HasOne extends Relationship implements RelationshipContract
     {
         parent::__construct($label, $resource, $relationship, $tableColumn);
 
+        // Resolve as html
+        $this->asHtml();
+
         // Editable relationships disabled by default
         $this->exceptOnForms();
     }
@@ -66,13 +69,25 @@ class HasOne extends Relationship implements RelationshipContract
     /**
      * Resolve value for show
      *
-     * @param  object $data
+     * @param  object $field
+     * @param  object|null $data
      *
-     * @return string
+     * @return object
      */
-    public function show(?object $data = null): string
+    public function show(object $field, ?object $data = null): object
     {
-        return $this->index($data);
+        // Get values
+        $value = optional($field)->value;
+        $url = sprintf(
+            '%s/%s/%s',
+            config('belich.path'),
+            Str::plural($this->resource),
+            optional($field)->valueRelationship,
+        );
+        // Set value
+        $field->showValue = $value ? sprintf('<a href="%s" class="show-link">%s</a>', $url, $value) : Helper::emptyResults();
+
+        return $field;
     }
 
     /**
