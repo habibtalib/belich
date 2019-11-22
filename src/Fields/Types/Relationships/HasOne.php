@@ -99,17 +99,10 @@ class HasOne extends Relationship implements RelationshipContract
      */
     public function create(object $field, ?object $data = null): ?string
     {
-        // Searchable
-        if ($this->searchable) {
-            $field->responseArray = $this->getQuery();
+        $field->type = 'text';
+        $field->help = trans('belich::messages.relationships.new_field', ['value' => Str::plural($field->resource) ?? null]);
 
-            return view('belich::fields.autocomplete', ['field' => $field]);
-        }
-
-        // Select
-        $field->options = $this->getQuery();
-
-        return view('belich::fields.select', ['field' => $field]);
+        return view('belich::fields.text', ['field' => $field]);
     }
 
     /**
