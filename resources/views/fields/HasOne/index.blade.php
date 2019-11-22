@@ -1,3 +1,3 @@
-<a href="{{ $url }}" class="text-blue-500 font-bold hover:text-black">
+<a href="{{ $url }}" class="show-link">
     {{ $value }}
 </a>
