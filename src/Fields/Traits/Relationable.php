@@ -83,6 +83,11 @@ trait Relationable
     public $tableColumn;
 
     /**
+     * @var string
+     */
+    public $showValue;
+
+    /**
      * Format/Set/Parse the current resource
      *
      * @param string $resource
