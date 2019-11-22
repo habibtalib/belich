@@ -16,7 +16,7 @@ trait Routes
     public function toRoute(string $redirectTo): string
     {
         // Add custom form action from Resource
-        if(Belich::controllerAction()) {
+        if (Belich::controllerAction()) {
             return action(Belich::controllerAction() . '@' . $redirectTo, Belich::resourceId() ?? null);
         }
 

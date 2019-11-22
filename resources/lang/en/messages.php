@@ -34,7 +34,7 @@ return [
         ],
     ],
     'relationships' => [
-        'new_field' => 'Notice!!! This will create a new row in the database: :value'
+        'new_field' => 'Notice!!! This will create a new row in the database: :value',
     ],
     'resources' => [
         'no_results' => 'No results found for the resource: :resource.',
