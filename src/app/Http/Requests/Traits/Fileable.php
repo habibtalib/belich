@@ -5,7 +5,6 @@ namespace Daguilarm\Belich\App\Http\Requests\Traits;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
-// This trait is inspired by https://github.com/stahiralijan/request-caster/
 trait Fileable
 {
     /**
