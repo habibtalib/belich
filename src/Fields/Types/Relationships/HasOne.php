@@ -99,6 +99,7 @@ class HasOne extends Relationship implements RelationshipContract
      */
     public function create(object $field, ?object $data = null): ?string
     {
+        // Settings
         $field->type = 'text';
         $field->help = trans('belich::messages.relationships.new_field', ['value' => Str::plural($field->resource) ?? null]);
 
@@ -114,7 +115,17 @@ class HasOne extends Relationship implements RelationshipContract
      */
     public function edit(object $field, ?object $data = null): ?string
     {
-        return $this->create($field, $data);
+        // Searchable
+        if ($this->searchable) {
+            $field->responseArray = $this->getQuery();
+
+            return view('belich::fields.autocomplete', ['field' => $field]);
+        }
+
+        // Select
+        $field->options = $this->getQuery();
+
+        return view('belich::fields.select', ['field' => $field]);
     }
 
     /**
