@@ -56,6 +56,11 @@ trait Relationable
     public $relationshipClass;
 
     /**
+     * @var callable
+     */
+    public $resolveQuery;
+
+    /**
      * @var array
      */
     public $responseArray;
@@ -71,6 +76,11 @@ trait Relationable
     public $searchable = false;
 
     /**
+     * @var string
+     */
+    public $showValue;
+
+    /**
      * Store as ID (Check autocomplete)
      *
      * @var string
@@ -81,11 +91,6 @@ trait Relationable
      * @var string
      */
     public $tableColumn;
-
-    /**
-     * @var string
-     */
-    public $showValue;
 
     /**
      * Format/Set/Parse the current resource
@@ -127,6 +132,24 @@ trait Relationable
     protected function getModelRelationship(?string $model = null): string
     {
         return Helper::stringSingularUpper($model ?? $this->resource);
+    }
+
+    /**
+     * Populate relationship select
+     *
+     * @return array
+     */
+    protected function getQuery(): array
+    {
+        if (is_callable($this->resolveQuery)) {
+            return call_user_func($this->resolveQuery, new $this->relationshipClass::$model);
+        }
+
+        return ['' => ''] + $this->relationshipClass
+            ->indexQuery()
+            ->select($this->tableColumn, $this->tableColumn)
+            ->pluck($this->tableColumn, $this->tableColumn)
+            ->toArray();
     }
 
     /**

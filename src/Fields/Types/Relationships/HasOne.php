@@ -37,7 +37,6 @@ class HasOne extends Relationship implements RelationshipContract
 
         // Resolve as html
         $this->asHtml();
-
         // Editable relationships disabled by default
         $this->exceptOnForms();
     }
@@ -51,6 +50,7 @@ class HasOne extends Relationship implements RelationshipContract
      */
     public function index(?object $data = null): string
     {
+        // Get values
         $result = optional($data)->{$this->fieldRelationship};
         $value = optional($result)->{$this->tableColumn};
         $id = optional($result)->id;
@@ -99,7 +99,7 @@ class HasOne extends Relationship implements RelationshipContract
      */
     public function create(object $field, ?object $data = null): ?string
     {
-        // Settings
+        // Set values
         $field->type = 'text';
         $field->help = trans('belich::messages.relationships.new_field', ['value' => Str::plural($field->resource) ?? null]);
 
@@ -126,19 +126,5 @@ class HasOne extends Relationship implements RelationshipContract
         $field->options = $this->getQuery();
 
         return view('belich::fields.select', ['field' => $field]);
-    }
-
-    /**
-     * Populate relationship select
-     *
-     * @return array
-     */
-    private function getQuery(): array
-    {
-        return ['' => ''] + $this->relationshipClass
-            ->indexQuery()
-            ->select($this->tableColumn, $this->tableColumn)
-            ->pluck($this->tableColumn, $this->tableColumn)
-            ->toArray();
     }
 }

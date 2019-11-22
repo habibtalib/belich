@@ -82,6 +82,13 @@ class Relationship extends FieldAbstract
         return $this;
     }
 
+    public function query(\Closure $value): self
+    {
+        $this->resolveQuery = $value;
+
+        return $this;
+    }
+
     /**
      * Show relationship as a searchable datalist
      *
