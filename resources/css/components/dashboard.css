@@ -1,0 +1,7 @@
+.show-link {
+    @apply text-blue-500 font-bold
+}
+
+.show-link:hover {
+    @apply text-black
+}
