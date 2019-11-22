@@ -63,6 +63,18 @@ class Relationship extends FieldAbstract
     }
 
     /**
+     * Relationship field can be editable
+     *
+     * @return self
+     */
+    public function editable(): self
+    {
+        $this->showInAll();
+
+        return $this;
+    }
+
+    /**
      * Get the Foreing key to connect the models
      *
      * @param string $key

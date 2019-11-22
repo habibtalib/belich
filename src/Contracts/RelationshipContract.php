@@ -47,16 +47,16 @@ interface RelationshipContract
      *
      * @param  object $data
      *
-     * @return string
+     * @return string|null
      */
-    public function create(object $field, ?object $data = null): string;
+    public function create(object $field, ?object $data = null): ?string;
 
     /**
      * Resolve value for edit
      *
      * @param  object $data
      *
-     * @return string
+     * @return string|null
      */
-    public function edit(object $field, ?object $data = null): string;
+    public function edit(object $field, ?object $data = null): ?string;
 }

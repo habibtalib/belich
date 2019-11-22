@@ -15,6 +15,13 @@ class HasOne extends Relationship implements RelationshipContract
     public $subType = 'hasOne';
 
     /**
+     * Relationships can be editables
+     *
+     * @var string
+     */
+    public $editable;
+
+    /**
      * Create a new relationship field
      *
      * @param  string  $label
@@ -27,6 +34,9 @@ class HasOne extends Relationship implements RelationshipContract
     public function __construct(string $label, string $resource, ?string $relationship = null, ?string $tableColumn = null)
     {
         parent::__construct($label, $resource, $relationship, $tableColumn);
+
+        // Editable relationships disabled by default
+        $this->exceptOnForms();
     }
 
     /**
@@ -70,9 +80,9 @@ class HasOne extends Relationship implements RelationshipContract
      *
      * @param  object $data
      *
-     * @return string
+     * @return string|null
      */
-    public function create(object $field, ?object $data = null): string
+    public function create(object $field, ?object $data = null): ?string
     {
         // Searchable
         if ($this->searchable) {
@@ -92,9 +102,9 @@ class HasOne extends Relationship implements RelationshipContract
      *
      * @param  object $data
      *
-     * @return string
+     * @return string|null
      */
-    public function edit(object $field, ?object $data = null): string
+    public function edit(object $field, ?object $data = null): ?string
     {
         return $this->create($field, $data);
     }
@@ -108,8 +118,8 @@ class HasOne extends Relationship implements RelationshipContract
     {
         return ['' => ''] + $this->relationshipClass
             ->indexQuery()
-            ->select($this->tableColumn, 'id')
-            ->pluck($this->tableColumn, 'id')
+            ->select($this->tableColumn, $this->tableColumn)
+            ->pluck($this->tableColumn, $this->tableColumn)
             ->toArray();
     }
 }
