@@ -141,8 +141,11 @@ trait Relationable
      */
     protected function getQuery(): array
     {
-        if (is_callable($this->resolveQuery)) {
-            return call_user_func($this->resolveQuery, new $this->relationshipClass::$model);
+        if (isset($this->resolveQuery) && is_callable($this->resolveQuery)) {
+            return call_user_func(
+                $this->resolveQuery,
+                new $this->relationshipClass::$model
+            );
         }
 
         return ['' => ''] + $this->relationshipClass
