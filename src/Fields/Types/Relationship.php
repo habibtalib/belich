@@ -41,12 +41,6 @@ class Relationship extends FieldAbstract
 
         // Default values
         $this->getSetUp($label, $resource, $this->tableColumn);
-
-        // Resolve as html
-        $this->asHtml();
-
-        // Default visibility
-        $this->showInAll();
     }
 
     /**
