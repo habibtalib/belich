@@ -55,7 +55,7 @@ final class Resolve
     private $visible;
 
     /**
-     * Get controller action
+     * Init constructor
      */
     public function __construct(Authorization $auth, Render $render, Value $value, Visible $visible)
     {
