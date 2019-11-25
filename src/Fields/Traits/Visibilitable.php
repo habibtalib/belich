@@ -30,7 +30,7 @@ trait Visibilitable
      *
      * @var array
      */
-    public $visibilityCallback;
+    // public $visibilityCallback;
 
     /**
      * Hide field from index
@@ -41,11 +41,11 @@ trait Visibilitable
      */
     public function hideFromIndex(\Closure $callback = null): self
     {
-        if (! is_null($callback) && is_callable($callback)) {
-            $this->visibilityCallback[] = ['index', false, $callback];
+        // if (! is_null($callback) && is_callable($callback)) {
+        //     $this->visibilityCallback[] = ['index', false, $callback];
 
-            return $this;
-        }
+        //     return $this;
+        // }
 
         $this->visibility['index'] = false;
 

@@ -15,8 +15,14 @@
             <div id="{{ md5($field->id . '-to-degrees') }}" class="font-normal lowercase font-bold mt-2 capitalize"></div>
         @endif
 
+        @isset($field->info)
+            <div dusk="info-{{ $field->id }}" class="font-semibold mt-2 p-2 bg-blue-100 text-blue-600">
+                <i class="fas fa-info-circle mr-2 text-blue-300"></i> {!! $field->info !!}
+            </div>
+        @endisset
+
         @isset($field->help)
-            <div class="font-normal lowercase italic mt-2 uppercase-first-letter">{{ $field->help }}</div>
+            <div dusk="help-{{ $field->id }}" class="font-normal lowercase italic mt-2 p-2 uppercase-first-letter">{!! $field->help !!}</div>
         @endisset
 
         @isset($field->id)
