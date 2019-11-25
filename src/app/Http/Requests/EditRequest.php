@@ -3,7 +3,11 @@
 namespace Daguilarm\Belich\App\Http\Requests;
 
 use Daguilarm\Belich\Core\Belich;
-use Daguilarm\Belich\Fields\FieldValidate;
+use Daguilarm\Belich\Fields\Validates\Form;
+use Daguilarm\Belich\Fields\Validates\Javascript;
+use Daguilarm\Belich\Fields\Validates\Rules;
+use Daguilarm\Belich\Fields\Validates\Validate;
+use Daguilarm\Belich\Fields\Validates\Values;
 use Illuminate\Foundation\Http\FormRequest;
 
 final class EditRequest extends FormRequest
@@ -20,7 +24,12 @@ final class EditRequest extends FormRequest
     {
         //Get the values for the resource
         $data = $belich->currentResource($this);
-        $validate = new FieldValidate();
+        $validate = new Validate(
+            new Form(),
+            new Javascript(),
+            new Rules(),
+            new Values()
+        );
 
         //Add values to request
         $this->merge([
