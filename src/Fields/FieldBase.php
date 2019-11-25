@@ -81,7 +81,7 @@ abstract class FieldBase
      *
      * @return Daguilarm\Belich\Fields\Field
      */
-    abstract public static function make(...$attributes): Field;
+    abstract public static function make(...$attributes);
 
     /**
      * Group field into panels

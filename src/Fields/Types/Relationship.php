@@ -3,23 +3,25 @@
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Facades\Belich;
-use Daguilarm\Belich\Fields\Abstracts\Field as FieldAbstract;
+use Daguilarm\Belich\Fields\FieldBase;
 use Daguilarm\Belich\Fields\Traits\Attributable;
 use Daguilarm\Belich\Fields\Traits\Casteable;
 use Daguilarm\Belich\Fields\Traits\Formatable;
 use Daguilarm\Belich\Fields\Traits\Helpeable;
 use Daguilarm\Belich\Fields\Traits\Relationable;
+use Daguilarm\Belich\Fields\Traits\Renderable;
 use Daguilarm\Belich\Fields\Traits\Ruleable;
 use Daguilarm\Belich\Fields\Traits\Settingable;
 use Daguilarm\Belich\Fields\Traits\Visibilitable;
 
-class Relationship extends FieldAbstract
+class Relationship extends FieldBase
 {
     use Attributable,
         Casteable,
         Formatable,
         Helpeable,
         Relationable,
+        Renderable,
         Ruleable,
         Settingable,
         Visibilitable;

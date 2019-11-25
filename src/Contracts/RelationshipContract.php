@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Contracts;
 
+use Daguilarm\Belich\Fields\Field;
 use Daguilarm\Belich\Fields\Types\Relationship;
 
 interface RelationshipContract
@@ -13,7 +14,7 @@ interface RelationshipContract
      *
      * @return Daguilarm\Belich\Fields\Relationship
      */
-    public static function make(...$attributes): Relationship;
+    public static function make(...$attributes);
 
     /**
      * Get the Foreing key to connect the models
@@ -22,7 +23,7 @@ interface RelationshipContract
      *
      * @return Daguilarm\Belich\Fields\Relationship
      */
-    public function foreignKey(string $key): Relationship;
+    public function foreignKey(string $key);
 
     /**
      * Resolve value for index

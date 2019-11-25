@@ -37,6 +37,7 @@ class HasOne extends Relationship implements RelationshipContract
 
         // Resolve as html
         $this->asHtml();
+
         // Editable relationships disabled by default
         $this->exceptOnForms();
     }
