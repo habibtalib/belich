@@ -102,7 +102,7 @@ class HasOne extends Relationship implements RelationshipContract
     {
         // Set values
         $field->type = 'text';
-        $field->help = trans('belich::messages.relationships.new_field', ['value' => Str::plural($field->resource) ?? null]);
+        $field->info = trans('belich::messages.relationships.new_field', ['value' => Str::plural($field->resource) ?? null]);
 
         return view('belich::fields.text', ['field' => $field]);
     }
