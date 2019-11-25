@@ -57,7 +57,7 @@ final class Database
         //Set variables
         [$direction, $order, $policy, $search, $model] = $this->filter($request);
 
-        return $class
+        $results = $class
             //Add the current resource query
             ->indexQuery($request)
             //Live search
@@ -82,11 +82,19 @@ final class Database
             //Only show the trashed results
             ->when($policy && Helper::hasSoftdelete($model) && Cookie::get('belich_withTrashed') === 'only', static function ($query): void {
                 $query->onlyTrashed();
-            })
-            //Pagination
-            ->simplePaginate(Cookie::get('belich_perPage'))
-            //Add all the url variables
-            ->appends($request->query());
+            });
+
+        return config('belich.pagination') === 'simple'
+            ? $results
+                // Simple pagination
+                ->simplePaginate(Cookie::get('belich_perPage'))
+                //Add all the url variables
+                ->appends($request->query())
+            : $results
+                // Regular link pagination
+                ->paginate(Cookie::get('belich_perPage'))
+                //Add all the url variables
+                ->appends($request->query());
     }
 
     /**
