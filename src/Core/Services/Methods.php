@@ -1,12 +1,12 @@
 <?php
 
-namespace Daguilarm\Belich\Core;
+namespace Daguilarm\Belich\Core\Services;
 
-use Daguilarm\Belich\Core\Search;
+use Daguilarm\Belich\Core\Services\Search;
 use Daguilarm\Belich\Facades\Helper;
 use Illuminate\Support\Str;
 
-abstract class BelichBase
+abstract class Methods
 {
     /**
      * Get the resource $accessToResource variable.
@@ -28,6 +28,18 @@ abstract class BelichBase
     /**
      * Set the class name
      *
+     * @param string $className
+     *
+     * @return string
+     */
+    public static function classFormat(string $className): string
+    {
+        return Str::title(Str::singular($className));
+    }
+
+    /**
+     * Set the class name
+     *
      * @return string
      */
     public static function className(): string
@@ -38,15 +50,17 @@ abstract class BelichBase
     }
 
     /**
-     * Set the class name
+     * Get the current resource form action (to Controller)
      *
-     * @param string $className
+     * @param string|null $className
      *
-     * @return string
+     * @return string|null
      */
-    public static function classFormat(string $className): string
+    public static function controllerAction(?string $className = null): ?string
     {
-        return Str::title(Str::singular($className));
+        $class = static::resourceClassPath();
+
+        return $class::$controllerAction ?? null;
     }
 
     /**
@@ -115,32 +129,6 @@ abstract class BelichBase
     }
 
     /**
-     * Get the current resource form action (to Controller)
-     *
-     * @param string|null $className
-     *
-     * @return string|null
-     */
-    public static function controllerAction(?string $className = null): ?string
-    {
-        $class = static::resourceClassPath();
-
-        return $class::$controllerAction ?? null;
-    }
-
-    /**
-     * Get the current resource class name: User
-     *
-     * @return string
-     */
-    public static function resourceName(): string
-    {
-        $className = Str::singular(static::resource());
-
-        return Str::title($className);
-    }
-
-    /**
      * Get the resource id
      *
      * @return int|null
@@ -162,6 +150,18 @@ abstract class BelichBase
     }
 
     /**
+     * Get the current resource class name: User
+     *
+     * @return string
+     */
+    public static function resourceName(): string
+    {
+        $className = Str::singular(static::resource());
+
+        return Str::title($className);
+    }
+
+    /**
      * Get the resource url.
      *
      * @return string
@@ -169,24 +169,5 @@ abstract class BelichBase
     public static function resourceUrl(): string
     {
         return static::url() . '/' . static::resource();
-    }
-
-    /**
-     * Set the table text align
-     * Used by getResourceOnlyWithNavigationFields() in Core\Traits\Resourceable
-     *
-     * @param string $class
-     *
-     * @return string
-     */
-    public function tableTextAlign(string $class): string
-    {
-        //Get the resource value
-        $align = $class::$tableTextAlign ?? null;
-
-        //Validate the value
-        return in_array($align, ['left', 'center', 'right', 'justify'])
-            ? 'text-' . $align
-            : 'text-left';
     }
 }

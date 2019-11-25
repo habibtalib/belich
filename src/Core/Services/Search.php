@@ -1,6 +1,8 @@
 <?php
 
-namespace Daguilarm\Belich\Core;
+namespace Daguilarm\Belich\Core\Services;
+
+use Daguilarm\Belich\Facades\Belich;
 
 final class Search
 {

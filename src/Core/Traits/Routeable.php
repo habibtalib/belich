@@ -2,7 +2,7 @@
 
 namespace Daguilarm\Belich\Core\Traits;
 
-use Daguilarm\Belich\Core\Search;
+use Daguilarm\Belich\Core\Services\Search;
 use Illuminate\Support\Facades\Request;
 
 trait Routeable

@@ -1,8 +1,8 @@
 <?php
 
-namespace Daguilarm\Belich\Core;
+namespace Daguilarm\Belich\Core\Services;
 
-use Daguilarm\Belich\Core\Search;
+use Daguilarm\Belich\Core\Services\Search;
 use Daguilarm\Belich\Facades\Belich;
 use Daguilarm\Belich\Facades\Helper;
 use Illuminate\Database\Eloquent\Collection;
@@ -12,20 +12,20 @@ use Illuminate\Support\Facades\Cookie;
 final class Database
 {
     /**
-     * Create the Sql Connection
+     * Execute the Sql Connection
      *
      * @param string $class
      * @param Illuminate\Http\Request $request
      *
      * @return object
      */
-    public function response(object $class, Request $request): object
+    public function execute(object $class, Request $request): object
     {
         return Belich::action() === 'index'
             //Sql for index
-            ? $this->query($class, $request)
+            ? $this->indexQuery($class, $request)
             //Sql for edit and show
-            : $this->actionQuery($class);
+            : $this->crudQuery($class);
     }
 
     /**
@@ -35,7 +35,7 @@ final class Database
      *
      * @return object
      */
-    private function actionQuery(object $class): object
+    private function crudQuery(object $class): object
     {
         //Sql for edit and show
         return Belich::action() === 'edit' || Belich::action() === 'show' && is_numeric(Belich::resourceId())
@@ -52,10 +52,10 @@ final class Database
      *
      * @return object
      */
-    private function query(object $class, Request $request): object
+    private function indexQuery(object $class, Request $request): object
     {
         //Set variables
-        [$direction, $order, $policy, $search, $model] = $this->prepareVariables($request);
+        [$direction, $order, $policy, $search, $model] = $this->filter($request);
 
         return $class
             //Add the current resource query
@@ -96,7 +96,7 @@ final class Database
      *
      * @return array
      */
-    private function prepareVariables(Request $request): array
+    private function filter(Request $request): array
     {
         // Set values;
         $model = Belich::getModel();

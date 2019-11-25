@@ -2,8 +2,8 @@
 
 namespace Daguilarm\Belich\Core\Traits;
 
-use Daguilarm\Belich\Core\Database;
-use Daguilarm\Belich\Core\Search;
+use Daguilarm\Belich\Core\Services\Database;
+use Daguilarm\Belich\Core\Services\Search;
 use Daguilarm\Belich\Fields\Resolves\Authorization;
 use Daguilarm\Belich\Fields\Resolves\Render;
 use Daguilarm\Belich\Fields\Resolves\Resolve;
@@ -15,38 +15,6 @@ use Illuminate\Support\Str;
 
 trait Resourceable
 {
-    /**
-     * Get the current resource
-     *
-     * @return Illuminate\Support\Collection
-     */
-    public function currentResource(Request $request): Collection
-    {
-        // Default values
-        $class = $this->initResourceClass($request);
-        // Update the fields
-        $updateFields = collect($class->fields($request));
-        // Sql Response
-        $sql = app(Database::class)->response($class, $request);
-        // ClassName
-        $className = static::resource();
-        // Resolve and built
-        $builder = new Resolve(
-            new Authorization(),
-            new Render(),
-            new Value(),
-            new Visible()
-        );
-
-        return collect([
-            'name' => $className,
-            'controllerAction' => static::action(),
-            'fields' => $builder->execute($updateFields, $sql),
-            'results' => $sql,
-            'values' => $this->valueResources($className),
-        ]);
-    }
-
     /**
      * Get all the Belich resources for send globaly to the views
      *
@@ -68,6 +36,38 @@ trait Resourceable
                     $resource => $this->valueResources($className, $forNavigation = true),
                 ];
             });
+    }
+
+    /**
+     * Get the current resource
+     *
+     * @return Illuminate\Support\Collection
+     */
+    public function currentResource(Request $request): Collection
+    {
+        // Default values
+        $class = $this->initResourceClass($request);
+        // Update the fields
+        $updateFields = collect($class->fields($request));
+        // Sql Response
+        $sql = app(Database::class)->execute($class, $request);
+        // ClassName
+        $className = static::resource();
+        // Resolve and built
+        $builder = new Resolve(
+            new Authorization(),
+            new Render(),
+            new Value(),
+            new Visible()
+        );
+
+        return collect([
+            'name' => $className,
+            'controllerAction' => static::action(),
+            'fields' => $builder->execute($updateFields, $sql),
+            'results' => $sql,
+            'values' => $this->valueResources($className),
+        ]);
     }
 
     /**
@@ -127,11 +127,11 @@ trait Resourceable
         //Set values
         [$accessToResource, $displayInNavigation] = self::configurationResources($class);
         //Set the basic values for navigation
-        $resource = self::navigationFields($class, $className, $displayInNavigation);
+        $resource = self::getNavigationFields($class, $className, $displayInNavigation);
 
         //Navigation values
         return $forNavigation === false
-            ? self::advanceFields($class, $accessToResource, $resource)
+            ? self::getAdvanceFields($class, $accessToResource, $resource)
             : $resource;
     }
 
@@ -144,7 +144,7 @@ trait Resourceable
      *
      * @return Illuminate\Support\Collection
      */
-    private function navigationFields(string $class, string $className, bool $displayInNavigation): Collection
+    private function getNavigationFields(string $class, string $className, bool $displayInNavigation): Collection
     {
         return collect([
             'class' => $className,
@@ -168,7 +168,7 @@ trait Resourceable
      *
      * @return Illuminate\Support\Collection
      */
-    private function advanceFields(string $class, string $accessToResource, Collection $resource): Collection
+    private function getAdvanceFields(string $class, string $accessToResource, Collection $resource): Collection
     {
         return $resource->merge([
             'accessToResource' => $accessToResource,
@@ -203,5 +203,24 @@ trait Resourceable
             $accessToResource,
             $displayInNavigation,
         ];
+    }
+
+    /**
+     * Set the table text align
+     * Used by getResourceOnlyWithNavigationFields() in Core\Traits\Resourceable
+     *
+     * @param string $class
+     *
+     * @return string
+     */
+    private function tableTextAlign(string $class): string
+    {
+        //Get the resource value
+        $align = $class::$tableTextAlign ?? null;
+
+        //Validate the value
+        return in_array($align, ['left', 'center', 'right', 'justify'])
+            ? 'text-' . $align
+            : 'text-left';
     }
 }

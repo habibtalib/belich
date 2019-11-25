@@ -2,7 +2,7 @@
 
 namespace Daguilarm\Belich\Components\Helpers;
 
-use Daguilarm\Belich\Core\Search;
+use Daguilarm\Belich\Core\Services\Search;
 
 trait Utils
 {

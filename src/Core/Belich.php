@@ -3,7 +3,7 @@
 namespace Daguilarm\Belich\Core;
 
 use Daguilarm\Belich\Components\Blade;
-use Daguilarm\Belich\Core\BelichBase;
+use Daguilarm\Belich\Core\Services\Methods;
 use Daguilarm\Belich\Core\Traits\Modelable;
 use Daguilarm\Belich\Core\Traits\Operationable;
 use Daguilarm\Belich\Core\Traits\Resourceable;
@@ -13,7 +13,7 @@ use Daguilarm\Belich\Fields\Resolves\Blade as ResolveBlade;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-final class Belich extends BelichBase
+final class Belich extends Methods
 {
     use Modelable,
         Operationable,
