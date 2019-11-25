@@ -1,6 +1,6 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\ResolveIndex;
+namespace Daguilarm\Belich\Fields\Resolves;
 
 use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Field;
@@ -16,13 +16,13 @@ final class Table
     ];
 
     /**
-     * Get the table header labels
+     * Get the table header labels for the index view
      *
      * @param Illuminate\Support\Collection $fields
      *
      * @return Illuminate\Support\Collection
      */
-    public function headerLabels(Collection $fields): Collection
+    public function header(Collection $fields): Collection
     {
         return $fields->map(function ($field) {
             return $this->headerLinks($field);

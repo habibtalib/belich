@@ -9,7 +9,7 @@ final class Search
      *
      * @return string
      */
-    public static function searchFields(): string
+    public static function get(): string
     {
         $class = Belich::resourceClassPath();
 
@@ -36,7 +36,7 @@ final class Search
      *
      * @return string
      */
-    public static function requestFromSearch(): bool
+    public static function searchRequest(): bool
     {
         $request = request()->query();
 
@@ -57,7 +57,7 @@ final class Search
      *
      * @return array
      */
-    public static function requestTableFields(): array
+    public static function tableRequest(): array
     {
         $fields = explode(',', trim(request()->query('fields')));
 

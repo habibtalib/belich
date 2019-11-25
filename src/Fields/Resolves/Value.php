@@ -1,14 +1,28 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Traits\Constructable;
+namespace Daguilarm\Belich\Fields\Resolves;
 
 use Daguilarm\Belich\Facades\Belich;
+use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Traits\Resolvable;
 use Illuminate\Support\Collection;
 
-trait Valuable
+final class Value
 {
     use Resolvable;
+
+    /**
+     * @var string
+     */
+    private $action;
+
+    /**
+     * Init constructor
+     */
+    public function __construct()
+    {
+        $this->action = Belich::action();
+    }
 
     /**
      * When the action is update or show
@@ -18,23 +32,24 @@ trait Valuable
      *
      * @return Illuminate\Support\Collection
      */
-    protected function valueForFields(object $sql, Collection $fields): Collection
+    public function execute(Collection $fields, object $sql): Collection
     {
         return $fields->map(function ($field) use ($sql) {
             //Set new value for the fields, even if has a fieldRelationship value
             //This relationship method is only on forms
             //Index has its own way in blade template
-            $field->value = $this->valuesWithFieldRelationship($sql, $field);
+            $field->value = $this->relationship($sql, $field);
 
             if ($field->type === 'relationship') {
-                return Belich::action() !== 'edit'
+                return $this->action !== 'edit'
                     // Render select or datalists
                     ? $field->value = $field->{$this->action}($field, $sql)
                     //Just the value
                     : $field;
             }
-            //filter the data for the show view and return the $field
-            return $this->valueForFieldsForActionShow($field, $sql);
+
+            //filter the data for the show view or return the $field
+            return $this->actionShow($field, $sql);
         });
     }
 
@@ -46,7 +61,7 @@ trait Valuable
      *
      * @return string|null
      */
-    private function valuesWithFieldRelationship(object $sql, object $field): ?string
+    private function relationship(object $sql, object $field): ?string
     {
         if ($field->type === 'relationship' && $field->fieldRelationship) {
             $field->valueRelationship = $sql->{$field->fieldRelationship}->id ?? null;
@@ -65,22 +80,24 @@ trait Valuable
      *
      * @return string|null
      */
-    private function valueForFieldsForActionShow(object $field, object $sql): object
+    private function actionShow(object $field, object $sql): object
     {
-        if ($this->action === 'show') {
-            //Display using labels
-            if (isset($field->displayUsingLabels) && isset($field->options)) {
-                $field->value = $this->displayUsingLabels($field, $field->value);
-            }
-
-            //TextArea field
-            if ($field->type === 'textArea') {
-                $field->value = $this->resolveTextArea($field);
-            }
-
-            //Regular field
-            $field->data = $sql;
+        if ($this->action !== 'show') {
+            return $field;
         }
+
+        //Display using labels
+        if (isset($field->displayUsingLabels) && isset($field->options)) {
+            $field->value = Helper::displayUsingLabels($field, $field->value);
+        }
+
+        //TextArea field
+        if ($field->type === 'textArea') {
+            $field->value = $this->resolveTextArea($field);
+        }
+
+        //Regular field
+        $field->data = $sql;
 
         return $field;
     }

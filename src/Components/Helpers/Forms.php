@@ -45,6 +45,20 @@ trait Forms
     }
 
     /**
+     * Resolve select field using labels
+     * This method is helper for $this->resolve()
+     *
+     * @param  object $field
+     * @param  string|null $value
+     *
+     * @return string|null
+     */
+    public function displayUsingLabels(object $field, ?string $value): ?string
+    {
+        return $field->options[$value] ?? $field->value ?? null;
+    }
+
+    /**
      * Render the field attribute base on the value
      * Helper for the belich fields: ./resources/fields
      *

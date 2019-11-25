@@ -51,7 +51,7 @@ trait Utils
      */
     public function searchFields(): string
     {
-        return Search::searchFields();
+        return Search::get();
     }
 
     /**

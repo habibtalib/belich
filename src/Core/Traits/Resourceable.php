@@ -4,7 +4,11 @@ namespace Daguilarm\Belich\Core\Traits;
 
 use Daguilarm\Belich\Core\Database;
 use Daguilarm\Belich\Core\Search;
-use Daguilarm\Belich\Fields\FieldResolve;
+use Daguilarm\Belich\Fields\Resolves\Authorization;
+use Daguilarm\Belich\Fields\Resolves\Render;
+use Daguilarm\Belich\Fields\Resolves\Resolve;
+use Daguilarm\Belich\Fields\Resolves\Value;
+use Daguilarm\Belich\Fields\Resolves\Visible;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -18,19 +22,26 @@ trait Resourceable
      */
     public function currentResource(Request $request): Collection
     {
-        //Default values
+        // Default values
         $class = $this->initResourceClass($request);
-        //Update the fields
+        // Update the fields
         $updateFields = collect($class->fields($request));
-        //Sql Response
+        // Sql Response
         $sql = app(Database::class)->response($class, $request);
-        //ClassName
+        // ClassName
         $className = static::resource();
+        // Resolve and built
+        $builder = new Resolve(
+            new Authorization(),
+            new Render(),
+            new Value(),
+            new Visible()
+        );
 
         return collect([
             'name' => $className,
             'controllerAction' => static::action(),
-            'fields' => app(FieldResolve::class)->make($updateFields, $sql),
+            'fields' => $builder->execute($updateFields, $sql),
             'results' => $sql,
             'values' => $this->valueResources($className),
         ]);
@@ -108,7 +119,7 @@ trait Resourceable
     private function valueResources(?string $className, bool $forNavigation = false): Collection
     {
         //Get class name from request or from live search
-        $className = app(Search::class)->requestFromSearch()
+        $className = app(Search::class)->searchRequest()
             ? static::className()
             : $className;
         //Get the class path

@@ -22,7 +22,7 @@ trait CacheForHumans
      */
     public function cacheInMinutes(int $minutes, string $key): self
     {
-        $this->cache = ($minutes === 1)
+        $this->cache = $minutes === 1
             ? Carbon::now()->addMinute()
             : Carbon::now()->addMinutes($minutes);
 
@@ -36,7 +36,7 @@ trait CacheForHumans
      */
     public function cacheInHours(int $hours, string $key): self
     {
-        $this->cache = ($minutes === 1)
+        $this->cache = $minutes === 1
             ? Carbon::now()->addHour()
             : Carbon::now()->addHours($hours);
 
@@ -50,7 +50,7 @@ trait CacheForHumans
      */
     public function cacheInDays(int $days, string $key): self
     {
-        $this->cache = ($minutes === 1)
+        $this->cache = $minutes === 1
             ? Carbon::now()->addDay()
             : Carbon::now()->addDays($days);
 

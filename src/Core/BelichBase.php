@@ -93,7 +93,7 @@ abstract class BelichBase
      */
     public static function resource(): string
     {
-        return app(Search::class)->requestFromSearch()
+        return app(Search::class)->searchRequest()
             //Search action
             ? Helper::stringPluralLower(request()->query('resourceName'))
             //Return middle item from the array

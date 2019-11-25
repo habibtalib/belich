@@ -61,13 +61,13 @@ final class Database
             //Add the current resource query
             ->indexQuery($request)
             //Live search
-            ->when($search->requestFromSearch(), static function ($query) use ($request, $search) {
+            ->when($search->searchRequest(), static function ($query) use ($request, $search) {
                 //No results
                 if ($request->query('query') === 'resetSearchAll') {
                     return $query;
                 }
                 //Get the results
-                collect($search->requestTableFields())->each(static function ($field) use ($query, $request): void {
+                collect($search->tableRequest())->each(static function ($field) use ($query, $request): void {
                     $query->orWhere($field, 'LIKE', '%' . $request->query('query') . '%');
                 });
             })

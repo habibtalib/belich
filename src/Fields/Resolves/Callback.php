@@ -1,10 +1,10 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Traits\Constructable;
+namespace Daguilarm\Belich\Fields\Resolves;
 
 use Daguilarm\Belich\Facades\Belich;
 
-trait Callbackable
+final class Callback
 {
     /**
      * Resolve field value through callbacks
@@ -15,9 +15,9 @@ trait Callbackable
      *
      * @return string|null
      */
-    protected function getCallbackValue(object $field, ?object $data = null, $value = ''): ?string
+    public function execute(object $field, ?object $data = null, $value = ''): ?string
     {
-        //Resolve value when using the method: $field->displayUsing()
+        // Resolve value when using the method: $field->displayUsing()
         $value = $this->displayCallback($field, $value);
 
         //Resolve value when using the method: $field->resolveUsing()

@@ -17,7 +17,7 @@ trait Routeable
         //Cannot pass directly as reference!!
         $route = static::route();
 
-        return app(Search::class)->requestFromSearch()
+        return app(Search::class)->searchRequest()
             //Search action (is in index...)
             ? 'index'
             //Return last item from the array

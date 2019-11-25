@@ -6,14 +6,53 @@ use Daguilarm\Belich\Facades\Helper;
 
 trait Settingable
 {
-    /** @var string [Set the dusk value] */
+    /**
+     * List of allowed controller actions
+     *
+     * @var array
+     */
+    public $allowedControllerActions = [
+        'index',
+        'create',
+        'edit',
+        'show',
+    ];
+
+    /**
+     * The custom breadcrumbs for the field
+     *
+     * @var string
+     */
+    public $breadcrumbs;
+
+    /**
+     * @var string
+     */
     public $dusk;
 
-    /** @var string [Set attribute id] */
+    /**
+     * @var int
+     */
     public $id;
 
-    /** @var string [Set attribute name] */
+    /**
+     * Set the field label tag
+     *
+     * @var string
+     */
+    public $label;
+
+    /**
+     * @var string
+     */
     public $name;
+
+    /**
+     * Indicates if the field should be sortable
+     *
+     * @var bool
+     */
+    public $sortable = false;
 
     /**
      * Set the attribute dusk
@@ -62,6 +101,18 @@ trait Settingable
         if (isset($value)) {
             $this->name = $value;
         }
+
+        return $this;
+    }
+
+    /**
+     * Set the field sortable
+     *
+     * @return self
+     */
+    public function sortable(): self
+    {
+        $this->sortable = true;
 
         return $this;
     }

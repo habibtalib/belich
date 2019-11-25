@@ -26,12 +26,27 @@ trait Visibilitable
     ];
 
     /**
+     * Field visibility callback
+     *
+     * @var array
+     */
+    public $visibilityCallback;
+
+    /**
      * Hide field from index
      *
-     * @var self
+     * @param \Closure|null $callback
+     *
+     * @return self
      */
-    public function hideFromIndex(): self
+    public function hideFromIndex(\Closure $callback = null): self
     {
+        if (! is_null($callback) && is_callable($callback)) {
+            $this->visibilityCallback[] = ['index', false, $callback];
+
+            return $this;
+        }
+
         $this->visibility['index'] = false;
 
         return $this;
@@ -40,7 +55,7 @@ trait Visibilitable
     /**
      * Hide field when show a resource
      *
-     * @var self
+     * @return self
      */
     public function hideFromShow(): self
     {
@@ -52,7 +67,7 @@ trait Visibilitable
     /**
      * Hide field when creating a resource
      *
-     * @var self
+     * @return self
      */
     public function hideWhenCreating(): self
     {
@@ -64,7 +79,7 @@ trait Visibilitable
     /**
      * Hide field when updating a resource
      *
-     * @var self
+     * @return self
      */
     public function hideWhenEditing(): self
     {
@@ -76,7 +91,7 @@ trait Visibilitable
     /**
      * Hide field when creating or updating a resource
      *
-     * @var self
+     * @return self
      */
     public function exceptOnForms(): self
     {
@@ -91,7 +106,7 @@ trait Visibilitable
     /**
      * Show field only when creating or updating a resource
      *
-     * @var self
+     * @return self
      */
     public function onlyOnForms(): self
     {
@@ -106,7 +121,7 @@ trait Visibilitable
     /**
      * Show field only on index
      *
-     * @var self
+     * @return self
      */
     public function onlyOnIndex(): self
     {
@@ -120,7 +135,7 @@ trait Visibilitable
     /**
      * Show field only on show
      *
-     * @var self
+     * @return self
      */
     public function onlyOnShow(): self
     {
@@ -134,7 +149,7 @@ trait Visibilitable
     /**
      * Show field only on editing
      *
-     * @var self
+     * @return self
      */
     public function onlyOnEditing(): self
     {
@@ -148,7 +163,7 @@ trait Visibilitable
     /**
      * Show field only on creating
      *
-     * @var self
+     * @return self
      */
     public function onlyOnCreating(): self
     {
@@ -162,7 +177,7 @@ trait Visibilitable
     /**
      * Field will be visible only on...
      *
-     * @var self
+     * @return self
      */
     public function visibleOn(...$attributes): self
     {
@@ -182,7 +197,7 @@ trait Visibilitable
     /**
      * Hide field only from...
      *
-     * @var self
+     * @return self
      */
     public function hideFrom(...$attributes): self
     {
@@ -202,7 +217,7 @@ trait Visibilitable
     /**
      * Hide field for all actions
      *
-     * @var void
+     * @return void
      */
     protected function hideFromAll(): void
     {

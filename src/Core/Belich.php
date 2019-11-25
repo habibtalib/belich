@@ -9,8 +9,7 @@ use Daguilarm\Belich\Core\Traits\Operationable;
 use Daguilarm\Belich\Core\Traits\Resourceable;
 use Daguilarm\Belich\Core\Traits\Routeable;
 use Daguilarm\Belich\Core\Traits\Systemable;
-use Daguilarm\Belich\Fields\FieldResolveIndex;
-use Daguilarm\Belich\Fields\ResolveIndex\Resolve;
+use Daguilarm\Belich\Fields\Resolves\Blade as ResolveBlade;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -106,7 +105,7 @@ final class Belich extends BelichBase
      */
     public function value(object $field, ?object $data = null): ?string
     {
-        return (new FieldResolveIndex())->resolve(new Resolve(), $field, $data);
+        return (new ResolveBlade())->execute($field, $data);
     }
 
     /**

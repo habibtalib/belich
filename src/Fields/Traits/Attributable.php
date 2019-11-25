@@ -10,6 +10,13 @@ trait Attributable
     public $addClass = [];
 
     /**
+     * The attribute / column name of the field
+     *
+     * @var string
+     */
+    public $attribute;
+
+    /**
      * @var string
      */
     public $autofocus;
@@ -38,6 +45,13 @@ trait Attributable
      * @var bool
      */
     public $readonly = false;
+
+    /**
+     * All the attributes to be removed from $field
+     *
+     * @var array
+     */
+    public $removedAttr = [];
 
     /**
      * Add new css classes to the current field
@@ -150,6 +164,21 @@ trait Attributable
         if (isset($value)) {
             $this->readonly = true;
         }
+
+        return $this;
+    }
+
+    /**
+     * Remove attributes from $field
+     * Just for internal use
+     *
+     * @param array $attributes
+     *
+     * @return self
+     */
+    protected function removedAttr(array ...$attributes): self
+    {
+        $this->removedAttr = $attributes;
 
         return $this;
     }

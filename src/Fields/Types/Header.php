@@ -2,7 +2,6 @@
 
 namespace Daguilarm\Belich\Fields\Types;
 
-use Daguilarm\Belich\Fields\Abstracts\Field as FieldAbstract;
 use Daguilarm\Belich\Fields\Field;
 
 final class Header extends Field
@@ -47,9 +46,9 @@ final class Header extends Field
     /**
      * Resolve the value as HTML (without scape)
      *
-     * @return Daguilarm\Belich\Fields\Abstracts\Field as FieldAbstract
+     * @return Daguilarm\Belich\Fields\Field
      */
-    public function asHtml(): FieldAbstract
+    public function asHtml(): Field
     {
         $this->asHtml = true;
 

@@ -1,13 +1,13 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Traits\Constructable;
+namespace Daguilarm\Belich\Fields\Resolves;
 
 use Daguilarm\Belich\Core\Belich;
 use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Field;
 use Illuminate\Support\Facades\Storage;
 
-trait Fileable
+final class File
 {
     /**
      * Resolve file fields for Index and Show
@@ -17,7 +17,7 @@ trait Fileable
      *
      * @return  $string
      */
-    protected function resolveFile(Field $field, ?string $value): string
+    public function execute(Field $field, ?string $value): string
     {
         // No results
         if (! isset($value) || $value === Helper::emptyResults()) {
@@ -26,7 +26,7 @@ trait Fileable
 
         //File policy
         return auth()->user()->can('file', Belich::getModel())
-            ? $this->resolveFileType($field, $value)
+            ? $this->byType($field, $value)
             : '';
     }
 
@@ -38,7 +38,7 @@ trait Fileable
      *
      * @return string
      */
-    private function resolveFileType(Field $field, ?string $value): string
+    private function byType(Field $field, ?string $value): string
     {
         // Image field
         if ($field->fileType === 'image') {
@@ -61,27 +61,29 @@ trait Fileable
         //Return file value
         return $value
             //With download or not
-            ? sprintf('%s %s', $value, $this->fileDownload($field, $value))
+            ? sprintf('%s %s', $value, $this->download($field, $value))
             //With empty value
             : Helper::emptyResults();
     }
 
     /**
-     *Download file
+     * Download file
      *
      * @param  Daguilarm\Belich\Fields\Field $field
      * @param  string|null $file
      *
      * @return string
      */
-    private function fileDownload(Field $field, ?string $file)
+    private function download(Field $field, ?string $file): string
     {
-        if ($field->link && $file) {
-            return sprintf(
-                '<a href="%s" target="_blank" dusk="downloable-file">%s</a>',
-                $file,
-                Helper::icon('download'),
-            );
-        }
+        $href = sprintf(
+            '<a href="%s" target="_blank" dusk="downloable-file">%s</a>',
+            $file,
+            Helper::icon('download'),
+        );
+
+        return $field->link && $file
+            ? $href
+            : '';
     }
 }

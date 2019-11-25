@@ -2,22 +2,30 @@
 
 namespace Daguilarm\Belich\Fields;
 
-use Daguilarm\Belich\Fields\Abstracts\Field as FieldAbstract;
+use Daguilarm\Belich\Fields\FieldBase;
 use Daguilarm\Belich\Fields\Traits\Attributable;
+use Daguilarm\Belich\Fields\Traits\Authorizable;
 use Daguilarm\Belich\Fields\Traits\Casteable;
 use Daguilarm\Belich\Fields\Traits\Formatable;
 use Daguilarm\Belich\Fields\Traits\Helpeable;
+use Daguilarm\Belich\Fields\Traits\Prefixable;
+use Daguilarm\Belich\Fields\Traits\Renderable;
+use Daguilarm\Belich\Fields\Traits\Resolvable;
 use Daguilarm\Belich\Fields\Traits\Ruleable;
 use Daguilarm\Belich\Fields\Traits\Settingable;
 use Daguilarm\Belich\Fields\Traits\Visibilitable;
 use Illuminate\Support\Str;
 
-class Field extends FieldAbstract
+class Field extends FieldBase
 {
     use Attributable,
+        Authorizable,
         Casteable,
         Formatable,
         Helpeable,
+        Prefixable,
+        Renderable,
+        Resolvable,
         Ruleable,
         Settingable,
         Visibilitable;

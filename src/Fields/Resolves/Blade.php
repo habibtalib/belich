@@ -1,13 +1,64 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\ResolveIndex;
+namespace Daguilarm\Belich\Fields\Resolves;
 
 use Daguilarm\Belich\Facades\Helper;
+use Daguilarm\Belich\Fields\Resolves\Callback;
+use Daguilarm\Belich\Fields\Resolves\File;
 use Daguilarm\Belich\Fields\Traits\Resolvable;
 
-final class Resolve
+final class Blade
 {
     use Resolvable;
+
+    /**
+     * Resolve field values for: relationship, displayUsing and resolveUsing
+     * This method is used throw Belich Facade => Belich::value($field, $data);
+     * This method is for refactoring the blade templates.
+     *
+     * @param  object $field
+     * @param  object $data
+     *
+     * @return string|null
+     */
+    public function execute(object $field, ?object $data = null): ?string
+    {
+        // Resolve for relationship fields
+        if ($field->type === 'relationship') {
+            return $field->index($data);
+        }
+
+        //Resolve value for action controller: show
+        $value = $field->value;
+
+        //Resolve value
+        $value = $this->resolveValue($field, $data, $value);
+
+        // If boolean
+        // Please respect this orden -> first $this->resolveValue($field, $data, $value)
+        // then $this->resolveBoolean($field, $value)
+        if ($field->type === 'boolean') {
+            return $this->resolveBoolean($field, $value);
+        }
+
+        //File field
+        if ($field->type === 'file') {
+            return (new File())->execute($field, $value);
+        }
+
+        //TextArea field
+        if ($field->type === 'textArea') {
+            return $this->resolveTextArea($field, $value);
+        }
+
+        //displayUsingLabels filter
+        if (isset($field->displayUsingLabels) && $field->displayUsingLabels) {
+            return Helper::displayUsingLabels($field, $value);
+        }
+
+        //Resolve the field value through callbacks
+        return app(Callback::class)->execute($field, $data, $value);
+    }
 
     /**
      * Resolve field values for: relationship

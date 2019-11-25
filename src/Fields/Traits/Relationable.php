@@ -34,13 +34,6 @@ trait Relationable
     public $perPageViaRelationship = 10;
 
     /**
-     * This is for regular fields. In this case has to be empty.
-     *
-     * @var string|null
-     */
-    public $fieldRelationship;
-
-    /**
      * @var string
      */
     public $minChars = 2;
@@ -141,10 +134,11 @@ trait Relationable
      */
     protected function getQuery(): array
     {
+        // With callback
         if (isset($this->resolveQuery) && is_callable($this->resolveQuery)) {
             return call_user_func(
                 $this->resolveQuery,
-                new $this->relationshipClass::$model
+                new $this->relationshipClass::$model()
             );
         }
 
