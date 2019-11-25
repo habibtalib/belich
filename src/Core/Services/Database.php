@@ -12,6 +12,15 @@ use Illuminate\Support\Facades\Cookie;
 final class Database
 {
     /**
+     * @var array
+     */
+    private $allowedRequestQuery = [
+        'orderBy',
+        'direction',
+        'page',
+    ];
+
+    /**
      * Execute the Sql Connection
      *
      * @param string $class
@@ -55,7 +64,7 @@ final class Database
     private function indexQuery(object $class, Request $request): object
     {
         //Set variables
-        [$direction, $order, $policy, $search, $model] = $this->filter($request);
+        [$direction, $order, $policy, $search, $model, $baseUrl, $query] = $this->filter($request);
 
         $results = $class
             //Add the current resource query
@@ -84,17 +93,20 @@ final class Database
                 $query->onlyTrashed();
             });
 
+
         return config('belich.pagination') === 'simple'
             ? $results
                 // Simple pagination
                 ->simplePaginate(Cookie::get('belich_perPage'))
                 //Add all the url variables
-                ->appends($request->query())
+                ->appends($query)
+                ->setPath($baseUrl)
             : $results
                 // Regular link pagination
                 ->paginate(Cookie::get('belich_perPage'))
                 //Add all the url variables
-                ->appends($request->query());
+                ->appends($query)
+                ->setPath($baseUrl);
     }
 
     /**
@@ -117,6 +129,23 @@ final class Database
             $request->user()->can('withTrashed', $model),
             $search,
             $model,
+            $this->baseUrl(),
+            [
+                'direction' => $request->query('direction'),
+                'orderBy' => $request->query('orderBy'),
+                'page' => $request->query('page'),
+                'DAM' => $request->query('DAM'),
+            ]
         ];
+    }
+
+    /**
+     * Get the pagination url
+     *
+     * @return array
+     */
+    private function baseUrl(): string
+    {
+        return Belich::url() . '/' . Belich::resource() . '?uri=' . md5(Belich::resource());
     }
 }
