@@ -2,8 +2,6 @@
 
 namespace Daguilarm\Belich\Fields;
 
-use Daguilarm\Belich\Fields\Field;
-
 abstract class FieldBase
 {
     /**

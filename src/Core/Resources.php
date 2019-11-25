@@ -3,7 +3,6 @@
 namespace Daguilarm\Belich\Core;
 
 use Daguilarm\Belich\Core\Traits\Modelable;
-use Daguilarm\Belich\Core\Traits\Operationable;
 use Daguilarm\Belich\Core\Traits\Resourceable;
 use Daguilarm\Belich\Core\Traits\Routeable;
 use Daguilarm\Belich\Core\Traits\Systemable;
@@ -12,99 +11,98 @@ use Illuminate\Http\Request;
 abstract class Resources
 {
     use Modelable,
-        Operationable,
         Resourceable,
         Routeable,
         Systemable;
 
-        /**
-         * @var bool
-         */
-        public static $accessToResource = true;
+    /**
+     * @var bool
+     */
+    public static $accessToResource = true;
 
-        /**
-         * @var string
-         */
-        public static $actions = 'default';
+    /**
+     * @var string
+     */
+    public static $actions = 'default';
 
-        /**
-         * @var bool
-         */
-        public static $displayInNavigation = true;
+    /**
+     * @var bool
+     */
+    public static $displayInNavigation = true;
 
-        /**
-         * @var bool
-         */
-        public static $downloable = false;
+    /**
+     * @var bool
+     */
+    public static $downloable = false;
 
-        /**
-         * @var Illuminate\Support\Collection
-         */
-        public static $fields;
+    /**
+     * @var Illuminate\Support\Collection
+     */
+    public static $fields;
 
-        /**
-         * @var string
-         */
-        public static $group;
+    /**
+     * @var string
+     */
+    public static $group;
 
-        /**
-         * @var string
-         */
-        public static $icon;
+    /**
+     * @var string
+     */
+    public static $icon;
 
-        /**
-         * @var string
-         */
-        public static $imageCss = 'block h-10 rounded-full shadow-md';
+    /**
+     * @var string
+     */
+    public static $imageCss = 'block h-10 rounded-full shadow-md';
 
-        /**
-         * @var string
-         */
-        public static $label;
+    /**
+     * @var string
+     */
+    public static $label;
 
-        /**
-         * Model path
-         *
-         * @var string
-         */
-        public static $model;
+    /**
+     * Model path
+     *
+     * @var string
+     */
+    public static $model;
 
-        /**
-         * @var string
-         */
-        public static $pluralLabel;
+    /**
+     * @var string
+     */
+    public static $pluralLabel;
 
-        /**
-         * @var string
-         */
-        public static $redirectTo = 'index';
+    /**
+     * @var string
+     */
+    public static $redirectTo = 'index';
 
-        /**
-         * @var array
-         */
-        public static $relationships;
+    /**
+     * @var array
+     */
+    public static $relationships;
 
-        /**
-         * @var string
-         */
-        public static $controllerAction;
+    /**
+     * @var string
+     */
+    public static $controllerAction;
 
-        /**
-         * @var array
-         */
-        public static $softDeletes = false;
+    /**
+     * @var array
+     */
+    public static $softDeletes = false;
 
-        /**
-         * @var array
-         */
-        public static $search;
+    /**
+     * @var array
+     */
+    public static $search;
 
-        /**
-         * Show with tabs
-         *
-         * @var bool
-         */
-        public static $tabs;
+    /**
+     * Show with tabs
+     *
+     * @var bool
+     */
+    public static $tabs;
 
     /**
      * Get the fields displayed by the resource.

@@ -2,7 +2,6 @@
 
 namespace Daguilarm\Belich\Contracts;
 
-use Daguilarm\Belich\Fields\Field;
 use Daguilarm\Belich\Fields\Types\Relationship;
 
 interface RelationshipContract
@@ -23,7 +22,7 @@ interface RelationshipContract
      *
      * @return Daguilarm\Belich\Fields\Relationship
      */
-    public function foreignKey(string $key);
+    public function foreignKey(string $key): Relationship;
 
     /**
      * Resolve value for index
