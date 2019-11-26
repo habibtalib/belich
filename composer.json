@@ -33,7 +33,6 @@
             ]
         }
     },
-    "minimum-stability": "dev",
     "require-dev": {
         "nunomaduro/phpinsights": "dev-master"
     }
