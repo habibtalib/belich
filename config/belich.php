@@ -150,4 +150,13 @@ return [
     | IF the textAreaChars value is 20, will show: "Lorem ipsum dolor si..."
     */
     'textAreaChars' => 25,
+
+    /*
+    |--------------------------------------------------------------------------
+    | Loading status
+    |--------------------------------------------------------------------------
+    |
+    | Show the loading icon for ajax queries
+    */
+    'loading' => '<i class="fas fa-spinner fa-spin fa-10x text-blue-200"></i>',
 ];
