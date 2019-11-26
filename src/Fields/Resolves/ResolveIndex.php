@@ -2,7 +2,6 @@
 
 namespace Daguilarm\Belich\Fields\Resolves;
 
-use Daguilarm\Belich\Fields\Resolves\Table;
 use Illuminate\Support\Collection;
 
 final class ResolveIndex
