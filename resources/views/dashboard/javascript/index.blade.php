@@ -39,6 +39,8 @@
                 }
                 //Uncheck all the table items
                 window.uncheckAll();
+                //Loading
+                document.getElementById('loading').classList.remove('hidden');
                 //Ajax request
                 var request = new XMLHttpRequest();
                 var querySearch = query || 'resetSearchAll';
@@ -47,6 +49,7 @@
                 request.onload = function() {
                     if (this.status == 200 && this.readyState == 4) {
                         document.getElementById('table-container').innerHTML = JSON.parse(this.response);
+                        document.getElementById('loading').classList.add('hidden');
                     }
                 };
                 request.send();

@@ -5,6 +5,10 @@
         @include('belich::partials.headers.default')
     </head>
     <body>
+            {{-- Loading --}}
+            <div id="loading" class="hidden w-full h-full absolute flex items-center justify-center z-50">
+                {!! config('belich.loading') !!}
+            </div>
             {{-- Top navbar --}}
             @if(config('belich.navbar.display') === 'top')
                 <div id="app">
