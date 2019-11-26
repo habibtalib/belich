@@ -9,10 +9,40 @@
             </th>
 
             {{-- Headers --}}
-            @foreach($request->fields->get('labels') as $label)
+            @foreach($request->fields->get('data') as $field)
                 <th class="pt-4 pb-5 px-6">
                     {{-- Get URL with ASC or DESC order --}}
-                    {!! $label !!}
+
+                    {{-- Sortable column --}}
+                    @if($field->sortable && is_string($field->attribute))
+                        <a href="#"
+                            class="text-blue-600"
+                            role="button"
+                            {{-- LiveSearch --}}
+                            onclick="javascript:liveSearch(
+                                '{{ $request->search['query'] }}',
+                                '{{ $request->search['page'] }}',
+                                '{{ $field->attribute }}',
+                                '{{ $request->search['direction'] === 'desc' ? 'asc' : 'desc' }}'
+                            );"
+                        >
+                            {{-- Column title --}}
+                            {!! $field->label !!}
+                            {{-- Icons --}}
+                            @if($request->search['orderBy'] !== strtolower($field->label))
+                                {!! Helper::icon('sort', '', 'text-gray-500') !!}
+                            @endif
+                            @if($request->search['direction'] === 'asc' && $request->search['orderBy'] == strtolower($field->label))
+                                {!! Helper::icon('sort-up', '', 'text-blue-600') !!}
+                            @endif
+                            @if($request->search['direction'] === 'desc' && $request->search['orderBy'] == strtolower($field->label))
+                                {!! Helper::icon('sort-down', '', 'text-blue-600') !!}
+                            @endif
+                        </a>
+                    {{-- Not sortable --}}
+                    @else
+                        {!! $field->label !!}
+                    @endif
                 </th>
             @endforeach
 

@@ -28,20 +28,21 @@
             Section: Search
             Description: Live search
             */
-            function liveSearch(query = '') {
+            function liveSearch(query = '', page = 1, orderBy = '', direction = '') {
                 //Hide icon
                 if(query.length === 0) {
                     window.onSelection('#icon-search-reset', 'hide');
                 }
                 //Min. search filter
-                if(query.length < minSearch) {
+                if(query.length < minSearch && query.length > 0) {
                     return;
                 }
                 //Uncheck all the table items
                 window.uncheckAll();
                 //Ajax request
                 var request = new XMLHttpRequest();
-                request.open('GET', '{{ route('dashboard.ajax.search') }}?type=search&tableTextAlign={{ $request->get('tableTextAlign') }}&query=' + query + '&resourceName={{ Belich::resourceName() }}&fields={{ Helper::searchFields() }}', true);
+                var querySearch = query || 'resetSearchAll';
+                request.open('GET', '{{ route('dashboard.ajax.search') }}?type=search&tableTextAlign={{ $request->get('tableTextAlign') }}&query=' + querySearch + '&resourceName={{ Belich::resourceName() }}&fields={{ Helper::searchFields() }}&page=' + page + '&orderBy=' + orderBy + '&direction=' + direction, true);
                 request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
                 request.onload = function() {
                     if (this.status == 200 && this.readyState == 4) {

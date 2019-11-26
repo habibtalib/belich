@@ -81,7 +81,7 @@ final class Database
                 });
             })
             //Order query
-            ->when(isset($order) && isset($direction), static function ($query) use ($direction, $order): void {
+            ->when(!empty($order) && !empty($direction), static function ($query) use ($direction, $order): void {
                 $query->orderBy($order, $direction);
             })
             //Show the trashed results

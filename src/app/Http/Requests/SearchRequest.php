@@ -27,6 +27,7 @@ final class SearchRequest extends FormRequest
             'fields' => $fields,
             'name' => data_get($data, 'name'),
             'results' => data_get($data, 'results'),
+            'search' => request()->query(),
             'total' => $belich::count($fields->get('data'), 2),
         ]);
 

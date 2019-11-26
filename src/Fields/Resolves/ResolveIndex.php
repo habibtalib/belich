@@ -64,7 +64,6 @@ final class ResolveIndex
 
         return collect([
             'data' => $fields,
-            'labels' => app(Table::class)->header($fields),
         ]);
     }
 }
