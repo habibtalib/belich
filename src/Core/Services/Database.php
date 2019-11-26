@@ -81,7 +81,7 @@ final class Database
                 });
             })
             //Order query
-            ->when(!empty($order) && !empty($direction), static function ($query) use ($direction, $order): void {
+            ->when(isset($order) && $order && isset($direction) && $direction, static function ($query) use ($direction, $order): void {
                 $query->orderBy($order, $direction);
             })
             //Show the trashed results
@@ -92,7 +92,6 @@ final class Database
             ->when($policy && Helper::hasSoftdelete($model) && Cookie::get('belich_withTrashed') === 'only', static function ($query): void {
                 $query->onlyTrashed();
             });
-
 
         return config('belich.pagination') === 'simple'
             ? $results
@@ -135,7 +134,7 @@ final class Database
                 'orderBy' => $request->query('orderBy'),
                 'page' => $request->query('page'),
                 'DAM' => $request->query('DAM'),
-            ]
+            ],
         ];
     }
 
