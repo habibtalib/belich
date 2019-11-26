@@ -44,3 +44,9 @@ textarea:focus {
 .form-container .form-item-field:last-child {
     border: 0;
 }
+
+.button-clickable,
+.button-clickable:focus {
+    border: none;
+    outline:none;
+}

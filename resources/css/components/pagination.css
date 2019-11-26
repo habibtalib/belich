@@ -8,11 +8,11 @@
         color: var(--pagination-disabled);
     }
 
-        #simple-pagination > nav > ul.pagination li.page-item a.page-link {
+        #simple-pagination > nav > ul.pagination li.page-item .page-link {
             color: var(--pagination-link);
         }
 
-        #simple-pagination > nav > ul.pagination li.page-item a.page-link:hover {
+        #simple-pagination > nav > ul.pagination li.page-item .page-link:hover {
             color: var(--pagination-link-hover);
         }
 
@@ -26,11 +26,11 @@
         color: var(--pagination-disabled);
     }
 
-        #link-pagination > nav > ul.pagination li.page-item a.page-link {
+        #link-pagination > nav > ul.pagination li.page-item .page-link {
             color: var(--pagination-link);
         }
 
-        #link-pagination > nav > ul.pagination li.page-item a.page-link:hover {
+        #link-pagination > nav > ul.pagination li.page-item .page-link:hover {
             color: var(--pagination-link-hover);
         }
 

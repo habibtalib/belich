@@ -15,8 +15,8 @@
 
                     {{-- Sortable column --}}
                     @if($field->sortable && is_string($field->attribute))
-                        <a href="#"
-                            class="text-blue-600"
+                        <button type="button"
+                            class="button-clickable text-blue-600 uppercase font-bold"
                             role="button"
                             {{-- LiveSearch --}}
                             onclick="javascript:liveSearch(
@@ -33,12 +33,12 @@
                                 {!! Helper::icon('sort', '', 'text-gray-500') !!}
                             @endif
                             @if($request->search['direction'] === 'asc' && $request->search['orderBy'] == strtolower($field->label))
-                                {!! Helper::icon('sort-up', '', 'text-blue-600') !!}
+                                {!! Helper::icon('caret-up', '', 'text-blue-400') !!}
                             @endif
                             @if($request->search['direction'] === 'desc' && $request->search['orderBy'] == strtolower($field->label))
-                                {!! Helper::icon('sort-down', '', 'text-blue-600') !!}
+                                {!! Helper::icon('caret-down', '', 'text-blue-400') !!}
                             @endif
-                        </a>
+                        </button>
                     {{-- Not sortable --}}
                     @else
                         {!! $field->label !!}
@@ -84,6 +84,15 @@
     </tbody>
 
     {{-- Pagination --}}
-    @include('belich::dashboard.index.pagination')
-
+    @if($request->results->hasPages())
+        <tfoot class="bg-blue-100 shadow-md">
+            <tr>
+                <td colspan="{{ $request->total }}" class="text-center">
+                    <div id="{{ config('belich.pagination') === 'link' ? 'link-pagination' : 'simple-pagination' }}">
+                        {!! $request->results->links('belich::dashboard.index.pagination', ['search' => $request->search]) !!}
+                    </div>
+                </td>
+            </tr>
+        </tfoot>
+    @endif
 </table>
