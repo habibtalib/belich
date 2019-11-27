@@ -1,0 +1,3 @@
+// Your custom component for the show view
+// Remember, you have access to the variables: $data and $field
+{{ $data->{$field->attribute} }}

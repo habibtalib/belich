@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 class d_class_b extends Card {
 
     /**
+     * It can be accessible in the view through the variable $card->width
      *
      * @var string
      */
-    // It can be accessible in the view through the variable $card->width
     public $width = 'w-full';
 
     /**

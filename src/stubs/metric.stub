@@ -9,10 +9,16 @@ use Illuminate\Http\Request;
 
 class d_class_b extends Graph {
 
-    /** @var string ['line', 'bars', 'horizontal-bars', 'pie'] */
+    /**
+     * Options: 'line', 'bars', 'horizontal-bars' and 'pie'
+     *
+     * @var string
+     */
     public $type = 'line';
 
-    /** @var string */
+    /**
+     * @var string
+     */
     public $width = 'w-1/3';
 
     /**
