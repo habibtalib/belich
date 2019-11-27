@@ -15,6 +15,7 @@ final class Blade
      * Resolve field values for: relationship, displayUsing and resolveUsing
      * This method is used throw Belich Facade => Belich::value($field, $data);
      * This method is for refactoring the blade templates.
+     * For index view
      *
      * @param  object $field
      * @param  object $data
@@ -24,8 +25,8 @@ final class Blade
     public function execute(object $field, ?object $data = null): ?string
     {
         // Resolve for relationship fields
-        if ($field->type === 'relationship') {
-            return $field->index($data);
+        if ($field->type === 'relationship' || $field->type === 'custom') {
+            return $field->index($field, $data);
         }
 
         //Resolve value for action controller: show

@@ -40,6 +40,7 @@ final class Value
             //Index has its own way in blade template
             $field->value = $this->relationship($sql, $field);
 
+            // Resolve relationship
             if ($field->type === 'relationship') {
                 return $this->action !== 'edit'
                     // Render select or datalists
@@ -83,6 +84,14 @@ final class Value
     private function actionShow(object $field, object $sql): object
     {
         if ($this->action !== 'show') {
+            return $field;
+        }
+
+        // Resolve show view for custom field
+        if ($field->type === 'custom') {
+            // Set value
+            $field->value = $field->show($field, $sql);
+
             return $field;
         }
 

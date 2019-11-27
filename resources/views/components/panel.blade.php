@@ -5,13 +5,12 @@
 
         {{-- Render fields: create, edit --}}
         @isset($toField)
-
             {{-- Render field by type --}}
             @if(View::exists('belich::fields.' . $field->type))
                 @include('belich::fields.' . $field->type, ['field' => $field])
             @else
-                {{-- Relationship --}}
-                @if($field->type === 'relationship')
+                {{-- Relationship or Custom field --}}
+                @if($field->type === 'relationship' || $field->type === 'custom')
                     {!! $field->{Belich::action()}($field) ?? Helper::emptyResults() !!}
                 {{-- Text field / Default --}}
                 @else

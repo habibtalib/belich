@@ -2,6 +2,9 @@
 
 namespace Daguilarm\Belich\Fields\Resolves;
 
+use Daguilarm\Belich\Fields\Resolves\Callback;
+use Daguilarm\Belich\Fields\Resolves\File;
+use Daguilarm\Belich\Fields\Resolves\Visible;
 use Illuminate\Support\Collection;
 
 final class ResolveIndex
