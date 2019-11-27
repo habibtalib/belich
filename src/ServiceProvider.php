@@ -170,6 +170,7 @@ final class ServiceProvider extends Provider
         if ($this->app->runningInConsole()) {
             $this->commands([
                 \Daguilarm\Belich\App\Console\Commands\CardCommand::class,
+                \Daguilarm\Belich\App\Console\Commands\ComponentCommand::class,
                 \Daguilarm\Belich\App\Console\Commands\MetricCommand::class,
                 \Daguilarm\Belich\App\Console\Commands\ResourceCommand::class,
                 \Daguilarm\Belich\App\Console\Commands\ResourceCommand::class,

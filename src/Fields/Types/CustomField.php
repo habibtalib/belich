@@ -2,9 +2,10 @@
 
 namespace Daguilarm\Belich\Fields\Types;
 
+use Daguilarm\Belich\Contracts\FieldContract;
 use Daguilarm\Belich\Fields\Field;
 
-class CustomField extends Field
+class CustomField extends Field implements FieldContract
 {
     /**
      * @var string
