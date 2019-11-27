@@ -4,14 +4,14 @@ namespace Daguilarm\Belich\Contracts;
 
 use Daguilarm\Belich\Fields\Types\Relationship;
 
-interface RelationshipContract
+interface FieldContract
 {
     /**
-     * Get the Foreing key to connect the models
+     * Get the URI key for the card
      *
-     * @param string $key
+     * @param array $attributes
      *
      * @return Daguilarm\Belich\Fields\Relationship
      */
-    public function foreignKey(string $key): Relationship;
+    public static function make(...$attributes);
 }
