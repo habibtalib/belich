@@ -2,12 +2,15 @@
 
 namespace Daguilarm\Belich\Fields\Types\Relationships;
 
+use Daguilarm\Belich\Contracts\CrudContract;
+use Daguilarm\Belich\Contracts\FieldContract;
 use Daguilarm\Belich\Contracts\RelationshipContract;
 use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Types\Relationship;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
-class HasOne extends Relationship implements RelationshipContract
+class HasOne extends Relationship implements CrudContract, FieldContract, RelationshipContract
 {
     /**
      * @var string
@@ -49,7 +52,7 @@ class HasOne extends Relationship implements RelationshipContract
      *
      * @return string
      */
-    public function index(?object $data = null): string
+    public function index(object $field, ?object $data = null): string
     {
         // Get values
         $result = optional($data)->{$this->fieldRelationship};
@@ -65,30 +68,6 @@ class HasOne extends Relationship implements RelationshipContract
         return $value
             ? view('belich::fields.' . $this->subType . '.index', compact('value', 'url'))
             : Helper::emptyResults();
-    }
-
-    /**
-     * Resolve value for show
-     *
-     * @param  object $field
-     * @param  object|null $data
-     *
-     * @return object
-     */
-    public function show(object $field, ?object $data = null): object
-    {
-        // Get values
-        $value = optional($field)->value;
-        $url = sprintf(
-            '%s/%s/%s',
-            config('belich.path'),
-            Str::plural($this->resource),
-            optional($field)->valueRelationship,
-        );
-        // Set value
-        $field->showValue = $value ? sprintf('<a href="%s" class="show-link">%s</a>', $url, $value) : Helper::emptyResults();
-
-        return $field;
     }
 
     /**
@@ -127,5 +106,29 @@ class HasOne extends Relationship implements RelationshipContract
         $field->options = $this->getQuery();
 
         return view('belich::fields.select', ['field' => $field]);
+    }
+
+    /**
+     * Resolve value for show
+     *
+     * @param  object $field
+     * @param  object|null $data
+     *
+     * @return object
+     */
+    public function show(object $field, ?object $data = null): object
+    {
+        // Get values
+        $value = optional($field)->value;
+        $url = sprintf(
+            '%s/%s/%s',
+            config('belich.path'),
+            Str::plural($this->resource),
+            optional($field)->valueRelationship,
+        );
+        // Set value
+        $field->showValue = $value ? sprintf('<a href="%s" class="show-link">%s</a>', $url, $value) : Helper::emptyResults();
+
+        return $field;
     }
 }

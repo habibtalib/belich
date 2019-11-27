@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Fields;
 
+use Daguilarm\Belich\Contracts\FieldContract;
 use Daguilarm\Belich\Fields\FieldBase;
 use Daguilarm\Belich\Fields\Traits\Attributable;
 use Daguilarm\Belich\Fields\Traits\Authorizable;
@@ -16,7 +17,7 @@ use Daguilarm\Belich\Fields\Traits\Settingable;
 use Daguilarm\Belich\Fields\Traits\Visibilitable;
 use Illuminate\Support\Str;
 
-class Field extends FieldBase
+class Field extends FieldBase implements FieldContract
 {
     use Attributable,
         Authorizable,
