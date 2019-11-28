@@ -53,6 +53,9 @@ class Conditional
     {
         return $fields
             ->map(static function ($field) use ($dependsOn, $dependensOnValue) {
+                $field->dependsOn = $dependsOn;
+                $field->dependensOnValue = $dependensOnValue;
+
                 return $field;
             })
             ->toArray();
