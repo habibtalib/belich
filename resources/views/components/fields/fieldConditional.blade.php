@@ -11,6 +11,7 @@
             window.addEventListener('change', toggleConditional, false);
         });
 
+        // Toogle field container
         function toggleConditional() {
             // window.addEventListener('change', conditionalListener, false);
             var fields = document.querySelectorAll('.conditional-field');
@@ -19,12 +20,24 @@
                 // Looking for parents
                 var parentId = fields[i].getAttribute('data-conditionalParent');
                 var parentValue = fields[i].getAttribute('data-conditionalvalue');
-                if(document.getElementById(parentId).value == 0) {
-                    fields[i].classList.add('hidden');
-                } else {
-                    fields[i].classList.remove('hidden');
-                }
+                // Render fields
+                window.toggleConditionalField(parentId, fields[i]);
             }
+        }
+
+        // Toggle container base on parent value
+        function toggleConditionalField(parent, field) {
+            // For views: create and edit
+            if(document.getElementById(parent)) {
+                parentValue = document.getElementById(parent).value || 0;
+            // For view: show
+            } else {
+                parentValue = document.querySelector('[data-baseAttribute="' + parent + '"]').getAttribute('data-baseValue') || 0;
+            }
+
+            parentValue == 0
+                ? field.classList.add('hidden')
+                : field.classList.remove('hidden');
         }
     </script>
 @endsection
