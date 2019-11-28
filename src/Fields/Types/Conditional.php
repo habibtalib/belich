@@ -13,11 +13,11 @@ class Conditional
      *
      * @param  \Closure  $fields
      * @param  string  $dependsOn
-     * @param  mixed  $dependensOnValue
+     * @param  bool|null  $dependensOnValue
      *
      * @return array
      */
-    public static function make(callable $fields, string $dependsOn, $dependensOnValue): array
+    public static function make(callable $fields, string $dependsOn, ?bool $dependensOnValue): array
     {
         // Get all the fields
         $fields = static::getFields($field);
@@ -45,11 +45,11 @@ class Conditional
      *
      * @param Illuminate\Support\Collection $fields
      * @param  string  $dependsOn
-     * @param  mixed  $dependensOnValue
+     * @param  bool|null  $dependensOnValue
      *
      * @return array
      */
-    protected static function createFields(Collection $fields, string $dependsOn, $dependensOnValue): array
+    protected static function createFields(Collection $fields, string $dependsOn, ?bool $dependensOnValue): array
     {
         return $fields
             ->map(static function ($field) use ($dependsOn, $dependensOnValue) {
