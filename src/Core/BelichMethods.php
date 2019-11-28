@@ -1,12 +1,12 @@
 <?php
 
-namespace Daguilarm\Belich\Core\Services;
+namespace Daguilarm\Belich\Core;
 
 use Daguilarm\Belich\Core\Services\Search;
 use Daguilarm\Belich\Facades\Helper;
 use Illuminate\Support\Str;
 
-abstract class Methods
+abstract class BelichMethods
 {
     /**
      * Get the resource $accessToResource variable.
@@ -107,6 +107,16 @@ abstract class Methods
         $class = static::resourceClassPath();
 
         return new $class();
+    }
+
+    /**
+     * Get the resource md5 key
+     *
+     * @return string
+     */
+    public static function key(): string
+    {
+        return md5(static::resource());
     }
 
     /**
