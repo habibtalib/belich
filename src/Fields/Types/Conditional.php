@@ -5,6 +5,7 @@ namespace Daguilarm\Belich\Fields\Types;
 use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Types\Header;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
 
 class Conditional
 {
@@ -13,16 +14,16 @@ class Conditional
      *
      * @param  \Closure  $fields
      * @param  string  $dependsOn
-     * @param  bool|null  $dependensOnValue
+     * @param  bool|null  $dependsOnValue
      *
      * @return array
      */
-    public static function make(callable $fields, string $dependsOn, ?bool $dependensOnValue): array
+    public static function create(string $dependsOn, ?bool $dependsOnValue, callable $fields): array
     {
         // Get all the fields
-        $fields = static::getFields($field);
+        $fields = static::getFields($fields);
 
-        return static::createFields($fields, $dependsOn, $dependensOnValue);
+        return static::createFields($fields, $dependsOn, $dependsOnValue);
     }
 
     /**
@@ -45,16 +46,20 @@ class Conditional
      *
      * @param Illuminate\Support\Collection $fields
      * @param  string  $dependsOn
-     * @param  bool|null  $dependensOnValue
+     * @param  bool|null  $dependsOnValue
      *
      * @return array
      */
-    protected static function createFields(Collection $fields, string $dependsOn, ?bool $dependensOnValue): array
+    protected static function createFields(Collection $fields, string $dependsOn, ?bool $dependsOnValue): array
     {
+        $uriKey = Str::random(16);
+
         return $fields
-            ->map(static function ($field) use ($dependsOn, $dependensOnValue) {
+            ->map(static function ($field) use ($dependsOn, $dependsOnValue, $uriKey) {
                 $field->dependsOn = $dependsOn;
-                $field->dependensOnValue = $dependensOnValue;
+                $field->dependsOnValue = $dependsOnValue;
+                $field->dependsOnKey = $uriKey;
+                $field->hideFromIndex();
 
                 return $field;
             })

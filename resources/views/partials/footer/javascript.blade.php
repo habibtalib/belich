@@ -10,6 +10,9 @@
 {{-- Not repeat scripts (only one) --}}
 @yield('javascript-no-repeat')
 
+{{-- Conditional fields --}}
+@yield('javascript-conditional')
+
 {{-- Javascript metrics --}}
 @hasMetrics($request ?? null)
     {{-- Load the javascript lib --}}

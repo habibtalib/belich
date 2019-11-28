@@ -13,4 +13,9 @@ trait Conditionable
      * @var bool|null
      */
     public $dependsOnValue;
+
+    /**
+     * @var string
+     */
+    public $dependsOnKey;
 }
