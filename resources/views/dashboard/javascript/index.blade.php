@@ -28,10 +28,10 @@
             Section: Search
             Description: Live search
             */
-            function liveSearch(query = '', page = 1, orderBy = '', direction = '') {
+            function liveSearch(key, query = '', page = 1, orderBy = '', direction = '') {
                 //Hide icon
                 if(query.length === 0) {
-                    window.onSelection('#icon-search-reset', 'hide');
+                    window.onSelection('#icon-search-reset-' + key, 'hide');
                 }
                 //Min. search filter
                 if(query.length < minSearch && query.length > 0) {
@@ -48,7 +48,7 @@
                 request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
                 request.onload = function() {
                     if (this.status == 200 && this.readyState == 4) {
-                        document.getElementById('table-container').innerHTML = JSON.parse(this.response);
+                        document.getElementById('index-table-' + key).innerHTML = JSON.parse(this.response);
                         document.getElementById('loading').classList.add('hidden');
                     }
                 };
@@ -59,26 +59,26 @@
              Section: Search
              Description: Empty the input value when click on reset icon
              */
-            function resetSearch()
+            function resetSearch(key)
             {
                 //Reset value
-                document.getElementById('_search').value = '';
+                document.getElementById('search-' + key).value = '';
 
                 //Hide icon
-                window.onSelection('#icon-search-reset', 'hide');
+                window.onSelection('#icon-search-reset-' + key, 'hide');
 
                 //Reset search
-                window.liveSearch('resetSearchAll');
+                window.liveSearch(key, 'resetSearchAll');
             }
 
              /*
              Section: Search
              Description: Show the reset icon when the input is not empty
              */
-            function showResetSearch()
+            function showResetSearch(key)
             {
-                if(document.getElementById('_search').value.length > 0) {
-                    window.onSelection('#icon-search-reset', 'show');
+                if(document.getElementById('search-' + key).value.length > 0) {
+                    window.onSelection('#icon-search-reset-' + key, 'show');
                 }
             }
 
@@ -132,7 +132,7 @@
                 //Reset the elements list
                 var listOfCheckedElements = [];
                 //Get all the checked elements
-                var elements = document.querySelector('#belich-index-table').querySelectorAll('input[type="checkbox"]');
+                var elements = document.querySelector('#index-table-{{ Belich::key() }}').querySelectorAll('input[type="checkbox"]');
                 //Add all the elements to the list
                 for (var i = 0; i < elements.length; i++) {
                     if(elements[i].checked) {
@@ -174,17 +174,6 @@
             function deleteField(form, url) {
                 document.getElementById(form).setAttribute('action', url);
             }
-
-            {{-- Custom jquery --}}
-            document.addEventListener('DOMContentLoaded', function(event) {
-                //live search
-                if(document.getElementById('_search')) {
-                    document.getElementById('_search')
-                        .addEventListener('keyup', function(event) {
-                            window.liveSearch(this.value);
-                        });
-                }
-            });
         </script>
     @endif
 @endpush

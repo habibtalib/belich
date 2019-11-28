@@ -1,5 +1,5 @@
 {{-- Start / Table --}}
-<table class="w-full text-sm bg-white text-gray-600 shadow-md {{ $request->get('tableTextAlign') }}" id="belich-index-table">
+<table class="w-full text-sm bg-white text-gray-600 shadow-md index-table {{ $request->get('tableTextAlign') }}" id="index-table-{{ Belich::key() }}">
     <thead class="uppercase">
         <tr class="border-b border-t border-gray-300 bg-blue-100 text-gray-600">
 
@@ -20,6 +20,7 @@
                             role="button"
                             {{-- LiveSearch --}}
                             onclick="javascript:liveSearch(
+                                '{{ Belich::key() }}',
                                 '{{ $request->search['query'] }}',
                                 '{{ $request->search['page'] }}',
                                 '{{ $field->attribute }}',
