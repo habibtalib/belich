@@ -55,6 +55,13 @@ trait Settingable
     public $sortable = false;
 
     /**
+     * Unique key for the field if needed...
+     *
+     * @var string
+     */
+    public $uriKey;
+
+    /**
      * Set the attribute dusk
      *
      * @param  string|null  $value
