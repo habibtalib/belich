@@ -12,7 +12,7 @@
         {{ $input ?? null }}
 
         @if($field->toDegrees ?? false)
-            <div id="{{ md5($field->id . '-to-degrees') }}" class="font-normal lowercase font-bold mt-2 capitalize"></div>
+            <div id="toDegrees-{{ $field->uriKey }}" class="font-normal lowercase font-bold mt-2 capitalize"></div>
         @endif
 
         @isset($field->info)

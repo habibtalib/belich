@@ -29,8 +29,8 @@
     <script>
         // Default setup
         document.addEventListener('DOMContentLoaded', function() {
-            if(document.getElementById('{{ md5($field->id . '-to-degrees') }}')) {
-                document.getElementById('{{ md5($field->id . '-to-degrees') }}').innerHTML = toDegreesMinutesAndSeconds('{{ $field->value }}', '{{ $field->coordenateType }}');
+            if(document.getElementById('toDegrees-{{ $field->uriKey }}')) {
+                document.getElementById('toDegrees-{{ $field->uriKey }}').innerHTML = toDegreesMinutesAndSeconds('{{ $field->value }}', '{{ $field->coordenateType }}');
             }
         });
     </script>

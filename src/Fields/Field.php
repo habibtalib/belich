@@ -3,6 +3,7 @@
 namespace Daguilarm\Belich\Fields;
 
 use Daguilarm\Belich\Contracts\FieldContract;
+use Daguilarm\Belich\Facades\Belich;
 use Daguilarm\Belich\Fields\FieldBase;
 use Daguilarm\Belich\Fields\Traits\Attributable;
 use Daguilarm\Belich\Fields\Traits\Authorizable;
@@ -53,6 +54,7 @@ class Field extends FieldBase implements FieldContract
         $this->dusk = $this->dusk ?? 'dusk-' . $title;
         $this->id = $this->name ?? $title;
         $this->name = $this->name ?? $title;
+        $this->uriKey = md5($this->id);
     }
 
     /**

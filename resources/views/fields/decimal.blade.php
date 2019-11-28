@@ -9,7 +9,7 @@
                 {!! $field->render !!}
                 onkeyup="javascript:onlyNumerics(this)"
                 @if($field->toDegrees ?? false)
-                    onblur="javascript:updateCoordenates(this, '{{ $field->key }}', '{{ $field->coordenateType }}');"
+                    onblur="javascript:updateCoordenates(this, 'toDegrees-{{ $field->uriKey }}', '{{ $field->coordenateType }}');"
                 @else
                     onblur="javascript:setDecimals(this, {{ $field->decimals ?? 2 }})"
                 @endif
