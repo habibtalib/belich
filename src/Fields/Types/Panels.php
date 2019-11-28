@@ -36,7 +36,6 @@ class Panels
     /**
      * Resolve fields in callback
      *
-     * @param  string  $name
      * @param  \Closure  $fields
      *
      * @return Illuminate\Support\Collection
@@ -51,7 +50,7 @@ class Panels
     /**
      * Resolve fields in callback
      *
-     * @param  \Closure  $fields
+     * @param  string  $name
      * @param Illuminate\Support\Collection $fields
      *
      * @return array
@@ -65,8 +64,6 @@ class Panels
 
                 return $field->panels($name);
             })
-            // Not repeat attributes
-            ->unique('attribute')
             ->toArray();
     }
 }
