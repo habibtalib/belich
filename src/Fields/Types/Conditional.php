@@ -18,7 +18,7 @@ class Conditional
      *
      * @return array
      */
-    public static function create(string $dependsOn, ?bool $dependsOnValue, callable $fields): array
+    public static function make(string $dependsOn, ?bool $dependsOnValue, callable $fields): array
     {
         // Get all the fields
         $fields = static::getFields($fields);
@@ -52,13 +52,10 @@ class Conditional
      */
     protected static function createFields(Collection $fields, string $dependsOn, ?bool $dependsOnValue): array
     {
-        $uriKey = Str::random(16);
-
         return $fields
-            ->map(static function ($field) use ($dependsOn, $dependsOnValue, $uriKey) {
+            ->map(static function ($field) use ($dependsOn, $dependsOnValue) {
                 $field->dependsOn = $dependsOn;
                 $field->dependsOnValue = $dependsOnValue;
-                $field->dependsOnKey = $uriKey;
                 $field->hideFromIndex();
 
                 return $field;
