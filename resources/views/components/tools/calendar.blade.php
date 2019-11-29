@@ -4,7 +4,7 @@
     ></belich::calendar> --}}
 
 {{-- Calendar --}}
-<div id="{{ $id ?? $key = md5(rand(1, 10000000)) }}" dusk="{{ $id ?? $key }}" class="{{ $width ?? 'w-1/3' }} p-4">
+<div id="{{ $id ?? 'calendar-' . ($key = \Illuminate\Support\Str::random(20)) }}" dusk="{{ $id ?? $key }}" class="{{ $width ?? 'w-1/3' }} p-4">
     <div class="flex-none text-center">
         <div class="block overflow-hidden shadow-md rounded-t">
             <div class="bg-blue-500 text-white text-xl py-2">

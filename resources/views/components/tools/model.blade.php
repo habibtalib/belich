@@ -1,6 +1,6 @@
 {{-- <belich::model
         :columns="['id', 'name', 'email']"
-        :model="app(\App\User::class)"
+        :model="\App\User"
         id="tool-model" //this fields can be empty
         width="w-2/3" //this fields can be empty
         limit="10" //this fields can be empty
@@ -8,7 +8,7 @@
 
 {{-- Model to table --}}
 @isset($columns, $model)
-    <div id="{{ $id ?? $key = md5(rand(1, 10000000)) }}" dusk="{{ $id ?? $key }}" class="{{ $width ?? 'w-full' }} p-4">
+    <div id="{{ $id ?? 'model-' . ($key = \Illuminate\Support\Str::random(20)) }}" dusk="{{ $id ?? $key }}" class="{{ $width ?? 'w-full' }} p-4">
         <table class="w-full text-sm bg-white text-gray-600">
             <thead class="uppercase">
                 <tr class="border-b border-t border-gray-300 bg-blue-100 text-gray-600">
@@ -18,7 +18,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($model->take($limit ?? Cookie::get('belich_perPage'))->get() as $row)
+                @foreach((new $model())->take($limit ?? Cookie::get('belich_perPage'))->get() as $row)
                     <tr class="hover:bg-gray-100">
                         @foreach($row->toArray() as $key => $value)
                             @if(in_array($key, $columns))
