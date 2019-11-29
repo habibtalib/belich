@@ -152,7 +152,7 @@ At the moment, Belich only has this type of charts:
 - Complete the fields types:
     + Maps.
 - Create the relationship fields:
-    + <delete>HasOne</delete>
+    + <del>HasOne</del>
     + BelongsTo
     + HasMany
     + BelongsToMany
