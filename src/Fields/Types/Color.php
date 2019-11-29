@@ -10,4 +10,22 @@ final class Color extends Field
      * @var string
      */
     public $type = 'color';
+
+    /**
+     * @var string
+     */
+    public $asColor = false;
+
+    /**
+     * Resolve as color
+     *
+     * @return self
+     */
+    public function asColor(): self
+    {
+        $this->asColor = true;
+        $this->asHtml();
+
+        return $this;
+    }
 }

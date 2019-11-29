@@ -57,6 +57,13 @@ final class Blade
             return Helper::displayUsingLabels($field, $value);
         }
 
+        // Resolve show view for custom field
+        if ($field->type === 'color' && isset($field->asColor) && $field->asColor === true) {
+
+            // Set value
+            return sprintf('<div class="w-12 h-2 rounded" style="background-color:%s">&nbsp;</div>', $value);
+        }
+
         //Resolve the field value through callbacks
         return app(Callback::class)->execute($field, $data, $value);
     }
