@@ -19,6 +19,11 @@ trait Attributable
     /**
      * @var string
      */
+    public $autocomplete;
+
+    /**
+     * @var string
+     */
     public $autofocus;
 
     /**
@@ -68,7 +73,31 @@ trait Attributable
     }
 
     /**
-     * Add to attribute the autofocus attribute
+     * Add the autocomplete value: On
+     *
+     * @return self
+     */
+    public function autocompleteOn(): self
+    {
+        $this->autocomplete = 'on';
+
+        return $this;
+    }
+
+    /**
+     * Add the autocomplete value: Off
+     *
+     * @return self
+     */
+    public function autocompleteOff(): self
+    {
+        $this->autocomplete = 'off';
+
+        return $this;
+    }
+
+    /**
+     * Add the autofocus value
      *
      * @return self
      */

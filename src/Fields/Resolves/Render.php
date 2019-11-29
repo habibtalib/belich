@@ -64,6 +64,7 @@ final class Render
     {
         // Set custom attributes
         return collect([
+            'autocomplete' => $this->renderAttributes('autocomplete', $field),
             'autofocus' => 'autofocus',
             'disabled' => 'disabled',
             'multiple' => 'multiple',
