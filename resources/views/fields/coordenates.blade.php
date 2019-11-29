@@ -24,14 +24,3 @@
         }
     </script>
 @endsection
-
-@push('javascript')
-    <script>
-        // Default setup
-        document.addEventListener('DOMContentLoaded', function() {
-            if(document.getElementById('toDegrees-{{ $field->uriKey }}')) {
-                document.getElementById('toDegrees-{{ $field->uriKey }}').innerHTML = toDegreesMinutesAndSeconds('{{ $field->value }}', '{{ $field->coordenateType }}');
-            }
-        });
-    </script>
-@endpush
