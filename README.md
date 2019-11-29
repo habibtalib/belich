@@ -150,9 +150,10 @@ At the moment, Belich only has this type of charts:
 
 - Refactoring all the code, because I am just writting code...
 - Complete the fields types:
-    + DependsOn fields
     + Maps.
-- Create the relationship fields.
-- Writting test... I know but...
-- Preset cards.
+- Create the relationship fields:
+    + <delete>HasOne</delete>
+    + BelongsTo
+    + HasMany
+    + BelongsToMany
 ...
