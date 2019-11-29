@@ -9,27 +9,46 @@ use Illuminate\Support\Str;
 
 class Conditional
 {
+    public static $fields;
+
     /**
-     * Create a new panel
+     * Get the fields and prepare its for condition
      *
      * @param  \Closure  $fields
-     * @param  string  $dependsOn
-     * @param  bool|null  $dependsOnValue
      *
      * @return array
      */
-    public static function make(string $dependsOn, ?bool $dependsOnValue, callable $fields): array
+    public static function make(callable $fields)
     {
-        // Get all the fields
-        $fields = static::getFields($fields);
+        self::$fields = static::getFields($fields);
 
-        return static::createFields($fields, $dependsOn, $dependsOnValue);
+        return new self();
+    }
+
+    /**
+     * Create conditional fields
+     *
+     * @param  string  $parent
+     * @param  bool|null  $value
+     *
+     * @return array
+     */
+    public function dependsOn(string $parent, ?bool $value)
+    {
+        return self::$fields
+            ->map(static function ($field) use ($parent, $value) {
+                $field->dependsOn = $parent;
+                $field->dependsOnValue = $value;
+                $field->hideFromIndex();
+
+                return $field;
+            })
+            ->toArray();
     }
 
     /**
      * Resolve fields in callback
      *
-     * @param  string  $name
      * @param  \Closure  $fields
      *
      * @return Illuminate\Support\Collection
@@ -39,27 +58,5 @@ class Conditional
         $listOfFields = call_user_func($fields);
 
         return collect($listOfFields);
-    }
-
-    /**
-     * Resolve fields in callback
-     *
-     * @param Illuminate\Support\Collection $fields
-     * @param  string  $dependsOn
-     * @param  bool|null  $dependsOnValue
-     *
-     * @return array
-     */
-    protected static function createFields(Collection $fields, string $dependsOn, ?bool $dependsOnValue): array
-    {
-        return $fields
-            ->map(static function ($field) use ($dependsOn, $dependsOnValue) {
-                $field->dependsOn = $dependsOn;
-                $field->dependsOnValue = $dependsOnValue;
-                $field->hideFromIndex();
-
-                return $field;
-            })
-            ->toArray();
     }
 }
