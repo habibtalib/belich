@@ -51,6 +51,7 @@ All the tests are in https://github.com/daguilarm/belich-dashboard
 - Minify HTML (with filters by pages and Controller actions): https://github.com/nckg/laravel-minify-html
 - Metrics using: https://gionkunz.github.io/chartist-js/index.html a lightweight library for charts.
 - Life search from index with custom fields.
+- Conditional fields.
 
 ### Casting the fields before storage
 
