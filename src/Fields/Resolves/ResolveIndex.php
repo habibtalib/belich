@@ -49,22 +49,12 @@ final class ResolveIndex
      */
     public function controller(object $fields): Collection
     {
-        $fields = $fields->map(static function ($field) {
-            //Showing field relationship in index
-            //See blade template: dashboard.index
-            $field->attribute = $field->fieldRelationship
-                //Prepare field for relationship
-                ? [$field->fieldRelationship, $field->attribute]
-                //No relationship field
-                : $field->attribute;
+        $fields = $fields->map(function ($field) {
+            // Resolve field relationship
+            $field = $this->resolveRelationship($field);
 
-            // Resolve show view for custom field
-            if ($field->type === 'color' && isset($field->asColor) && $field->asColor === true) {
-                // Set value
-                $field->asHtml();
-
-                return $field;
-            }
+            // Resolve field color
+            $field = $this->resolveColor($field);
 
             return $field;
         });
@@ -75,5 +65,43 @@ final class ResolveIndex
         return collect([
             'data' => $fields,
         ]);
+    }
+
+    /**
+     * Resolve field color
+     *
+     * @param object $fields
+     *
+     * @return object
+     */
+    private function resolveColor(object $field): object
+    {
+        // Resolve color
+        if ($field->type === 'color' && isset($field->asColor) && $field->asColor === true) {
+            // Set value
+            $field->asHtml();
+        }
+
+        return $field;
+    }
+
+    /**
+     * Resolve field relationship
+     *
+     * @param object $fields
+     *
+     * @return object
+     */
+    private function resolveRelationship(object $field): object
+    {
+        //Showing field relationship in index
+        //See blade template: dashboard.index
+        $field->attribute = $field->fieldRelationship
+            //Prepare field for relationship
+            ? [$field->fieldRelationship, $field->attribute]
+            //No relationship field
+            : $field->attribute;
+
+        return $field;
     }
 }

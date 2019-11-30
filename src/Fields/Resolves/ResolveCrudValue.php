@@ -38,15 +38,11 @@ final class ResolveCrudValue
             //Set new value for the fields, even if has a fieldRelationship value
             //This relationship method is only on forms
             //Index has its own way in blade template
-            $field->value = $this->relationship($sql, $field);
+            $field->value = $this->resolveValue($sql, $field);
 
             // Resolve relationship
             if ($field->type === 'relationship') {
-                return $this->action !== 'edit'
-                    // Render select or datalists
-                    ? $field->value = $field->{$this->action}($field, $sql)
-                    //Just the value
-                    : $field;
+                return $this->resolveRelationship($field);
             }
 
             //filter the data for the show view or return the $field
@@ -55,15 +51,16 @@ final class ResolveCrudValue
     }
 
     /**
-     * Determine value with relationship if exists...
+     * Resolve value even if it has a relationship (if exists...)
      *
      * @param object $sql
      * @param object $fields
      *
      * @return string|null
      */
-    private function relationship(object $sql, object $field): ?string
+    private function resolveValue(object $sql, object $field): ?string
     {
+        // If relationship...
         if ($field->type === 'relationship' && $field->fieldRelationship) {
             $field->valueRelationship = $sql->{$field->fieldRelationship}->id ?? null;
         }
@@ -71,6 +68,22 @@ final class ResolveCrudValue
         return $field->fieldRelationship
             ? $sql->{$field->fieldRelationship}->{$field->attribute} ?? null
             : $sql->{$field->attribute} ?? null;
+    }
+
+    /**
+     * Resolve relationship
+     *
+     * @param object $fields
+     *
+     * @return string|null
+     */
+    private function resolveRelationship(object $field)
+    {
+        return $this->action !== 'edit'
+            // Render select or datalists
+            ? $field->value = $field->{$this->action}($field, $sql)
+            //Just the value
+            : $field;
     }
 
     /**
@@ -108,7 +121,10 @@ final class ResolveCrudValue
         // Resolve show view for custom field
         if ($field->type === 'color' && isset($field->asColor) && $field->asColor === true) {
             // Set value
-            $field->asHtml()->value = sprintf('<div class="w-12 h-2 rounded" style="background-color:%s">&nbsp;</div>', $field->value);
+            $field->asHtml()->value = sprintf(
+                '<div class="w-12 h-2 rounded" style="background-color:%s">&nbsp;</div>',
+                $field->value
+            );
 
             return $field;
         }
