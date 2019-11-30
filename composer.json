@@ -14,8 +14,7 @@
         "php" : "^7.2",
         "rap2hpoutre/fast-excel": "dev-master",
         "spatie/laravel-blade-x": "^2.0.0",
-        "matthiasmullie/minify": "dev-master",
-        "graham-campbell/markdown": "^11.1"
+        "matthiasmullie/minify": "dev-master"
     },
     "autoload": {
         "psr-4": {
