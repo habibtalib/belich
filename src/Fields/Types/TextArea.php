@@ -34,6 +34,11 @@ final class TextArea extends Field
     /**
      * @var int
      */
+    public $markdown = false;
+
+    /**
+     * @var int
+     */
     public $maxlength;
 
     /**
@@ -103,6 +108,18 @@ final class TextArea extends Field
     {
         $this->count = true;
         $this->maxlength = $chars;
+
+        return $this;
+    }
+
+    /**
+     * Render the textArea to markdown format
+     *
+     * @return  self
+     */
+    public function markdown(): self
+    {
+        $this->markdown = true;
 
         return $this;
     }

@@ -4,6 +4,7 @@ namespace Daguilarm\Belich\Fields\Traits;
 
 use Daguilarm\Belich\Facades\Belich;
 use Daguilarm\Belich\Fields\Field;
+use Parsedown;
 
 trait Resolvable
 {
@@ -77,11 +78,19 @@ trait Resolvable
      *
      * @return string|null
      */
-    public function resolveTextArea(Field $field, ?string $value = null): ?string
+    protected function resolveTextArea(Field $field, ?string $value = null): ?string
     {
         // Default value
         $value = $value ?? $field->value;
         $shortValue = mb_strimwidth($value, 0, config('belich.textAreaChars'), '...');
+
+        // Markdown
+        if($field->markdown) {
+            // As Html
+            $field->asHtml();
+            // Parser markdown
+            $value = app(Parsedown::class)->setSafeMode(true)->text($value);
+        }
 
         // Index and show resolve
         if ((Belich::action() === 'index' && $field->fullTextOnIndex) || (Belich::action() === 'show' && $field->fullTextOnShow)) {
