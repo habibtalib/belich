@@ -6,6 +6,7 @@ use Daguilarm\Belich\Facades\Belich;
 use Daguilarm\Belich\Fields\FieldBase;
 use Daguilarm\Belich\Fields\Traits\Attributable;
 use Daguilarm\Belich\Fields\Traits\Casteable;
+use Daguilarm\Belich\Fields\Traits\Conditionable;
 use Daguilarm\Belich\Fields\Traits\Formatable;
 use Daguilarm\Belich\Fields\Traits\Helpeable;
 use Daguilarm\Belich\Fields\Traits\Relationable;
@@ -18,6 +19,7 @@ class Relationship extends FieldBase
 {
     use Attributable,
         Casteable,
+        Conditionable,
         Formatable,
         Helpeable,
         Relationable,
