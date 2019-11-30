@@ -7,7 +7,7 @@ use Daguilarm\Belich\Core\Services\Search;
 use Daguilarm\Belich\Fields\Resolves\Authorization;
 use Daguilarm\Belich\Fields\Resolves\Render;
 use Daguilarm\Belich\Fields\Resolves\Resolve;
-use Daguilarm\Belich\Fields\Resolves\Value;
+use Daguilarm\Belich\Fields\Resolves\ResolveCrudValue;
 use Daguilarm\Belich\Fields\Resolves\Visible;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
@@ -57,7 +57,7 @@ trait Resourceable
         $builder = new Resolve(
             new Authorization(),
             new Render(),
-            new Value(),
+            new ResolveCrudValue(),
             new Visible()
         );
 

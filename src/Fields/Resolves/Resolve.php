@@ -8,7 +8,7 @@ use Daguilarm\Belich\Fields\Resolves\Callback;
 use Daguilarm\Belich\Fields\Resolves\File;
 use Daguilarm\Belich\Fields\Resolves\Render;
 use Daguilarm\Belich\Fields\Resolves\ResolveIndex;
-use Daguilarm\Belich\Fields\Resolves\Value;
+use Daguilarm\Belich\Fields\Resolves\ResolveCrudValue;
 use Daguilarm\Belich\Fields\Resolves\Visible;
 use Illuminate\Support\Collection;
 
@@ -57,7 +57,7 @@ final class Resolve
     /**
      * Init constructor
      */
-    public function __construct(Authorization $auth, Render $render, Value $value, Visible $visible)
+    public function __construct(Authorization $auth, Render $render, ResolveCrudValue $value, Visible $visible)
     {
         $this->action = Belich::action();
         $this->auth = $auth;

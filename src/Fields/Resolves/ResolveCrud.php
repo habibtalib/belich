@@ -3,7 +3,7 @@
 namespace Daguilarm\Belich\Fields\Resolves;
 
 use Daguilarm\Belich\Fields\Resolves\Render;
-use Daguilarm\Belich\Fields\Resolves\Value;
+use Daguilarm\Belich\Fields\Resolves\ResolveCrudValue;
 use Daguilarm\Belich\Fields\Resolves\Visible;
 use Illuminate\Support\Collection;
 
@@ -12,7 +12,7 @@ final class ResolveCrud
     /**
      * Get controller action
      */
-    public function __construct(string $action, Render $render, Value $value, Visible $visible)
+    public function __construct(string $action, Render $render, ResolveCrudValue $value, Visible $visible)
     {
         $this->action = $action;
         $this->render = $render;

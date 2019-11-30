@@ -7,7 +7,7 @@ use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Traits\Resolvable;
 use Illuminate\Support\Collection;
 
-final class Value
+final class ResolveCrudValue
 {
     use Resolvable;
 
@@ -95,14 +95,6 @@ final class Value
             return $field;
         }
 
-        // Resolve show view for custom field
-        if ($field->type === 'color' && isset($field->asColor) && $field->asColor === true) {
-            // Set value
-            $field->value = sprintf('<div class="w-12 h-2 rounded" style="background-color:%s">&nbsp;</div>', $field->value);
-
-            return $field;
-        }
-
         //Display using labels
         if (isset($field->displayUsingLabels) && isset($field->options)) {
             $field->value = Helper::displayUsingLabels($field, $field->value);
@@ -111,6 +103,14 @@ final class Value
         //TextArea field
         if ($field->type === 'textArea') {
             $field->value = $this->resolveTextArea($field);
+        }
+
+        // Resolve show view for custom field
+        if ($field->type === 'color' && isset($field->asColor) && $field->asColor === true) {
+            // Set value
+            $field->asHtml()->value = sprintf('<div class="w-12 h-2 rounded" style="background-color:%s">&nbsp;</div>', $field->value);
+
+            return $field;
         }
 
         //Regular field
