@@ -24,7 +24,6 @@ final class Color extends Field
     public function asColor(): self
     {
         $this->asColor = true;
-        $this->asHtml();
 
         return $this;
     }
