@@ -58,6 +58,14 @@ final class ResolveIndex
                 //No relationship field
                 : $field->attribute;
 
+            // Resolve show view for custom field
+            if ($field->type === 'color' && isset($field->asColor) && $field->asColor === true) {
+                // Set value
+                $field->asHtml();
+
+                return $field;
+            }
+
             return $field;
         });
 
