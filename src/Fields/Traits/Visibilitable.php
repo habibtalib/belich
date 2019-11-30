@@ -65,6 +65,18 @@ trait Visibilitable
     }
 
     /**
+     * Hide field when show a resource (alias)
+     *
+     * @return self
+     */
+    public function hideFromDetail(): self
+    {
+        $this->hideFromShow();
+
+        return $this;
+    }
+
+    /**
      * Hide field when creating a resource
      *
      * @return self
@@ -84,6 +96,18 @@ trait Visibilitable
     public function hideWhenEditing(): self
     {
         $this->visibility['edit'] = false;
+
+        return $this;
+    }
+
+    /**
+     * Hide field when updating a resource (alias)
+     *
+     * @return self
+     */
+    public function hideWhenUpdating(): self
+    {
+        $this->hideWhenEditing();
 
         return $this;
     }
@@ -147,6 +171,18 @@ trait Visibilitable
     }
 
     /**
+     * Show field only on show (alias)
+     *
+     * @return self
+     */
+    public function onlyOnDetail(): self
+    {
+        $this->onlyOnShow();
+
+        return $this;
+    }
+
+    /**
      * Show field only on editing
      *
      * @return self
@@ -161,6 +197,18 @@ trait Visibilitable
     }
 
     /**
+     * Show field only on editing (alias)
+     *
+     * @return self
+     */
+    public function onlyOnUpdating(): self
+    {
+        $this->onlyOnEditing();
+
+        return $this;
+    }
+
+    /**
      * Show field only on creating
      *
      * @return self
@@ -170,6 +218,78 @@ trait Visibilitable
         self::hideFromAll();
 
         $this->visibility['create'] = true;
+
+        return $this;
+    }
+
+    /**
+     * Show field on index
+     *
+     * @return self
+     */
+    public function showOnIndex()
+    {
+        $this->visibility['index'] = true;
+
+        return $this;
+    }
+
+    /**
+     * Show field on detail / show
+     *
+     * @return self
+     */
+    public function showOnShow()
+    {
+        $this->visibility['show'] = true;
+
+        return $this;
+    }
+
+    /**
+     * Show field on detail / show (alias)
+     *
+     * @return self
+     */
+    public function showOnDetail()
+    {
+        $this->showOnShow();
+
+        return $this;
+    }
+
+    /**
+     * Show field on creating / create
+     *
+     * @return self
+     */
+    public function showOnCreating()
+    {
+        $this->visibility['create'] = true;
+
+        return $this;
+    }
+
+    /**
+     * Show field on updating / edit
+     *
+     * @return self
+     */
+    public function showOnEditing()
+    {
+        $this->visibility['edit'] = true;
+
+        return $this;
+    }
+
+    /**
+     * Show field on updating / edit (alias)
+     *
+     * @return self
+     */
+    public function showOnUpdating()
+    {
+        $this->showOnEditing();
 
         return $this;
     }
