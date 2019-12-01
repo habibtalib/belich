@@ -16,8 +16,10 @@ trait Markdown
      */
     public function markdown(string $text): string
     {
-        return app(Parsedown::class)
+        $markdown = app(Parsedown::class)
             ->setSafeMode(true)
             ->text($text);
+
+        return nl2br($markdown);
     }
 }

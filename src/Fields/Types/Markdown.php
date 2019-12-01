@@ -2,19 +2,15 @@
 
 namespace Daguilarm\Belich\Fields\Types;
 
+use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Field;
 
-class TextArea extends Field
+class Markdown extends Field
 {
     /**
      * @var string
      */
-    public $type = 'textArea';
-
-    /**
-     * @var bool
-     */
-    public $count;
+    public $type = 'markdown';
 
     /**
      * @var bool
@@ -51,11 +47,19 @@ class TextArea extends Field
      */
     public function __construct($label, $attribute = null)
     {
-        //Set the values
+        // Set the values
         parent::__construct($label, $attribute);
 
-        //Cast the field as string
+        // Cast the field as string
         $this->toString();
+
+        // As html
+        $this->asHtml();
+
+        // Resolve markdown
+        $this->displayUsing(function($value) {
+            return Helper::markdown($value);
+        });
     }
 
     /**
@@ -90,19 +94,6 @@ class TextArea extends Field
     public function fullTextOnShow(): self
     {
         $this->fullTextOnShow = true;
-
-        return $this;
-    }
-
-    /**
-     * Show characters count
-     *
-     * @return  self
-     */
-    public function count(int $chars = 0): self
-    {
-        $this->count = true;
-        $this->maxlength = $chars;
 
         return $this;
     }
@@ -146,19 +137,6 @@ class TextArea extends Field
             $this->value = $value;
         }
 
-        return $this;
-    }
-
-    /**
-     * Disabled method
-     * Resolving field value in index and detailed
-     *
-     * @param  object  $displayCallback
-     *
-     * @return Daguilarm\Belich\Fields\Field
-     */
-    public function displayUsing(callable $displayCallback): Field
-    {
         return $this;
     }
 
