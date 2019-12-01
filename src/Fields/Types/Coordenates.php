@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Fields\Types;
 
+use Daguilarm\Belich\Fields\Field;
 use Daguilarm\Belich\Fields\Types\Decimal;
 
 final class Coordenates extends Decimal
@@ -55,6 +56,60 @@ final class Coordenates extends Decimal
             $this->coordenateType = 'longitude';
         }
 
+        return $this;
+    }
+
+    /**
+     * Disabled field
+     * Resolving field value in index and detailed
+     *
+     * @param  object  $displayCallback
+     *
+     * @return Daguilarm\Belich\Fields\Field
+     */
+    public function displayUsing(callable $displayCallback): Field
+    {
+        return $this;
+    }
+
+    /**
+     * Disabled field
+     * Prefix for field value
+     *
+     * @param  string  $prefix
+     * @param  bool  $space
+     *
+     * @return Daguilarm\Belich\Fields\Field
+     */
+    public function prefix(string $prefix, bool $space = false): Field
+    {
+        return $this;
+    }
+
+    /**
+     * Disabled field
+     * Resolving field value (before processing) in all the fields
+     *
+     * @param  object  $resolveCallback
+     *
+     * @return Daguilarm\Belich\Fields\Field
+     */
+    public function resolveUsing(callable $resolveCallback): Field
+    {
+        return $this;
+    }
+
+    /**
+     * Disabled field
+     * Suffix for field value
+     *
+     * @param  string  $suffix
+     * @param  bool  $space
+     *
+     * @return Daguilarm\Belich\Fields\Field
+     */
+    public function suffix(string $suffix, bool $space = false): Field
+    {
         return $this;
     }
 }

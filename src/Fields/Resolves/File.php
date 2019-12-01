@@ -79,7 +79,7 @@ final class File
         $href = sprintf(
             '<a href="%s" target="_blank" dusk="downloable-file">%s</a>',
             $file,
-            Helper::icon('download'),
+            Helper::icon('download')
         );
 
         return $field->link && $file

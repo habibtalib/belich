@@ -22,7 +22,7 @@ trait Stylable
         //Set the grid
         $grid = $metric->grid === false ? 'none' : 'var(--10)';
 
-        $css = <<<EOD
+        $css = "
             #graph-%s-%s .ct-grids line{stroke:%s}
             #graph-%s-%s .ct-label{font-weight:bold;fill:%s}
             #graph-%s-%s .ct-series .ct-bar,
@@ -38,7 +38,7 @@ trait Stylable
               stroke:%s;
               stroke-linecap:%s;
             }
-        EOD;
+        ";
 
         return sprintf(
             $css,

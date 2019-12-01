@@ -101,7 +101,7 @@ trait Forms
         return str_replace(
             array_keys($this->attributeFilter),
             array_values($this->attributeFilter),
-            $attribute,
+            $attribute
         );
     }
 

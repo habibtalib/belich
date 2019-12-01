@@ -82,7 +82,7 @@ final class Validate
                 $this->controllerAction,
                 $this->resource,
                 $formValidationRules,
-                $formValues,
+                $formValues
             ),
         ]);
     }

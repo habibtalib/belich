@@ -175,7 +175,7 @@ trait Relationable
         return sprintf(
             '%s[%s]',
             strtolower($this->resource),
-            $tableColumn,
+            $tableColumn
         );
     }
 

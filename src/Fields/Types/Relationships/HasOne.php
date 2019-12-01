@@ -62,7 +62,7 @@ class HasOne extends Relationship implements CrudContract, FieldContract, Relati
             '%s/%s/%s',
             config('belich.path'),
             Str::plural($this->resource),
-            $id,
+            $id
         );
 
         return $value
@@ -124,7 +124,7 @@ class HasOne extends Relationship implements CrudContract, FieldContract, Relati
             '%s/%s/%s',
             config('belich.path'),
             Str::plural($this->resource),
-            optional($field)->valueRelationship,
+            optional($field)->valueRelationship
         );
         // Set value
         $field->showValue = $value ? sprintf('<a href="%s" class="show-link">%s</a>', $url, $value) : Helper::emptyResults();

@@ -18,7 +18,7 @@ Project in development. Still in the early stages...help will be great!!!
 
 ## Requirements
 
-- PHP 7.3
+- PHP 7.4 >
 - Laravel 6.x
 
 ## Instalation (not yet...)
