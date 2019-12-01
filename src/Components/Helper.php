@@ -6,6 +6,7 @@ use Daguilarm\Belich\Components\Helpers\Blade;
 use Daguilarm\Belich\Components\Helpers\Files;
 use Daguilarm\Belich\Components\Helpers\Forms;
 use Daguilarm\Belich\Components\Helpers\Icons;
+use Daguilarm\Belich\Components\Helpers\Markdown;
 use Daguilarm\Belich\Components\Helpers\Messages;
 use Daguilarm\Belich\Components\Helpers\Metrics;
 use Daguilarm\Belich\Components\Helpers\Models;
@@ -22,6 +23,7 @@ final class Helper
         Icons,
         Files,
         Forms,
+        Markdown,
         Messages,
         Metrics,
         Models,

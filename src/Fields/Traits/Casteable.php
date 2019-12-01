@@ -70,6 +70,18 @@ trait Casteable
     }
 
     /**
+     * Cast as html
+     *
+     * @return self
+     */
+    public function toHtml(): self
+    {
+        $this->cast = 'html';
+
+        return $this;
+    }
+
+    /**
      * Cast as json
      *
      * @return self

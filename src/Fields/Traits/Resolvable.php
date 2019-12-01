@@ -3,8 +3,8 @@
 namespace Daguilarm\Belich\Fields\Traits;
 
 use Daguilarm\Belich\Facades\Belich;
+use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Field;
-use Parsedown;
 
 trait Resolvable
 {
@@ -83,14 +83,6 @@ trait Resolvable
         // Default value
         $value = $value ?? $field->value;
         $shortValue = mb_strimwidth($value, 0, config('belich.textAreaChars'), '...');
-
-        // Markdown
-        if($field->markdown) {
-            // As Html
-            $field->asHtml();
-            // Parser markdown
-            $value = app(Parsedown::class)->setSafeMode(true)->text($value);
-        }
 
         // Index and show resolve
         if ((Belich::action() === 'index' && $field->fullTextOnIndex) || (Belich::action() === 'show' && $field->fullTextOnShow)) {
