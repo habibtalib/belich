@@ -60,7 +60,7 @@ final class Coordenates extends Decimal
     }
 
     /**
-     * Disabled field
+     * Disabled method
      * Resolving field value in index and detailed
      *
      * @param  object  $displayCallback
@@ -73,7 +73,7 @@ final class Coordenates extends Decimal
     }
 
     /**
-     * Disabled field
+     * Disabled method
      * Prefix for field value
      *
      * @param  string  $prefix
@@ -87,7 +87,7 @@ final class Coordenates extends Decimal
     }
 
     /**
-     * Disabled field
+     * Disabled method
      * Resolving field value (before processing) in all the fields
      *
      * @param  object  $resolveCallback
@@ -100,7 +100,7 @@ final class Coordenates extends Decimal
     }
 
     /**
-     * Disabled field
+     * Disabled method
      * Suffix for field value
      *
      * @param  string  $suffix

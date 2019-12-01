@@ -104,4 +104,58 @@ class Autocomplete extends Field
 
         return $this;
     }
+
+    /**
+     * Disabled method
+     * Resolving field value in index and detailed
+     *
+     * @param  object  $displayCallback
+     *
+     * @return Daguilarm\Belich\Fields\Field
+     */
+    public function displayUsing(callable $displayCallback): Field
+    {
+        return $this;
+    }
+
+    /**
+     * Disabled method
+     * Set the attribute dusk
+     *
+     * @param  string|null  $value
+     *
+     * @return Daguilarm\Belich\Fields\Field
+     */
+    public function dusk($value = null): Field
+    {
+        return $this;
+    }
+
+    /**
+     * Disabled method
+     * Prefix for field value
+     *
+     * @param  string  $prefix
+     * @param  bool  $space
+     *
+     * @return Daguilarm\Belich\Fields\Field
+     */
+    public function prefix(string $prefix, bool $space = false): Field
+    {
+        return $this;
+    }
+
+    /**
+     * Disabled method
+     * Suffix for field value
+     *
+     * @param  string  $suffix
+     * @param  bool  $space
+     *
+     * @return Daguilarm\Belich\Fields\Field
+     */
+    public function suffix(string $suffix, bool $space = false): Field
+    {
+        return $this;
+    }
 }

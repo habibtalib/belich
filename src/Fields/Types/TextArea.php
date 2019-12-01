@@ -147,4 +147,76 @@ class TextArea extends Field
 
         return $this;
     }
+
+    /**
+     * Disabled method
+     * Set the attribute default value
+     *
+     * @param  string|null  $value
+     *
+     * @return Daguilarm\Belich\Fields\Field
+     */
+    public function defaultValue($value = null): Field
+    {
+        //Check the value for conditional cases...
+        if (isset($value)) {
+            $this->value = $value;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Disabled method
+     * Resolving field value in index and detailed
+     *
+     * @param  object  $displayCallback
+     *
+     * @return Daguilarm\Belich\Fields\Field
+     */
+    public function displayUsing(callable $displayCallback): Field
+    {
+        return $this;
+    }
+
+    /**
+     * Disabled method
+     * Prefix for field value
+     *
+     * @param  string  $prefix
+     * @param  bool  $space
+     *
+     * @return Daguilarm\Belich\Fields\Field
+     */
+    public function prefix(string $prefix, bool $space = false): Field
+    {
+        return $this;
+    }
+
+    /**
+     * Disabled method
+     * Resolving field value (before processing) in all the fields
+     *
+     * @param  object  $resolveCallback
+     *
+     * @return Daguilarm\Belich\Fields\Field
+     */
+    public function resolveUsing(callable $resolveCallback): Field
+    {
+        return $this;
+    }
+
+    /**
+     * Disabled method
+     * Suffix for field value
+     *
+     * @param  string  $suffix
+     * @param  bool  $space
+     *
+     * @return Daguilarm\Belich\Fields\Field
+     */
+    public function suffix(string $suffix, bool $space = false): Field
+    {
+        return $this;
+    }
 }

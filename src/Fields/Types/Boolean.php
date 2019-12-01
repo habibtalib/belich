@@ -96,7 +96,7 @@ final class Boolean extends Field
     }
 
     /**
-     * Disabled field
+     * Disabled method
      * Add new css classes to the current field
      *
      * @return Daguilarm\Belich\Fields\Field
@@ -107,7 +107,7 @@ final class Boolean extends Field
     }
 
     /**
-     * Disabled field
+     * Disabled method
      * Add the autofocus value
      *
      * @return Daguilarm\Belich\Fields\Field
@@ -118,7 +118,7 @@ final class Boolean extends Field
     }
 
     /**
-     * Disabled field
+     * Disabled method
      * Resolving field value in index and detailed
      *
      * @param  object  $displayCallback
@@ -131,7 +131,7 @@ final class Boolean extends Field
     }
 
     /**
-     * Disabled field
+     * Disabled method
      * Prefix for field value
      *
      * @param  string  $prefix
@@ -145,7 +145,7 @@ final class Boolean extends Field
     }
 
     /**
-     * Disabled field
+     * Disabled method
      * Resolving field value (before processing) in all the fields
      *
      * @param  object  $resolveCallback
@@ -158,7 +158,7 @@ final class Boolean extends Field
     }
 
     /**
-     * Disabled field
+     * Disabled method
      * Suffix for field value
      *
      * @param  string  $suffix
