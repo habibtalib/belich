@@ -114,7 +114,7 @@ final class ResolveCrudValue
         }
 
         //TextArea field
-        if ($field->type === 'textArea') {
+        if ($field->type === 'textArea' || $field->type === 'markdown') {
             $field->value = $this->resolveTextArea($field);
         }
 

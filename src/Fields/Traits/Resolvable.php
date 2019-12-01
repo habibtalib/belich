@@ -84,6 +84,10 @@ trait Resolvable
         $value = $value ?? $field->value;
         $shortValue = mb_strimwidth($value, 0, config('belich.textAreaChars'), '...');
 
+        if ($field->type === 'markdown') {
+            $value = Helper::markdown($value);
+        }
+
         // Index and show resolve
         if ((Belich::action() === 'index' && $field->fullTextOnIndex) || (Belich::action() === 'show' && $field->fullTextOnShow)) {
             return $value;

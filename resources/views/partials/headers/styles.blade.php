@@ -18,3 +18,6 @@
 
 {{-- Not repeat css (only one) --}}
 @yield('css-no-repeat')
+
+{{-- Markdown: css and javascript (must be in the header) --}}
+@yield('markdown')

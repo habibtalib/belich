@@ -48,7 +48,7 @@ final class Blade
         }
 
         //TextArea field
-        if ($field->type === 'textArea') {
+        if ($field->type === 'textArea' || $field->type === 'markdown') {
             return $this->resolveTextArea($field, $value);
         }
 

@@ -2,7 +2,6 @@
 
 namespace Daguilarm\Belich\Fields\Types;
 
-use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Field;
 
 class Markdown extends Field
@@ -54,12 +53,7 @@ class Markdown extends Field
         $this->toString();
 
         // As html
-        $this->asHtml();
-
-        // Resolve markdown
-        $this->displayUsing(function($value) {
-            return Helper::markdown($value);
-        });
+        $this->asHtml = true;
     }
 
     /**
