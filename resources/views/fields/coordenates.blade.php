@@ -1,5 +1,5 @@
 {{-- Convert coordenates Latlng to Degrees --}}
-@section('javascript-no-repeat')
+@section('javascript-coordenates')
     <script>
         function toDegreesMinutesAndSeconds(coordinate, type) {
             var absolute = Math.abs(coordinate);
@@ -24,3 +24,12 @@
         }
     </script>
 @endsection
+@push('javascript')
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            if(document.getElementById('{{ $field->id }}').value) {
+                document.getElementById('{{ $field->id }}').innerHTML = updateCoordenates(document.getElementById('{{ $field->id }}'), 'toDegrees-{{ $field->uriKey }}', '{{ $field->coordenateType }}');
+            }
+        });
+</script>
+@endpush

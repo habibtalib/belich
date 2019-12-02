@@ -13,6 +13,9 @@
 {{-- Conditional fields --}}
 @yield('javascript-conditional')
 
+{{-- Coordenates fields --}}
+@yield('javascript-coordenates')
+
 {{-- Javascript metrics --}}
 @hasMetrics($request ?? null)
     {{-- Load the javascript lib --}}
