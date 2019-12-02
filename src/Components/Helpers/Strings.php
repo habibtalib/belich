@@ -77,6 +77,22 @@ trait Strings
     }
 
     /**
+     * Trim a string up to a maximum number of characters
+     *
+     * @param  string $string
+     *
+     * @return string
+     */
+    public function stringMaxChars(string $string, int $max = 0, string $end = '...'): string
+    {
+        $max = $max <= 0
+            ? config('belich.textAreaChars')
+            : $max;
+
+        return mb_strimwidth($string, 0, $max, $end);
+    }
+
+    /**
      * Set string into kebab case
      *
      * @param string $string
