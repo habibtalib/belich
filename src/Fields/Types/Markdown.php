@@ -14,27 +14,22 @@ class Markdown extends Field
     /**
      * @var bool
      */
-    public $fullText = false;
+    public $fullText;
 
     /**
      * @var bool
      */
-    public $fullTextOnIndex = false;
+    public $fullTextOnIndex;
 
     /**
      * @var bool
      */
-    public $fullTextOnShow = false;
+    public $fullTextOnShow;
 
     /**
-     * @var int
+     * @var bool
      */
-    public $maxlength;
-
-    /**
-     * @var int
-     */
-    public $rows;
+    public $preview;
 
     /**
      * Create a new field
@@ -54,6 +49,9 @@ class Markdown extends Field
 
         // As html
         $this->asHtml = true;
+
+        // Visibility
+        $this->hideFromIndex();
     }
 
     /**
@@ -93,43 +91,27 @@ class Markdown extends Field
     }
 
     /**
-     * Set the textArea maximum length
+     * Alias
+     * Show textArea full text on show view
      *
      * @return  self
      */
-    public function maxlength(int $maxlength): self
+    public function fullTextOnDetail(): self
     {
-        $this->maxlength = $maxlength;
+        $this->fullTextOnShow();
 
         return $this;
     }
 
+
     /**
-     * Set the textArea rows
+     * Show a markdown preview
      *
      * @return  self
      */
-    public function rows(int $rows): self
+    public function preview(): self
     {
-        $this->rows = $rows;
-
-        return $this;
-    }
-
-    /**
-     * Disabled method
-     * Set the attribute default value
-     *
-     * @param  string|null  $value
-     *
-     * @return Daguilarm\Belich\Fields\Field
-     */
-    public function defaultValue($value = null): Field
-    {
-        //Check the value for conditional cases...
-        if (isset($value)) {
-            $this->value = $value;
-        }
+        $this->preview = true;
 
         return $this;
     }
