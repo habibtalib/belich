@@ -2,10 +2,10 @@
     <slot name="input">
         <div class="flex" style="max-height: 300px !important">
             <textarea
-                class="flex-1 m-1"
-                onkeydown="insertTab(this, event);"
+                {!! Helper::formAttribute($field, 'addClass', 'flex-1 m-1') !!}
                 {!! Helper::formAttribute($field, 'rows', $field->rows ?? 20) !!}
                 {!! Helper::formAttribute($field, 'maxlength') !!}
+                onkeydown="insertTab(this, event);"
                 {!! $field->render !!}
             >
                 {!! str_replace(["\r\n", "\r", "\n"], ['&#13;&#10;'], $field->value) !!}
