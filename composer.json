@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "php" : "^7.4",
+        "php" : "^7.3",
         "rap2hpoutre/fast-excel": "dev-master",
         "spatie/laravel-blade-x": "^2.0.0",
         "matthiasmullie/minify": "dev-master"
