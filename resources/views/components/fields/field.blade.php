@@ -7,7 +7,15 @@
     <div class="w-1/3">
         <label class="capitalize font-bold">{{ $field->label ?? null }}</label>
     </div>
-    <div class="w-2/3 my-auto" data-baseAttribute="{{ $field->id ?? '' }}"  data-baseValue="{{ $field->value ?? '' }}">
+    <div
+        @if($field->type !== 'markdown')
+            class="w-2/3 my-auto"
+            data-baseAttribute="{{ $field->id ?? '' }}"
+            data-baseValue="{{ $field->value ?? '' }}"
+        @else
+            class="w-2/3 my-auto markdown"
+        @endif
+    >
         {{-- Displaying the field --}}
         {{ $input ?? null }}
 
