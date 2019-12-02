@@ -20,7 +20,7 @@ final class ID extends Field
      *
      * @return  void
      */
-    public function __construct($name = null, $attribute = null)
+    public function __construct($name = null, $attribute = 'id')
     {
         parent::__construct($name ?? 'ID', $attribute ?? Belich::getModelKeyName());
 
