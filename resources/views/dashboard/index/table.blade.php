@@ -12,7 +12,6 @@
             @foreach($request->fields->get('data') as $field)
                 <th class="pt-4 pb-5 px-6">
                     {{-- Get URL with ASC or DESC order --}}
-
                     {{-- Sortable column --}}
                     @if($field->sortable && is_string($field->attribute))
                         <button type="button"
@@ -21,22 +20,22 @@
                             {{-- LiveSearch --}}
                             onclick="javascript:liveSearch(
                                 '{{ Belich::key() }}',
-                                '{{ $request->search['query'] }}',
-                                '{{ $request->search['page'] }}',
+                                '{{ $request->search['query'] ?? '' }}',
+                                '{{ $request->search['page'] ?? '' }}',
                                 '{{ $field->attribute }}',
-                                '{{ $request->search['direction'] === 'desc' ? 'asc' : 'desc' }}'
+                                '{{ isset($request->search) && $request->search['direction'] === 'desc' ? 'asc' : 'desc' }}'
                             );"
                         >
                             {{-- Column title --}}
                             {!! $field->label !!}
                             {{-- Icons --}}
-                            @if($request->search['orderBy'] !== strtolower($field->label))
+                            @if(isset($request->search) && $request->search['orderBy'] !== strtolower($field->label))
                                 {!! Helper::icon('sort', '', 'text-gray-500') !!}
                             @endif
-                            @if($request->search['direction'] === 'asc' && $request->search['orderBy'] == strtolower($field->label))
+                            @if(isset($request->search) && $request->search['direction'] === 'asc' && $request->search['orderBy'] == strtolower($field->label))
                                 {!! Helper::icon('caret-up', '', 'text-blue-400') !!}
                             @endif
-                            @if($request->search['direction'] === 'desc' && $request->search['orderBy'] == strtolower($field->label))
+                            @if(isset($request->search) && $request->search['direction'] === 'desc' && $request->search['orderBy'] == strtolower($field->label))
                                 {!! Helper::icon('caret-down', '', 'text-blue-400') !!}
                             @endif
                         </button>

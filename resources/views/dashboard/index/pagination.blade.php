@@ -8,7 +8,7 @@
             </li>
         @else
             <li class="page-item">
-                <button type="button" class="button-clickable page-link" rel="prev" role="button" aria-label="@lang('pagination.previous')" onclick="javascript:liveSearch('{{ Belich::key() }}', '{{ $search['query'] }}', '{{ ($paginator->currentPage() - 1) }}', '{{ $search['orderBy'] }}', '{{ $search['direction'] === 'desc' ? 'asc' : 'desc' }}');">
+                <button type="button" class="button-clickable page-link" rel="prev" role="button" aria-label="@lang('pagination.previous')" onclick="javascript:liveSearch('{{ Belich::key() }}', '{{ $search['query'] }}', '{{ ($paginator->currentPage() - 1) }}', '{{ $search['orderBy'] ?? '' }}', '{{ isset($search) && $search['direction'] === 'desc' ? 'asc' : 'desc' }}');">
                     @lang('pagination.previous')
                 </button>
             </li>
@@ -33,7 +33,7 @@
                             </li>
                         @else
                             <li class="page-item">
-                                <button type="button" class="button-clickable page-link" role="button" onclick="javascript:liveSearch('{{ Belich::key() }}', '{{ $search['query'] }}', '{{ $page }}', '{{ $search['orderBy'] }}', '{{ $search['direction'] === 'desc' ? 'asc' : 'desc' }}');">
+                                <button type="button" class="button-clickable page-link" role="button" onclick="javascript:liveSearch('{{ Belich::key() }}', '{{ $search['query'] ?? '' }}', '{{ $page }}', '{{ $search['orderBy'] ?? '' }}', '{{ isset($search) && $search['direction'] === 'desc' ? 'asc' : 'desc' }}');">
                                     {{ $page }}
                                 </button>
                             </li>
@@ -46,7 +46,7 @@
         {{-- Next Page Link --}}
         @if ($paginator->hasMorePages())
             <li class="page-item">
-                <button type="button" class="button-clickable page-link" rel="next" role="button" aria-label="@lang('pagination.next')" onclick="javascript:liveSearch('{{ Belich::key() }}', '{{ $search['query'] }}', '{{ ($paginator->currentPage() + 1) }}', '{{ $search['orderBy'] }}', '{{ $search['direction'] === 'desc' ? 'asc' : 'desc' }}');">
+                <button type="button" class="button-clickable page-link" rel="next" role="button" aria-label="@lang('pagination.next')" onclick="javascript:liveSearch('{{ Belich::key() }}', '{{ $search['query'] ?? '' }}', '{{ ($paginator->currentPage() + 1) }}', '{{ $search['orderBy'] ?? '' }}', '{{ isset($search) && $search['direction'] === 'desc' ? 'asc' : 'desc' }}');">
                     @lang('pagination.next')
                 </button>
             </li>
