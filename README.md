@@ -1,16 +1,14 @@
 # belich (working on it...Released on January 1, 2020)
 
-I started this project to improve my skills as a programmer, and for that, I immersed myself in the Laravel Nova code (it was something that changed my way of understanding programming).
+**Belich** is an administration panel based on [Laravel](https://laravel.com), and that has been influenced by the documentation of [Nova](https://nova.laravel.com), [Laravel Collective](https://laravelcollective.com/) and [Quickadmin](https://github.com/LaravelDaily/quickadmin).
 
-From that point, I decided as an exercise, to develop a version of Nova that did not use VueJS, in other words, focused on the back-end, and using Javascript only in cases where there was no other option available. **The package uses only vanilla javascript, completely eliminating the use of any javascript frameworks, although these can be used without any problem, according to the user's needs**.
+The concept of **Belich**, is totally different, since the main idea is to base the development of the project on the *Back-end*, and therefore, eliminating any **javascript framework**, like [VueJS](https://vuejs.org/), [React](https://reactjs.org) or even [Jquery](https://jquery.com/)}, from the equation. 
 
-What has happened during this adventure, is that in the end, what started as an exercise, is becoming a real project, and gradually moving away from Nova, especially when I have added new features, which have made me (on several occasions) rebuild a good part of the code from the beginning.
+The idea is to put all the weight in the `php` part, but allowing the necessary flexibility so that each user can integrate any technology or **framework** that they want.
 
-Choosing to eliminate VueJS from the equation has been a very complicated decision, and in some cases, it has been a big headache.
+**And this why?** Basically, to win in simplicity. With **Belich** is very easy to customize any field or section, and all this simplicity, without having to develop complex components with **javascript frameworks**.
 
-To this day, Belich has its own code structure designed from 0 and will be 100% costomized by the user.
-
-The adventure is worth it, and I think I've learned great things!
+And of course, all the code built from scratch, and integrating the latest available technologies.
 
 ## Status 
 
@@ -48,6 +46,7 @@ All the tests are in https://github.com/daguilarm/belich-dashboard
     + cards
     + ...
 - Cache.
+- Tabs, panels, cards, metrics,...
 - Minify HTML (with filters by pages and Controller actions): https://github.com/nckg/laravel-minify-html
 - Metrics using: https://gionkunz.github.io/chartist-js/index.html a lightweight library for charts.
 - Life search from index with custom fields.
@@ -117,35 +116,6 @@ https://github.com/daguilarm/belich-documents
 Most recent screenshot from the current design:
 
 ![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/2019-11-20.png)
-
-#### With stats 
-
-![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/stats1.png)
-
-At the moment, Belich only has this type of charts:
-
-![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/metrics/graph-types.png)
-
-![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/metrics/graph-pie.png)
-
-#### Tabs
-
-![Tabs](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/tabs.png)
-
-#### With stats and cards
-
-![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/card-and-pie.png)
-
-#### And of course, with sidebar...
-
-![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/sidebar.png)
-
-## Videos
-
-#### Dashboard
-![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/videos/belich.gif)
-
-![Dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/videos/code.gif)
 
 ## TODO
 
