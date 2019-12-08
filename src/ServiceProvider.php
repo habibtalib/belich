@@ -49,6 +49,10 @@ final class ServiceProvider extends Provider
         $this->app->register(\Daguilarm\Belich\Facades\ChartProvider::class);
         AliasLoader::getInstance()->alias('Chart', \Daguilarm\Belich\Facades\Chart::class);
 
+        //Icon Facade
+        $this->app->register(\Daguilarm\Belich\Facades\IconProvider::class);
+        AliasLoader::getInstance()->alias('Icon', \Daguilarm\Belich\Facades\Icon::class);
+
         //Helper Facade
         $this->app->register(\Daguilarm\Belich\Facades\HelperProvider::class);
         AliasLoader::getInstance()->alias('Helper', \Daguilarm\Belich\Facades\Helper::class);
