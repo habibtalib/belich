@@ -1,4 +1,4 @@
-![Logo belich](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/logo.png)
+![Logo belich dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/logo.png)
 
 # belich (working on it...Released on January 1, 2020)
 
