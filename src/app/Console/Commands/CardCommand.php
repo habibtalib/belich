@@ -15,7 +15,7 @@ final class CardCommand extends BelichCommand
      *
      * @var string
      */
-    protected $signature = 'belich:card {className} {--view}';
+    protected $signature = 'belich:card {className}';
 
     /**
      * The console command description.
@@ -56,10 +56,26 @@ final class CardCommand extends BelichCommand
             File::makeDirectory($this->path());
         }
 
+        //Create view directory
+        $viewsFolder = explode('/', $this->configPathForView());
+        $parentFolder = '';
+        foreach($viewsFolder as $folder) {
+            $parentFolder .= $folder . '/';
+            if (! File::exists($parentFolder)) {
+                File::makeDirectory($parentFolder);
+            }
+        }
+
         //Copy the file to folder while keeping the .stub extension
         (new Filesystem())->copy(
             $this->packgeStub(),
             $this->destinationStub()
+        );
+
+        //Copy the view file to folder while keeping the .stub extension
+        (new Filesystem())->copy(
+            $this->packgeStubView(),
+            $this->destinationStubView()
         );
 
         // Replacements
@@ -72,6 +88,12 @@ final class CardCommand extends BelichCommand
             $this->destinationStub(),
             $this->destinationStub('php')
         );
+
+        //Set the file for view
+        (new Filesystem())->move(
+            $this->destinationStubView(),
+            $this->destinationStubView('php')
+        );
     }
 
     /**
@@ -82,6 +104,17 @@ final class CardCommand extends BelichCommand
     protected function packgeStub(): string
     {
         return __DIR__ . '/../../../stubs/card.stub';
+    }
+
+
+    /**
+     * Get the stub view file
+     *
+     * @return string
+     */
+    protected function packgeStubView(): string
+    {
+        return __DIR__ . '/../../../stubs/card-view.stub';
     }
 
     /**
@@ -104,5 +137,33 @@ final class CardCommand extends BelichCommand
     protected function destinationStub(string $ext = 'stub'): string
     {
         return $this->path() . $this->argument('className') . '.' . $ext;
+    }
+
+    /**
+     * Set the stub destination for the view
+     *
+     * @param string $ext
+     *
+     * @return string
+     */
+    protected function destinationStubView(string $ext = 'stub'): string
+    {
+        return $this->configPathForView() . $this->argument('className') . '.' . $ext;
+    }
+
+    /**
+     * Get the config path for view storage
+     *
+     * @param string $ext
+     *
+     * @return string
+     */
+    protected function configPathForView(): string
+    {
+        $path = config('belich.cards.path');
+
+        return Str::endsWith($path, '/')
+            ? $path
+            : $path . '/';
     }
 }
