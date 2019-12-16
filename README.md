@@ -1,3 +1,5 @@
+![Logo](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/logo.svg)
+
 # belich (working on it...Released on January 1, 2020)
 
 **Belich** is an administration panel based on [Laravel](https://laravel.com), and that has been influenced by the documentation of [Nova](https://nova.laravel.com), [Laravel Collective](https://laravelcollective.com/) and [Quickadmin](https://github.com/LaravelDaily/quickadmin).
