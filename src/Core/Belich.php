@@ -44,7 +44,7 @@ final class Belich extends BelichMethods
      */
     public function __construct()
     {
-        $this->request = request();
+        $this->request = new Request;
         $this->user = \Illuminate\Support\Facades\Auth::user();
 
         //Set pagination
