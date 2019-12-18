@@ -10,7 +10,7 @@ use Daguilarm\Belich\Fields\Types\Relationship;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
-class HasOne extends Relationship implements CrudContract, FieldContract, RelationshipContract
+final class HasOne extends Relationship implements CrudContract, FieldContract, RelationshipContract
 {
     /**
      * @var string

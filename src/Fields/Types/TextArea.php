@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-class TextArea extends Field
+final class TextArea extends Field
 {
     /**
      * @var string

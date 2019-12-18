@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-class Currency extends Field
+final class Currency extends Field
 {
     /**
      * @var string

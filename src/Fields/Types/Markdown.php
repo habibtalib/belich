@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-class Markdown extends Field
+final class Markdown extends Field
 {
     /**
      * @var string
