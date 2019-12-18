@@ -54,9 +54,7 @@ final class ResolveIndex
             $field = $this->resolveRelationship($field);
 
             // Resolve field color
-            $field = $this->resolveColor($field);
-
-            return $field;
+            return $this->resolveColor($field);
         });
 
         // Resolve visibility for fields
