@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Fields\Types;
 
+use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Field;
 
 final class Currency extends Field
@@ -14,12 +15,17 @@ final class Currency extends Field
     /**
      * @var string
      */
-    public $format = '%i';
+    public $subType = 'currency';
 
     /**
      * @var string
      */
-    public $setLocale;
+    public $currency;
+
+    /**
+     * @var string
+     */
+    public $locale;
 
     /**
      * Create a new field.
@@ -41,23 +47,9 @@ final class Currency extends Field
             // Configure locale
             $this->configureLocale();
 
-            //Set the label value
-            return money_format($this->format, $value);
+            // Format the money
+            return Helper::formatMoney($value, $this->currency, $this->locale);
         });
-    }
-
-    /**
-     * Set currency format
-     *
-     * @param string $value
-     *
-     * @return self
-     */
-    public function format(string $value): self
-    {
-        $this->format = $value;
-
-        return $this;
     }
 
     /**
@@ -69,7 +61,91 @@ final class Currency extends Field
      */
     public function setLocale(string $value): self
     {
-        $this->setLocale = $value;
+        $this->locale = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set currency
+     *
+     * @param string $value
+     *
+     * @return self
+     */
+    public function currency(string $value): self
+    {
+        $this->currency = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set currency to dollars
+     *
+     * @param string $value
+     *
+     * @return self
+     */
+    public function dollar(): self
+    {
+        $this->currency = 'USD';
+
+        return $this;
+    }
+
+    /**
+     * Set currency to euro
+     *
+     * @param string $value
+     *
+     * @return self
+     */
+    public function euro(): self
+    {
+        $this->currency = 'EUR';
+
+        return $this;
+    }
+
+    /**
+     * Set currency to GBP Pound
+     *
+     * @param string $value
+     *
+     * @return self
+     */
+    public function pound(): self
+    {
+        $this->currency = 'GBP';
+
+        return $this;
+    }
+
+    /**
+     * Set currency to Yen
+     *
+     * @param string $value
+     *
+     * @return self
+     */
+    public function yen(): self
+    {
+        $this->currency = 'JPY';
+
+        return $this;
+    }
+
+    /**
+     * Set currency to Yuan
+     *
+     * @param string $value
+     *
+     * @return self
+     */
+    public function yuan(): self
+    {
+        $this->currency = 'CNY';
 
         return $this;
     }
@@ -81,13 +157,14 @@ final class Currency extends Field
      */
     private function configureLocale()
     {
-        if ($this->setLocale) {
-            return setlocale(LC_MONETARY, $this->setLocale);
+        if ($this->locale) {
+            return setlocale(LC_MONETARY, $this->locale);
         }
+
         // Get browser language
         $browser = explode(',', request()->server('HTTP_ACCEPT_LANGUAGE'));
-        $locale = str_replace('-', '_', $browser);
+        $locale_LOC = str_replace('-', '_', $browser);
 
-        return setlocale(LC_MONETARY, $locale);
+        $this->locale = setlocale(LC_MONETARY, $locale_LOC);
     }
 }

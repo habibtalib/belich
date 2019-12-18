@@ -12,14 +12,16 @@ trait Markdown
      *
      * @param array $hideFor
      *
-     * @return string
+     * @return string|null
      */
-    public function markdown(string $text): string
+    public function markdown(?string $text): string
     {
         $markdown = app(Parsedown::class)
             ->setSafeMode(true)
             ->text($text);
 
-        return nl2br($markdown);
+        return $text
+            ? nl2br($markdown)
+            : '';
     }
 }

@@ -129,6 +129,12 @@ final class ResolveCrudValue
             return $field;
         }
 
+        // Currency fields
+        if(isset($field->subType) && $field->subType === 'currency') {
+            // Format the money
+            $field->value = Helper::formatMoney($field->value, $field->currency, $field->locale);
+        }
+
         //Regular field
         $field->data = $sql;
 

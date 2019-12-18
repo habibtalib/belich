@@ -3,6 +3,7 @@
 namespace Daguilarm\Belich\Components;
 
 use Daguilarm\Belich\Components\Helpers\Blade;
+use Daguilarm\Belich\Components\Helpers\Currency;
 use Daguilarm\Belich\Components\Helpers\Files;
 use Daguilarm\Belich\Components\Helpers\Forms;
 use Daguilarm\Belich\Components\Helpers\Icons;
@@ -20,6 +21,7 @@ use Daguilarm\Belich\Components\Helpers\Utils;
 final class Helper
 {
     use Blade,
+        Currency,
         Icons,
         Files,
         Forms,
