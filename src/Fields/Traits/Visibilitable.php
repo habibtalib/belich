@@ -35,11 +35,11 @@ trait Visibilitable
     /**
      * Hide field from index
      *
-     * @param \Closure|null $callback
+     * @param Closure|null $callback
      *
      * @return self
      */
-    public function hideFromIndex(\Closure $callback = null): self
+    public function hideFromIndex(?Closure $callback = null): self
     {
         // if (! is_null($callback) && is_callable($callback)) {
         //     $this->visibilityCallback[] = ['index', false, $callback];
