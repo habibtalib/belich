@@ -98,7 +98,7 @@ final class ComponentCommand extends BelichCommand
         // $destination = $this->destinationStub('resources/views/');
 
         //Copy the file to folder while keeping the .stub extension
-        foreach($actions as $action) {
+        foreach ($actions as $action) {
             (new Filesystem())->copy(
                 $this->packgeStub('views/' . $action),
                 $this->destinationStub('resources/views/' . $action)

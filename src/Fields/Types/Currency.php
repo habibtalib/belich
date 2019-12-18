@@ -81,13 +81,13 @@ final class Currency extends Field
      */
     private function configureLocale()
     {
-        if($this->setLocale) {
+        if ($this->setLocale) {
             return setlocale(LC_MONETARY, $this->setLocale);
         }
         // Get browser language
         $browser = explode(',', request()->server('HTTP_ACCEPT_LANGUAGE'));
         $locale = str_replace('-', '_', $browser);
 
-        return  setlocale(LC_MONETARY, $locale);
+        return setlocale(LC_MONETARY, $locale);
     }
 }

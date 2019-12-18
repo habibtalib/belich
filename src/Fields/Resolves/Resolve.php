@@ -7,8 +7,8 @@ use Daguilarm\Belich\Fields\Resolves\Authorization;
 use Daguilarm\Belich\Fields\Resolves\Callback;
 use Daguilarm\Belich\Fields\Resolves\File;
 use Daguilarm\Belich\Fields\Resolves\Render;
-use Daguilarm\Belich\Fields\Resolves\ResolveIndex;
 use Daguilarm\Belich\Fields\Resolves\ResolveCrudValue;
+use Daguilarm\Belich\Fields\Resolves\ResolveIndex;
 use Daguilarm\Belich\Fields\Resolves\Visible;
 use Illuminate\Support\Collection;
 

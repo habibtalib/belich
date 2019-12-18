@@ -59,7 +59,7 @@ final class CardCommand extends BelichCommand
         //Create view directory
         $viewsFolder = explode('/', $this->configPathForView());
         $parentFolder = '';
-        foreach($viewsFolder as $folder) {
+        foreach ($viewsFolder as $folder) {
             $parentFolder .= $folder . '/';
             if (! File::exists($parentFolder)) {
                 File::makeDirectory($parentFolder);
@@ -105,7 +105,6 @@ final class CardCommand extends BelichCommand
     {
         return __DIR__ . '/../../../stubs/card.stub';
     }
-
 
     /**
      * Get the stub view file

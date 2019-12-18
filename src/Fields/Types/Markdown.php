@@ -103,7 +103,6 @@ final class Markdown extends Field
         return $this;
     }
 
-
     /**
      * Show a markdown preview
      *
