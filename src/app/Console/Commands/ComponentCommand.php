@@ -94,8 +94,8 @@ final class ComponentCommand extends BelichCommand
         }
 
         $actions = ['create', 'edit', 'index', 'show'];
-        $stub = $this->packgeStub('views/');
-        $destination = $this->destinationStub('resources/views/');
+        // $stub = $this->packgeStub('views/');
+        // $destination = $this->destinationStub('resources/views/');
 
         //Copy the file to folder while keeping the .stub extension
         foreach($actions as $action) {
