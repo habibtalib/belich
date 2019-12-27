@@ -19,6 +19,11 @@ final class Select extends Field
     /**
      * @var array
      */
+    public $firstOption;
+
+    /**
+     * @var array
+     */
     public $options;
 
     /**
@@ -44,8 +49,23 @@ final class Select extends Field
     {
         //Check the text for conditional cases...
         if (isset($options)) {
-            $this->options = ['' => ''] + $options;
+            $this->options = $options;
         }
+
+        return $this;
+    }
+
+    /**
+     * Add the first option to the select
+     *
+     * @param array $options
+     *
+     * @return self
+     */
+    public function firstOption(string $title = '', string $value = ''): self
+    {
+        //Check the text for conditional cases...
+        $this->firstOption = [$title, $value];
 
         return $this;
     }

@@ -6,6 +6,10 @@
                 {!! $field->render !!}
             >
                 @isset($field->options)
+                    {{-- First option --}}
+                    @isset($field->firstOption)
+                        <option {{ $field->firstOption[1] ? 'value="' . $field->firstOption[1] . '"' : '' }}>{{ $field->firstOption[0] }}</option>
+                    @endif
                     @foreach($field->options as $value => $text)
                         <option
                             value="{{ $value }}"
