@@ -64,21 +64,14 @@ final class Database
     private function indexQuery(object $class, Request $request): object
     {
         //Set variables
-        [$direction, $order, $policy, $search, $model, $baseUrl, $query] = $this->filter($request);
+        [$direction, $order, $policy, $search, $model, $baseUrl, $query, $perPage, $paginateType] = $this->getVariables($request);
 
         $results = $class
             //Add the current resource query
             ->indexQuery($request)
             //Live search
-            ->when($search->searchRequest(), static function ($query) use ($request, $search) {
-                //No results
-                if ($request->query('query') === 'resetSearchAll') {
-                    return $query;
-                }
-                //Get the results
-                collect($search->tableRequest())->each(static function ($field) use ($query, $request): void {
-                    $query->orWhere($field, 'LIKE', '%' . $request->query('query') . '%');
-                });
+            ->when($search->searchRequest(), function ($query) use ($request, $search) {
+                return $this->liveSearch($query, $request, $search);
             })
             //Order query
             ->when(isset($order) && $order && isset($direction) && $direction, static function ($query) use ($direction, $order): void {
@@ -93,31 +86,22 @@ final class Database
                 $query->onlyTrashed();
             });
 
-        return config('belich.pagination') === 'simple'
-            ? $results
-                // Simple pagination
-                ->simplePaginate(Cookie::get('belich_perPage'))
-                //Add all the url variables
-                ->appends($query)
-                ->setPath($baseUrl)
-            : $results
-                // Regular link pagination
-                ->paginate(Cookie::get('belich_perPage'))
-                //Add all the url variables
-                ->appends($query)
-                ->setPath($baseUrl);
+        return $this->paginate($results, $paginateType, $perPage)
+            //Add all the url variables
+            ->appends($query)
+            ->setPath($baseUrl);
     }
 
     /**
-     * Set variables
+     * Get variables
      *
      * @param Illuminate\Http\Request $request
      *
      * @return array
      */
-    private function filter(Request $request): array
+    private function getVariables(Request $request): array
     {
-        // Set values;
+        // Get model;
         $model = Belich::getModel();
         //Init search helper
         $search = app(Search::class);
@@ -135,6 +119,8 @@ final class Database
                 'page' => $request->query('page'),
                 'DAM' => $request->query('DAM'),
             ],
+            Cookie::get('belich_perPage'),
+            config('belich.pagination'),
         ];
     }
 
@@ -146,5 +132,47 @@ final class Database
     private function baseUrl(): string
     {
         return Belich::url() . '/' . Belich::resource() . '?uri=' . md5(Belich::resource());
+    }
+
+    /**
+     * Get the pagination
+     *
+     * @param object $results
+     * @param string $paginationType
+     * @param string $perPage
+     *
+     * @return array
+     */
+    private function paginate($results, $paginateType, $perPage)
+    {
+        return $paginateType === 'simple'
+            ? $results
+                // Simple pagination
+                ->simplePaginate($perPage)
+            : $results
+                // Regular link pagination
+                ->paginate($perPage);
+    }
+
+    /**
+     * Live search
+     *
+     * @param object $results
+     * @param string $paginationType
+     * @param string $perPage
+     *
+     * @return array
+     */
+    private function liveSearch($query, $request, $search)
+    {
+        //No results
+        if ($request->query('query') === 'resetSearchAll') {
+            return $query;
+        }
+
+        //Get the results
+        collect($search->tableRequest())->each(static function ($field) use ($query, $request): void {
+            $query->orWhere($field, 'LIKE', '%' . $request->query('query') . '%');
+        });
     }
 }
