@@ -123,7 +123,7 @@ trait Attributable
     /**
      * Set the attribute with the attribute 'disabled'
      *
-     * @param  bool  $value
+     * @param bool $value
      *
      * @return self
      */
@@ -139,7 +139,7 @@ trait Attributable
     /**
      * Set the attribute default value
      *
-     * @param  string|null  $value
+     * @param string|null $value
      *
      * @return self
      */
@@ -156,7 +156,7 @@ trait Attributable
     /**
      * Set the attribute pattern
      *
-     * @param  string  $value
+     * @param string $value
      *
      * @return self
      */
@@ -170,7 +170,7 @@ trait Attributable
     /**
      * Set the attribute placeholder
      *
-     * @param  string|null  $value [sometimes we need a empty placeholder for javascript or else... so we can just create an empty one]
+     * @param string|null $value [sometimes we need a empty placeholder]
      *
      * @return self
      */
