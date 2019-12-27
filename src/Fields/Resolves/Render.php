@@ -69,6 +69,7 @@ final class Render
             'disabled' => 'disabled',
             'multiple' => 'multiple',
             'data' => $this->dataAttributes($field),
+            'maxlength' => $this->renderAttributes('maxlength', $field),
             'max' => $this->renderAttributes('max', $field),
             'min' => $this->renderAttributes('min', $field),
             'placeholder' => $this->renderAttributes('placeholder', $field),

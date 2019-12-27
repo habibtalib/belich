@@ -3,7 +3,6 @@
         <textarea
             {!! Helper::formAttribute($field, 'addClass', 'mr-3') !!}
             {!! Helper::formAttribute($field, 'rows', $field->rows ?? 3) !!}
-            {!! Helper::formAttribute($field, 'maxlength') !!}
             {!! $field->count ? 'onkeyup="textAreaCount(this, \'' . $field->id . '\');"' : '' !!}
             {!! $field->render !!}
         >

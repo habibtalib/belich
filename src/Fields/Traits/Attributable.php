@@ -37,6 +37,11 @@ trait Attributable
     public $disabled = false;
 
     /**
+     * @var int
+     */
+    public $maxlength;
+
+    /**
      * @var string
      */
     public $pattern;
@@ -149,6 +154,18 @@ trait Attributable
         if (isset($value)) {
             $this->value = $value;
         }
+
+        return $this;
+    }
+
+    /**
+     * Set the textArea maximum length
+     *
+     * @return  self
+     */
+    public function maxlength(int $maxlength): self
+    {
+        $this->maxlength = $maxlength;
 
         return $this;
     }

@@ -34,11 +34,6 @@ final class TextArea extends Field
     /**
      * @var int
      */
-    public $maxlength;
-
-    /**
-     * @var int
-     */
     public $rows;
 
     /**
@@ -103,18 +98,6 @@ final class TextArea extends Field
     {
         $this->count = true;
         $this->maxlength = $chars;
-
-        return $this;
-    }
-
-    /**
-     * Set the textArea maximum length
-     *
-     * @return  self
-     */
-    public function maxlength(int $maxlength): self
-    {
-        $this->maxlength = $maxlength;
 
         return $this;
     }
