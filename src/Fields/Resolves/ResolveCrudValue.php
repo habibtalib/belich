@@ -42,7 +42,7 @@ final class ResolveCrudValue
 
             // Resolve relationship
             if ($field->type === 'relationship') {
-                return $this->resolveRelationship($field);
+                return $this->resolveRelationship($field, $sql);
             }
 
             //filter the data for the show view or return the $field
@@ -74,15 +74,14 @@ final class ResolveCrudValue
      * Resolve relationship
      *
      * @param object $fields
+     * @param object $sql
      *
      * @return string|null
      */
-    private function resolveRelationship(object $field)
+    private function resolveRelationship(object $field, object $sql)
     {
         return $this->action !== 'edit'
-            // Render select or datalists
-            ? $field->value = $field->{$this->action}($field, $sql)
-            //Just the value
+            ? $field->{$this->action}($field, $sql)
             : $field;
     }
 
