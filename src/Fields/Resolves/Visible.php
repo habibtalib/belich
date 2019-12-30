@@ -17,6 +17,12 @@ final class Visible
     public function execute(string $action, Collection $fields): Collection
     {
         return $fields->map(static function ($field) use ($action) {
+            // Hide not editable fields from a relationship
+            if (isset($field->editableRelationship) && $field->editableRelationship === false) {
+                $field->visibility['create'] = false;
+            }
+
+            // Hide or show fields
             if (in_array($action, $field->forceVisibility)) {
                 //If the field has the visibility for this controller action on true...
                 return $field->visibility[$action]

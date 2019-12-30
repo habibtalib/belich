@@ -10,12 +10,19 @@ use Daguilarm\Belich\Fields\Types\Relationship;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
-final class HasOne extends Relationship implements CrudContract, FieldContract, RelationshipContract
+final class BelongsTo extends Relationship implements CrudContract, FieldContract, RelationshipContract
 {
     /**
      * @var string
      */
-    public $subType = 'hasOne';
+    public $subType = 'belongsTo';
+
+    /**
+     * Relationships can be editables
+     *
+     * @var string
+     */
+    public $editable;
 
     /**
      * Create a new relationship field
@@ -34,8 +41,8 @@ final class HasOne extends Relationship implements CrudContract, FieldContract, 
         // Resolve as html
         $this->asHtml();
 
-        // Show in all
-        $this->showInAll();
+        // Editable relationships disabled by default
+        $this->exceptOnForms();
     }
 
     /**

@@ -29,6 +29,13 @@ class Relationship extends FieldBase
         Visibilitable;
 
     /**
+     * The realtionship is not editable
+     *
+     * @var bool
+     */
+    public $editableRelationship = false;
+
+    /**
      * Create a new relationship field
      *
      * @param  string  $label
@@ -67,7 +74,7 @@ class Relationship extends FieldBase
      */
     public function editable(): self
     {
-        $this->showInAll();
+        $this->editableRelationship = true;
 
         return $this;
     }

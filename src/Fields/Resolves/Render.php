@@ -28,6 +28,9 @@ final class Render
         // Render custom (special) attributes. Only if exists.
         $this->getAttributes($field);
 
+        // Render relationship editable fields
+        $this->getRelationshipEditable($field);
+
         return collect($field->render);
     }
 
@@ -97,12 +100,27 @@ final class Render
     /**
      * Render attributes for field
      *
-     * @param array $field
+     * @param string $attribute
+     * @param $value
      *
      * @return string
      */
-    private function renderAttributes($attribute, $value): string
+    private function renderAttributes(string $attribute, $value): string
     {
         return sprintf('%s="%s"', $attribute, $value->{$attribute} ?? null);
+    }
+
+    /**
+     * Render attributes for field
+     *
+     * @param array $field
+     *
+     * @return void
+     */
+    private function getRelationshipEditable($field): void
+    {
+        if (isset($field->editableRelationship) && $field->editableRelationship === false && $field->editableRelationship === false) {
+            $field->render[] = 'disabled="disabled"';
+        }
     }
 }
