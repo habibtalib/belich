@@ -6,7 +6,7 @@ use Daguilarm\Belich\Fields\Resolves\Handler\FieldsVisibility;
 use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Collection;
 
-final class _Resolve {
+final class Resolve {
 
     /**
      * Resolve fields: auth, visibility, value,...
@@ -22,7 +22,7 @@ final class _Resolve {
 
         return collect([
             // Resolve visibility for the fields (for the index view)
-            'data' => app(FieldsVisibility::class)->handle($fields, function(){}),
+            'data' => app(FieldsVisibility::class)->handle($fields, function(): void{}),
         ]);
     }
 
@@ -35,7 +35,7 @@ final class _Resolve {
      */
     private function resolveFields(object $fields): Collection
     {
-        return $fields->map(function ($field) {
+        return $fields->map(static function ($field) {
             // Add filters to the pipeline
             return app(Pipeline::class)
                 ->send($field)

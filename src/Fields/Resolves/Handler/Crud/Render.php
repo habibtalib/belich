@@ -8,7 +8,7 @@ use Daguilarm\Belich\Facades\Belich;
 use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Collection;
 
-final class _Render implements HandleField
+final class Render implements HandleField
 {
     /**
      * @var string
@@ -39,7 +39,7 @@ final class _Render implements HandleField
     public function handle(object $fields, Closure $next): Collection
     {
         if ($this->action === 'create' || $this->action === 'edit') {
-            $fields = $fields->map(function ($field) {
+            $fields = $fields->map(static function ($field) {
                 // Add filters to the pipeline
                 return app(Pipeline::class)
                     ->send($field)

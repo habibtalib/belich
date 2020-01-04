@@ -4,11 +4,7 @@ namespace Daguilarm\Belich\Core\Traits;
 
 use Daguilarm\Belich\Core\Services\Database;
 use Daguilarm\Belich\Core\Services\Search;
-use Daguilarm\Belich\Fields\Resolves\Authorization;
-use Daguilarm\Belich\Fields\Resolves\Render;
 use Daguilarm\Belich\Fields\Resolves\Resolve;
-use Daguilarm\Belich\Fields\Resolves\ResolveCrudValue;
-use Daguilarm\Belich\Fields\Resolves\Visible;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
@@ -54,12 +50,7 @@ trait Resourceable
         // ClassName
         $className = static::resource();
         // Resolve and built
-        $builder = new Resolve(
-            new Authorization(),
-            new Render(),
-            new ResolveCrudValue(),
-            new Visible()
-        );
+        $builder = new Resolve();
 
         return collect([
             'name' => $className,

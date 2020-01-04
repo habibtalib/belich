@@ -7,7 +7,7 @@ use Daguilarm\Belich\Fields\Resolves\Handler\Index\Values\Callback;
 use Daguilarm\Belich\Fields\Resolves\Handler\Index\Values\File;
 use Daguilarm\Belich\Fields\Traits\Resolvable;
 
-final class _Values
+final class Values
 {
     use Resolvable;
 

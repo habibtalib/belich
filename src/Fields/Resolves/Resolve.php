@@ -3,8 +3,8 @@
 namespace Daguilarm\Belich\Fields\Resolves;
 
 use Daguilarm\Belich\Facades\Belich;
-use Daguilarm\Belich\Fields\Resolves\Handler\Crud\_Resolve as ResolveCrud;
-use Daguilarm\Belich\Fields\Resolves\Handler\Index\_Resolve as ResolveIndex;
+use Daguilarm\Belich\Fields\Resolves\Handler\Crud\Resolve as ResolveCrud;
+use Daguilarm\Belich\Fields\Resolves\Handler\Index\Resolve as ResolveIndex;
 use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Collection;
 

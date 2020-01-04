@@ -6,7 +6,7 @@ use Daguilarm\Belich\Fields\Resolves\Handler\FieldsVisibility;
 use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Collection;
 
-final class _Resolve {
+final class Resolve {
 
     /**
      * Resolve fields: auth, visibility, value,...
@@ -25,10 +25,10 @@ final class _Resolve {
                 \Daguilarm\Belich\Fields\Resolves\Handler\FieldsVisibility::class,
                 // Render default attributes from:
                 // Daguilarm\Belich\Fields\Traits\Renderable
-                \Daguilarm\Belich\Fields\Resolves\Handler\Crud\_Render::class,
+                \Daguilarm\Belich\Fields\Resolves\Handler\Crud\Render::class,
                 //Resolve values for fields
                 //Only for Edit or Show/Detailed actions
-                new \Daguilarm\Belich\Fields\Resolves\Handler\Crud\_Values($action, $sql),
+                new \Daguilarm\Belich\Fields\Resolves\Handler\Crud\Values($action, $sql),
             ])
             ->thenReturn();
     }
@@ -42,7 +42,7 @@ final class _Resolve {
      */
     private function resolveFields(object $fields): Collection
     {
-        return $fields->map(function ($field) {
+        return $fields->map(static function ($field) {
             // Add filters to the pipeline
             return app(Pipeline::class)
                 ->send($field)
