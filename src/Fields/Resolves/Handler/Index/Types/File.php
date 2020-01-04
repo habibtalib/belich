@@ -4,6 +4,7 @@ namespace Daguilarm\Belich\Fields\Resolves\Handler\Index\Types;
 
 use Closure;
 use Daguilarm\Belich\Contracts\HandleField;
+use Daguilarm\Belich\Fields\Resolves\Handler\Index\File as ImportFile;
 
 final class File implements HandleField
 {
@@ -34,7 +35,7 @@ final class File implements HandleField
     {
         //File field
         if ($field->type === 'file') {
-            $field->value = app(File::class)->handle($field, $this->value);
+            $field->value = app(ImportFile::class)->handle($field, $this->value);
         }
 
         return $next($field);
