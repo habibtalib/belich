@@ -1,14 +1,14 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Resolves\Handler\Index\Values;
+namespace Daguilarm\Belich\Fields\Resolves\Handler\Index\Resolve;
 
 use Closure;
 use Daguilarm\Belich\Contracts\HandleField;
 
-final class Relationship implements HandleField
+final class Attribute implements HandleField
 {
     /**
-     * Resolve relationship
+     * Resolve fields attribute
      *
      * @param object $field
      * @param Closure $next

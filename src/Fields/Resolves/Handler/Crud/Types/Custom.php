@@ -1,6 +1,6 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Resolves\Handler\Types;
+namespace Daguilarm\Belich\Fields\Resolves\Handler\Crud\Types;
 
 use Closure;
 use Daguilarm\Belich\Contracts\HandleField;
@@ -8,7 +8,7 @@ use Daguilarm\Belich\Contracts\HandleField;
 final class Custom implements HandleField
 {
     /**
-     * @var string
+     * @var object
      */
     private $sql;
 
@@ -16,9 +16,8 @@ final class Custom implements HandleField
      * Init constructor
      *
      * @param object $sql
-     * @param string $action
      */
-    public function __construct($sql)
+    public function __construct(object $sql)
     {
         $this->sql = $sql;
     }

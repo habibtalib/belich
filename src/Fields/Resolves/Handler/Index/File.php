@@ -1,6 +1,6 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Resolves\Handler\Index\Values;
+namespace Daguilarm\Belich\Fields\Resolves\Handler\Index;
 
 use Daguilarm\Belich\Core\Belich;
 use Daguilarm\Belich\Facades\Helper;

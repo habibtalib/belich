@@ -1,6 +1,6 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Resolves\Handler\Index\Values;
+namespace Daguilarm\Belich\Fields\Resolves\Handler\Index\Resolve;
 
 use Closure;
 use Daguilarm\Belich\Contracts\HandleField;
@@ -8,7 +8,7 @@ use Daguilarm\Belich\Contracts\HandleField;
 final class Color implements HandleField
 {
     /**
-     * Resolve relationship
+     * Resolve Color field
      *
      * @param object $field
      * @param Closure $next

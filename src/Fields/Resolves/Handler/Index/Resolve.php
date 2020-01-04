@@ -22,7 +22,7 @@ final class Resolve
 
         return collect([
             // Resolve visibility for the fields (for the index view)
-            'data' => app(FieldsVisibility::class)->handle($fields, static function(): void {
+            'data' => app(FieldsVisibility::class)->handle($fields, static function (): void {
             }),
         ]);
     }
@@ -42,9 +42,9 @@ final class Resolve
                 ->send($field)
                 ->through([
                     // Resolve field relationship
-                    \Daguilarm\Belich\Fields\Resolves\Handler\Index\Values\Relationship::class,
+                    \Daguilarm\Belich\Fields\Resolves\Handler\Index\Resolve\Attribute::class,
                     // Resolve field color
-                    \Daguilarm\Belich\Fields\Resolves\Handler\Index\Values\Color::class,
+                    \Daguilarm\Belich\Fields\Resolves\Handler\Index\Resolve\Color::class,
                 ])
                 ->thenReturn();
         });

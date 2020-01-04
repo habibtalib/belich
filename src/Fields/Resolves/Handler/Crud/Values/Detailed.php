@@ -51,17 +51,17 @@ final class Detailed implements HandleField
                 // Resolve data attribute
                 new \Daguilarm\Belich\Fields\Resolves\Handler\Crud\Values\Data($this->sql),
                 // Resolve value for custom fields
-                new \Daguilarm\Belich\Fields\Resolves\Handler\Types\Custom($this->sql),
+                new \Daguilarm\Belich\Fields\Resolves\Handler\Crud\Types\Custom($this->sql),
                 // Resolve value for select fields
-                \Daguilarm\Belich\Fields\Resolves\Handler\Types\Select::class,
+                \Daguilarm\Belich\Fields\Resolves\Handler\Crud\Types\Select::class,
                 // Resolve value for TextArea and Markdown
-                \Daguilarm\Belich\Fields\Resolves\Handler\Types\TextArea::class,
+                \Daguilarm\Belich\Fields\Resolves\Handler\Crud\Types\TextArea::class,
                 // Resolve value for color fields
-                \Daguilarm\Belich\Fields\Resolves\Handler\Types\Color::class,
+                \Daguilarm\Belich\Fields\Resolves\Handler\Crud\Types\Color::class,
                 // Resolve value for currency fields
-                \Daguilarm\Belich\Fields\Resolves\Handler\Types\Currency::class,
+                \Daguilarm\Belich\Fields\Resolves\Handler\Crud\Types\Currency::class,
                 // Resolve value for boolean fields
-                \Daguilarm\Belich\Fields\Resolves\Handler\Types\Boolean::class,
+                \Daguilarm\Belich\Fields\Resolves\Handler\Crud\Types\Boolean::class,
             ])
             ->thenReturn();
 

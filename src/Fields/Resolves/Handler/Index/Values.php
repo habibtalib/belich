@@ -3,9 +3,10 @@
 namespace Daguilarm\Belich\Fields\Resolves\Handler\Index;
 
 use Daguilarm\Belich\Facades\Helper;
-use Daguilarm\Belich\Fields\Resolves\Handler\Index\Values\Callback;
-use Daguilarm\Belich\Fields\Resolves\Handler\Index\Values\File;
+use Daguilarm\Belich\Fields\Resolves\Handler\Index\Callback;
+use Daguilarm\Belich\Fields\Resolves\Handler\Index\File;
 use Daguilarm\Belich\Fields\Traits\Resolvable;
+use Illuminate\Pipeline\Pipeline;
 
 final class Values
 {
@@ -29,47 +30,27 @@ final class Values
         //Keep in first position
         $value = $this->resolveValue($field, $data, $value);
 
-        // Resolve for relationship fields
-        if ($field->type === 'relationship' || $field->type === 'custom') {
-            return $field->index($field, $data);
-        }
-
-        // If boolean
-        if ($field->type === 'boolean') {
-            return $this->resolveBoolean($field, $value);
-        }
-
-        //File field
-        if ($field->type === 'file') {
-            return app(File::class)->handle($field, $value);
-        }
-
-        //TextArea field
-        if ($field->type === 'textArea' || $field->type === 'markdown') {
-            return $this->resolveTextArea($field, $value);
-        }
-
-        //displayUsingLabels filter
-        if (isset($field->displayUsingLabels) && $field->displayUsingLabels) {
-            return Helper::displayUsingLabels($field, $value);
-        }
-
-        // Resolve show view for custom field
-        if ($field->type === 'color' && isset($field->asColor) && $field->asColor === true) {
-            // Set value
-            return sprintf('<div class="w-12 h-2 rounded" style="background-color:%s">&nbsp;</div>', $value);
-        }
+        // Add filters to the pipeline
+        $field = app(Pipeline::class)
+            ->send($field)
+            ->through([
+                // Resolve relationship value
+                new \Daguilarm\Belich\Fields\Resolves\Handler\Index\Types\Relationship($data),
+                // Resolve boolean value
+                new \Daguilarm\Belich\Fields\Resolves\Handler\Index\Types\Boolean($value),
+                // Resolve file value
+                new \Daguilarm\Belich\Fields\Resolves\Handler\Index\Types\File($value),
+                // Resolve textArea and markdown value
+                new \Daguilarm\Belich\Fields\Resolves\Handler\Index\Types\TextAreaAndMarkdown($value),
+                // Resolve select value (displayUsingLabels())
+                new \Daguilarm\Belich\Fields\Resolves\Handler\Index\Types\Select($value),
+                // Resolve color value
+                new \Daguilarm\Belich\Fields\Resolves\Handler\Index\Types\Color($value),
+            ])
+            ->thenReturn();
 
         //Resolve the field value through callbacks
         return app(Callback::class)->handle($field, $data, $value);
-    }
-
-    private function HandleByType()
-    {
-        return [
-            'custom' => 'handleRelationship',
-            'relationship' => 'handleRelationship',
-        ];
     }
 
     /**
@@ -88,28 +69,6 @@ final class Values
         return isset($data)
             ? $this->resolveRelationship($field, $data)
             : $value;
-    }
-
-    /**
-     * Resolve boolean fields
-     * This method is helper for $this->resolve()
-     *
-     * @param  object $field
-     * @param  mixed $value
-     *
-     * @return string|null
-     */
-    private function resolveBoolean(object $field, $value): ?string
-    {
-        // With default labels
-        if (isset($field->trueValue) && isset($field->falseValue)) {
-            return $value
-                ? $field->trueValue
-                : $field->falseValue;
-        }
-
-        // With color circles
-        return sprintf('<i class="fas fa-circle text-%s-500"></i>', $value ? $field->color : 'grey');
     }
 
     /**
