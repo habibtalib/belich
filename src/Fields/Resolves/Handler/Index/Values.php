@@ -4,7 +4,6 @@ namespace Daguilarm\Belich\Fields\Resolves\Handler\Index;
 
 use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Resolves\Handler\Index\Callback;
-use Daguilarm\Belich\Fields\Resolves\Handler\Index\File;
 use Daguilarm\Belich\Fields\Traits\Resolvable;
 use Illuminate\Pipeline\Pipeline;
 

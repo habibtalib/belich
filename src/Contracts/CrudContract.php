@@ -37,8 +37,6 @@ interface CrudContract
      *
      * @param  object $field
      * @param  object|null $data
-     *
-     * @return string|null
      */
-    public function show(object $field, ?object $data = null): ?string;
+    public function show(object $field, ?object $data = null);
 }

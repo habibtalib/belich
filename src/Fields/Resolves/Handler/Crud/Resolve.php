@@ -3,7 +3,6 @@
 namespace Daguilarm\Belich\Fields\Resolves\Handler\Crud;
 
 use Illuminate\Pipeline\Pipeline;
-use Illuminate\Support\Collection;
 
 final class Resolve
 {
@@ -12,7 +11,7 @@ final class Resolve
      *
      * @param object $fields
      *
-     * @return Illuminate\Support\Collection
+     * @return object
      */
     public function handle(object $fields, string $action, object $sql): object
     {
