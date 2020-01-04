@@ -19,10 +19,11 @@ final class Blade
      *
      * @param  object $field
      * @param  object $data
+     * @param  string|null $value
      *
      * @return string|null
      */
-    public function handle(object $field, ?object $data = null): ?string
+    public function handle(object $field, ?object $data = null, ?string $value = null): ?string
     {
         // Resolve for relationship fields
         if ($field->type === 'relationship' || $field->type === 'custom') {
