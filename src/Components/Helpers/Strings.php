@@ -79,11 +79,13 @@ trait Strings
     /**
      * Trim a string up to a maximum number of characters
      *
-     * @param  string $string
+     * @param  string|null $string
+     * @param  int $max
+     * @param  string $end
      *
-     * @return string
+     * @return string|null
      */
-    public function stringMaxChars(string $string, int $max = 0, string $end = '...'): string
+    public function stringMaxChars(?string $string, int $max = 0, string $end = '...'): ?string
     {
         $max = $max <= 0
             ? config('belich.textAreaChars')

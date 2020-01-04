@@ -3,8 +3,8 @@
 namespace Daguilarm\Belich\Fields\Resolves;
 
 use Daguilarm\Belich\Facades\Helper;
-use Daguilarm\Belich\Fields\Resolves\Callback;
-use Daguilarm\Belich\Fields\Resolves\File;
+use Daguilarm\Belich\Fields\Resolves\Blade\Callback;
+use Daguilarm\Belich\Fields\Resolves\Blade\File;
 use Daguilarm\Belich\Fields\Traits\Resolvable;
 
 final class Blade
@@ -22,7 +22,7 @@ final class Blade
      *
      * @return string|null
      */
-    public function execute(object $field, ?object $data = null): ?string
+    public function handle(object $field, ?object $data = null): ?string
     {
         // Resolve for relationship fields
         if ($field->type === 'relationship' || $field->type === 'custom') {
@@ -44,7 +44,7 @@ final class Blade
 
         //File field
         if ($field->type === 'file') {
-            return (new File())->execute($field, $value);
+            return (new File())->handle($field, $value);
         }
 
         //TextArea field
@@ -64,7 +64,7 @@ final class Blade
         }
 
         //Resolve the field value through callbacks
-        return app(Callback::class)->execute($field, $data, $value);
+        return app(Callback::class)->handle($field, $data, $value);
     }
 
     /**
@@ -77,7 +77,7 @@ final class Blade
      *
      * @return string|null
      */
-    public function resolveValue(object $field, ?object $data, ?string $value): ?string
+    private function resolveValue(object $field, ?object $data, ?string $value): ?string
     {
         //Resolve Relationship
         return isset($data)
@@ -94,7 +94,7 @@ final class Blade
      *
      * @return string|null
      */
-    public function resolveBoolean(object $field, $value): ?string
+    private function resolveBoolean(object $field, $value): ?string
     {
         // With default labels
         if (isset($field->trueValue) && isset($field->falseValue)) {

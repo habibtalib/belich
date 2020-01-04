@@ -1,6 +1,6 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Resolves;
+namespace Daguilarm\Belich\Fields\Resolves\Blade;
 
 use Daguilarm\Belich\Core\Belich;
 use Daguilarm\Belich\Facades\Helper;
@@ -17,7 +17,7 @@ final class File
      *
      * @return  $string
      */
-    public function execute(Field $field, ?string $value): string
+    public function handle(Field $field, ?string $value): string
     {
         // No results
         if (! isset($value) || $value === Helper::emptyResults()) {

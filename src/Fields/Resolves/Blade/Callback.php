@@ -1,6 +1,6 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Resolves;
+namespace Daguilarm\Belich\Fields\Resolves\Blade;
 
 use Daguilarm\Belich\Facades\Belich;
 
@@ -15,7 +15,7 @@ final class Callback
      *
      * @return string|null
      */
-    public function execute(object $field, ?object $data = null, $value = ''): ?string
+    public function handle(object $field, ?object $data = null, $value = ''): ?string
     {
         // Resolve value when using the method: $field->displayUsing()
         $value = $this->displayCallback($field, $value);

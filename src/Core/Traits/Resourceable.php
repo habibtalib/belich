@@ -50,7 +50,7 @@ trait Resourceable
         // Update the fields
         $updateFields = collect($class->fields($request));
         // Sql Response
-        $sql = app(Database::class)->execute($class, $request);
+        $sql = app(Database::class)->handle($class, $request);
         // ClassName
         $className = static::resource();
         // Resolve and built
@@ -64,7 +64,7 @@ trait Resourceable
         return collect([
             'name' => $className,
             'controllerAction' => static::action(),
-            'fields' => $builder->execute($updateFields, $sql),
+            'fields' => $builder->handle($updateFields, $sql),
             'results' => $sql,
             'values' => $this->valueResources($className),
         ]);

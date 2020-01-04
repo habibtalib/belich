@@ -21,14 +21,14 @@ final class Database
     ];
 
     /**
-     * Execute the Sql Connection
+     * Handle the Sql Connection
      *
      * @param string $class
      * @param Illuminate\Http\Request $request
      *
      * @return object
      */
-    public function execute(object $class, Request $request): object
+    public function handle(object $class, Request $request): object
     {
         return Belich::action() === 'index'
             //Sql for index

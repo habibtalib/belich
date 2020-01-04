@@ -6,10 +6,13 @@ use Daguilarm\Belich\Facades\Belich;
 use Daguilarm\Belich\Fields\Resolves\Authorization;
 use Daguilarm\Belich\Fields\Resolves\Callback;
 use Daguilarm\Belich\Fields\Resolves\File;
+use Daguilarm\Belich\Fields\Resolves\Filters\Crud\_Resolve as ResolveCrud;
+use Daguilarm\Belich\Fields\Resolves\Filters\Index\_Resolve as ResolveIndex;
 use Daguilarm\Belich\Fields\Resolves\Render;
 use Daguilarm\Belich\Fields\Resolves\ResolveCrudValue;
-use Daguilarm\Belich\Fields\Resolves\ResolveIndex;
+//use Daguilarm\Belich\Fields\Resolves\ResolveIndex;
 use Daguilarm\Belich\Fields\Resolves\Visible;
+use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Collection;
 
 final class Resolve
@@ -18,11 +21,6 @@ final class Resolve
      * @var string
      */
     private $action;
-
-    /**
-     * @var Daguilarm\Belich\Fields\Resolve\Autorization
-     */
-    private $auth;
 
     /**
      * @var object
@@ -35,73 +33,94 @@ final class Resolve
     private $noResolveActions = ['destroy', 'store', 'update'];
 
     /**
-     * @var Daguilarm\Belich\Fields\Resolve\Render
-     */
-    private $render;
-
-    /**
-     * @var object
-     */
-    private $sql;
-
-    /**
-     * @var Daguilarm\Belich\Fields\Resolve\Value
-     */
-    private $value;
-
-    /**
-     * @var Daguilarm\Belich\Fields\Resolve\Visible
-     */
-    private $visible;
-
-    /**
      * Init constructor
      */
-    public function __construct(Authorization $auth, Render $render, ResolveCrudValue $value, Visible $visible)
+    public function __construct()
     {
         $this->action = Belich::action();
-        $this->auth = $auth;
-        $this->render = $render;
-        $this->value = $value;
-        $this->visible = $visible;
     }
 
     /**
      * Resolve fields: auth, visibility, value,...
      *
      * @param object $fields
+     * @param object $sql
+     *
+     * @return Illuminate\Support\Collection
+     */
+    public function handle(object $fields, object $sql): Collection
+    {
+        // Resolve fields
+        $fields = $this->resolveFieldsThroughPipeline($fields, $sql);
+
+        // Resolve action
+        return $this->action === 'index'
+            //Prepare the field for the index response
+            ? $this->resolveIndex($fields)
+            //Prepare the field for the the form response: create, edit and show
+            : $this->resolveCrud($fields, $sql);
+    }
+
+    /**
+     * Resolve fields
+     *
+     * @param object $fields
+     * @param object $sql
+     *
+     * @return Illuminate\Support\Collection
+     */
+    private function resolveFieldsThroughPipeline(object $fields, object $sql): Collection
+    {
+        return app(Pipeline::class)
+            ->send($fields)
+            ->through($this->pipeline($sql))
+            ->thenReturn();
+    }
+
+    /**
+     * Pipeline array
+     *
+     * @param object $sql
+     *
+     * @return array
+     */
+    private function pipeline($sql): array
+    {
+        return [
+            //Prepare the fields for resolving...
+            \Daguilarm\Belich\Fields\Resolves\Filters\FieldsPrepare::class,
+            //Authorize policies for 'show', 'edit' and 'update' actions
+            //This go here because we want to avoid duplicated sql queries...Don't remove!!!
+            new \Daguilarm\Belich\Fields\Resolves\Filters\AuthorizePolicies($sql, $this->action),
+            //Authorization for fields
+            \Daguilarm\Belich\Fields\Resolves\Filters\AuthorizeFields::class,
+            //Not resolve fields for not visual actions, like: internal operations, ajax,...
+            new \Daguilarm\Belich\Fields\Resolves\Filters\NotVisualActions($this->noResolveActions, $this->action),
+        ];
+    }
+
+    /**
+     * Resolve index
+     *
      * @param object $fields
      *
      * @return Illuminate\Support\Collection
      */
-    public function execute(object $fields, object $sql): Collection
+    private function resolveIndex($fields)
     {
-        //Filter
-        //Prepare the fields for resolving...
-        $fields = $fields->flatten();
+        return app(ResolveIndex::class)->handle($fields);
+    }
 
-        //Policies
-        //Authorization for 'show', 'edit' and 'update' actions
-        //This go here because we want to avoid duplicated sql queries...Don't remove!!!
-        $this->auth->policy($sql, $this->action);
-
-        //Authorization for fields
-        $fields = $this->auth->fields($fields);
-
-        //Controller actions
-        //Resolve fields base on the controller action
-        //No resolve field for not visual actions
-        if (in_array($this->action, $this->noResolveActions)) {
-            return new Collection();
-        }
-
-        // Check for action value
-        return $this->action === 'index'
-            //Prepare the field for the index response
-            ? (new ResolveIndex($this->action, new Callback(), new File(), $this->visible))
-                ->controller($fields)
-            //Prepare the field for the the form response: create, edit and show
-            : (new ResolveCrud($this->action, $this->render, $this->value, $this->visible))
-                ->controller($fields, $sql);
+    /**
+     * Resolve crud
+     *
+     * @param object $fields
+     * @param object $sql
+     *
+     * @return Illuminate\Support\Collection
+     */
+    private function resolveCrud($fields, $sql)
+    {
+        return app(ResolveCrud::class)->handle($fields, $this->action, $sql);
     }
 }

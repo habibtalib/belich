@@ -103,7 +103,7 @@ final class Belich extends BelichMethods
      */
     public function value(object $field, ?object $data = null): ?string
     {
-        return (new ResolveBlade())->execute($field, $data);
+        return app(ResolveBlade::class)->handle($field, $data);
     }
 
     /**
