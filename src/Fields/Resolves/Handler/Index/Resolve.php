@@ -22,7 +22,7 @@ final class Resolve {
 
         return collect([
             // Resolve visibility for the fields (for the index view)
-            'data' => app(FieldsVisibility::class)->handle($fields, function(): void{}),
+            'data' => app(FieldsVisibility::class)->handle($fields, static function(): void{}),
         ]);
     }
 
