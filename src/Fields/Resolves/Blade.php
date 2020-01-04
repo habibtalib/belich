@@ -29,9 +29,6 @@ final class Blade
             return $field->index($field, $data);
         }
 
-        //Resolve value for action controller: show
-        $value = $field->value;
-
         //Resolve value
         $value = $this->resolveValue($field, $data, $value);
 
