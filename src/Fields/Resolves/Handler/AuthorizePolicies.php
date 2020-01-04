@@ -4,8 +4,8 @@ namespace Daguilarm\Belich\Fields\Resolves\Handler;
 
 use Closure;
 
-final class AuthorizePolicies {
-
+final class AuthorizePolicies
+{
     /**
      * @var string
      */

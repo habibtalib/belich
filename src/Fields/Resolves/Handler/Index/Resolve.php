@@ -6,8 +6,8 @@ use Daguilarm\Belich\Fields\Resolves\Handler\FieldsVisibility;
 use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Collection;
 
-final class Resolve {
-
+final class Resolve
+{
     /**
      * Resolve fields: auth, visibility, value,...
      *

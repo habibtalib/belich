@@ -6,7 +6,8 @@ use Closure;
 use Daguilarm\Belich\Contracts\HandleField;
 use Daguilarm\Belich\Facades\Helper;
 
-final class Select implements HandleField {
+final class Select implements HandleField
+{
     /**
      * Handle the relationship value
      *

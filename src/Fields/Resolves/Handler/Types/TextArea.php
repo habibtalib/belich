@@ -6,8 +6,8 @@ use Closure;
 use Daguilarm\Belich\Contracts\HandleField;
 use Daguilarm\Belich\Fields\Traits\Resolvable;
 
-final class TextArea implements HandleField {
-
+final class TextArea implements HandleField
+{
     use Resolvable;
 
     /**

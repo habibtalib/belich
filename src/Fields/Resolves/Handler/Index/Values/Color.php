@@ -5,7 +5,8 @@ namespace Daguilarm\Belich\Fields\Resolves\Handler\Index\Values;
 use Closure;
 use Daguilarm\Belich\Contracts\HandleField;
 
-final class Color implements HandleField {
+final class Color implements HandleField
+{
     /**
      * Resolve relationship
      *

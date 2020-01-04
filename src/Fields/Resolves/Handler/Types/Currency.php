@@ -6,7 +6,8 @@ use Closure;
 use Daguilarm\Belich\Contracts\HandleField;
 use Daguilarm\Belich\Facades\Helper;
 
-final class Currency implements HandleField {
+final class Currency implements HandleField
+{
     /**
      * Handle color field
      *

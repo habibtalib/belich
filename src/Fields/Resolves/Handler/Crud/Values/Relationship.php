@@ -5,7 +5,8 @@ namespace Daguilarm\Belich\Fields\Resolves\Handler\Crud\Values;
 use Closure;
 use Daguilarm\Belich\Contracts\HandleField;
 
-final class Relationship implements HandleField {
+final class Relationship implements HandleField
+{
     /**
      * @var string
      */

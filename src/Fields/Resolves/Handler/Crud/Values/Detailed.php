@@ -6,7 +6,8 @@ use Closure;
 use Daguilarm\Belich\Contracts\HandleField;
 use Illuminate\Pipeline\Pipeline;
 
-final class Detailed implements HandleField {
+final class Detailed implements HandleField
+{
     /**
      * @var string
      */

@@ -4,8 +4,8 @@ namespace Daguilarm\Belich\Fields\Resolves\Handler;
 
 use Closure;
 
-final class FieldsPrepare {
-
+final class FieldsPrepare
+{
     /**
      * Prepare the fields for resolving...
      *

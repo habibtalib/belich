@@ -4,8 +4,8 @@ namespace Daguilarm\Belich\Fields\Resolves\Handler;
 
 use Closure;
 
-final class AuthorizeFields {
-
+final class AuthorizeFields
+{
     /**
      * Handle the fields authorization
      *

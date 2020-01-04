@@ -5,7 +5,8 @@ namespace Daguilarm\Belich\Fields\Resolves\Handler\Types;
 use Closure;
 use Daguilarm\Belich\Contracts\HandleField;
 
-final class Color implements HandleField {
+final class Color implements HandleField
+{
     /**
      * Handle color field
      *

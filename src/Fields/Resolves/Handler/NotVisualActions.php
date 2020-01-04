@@ -4,8 +4,8 @@ namespace Daguilarm\Belich\Fields\Resolves\Handler;
 
 use Closure;
 
-final class NotVisualActions {
-
+final class NotVisualActions
+{
     /**
      * @var string
      */
