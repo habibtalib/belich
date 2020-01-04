@@ -5,7 +5,6 @@ namespace Daguilarm\Belich\App\Console\Commands;
 use Daguilarm\Belich\App\Console\BelichCommand;
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
 
 final class ComponentCommand extends BelichCommand
 {

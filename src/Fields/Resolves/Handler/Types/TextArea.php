@@ -4,7 +4,6 @@ namespace Daguilarm\Belich\Fields\Resolves\Handler\Types;
 
 use Closure;
 use Daguilarm\Belich\Contracts\HandleField;
-use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Traits\Resolvable;
 
 final class TextArea implements HandleField {

@@ -7,7 +7,6 @@ use Daguilarm\Belich\Contracts\FieldContract;
 use Daguilarm\Belich\Contracts\RelationshipContract;
 use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Types\Relationship;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
 
 final class BelongsTo extends Relationship implements CrudContract, FieldContract, RelationshipContract

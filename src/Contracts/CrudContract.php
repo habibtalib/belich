@@ -2,8 +2,6 @@
 
 namespace Daguilarm\Belich\Contracts;
 
-use Illuminate\Support\Collection;
-
 interface CrudContract
 {
     /**
@@ -12,9 +10,9 @@ interface CrudContract
      * @param  object $field
      * @param  object $data
      *
-     * @return string
+     * @return string|null
      */
-    public function index(object $field, ?object $data = null);
+    public function index(object $field, ?object $data = null): ?string;
 
     /**
      * Resolve value for create
@@ -23,7 +21,7 @@ interface CrudContract
      *
      * @return string|null
      */
-    public function create(object $field, ?object $data = null);
+    public function create(object $field, ?object $data = null): ?string;
 
     /**
      * Resolve value for edit
@@ -32,7 +30,7 @@ interface CrudContract
      *
      * @return string|null
      */
-    public function edit(object $field, ?object $data = null);
+    public function edit(object $field, ?object $data = null): ?string;
 
     /**
      * Resolve value for show
@@ -40,7 +38,7 @@ interface CrudContract
      * @param  object $field
      * @param  object|null $data
      *
-     * @return object
+     * @return string|null
      */
-    public function show(object $field, ?object $data = null);
+    public function show(object $field, ?object $data = null): ?string;
 }

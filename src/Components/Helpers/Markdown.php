@@ -2,7 +2,6 @@
 
 namespace Daguilarm\Belich\Components\Helpers;
 
-use Illuminate\Support\HtmlString;
 use Parsedown;
 
 trait Markdown

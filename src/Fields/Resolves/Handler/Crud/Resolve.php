@@ -2,7 +2,6 @@
 
 namespace Daguilarm\Belich\Fields\Resolves\Handler\Crud;
 
-use Daguilarm\Belich\Fields\Resolves\Handler\FieldsVisibility;
 use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Collection;
 
