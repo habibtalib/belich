@@ -3,15 +3,8 @@
 namespace Daguilarm\Belich\Fields\Resolves;
 
 use Daguilarm\Belich\Facades\Belich;
-use Daguilarm\Belich\Fields\Resolves\Authorization;
-use Daguilarm\Belich\Fields\Resolves\Callback;
-use Daguilarm\Belich\Fields\Resolves\File;
 use Daguilarm\Belich\Fields\Resolves\Filters\Crud\_Resolve as ResolveCrud;
 use Daguilarm\Belich\Fields\Resolves\Filters\Index\_Resolve as ResolveIndex;
-use Daguilarm\Belich\Fields\Resolves\Render;
-use Daguilarm\Belich\Fields\Resolves\ResolveCrudValue;
-//use Daguilarm\Belich\Fields\Resolves\ResolveIndex;
-use Daguilarm\Belich\Fields\Resolves\Visible;
 use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Collection;
 

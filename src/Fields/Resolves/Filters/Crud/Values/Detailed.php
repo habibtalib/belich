@@ -50,15 +50,17 @@ final class Detailed implements HandleField {
                 // Resolve data attribute
                 new \Daguilarm\Belich\Fields\Resolves\Filters\Crud\Values\Data($this->sql),
                 // Resolve value for custom fields
-                new \Daguilarm\Belich\Fields\Resolves\Filters\Crud\Values\Types\Custom($this->sql),
+                new \Daguilarm\Belich\Fields\Resolves\Filters\Types\Custom($this->sql),
                 // Resolve value for select fields
-                \Daguilarm\Belich\Fields\Resolves\Filters\Crud\Values\Types\Select::class,
+                \Daguilarm\Belich\Fields\Resolves\Filters\Types\Select::class,
                 // Resolve value for TextArea and Markdown
-                \Daguilarm\Belich\Fields\Resolves\Filters\Crud\Values\Types\TextArea::class,
+                \Daguilarm\Belich\Fields\Resolves\Filters\Types\TextArea::class,
                 // Resolve value for color fields
-                \Daguilarm\Belich\Fields\Resolves\Filters\Crud\Values\Types\Color::class,
+                \Daguilarm\Belich\Fields\Resolves\Filters\Types\Color::class,
                 // Resolve value for currency fields
-                \Daguilarm\Belich\Fields\Resolves\Filters\Crud\Values\Types\Currency::class,
+                \Daguilarm\Belich\Fields\Resolves\Filters\Types\Currency::class,
+                // Resolve value for boolean fields
+                \Daguilarm\Belich\Fields\Resolves\Filters\Types\Boolean::class,
             ])
             ->thenReturn();
 

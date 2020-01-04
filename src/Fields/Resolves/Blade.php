@@ -25,24 +25,23 @@ final class Blade
      */
     public function handle(object $field, ?object $data = null, ?string $value = null): ?string
     {
+        //Resolve value for field
+        //Keep in first position
+        $value = $this->resolveValue($field, $data, $value);
+
         // Resolve for relationship fields
         if ($field->type === 'relationship' || $field->type === 'custom') {
             return $field->index($field, $data);
         }
 
-        //Resolve value
-        $value = $this->resolveValue($field, $data, $value);
-
         // If boolean
-        // Please respect this orden -> first $this->resolveValue($field, $data, $value)
-        // then $this->resolveBoolean($field, $value)
         if ($field->type === 'boolean') {
             return $this->resolveBoolean($field, $value);
         }
 
         //File field
         if ($field->type === 'file') {
-            return (new File())->handle($field, $value);
+            return app(File::class)->handle($field, $value);
         }
 
         //TextArea field
@@ -63,6 +62,14 @@ final class Blade
 
         //Resolve the field value through callbacks
         return app(Callback::class)->handle($field, $data, $value);
+    }
+
+    private function HandleByType()
+    {
+        return [
+            'custom' => 'handleRelationship',
+            'relationship' => 'handleRelationship',
+        ];
     }
 
     /**
@@ -116,14 +123,17 @@ final class Blade
      */
     private function resolveRelationship(object $field, ?object $data): ?string
     {
-        //Resolve Relationship
-        if (is_array($field->attribute)) {
-            $relationship = $data->{$field->attribute[0]};
+        // Set attribute
+        $attribute = $field->attribute;
 
-            return optional($relationship)->{$field->attribute[1]} ?? Helper::emptyResults();
+        //Resolve Relationship
+        if (is_array($attribute)) {
+            $relationship = $data->{$attribute[0]};
+
+            return optional($relationship)->{$attribute[1]} ?? Helper::emptyResults();
         }
 
         //Resolve value for action controller: edit
-        return $data->{$field->attribute} ?? Helper::emptyResults();
+        return $data->{$attribute} ?? Helper::emptyResults();
     }
 }
