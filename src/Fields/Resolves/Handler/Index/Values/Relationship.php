@@ -1,11 +1,11 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Resolves\Handler\Index;
+namespace Daguilarm\Belich\Fields\Resolves\Handler\Index\Values;
 
 use Closure;
 use Daguilarm\Belich\Contracts\HandleField;
 
-final class ResolveRelationship implements HandleField {
+final class Relationship implements HandleField {
     /**
      * Resolve relationship
      *

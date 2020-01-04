@@ -1,13 +1,13 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Resolves;
+namespace Daguilarm\Belich\Fields\Resolves\Handler\Index;
 
 use Daguilarm\Belich\Facades\Helper;
-use Daguilarm\Belich\Fields\Resolves\Blade\Callback;
-use Daguilarm\Belich\Fields\Resolves\Blade\File;
+use Daguilarm\Belich\Fields\Resolves\Handler\Index\Values\Callback;
+use Daguilarm\Belich\Fields\Resolves\Handler\Index\Values\File;
 use Daguilarm\Belich\Fields\Traits\Resolvable;
 
-final class Blade
+final class _Values
 {
     use Resolvable;
 

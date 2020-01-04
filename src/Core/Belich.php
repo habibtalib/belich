@@ -8,7 +8,7 @@ use Daguilarm\Belich\Core\Traits\Modelable;
 use Daguilarm\Belich\Core\Traits\Resourceable;
 use Daguilarm\Belich\Core\Traits\Routeable;
 use Daguilarm\Belich\Core\Traits\Systemable;
-use Daguilarm\Belich\Fields\Resolves\Blade as ResolveBlade;
+use Daguilarm\Belich\Fields\Resolves\Handler\Index\_Values as ResolveBlade;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 

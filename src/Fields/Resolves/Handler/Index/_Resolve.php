@@ -41,9 +41,9 @@ final class _Resolve {
                 ->send($field)
                 ->through([
                     // Resolve field relationship
-                    \Daguilarm\Belich\Fields\Resolves\Handler\Index\ResolveRelationship::class,
+                    \Daguilarm\Belich\Fields\Resolves\Handler\Index\Values\Relationship::class,
                     // Resolve field color
-                    \Daguilarm\Belich\Fields\Resolves\Handler\Index\ResolveColor::class,
+                    \Daguilarm\Belich\Fields\Resolves\Handler\Index\Values\Color::class,
                 ])
                 ->thenReturn();
         });
