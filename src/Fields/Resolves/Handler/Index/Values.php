@@ -33,8 +33,6 @@ final class Values
         $field = app(Pipeline::class)
             ->send($field)
             ->through([
-                // Resolve relationship value
-                new \Daguilarm\Belich\Fields\Resolves\Handler\Index\Types\Relationship($data),
                 // Resolve boolean value
                 new \Daguilarm\Belich\Fields\Resolves\Handler\Index\Types\Boolean($value),
                 // Resolve file value
@@ -45,11 +43,13 @@ final class Values
                 new \Daguilarm\Belich\Fields\Resolves\Handler\Index\Types\Select($value),
                 // Resolve color value
                 new \Daguilarm\Belich\Fields\Resolves\Handler\Index\Types\Color($value),
+                // Resolve relationship value
+                new \Daguilarm\Belich\Fields\Resolves\Handler\Index\Types\Relationship($data),
             ])
             ->thenReturn();
 
         //Resolve the field value through callbacks
-        return app(Callback::class)->handle($field, $data, $value);
+        return app(Callback::class)->handle($field, $data, $field->value ?? $value);
     }
 
     /**
@@ -65,7 +65,7 @@ final class Values
     private function resolveValue(object $field, ?object $data, ?string $value): ?string
     {
         //Resolve Relationship
-        return isset($data)
+        return isset($data) && !$value
             ? $this->resolveRelationship($field, $data)
             : $value;
     }

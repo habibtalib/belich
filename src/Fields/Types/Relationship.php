@@ -29,6 +29,13 @@ class Relationship extends FieldBase
         Visibilitable;
 
     /**
+     * Set the relationship type
+     *
+     * @var bool
+     */
+    public $type = 'relationship';
+
+    /**
      * The realtionship is not editable
      *
      * @var bool

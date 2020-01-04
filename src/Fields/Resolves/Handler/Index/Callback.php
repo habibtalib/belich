@@ -15,7 +15,7 @@ final class Callback
      *
      * @return string|null
      */
-    public function handle(object $field, ?object $data = null, $value = ''): ?string
+    public function handle(object $field, ?object $data = null, ?string $value = null): ?string
     {
         // Resolve value when using the method: $field->displayUsing()
         $value = $this->displayCallback($field, $value);
