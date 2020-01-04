@@ -54,4 +54,3 @@ final class AuthorizePolicies
         return $next($fields);
     }
 }
-

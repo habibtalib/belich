@@ -47,4 +47,3 @@ final class NotVisualActions
         return $next($fields);
     }
 }
-

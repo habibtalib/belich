@@ -19,7 +19,7 @@ final class Currency implements HandleField
     public function handle(object $field, Closure $next): object
     {
         // Resolve currency fields
-        if(isset($field->subType) && $field->subType === 'currency') {
+        if (isset($field->subType) && $field->subType === 'currency') {
             // Format the money
             $field->value = Helper::formatMoney(
                 $field->value,

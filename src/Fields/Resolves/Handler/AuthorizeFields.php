@@ -35,4 +35,3 @@ final class AuthorizeFields
         return ! isset($field->seeCallback) || (is_callable($field->seeCallback) && call_user_func($field->seeCallback, request()) !== false);
     }
 }
-

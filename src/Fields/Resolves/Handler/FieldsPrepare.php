@@ -19,4 +19,3 @@ final class FieldsPrepare
         return $next($fields->flatten());
     }
 }
-
