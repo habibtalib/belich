@@ -3,8 +3,8 @@
 namespace Daguilarm\Belich\Fields\Resolves;
 
 use Daguilarm\Belich\Facades\Belich;
-use Daguilarm\Belich\Fields\Resolves\Filters\Crud\_Resolve as ResolveCrud;
-use Daguilarm\Belich\Fields\Resolves\Filters\Index\_Resolve as ResolveIndex;
+use Daguilarm\Belich\Fields\Resolves\Handler\Crud\_Resolve as ResolveCrud;
+use Daguilarm\Belich\Fields\Resolves\Handler\Index\_Resolve as ResolveIndex;
 use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Collection;
 
@@ -81,14 +81,14 @@ final class Resolve
     {
         return [
             //Prepare the fields for resolving...
-            \Daguilarm\Belich\Fields\Resolves\Filters\FieldsPrepare::class,
+            \Daguilarm\Belich\Fields\Resolves\Handler\FieldsPrepare::class,
             //Authorize policies for 'show', 'edit' and 'update' actions
             //This go here because we want to avoid duplicated sql queries...Don't remove!!!
-            new \Daguilarm\Belich\Fields\Resolves\Filters\AuthorizePolicies($sql, $this->action),
+            new \Daguilarm\Belich\Fields\Resolves\Handler\AuthorizePolicies($sql, $this->action),
             //Authorization for fields
-            \Daguilarm\Belich\Fields\Resolves\Filters\AuthorizeFields::class,
+            \Daguilarm\Belich\Fields\Resolves\Handler\AuthorizeFields::class,
             //Not resolve fields for not visual actions, like: internal operations, ajax,...
-            new \Daguilarm\Belich\Fields\Resolves\Filters\NotVisualActions($this->noResolveActions, $this->action),
+            new \Daguilarm\Belich\Fields\Resolves\Handler\NotVisualActions($this->noResolveActions, $this->action),
         ];
     }
 

@@ -1,11 +1,11 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Resolves\Filters\Crud\Values;
+namespace Daguilarm\Belich\Fields\Resolves\Handler\Types;
 
 use Closure;
 use Daguilarm\Belich\Contracts\HandleField;
 
-final class Data implements HandleField {
+final class Custom implements HandleField {
     /**
      * @var string
      */
@@ -15,6 +15,7 @@ final class Data implements HandleField {
      * Init constructor
      *
      * @param object $sql
+     * @param string $action
      */
     public function __construct($sql)
     {
@@ -22,7 +23,7 @@ final class Data implements HandleField {
     }
 
     /**
-     * Handle the data attribute
+     * Handle the relationship value
      *
      * @param object $field
      * @param Closure $next
@@ -31,8 +32,11 @@ final class Data implements HandleField {
      */
     public function handle(object $field, Closure $next): object
     {
-        // Resolve the data attribute
-        $field->data = $this->sql;
+        // Resolve show view for custom field
+        if ($field->type === 'custom') {
+            // Set value
+            $field->value = $field->show($field, $this->sql);
+        }
 
         return $next($field);
     }

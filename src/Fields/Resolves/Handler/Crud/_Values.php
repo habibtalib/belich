@@ -1,6 +1,6 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Resolves\Filters\Crud;
+namespace Daguilarm\Belich\Fields\Resolves\Handler\Crud;
 
 use Closure;
 use Daguilarm\Belich\Contracts\HandleField;
@@ -49,13 +49,13 @@ final class _Values implements HandleField
                     ->send($field)
                     ->through([
                         // Resolve values
-                        new \Daguilarm\Belich\Fields\Resolves\Filters\Crud\Values\FieldValue($this->sql),
+                        new \Daguilarm\Belich\Fields\Resolves\Handler\Crud\Values\FieldValue($this->sql),
                         // Resolve value for relationships
-                        new \Daguilarm\Belich\Fields\Resolves\Filters\Crud\Values\Relationship($this->sql),
+                        new \Daguilarm\Belich\Fields\Resolves\Handler\Crud\Values\Relationship($this->sql),
                         // Resolve field for relationships base on the actions
-                        new \Daguilarm\Belich\Fields\Resolves\Filters\Crud\Values\RelationshipActions($this->action, $this->sql),
+                        new \Daguilarm\Belich\Fields\Resolves\Handler\Crud\Values\RelationshipActions($this->action, $this->sql),
                         // Resolve field for Show/Detailed
-                        new \Daguilarm\Belich\Fields\Resolves\Filters\Crud\Values\Detailed($this->action, $this->sql),
+                        new \Daguilarm\Belich\Fields\Resolves\Handler\Crud\Values\Detailed($this->action, $this->sql),
                     ])
                     ->thenReturn();
             });

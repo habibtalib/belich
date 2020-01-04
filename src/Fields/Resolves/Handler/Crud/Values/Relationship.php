@@ -1,6 +1,6 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Resolves\Filters\Crud\Values;
+namespace Daguilarm\Belich\Fields\Resolves\Handler\Crud\Values;
 
 use Closure;
 use Daguilarm\Belich\Contracts\HandleField;

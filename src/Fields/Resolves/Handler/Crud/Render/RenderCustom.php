@@ -1,6 +1,6 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Resolves\Filters\Crud\Render;
+namespace Daguilarm\Belich\Fields\Resolves\Handler\Crud\Render;
 
 use Closure;
 use Illuminate\Support\Collection;

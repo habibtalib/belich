@@ -1,6 +1,6 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Resolves\Filters\Index;
+namespace Daguilarm\Belich\Fields\Resolves\Handler\Index;
 
 use Closure;
 use Daguilarm\Belich\Contracts\HandleField;

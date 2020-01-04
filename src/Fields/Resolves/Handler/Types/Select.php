@@ -1,16 +1,12 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Resolves\Filters\Types;
+namespace Daguilarm\Belich\Fields\Resolves\Handler\Types;
 
 use Closure;
 use Daguilarm\Belich\Contracts\HandleField;
 use Daguilarm\Belich\Facades\Helper;
-use Daguilarm\Belich\Fields\Traits\Resolvable;
 
-final class TextArea implements HandleField {
-
-    use Resolvable;
-
+final class Select implements HandleField {
     /**
      * Handle the relationship value
      *
@@ -21,9 +17,9 @@ final class TextArea implements HandleField {
      */
     public function handle(object $field, Closure $next): object
     {
-        //Resolve value for TextArea or Markdown
-        if ($field->type === 'textArea' || $field->type === 'markdown') {
-            $field->value = $this->resolveTextArea($field);
+        //Resolve using Display Using Labels
+        if (isset($field->displayUsingLabels) && isset($field->options)) {
+            $field->value = Helper::displayUsingLabels($field, $field->value);
         }
 
         return $next($field);

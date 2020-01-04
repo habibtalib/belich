@@ -1,6 +1,6 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Resolves\Filters\Crud\Values;
+namespace Daguilarm\Belich\Fields\Resolves\Handler\Crud\Values;
 
 use Closure;
 use Daguilarm\Belich\Contracts\HandleField;
@@ -48,19 +48,19 @@ final class Detailed implements HandleField {
             ->send($field)
             ->through([
                 // Resolve data attribute
-                new \Daguilarm\Belich\Fields\Resolves\Filters\Crud\Values\Data($this->sql),
+                new \Daguilarm\Belich\Fields\Resolves\Handler\Crud\Values\Data($this->sql),
                 // Resolve value for custom fields
-                new \Daguilarm\Belich\Fields\Resolves\Filters\Types\Custom($this->sql),
+                new \Daguilarm\Belich\Fields\Resolves\Handler\Types\Custom($this->sql),
                 // Resolve value for select fields
-                \Daguilarm\Belich\Fields\Resolves\Filters\Types\Select::class,
+                \Daguilarm\Belich\Fields\Resolves\Handler\Types\Select::class,
                 // Resolve value for TextArea and Markdown
-                \Daguilarm\Belich\Fields\Resolves\Filters\Types\TextArea::class,
+                \Daguilarm\Belich\Fields\Resolves\Handler\Types\TextArea::class,
                 // Resolve value for color fields
-                \Daguilarm\Belich\Fields\Resolves\Filters\Types\Color::class,
+                \Daguilarm\Belich\Fields\Resolves\Handler\Types\Color::class,
                 // Resolve value for currency fields
-                \Daguilarm\Belich\Fields\Resolves\Filters\Types\Currency::class,
+                \Daguilarm\Belich\Fields\Resolves\Handler\Types\Currency::class,
                 // Resolve value for boolean fields
-                \Daguilarm\Belich\Fields\Resolves\Filters\Types\Boolean::class,
+                \Daguilarm\Belich\Fields\Resolves\Handler\Types\Boolean::class,
             ])
             ->thenReturn();
 

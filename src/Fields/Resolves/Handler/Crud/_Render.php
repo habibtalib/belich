@@ -1,6 +1,6 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Resolves\Filters\Crud;
+namespace Daguilarm\Belich\Fields\Resolves\Handler\Crud;
 
 use Closure;
 use Daguilarm\Belich\Contracts\HandleField;
@@ -46,11 +46,11 @@ final class _Render implements HandleField
                     ->through([
                         // Render default attributes from:
                         // Daguilarm\Belich\Fields\Traits\Renderable
-                        \Daguilarm\Belich\Fields\Resolves\Filters\Crud\Render\RenderDefault::class,
+                        \Daguilarm\Belich\Fields\Resolves\Handler\Crud\Render\RenderDefault::class,
                         // Render custom attributes
-                        \Daguilarm\Belich\Fields\Resolves\Filters\Crud\Render\RenderCustom::class,
+                        \Daguilarm\Belich\Fields\Resolves\Handler\Crud\Render\RenderCustom::class,
                         // Prepare the rendered array
-                        \Daguilarm\Belich\Fields\Resolves\Filters\Crud\Render\RenderFilter::class,
+                        \Daguilarm\Belich\Fields\Resolves\Handler\Crud\Render\RenderFilter::class,
                     ])
                     ->thenReturn();
             });

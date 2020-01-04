@@ -1,8 +1,8 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Resolves\Filters\Index;
+namespace Daguilarm\Belich\Fields\Resolves\Handler\Index;
 
-use Daguilarm\Belich\Fields\Resolves\Filters\FieldsVisibility;
+use Daguilarm\Belich\Fields\Resolves\Handler\FieldsVisibility;
 use Illuminate\Pipeline\Pipeline;
 use Illuminate\Support\Collection;
 
@@ -41,9 +41,9 @@ final class _Resolve {
                 ->send($field)
                 ->through([
                     // Resolve field relationship
-                    \Daguilarm\Belich\Fields\Resolves\Filters\Index\ResolveRelationship::class,
+                    \Daguilarm\Belich\Fields\Resolves\Handler\Index\ResolveRelationship::class,
                     // Resolve field color
-                    \Daguilarm\Belich\Fields\Resolves\Filters\Index\ResolveColor::class,
+                    \Daguilarm\Belich\Fields\Resolves\Handler\Index\ResolveColor::class,
                 ])
                 ->thenReturn();
         });

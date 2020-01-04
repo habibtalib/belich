@@ -1,6 +1,6 @@
 <?php
 
-namespace Daguilarm\Belich\Fields\Resolves\Filters;
+namespace Daguilarm\Belich\Fields\Resolves\Handler;
 
 use Closure;
 
