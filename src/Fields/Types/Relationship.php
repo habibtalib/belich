@@ -15,7 +15,7 @@ use Daguilarm\Belich\Fields\Traits\Ruleable;
 use Daguilarm\Belich\Fields\Traits\Settingable;
 use Daguilarm\Belich\Fields\Traits\Visibilitable;
 
-class Relationship extends FieldBase
+abstract class Relationship extends FieldBase
 {
     use Attributable,
         Casteable,

@@ -29,21 +29,26 @@
             Description: Live search
             */
             function liveSearch(key, query = '', page = 1, orderBy = '', direction = '') {
-                //Hide icon
-                if(query.length === 0) {
+                // Hide icon
+                if(query.length === 0 || query === '') {
                     window.onSelection('#icon-search-reset-' + key, 'hide');
                 }
-                //Min. search filter
+                // Min. search filter
                 if(query.length < minSearch && query.length > 0) {
                     return;
                 }
-                //Uncheck all the table items
+                // Get value
+                var querySearch = window.querySearch(query);
+                // Avoid duplicate searchs
+                if(!window.dataCheck(key, querySearch)) {
+                    return false;
+                }
+                // Uncheck all the table items
                 window.uncheckAll();
-                //Loading
+                // Loading
                 document.getElementById('loading').classList.remove('hidden');
-                //Ajax request
+                // Ajax request
                 var request = new XMLHttpRequest();
-                var querySearch = query || 'resetSearchAll';
                 request.open('GET', '{{ route('dashboard.ajax.search') }}?type=search&tableTextAlign={{ $request->get('tableTextAlign') }}&query=' + querySearch + '&resourceName={{ Belich::resourceName() }}&fields={{ Helper::searchFields() }}&page=' + page + '&orderBy=' + orderBy + '&direction=' + direction, true);
                 request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
                 request.onload = function() {
@@ -53,6 +58,31 @@
                     }
                 };
                 request.send();
+            }
+
+            /*
+            Section: Search
+            Description: Add reset value for search if needed...
+            */
+            function querySearch(query = '')
+            {
+                return query.length <= 0
+                    ? 'resetSearchAll'
+                    : query;
+            }
+
+            /*
+            Section: Search
+            Description: Add reset value for search if needed...
+            */
+            function dataCheck(key, query)
+            {
+                var data = document.getElementById('search-' + key).getAttribute('data-search');
+                var status = data !== query;
+                // Update data
+                document.getElementById('search-' + key).setAttribute('data-search', query);
+
+                return status;
             }
 
              /*

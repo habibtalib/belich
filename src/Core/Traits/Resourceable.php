@@ -2,8 +2,8 @@
 
 namespace Daguilarm\Belich\Core\Traits;
 
-use Daguilarm\Belich\Core\Services\Database;
-use Daguilarm\Belich\Core\Services\Search;
+use Daguilarm\Belich\Core\Search\Database;
+use Daguilarm\Belich\Core\Search\Search;
 use Daguilarm\Belich\Fields\Resolves\Resolve;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;

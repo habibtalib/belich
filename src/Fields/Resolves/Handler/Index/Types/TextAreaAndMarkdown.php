@@ -18,7 +18,7 @@ final class TextAreaAndMarkdown implements HandleField
     /**
      * Init constructor
      *
-     * @param object $value
+     * @param string|null $value
      */
     public function __construct(?string $value)
     {

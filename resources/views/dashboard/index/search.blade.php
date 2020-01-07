@@ -2,7 +2,7 @@
 
     {{-- Search field --}}
     <div class="icon-search w-full relative">
-        <input type="text" name="search-{{ Belich::key() }}" id="search-{{ Belich::key() }}" class="p-2 pl-10 my-2 ml-2 rounded-lg border bg-gray-200 w-64 text-gray-700 appearance-none leading-normal ds-input" placeholder="@lang('belich::default.search')" onkeyup="javascript:liveSearch('{{ Belich::key() }}', this.value)" onkeydown="javascript:showResetSearch('{{ Belich::key() }}')">
+        <input type="text" name="search-{{ Belich::key() }}" id="search-{{ Belich::key() }}" data-search="" class="p-2 pl-10 my-2 ml-2 rounded-lg border bg-gray-200 w-64 text-gray-700 appearance-none leading-normal ds-input" placeholder="@lang('belich::default.search')" onkeyup="javascript:liveSearch('{{ Belich::key() }}', this.value);" onkeydown="javascript:showResetSearch('{{ Belich::key() }}')">
         <span>
             <i class="fas fa-search text-gray-600 absolute inset-y-0 left-0 pl-5 pt-5"></i>
         </span>

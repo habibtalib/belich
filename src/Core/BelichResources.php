@@ -2,7 +2,7 @@
 
 namespace Daguilarm\Belich\Core;
 
-use Daguilarm\Belich\Core\Services\Search;
+use Daguilarm\Belich\Core\Search\Search;
 use Daguilarm\Belich\Facades\Helper;
 use Illuminate\Support\Str;
 
