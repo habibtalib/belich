@@ -65,7 +65,7 @@ final class Values
     private function resolveValue(object $field, ?object $data, ?string $value): ?string
     {
         //Resolve Relationship
-        return isset($data) && !$value
+        return isset($data) && ! $value
             ? $this->resolveRelationship($field, $data)
             : $value;
     }
