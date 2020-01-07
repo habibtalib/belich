@@ -40,7 +40,7 @@
                 // Get value
                 var querySearch = window.querySearch(query);
                 // Avoid duplicate searchs
-                if(!window.dataCheck(key, querySearch)) {
+                if(!window.dataCheck(key, querySearch, page, orderBy, direction)) {
                     return false;
                 }
                 // Uncheck all the table items
@@ -75,12 +75,13 @@
             Section: Search
             Description: Add reset value for search if needed...
             */
-            function dataCheck(key, query)
+            function dataCheck(key, query, page, orderBy, direction)
             {
                 var data = document.getElementById('search-' + key).getAttribute('data-search');
-                var status = data !== query;
+                var queryCheck = query + '-' + orderBy + '-' + direction;
+                var status = data !== queryCheck;
                 // Update data
-                document.getElementById('search-' + key).setAttribute('data-search', query);
+                document.getElementById('search-' + key).setAttribute('data-search', queryCheck);
 
                 return status;
             }
