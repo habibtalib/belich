@@ -18,7 +18,7 @@ use Daguilarm\Belich\Fields\Traits\Settingable;
 use Daguilarm\Belich\Fields\Traits\Visibilitable;
 use Illuminate\Support\Str;
 
-class Field extends FieldBase implements FieldContract
+abstract class Field extends FieldBase implements FieldContract
 {
     use Attributable,
         Authorizable,
