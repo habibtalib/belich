@@ -17,13 +17,6 @@ final class BelongsTo extends Relationship implements CrudContract, FieldContrac
     public $subType = 'belongsTo';
 
     /**
-     * Relationships can be editables
-     *
-     * @var string
-     */
-    public $editable;
-
-    /**
      * Create a new relationship field
      *
      * @param  string  $label
@@ -33,15 +26,15 @@ final class BelongsTo extends Relationship implements CrudContract, FieldContrac
      *
      * @return  void
      */
-    public function __construct(string $label, string $resource, ?string $relationship = null, ?string $tableColumn = null)
+    public function __construct(string $label, string $resource, ?string $tableColumn = null)
     {
-        parent::__construct($label, $resource, $relationship, $tableColumn);
+        parent::__construct($label, $resource, $tableColumn);
 
         // Resolve as html
         $this->asHtml();
 
-        // Editable relationships disabled by default
-        $this->exceptOnForms();
+        // Show in all
+        $this->showInAll();
     }
 
     /**
@@ -56,16 +49,15 @@ final class BelongsTo extends Relationship implements CrudContract, FieldContrac
         // Get values
         $result = optional($data)->{$this->fieldRelationship};
         $value = optional($result)->{$this->tableColumn};
-        $id = optional($result)->id;
         $url = sprintf(
             '%s/%s/%s',
             config('belich.path'),
             Str::plural($this->resource),
-            $id
+            optional($result)->id
         );
 
         return $value
-            ? view('belich::fields.' . $this->subType . '.index', compact('value', 'url'))
+            ? view('belich::fields.hasOne.index', compact('value', 'url'))
             : Helper::emptyResults();
     }
 
@@ -129,5 +121,15 @@ final class BelongsTo extends Relationship implements CrudContract, FieldContrac
         $field->showValue = $value ? sprintf('<a href="%s" class="show-link">%s</a>', $url, $value) : Helper::emptyResults();
 
         return $field;
+    }
+
+    /**
+     * Relationship field cannot be editable
+     *
+     * @return self
+     */
+    public function editable(): self
+    {
+        return $this;
     }
 }

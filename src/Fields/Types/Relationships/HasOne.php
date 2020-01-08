@@ -26,9 +26,9 @@ final class HasOne extends Relationship implements CrudContract, FieldContract, 
      *
      * @return  void
      */
-    public function __construct(string $label, string $resource, ?string $relationship = null, ?string $tableColumn = null)
+    public function __construct(string $label, string $resource, ?string $tableColumn = null)
     {
-        parent::__construct($label, $resource, $relationship, $tableColumn);
+        parent::__construct($label, $resource, $tableColumn);
 
         // Resolve as html
         $this->asHtml();
@@ -49,12 +49,11 @@ final class HasOne extends Relationship implements CrudContract, FieldContract, 
         // Get values
         $result = optional($data)->{$this->fieldRelationship};
         $value = optional($result)->{$this->tableColumn};
-        $id = optional($result)->id;
         $url = sprintf(
             '%s/%s/%s',
             config('belich.path'),
             Str::plural($this->resource),
-            $id
+            optional($result)->id
         );
 
         return $value

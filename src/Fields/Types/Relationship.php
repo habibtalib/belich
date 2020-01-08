@@ -36,23 +36,15 @@ abstract class Relationship extends FieldBase
     public $type = 'relationship';
 
     /**
-     * The realtionship is not editable
-     *
-     * @var bool
-     */
-    public $editableRelationship = false;
-
-    /**
      * Create a new relationship field
      *
      * @param  string  $label
      * @param  string  $resource [The relational resource in plural]
-     * @param  string|null  $relationship [The relational model]
      * @param  string|null  $tableColumn [The relational table from the model]
      *
      * @return  void
      */
-    public function __construct(string $label, string $resource, ?string $relationship = null, ?string $tableColumn = null)
+    public function __construct(string $label, string $resource, ?string $tableColumn = null)
     {
         // Default table
         $this->tableColumn = $tableColumn ?? Belich::tableColumn() ?? null;
@@ -72,18 +64,6 @@ abstract class Relationship extends FieldBase
     {
         //Set the field values
         return new static(...$attributes);
-    }
-
-    /**
-     * Relationship field can be editable
-     *
-     * @return self
-     */
-    public function editable(): self
-    {
-        $this->editableRelationship = true;
-
-        return $this;
     }
 
     /**

@@ -19,6 +19,11 @@ trait Relationable
     public $foreignKey;
 
     /**
+     * @var object
+     */
+    public $getQuery;
+
+    /**
      * @var string
      */
     public $label;
@@ -110,7 +115,7 @@ trait Relationable
 
         $column = sprintf('%s_id', Helper::stringSingularLower($this->resource));
 
-        return Schema::hasColumn(Helper::stringPluralLower($this->resource), $column)
+        return $this->foreignKey = Schema::hasColumn(Helper::stringPluralLower($this->resource), $column)
             ? $column
             : null;
     }
@@ -134,15 +139,19 @@ trait Relationable
      */
     protected function getQuery(): array
     {
+        if ($this->getQuery) {
+            return $this->getQuery;
+        }
+
         // With callback
         if (isset($this->resolveQuery) && is_callable($this->resolveQuery)) {
-            return call_user_func(
+            return $this->getQuery = call_user_func(
                 $this->resolveQuery,
                 new $this->relationshipClass::$model()
             );
         }
 
-        return ['' => ''] + $this->relationshipClass
+        return $this->getQuery = ['' => ''] + $this->relationshipClass
             ->indexQuery()
             ->select($this->tableColumn, $this->tableColumn)
             ->pluck($this->tableColumn, $this->tableColumn)
@@ -158,9 +167,13 @@ trait Relationable
      */
     protected function getRelationshipClass(string $resource): object
     {
+        if ($this->relationshipClass) {
+            return $this->relationshipClass;
+        }
+
         $resourceClass = Belich::resourceClassPath($resource);
 
-        return new $resourceClass();
+        return $this->relationshipClass = new $resourceClass();
     }
 
     /**
@@ -191,7 +204,9 @@ trait Relationable
     protected function getSetUp(string $label, string $resource, ?string $tableColumn): void
     {
         // Get relationship resource class
-        $this->relationshipClass = $this->getRelationshipClass($resource);
+        if (! $this->relationshipClass) {
+            $this->relationshipClass = $this->getRelationshipClass($resource);
+        }
 
         // Setup
         $this->resource = $this->getResource($resource);
