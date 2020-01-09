@@ -4,7 +4,6 @@ namespace Daguilarm\Belich\Fields\Types\Relationships\Traits;
 
 use Daguilarm\Belich\Facades\Belich;
 use Daguilarm\Belich\Facades\Helper;
-use Illuminate\Support\Facades\Schema;
 
 trait Relationable
 {

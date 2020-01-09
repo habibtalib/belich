@@ -63,13 +63,6 @@ abstract class Relationship extends FieldBase
     }
 
     /**
-     * Populate relationship select
-     *
-     * @return array
-     */
-    abstract protected function getQuery(): array;
-
-    /**
      * Set the field attributes
      *
      * @param  string|null  $attributes
@@ -93,4 +86,11 @@ abstract class Relationship extends FieldBase
 
         return $this;
     }
+
+    /**
+     * Populate relationship select
+     *
+     * @return array
+     */
+    abstract protected function getQuery(): array;
 }

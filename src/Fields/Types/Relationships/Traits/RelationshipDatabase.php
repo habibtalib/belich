@@ -2,7 +2,6 @@
 
 namespace Daguilarm\Belich\Fields\Types\Relationships\Traits;
 
-use Daguilarm\Belich\Facades\Belich;
 use Daguilarm\Belich\Facades\Helper;
 use Illuminate\Support\Facades\Schema;
 
@@ -62,7 +61,7 @@ trait RelationshipDatabase
      *
      * @return array
      */
-    public function getQuery(): array
+    protected function getQuery(): array
     {
         // Relationship class
         $relationshipClass = $this->getRelationshipClass($this->resource);
