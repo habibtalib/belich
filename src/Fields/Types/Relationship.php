@@ -3,13 +3,13 @@
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Facades\Belich;
+use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\FieldBase;
 use Daguilarm\Belich\Fields\Traits\Attributable;
 use Daguilarm\Belich\Fields\Traits\Casteable;
 use Daguilarm\Belich\Fields\Traits\Conditionable;
 use Daguilarm\Belich\Fields\Traits\Formatable;
 use Daguilarm\Belich\Fields\Traits\Helpeable;
-use Daguilarm\Belich\Fields\Traits\Relationable;
 use Daguilarm\Belich\Fields\Traits\Renderable;
 use Daguilarm\Belich\Fields\Traits\Ruleable;
 use Daguilarm\Belich\Fields\Traits\Settingable;
@@ -22,7 +22,6 @@ abstract class Relationship extends FieldBase
         Conditionable,
         Formatable,
         Helpeable,
-        Relationable,
         Renderable,
         Ruleable,
         Settingable,
@@ -34,6 +33,13 @@ abstract class Relationship extends FieldBase
      * @var bool
      */
     public $type = 'relationship';
+
+    /**
+     * Set the no results default
+     *
+     * @var string
+     */
+    public $noResults;
 
     /**
      * Create a new relationship field
@@ -51,7 +57,17 @@ abstract class Relationship extends FieldBase
 
         // Default values
         $this->getSetUp($label, $resource, $this->tableColumn);
+
+        // No results
+        $this->noResults = Helper::emptyResults();
     }
+
+    /**
+     * Populate relationship select
+     *
+     * @return array
+     */
+    abstract protected function getQuery(): array;
 
     /**
      * Set the field attributes
@@ -64,27 +80,6 @@ abstract class Relationship extends FieldBase
     {
         //Set the field values
         return new static(...$attributes);
-    }
-
-    /**
-     * Get the Foreing key to connect the models
-     *
-     * @param string $key
-     *
-     * @return self
-     */
-    public function foreignKey(string $key): self
-    {
-        $this->foreignKey = $key;
-
-        return $this;
-    }
-
-    public function query(\Closure $value): self
-    {
-        $this->resolveQuery = $value;
-
-        return $this;
     }
 
     /**

@@ -5,16 +5,12 @@ namespace Daguilarm\Belich\Fields\Types\Relationships;
 use Daguilarm\Belich\Contracts\CrudContract;
 use Daguilarm\Belich\Contracts\FieldContract;
 use Daguilarm\Belich\Contracts\RelationshipContract;
+use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Types\Relationship;
-use Daguilarm\Belich\Fields\Types\Relationships\Traits\Relationable;
-use Daguilarm\Belich\Fields\Types\Relationships\Traits\RelationshipDatabase;
 use Illuminate\Support\Str;
 
-class HasOne extends Relationship implements CrudContract, FieldContract, RelationshipContract
+class HasMany extends Relationship implements CrudContract, FieldContract, RelationshipContract
 {
-    use Relationable,
-        RelationshipDatabase;
-
     /**
      * @var string
      */
@@ -62,7 +58,7 @@ class HasOne extends Relationship implements CrudContract, FieldContract, Relati
 
         return $value
             ? view('belich::fields.hasOne.index', compact('value', 'url'))
-            : $this->noResults;
+            : Helper::emptyResults();
     }
 
     /**
@@ -122,7 +118,7 @@ class HasOne extends Relationship implements CrudContract, FieldContract, Relati
             optional($field)->valueRelationship
         );
         // Set value
-        $field->showValue = $value ? sprintf('<a href="%s" class="show-link">%s</a>', $url, $value) : $this->noResults;
+        $field->showValue = $value ? sprintf('<a href="%s" class="show-link">%s</a>', $url, $value) : Helper::emptyResults();
 
         return $field;
     }
