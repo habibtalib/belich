@@ -9,7 +9,7 @@ use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Types\Relationship;
 use Illuminate\Support\Str;
 
-final class HasOne extends Relationship implements CrudContract, FieldContract, RelationshipContract
+class HasOne extends Relationship implements CrudContract, FieldContract, RelationshipContract
 {
     /**
      * @var string
@@ -57,7 +57,7 @@ final class HasOne extends Relationship implements CrudContract, FieldContract, 
         );
 
         return $value
-            ? view('belich::fields.' . $this->subType . '.index', compact('value', 'url'))
+            ? view('belich::fields.hasOne.index', compact('value', 'url'))
             : Helper::emptyResults();
     }
 

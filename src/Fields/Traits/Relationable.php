@@ -49,11 +49,6 @@ trait Relationable
     public $resource;
 
     /**
-     * @var object
-     */
-    public $relationshipClass;
-
-    /**
      * @var callable
      */
     public $resolveQuery;
@@ -143,18 +138,21 @@ trait Relationable
             return $this->getQuery;
         }
 
+        // Relationship class
+        $relationshipClass = $this->getRelationshipClass($this->resource);
+
         // With callback
         if (isset($this->resolveQuery) && is_callable($this->resolveQuery)) {
-            return $this->getQuery = call_user_func(
+            return call_user_func(
                 $this->resolveQuery,
-                new $this->relationshipClass::$model()
+                new $relationshipClass::$model()
             );
         }
 
-        return $this->getQuery = ['' => ''] + $this->relationshipClass
+        return ['' => ''] + $relationshipClass
             ->indexQuery()
-            ->select($this->tableColumn, $this->tableColumn)
-            ->pluck($this->tableColumn, $this->tableColumn)
+            ->select($this->tableColumn, 'id')
+            ->pluck($this->tableColumn, 'id')
             ->toArray();
     }
 
@@ -167,10 +165,6 @@ trait Relationable
      */
     protected function getRelationshipClass(string $resource): object
     {
-        if ($this->relationshipClass) {
-            return $this->relationshipClass;
-        }
-
         $resourceClass = Belich::resourceClassPath($resource);
 
         return $this->relationshipClass = new $resourceClass();
@@ -203,11 +197,6 @@ trait Relationable
      */
     protected function getSetUp(string $label, string $resource, ?string $tableColumn): void
     {
-        // Get relationship resource class
-        if (! $this->relationshipClass) {
-            $this->relationshipClass = $this->getRelationshipClass($resource);
-        }
-
         // Setup
         $this->resource = $this->getResource($resource);
         $this->label = $label ?? $this->resource;
