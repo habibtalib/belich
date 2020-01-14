@@ -1,6 +1,6 @@
 ![Logo belich dashboard](https://raw.githubusercontent.com/daguilarm/belich/master/documents/images/logo.png)
 
-# belich (working on it...Released on January 1, 2020)
+# belich (working on it...)
 
 **Belich** is an administration panel based on [Laravel](https://laravel.com), and that has been influenced by the documentation of [Nova](https://nova.laravel.com), [Laravel Collective](https://laravelcollective.com/) and [Quickadmin](https://github.com/LaravelDaily/quickadmin).
 
@@ -126,7 +126,7 @@ Most recent screenshot from the current design:
     + Maps.
 - Create the relationship fields:
     + <del>HasOne</del>
-    + BelongsTo
+    + <del>BelongsTo</del>
     + HasMany
     + BelongsToMany
-...
+- Filters (almost done!)
