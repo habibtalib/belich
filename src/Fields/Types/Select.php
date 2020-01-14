@@ -17,6 +17,11 @@ final class Select extends Field
     public $displayUsingLabels;
 
     /**
+     * @var string
+     */
+    public $filter = 'equal';
+
+    /**
      * @var array
      */
     public $firstOption;
@@ -51,6 +56,20 @@ final class Select extends Field
         if (isset($options)) {
             $this->options = $options;
         }
+
+        return $this;
+    }
+
+    /**
+     * Set the search filter type
+     *
+     * @param string $value
+     *
+     * @return self
+     */
+    public function filter(string $value): self
+    {
+        $this->filter = $value;
 
         return $this;
     }

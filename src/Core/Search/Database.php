@@ -74,7 +74,7 @@ final class Database extends DatabaseCore
     private function indexQuery(object $class, Request $request): object
     {
         // Set variables
-        [$direction, $order, $policy, $search, $model, $baseUrl, $urlQuery, $perPage, $paginateType] = $this->getVariables($request);
+        [$direction, $order, $filters, $policy, $search, $model, $baseUrl, $urlQuery, $perPage, $paginateType] = $this->getVariables($request);
         $query = $class->indexQuery($request);
 
         // Start the pipeline
@@ -82,6 +82,7 @@ final class Database extends DatabaseCore
             ->send($query)
             ->through([
                 new \Daguilarm\Belich\Core\Search\Filters\LiveSearch($request, $search),
+                new \Daguilarm\Belich\Core\Search\Filters\Filters($filters),
                 new \Daguilarm\Belich\Core\Search\Filters\Order($direction, $request, $order),
                 new \Daguilarm\Belich\Core\Search\Filters\Trashed($model, $request, $this->withTrashed, $policy),
                 new \Daguilarm\Belich\Core\Search\Filters\OnlyTrashed($model, $request, $this->withTrashed, $policy),

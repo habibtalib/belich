@@ -28,6 +28,9 @@
 
         {{-- Dropdowns --}}
         {{-- Dropdown: Options --}}
+        @include('belich::partials.buttons.filters')
+
+        {{-- Dropdown: Options --}}
         @include('belich::partials.buttons.options')
 
         {{-- Show or hide base on selected items --}}

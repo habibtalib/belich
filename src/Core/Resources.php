@@ -105,39 +105,17 @@ abstract class Resources
     public static $tabs;
 
     /**
-     * Get the fields displayed by the resource.
+     * Default actions
      *
-     * @param \Illuminate\Http\Request $request
+     * @return array
      */
-    abstract public function fields(Request $request): array;
-
-    /**
-     * Set the custom cards
-     *
-     * @param  \Illuminate\Http\Request  $request
-     */
-    abstract public static function cards(Request $request): array;
-
-    /**
-     * Set the custom metrics cards
-     *
-     * @param  \Illuminate\Http\Request  $request
-     */
-    abstract public static function metrics(Request $request): array;
-
-    /**
-     * Set the resource model
-     *
-     * @return Illuminate\Database\Eloquent\Builder
-     */
-    public function model(): object
+    public static function actions(): array
     {
-        $model = static::$model;
-        $relationships = static::$relationships;
-
-        return $relationships
-            ? app($model)->with($relationships)
-            : app($model);
+        return [
+            Utils::icon('eye') => Utils::route('show'),
+            Utils::icon('edit') => Utils::route('edit'),
+            Utils::icon('trash') => Utils::route('destroy'),
+        ];
     }
 
     /**
@@ -168,16 +146,49 @@ abstract class Resources
     }
 
     /**
-     * Default actions
+     * Set the custom metrics cards
      *
-     * @return array
+     * @param  \Illuminate\Http\Request  $request
+     * @return Illuminate\Support\Collection
      */
-    public static function actions(): array
+    public static function filters(Request $request): array
     {
-        return [
-            Utils::icon('eye') => Utils::route('show'),
-            Utils::icon('edit') => Utils::route('edit'),
-            Utils::icon('trash') => Utils::route('destroy'),
-        ];
+        return [];
     }
+
+    /**
+     * Set the resource model
+     *
+     * @return Illuminate\Database\Eloquent\Builder
+     */
+    public function model(): object
+    {
+        $model = static::$model;
+        $relationships = static::$relationships;
+
+        return $relationships
+            ? app($model)->with($relationships)
+            : app($model);
+    }
+
+    /**
+     * Get the fields displayed by the resource.
+     *
+     * @param \Illuminate\Http\Request $request
+     */
+    abstract public function fields(Request $request): array;
+
+    /**
+     * Set the custom cards
+     *
+     * @param  \Illuminate\Http\Request  $request
+     */
+    abstract public static function cards(Request $request): array;
+
+    /**
+     * Set the custom metrics cards
+     *
+     * @param  \Illuminate\Http\Request  $request
+     */
+    abstract public static function metrics(Request $request): array;
 }

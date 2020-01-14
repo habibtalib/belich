@@ -16,6 +16,7 @@ abstract class DatabaseCore
         'orderBy',
         'direction',
         'page',
+        'filters',
     ];
 
     /**
@@ -35,6 +36,7 @@ abstract class DatabaseCore
         return [
             $request->query('direction'),
             $request->query('orderBy'),
+            $request->query('filters'),
             $request->user()->can('withTrashed', $model),
             $search,
             $model,

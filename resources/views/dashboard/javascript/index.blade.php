@@ -28,28 +28,35 @@
             Section: Search
             Description: Live search
             */
-            function liveSearch(key, query = '', page = 1, orderBy = '', direction = '') {
-                // Hide icon
-                if(query.length === 0 || query === '') {
-                    window.onSelection('#icon-search-reset-' + key, 'hide');
-                }
-                // Min. search filter
-                if(query.length < minSearch && query.length > 0) {
-                    return;
+            function liveSearch(key, query = '', page = 1, orderBy = '', direction = '', filters = '', forceQuery = false) {
+                // No filters
+                if(forceQuery === false) {
+                    // Hide icon
+                    if(query.length === 0 || query === '') {
+                        window.onSelection('#icon-search-reset-' + key, 'hide');
+                    }
+                    // Min. search filter
+                    if(query.length < minSearch && query.length > 0) {
+                        return;
+                    }
                 }
                 // Get value
                 var querySearch = window.querySearch(query);
-                // Avoid duplicate searchs
-                if(!window.dataCheck(key, querySearch, page, orderBy, direction)) {
-                    return false;
-                }
                 // Uncheck all the table items
                 window.uncheckAll();
                 // Loading
                 document.getElementById('loading').classList.remove('hidden');
+                // Get filters
+                var filters = JSON.stringify(getFilters());
+                // Set default values
+                document.getElementById('live_search_query').value = query;
+                document.getElementById('live_search_page').value = page;
+                document.getElementById('live_search_order').value = orderBy;
+                document.getElementById('live_search_direction').value = direction;
+                document.getElementById('live_search_filters').value = filters;
                 // Ajax request
                 var request = new XMLHttpRequest();
-                request.open('GET', '{{ route('dashboard.ajax.search') }}?type=search&tableTextAlign={{ $request->get('tableTextAlign') }}&query=' + querySearch + '&resourceName={{ Belich::resourceName() }}&fields={{ Helper::searchFields() }}&page=' + page + '&orderBy=' + orderBy + '&direction=' + direction, true);
+                request.open('GET', '{{ route('dashboard.ajax.search') }}?type=search&tableTextAlign={{ $request->get('tableTextAlign') }}&query=' + querySearch + '&resourceName={{ Belich::resourceName() }}&fields={{ Helper::searchFields() }}&page=' + page + '&orderBy=' + orderBy + '&direction=' + direction + '&filters=' + filters, true);
                 request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
                 request.onload = function() {
                     if (this.status == 200 && this.readyState == 4) {
@@ -62,6 +69,42 @@
 
             /*
             Section: Search
+            Description: Live filter
+            */
+            function liveFilter()
+            {
+                // Set default values
+                window.liveSearch(
+                    '{{ Belich::key() }}',
+                    document.getElementById('live_search_query').value,
+                    document.getElementById('live_search_page').value,
+                    document.getElementById('live_search_order').value,
+                    document.getElementById('live_search_direction').value,
+                    document.getElementById('live_search_filters').value,
+                    true
+                );
+            }
+
+            /*
+            Section: Filter
+            Description: get all the filters
+            */
+            function getFilters(separator = '***')
+            {
+                var filters = [];
+                var selects = document.querySelectorAll('select.search-live-filter');
+                for (var i = 0; i < selects.length; i++)  {
+                    var value = selects[i].value;
+                    if(value) {
+                        filters.push(selects[i].dataset.filter + separator + selects[i].id  + separator + value);
+                    }
+                }
+
+                return filters || document.getElementById('live_search_filters').value;
+            }
+
+            /*
+            Section: Search
             Description: Add reset value for search if needed...
             */
             function querySearch(query = '')
@@ -69,21 +112,6 @@
                 return query.length <= 0
                     ? 'resetSearchAll'
                     : query;
-            }
-
-            /*
-            Section: Search
-            Description: Add reset value for search if needed...
-            */
-            function dataCheck(key, query, page, orderBy, direction)
-            {
-                var data = document.getElementById('search-' + key).getAttribute('data-search');
-                var queryCheck = query + '-' + orderBy + '-' + direction;
-                var status = data !== queryCheck;
-                // Update data
-                document.getElementById('search-' + key).setAttribute('data-search', queryCheck);
-
-                return status;
             }
 
              /*

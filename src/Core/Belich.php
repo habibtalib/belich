@@ -94,6 +94,20 @@ final class Belich extends BelichMethods
     }
 
     /**
+     * Get the resource filters() method.
+     *
+     * @param Illuminate\Http\Request $request
+     *
+     * @return array
+     */
+    public static function filters(Request $request): array
+    {
+        $class = static::resourceClassPath();
+
+        return $class::filters($request) ?? false;
+    }
+
+    /**
      * Initialize the html helper (for resolving value) in order to be accesible from Belich
      *
      * @param object $field
