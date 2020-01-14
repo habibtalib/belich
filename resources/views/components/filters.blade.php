@@ -9,10 +9,10 @@
         @foreach($filters as $filter)
             <div class="pb-6">
                 <label>{{ $filter->label }}</label>
-                <select id="{{ $filter->id }}" data-filter="{{ $filter->filter ?? 'equal' }}" class="search-live-filter w-full h-10 border border-gray-400">
+                <select id="{{ $filter->id }}" data-filter="{{ $filter->filter ?? 'equal' }}" data-dateformat="{{ $filter->filterDate ?? '' }}" class="search-live-filter w-full h-10 border border-gray-400">
                     <option></option>
                     @foreach($filter->options as $value => $option)
-                        <option data-row="{{ $option }}" data-value="{{ $value }}">{{ $option }}</option>
+                        <option data-row="{{ $option }}" value="{{ $value }}">{{ $option }}</option>
                     @endforeach
                 </select>
             </div>
@@ -26,11 +26,3 @@
         </div>
     </div>
 </div>
-
-{{-- @push('javascript')
-    <script>
-        document.getElementById('filterSearch').addEventListener('click', function() {
-            window.liveFilter();
-        });
-    </script>
-@endpush --}}

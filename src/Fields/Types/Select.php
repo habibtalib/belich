@@ -22,6 +22,11 @@ final class Select extends Field
     public $filter = 'equal';
 
     /**
+     * @var string
+     */
+    public $filterDate;
+
+    /**
      * @var array
      */
     public $firstOption;
@@ -70,6 +75,21 @@ final class Select extends Field
     public function filter(string $value): self
     {
         $this->filter = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set the search filter for date
+     *
+     * @param string $value
+     *
+     * @return self
+     */
+    public function filterDate(string $format): self
+    {
+        $this->filter = 'date';
+        $this->filterDate = $format;
 
         return $this;
     }

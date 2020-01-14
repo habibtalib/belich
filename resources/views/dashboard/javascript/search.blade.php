@@ -78,7 +78,11 @@
        for (var i = 0; i < selects.length; i++)  {
            var value = selects[i].value;
            if(value) {
-               filters.push(selects[i].dataset.filter + separator + selects[i].id  + separator + value);
+                var list = selects[i].dataset.filter + separator + selects[i].id  + separator + value;
+                if(selects[i].dataset.dateformat) {
+                    var list = list + separator + selects[i].dataset.dateformat;
+                }
+                filters.push(list);
            }
        }
 
