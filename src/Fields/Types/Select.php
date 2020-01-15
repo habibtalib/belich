@@ -4,7 +4,7 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
-final class Select extends Field
+class Select extends Field
 {
     /**
      * @var string
@@ -15,16 +15,6 @@ final class Select extends Field
      * @var bool
      */
     public $displayUsingLabels;
-
-    /**
-     * @var string
-     */
-    public $filter = 'equal';
-
-    /**
-     * @var string
-     */
-    public $filterDate;
 
     /**
      * @var array
@@ -61,35 +51,6 @@ final class Select extends Field
         if (isset($options)) {
             $this->options = $options;
         }
-
-        return $this;
-    }
-
-    /**
-     * Set the search filter type
-     *
-     * @param string $value
-     *
-     * @return self
-     */
-    public function filter(string $value): self
-    {
-        $this->filter = $value;
-
-        return $this;
-    }
-
-    /**
-     * Set the search filter for date
-     *
-     * @param string $value
-     *
-     * @return self
-     */
-    public function filterDate(string $format): self
-    {
-        $this->filter = 'date';
-        $this->filterDate = $format;
 
         return $this;
     }

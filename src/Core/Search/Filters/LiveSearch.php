@@ -31,7 +31,7 @@ final class LiveSearch implements HandleField
     /**
      * Resolve LiveSearch
      *
-     * @param object $request
+     * @param object $query
      * @param Closure $next
      *
      * @return object

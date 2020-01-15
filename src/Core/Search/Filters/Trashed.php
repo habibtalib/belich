@@ -44,7 +44,7 @@ final class Trashed implements ConditionContract, HandleField
     /**
      * Show trashed results
      *
-     * @param object $request
+     * @param object $query
      * @param Closure $next
      *
      * @return object

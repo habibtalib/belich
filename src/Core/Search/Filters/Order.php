@@ -37,7 +37,7 @@ final class Order implements ConditionContract, HandleField
     /**
      * Query order
      *
-     * @param object $request
+     * @param object $query
      * @param Closure $next
      *
      * @return object
