@@ -14,7 +14,12 @@ class Filter extends Select
     /**
      * @var string
      */
-    public $format = 'm-d-Y';
+    public $format = 'm/d/Y';
+
+    /**
+     * @var string
+     */
+    public $mask = '00/00/0000';
 
     /**
      * Set the search filter type
@@ -40,6 +45,20 @@ class Filter extends Select
     public function format(string $value): self
     {
         $this->format = $value;
+
+        return $this;
+    }
+
+    /**
+     * Set the date mask
+     *
+     * @param string $value
+     *
+     * @return self
+     */
+    public function mask(string $value): self
+    {
+        $this->mask = $value;
 
         return $this;
     }

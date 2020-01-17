@@ -7,21 +7,21 @@
     <div class="p-2 my-2 text-lg">
         {{-- Filters --}}
         @foreach($filters as $filter)
-            <div class="pb-6">
-                <label>{{ $filter->label }}</label>
-                <select id="{{ $filter->id }}" data-filter="{{ $filter->filter ?? 'equal' }}" data-dateformat="{{ $filter->filterDate ?? '' }}" class="search-live-filter w-full h-10 border border-gray-400">
-                    <option></option>
-                    @foreach($filter->options as $value => $option)
-                        <option data-row="{{ $option }}" value="{{ $value }}">{{ $option }}</option>
-                    @endforeach
-                </select>
-            </div>
+            {{-- Filter for date --}}
+            @if($filter->filter === 'date')
+                @include('belich::components.filters.filterDate')
+            {{-- Regular filter --}}
+            @else
+                @include('belich::components.filters.filterSelect')
+            @endif
         @endforeach
-
-        {{-- Submit buttons --}}
-        <div class="w-full flex flex-row-reverse p-2 mb-2">
-            <button id="filterSearch" type="submit" class="btn bg-blue-500 text-white" dusk="table-options-submit" onclick="window.liveFilter();">
-                {!! Helper::icon('search-plus', trans('belich::buttons.base.filter')) !!}
+        {{-- Submit button --}}
+        <div class="text-right">
+            <button
+                class="btn bg-blue-500 text-white mx-2 ml-4"
+                onclick="javascript:liveFilter()"
+            >
+                {!! Helper::icon('filter', trans('belich::buttons.base.filter')) !!}
             </button>
         </div>
     </div>

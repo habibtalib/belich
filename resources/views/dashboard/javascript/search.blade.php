@@ -74,16 +74,27 @@
    function getFilters(separator = '***')
    {
        var filters = [];
+       // Regular filters
        var selects = document.querySelectorAll('select.search-live-filter');
        for (var i = 0; i < selects.length; i++)  {
-           var value = selects[i].value;
-           if(value) {
+            var value = selects[i].value;
+            if(value) {
                 var list = selects[i].dataset.filter + separator + selects[i].id  + separator + value;
                 if(selects[i].dataset.dateformat) {
                     var list = list + separator + selects[i].dataset.dateformat;
                 }
                 filters.push(list);
-           }
+            }
+       }
+       // Date filters
+       var selectsDate = document.querySelectorAll('input.search-live-filter-date');
+       for (var i = 0; i < selectsDate.length; i++)  {
+            if(selectsDate[i].dataset.date === 'start') {
+                filters.push('date' + separator + 'start'  + separator + selectsDate[i].value);
+            }
+            if(selectsDate[i].dataset.date === 'end') {
+                filters.push('date' + separator + 'end'  + separator + selectsDate[i].value);
+            }
        }
 
        return filters || document.getElementById('live_search_filters').value;
