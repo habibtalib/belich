@@ -121,12 +121,12 @@ Most recent screenshot from the current design:
 
 ## TODO
 
-- Refactoring all the code, because I am just writting code...
+- Refactoring all the code, because I am just writting code... (working on it...)
 - Complete the fields types:
     + Maps.
+- <del>Filters</del>
 - Create the relationship fields:
     + <del>HasOne</del>
     + <del>BelongsTo</del>
     + HasMany
     + BelongsToMany
-- Filters (almost done!)
