@@ -1,9 +1,9 @@
 {{-- Filter for date --}}
 <div class="pb-6">
     <label>{{ $filter->label }}</label>
-    <div class="flex w-full">
-        <input id="{{ $filter->id }}-start" data-date="start" type="text" data-mask="{{ $filter->mask }}" class="search-live-filter-date flex-1 w-1/2 mr-2 p-2 h-10 bg-gray-100 border border-gray-400" placeholder="Start date" onkeyup="javascript:maskHandler(this);">
-        <input id="{{ $filter->id }}-end" data-date="end" type="text" data-mask="{{ $filter->mask }}" class="search-live-filter-date flex-1 w-1/2  p-2 h-10 bg-gray-100 border border-gray-400" placeholder="End date" onkeyup="javascript:maskHandler(this);">
+    <div class="flex w-full search-live-filter-date" data-format="{{ $filter->format }}" data-table="{{ $filter->id }}">
+        <input type="text" id="{{ $filter->id }}-start" class="flex-1 w-1/2 mr-2 p-2 h-10 bg-gray-100 border border-gray-400" data-mask="{{ $filter->mask }}" placeholder="Start date" onkeyup="javascript:maskHandler(this);">
+        <input type="text" id="{{ $filter->id }}-end" class="flex-1 w-1/2  p-2 h-10 bg-gray-100 border border-gray-400" data-mask="{{ $filter->mask }}" placeholder="End date" onkeyup="javascript:maskHandler(this);">
     </div>
 </div>
 

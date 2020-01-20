@@ -2,7 +2,6 @@
 
 namespace Daguilarm\Belich\Core\Search\Filters;
 
-use Carbon\Carbon;
 use Closure;
 use Daguilarm\Belich\Contracts\HandleField;
 use Daguilarm\Belich\Core\Search\Filters\Traits\Date;

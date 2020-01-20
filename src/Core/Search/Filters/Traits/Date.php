@@ -2,6 +2,8 @@
 
 namespace Daguilarm\Belich\Core\Search\Filters\Traits;
 
+use Carbon\Carbon;
+
 trait Date
 {
     private $humanDates = [
@@ -26,55 +28,86 @@ trait Date
      */
     public function date(object $query, array $items)
     {
-        list($dateStart, $dateEnd, $format) = $this->handleDates($items);
+        list($start, $end, $format, $table) = $this->handleDates($items);
 
-        ddd($dateStart, $dateEnd, $format);
+        // Filter the query
+        $query->when($this->condition($start, $end, $format, $table), function ($query) use ($start, $end, $format, $table) {
+            // Handle the queries
+            $this->queryDates($query, $format, $table, $start, $end);
+        });
+    }
+
+    /**
+     * Handle the queries
+     *
+     * @param object $query
+     * @param string $format
+     * @param string $table
+     * @param string|null $start
+     * @param string|null $end
+     *
+     * @return void
+     */
+    private function queryDates(object $query, string $format, string $table, ?string $start, ?string $end): void
+    {
+        // Set dates
+        $start = $this->getDate($format, $start);
+        $end = $this->getDate($format, $end);
+
+        if ( ! is_null($start)) {
+            $query->whereDate($table, '>=', $start);
+        }
+
+        if ( ! is_null($end)) {
+            $query->whereDate($table, '<=', $end);
+        }
     }
 
     /**
      * Handle the dates
      *
-     * @return array
-     */
-    private function handleDates($items): array
-    {
-        return array_merge(
-            $this->getDates($items),
-            $this->getFormat($items)
-        );
-    }
-
-    /**
-     * Get the dates
+     * @param string|null $format
+     * @param string|null $date
      *
      * @return array
      */
-    private function getDates($items): array
+    private function getDate(?string $format, ?string $date)
     {
-        return explode('/', $items[2]);
+        if($date && $format) {
+            return Carbon::createFromFormat($format, $date);
+        }
+        return null;
     }
 
     /**
-     * Get the format
+     * Handle the dates
+     *
+     * @param array $items
      *
      * @return array
      */
-    private function getFormat($items): array
+    private function handleDates(array $items): array
     {
-        $format = $items[3];
-
-        return is_array($format)
-            ? $format
-            : [$format];
+        return [
+            $items[1] ?? null,
+            $items[2] ?? null,
+            $items[3] ?? null,
+            $items[4] ?? null,
+        ];
     }
 
     /**
      * Resolve condition
      *
+     * @param string|null $start
+     * @param string|null $end
+     * @param string|null $format
+     * @param string|null $table
+     *
      * @return bool
      */
-    private function condition($date, $items): bool
+    private function condition(?string $start, ?string $end, ?string $format, ?string $table): bool
     {
-        return isset($date) && is_array($date) && isset($items[3]);
+        return ! is_null($start || $end) && ! is_null($format) && ! is_null($table);
     }
 }

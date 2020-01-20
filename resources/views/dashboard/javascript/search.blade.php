@@ -79,25 +79,52 @@
        for (var i = 0; i < selects.length; i++)  {
             var value = selects[i].value;
             if(value) {
-                var list = selects[i].dataset.filter + separator + selects[i].id  + separator + value;
-                if(selects[i].dataset.dateformat) {
-                    var list = list + separator + selects[i].dataset.dateformat;
-                }
-                filters.push(list);
+                filters.push(
+                    selects[i].dataset.filter +
+                    separator +
+                    selects[i].id  +
+                    separator +
+                    value
+                );
             }
        }
        // Date filters
-       var selectsDate = document.querySelectorAll('input.search-live-filter-date');
+       var selectsDate = document.querySelectorAll('div.search-live-filter-date');
        for (var i = 0; i < selectsDate.length; i++)  {
-            if(selectsDate[i].dataset.date === 'start') {
-                filters.push('date' + separator + 'start'  + separator + selectsDate[i].value);
-            }
-            if(selectsDate[i].dataset.date === 'end') {
-                filters.push('date' + separator + 'end'  + separator + selectsDate[i].value);
-            }
+            var inputs = selectsDate[i].querySelectorAll('input');
+            var dataset = selectsDate[i].dataset;
+            filters = window.dateFilter(
+                inputs[0].value,
+                inputs[1].value,
+                dataset.format,
+                dataset.table,
+                separator,
+                filters
+            );
        }
 
        return filters || document.getElementById('live_search_filters').value;
+   }
+
+   /*
+   Section: Search
+   Description: Add reset value for search if needed...
+   */
+   function dateFilter(start, end, format, table, separator, filters)
+   {
+        filters.push(
+            'date' +
+            separator +
+            start  +
+            separator +
+            end +
+            separator +
+            format +
+            separator +
+            table
+        );
+
+        return filters;
    }
 
    /*
