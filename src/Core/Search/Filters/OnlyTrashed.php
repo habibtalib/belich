@@ -33,7 +33,7 @@ final class OnlyTrashed implements ConditionContract, HandleField
     /**
      * Init constructor
      */
-    public function __construct(object $model, Request $request, string $trashed, bool $policy)
+    public function __construct(object $model, Request $request, ?string $trashed, bool $policy)
     {
         $this->model = $model;
         $this->request = $request;

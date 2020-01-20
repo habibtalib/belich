@@ -6,18 +6,6 @@ use Carbon\Carbon;
 
 trait Date
 {
-    private $humanDates = [
-        'today',
-        'nextDay',
-        'nextWeek',
-        'nextMonth',
-        'nextYear',
-        'yesterday',
-        'lastWeek',
-        'lastMonth',
-        'lastYear',
-    ];
-
     /**
      * Handle the dates
      *

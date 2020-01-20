@@ -1,6 +1,6 @@
 {{-- Filters --}}
 @if($filters = Belich::filters($request))
-    <div id="options-container" dusk="button-options-options" class="btn btn-dropdown mr-2 bg-blue-300 rounded-lg text-white hover:bg-blue-500">
+    <div id="filters-container" dusk="button-options-filters" class="btn btn-dropdown mr-2 bg-blue-300 rounded-lg text-white hover:bg-blue-500">
         {{-- Set button icon --}}
         @icon('filter', '', 'opacity-100')
 

@@ -18,6 +18,8 @@
         {{-- Submit button --}}
         <div class="text-right">
             <button
+                id="button-filter"
+                dusk="dusk-button-filter"
                 class="btn bg-blue-500 text-white mx-2 ml-4"
                 onclick="javascript:liveFilter()"
             >
