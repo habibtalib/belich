@@ -1,12 +1,9 @@
 {{-- Javascript default values --}}
 <script>
     //Default javascript values
-    window._path  = window.location.origin;
-    window.minSearch = {{ config('belich.liveSearch.minChars') ?? 1 }};
+    window._path = window.location.origin;
     window.message_chart_left = '{{ trans('belich::forms.chart_left') }}';
-    window.liveSearchRoute = '{{ route('dashboard.ajax.search') }}';
     window.resourceName = '{{ Belich::resourceName() }}';
-    window.liveSearchFields = '{{ Helper::searchFields() }}';
 
     /**
     ****************************************
@@ -59,12 +56,6 @@
     // browser support for fetch
     function browserSupportsFetch() {
         return window.Promise && window.fetch && window.Symbol;
-    }
-
-    // Loading button
-    function submitForm(item) {
-        window.loading(item);
-        item.closest('form').submit();
     }
 
     // Loading button

@@ -18,6 +18,7 @@
     {{-- Include life search --}}
     @if(config('belich.liveSearch.enable'))
         @include('belich::dashboard.javascript.search')
+        @include('belich::dashboard.javascript.filters')
     @endif
 
     {{-- General javascript --}}

@@ -5,6 +5,13 @@
         * Form javascript methods
         ****************************************
         */
+
+        // Submit form
+        function submitForm(item) {
+            window.loading(item);
+            item.closest('form').submit();
+        }
+
         //Count textArea Characters
         function textAreaCount(container, id) {
             document.getElementById('chars-' + id).innerHTML = window.message_chart_left + ": <b>" + (container.maxLength - container.value.length) + "</b>";
