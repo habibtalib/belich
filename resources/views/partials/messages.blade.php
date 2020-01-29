@@ -5,7 +5,7 @@
             <belich::message
                 color="green"
                 type="success"
-                icon="check"
+                icon="b-ok"
                 :title="session()->get('header') ?? trans('belich::messages.crud.success.title')"
             />
         @endif
@@ -15,7 +15,7 @@
             <belich::message
                 color="red"
                 type="errors"
-                icon="hand-paper"
+                icon="b-stop"
                 :title="session()->get('header') ?? trans('belich::messages.crud.fail.title')"
             />
         @endif

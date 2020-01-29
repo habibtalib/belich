@@ -1,7 +1,7 @@
 {{-- Options --}}
 <div id="options-container" dusk="button-options-options" class="btn btn-dropdown mr-2 bg-gray-300 rounded-lg text-gray-600 hover:bg-gray-500 hover:text-white">
     {{-- Set button icon --}}
-    @icon('cogs', '', 'opacity-100')
+    @icon('b-config', '', 'opacity-100')
 
     <div class="btn-dropdown-content">
         <div class="btn-dropdown-content-item rounded-lg border border-gray-300 shadow-md text-gray-600 text-left bg-white">

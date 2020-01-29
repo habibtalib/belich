@@ -1,7 +1,7 @@
 <div id="menssage-alert" class="flex w-1/3 bg-{{ $color }}-100 p-4 shadow fade-out" role="alert">
     <div class="mr-4">
         <div class="flex justify-center items-center w-16 h-16 rounded-full bg-{{ $color }}-600 text-white">
-            <i class="fas fa-{!! $icon !!} fa-lg"></i>
+            {!! Helper::icon($icon, '', 'fa-lg') !!}
         </div>
     </div>
     <div class="flex justify-between w-full">

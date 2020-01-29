@@ -8,7 +8,8 @@ use Illuminate\Foundation\Http\FormRequest;
 
 final class UpdateRequest extends FormRequest
 {
-    use Casteable, Fileable;
+    use Casteable,
+        Fileable;
 
     /**
      * Determine if the user is authorized to make this request.

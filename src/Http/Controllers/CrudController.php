@@ -40,7 +40,7 @@ final class CrudController extends Controller
      * List the resources.
      *
      * @param Daguilarm\Belich\Core\Belich $belich
-     * @param Daguilarm\Belich\App\Http\Requests\IndexRequest $request
+     * @param Daguilarm\Belich\Http\Requests\IndexRequest $request
      *
      * @return Illuminate\View\View
      */
@@ -58,7 +58,7 @@ final class CrudController extends Controller
      * Create a new resource.
      *
      * @param Daguilarm\Belich\Core\Belich $belich
-     * @param Daguilarm\Belich\App\Http\Requests\CreateRequest $request
+     * @param Daguilarm\Belich\Http\Requests\CreateRequest $request
      *
      * @return Illuminate\View\View
      */
@@ -98,7 +98,7 @@ final class CrudController extends Controller
      *
      * @param Daguilarm\Belich\Core\Belich $belich
      * @param int $id
-     * @param Daguilarm\Belich\App\Http\Requests\ShowRequest $request
+     * @param Daguilarm\Belich\Http\Requests\ShowRequest $request
      *
      * @return Illuminate\View\View
      */
@@ -116,7 +116,7 @@ final class CrudController extends Controller
      *
      * @param Daguilarm\Belich\Core\Belich $belich
      * @param int $id
-     * @param Daguilarm\Belich\App\Http\Requests\EditRequest $request
+     * @param Daguilarm\Belich\Http\Requests\EditRequest $request
      *
      * @return Illuminate\View\View
      */

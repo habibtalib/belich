@@ -2,7 +2,7 @@
 <div id="mass-delete-container" class="hidden button-selected">
     {{-- Set button icon --}}
     <a href="#modal-mass-delete" dusk="button-options-delete" class="btn btn-dropdown rounded-lg mr-2 bg-red-200 text-red-600 hover:bg-red-400 hover:text-white" onclick="deleteSelectedFields('delete_selected');">
-        @icon('trash', '', 'opacity-100')
+        @icon('b-trash', '', 'opacity-100')
     </a>
 </div>
 
@@ -12,7 +12,7 @@
 
         {{-- Modal content --}}
         <slot name="content">
-            <div>@icon('check-square', 'belich::messages.delete.selected.confirm')</div>
+            <div>@icon('b-ok', 'belich::messages.delete.selected.confirm')</div>
         </slot>
 
         {{-- Modal footer --}}

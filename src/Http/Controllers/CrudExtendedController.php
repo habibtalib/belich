@@ -2,7 +2,6 @@
 
 namespace Daguilarm\Belich\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Daguilarm\Belich\Http\Controllers\Traits\Deletedable;
 use Daguilarm\Belich\Http\Controllers\Traits\Redirectable;
 use Daguilarm\Belich\Core\Belich;

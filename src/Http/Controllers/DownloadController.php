@@ -2,7 +2,6 @@
 
 namespace Daguilarm\Belich\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Daguilarm\Belich\Components\Export\Excel;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\StreamedResponse;
