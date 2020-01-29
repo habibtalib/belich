@@ -22,7 +22,7 @@
 
             {{-- Close icon --}}
             <div class="float-right m-2 p-1">
-                <a href="#" class="close text-white font-bold text-lg">@icon('times')</a>
+                <a href="#" class="close text-white font-bold text-lg">{!! Helper::icon('b-close') !!}</a>
             </div>
 
             {{-- Header --}}

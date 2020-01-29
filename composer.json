@@ -23,10 +23,10 @@
     "require": {
         "php" : "^7.3",
         "rap2hpoutre/fast-excel": "dev-master",
-        "spatie/laravel-blade-x": "^2.0.0",
         "matthiasmullie/minify": "dev-master",
         "moneyphp/money": "^3.2",
-        "daguilarm/bicons": "v1.x-dev"
+        "daguilarm/bicons": "v1.x-dev",
+        "spatie/laravel-blade-x": "^2.5"
     },
     "autoload": {
         "psr-4": {

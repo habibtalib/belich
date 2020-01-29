@@ -1,7 +1,7 @@
 {{-- Options --}}
 <div id="exports-container"  dusk="button-options-exports" class="hidden button-selected btn btn-dropdown rounded-lg mr-2 bg-green-200 text-green-600 hover:bg-green-400 hover:text-white">
     {{-- Set button icon --}}
-    @icon('b-download', '', 'opacity-100')
+    {!! Helper::icon('b-download', '', 'opacity-100') !!}
 
     <div class="btn-dropdown-content">
         {{-- Start with form --}}

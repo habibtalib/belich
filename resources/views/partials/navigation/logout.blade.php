@@ -28,7 +28,7 @@
         @endif
         <li class="bg-gray-200">
             <a href="{{ route('logout') }}" class="text-gray-600 hover:text-black" onclick="event.preventDefault(); document.getElementById('dashboard-logout').submit();"  dusk="logout-session">
-                {!! Helper::icon('b-close-circle', 'belich::buttons.base.logout') !!}
+                {!! Helper::icon('b-close-circle', trans('belich::buttons.base.logout')) !!}
             </a>
             <form id="dashboard-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf

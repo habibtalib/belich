@@ -2,8 +2,9 @@
 
 namespace Daguilarm\Belich\Http\Controllers;
 
-use Daguilarm\Belich\Http\Requests\SearchRequest;
+use App\Http\Controllers\Controller;
 use Daguilarm\Belich\Core\Belich;
+use Daguilarm\Belich\Http\Requests\SearchRequest;
 use Illuminate\Http\JsonResponse;
 
 final class SearchController extends Controller

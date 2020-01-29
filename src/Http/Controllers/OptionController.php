@@ -2,6 +2,7 @@
 
 namespace Daguilarm\Belich\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Daguilarm\Belich\Facades\Helper;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
