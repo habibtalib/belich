@@ -1,6 +1,6 @@
 {
     "name": "daguilarm/belich",
-    "description": "Laravel-vuejs admin dashboard",
+    "description": "Laravel admin dashboard",
     "keywords": ["framework", "laravel","dashboard","vuejs", "admin"],
     "type": "project",
     "license": "MIT",
@@ -10,12 +10,23 @@
             "email": "damian.aguilarm@gmail.com"
         }
     ],
+    "repositories": [
+        {
+            "name": "daguilarm/bicons",
+            "type": "path",
+            "url": "../../../../../../../../../.././Users/daguilarm/Sites/Packages/belich-icons",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
     "require": {
         "php" : "^7.3",
         "rap2hpoutre/fast-excel": "dev-master",
         "spatie/laravel-blade-x": "^2.0.0",
         "matthiasmullie/minify": "dev-master",
-        "moneyphp/money": "^3.2"
+        "moneyphp/money": "^3.2",
+        "daguilarm/bicons": "v1.x-dev"
     },
     "autoload": {
         "psr-4": {
@@ -36,5 +47,7 @@
     },
     "require-dev": {
         "nunomaduro/phpinsights": "dev-master"
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
