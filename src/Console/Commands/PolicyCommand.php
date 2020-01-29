@@ -68,7 +68,7 @@ final class PolicyCommand extends BelichCommand
      */
     protected function packageStub(): string
     {
-        return __DIR__ . '/../../../../stubs/policy.stub';
+        return __DIR__ . '/../../../stubs/policy.stub';
     }
 
     /**

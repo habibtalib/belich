@@ -103,7 +103,7 @@ final class CardCommand extends BelichCommand
      */
     protected function packgeStub(): string
     {
-        return __DIR__ . '/../../../../stubs/card.stub';
+        return __DIR__ . '/../../../stubs/card.stub';
     }
 
     /**
@@ -113,7 +113,7 @@ final class CardCommand extends BelichCommand
      */
     protected function packgeStubView(): string
     {
-        return __DIR__ . '/../../../../stubs/card-view.stub';
+        return __DIR__ . '/../../../stubs/card-view.stub';
     }
 
     /**
