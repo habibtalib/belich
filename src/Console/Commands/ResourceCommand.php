@@ -76,7 +76,7 @@ final class ResourceCommand extends BelichCommand
 
         //Copy the file to folder while keeping the .stub extension
         (new Filesystem())->copy(
-            __DIR__ . '/../../../stubs/model.stub',
+            __DIR__ . '/../../../../stubs/model.stub',
             $storedStub
         );
 

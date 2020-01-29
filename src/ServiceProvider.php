@@ -116,7 +116,7 @@ final class ServiceProvider extends Provider
         //Publish the config file
         $this->publishes([
             __DIR__ . '/../config/belich.php' => config_path('belich.php'),
-            __DIR__ . '/../src/stubs/validate-form.stub' => config_path('belich/stubs/validate-form.stub'),
+            __DIR__ . '/../stubs/validate-form.stub' => config_path('belich/stubs/validate-form.stub'),
         ]);
 
         //Publish the views
@@ -143,26 +143,26 @@ final class ServiceProvider extends Provider
         //Publish the belich directory and the dashboard constructor
         $this->publishes([
             //Set the resources
-            __DIR__ . '/stubs/routes.stub' => base_path('app/Belich/Routes.php'),
+            __DIR__ . '/../stubs/routes.stub' => base_path('app/Belich/Routes.php'),
         ]);
 
         //Publish the belich default resource: User
         $this->publishes([
             //Set the resources
-            __DIR__ . '/stubs/defaults/user_resource.stub' => base_path('app/Belich/Resources/User.php'),
-            __DIR__ . '/stubs/defaults/profile_resource.stub' => base_path('app/Belich/Resources/Profile.php'),
+            __DIR__ . '/../stubs/defaults/user_resource.stub' => base_path('app/Belich/Resources/User.php'),
+            __DIR__ . '/../stubs/defaults/profile_resource.stub' => base_path('app/Belich/Resources/Profile.php'),
         ]);
 
         //Publish the belich default policy: User
         $this->publishes([
             //Set the resources
-            __DIR__ . '/stubs/defaults/user_policy.stub' => base_path('app/Policies/UserPolicy.php'),
+            __DIR__ . '/../stubs/defaults/user_policy.stub' => base_path('app/Policies/UserPolicy.php'),
         ]);
 
         //Publish the belich dashboard
         $this->publishes([
             //Set the resources
-            __DIR__ . '/stubs/dashboard.stub' => base_path('app/Belich/Dashboard.php'),
+            __DIR__ . '/../stubs/dashboard.stub' => base_path('app/Belich/Dashboard.php'),
         ]);
     }
 

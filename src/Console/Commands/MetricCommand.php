@@ -66,7 +66,7 @@ final class MetricCommand extends BelichCommand
      */
     protected function packgeStub(): string
     {
-        return __DIR__ . '/../../../stubs/metric.stub';
+        return __DIR__ . '/../../../../stubs/metric.stub';
     }
 
     /**

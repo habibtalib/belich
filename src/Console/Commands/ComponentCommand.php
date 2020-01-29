@@ -131,7 +131,7 @@ final class ComponentCommand extends BelichCommand
      */
     protected function packgeStub(string $file): string
     {
-        return __DIR__ . '/../../../stubs/components/' . $file . '.stub';
+        return __DIR__ . '/../../../../stubs/components/' . $file . '.stub';
     }
 
     /**
