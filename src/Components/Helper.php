@@ -6,7 +6,7 @@ use Daguilarm\Belich\Components\Helpers\Blade;
 use Daguilarm\Belich\Components\Helpers\Currency;
 use Daguilarm\Belich\Components\Helpers\Files;
 use Daguilarm\Belich\Components\Helpers\Forms;
-use Daguilarm\Belich\Components\Helpers\Icons;
+use Daguilarm\Belich\Components\Helpers\Gravatar;
 use Daguilarm\Belich\Components\Helpers\Markdown;
 use Daguilarm\Belich\Components\Helpers\Messages;
 use Daguilarm\Belich\Components\Helpers\Metrics;
@@ -17,6 +17,7 @@ use Daguilarm\Belich\Components\Helpers\Routes;
 use Daguilarm\Belich\Components\Helpers\Strings;
 use Daguilarm\Belich\Components\Helpers\Time;
 use Daguilarm\Belich\Components\Helpers\Utils;
+use Daguilarm\Bicons\Icons;
 
 final class Helper
 {
@@ -25,6 +26,7 @@ final class Helper
         Icons,
         Files,
         Forms,
+        Gravatar,
         Markdown,
         Messages,
         Metrics,

@@ -27,7 +27,7 @@
                             <li class="my-4 ml-6">
                                 <a class="text-gray-200" href="{{ sprintf('%s/%s', Belich::url(), $item->get('resource')) }}">
                                     {{-- {!! icon($item->get('icon'), $item->get('name')) !!} --}}
-                                    {!! Helper::icon('caret-right', $item->get('name')) !!}
+                                    {!! Helper::icon('b-right', $item->get('name')) !!}
                                 </a>
                             </li>
                         @endforeach

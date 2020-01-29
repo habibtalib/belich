@@ -4,10 +4,10 @@
     <div class="icon-search w-full relative">
         <input type="text" name="search-{{ Belich::key() }}" id="search-{{ Belich::key() }}" data-search="" class="p-2 pl-10 my-2 ml-2 rounded-lg border bg-gray-200 w-64 text-gray-700 appearance-none leading-normal ds-input" placeholder="@lang('belich::default.search')" onkeyup="javascript:liveSearch('{{ Belich::key() }}', this.value);" onkeydown="javascript:showResetSearch('{{ Belich::key() }}')">
         <span>
-            <i class="fas fa-search text-gray-600 absolute inset-y-0 left-0 pl-5 pt-5"></i>
+            {!! Helper::icon('b-search', '', 'text-gray-600 absolute inset-y-0 left-0 pl-5 pt-5') !!}
         </span>
         <span class="hidden" id="icon-search-reset-{{ Belich::key() }}">
-            <i class="fas fa-times-circle cursor-pointer text-gray-500" onclick="resetSearch('{{ Belich::key() }}')"></i>
+            {!! Helper::icon('b-close-circle', '', 'cursor-pointer text-gray-500', Belich::key()) !!}
         </span>
     </div>
 
@@ -17,7 +17,7 @@
         {{-- Buttons: create --}}
         @can('create', $request->autorizedModel)
             <belich::button
-                :title="Helper::icon('plus', trans('belich::buttons.crud.create'))"
+                :title="Helper::icon('b-create', trans('belich::buttons.crud.create'))"
                 :url="Belich::actionRoute('create')"
                 class="mx-2"
                 color="secondary"

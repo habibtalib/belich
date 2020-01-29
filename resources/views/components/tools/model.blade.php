@@ -33,7 +33,7 @@
 @else
     <div id="tool-model-error" dusk="tool-model-error" class="{{ $width ?? 'w-full' }} p-4">
         <div class="bg-red-500 text-white p-4 h-full">
-            {!! Helper::icon('hand-paper', trans('belich::messages.fields.empty', ['value' => '$columns & $models'])) !!}
+            {!! Helper::icon('b-stop', trans('belich::messages.fields.empty', ['value' => '$columns & $models'])) !!}
         </div>
     </div>
 @endif

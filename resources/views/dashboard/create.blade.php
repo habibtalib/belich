@@ -30,7 +30,7 @@
                         type="button"
                         dusk="button-action-create"
                         color="primary"
-                        :title="Helper::icon('plus', trans('belich::buttons.crud.create'))"
+                        :title="Helper::icon('b-create', trans('belich::buttons.crud.create'))"
                         id="button-form-create"
                     />
                 </slot>

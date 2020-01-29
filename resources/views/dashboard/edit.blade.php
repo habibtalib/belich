@@ -29,7 +29,7 @@
                     {{-- Button: create --}}
                     @can('create', $request->autorizedModel)
                         <belich::button
-                            :title="Helper::icon('plus')"
+                            :title="Helper::icon('b-create')"
                             :url="Belich::actionRoute('create')"
                             dusk="button-action-create"
                             class="mr-2"
@@ -40,7 +40,7 @@
                     {{-- Button: show --}}
                     @can('view', $request->autorizedModel)
                         <belich::button
-                            :title="Helper::icon('eye')"
+                            :title="Helper::icon('b-show')"
                             :url="Belich::actionRoute('show', $request->id)"
                             dusk="button-action-show"
                             color="icon"
@@ -54,7 +54,7 @@
                             dusk="button-action-edit"
                             type="button"
                             color="primary"
-                            :title="Helper::icon('edit', trans('belich::buttons.crud.update'))"
+                            :title="Helper::icon('b-edit', trans('belich::buttons.crud.update'))"
                         />
                     @endcan
                 </slot>

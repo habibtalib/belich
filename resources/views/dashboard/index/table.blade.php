@@ -30,13 +30,13 @@
                             {!! $field->label !!}
                             {{-- Icons --}}
                             @if(isset($request->search) && $request->search['orderBy'] !== strtolower($field->label))
-                                {!! Helper::icon('sort', '', 'text-gray-500') !!}
+                                {!! Helper::icon('b-sort', '', 'text-gray-500') !!}
                             @endif
                             @if(isset($request->search) && $request->search['direction'] === 'asc' && $request->search['orderBy'] == strtolower($field->label))
-                                {!! Helper::icon('caret-up', '', 'text-blue-400') !!}
+                                {!! Helper::icon('b-up', '', 'text-blue-400') !!}
                             @endif
                             @if(isset($request->search) && $request->search['direction'] === 'desc' && $request->search['orderBy'] == strtolower($field->label))
-                                {!! Helper::icon('caret-down', '', 'text-blue-400') !!}
+                                {!! Helper::icon('b-down', '', 'text-blue-400') !!}
                             @endif
                         </button>
                     {{-- Not sortable --}}

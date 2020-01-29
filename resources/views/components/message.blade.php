@@ -17,7 +17,7 @@
             @endforeach
         </div>
         <div class="text-md text-{{ $color }}-600 font-bold">
-            <a href="#" onclick="closeMenssage();">{!! Helper::icon('times') !!}</a>
+            <a href="#" onclick="closeMenssage();">{!! Helper::icon('b-close') !!}</a>
         </div>
     </div>
 </div>

@@ -23,7 +23,7 @@
                 class="btn bg-blue-500 text-white mx-2 ml-4"
                 onclick="javascript:liveFilter()"
             >
-                {!! Helper::icon('filter', trans('belich::buttons.base.filter')) !!}
+                {!! Helper::icon('b-filter', trans('belich::buttons.base.filter')) !!}
             </button>
         </div>
     </div>

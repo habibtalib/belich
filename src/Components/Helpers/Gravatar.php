@@ -2,44 +2,12 @@
 
 namespace Daguilarm\Belich\Components\Helpers;
 
-trait Icons
+trait Gravatar
 {
     /**
      * @var string
      */
     private $gravatarUrl = 'https://www.gravatar.com/avatar/%s?s=%s&d=%s&r=%s';
-
-    /**
-     * Render the icons
-     *
-     * @param string $icon
-     * @param string $text
-     * @param string $css
-     *
-     * @return string
-     */
-    public function icon(string $icon, string $text = '', string $css = ''): string
-    {
-        // Set right margin if we have text
-        $margin = $text ? ' mr-2' : '';
-
-        //Set the css
-        $css = $css ? ' ' . $css : ' icon';
-
-        return sprintf('<i class="fas fa-%s%s%s"></i>%s', $icon, $margin, $css, $text);
-    }
-
-    /**
-     * Render the action icons
-     *
-     * @param string $icon
-     *
-     * @return string
-     */
-    public function actionIcon(string $icon): string
-    {
-        return sprintf('<i class="fas fa-%s"></i>', $icon);
-    }
 
     /**
      * Get either a Gravatar URL or complete image tag for a specified email address.
