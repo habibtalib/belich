@@ -14,11 +14,11 @@ Route::group([
     'middleware' => Belich::middleware(),
 ], static function (): void {
     //Validation routes
-    Route::post(Belich::pathName() . '/ajax/form/validation', Helper::namespace_path('App\Http\Controllers\ValidationController'))
+    Route::post(Belich::pathName() . '/ajax/form/validation', Helper::namespace_path('Http\Controllers\ValidationController'))
         ->name('ajax.form.validation');
 
     //search routes
-    Route::get(Belich::pathName() . '/ajax/search', Helper::namespace_path('App\Http\Controllers\SearchController'))
+    Route::get(Belich::pathName() . '/ajax/search', Helper::namespace_path('Http\Controllers\SearchController'))
         ->name('ajax.search');
 
     //Generate routes from resources
@@ -28,22 +28,22 @@ Route::group([
             //Get route ID
             $routeID = sprintf('{%s}', Str::singular($route));
             if ($route) {
-                Route::resource(Helper::route_path($route), Helper::namespace_path('App\Http\Controllers\CrudController'));
-                Route::get(Helper::route_path($route) . '/' . $routeID . '/restore', Helper::namespace_path('App\Http\Controllers\CrudExtendedController@restore'))
+                Route::resource(Helper::route_path($route), Helper::namespace_path('Http\Controllers\CrudController'));
+                Route::get(Helper::route_path($route) . '/' . $routeID . '/restore', Helper::namespace_path('Http\Controllers\CrudExtendedController@restore'))
                     ->name($route . '.restore');
-                Route::get(Helper::route_path($route) . '/' . $routeID . '/forceDelete', Helper::namespace_path('App\Http\Controllers\CrudExtendedController@forceDelete'))
+                Route::get(Helper::route_path($route) . '/' . $routeID . '/forceDelete', Helper::namespace_path('Http\Controllers\CrudExtendedController@forceDelete'))
                     ->name($route . '.forceDelete');
-                Route::post(Helper::route_path($route) . '/delete/selected', Helper::namespace_path('App\Http\Controllers\CrudExtendedController@deleteSelected'))
+                Route::post(Helper::route_path($route) . '/delete/selected', Helper::namespace_path('Http\Controllers\CrudExtendedController@deleteSelected'))
                     ->name($route . '.delete.selected');
             }
         });
 
     //Belich options
-    Route::post(Helper::route_path('user/settings'), Helper::namespace_path('App\Http\Controllers\OptionController'))
+    Route::post(Helper::route_path('user/settings'), Helper::namespace_path('Http\Controllers\OptionController'))
         ->name('users.settings');
 
     //Belich export
-    Route::post(Helper::route_path('exports/download'), Helper::namespace_path('App\Http\Controllers\DownloadController'))
+    Route::post(Helper::route_path('exports/download'), Helper::namespace_path('Http\Controllers\DownloadController'))
         ->name('exports.download');
 
     //Load all the custom routes

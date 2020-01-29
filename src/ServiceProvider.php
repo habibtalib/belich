@@ -69,9 +69,9 @@ final class ServiceProvider extends Provider
         require_once __DIR__ . '/../vendor/autoload.php';
 
         // Middleware
-        $this->app['router']->pushMiddlewareToGroup('https', \Daguilarm\Belich\App\Http\Middleware\HttpsMiddleware::class);
-        $this->app['router']->pushMiddlewareToGroup('belich', \Daguilarm\Belich\App\Http\Middleware\BelichMiddleware::class);
-        $this->app['router']->pushMiddlewareToGroup('minify', \Daguilarm\Belich\App\Http\Middleware\MinifyMiddleware::class);
+        $this->app['router']->pushMiddlewareToGroup('https', \Daguilarm\Belich\Http\Middleware\HttpsMiddleware::class);
+        $this->app['router']->pushMiddlewareToGroup('belich', \Daguilarm\Belich\Http\Middleware\BelichMiddleware::class);
+        $this->app['router']->pushMiddlewareToGroup('minify', \Daguilarm\Belich\Http\Middleware\MinifyMiddleware::class);
     }
 
     /**
@@ -99,7 +99,7 @@ final class ServiceProvider extends Provider
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'belich');
 
         //Load the blade service provider
-        require_once __DIR__ . '/../src/app/Providers/BladeProvider.php';
+        require_once __DIR__ . '/../src/Providers/BladeProvider.php';
 
         //Load language translations...
         $this->loadTranslationsFrom(resource_path('lang/vendor/belich'), 'belich');
@@ -175,11 +175,11 @@ final class ServiceProvider extends Provider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
-                \Daguilarm\Belich\App\Console\Commands\CardCommand::class,
-                \Daguilarm\Belich\App\Console\Commands\ComponentCommand::class,
-                \Daguilarm\Belich\App\Console\Commands\MetricCommand::class,
-                \Daguilarm\Belich\App\Console\Commands\ResourceCommand::class,
-                \Daguilarm\Belich\App\Console\Commands\ResourceCommand::class,
+                \Daguilarm\Belich\Console\Commands\CardCommand::class,
+                \Daguilarm\Belich\Console\Commands\ComponentCommand::class,
+                \Daguilarm\Belich\Console\Commands\MetricCommand::class,
+                \Daguilarm\Belich\Console\Commands\PolicyCommand::class,
+                \Daguilarm\Belich\Console\Commands\ResourceCommand::class,
             ]);
         }
     }
