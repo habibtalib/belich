@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Metrics;
 
 use Daguilarm\Belich\Components\Metrics\Traits\Dateable;
@@ -8,12 +10,14 @@ final class Labels
 {
     use Dateable;
 
+    private static array $stringFilter = [
+        'lower' => 'strtolower',
+        'capitalize' => 'strtoupper',
+        'title' => 'ucfirst',
+    ];
+
     /**
      * Set an array with all the countries
-     *
-     * @param  string  $filter
-     *
-     * @return array
      */
     public static function countriesOfTheWorld(string $filter = ''): array
     {
@@ -22,10 +26,6 @@ final class Labels
 
     /**
      * Set an array with all the days of the week
-     *
-     * @param  string  $filter
-     *
-     * @return array
      */
     public static function daysOfTheWeek(string $filter = ''): array
     {
@@ -34,10 +34,6 @@ final class Labels
 
     /**
      * Set an array with all the days of the week (abbreviations)
-     *
-     * @param  string  $filter
-     *
-     * @return array
      */
     public static function daysOfTheWeekMin(string $filter = ''): array
     {
@@ -46,10 +42,6 @@ final class Labels
 
     /**
      * Set an array with all the months of the year
-     *
-     * @param  string  $filter
-     *
-     * @return array
      */
     public static function daysOfTheMonth(): array
     {
@@ -58,10 +50,6 @@ final class Labels
 
     /**
      * Set an array with all the daily hours
-     *
-     * @param  string  $filter
-     *
-     * @return array
      */
     public static function hoursOfTheday(): array
     {
@@ -70,10 +58,6 @@ final class Labels
 
     /**
      * Set an array with all the months of the year
-     *
-     * @param  string  $filter
-     *
-     * @return array
      */
     public static function monthsOfTheYear(string $filter = ''): array
     {
@@ -82,10 +66,6 @@ final class Labels
 
     /**
      * Set an array with all the months of the year (abbreviations)
-     *
-     * @param  string  $filter
-     *
-     * @return array
      */
     public static function monthsOfTheYearMin(string $filter = ''): array
     {
@@ -94,29 +74,14 @@ final class Labels
 
     /**
      * Set an array with all the months of the year
-     *
-     * @param  int  $years
-     *
-     * @return array
      */
     public static function listOfYears(int $years): array
     {
         return static::getRangeOfYears($years);
     }
 
-    /*
-    |--------------------------------------------------------------------------
-    | Helpers
-    |--------------------------------------------------------------------------
-    */
-
     /**
      * Helper for get value from localization
-     *
-     * @param  string  $filter
-     * @param  string  $name
-     *
-     * @return array
      */
     private static function get(string $filter, string $name): array
     {
@@ -125,23 +90,13 @@ final class Labels
 
     /**
      * Array filter helper
-     *
-     * @param  int  $value
-     *
-     * @return string
      */
     private static function arrayFilter(string $value): string
     {
-        if ($value === 'lower') {
-            return 'strtolower';
-        }
+        $filter = static::$stringFilter;
 
-        if ($value === 'capitalize') {
-            return 'strtoupper';
-        }
-
-        if ($value === 'title') {
-            return 'ucfirst';
+        if (in_array($value, array_keys($filter))) {
+            return $filter[$value];
         }
     }
 }
