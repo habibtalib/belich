@@ -38,7 +38,7 @@
     }
 
     .btn-secondary {
-        @apply bg-blue-100 text-blue-600 border border-blue-400;
+        @apply text-blue-600;
     }
 
     .btn-secondary:hover {
@@ -54,16 +54,12 @@
     }
 
     .btn-icon {
-        @apply bg-white text-gray-700 border border-gray-400;
+        @apply text-blue-600;
     }
 
         .btn-icon i {
-            @apply w-4 ml-1;
+            @apply w-4 text-center;
         }
-
-    .btn-icon:hover {
-        @apply bg-gray-100 text-black;
-    }
 
 /* Dropdown buttons */
 .btn-dropdown {
