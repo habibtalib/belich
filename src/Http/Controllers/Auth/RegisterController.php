@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
@@ -25,9 +27,6 @@ final class RegisterController extends Controller
 
     use RegistersUsers;
 
-    /**
-     * Create a new controller instance.
-     */
     public function __construct()
     {
         $this->middleware('guest');
@@ -38,8 +37,6 @@ final class RegisterController extends Controller
 
     /**
      * Set register view
-     *
-     * @return  Illuminate\View\View
      */
     public function showRegistrationForm(): View
     {
@@ -48,10 +45,6 @@ final class RegisterController extends Controller
 
     /**
      * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     *
-     * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data): Validator
     {
@@ -64,10 +57,6 @@ final class RegisterController extends Controller
 
     /**
      * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     *
-     * @return \App\User
      */
     protected function create(array $data): User
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
@@ -21,9 +23,6 @@ final class ForgotPasswordController extends Controller
 
     use SendsPasswordResetEmails;
 
-    /**
-     * Create a new controller instance.
-     */
     public function __construct()
     {
         $this->middleware('guest');
@@ -31,8 +30,6 @@ final class ForgotPasswordController extends Controller
 
     /**
      * Set forgot password view
-     *
-     * @return  Illuminate\View\View
      */
     public function showLinkRequestForm(): View
     {
