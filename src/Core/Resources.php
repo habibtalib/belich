@@ -26,7 +26,7 @@ abstract class Resources
     public static string $actions = 'default';
     public static bool $displayInNavigation = true;
     public static bool $downloable = false;
-    public static string $group;
+    public static string $group = '';
     public static string $icon;
     public static string $imageCss = 'block h-10 rounded-full shadow-md';
     public static string $label;

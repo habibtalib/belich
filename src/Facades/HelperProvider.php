@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Facades;
 
 use Illuminate\Support\ServiceProvider;
@@ -8,18 +10,14 @@ final class HelperProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
-     *
-     * @return void
      */
     public function boot(): void
     {
-        //Nothing
+        //
     }
 
     /**
      * Register the application services.
-     *
-     * @return void
      */
     public function register(): void
     {
