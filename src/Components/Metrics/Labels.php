@@ -10,12 +10,6 @@ final class Labels
 {
     use Dateable;
 
-    private static array $stringFilter = [
-        'lower' => 'strtolower',
-        'capitalize' => 'strtoupper',
-        'title' => 'ucfirst',
-    ];
-
     /**
      * Set an array with all the countries
      */
@@ -93,7 +87,11 @@ final class Labels
      */
     private static function arrayFilter(string $value): string
     {
-        $filter = static::$stringFilter;
+        $filter = [
+            'lower' => 'strtolower',
+            'capitalize' => 'strtoupper',
+            'title' => 'ucfirst',
+        ];
 
         if (in_array($value, array_keys($filter))) {
             return $filter[$value];

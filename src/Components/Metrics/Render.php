@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Metrics;
 
 use Daguilarm\Belich\Components\Metrics\Traits\Javascriptable;
@@ -9,20 +11,15 @@ use Illuminate\Http\Request;
 
 final class Render
 {
-    use Javascriptable, Templatable, Stylable;
+    use Javascriptable,
+        Templatable,
+        Stylable;
 
-    /** @var string */
-    private $javascript = '//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js';
-
-    /** @var string */
-    private $css = '//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css';
+    private string $javascript = '//cdn.jsdelivr.net/chartist.js/latest/chartist.min.js';
+    private string $css = '//cdn.jsdelivr.net/chartist.js/latest/chartist.min.css';
 
     /**
      * Render the metric card
-     *
-     * @param  \Illuminate\Http\Request  $request
-     *
-     * @return string
      */
     public function render(Request $request): string
     {
@@ -37,10 +34,6 @@ final class Render
 
     /**
      * Create the assets
-     *
-     * @param  string  $type
-     *
-     * @return string
      */
     public function assets(string $type = 'js'): string
     {
@@ -54,8 +47,6 @@ final class Render
 
     /**
      * Create the metric
-     *
-     * @return string
      */
     public function get(): string
     {
@@ -79,28 +70,20 @@ final class Render
 
     /**
      * Graph type selector
-     *
-     * @param string $type
-     * @param string $key
-     *
-     * @return string
      */
     private function graphSelector(string $type, string $key): string
     {
-        if ($type === 'bars') {
-            return $this->barGraph($key);
-        }
+        $filter = [
+            'bars' => 'barGraph',
+            'horizontal-bars' => 'horizontalBarGraph',
+            'pie' => 'pieGraph',
+            'line' => 'lineGraph',
+        ];
 
-        if ($type === 'horizontal-bars') {
-            return $this->horizontalBarGraph($key);
-        }
+        if (in_array($type, array_keys($filter))) {
+            $selector = $filter[$type];
 
-        if ($type === 'pie') {
-            return $this->pieGraph($key);
-        }
-
-        if ($type === 'line') {
-            return $this->lineGraph($key);
+            return $this->{$selector}($key);
         }
 
         throw new \InvalidArgumentException('Invalid Chart type. Please, select a valid one.');
@@ -114,10 +97,6 @@ final class Render
 
     /**
      * Create a Line Graph
-     *
-     * @param string $key
-     *
-     * @return string
      */
     private function lineGraph(string $key): string
     {
@@ -133,10 +112,6 @@ final class Render
 
     /**
      * Create a Bar Graph
-     *
-     * @param string $key
-     *
-     * @return string
      */
     private function barGraph(string $key): string
     {
@@ -150,10 +125,6 @@ final class Render
 
     /**
      * Create a Horizontal Bar Graph
-     *
-     * @param string $key
-     *
-     * @return string
      */
     private function horizontalBarGraph(string $key): string
     {
@@ -167,10 +138,6 @@ final class Render
 
     /**
      * Create a Pie Graph
-     *
-     * @param string $key
-     *
-     * @return string
      */
     private function pieGraph(string $key): string
     {
@@ -192,8 +159,6 @@ final class Render
      * Format the labels to render
      *
      * @param  mixed  $values
-     *
-     * @return string
      */
     private function formatLabels($values): string
     {
@@ -211,8 +176,6 @@ final class Render
      * Format the series to render
      *
      * @param  mixed  $values
-     *
-     * @return string
      */
     private function formatSeries($series): string
     {
