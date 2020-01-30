@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components;
 
 use Illuminate\Http\Request;
@@ -7,13 +9,11 @@ use Illuminate\Support\Facades\View;
 
 final class Blade
 {
+    /**
+     * @var Illuminate\Support\Collection
+     */
     private $render;
 
-    /**
-     * Init class
-     *
-     * @return  void
-     */
     public function __construct()
     {
         $this->render = collect([]);
@@ -21,10 +21,6 @@ final class Blade
 
     /**
      * Get the metric and the cards views
-     *
-     * @param Illuminate\Http\Request $request
-     *
-     * @return string
      */
     public function render(Request $request): string
     {
@@ -39,10 +35,6 @@ final class Blade
 
     /**
      * Get the metric views
-     *
-     * @param Illuminate\Http\Request $request
-     *
-     * @return void
      */
     public function renderMetrics(Request $request): void
     {
@@ -57,10 +49,6 @@ final class Blade
 
     /**
      * Get the cards views
-     *
-     * @param Illuminate\Http\Request $request
-     *
-     * @return void
      */
     public function renderCards(Request $request): void
     {

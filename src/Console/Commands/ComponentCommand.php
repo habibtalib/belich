@@ -1,46 +1,24 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Console\Commands;
 
 use Daguilarm\Belich\Console\BelichCommand;
-use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Facades\File;
 
 final class ComponentCommand extends BelichCommand
 {
-    /**
-     * The name and signature of the console command.
-     * RepoName in plural
-     *
-     * @var string
-     */
-    protected $signature = 'belich:component {className}';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new custom component';
-
-    /**
-     * The type of class being generated.
-     *
-     * @var string
-     */
-    protected $type = 'Component';
+    protected string $signature = 'belich:component {className}';
+    protected string $description = 'Create a new custom component';
+    protected string $type = 'Component';
 
     /**
      * Execute the console command.
-     *
-     * @return void
      */
     public function handle(): void
     {
         // Create directory if not exists
-        if (! File::exists($this->path())) {
-            File::makeDirectory($this->path());
-        }
+        $this->makeDirectory($this->path());
 
         // Create the main class
         $this->createClass();
@@ -51,8 +29,6 @@ final class ComponentCommand extends BelichCommand
 
     /**
      * Create the main class
-     *
-     * @return void
      */
     protected function createClass(): void
     {
@@ -60,7 +36,7 @@ final class ComponentCommand extends BelichCommand
         $destination = $this->destinationStub($this->argument('className'));
 
         //Copy the file to folder while keeping the .stub extension
-        (new Filesystem())->copy(
+        $this->copyFromTo(
             $stub,
             $destination
         );
@@ -69,7 +45,7 @@ final class ComponentCommand extends BelichCommand
         $this->replace('d_class_b', $this->argument('className'), $destination);
 
         //Set the file
-        (new Filesystem())->move(
+        $this->moveFromTo(
             $destination,
             $this->destinationStub($this->argument('className'), 'php')
         );
@@ -77,20 +53,14 @@ final class ComponentCommand extends BelichCommand
 
     /**
      * Create the main class
-     *
-     * @return void
      */
     protected function createViews(): void
     {
         // Create directory if not exists
-        if (! File::exists($this->path() . '/resources')) {
-            File::makeDirectory($this->path() . '/resources');
-        }
+        $this->makeDirectory($this->path() . '/resources');
 
         // Create directory if not exists
-        if (! File::exists($this->path() . '/resources/views')) {
-            File::makeDirectory($this->path() . '/resources/views');
-        }
+        $this->makeDirectory($this->path() . '/resources/views');
 
         $actions = ['create', 'edit', 'index', 'show'];
         // $stub = $this->packgeStub('views/');
@@ -98,7 +68,7 @@ final class ComponentCommand extends BelichCommand
 
         //Copy the file to folder while keeping the .stub extension
         foreach ($actions as $action) {
-            (new Filesystem())->copy(
+            $this->copyFromTo(
                 $this->packgeStub('views/' . $action),
                 $this->destinationStub('resources/views/' . $action)
             );
@@ -107,7 +77,7 @@ final class ComponentCommand extends BelichCommand
             $this->replace('d_class_b', $this->argument('className'), $this->destinationStub('resources/views/' . $action));
 
             //Set the file
-            (new Filesystem())->move(
+            $this->moveFromTo(
                 $this->destinationStub('resources/views/' . $action),
                 $this->destinationStub('resources/views/' . $action, 'blade.php')
             );
@@ -116,8 +86,6 @@ final class ComponentCommand extends BelichCommand
 
     /**
      * Get the stub file
-     *
-     * @return string
      */
     protected function path(): string
     {
@@ -126,8 +94,6 @@ final class ComponentCommand extends BelichCommand
 
     /**
      * Get the stub file
-     *
-     * @return string
      */
     protected function packgeStub(string $file): string
     {
@@ -136,10 +102,6 @@ final class ComponentCommand extends BelichCommand
 
     /**
      * Set the stub destination
-     *
-     * @param string $ext
-     *
-     * @return string
      */
     protected function destinationStub(string $class, string $ext = 'stub'): string
     {

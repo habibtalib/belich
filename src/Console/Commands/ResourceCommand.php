@@ -1,48 +1,28 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Console\Commands;
 
 use Daguilarm\Belich\Console\BelichCommand;
-use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Str;
 
 final class ResourceCommand extends BelichCommand
 {
-    /**
-     * The name and signature of the console command.
-     * RepoName in plural
-     *
-     * @var string
-     */
-    protected $signature = 'belich:resource {className}  {--model=} {--create}';
-
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Create a new resource class';
-
-    /**
-     * The type of class being generated.
-     *
-     * @var string
-     */
-    protected $type = 'Resource';
+    protected string $signature = 'belich:resource {className}  {--model=} {--create}';
+    protected string $description = 'Create a new resource class';
+    protected string $type = 'Resource';
 
     /**
      * Execute the console command.
-     *
-     * @return void
      */
     public function handle(): void
     {
-        if (! File::exists($this->path())) {
-            File::makeDirectory($this->path());
-        }
+        // Create directory if not exists
+        $this->makeDirectory($this->path());
 
         //Copy the file to folder while keeping the .stub extension
-        (new Filesystem())->copy(
+        $this->copyFromTo(
             $this->packageStub(),
             $this->destinationStub()
         );
@@ -53,7 +33,7 @@ final class ResourceCommand extends BelichCommand
         $this->replace('d_model_plural_b', Str::plural($this->className()), $this->destinationStub());
 
         //Set the file
-        (new Filesystem())->move(
+        $this->moveFromTo(
             $this->destinationStub(),
             $this->destinationStub('php')
         );
@@ -66,8 +46,6 @@ final class ResourceCommand extends BelichCommand
 
     /**
      * Create model
-     *
-     * @return void
      */
     protected function createModel(): void
     {
@@ -75,7 +53,7 @@ final class ResourceCommand extends BelichCommand
         $storedModel = $this->calculateModel() . '.php';
 
         //Copy the file to folder while keeping the .stub extension
-        (new Filesystem())->copy(
+        $this->copyFromTo(
             __DIR__ . '/../../../stubs/model.stub',
             $storedStub
         );
@@ -85,7 +63,7 @@ final class ResourceCommand extends BelichCommand
         $this->replace('d_model_namespace_b', $this->modelNamespace(), $storedStub);
 
         //Set the file
-        (new Filesystem())->move(
+        $this->moveFromTo(
             $storedStub,
             $storedModel
         );
@@ -93,8 +71,6 @@ final class ResourceCommand extends BelichCommand
 
     /**
      * Calculate model
-     *
-     * @return : string
      */
     protected function calculateModel(): string
     {
@@ -106,8 +82,6 @@ final class ResourceCommand extends BelichCommand
 
     /**
      * Get the stub file
-     *
-     * @return string
      */
     protected function packageStub(): string
     {
@@ -116,8 +90,6 @@ final class ResourceCommand extends BelichCommand
 
     /**
      * Get the stub file
-     *
-     * @return string
      */
     protected function path(): string
     {
@@ -126,10 +98,6 @@ final class ResourceCommand extends BelichCommand
 
     /**
      * Set the stub destination
-     *
-     * @param string $ext
-     *
-     * @return string
      */
     protected function destinationStub(string $ext = 'stub'): string
     {
@@ -138,8 +106,6 @@ final class ResourceCommand extends BelichCommand
 
     /**
      * Get the optional model path.
-     *
-     * @return string
      */
     protected function modelPath(): string
     {
@@ -148,8 +114,6 @@ final class ResourceCommand extends BelichCommand
 
     /**
      * Get the optional model namespace.
-     *
-     * @return string
      */
     protected function modelNamespace(): string
     {

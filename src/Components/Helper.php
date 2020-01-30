@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components;
 
 use Daguilarm\Belich\Components\Helpers\Blade;
@@ -40,9 +42,6 @@ final class Helper
 
     /**
      * Generate helper's methods
-     *
-     * @param  string $method
-     * @param  array $parameters
      */
     public function __call(string $method, array $parameters)
     {
