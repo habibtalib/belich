@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Resolves\Handler\Index;
 
 use Daguilarm\Belich\Fields\Resolves\Handler\FieldsVisibility;
@@ -10,10 +12,6 @@ final class Resolve
 {
     /**
      * Resolve fields: auth, visibility, value,...
-     *
-     * @param object $fields
-     *
-     * @return Illuminate\Support\Collection
      */
     public function handle(object $fields): object
     {
@@ -29,10 +27,6 @@ final class Resolve
 
     /**
      * Resolve fields
-     *
-     * @param object $fields
-     *
-     * @return Illuminate\Support\Collection
      */
     private function resolveFields(object $fields): Collection
     {

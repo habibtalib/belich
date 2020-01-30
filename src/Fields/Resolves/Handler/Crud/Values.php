@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Resolves\Handler\Crud;
 
 use Closure;
@@ -8,22 +10,9 @@ use Illuminate\Pipeline\Pipeline;
 
 final class Values implements HandleField
 {
-    /**
-     * @var string
-     */
-    private $action;
+    private string $action;
+    private object $sql;
 
-    /**
-     * @var string
-     */
-    private $sql;
-
-    /**
-     * Init constructor
-     *
-     * @param object $sql
-     * @param string $action
-     */
     public function __construct($action, $sql)
     {
         $this->action = $action;
@@ -31,12 +20,7 @@ final class Values implements HandleField
     }
 
     /**
-     * Render custom attributes for a field
-     *
-     * @param object $field
-     * @param Closure $next
-     *
-     * @return object
+     * Resolve values
      */
     public function handle(object $fields, Closure $next): object
     {

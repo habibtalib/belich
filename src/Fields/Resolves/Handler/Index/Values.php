@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Resolves\Handler\Index;
 
 use Daguilarm\Belich\Facades\Helper;
@@ -16,12 +18,6 @@ final class Values
      * This method is used throw Belich Facade => Belich::value($field, $data);
      * This method is for refactoring the blade templates.
      * For index view
-     *
-     * @param  object $field
-     * @param  object $data
-     * @param  string|null $value
-     *
-     * @return string|null
      */
     public function handle(object $field, ?object $data = null, ?string $value = null): ?string
     {
@@ -55,12 +51,6 @@ final class Values
     /**
      * Resolve field values for: relationship
      * This method is helper for $this->resolve()
-     *
-     * @param  object $field
-     * @param object $data
-     * @param  string|null $value
-     *
-     * @return string|null
      */
     private function resolveValue(object $field, ?object $data, ?string $value): ?string
     {
@@ -73,25 +63,33 @@ final class Values
     /**
      * Resolve field values for: relationship
      * This method is helper for $this->resolve()
-     *
-     * @param  object $field
-     * @param  object|null $data
-     *
-     * @return string|null
      */
     private function resolveRelationship(object $field, ?object $data): ?string
     {
         // Set attribute
         $attribute = $field->attribute;
 
-        //Resolve Relationship
         if (is_array($attribute)) {
-            $relationship = $data->{$attribute[0]};
-
-            return optional($relationship)->{$attribute[1]} ?? Helper::emptyResults();
+            //Resolve Relationship
+            $relationship = optional($data)->{$attribute[0]};
+            $value = optional($relationship)->{$attribute[1]};
+        } else {
+            //Resolve value for action controller: edit
+            $value = optional($data)->{$attribute};
         }
 
-        //Resolve value for action controller: edit
-        return $data->{$attribute} ?? Helper::emptyResults();
+        return $this->resolveToString($value);
+    }
+
+    /**
+     * Resolve a string value
+     *
+     * @param string|int|null $value
+     */
+    private function resolveToString($value): string
+    {
+        return $value
+            ? (string) $value
+            : Helper::emptyResults();
     }
 }

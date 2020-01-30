@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Resolves\Handler\Index\Types;
 
 use Closure;
@@ -8,16 +10,8 @@ use Daguilarm\Belich\Facades\Helper;
 
 final class Select implements HandleField
 {
-    /**
-     * @var string|null
-     */
-    private $value;
+    private ?string $value;
 
-    /**
-     * Init constructor
-     *
-     * @param string|null $value
-     */
     public function __construct(?string $value)
     {
         $this->value = $value;
@@ -25,11 +19,6 @@ final class Select implements HandleField
 
     /**
      * Handle the relationship value
-     *
-     * @param object $field
-     * @param Closure $next
-     *
-     * @return object
      */
     public function handle(object $field, Closure $next): object
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Resolves\Handler\Index;
 
 use Daguilarm\Belich\Core\Belich;
@@ -11,11 +13,6 @@ final class File
 {
     /**
      * Resolve file fields for Index and Show
-     *
-     * @param  Daguilarm\Belich\Fields\Field $field
-     * @param  string|null $value
-     *
-     * @return  $string
      */
     public function handle(Field $field, ?string $value): string
     {
@@ -32,11 +29,6 @@ final class File
 
     /**
      * Resolve the field by type
-     *
-     * @param  Daguilarm\Belich\Fields\Field $field
-     * @param  string|null $value
-     *
-     * @return string
      */
     private function byType(Field $field, ?string $value): string
     {
@@ -68,11 +60,6 @@ final class File
 
     /**
      * Download file
-     *
-     * @param  Daguilarm\Belich\Fields\Field $field
-     * @param  string|null $file
-     *
-     * @return string
      */
     private function download(Field $field, ?string $file): string
     {

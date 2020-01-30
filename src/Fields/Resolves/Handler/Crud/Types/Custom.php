@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Resolves\Handler\Crud\Types;
 
 use Closure;
@@ -7,16 +9,8 @@ use Daguilarm\Belich\Contracts\HandleField;
 
 final class Custom implements HandleField
 {
-    /**
-     * @var object
-     */
-    private $sql;
+    private object $sql;
 
-    /**
-     * Init constructor
-     *
-     * @param object $sql
-     */
     public function __construct(object $sql)
     {
         $this->sql = $sql;
@@ -24,11 +18,6 @@ final class Custom implements HandleField
 
     /**
      * Handle the relationship value
-     *
-     * @param object $field
-     * @param Closure $next
-     *
-     * @return object
      */
     public function handle(object $field, Closure $next): object
     {

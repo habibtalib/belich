@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Resolves\Handler\Crud;
 
 use Illuminate\Pipeline\Pipeline;
@@ -8,10 +10,6 @@ final class Resolve
 {
     /**
      * Resolve fields: auth, visibility, value,...
-     *
-     * @param object $fields
-     *
-     * @return object
      */
     public function handle(object $fields, string $action, object $sql): object
     {

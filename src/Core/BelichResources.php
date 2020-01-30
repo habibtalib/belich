@@ -71,7 +71,7 @@ abstract class BelichResources
         }
 
         if (is_numeric($resourceId)) {
-            return $resourceId;
+            return (int) $resourceId;
         }
 
         throw new \InvalidArgumentException(trans('belich::exceptions.invalid.resourceId'));

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Resolves\Handler\Index\Resolve;
 
 use Closure;
@@ -9,11 +11,6 @@ final class Attribute implements HandleField
 {
     /**
      * Resolve fields attribute
-     *
-     * @param object $field
-     * @param Closure $next
-     *
-     * @return object
      */
     public function handle(object $field, Closure $next): object
     {

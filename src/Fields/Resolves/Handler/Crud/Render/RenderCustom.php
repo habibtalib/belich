@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Resolves\Handler\Crud\Render;
 
 use Closure;
@@ -9,11 +11,6 @@ final class RenderCustom
 {
     /**
      * Render custom attributes for a field
-     *
-     * @param object $field
-     * @param Closure $next
-     *
-     * @return object
      */
     public function handle(object $field, Closure $next): object
     {
@@ -35,10 +32,6 @@ final class RenderCustom
 
     /**
      * Set the custom attributes for field
-     *
-     * @param array $field
-     *
-     * @return Collect
      */
     private function prepareAttributes($field): Collection
     {
@@ -61,10 +54,6 @@ final class RenderCustom
 
     /**
      * Render the autocomplete attribute
-     *
-     * @param object $field
-     *
-     * @return string
      */
     private function autocompleteAttribute(object $field): string
     {
@@ -73,10 +62,6 @@ final class RenderCustom
 
     /**
      * Render the autofocus attribute
-     *
-     * @param object $field
-     *
-     * @return string
      */
     private function autofocusAttribute(object $field): string
     {
@@ -85,10 +70,6 @@ final class RenderCustom
 
     /**
      * Render the disabled attribute
-     *
-     * @param object $field
-     *
-     * @return string
      */
     private function disabledAttribute(object $field): string
     {
@@ -97,10 +78,6 @@ final class RenderCustom
 
     /**
      * Render the data attributes
-     *
-     * @param array $field
-     *
-     * @return string
      */
     private function dataAttribute($field): string
     {
@@ -113,10 +90,6 @@ final class RenderCustom
 
     /**
      * Render the maxlength attribute
-     *
-     * @param object $field
-     *
-     * @return string
      */
     private function maxlengthAttribute(object $field): string
     {
@@ -125,10 +98,6 @@ final class RenderCustom
 
     /**
      * Render the max attribute
-     *
-     * @param object $field
-     *
-     * @return string
      */
     private function maxAttribute(object $field): string
     {
@@ -137,10 +106,6 @@ final class RenderCustom
 
     /**
      * Render the min attribute
-     *
-     * @param object $field
-     *
-     * @return string
      */
     private function minAttribute(object $field): string
     {
@@ -149,10 +114,6 @@ final class RenderCustom
 
     /**
      * Render the multiple attribute
-     *
-     * @param object $field
-     *
-     * @return string
      */
     private function multipleAttribute(object $field): string
     {
@@ -161,10 +122,6 @@ final class RenderCustom
 
     /**
      * Render the placeholder attribute
-     *
-     * @param object $field
-     *
-     * @return string
      */
     private function placeholderAttribute(object $field): string
     {
@@ -173,10 +130,6 @@ final class RenderCustom
 
     /**
      * Render the pattern attribute
-     *
-     * @param object $field
-     *
-     * @return string
      */
     private function patternAttribute(object $field): string
     {
@@ -185,10 +138,6 @@ final class RenderCustom
 
     /**
      * Render the readonly attribute
-     *
-     * @param object $field
-     *
-     * @return string
      */
     private function readonlyAttribute(object $field): string
     {
@@ -199,10 +148,6 @@ final class RenderCustom
 
     /**
      * Render the step attribute
-     *
-     * @param object $field
-     *
-     * @return string
      */
     private function stepAttribute(object $field): string
     {
@@ -211,11 +156,6 @@ final class RenderCustom
 
     /**
      * Render attributes for field
-     *
-     * @param string $attribute
-     * @param object $field
-     *
-     * @return string
      */
     private function renderAttributes(string $attribute, object $field): string
     {

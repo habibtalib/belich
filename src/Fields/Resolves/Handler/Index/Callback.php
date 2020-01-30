@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Resolves\Handler\Index;
 
 use Daguilarm\Belich\Facades\Belich;
@@ -8,12 +10,6 @@ final class Callback
 {
     /**
      * Resolve field value through callbacks
-     *
-     * @param object $field
-     * @param object $data
-     * @param string|null $value
-     *
-     * @return string|null
      */
     public function handle(object $field, ?object $data = null, ?string $value = null): ?string
     {
@@ -26,11 +22,6 @@ final class Callback
 
     /**
      * Resolve field callback: $field->displayUsing()
-     *
-     * @param object $field
-     * @param string|null $value
-     *
-     * @return string|null
      */
     private function displayCallback(object $field, $value = ''): ?string
     {
@@ -47,12 +38,6 @@ final class Callback
 
     /**
      * Resolve field callback: $field->resolveUsing()
-     *
-     * @param object $field
-     * @param object $data
-     * @param string|null $value
-     *
-     * @return string|null
      */
     private function resolveCallback(object $field, ?object $data = null, $value = ''): ?string
     {

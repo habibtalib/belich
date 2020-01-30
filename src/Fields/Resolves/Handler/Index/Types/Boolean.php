@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Resolves\Handler\Index\Types;
 
 use Closure;
@@ -7,16 +9,8 @@ use Daguilarm\Belich\Contracts\HandleField;
 
 final class Boolean implements HandleField
 {
-    /**
-     * @var string|null
-     */
-    private $value;
+    private ?string $value;
 
-    /**
-     * Init constructor
-     *
-     * @param string|null $value
-     */
     public function __construct(?string $value)
     {
         $this->value = $value;
@@ -24,11 +18,6 @@ final class Boolean implements HandleField
 
     /**
      * Resolve boolean value
-     *
-     * @param object $field
-     * @param Closure $next
-     *
-     * @return object
      */
     public function handle(object $field, Closure $next): object
     {
@@ -42,11 +31,6 @@ final class Boolean implements HandleField
     /**
      * Resolve boolean fields
      * This method is helper for $this->resolve()
-     *
-     * @param  object $field
-     * @param  mixed $value
-     *
-     * @return string|null
      */
     private function resolveBoolean(object $field, $value): ?string
     {

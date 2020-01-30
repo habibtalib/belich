@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Resolves\Handler\Index\Types;
 
 use Closure;
@@ -10,16 +12,8 @@ final class TextAreaAndMarkdown implements HandleField
 {
     use Resolvable;
 
-    /**
-     * @var string|null
-     */
-    private $value;
+    private ?string $value;
 
-    /**
-     * Init constructor
-     *
-     * @param string|null $value
-     */
     public function __construct(?string $value)
     {
         $this->value = $value;
@@ -27,11 +21,6 @@ final class TextAreaAndMarkdown implements HandleField
 
     /**
      * Resolve textarea or markdown value
-     *
-     * @param object $field
-     * @param Closure $next
-     *
-     * @return object
      */
     public function handle(object $field, Closure $next): object
     {

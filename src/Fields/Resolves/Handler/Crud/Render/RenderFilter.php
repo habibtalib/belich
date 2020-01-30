@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Resolves\Handler\Crud\Render;
 
 use Closure;
@@ -8,11 +10,6 @@ final class RenderFilter
 {
     /**
      * Render default attributes for a field
-     *
-     * @param object $field
-     * @param Closure $next
-     *
-     * @return object
      */
     public function handle(object $field, Closure $next): object
     {
@@ -24,10 +21,6 @@ final class RenderFilter
 
     /**
      * Render all the attributes from an array or a string
-     *
-     * @param object $field
-     *
-     * @return string|null
      */
     private function getAttributes(object $field): ?string
     {

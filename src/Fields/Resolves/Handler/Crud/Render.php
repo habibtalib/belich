@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Resolves\Handler\Crud;
 
 use Closure;
@@ -10,19 +12,8 @@ use Illuminate\Support\Collection;
 
 final class Render implements HandleField
 {
-    /**
-     * @var string
-     */
-    private $action;
+    private string $action;
 
-    /**
-     * Init constructor
-     *
-     * @param object $sql
-     * @param string $action
-     *
-     * @return Illuminate\Support\Collection
-     */
     public function __construct()
     {
         $this->action = Belich::action();
@@ -30,11 +21,6 @@ final class Render implements HandleField
 
     /**
      * Render custom attributes for a field
-     *
-     * @param object $field
-     * @param Closure $next
-     *
-     * @return Illuminate\Support\Collection
      */
     public function handle(object $fields, Closure $next): Collection
     {
