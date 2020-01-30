@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Belich\Resources;
 
 use Daguilarm\Belich\Core\Resources;
@@ -8,48 +10,14 @@ use Illuminate\Http\Request;
 
 class d_model_b extends Resources {
 
-    /**
-     * Model path
-     *
-     * @var string
-     */
-    public static $model = 'd_model_path_b';
+    public static string $model = 'd_model_path_b';
+    public static array $relationships = [];
+    public static bool $displayInNavigation = true;
+    public static string $group = '';
+    public static string $icon = '';
+    public static string $label = 'd_model_b';
+    public static string $pluralLabel = 'd_model_plural_b';
 
-    /**
-     * @var array
-     */
-    public static $relationships = [];
-
-    /**
-     * @var bool
-     */
-    public static $displayInNavigation = true;
-
-    /**
-     * @var string
-     */
-    public static $group = '';
-
-    /**
-     * @var string
-     */
-    public static $icon = '';
-
-    /**
-     * @var string
-     */
-    public static $label = 'd_model_b';
-
-    /**
-     * @var string
-     */
-    public static $pluralLabel = 'd_model_plural_b';
-
-    /**
-     * Init constructor for the resource
-     *
-     * @return void
-     */
     public function __construct()
     {
         //
@@ -57,8 +25,6 @@ class d_model_b extends Resources {
 
     /**
      * Build the query for the given resource.
-     *
-     * @return Illuminate\Database\Eloquent\Collection
      */
     public function indexQuery()
     {
@@ -67,10 +33,6 @@ class d_model_b extends Resources {
 
     /**
      * Get the fields displayed by the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     *
-     * @return array
      */
     public function fields(Request $request): array
     {
@@ -82,10 +44,6 @@ class d_model_b extends Resources {
 
     /**
      * Set the custom cards
-     *
-     * @param  \Illuminate\Http\Request  $request
-     *
-     * @return array
      */
     public function cards(Request $request): array
     {
@@ -94,12 +52,16 @@ class d_model_b extends Resources {
 
     /**
      * Set the custom metric cards
-     *
-     * @param  \Illuminate\Http\Request  $request
-     *
-     * @return array
      */
     public function metrics(Request $request): array
+    {
+        return [];
+    }
+
+    /**
+     * Set the custom filters
+     */
+    public static function filters(Request $request): array
     {
         return [];
     }

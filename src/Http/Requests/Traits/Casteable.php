@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Http\Requests\Traits;
 
 use Carbon\Carbon;
@@ -11,8 +13,6 @@ trait Casteable
 {
     /**
      * Called by validate() method, it maps all the methods used to perform the operations
-     *
-     * @return void
      */
     public function mapCasts(): void
     {
@@ -31,10 +31,6 @@ trait Casteable
 
     /**
      * Configure the validator instance.
-     *
-     * @param  \Illuminate\Validation\Validator  $validator
-     *
-     * @return void
      */
     public function withValidator(Validator $validator): void
     {
@@ -45,11 +41,6 @@ trait Casteable
 
     /**
      * Execute a cast method
-     *
-     * @param string $attribute
-     * @param string $cast
-     *
-     * @return void
      */
     protected function toMethod(string $attribute, string $cast): void
     {
@@ -64,10 +55,6 @@ trait Casteable
 
     /**
      * Converts the request field into boolean using simple casting (bool)
-     *
-     * @param string $key
-     *
-     * @return void
      */
     protected function toBoolean(string $key): void
     {
@@ -79,10 +66,6 @@ trait Casteable
     /**
      * Converts the request field into data using Carbon (date)
      * Format: date|format
-     *
-     * @param string $key
-     *
-     * @return void
      */
     protected function toDate(string $cast, string $key): void
     {
@@ -95,10 +78,6 @@ trait Casteable
 
     /**
      * Converts the request field into an integer using simple casting (int)
-     *
-     * @param string $key
-     *
-     * @return void
      */
     protected function toInteger(string $key): void
     {
@@ -107,10 +86,6 @@ trait Casteable
 
     /**
      * Converts the request field into floating-point value using simple casting (float)
-     *
-     * @param string $key
-     *
-     * @return void
      */
     protected function toFloat(string $key): void
     {
@@ -119,10 +94,6 @@ trait Casteable
 
     /**
      * Converts JSON to an associated array using jscon_decode (json)
-     *
-     * @param string $key
-     *
-     * @return void
      */
     protected function toJson(string $key): void
     {
@@ -131,10 +102,6 @@ trait Casteable
 
     /**
      * Converts the request field into an string using simple casting (string)
-     *
-     * @param string $key
-     *
-     * @return void
      */
     protected function toString(string $key): void
     {
@@ -143,10 +110,6 @@ trait Casteable
 
     /**
      * Converts the request field into a Carbon object (year)
-     *
-     * @param string $key
-     *
-     * @return void
      */
     protected function toYear(string $key): void
     {
@@ -155,10 +118,6 @@ trait Casteable
 
     /**
      * Converts the request field into a Hash value
-     *
-     * @param string $key
-     *
-     * @return void
      */
     protected function toHash(string $key): void
     {

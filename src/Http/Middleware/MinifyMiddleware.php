@@ -1,9 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Http\Middleware;
 
 use Closure;
 use Daguilarm\Belich\Facades\Belich;
+use Illuminate\Http\Response;
 
 /**
  * @author: https://github.com/nckg/laravel-minify-html
@@ -11,10 +14,7 @@ use Daguilarm\Belich\Facades\Belich;
  */
 final class MinifyMiddleware
 {
-    /**
-     * @var array
-     */
-    private $htmlFilters = [
+    private array $htmlFilters = [
         // Remove HTML comments except IE conditions
         '/<!--(?!\s*(?:\[if [^\]]+]|<!|>))(?:(?!-->).)*-->/s' => '',
         // Remove comments in the form /* */
@@ -30,10 +30,7 @@ final class MinifyMiddleware
         '/(\.+\/)/' => '',
     ];
 
-    /**
-     * @var array
-     */
-    private $htmlSpaces = [
+    private array $htmlSpaces = [
         '{ ' => '{',
         ' }' => '}',
         ' == ' => '==',
@@ -44,20 +41,12 @@ final class MinifyMiddleware
         'while (' => 'while(',
     ];
 
-    /**
-     * @var array
-     */
-    private $exceptedActions = [
+    private array $exceptedActions = [
         'download',
     ];
 
     /**
      * Handle an incoming request.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param \Closure $next
-     *
-     * @return object
      */
     public function handle($request, Closure $next): object
     {
@@ -83,8 +72,6 @@ final class MinifyMiddleware
 
     /**
      * Filter Controller actions to be excluded from minify
-     *
-     * @return array
      */
     private function exceptedActions(): array
     {
@@ -96,12 +83,8 @@ final class MinifyMiddleware
 
     /**
      * Check if the header response is text/html.
-     *
-     * @param \Illuminate\Http\Response $response
-     *
-     * @return bool
      */
-    private function isHtml($response): bool
+    private function isHtml(Response $response): bool
     {
         $type = strtolower(strtok($response->headers->get('Content-Type'), ';'));
 
@@ -110,10 +93,6 @@ final class MinifyMiddleware
 
     /**
      * Filter the html
-     *
-     * @param string $html
-     *
-     * @return string
      */
     private function html(string $html): string
     {

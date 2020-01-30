@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Http\Requests\Traits;
 
 use Illuminate\Support\Facades\Storage;
@@ -9,10 +11,6 @@ trait Fileable
 {
     /**
      * Called by validate() method, it maps all the methods used to perform the operations
-     *
-     * @param object|null $model
-     *
-     * @return Symfony\Component\HttpFoundation\ParameterBag
      */
     public function handleFile(?object $model = null): ParameterBag
     {
@@ -30,13 +28,6 @@ trait Fileable
 
     /**
      * Upload file to storage
-     *
-     * @param string $attribute [Field name]
-     * @param object|null $model
-     * @param array $values
-     * @param array $fileAttributes
-     *
-     * @return void
      */
     private function uploadFile(string $attribute, ?object $model, array $values, array $fileAttributes): void
     {
@@ -69,13 +60,6 @@ trait Fileable
 
     /**
      * Store file
-     *
-     * @param string $attribute
-     * @param object|null $file
-     * @param object|null $model
-     * @param array $values
-     *
-     * @return string|null
      */
     private function storeFile(string $attribute, ?object $file, ?object $model, array $values): ?string
     {
@@ -98,10 +82,6 @@ trait Fileable
 
     /**
      * File name
-     *
-     * @param object $file
-     *
-     * @return string
      */
     private function fileName(object $file): string
     {
@@ -113,14 +93,6 @@ trait Fileable
 
     /**
      * Store file
-     *
-     * @param string $attribute
-     * @param array $fileAttributes
-     * @param string $fileName
-     * @param object $fileObject
-     * @param array $values
-     *
-     * @return array
      */
     private function getVariables(string $attribute, array $fileAttributes, string $fileName, object $fileObject, array $values): array
     {
@@ -135,12 +107,6 @@ trait Fileable
 
     /**
      * Delete previus file
-     *
-     * @param string $attribute
-     * @param string $disk
-     * @param object|null $model
-     *
-     * @return void
      */
     private function deletePrevius(string $attribute, string $disk, ?object $model): void
     {

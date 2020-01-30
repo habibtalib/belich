@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace d_model_namespace_b;
 
 use Illuminate\Database\Eloquent\Model;
@@ -11,17 +13,13 @@ class d_model_b extends Model
 
     /**
      * The attributes that should be mutated to dates.
-     *
-     * @var array
      */
-    protected $dates = ['deleted_at'];
+    protected array $dates = ['deleted_at'];
 
     /**
      * The attributes that are mass assignable.
-     *
-     * @var array
      */
-    protected $fillable = [
+    protected array $fillable = [
         //
     ];
 }

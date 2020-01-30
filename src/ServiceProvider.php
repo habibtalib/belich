@@ -12,8 +12,6 @@ final class ServiceProvider extends Provider
 {
     /**
      * Bootstrap the application services.
-     *
-     * @return void
      */
     public function boot(): void
     {
@@ -36,8 +34,6 @@ final class ServiceProvider extends Provider
 
     /**
      * Register the application services.
-     *
-     * @return void
      */
     public function register(): void
     {
@@ -60,8 +56,6 @@ final class ServiceProvider extends Provider
 
     /**
      * Register the package bootstrap
-     *
-     * @return void
      */
     protected function registerBootstrap(): void
     {
@@ -76,8 +70,6 @@ final class ServiceProvider extends Provider
 
     /**
      * Register the package routes
-     *
-     * @return void
      */
     protected function registerRoutes(): void
     {
@@ -90,8 +82,6 @@ final class ServiceProvider extends Provider
 
     /**
      * Register the package resources
-     *
-     * @return void
      */
     protected function registerResources(): void
     {
@@ -108,8 +98,6 @@ final class ServiceProvider extends Provider
 
     /**
      * Register the package's publishable resources.
-     *
-     * @return void
      */
     protected function registerPublishing(): void
     {
@@ -168,8 +156,6 @@ final class ServiceProvider extends Provider
 
     /**
      * Register the package console commands
-     *
-     * @return void
      */
     protected function registerConsole(): void
     {
@@ -186,8 +172,6 @@ final class ServiceProvider extends Provider
 
     /**
      * Register the package migrations
-     *
-     * @return void
      */
     protected function registerMigrations(): void
     {

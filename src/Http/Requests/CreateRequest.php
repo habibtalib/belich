@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Http\Requests;
 
 use Daguilarm\Belich\Core\Belich;
@@ -14,10 +16,6 @@ final class CreateRequest extends FormRequest
 {
     /**
      * List the resource values for detail and index.
-     *
-     * @param Daguilarm\Belich\Core\Belich $belich
-     *
-     * @return self
      */
     public function data(Belich $belich): self
     {
@@ -43,8 +41,6 @@ final class CreateRequest extends FormRequest
 
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
     public function authorize(): bool
     {
@@ -53,8 +49,6 @@ final class CreateRequest extends FormRequest
 
     /**
      * Get the validation rules that apply to the request.
-     *
-     * @return array
      */
     public function rules(): array
     {

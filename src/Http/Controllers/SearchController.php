@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Http\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -11,11 +13,6 @@ final class SearchController extends Controller
 {
     /**
      * Validate fields from ajax
-     *
-     * @param Illuminate\Http\Request $request
-     * @param Daguilarm\Belich\Core\Belich $belich
-     *
-     * @return \Illuminate\Http\Response
      */
     public function __invoke(SearchRequest $request, Belich $belich): JsonResponse
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Http\Middleware;
 
 use Closure;
@@ -8,19 +10,11 @@ use Daguilarm\Belich\Facades\Helper;
 
 final class BelichMiddleware
 {
-    /** @var int */
-    private $perPage = 20;
-
-    /** @var string */
-    private $withTrashed = 'none';
+    private int $perPage = 20;
+    private string $withTrashed = 'none';
 
     /**
-     * Force to secure URL
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     *
-     * @return object
+     * Set the Belich middleware
      */
     public function handle($request, Closure $next): object
     {

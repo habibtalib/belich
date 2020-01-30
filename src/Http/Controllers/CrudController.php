@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Http\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -20,16 +22,8 @@ final class CrudController extends Controller
     use Redirectable,
         Relationable;
 
-    /**
-     * @var Illuminate\Database\Eloquent\Model
-     */
-    protected $model;
+    protected object $model;
 
-    /**
-     * Generate crud controllers
-     *
-     * @param Daguilarm\Belich\Core\Belich $belich
-     */
     public function __construct(Belich $belich)
     {
         //Get resource model
@@ -38,11 +32,6 @@ final class CrudController extends Controller
 
     /**
      * List the resources.
-     *
-     * @param Daguilarm\Belich\Core\Belich $belich
-     * @param Daguilarm\Belich\Http\Requests\IndexRequest $request
-     *
-     * @return Illuminate\View\View
      */
     public function index(Belich $belich, IndexRequest $request): View
     {
@@ -56,11 +45,6 @@ final class CrudController extends Controller
 
     /**
      * Create a new resource.
-     *
-     * @param Daguilarm\Belich\Core\Belich $belich
-     * @param Daguilarm\Belich\Http\Requests\CreateRequest $request
-     *
-     * @return Illuminate\View\View
      */
     public function create(Belich $belich, CreateRequest $request): View
     {
@@ -74,10 +58,6 @@ final class CrudController extends Controller
 
     /**
      * Store a new resource.
-     *
-     * @param Illuminate\Http\StoreRequest $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreRequest $request): RedirectResponse
     {
@@ -95,12 +75,6 @@ final class CrudController extends Controller
 
     /**
      * Show the a resource.
-     *
-     * @param Daguilarm\Belich\Core\Belich $belich
-     * @param int $id
-     * @param Daguilarm\Belich\Http\Requests\ShowRequest $request
-     *
-     * @return Illuminate\View\View
      */
     public function show(Belich $belich, int $id, ShowRequest $request): View
     {
@@ -113,12 +87,6 @@ final class CrudController extends Controller
 
     /**
      * Edit a resource.
-     *
-     * @param Daguilarm\Belich\Core\Belich $belich
-     * @param int $id
-     * @param Daguilarm\Belich\Http\Requests\EditRequest $request
-     *
-     * @return Illuminate\View\View
      */
     public function edit(Belich $belich, int $id, EditRequest $request): View
     {
@@ -131,11 +99,6 @@ final class CrudController extends Controller
 
     /**
      * Update a resource.
-     *
-     * @param Illuminate\Http\UpdateRequest $request
-     * @param int $id
-     *
-     * @return Illuminate\Http\RedirectResponse
      */
     public function update(UpdateRequest $request, int $id): RedirectResponse
     {
@@ -153,10 +116,6 @@ final class CrudController extends Controller
 
     /**
      * Delete a resource.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(int $id): RedirectResponse
     {

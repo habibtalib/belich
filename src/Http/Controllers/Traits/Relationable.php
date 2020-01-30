@@ -1,16 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Http\Controllers\Traits;
 
 trait Relationable
 {
     /**
      * Redirect back with message
-     *
-     * @param object $model
-     * @param array $request
-     *
-     * @return
      */
     protected function updateRelationship(object $model, array $request): string
     {
@@ -19,11 +16,6 @@ trait Relationable
 
     /**
      * Redirect back with message
-     *
-     * @param object $model
-     * @param array $request
-     *
-     * @return
      */
     protected function createRelationship(object $model, array $request): string
     {
@@ -32,12 +24,6 @@ trait Relationable
 
     /**
      * Handle relationship
-     *
-     * @param object $model
-     * @param array $request
-     * @param string $type
-     *
-     * @return
      */
     private function handleRelationship(object $model, array $request, string $type): string
     {

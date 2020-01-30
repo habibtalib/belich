@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Belich\Metrics;
 
 use Daguilarm\Belich\Components\Metrics\Eloquent\Connection;
@@ -11,21 +13,10 @@ class d_class_b extends Graph {
 
     /**
      * Options: 'line', 'bars', 'horizontal-bars' and 'pie'
-     *
-     * @var string
      */
-    public $type = 'line';
+    public string $type = 'line';
+    public string $width = 'w-1/3';
 
-    /**
-     * @var string
-     */
-    public $width = 'w-1/3';
-
-    /**
-     * Initialize the metric
-     *
-     * @return string
-     */
     public function __construct(Request $request)
     {
         parent::__construct($request);
@@ -33,8 +24,6 @@ class d_class_b extends Graph {
 
     /**
      * Set the displayable name of the metric.
-     *
-     * @return string
      */
     public function name(Request $request)
     {
@@ -43,8 +32,6 @@ class d_class_b extends Graph {
 
     /**
      * Get the values from storage
-     *
-     * @return string
      */
     public function labels(Request $request) : array
     {
@@ -53,8 +40,6 @@ class d_class_b extends Graph {
 
     /**
      * Set the displayable labels
-     *
-     * @return string
      */
     public function calculate(Request $request) : array
     {
@@ -67,8 +52,6 @@ class d_class_b extends Graph {
 
     /**
      * Get the URI key for the metric.
-     *
-     * @return string
      */
     public function uriKey() : string
     {

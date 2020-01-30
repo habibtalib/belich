@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Belich\Resources;
 
 use Daguilarm\Belich\Fields\Types\ID;
@@ -11,48 +13,14 @@ use Illuminate\Http\Request;
 
 class User extends Resources {
 
-    /**
-     * Model path
-     *
-     * @var string
-     */
-    public static $model = '\App\Models\User';
+    public static string $model = '\App\Models\User';
+    // public static array $relationships = ['profile'];
+    public static bool $displayInNavigation = true;
+    // public static string $group = 'Personal';
+    public static string $icon = 'user-friends';
+    public static string $label = 'User';
+    public static string $pluralLabel = 'Users';
 
-    /**
-     * @var array
-     */
-    // public static $relationships = ['profile'];
-
-    /**
-     * @var bool
-     */
-    public static $displayInNavigation = true;
-
-    /**
-     * @var string
-     */
-    // public static $group = 'Personal';
-
-    /**
-     * @var string
-     */
-    public static $icon = 'user-friends';
-
-    /**
-     * @var string
-     */
-    public static $label = 'User';
-
-    /**
-     * @var string
-     */
-    public static $pluralLabel = 'Users';
-
-    /**
-     * Init constructor for the resource
-     *
-     * @return void
-     */
     public function __construct()
     {
         //
@@ -60,8 +28,6 @@ class User extends Resources {
 
     /**
      * Build the query for the given resource.
-     *
-     * @return Illuminate\Database\Eloquent\Collection
      */
     public function indexQuery()
     {
@@ -70,10 +36,6 @@ class User extends Resources {
 
     /**
      * Get the fields displayed by the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     *
-     * @return array
      */
     public function fields(Request $request): array
     {
@@ -96,10 +58,6 @@ class User extends Resources {
 
     /**
      * Set the custom metric cards
-     *
-     * @param  \Illuminate\Http\Request  $request
-     *
-     * @return array
      */
     public function metrics(Request $request): array
     {
@@ -108,12 +66,16 @@ class User extends Resources {
 
     /**
      * Set the custom cards
-     *
-     * @param  \Illuminate\Http\Request  $request
-     *
-     * @return array
      */
     public function cards(Request $request): array
+    {
+        return [];
+    }
+
+    /**
+     * Set the custom filters
+     */
+    public static function filters(Request $request): array
     {
         return [];
     }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Belich\Resources;
 
 use Daguilarm\Belich\Fields\Types\ID;
@@ -12,43 +14,27 @@ use Illuminate\Validation\Rule;
 
 class User extends Resources {
 
-    /** @var string [Model path] */
-    public static $model = '\App\User';
-
-    /** @var bool */
-    public static $displayInNavigation = true;
-
-    /** @var string */
-    public static $group = 'Personal';
-
-    /** @var string */
-    public static $icon = 'user-friends';
-
-    /** @var string */
-    public static $label = 'User';
-
-    /** @var string */
-    public static $pluralLabel = 'Users';
-
-    /** @var array */
-    public static  $search = ['id', 'name', 'email'];
+    public static string $model = '\App\User';
+    public static bool $displayInNavigation = true;
+    public static string $group = 'Personal';
+    public static string $icon = 'user-friends';
+    public static string $label = 'User';
+    public static string $pluralLabel = 'Users';
+    public static  array $search = ['id', 'name', 'email'];
 
     /**
      * Build the query for the given resource.
-     *
-     * @return Illuminate\Database\Eloquent\Collection
      */
-    public function indexQuery() {
+    public function indexQuery()
+    {
         return $this->model();
     }
 
     /**
      * Get the fields displayed by the resource.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return Illuminate\Support\Collection
      */
-    public function fields(Request $request) {
+    public function fields(Request $request)
+    {
         return [
             ID::make('Id'),
             Text::make('Name', 'name')
@@ -68,11 +54,9 @@ class User extends Resources {
 
     /**
      * Set the custom cards
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return Illuminate\Support\Collection
      */
-    public static function cards(Request $request) {
+    public static function cards(Request $request)
+    {
         return [
             //
         ];
@@ -80,11 +64,9 @@ class User extends Resources {
 
     /**
      * Set the custom metrics cards
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return Illuminate\Support\Collection
      */
-    public static function metrics(Request $request) {
+    public static function metrics(Request $request)
+    {
         return [
             //
         ];

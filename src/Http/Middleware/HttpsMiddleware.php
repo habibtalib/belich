@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Http\Middleware;
 
 use Closure;
@@ -8,11 +10,6 @@ final class HttpsMiddleware
 {
     /**
      * Force to secure URL
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     *
-     * @return object
      */
     public function handle($request, Closure $next): object
     {

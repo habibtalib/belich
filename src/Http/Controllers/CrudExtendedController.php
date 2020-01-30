@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Http\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -15,14 +17,8 @@ final class CrudExtendedController extends Controller
     use Deletedable,
         Redirectable;
 
-    /** @var Illuminate\Database\Eloquent\Model */
-    protected $model;
+    protected object $model;
 
-    /**
-     * Generate crud controllers
-     *
-     * @param Daguilarm\Belich\Core\Belich $belich
-     */
     public function __construct(Belich $belich)
     {
         //Get resource model
@@ -31,10 +27,6 @@ final class CrudExtendedController extends Controller
 
     /**
      * Force delete a resource.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function forceDelete(int $id): RedirectResponse
     {
@@ -48,10 +40,6 @@ final class CrudExtendedController extends Controller
 
     /**
      * Force delete a resource.
-     *
-     * @param Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function deleteSelected(Request $request): RedirectResponse
     {
@@ -65,10 +53,6 @@ final class CrudExtendedController extends Controller
 
     /**
      * Restore a deleted a resource.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function restore(int $id): RedirectResponse
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Http\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -10,11 +12,7 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
 final class DownloadController extends Controller
 {
     /**
-     * Configure the Belich options
-     *
-     * @param Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
+     * Execute a download
      */
     public function __invoke(Request $request): StreamedResponse
     {

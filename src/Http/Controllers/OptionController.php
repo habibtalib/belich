@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Http\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -11,10 +13,6 @@ final class OptionController extends Controller
 {
     /**
      * Configure the Belich options
-     *
-     * @param Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\RedirectResponse
      */
     public function __invoke(Request $request): RedirectResponse
     {
