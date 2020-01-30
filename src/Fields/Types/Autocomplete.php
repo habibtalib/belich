@@ -12,7 +12,7 @@ class Autocomplete extends Field
     public int $minChars = 2;
     public array $addVars = [];
     public array $responseArray = [];
-    public string $responseUrl;
+    public string $responseUrl = '';
     public string $store;
 
     /**

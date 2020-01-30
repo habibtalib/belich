@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Types;
 
 use Carbon\Carbon;
@@ -7,24 +9,9 @@ use Daguilarm\Belich\Fields\Field;
 
 final class Date extends Field
 {
-    /**
-     * @var string
-     */
-    public $type = 'date';
+    public string $type = 'date';
+    public string $format;
 
-    /**
-     * @var string
-     */
-    public $format;
-
-    /**
-     * Create a new field.
-     *
-     * @param  string|null  $name
-     * @param  string|null  $attribute
-     *
-     * @return  void
-     */
     public function __construct($name = null, $attribute = null)
     {
         parent::__construct($name, $attribute);
@@ -47,11 +34,6 @@ final class Date extends Field
      * Set the output format for date
      * Will be use in the actions: index and show
      * Edit and create use the input date standard -> browser default.
-     *
-     * @param  string|null  $name
-     * @param  string|null  $attribute
-     *
-     * @return  self
      */
     public function format(string $format): self
     {
@@ -63,8 +45,6 @@ final class Date extends Field
     /**
      * Disabled method
      * Resolve the value as HTML (without scape)
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function asHtml(): Field
     {
@@ -74,10 +54,6 @@ final class Date extends Field
     /**
      * Disabled method
      * Resolving field value in index and detailed
-     *
-     * @param  object  $displayCallback
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function displayUsing(callable $displayCallback): Field
     {
@@ -87,11 +63,6 @@ final class Date extends Field
     /**
      * Disabled method
      * Prefix for field value
-     *
-     * @param  string  $prefix
-     * @param  bool  $space
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function prefix(string $prefix, bool $space = false): Field
     {
@@ -101,11 +72,6 @@ final class Date extends Field
     /**
      * Disabled method
      * Suffix for field value
-     *
-     * @param  string  $suffix
-     * @param  bool  $space
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function suffix(string $suffix, bool $space = false): Field
     {

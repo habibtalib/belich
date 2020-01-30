@@ -79,8 +79,12 @@ final class Belich extends BelichMethods
 
     /**
      * Initialize the html helper (for resolving value) in order to be accesible from Belich
+     *
+     * @var string|object|null $value
+     *
+     * @return string|object|null
      */
-    public function value(object $field, ?object $data = null): ?string
+    public function value(object $field, ?object $data = null)
     {
         return app(ResolveBlade::class)->handle($field, $data);
     }

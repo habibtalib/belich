@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Contracts\FieldContract;
@@ -7,18 +9,10 @@ use Daguilarm\Belich\Fields\Field;
 
 class CustomField extends Field implements FieldContract
 {
-    /**
-     * @var string
-     */
-    public $type = 'custom';
+    public string $type = 'custom';
+    public string $className;
 
     /**
-     * @var string
-     */
-    public $className;
-
-    /**
-     * Init constructor
      * The method index() is resolved in Daguilarm\Belich\Fields\Resolves\Blade
      * The method show() is resolved in Daguilarm\Belich\Fields\Resolves\Value@actionShow
      */
@@ -35,10 +29,6 @@ class CustomField extends Field implements FieldContract
 
     /**
      * Set the field attributes
-     *
-     * @param  string|null  $attributes
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public static function make(...$attributes): Field
     {
@@ -48,10 +38,6 @@ class CustomField extends Field implements FieldContract
 
     /**
      * Get the class name
-     *
-     * @param  string|null  $class
-     *
-     * @return string
      */
     private function getClassName(string $class): string
     {

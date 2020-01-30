@@ -1,44 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
 final class Markdown extends Field
 {
-    /**
-     * @var string
-     */
-    public $type = 'markdown';
+    public string  $type = 'markdown';
+    public bool $fullText;
+    public bool $fullTextOnIndex;
+    public bool $fullTextOnShow;
+    public bool $preview;
 
-    /**
-     * @var bool
-     */
-    public $fullText;
-
-    /**
-     * @var bool
-     */
-    public $fullTextOnIndex;
-
-    /**
-     * @var bool
-     */
-    public $fullTextOnShow;
-
-    /**
-     * @var bool
-     */
-    public $preview;
-
-    /**
-     * Create a new field
-     *
-     * @param  string  $name
-     * @param  string|null  $attribute
-     *
-     * @return  void
-     */
     public function __construct($label, $attribute = null)
     {
         // Set the values
@@ -56,8 +31,6 @@ final class Markdown extends Field
 
     /**
      * Show textArea full text in index and show views
-     *
-     * @return  self
      */
     public function fullText(): self
     {
@@ -68,8 +41,6 @@ final class Markdown extends Field
 
     /**
      * Show textArea full text on index view
-     *
-     * @return  self
      */
     public function fullTextOnIndex(): self
     {
@@ -80,8 +51,6 @@ final class Markdown extends Field
 
     /**
      * Show textArea full text on show view
-     *
-     * @return  self
      */
     public function fullTextOnShow(): self
     {
@@ -93,8 +62,6 @@ final class Markdown extends Field
     /**
      * Alias
      * Show textArea full text on show view
-     *
-     * @return  self
      */
     public function fullTextOnDetail(): self
     {
@@ -105,8 +72,6 @@ final class Markdown extends Field
 
     /**
      * Show a markdown preview
-     *
-     * @return  self
      */
     public function preview(): self
     {
@@ -118,11 +83,6 @@ final class Markdown extends Field
     /**
      * Disabled method
      * Prefix for field value
-     *
-     * @param  string  $prefix
-     * @param  bool  $space
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function prefix(string $prefix, bool $space = false): Field
     {
@@ -132,10 +92,6 @@ final class Markdown extends Field
     /**
      * Disabled method
      * Resolving field value (before processing) in all the fields
-     *
-     * @param  object  $resolveCallback
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function resolveUsing(callable $resolveCallback): Field
     {
@@ -145,11 +101,6 @@ final class Markdown extends Field
     /**
      * Disabled method
      * Suffix for field value
-     *
-     * @param  string  $suffix
-     * @param  bool  $space
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function suffix(string $suffix, bool $space = false): Field
     {

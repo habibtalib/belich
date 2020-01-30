@@ -10,8 +10,12 @@ final class Callback
 {
     /**
      * Resolve field value through callbacks
+     *
+     * @var string|object|null $value
+     *
+     * @return string|object|null
      */
-    public function handle(object $field, ?object $data = null, ?string $value = null): ?string
+    public function handle(object $field, ?object $data = null, $value = null)
     {
         // Resolve value when using the method: $field->displayUsing()
         $value = $this->displayCallback($field, $value);
@@ -22,8 +26,12 @@ final class Callback
 
     /**
      * Resolve field callback: $field->displayUsing()
+     *
+     * @var string|object|null $value
+     *
+     * @return string|object|null
      */
-    private function displayCallback(object $field, $value = ''): ?string
+    private function displayCallback(object $field, $value = '')
     {
         if (! isset($field->displayCallback) || $field->notDisplayUsing === true) {
             return $value;
@@ -38,8 +46,12 @@ final class Callback
 
     /**
      * Resolve field callback: $field->resolveUsing()
+     *
+     * @var string|object|null $value
+     *
+     * @return string|object|null
      */
-    private function resolveCallback(object $field, ?object $data = null, $value = ''): ?string
+    private function resolveCallback(object $field, ?object $data = null, $value = '')
     {
         if (! isset($field->resolveCallback) || ! is_callable($field->resolveCallback) || $field->notResolveUsing === false) {
             return $value;

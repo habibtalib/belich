@@ -18,8 +18,12 @@ final class Values
      * This method is used throw Belich Facade => Belich::value($field, $data);
      * This method is for refactoring the blade templates.
      * For index view
+     *
+     * @var string|object|null $value
+     *
+     * @return string|object|null
      */
-    public function handle(object $field, ?object $data = null, ?string $value = null): ?string
+    public function handle(object $field, ?object $data = null, ?string $value = null)
     {
         //Resolve value for field
         //Keep in first position

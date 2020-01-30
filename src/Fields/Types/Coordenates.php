@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
@@ -7,29 +9,10 @@ use Daguilarm\Belich\Fields\Types\Decimal;
 
 final class Coordenates extends Decimal
 {
-    /**
-     * @var string
-     */
-    public $key;
+    public string $key;
+    public string $coordenateType = 'latitude';
+    public bool $toDegrees = false;
 
-    /**
-     * @var string
-     */
-    public $coordenateType = 'latitude';
-
-    /**
-     * @var bool
-     */
-    public $toDegrees = false;
-
-    /**
-     * Create a new field.
-     *
-     * @param  string|null  $name
-     * @param  string|null  $attribute
-     *
-     * @return  void
-     */
     public function __construct($name = null, $attribute = null)
     {
         parent::__construct($name, $attribute);
@@ -43,17 +26,14 @@ final class Coordenates extends Decimal
 
     /**
      * Convert Latlng to degrees
-     *
-     * @return  self
      */
     public function toDegrees(string $type): self
     {
         $this->toDegrees = true;
+        $this->coordenateType = 'longitude';
 
-        if ($type === 'lat' || $type === 'Lat' || $type === 'Latitude' || $type === 'latitude') {
+        if (in_array(strtolower($type), ['la', 'lat', 'lati', 'latit', 'latitu', 'latitud', 'latitude'])) {
             $this->coordenateType = 'latitude';
-        } else {
-            $this->coordenateType = 'longitude';
         }
 
         return $this;
@@ -62,10 +42,6 @@ final class Coordenates extends Decimal
     /**
      * Disabled method
      * Resolving field value in index and detailed
-     *
-     * @param  object  $displayCallback
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function displayUsing(callable $displayCallback): Field
     {
@@ -75,11 +51,6 @@ final class Coordenates extends Decimal
     /**
      * Disabled method
      * Prefix for field value
-     *
-     * @param  string  $prefix
-     * @param  bool  $space
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function prefix(string $prefix, bool $space = false): Field
     {
@@ -89,10 +60,6 @@ final class Coordenates extends Decimal
     /**
      * Disabled method
      * Resolving field value (before processing) in all the fields
-     *
-     * @param  object  $resolveCallback
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function resolveUsing(callable $resolveCallback): Field
     {
@@ -102,11 +69,6 @@ final class Coordenates extends Decimal
     /**
      * Disabled method
      * Suffix for field value
-     *
-     * @param  string  $suffix
-     * @param  bool  $space
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function suffix(string $suffix, bool $space = false): Field
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Contracts\FieldMultipleContract;
@@ -7,20 +9,10 @@ use Daguilarm\Belich\Fields\Types\Text;
 
 final class Email extends Text implements FieldMultipleContract
 {
-    /**
-     * @var string
-     */
-    public $type = 'email';
-
-    /**
-     * @var bool
-     */
-    public $multiple = false;
+    public bool $multiple = false;
 
     /**
      * Allow multiple emails (coma separate)
-     *
-     * @return self
      */
     public function multiple(): self
     {

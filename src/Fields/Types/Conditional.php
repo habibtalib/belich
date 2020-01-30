@@ -1,19 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Types;
 
 use Illuminate\Support\Collection;
 
 class Conditional
 {
-    public static $fields;
+    public static object $fields;
 
     /**
      * Get the fields and prepare its for condition
-     *
-     * @param  \Closure  $fields
-     *
-     * @return array
      */
     public static function make(callable $fields)
     {
@@ -24,13 +22,8 @@ class Conditional
 
     /**
      * Create conditional fields
-     *
-     * @param  string  $parent
-     * @param  bool|null  $value
-     *
-     * @return array
      */
-    public function dependsOn(string $parent, ?bool $value)
+    public function dependsOn(string $parent, ?bool $value): array
     {
         return self::$fields
             ->map(static function ($field) use ($parent, $value) {
@@ -45,10 +38,6 @@ class Conditional
 
     /**
      * Resolve fields in callback
-     *
-     * @param  \Closure  $fields
-     *
-     * @return Illuminate\Support\Collection
      */
     protected static function getFields(callable $fields): Collection
     {

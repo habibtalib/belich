@@ -1,34 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
 final class Header extends Field
 {
-    /**
-     * @var string
-     */
-    public $type = 'header';
+    public string $type = 'header';
+    public string $background = 'gray-300';
+    public string $color = 'gray-600';
 
-    /**
-     * @var string
-     */
-    public $background = 'gray-300';
-
-    /**
-     * @var string
-     */
-    public $color = 'gray-600';
-
-    /**
-     * Create a new field.
-     *
-     * @param  string|null  $name
-     * @param  string|null  $attribute
-     *
-     * @return  void
-     */
     public function __construct($name = null)
     {
         parent::__construct($name, null);
@@ -45,8 +28,6 @@ final class Header extends Field
 
     /**
      * Resolve the value as HTML (without scape)
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function asHtml(): Field
     {
@@ -57,10 +38,6 @@ final class Header extends Field
 
     /**
      * Set the background
-     *
-     * @param  string|null $background
-     *
-     * @return  self
      */
     public function background(?string $background): self
     {
@@ -73,10 +50,6 @@ final class Header extends Field
 
     /**
      * Set the color
-     *
-     * @param  string|null $color
-     *
-     * @return  self
      */
     public function color(?string $color): self
     {

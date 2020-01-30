@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Contracts\FieldMultipleContract;
@@ -7,64 +9,17 @@ use Daguilarm\Belich\Fields\Field;
 
 class File extends Field implements FieldMultipleContract
 {
-    /**
-     * @var string
-     */
-    public $type = 'file';
+    public string $type = 'file';
+    public bool $multiple = false;
+    public string $disk = 'public';
+    public bool $link = false;
+    public string $fileType = 'file';
+    public bool $renderImage = false;
+    public string $storeMime;
+    public string $storeName;
+    public string $storeSize;
+    // public bool $prunable = false;
 
-    /**
-     * @var bool
-     */
-    public $multiple = false;
-
-    /**
-     * @var string
-     */
-    public $disk = 'public';
-
-    /**
-     * @var string
-     */
-    public $link = false;
-
-    /**
-     * @var string
-     */
-    public $fileType = 'file';
-
-    /**
-     * @var  bool
-     */
-    // public $prunable = false;
-
-    /**
-     * @var bool
-     */
-    public $renderImage = false;
-
-    /**
-     * @var string
-     */
-    public $storeMime;
-
-    /**
-     * @var string
-     */
-    public $storeName;
-
-    /**
-     * @var string
-     */
-    public $storeSize;
-
-    /**
-     * Create a new field.
-     *
-     * @param  string|null  $name
-     * @param  string|null  $attribute
-     *
-     * @return  void
-     */
     public function __construct($name = null, $attribute = null)
     {
         parent::__construct($name, $attribute);
@@ -78,8 +33,6 @@ class File extends Field implements FieldMultipleContract
 
     /**
      * Set storage disk
-     *
-     * @return self
      */
     public function disk(string $disk): self
     {
@@ -90,8 +43,6 @@ class File extends Field implements FieldMultipleContract
 
     /**
      * Show a download link in views
-     *
-     * @return self
      */
     public function link(): self
     {
@@ -114,8 +65,6 @@ class File extends Field implements FieldMultipleContract
 
     /**
      * Render image in views
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function asHtml(): Field
     {
@@ -126,8 +75,6 @@ class File extends Field implements FieldMultipleContract
 
     /**
      * Allow multiple files
-     *
-     * @return self
      */
     public function multiple(): self
     {
@@ -139,10 +86,6 @@ class File extends Field implements FieldMultipleContract
     /**
      * Store the file original name as metadata
      * The name of the table row must be provided
-     *
-     * @param string $tableName
-     *
-     * @return self
      */
     public function storeName(string $tableName): self
     {
@@ -154,10 +97,6 @@ class File extends Field implements FieldMultipleContract
     /**
      * Store the file size as metadata
      * The name of the table row must be provided
-     *
-     * @param string $tableName
-     *
-     * @return self
      */
     public function storeSize(string $tableName): self
     {
@@ -169,8 +108,6 @@ class File extends Field implements FieldMultipleContract
     /**
      * Store the file type MIME (text/css, image/gif, image/x-icon,...) as metadata
      * The name of the table row must be provided
-     *
-     * @return self
      */
     public function storeMime(string $tableName): self
     {

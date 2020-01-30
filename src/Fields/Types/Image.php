@@ -1,32 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Types\File;
 
 final class Image extends File
 {
-    /**
-     * @var string
-     */
-    public $type = 'file';
-
-    /**
-     * @var string
-     */
-    public $alt;
-
-    /**
-     * @var string
-     */
-    public $fileType = 'image';
+    public string $type = 'file';
+    public string $alt;
+    public string $fileType = 'image';
 
     /**
      * Set image alt value
-     *
-     * @param string $alt
-     *
-     * @return self
      */
     public function alt(string $alt): self
     {

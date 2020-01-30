@@ -1,24 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Types\Autocomplete;
 
 final class Countries extends Autocomplete
 {
-    /**
-     * @var string
-     */
-    public $inputValue;
+    public string $inputValue;
 
-    /**
-     * Create a new field.
-     *
-     * @param  string|null  $name
-     * @param  string|null  $attribute
-     *
-     * @return  void
-     */
     public function __construct($name = null, $attribute = null)
     {
         parent::__construct($name, $attribute);
@@ -44,8 +35,6 @@ final class Countries extends Autocomplete
 
     /**
      * Display using labels
-     *
-     * @return self
      */
     public function displayUsingLabels(): self
     {

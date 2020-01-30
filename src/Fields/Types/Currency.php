@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Facades\Helper;
@@ -7,34 +9,11 @@ use Daguilarm\Belich\Fields\Field;
 
 final class Currency extends Field
 {
-    /**
-     * @var string
-     */
-    public $type = 'decimal';
+    public string $type = 'decimal';
+    public string $subType = 'currency';
+    public string $currency;
+    public string $locale;
 
-    /**
-     * @var string
-     */
-    public $subType = 'currency';
-
-    /**
-     * @var string
-     */
-    public $currency;
-
-    /**
-     * @var string
-     */
-    public $locale;
-
-    /**
-     * Create a new field.
-     *
-     * @param  string|null  $name
-     * @param  string|null  $attribute
-     *
-     * @return  void
-     */
     public function __construct($name = null, $attribute = null)
     {
         parent::__construct($name, $attribute);
@@ -54,10 +33,6 @@ final class Currency extends Field
 
     /**
      * Set locale
-     *
-     * @param string $value
-     *
-     * @return self
      */
     public function setLocale(string $value): self
     {
@@ -68,10 +43,6 @@ final class Currency extends Field
 
     /**
      * Set currency
-     *
-     * @param string $value
-     *
-     * @return self
      */
     public function currency(string $value): self
     {
@@ -82,10 +53,6 @@ final class Currency extends Field
 
     /**
      * Set currency to dollars
-     *
-     * @param string $value
-     *
-     * @return self
      */
     public function dollar(): self
     {
@@ -96,10 +63,6 @@ final class Currency extends Field
 
     /**
      * Set currency to euro
-     *
-     * @param string $value
-     *
-     * @return self
      */
     public function euro(): self
     {
@@ -110,10 +73,6 @@ final class Currency extends Field
 
     /**
      * Set currency to GBP Pound
-     *
-     * @param string $value
-     *
-     * @return self
      */
     public function pound(): self
     {
@@ -124,10 +83,6 @@ final class Currency extends Field
 
     /**
      * Set currency to Yen
-     *
-     * @param string $value
-     *
-     * @return self
      */
     public function yen(): self
     {
@@ -138,10 +93,6 @@ final class Currency extends Field
 
     /**
      * Set currency to Yuan
-     *
-     * @param string $value
-     *
-     * @return self
      */
     public function yuan(): self
     {
@@ -152,8 +103,6 @@ final class Currency extends Field
 
     /**
      * Configure locale
-     *
-     * @return self
      */
     private function configureLocale()
     {
