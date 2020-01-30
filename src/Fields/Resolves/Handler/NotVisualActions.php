@@ -1,28 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Resolves\Handler;
 
 use Closure;
 
 final class NotVisualActions
 {
-    /**
-     * @var string
-     */
-    private $action;
-
-    /**
-     * @var object
-     */
-    private $notResolveActions;
+    private string $action;
+    private array $notResolveActions;
 
     /**
      * Init constructor
-     *
-     * @param object $sql
-     * @param string $action
-     *
-     * @return Illuminate\Support\Collection
      */
     public function __construct(array $notResolveActions, string $action)
     {
@@ -32,11 +22,6 @@ final class NotVisualActions
 
     /**
      * Prepare the fields for resolving...
-     *
-     * @param object $fields
-     * @param object $sql
-     *
-     * @return Illuminate\Support\Collection
      */
     public function handle(object $fields, Closure $next): object
     {

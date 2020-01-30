@@ -1,34 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Traits;
 
 trait Renderable
 {
     /**
-     * Show as html
-     *
-     * @var bool
+     * @var array|string
      */
-    public $asHtml;
+    public $render;
 
-    /**
-     * List of attributes to be dynamically render
-     *
-     * @var array
-     */
-    public $renderAttributes = ['id', 'name', 'dusk'];
-
-    /**
-     * All the render attributes must be stored here...
-     *
-     * @var array
-     */
-    public $render = [];
+    public bool $asHtml = false;
+    public array $renderAttributes = ['id', 'name', 'dusk'];
 
     /**
      * Resolve the value as HTML (without scape)
-     *
-     * @return self
      */
     public function asHtml(): self
     {

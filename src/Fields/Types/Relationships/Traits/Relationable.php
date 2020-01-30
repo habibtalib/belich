@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Types\Relationships\Traits;
 
 use Daguilarm\Belich\Facades\Belich;
@@ -7,74 +9,19 @@ use Daguilarm\Belich\Facades\Helper;
 
 trait Relationable
 {
-    /**
-     * @var string
-     */
-    public $type = 'relationship';
-
-    /**
-     * @var string
-     */
-    public $label;
-
-    /**
-     * @var object
-     */
-    public $model;
-
-    /**
-     * @var object
-     */
-    public $perPageViaRelationship = 10;
-
-    /**
-     * @var string
-     */
-    public $minChars = 2;
-
-    /**
-     * @var string
-     */
-    public $resource;
-
-    /**
-     * @var array
-     */
-    public $responseArray;
-
-    /**
-     * @var array
-     */
-    public $responseUrl;
-
-    /**
-     * @var bool
-     */
-    public $searchable = false;
-
-    /**
-     * @var string
-     */
-    public $showValue;
-
-    /**
-     * Store as ID (Check autocomplete)
-     *
-     * @var string
-     */
-    public $store = 'id';
-
-    /**
-     * @var string
-     */
-    public $tableColumn;
+    public object $model;
+    public int $perPageViaRelationship = 10;
+    public int $minChars = 2;
+    public string $resource;
+    public array $responseArray = [];
+    public string $responseUrl;
+    public bool $searchable = false;
+    public string $showValue;
+    public string $store = 'id';
+    public string $tableColumn;
 
     /**
      * Format/Set/Parse the current resource
-     *
-     * @param string $resource
-     *
-     * @return string
      */
     protected function getResource(string $resource): string
     {
@@ -83,10 +30,6 @@ trait Relationable
 
     /**
      *  Format/Set/Parse the current model
-     *
-     * @param string|null $model
-     *
-     * @return string
      */
     protected function getModelRelationship(?string $model = null): string
     {
@@ -95,10 +38,6 @@ trait Relationable
 
     /**
      *  Get the relationship resource class
-     *
-     * @param string $resource
-     *
-     * @return object
      */
     protected function getRelationshipClass(string $resource): object
     {
@@ -109,10 +48,6 @@ trait Relationable
 
     /**
      *  Get the default attribute
-     *
-     * @param string $tableColumn
-     *
-     * @return string
      */
     protected function getRelationAttribute(string $tableColumn): string
     {
@@ -125,12 +60,6 @@ trait Relationable
 
     /**
      *  Get the default values for variables
-     *
-     * @param string $label
-     * @param string $resource
-     * @param string|null $tableColumn
-     *
-     * @return void
      */
     protected function getSetUp(string $label, string $resource, ?string $tableColumn): void
     {

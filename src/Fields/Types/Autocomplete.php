@@ -1,47 +1,22 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
 class Autocomplete extends Field
 {
-    /**
-     * @var string
-     */
-    public $type = 'autocomplete';
-
-    /**
-     * @var int
-     */
-    public $minChars = 2;
-
-    /**
-     * @var array
-     */
-    public $addVars;
-
-    /**
-     * @var string
-     */
-    public $responseArray;
-
-    /**
-     * @var string
-     */
-    public $responseUrl;
-
-    /**
-     * @var string
-     */
-    public $store;
+    public string $type = 'autocomplete';
+    public int $minChars = 2;
+    public array $addVars = [];
+    public array $responseArray = [];
+    public string $responseUrl;
+    public string $store;
 
     /**
      * Add variables to the url
-     *
-     * @param  array  $vars
-     *
-     * @return self
      */
     public function addVars(...$vars): self
     {
@@ -61,10 +36,6 @@ class Autocomplete extends Field
 
     /**
      * Set the response from the data
-     *
-     * @param  string|array  $responseFrom
-     *
-     * @return self
      */
     public function dataFrom($data): self
     {
@@ -81,10 +52,6 @@ class Autocomplete extends Field
 
     /**
      * Set the min number of charts to start the ajax query
-     *
-     * @param  int  $number
-     *
-     * @return self
      */
     public function minChars(int $minChars): self
     {
@@ -95,8 +62,6 @@ class Autocomplete extends Field
 
     /**
      * Set the response value
-     *
-     * @return self
      */
     public function storeId(): self
     {
@@ -108,10 +73,6 @@ class Autocomplete extends Field
     /**
      * Disabled method
      * Resolving field value in index and detailed
-     *
-     * @param  object  $displayCallback
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function displayUsing(callable $displayCallback): Field
     {
@@ -121,10 +82,6 @@ class Autocomplete extends Field
     /**
      * Disabled method
      * Set the attribute dusk
-     *
-     * @param  string|null  $value
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function dusk($value = null): Field
     {
@@ -134,11 +91,6 @@ class Autocomplete extends Field
     /**
      * Disabled method
      * Prefix for field value
-     *
-     * @param  string  $prefix
-     * @param  bool  $space
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function prefix(string $prefix, bool $space = false): Field
     {
@@ -148,11 +100,6 @@ class Autocomplete extends Field
     /**
      * Disabled method
      * Suffix for field value
-     *
-     * @param  string  $suffix
-     * @param  bool  $space
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function suffix(string $suffix, bool $space = false): Field
     {

@@ -1,72 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Traits;
 
 use Daguilarm\Belich\Facades\Helper;
 
 trait Settingable
 {
-    /**
-     * List of allowed controller actions
-     *
-     * @var array
-     */
-    public $allowedControllerActions = [
-        'index',
-        'create',
-        'edit',
-        'show',
-    ];
-
-    /**
-     * The custom breadcrumbs for the field
-     *
-     * @var string
-     */
-    public $breadcrumbs;
-
-    /**
-     * @var string
-     */
-    public $dusk;
-
-    /**
-     * @var int
-     */
-    public $id;
-
-    /**
-     * Set the field label tag
-     *
-     * @var string
-     */
-    public $label;
-
-    /**
-     * @var string
-     */
-    public $name;
-
-    /**
-     * Indicates if the field should be sortable
-     *
-     * @var bool
-     */
-    public $sortable = false;
-
-    /**
-     * Unique key for the field if needed...
-     *
-     * @var string
-     */
-    public $uriKey;
+    public string $dusk;
+    public string $id;
+    public string $name;
+    public bool $sortable = false;
+    public string $uriKey;
 
     /**
      * Set the attribute dusk
-     *
-     * @param  string|null  $value
-     *
-     * @return self
      */
     public function dusk($value = null): self
     {
@@ -80,10 +29,6 @@ trait Settingable
 
     /**
      * Set the attribute id
-     *
-     * @param  string|null  $value
-     *
-     * @return self
      */
     public function id($value = null): self
     {
@@ -97,10 +42,6 @@ trait Settingable
 
     /**
      * Set the attribute name
-     *
-     * @param  string|null  $value
-     *
-     * @return self
      */
     public function name($value = null): self
     {
@@ -114,8 +55,6 @@ trait Settingable
 
     /**
      * Set the field sortable
-     *
-     * @return self
      */
     public function sortable(): self
     {

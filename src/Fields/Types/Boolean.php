@@ -1,43 +1,21 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
 final class Boolean extends Field
 {
-    /**
-     * @var string
-     */
-    public $color = 'green';
-
-    /**
-     * @var string
-     */
-    public $falseValue;
-
-    /**
-     * @var string
-     */
-    public $trueValue;
-
-    /**
-     * @var string
-     */
-    public $type = 'boolean';
-
-    /**
-     * @var array
-     */
-    private $defaultColors = ['green', 'red', 'blue'];
+    public string $color = 'green';
+    public string $falseValue;
+    public string $trueValue;
+    public string $type = 'boolean';
+    private array $defaultColors = ['green', 'red', 'blue'];
 
     /**
      * Create a new field.
-     *
-     * @param  string|null  $name
-     * @param  string|null  $attribute
-     *
-     * @return  void
      */
     public function __construct($name = null, $attribute = null)
     {
@@ -55,10 +33,6 @@ final class Boolean extends Field
 
     /**
      * Set the boolean color
-     *
-     * @param  string  $color
-     *
-     * @return self
      */
     public function color(string $color): self
     {
@@ -69,10 +43,6 @@ final class Boolean extends Field
 
     /**
      * Set the label for false
-     *
-     * @param  string  $value
-     *
-     * @return self
      */
     public function falseValue(string $value): self
     {
@@ -83,10 +53,6 @@ final class Boolean extends Field
 
     /**
      * Set the label for true
-     *
-     * @param  string  $value
-     *
-     * @return self
      */
     public function trueValue(string $value): self
     {
@@ -98,8 +64,6 @@ final class Boolean extends Field
     /**
      * Disabled method
      * Add new css classes to the current field
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function addClass(...$values): Field
     {
@@ -109,8 +73,6 @@ final class Boolean extends Field
     /**
      * Disabled method
      * Add the autofocus value
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function autofocus(): Field
     {
@@ -120,10 +82,6 @@ final class Boolean extends Field
     /**
      * Disabled method
      * Resolving field value in index and detailed
-     *
-     * @param  object  $displayCallback
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function displayUsing(callable $displayCallback): Field
     {
@@ -133,11 +91,6 @@ final class Boolean extends Field
     /**
      * Disabled method
      * Prefix for field value
-     *
-     * @param  string  $prefix
-     * @param  bool  $space
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function prefix(string $prefix, bool $space = false): Field
     {
@@ -147,10 +100,6 @@ final class Boolean extends Field
     /**
      * Disabled method
      * Resolving field value (before processing) in all the fields
-     *
-     * @param  object  $resolveCallback
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function resolveUsing(callable $resolveCallback): Field
     {
@@ -160,11 +109,6 @@ final class Boolean extends Field
     /**
      * Disabled method
      * Suffix for field value
-     *
-     * @param  string  $suffix
-     * @param  bool  $space
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function suffix(string $suffix, bool $space = false): Field
     {

@@ -49,7 +49,7 @@ abstract class FieldBase
      *
      * @var string
      */
-    public $relationships;
+    public array $relationships = [];
 
     /**
      * Table text align. Only on controller action: index

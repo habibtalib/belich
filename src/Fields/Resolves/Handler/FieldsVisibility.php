@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Resolves\Handler;
 
 use Closure;
@@ -8,19 +10,8 @@ use Illuminate\Support\Collection;
 
 final class FieldsVisibility
 {
-    /**
-     * @var string
-     */
-    private $action;
+    private string $action;
 
-    /**
-     * Init constructor
-     *
-     * @param object $sql
-     * @param string $action
-     *
-     * @return Illuminate\Support\Collection
-     */
     public function __construct()
     {
         $this->action = Belich::action();
@@ -28,11 +19,6 @@ final class FieldsVisibility
 
     /**
      * Show or Hide field base on the controller action
-     *
-     * @param  string  $action
-     * @param Illuminate\Support\Collection $fields
-     *
-     * @return Illuminate\Support\Collection
      */
     public function handle($fields, Closure $next): Collection
     {

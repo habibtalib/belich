@@ -1,20 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Traits;
 
 trait Formatable
 {
-    /**
-     * @var array
-     */
-    private $_textAlignAllowed = ['left', 'center', 'right', 'justify'];
+    private array $_textAlignAllowed = ['left', 'center', 'right', 'justify'];
 
     /**
      * Set a field internal text align
-     *
-     * @param string $value []
-     *
-     * @return self
      */
     public function textAlign(string $value): self
     {

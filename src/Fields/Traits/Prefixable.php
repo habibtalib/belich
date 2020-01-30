@@ -1,30 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Traits;
 
 trait Prefixable
 {
-    /**
-     * Prefix for field value
-     *
-     * @var string
-     */
-    public $prefix;
-
-    /**
-     * Suffix for field value
-     *
-     * @var string
-     */
-    public $suffix;
+    public string $prefix;
+    public string $suffix;
 
     /**
      * Prefix for field value
-     *
-     * @param  string  $prefix
-     * @param  bool  $space
-     *
-     * @return self
      */
     public function prefix(string $prefix, bool $space = false): self
     {
@@ -41,11 +27,6 @@ trait Prefixable
 
     /**
      * Suffix for field value
-     *
-     * @param  string  $suffix
-     * @param  bool  $space
-     *
-     * @return self
      */
     public function suffix(string $suffix, bool $space = false): self
     {

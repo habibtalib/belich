@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Resolves;
 
 use Daguilarm\Belich\Facades\Belich;
@@ -10,24 +12,10 @@ use Illuminate\Support\Collection;
 
 final class Resolve
 {
-    /**
-     * @var string
-     */
-    private $action;
+    private string $action;
+    private object $fields;
+    private array $noResolveActions = ['destroy', 'store', 'update'];
 
-    /**
-     * @var object
-     */
-    private $fields;
-
-    /**
-     * @var Daguilarm\Belich\Fields\Resolve\Render
-     */
-    private $noResolveActions = ['destroy', 'store', 'update'];
-
-    /**
-     * Init constructor
-     */
     public function __construct()
     {
         $this->action = Belich::action();
@@ -35,11 +23,6 @@ final class Resolve
 
     /**
      * Resolve fields: auth, visibility, value,...
-     *
-     * @param object $fields
-     * @param object $sql
-     *
-     * @return Illuminate\Support\Collection
      */
     public function handle(object $fields, object $sql): Collection
     {
@@ -56,11 +39,6 @@ final class Resolve
 
     /**
      * Resolve fields
-     *
-     * @param object $fields
-     * @param object $sql
-     *
-     * @return Illuminate\Support\Collection
      */
     private function resolveFieldsThroughPipeline(object $fields, object $sql): Collection
     {
@@ -72,10 +50,6 @@ final class Resolve
 
     /**
      * Pipeline array
-     *
-     * @param object $sql
-     *
-     * @return array
      */
     private function pipeline($sql): array
     {
@@ -94,10 +68,6 @@ final class Resolve
 
     /**
      * Resolve index
-     *
-     * @param object $fields
-     *
-     * @return Illuminate\Support\Collection
      */
     private function resolveIndex($fields)
     {
@@ -106,11 +76,6 @@ final class Resolve
 
     /**
      * Resolve crud
-     *
-     * @param object $fields
-     * @param object $sql
-     *
-     * @return Illuminate\Support\Collection
      */
     private function resolveCrud($fields, $sql)
     {

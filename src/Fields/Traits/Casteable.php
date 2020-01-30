@@ -1,18 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Traits;
 
 trait Casteable
 {
-    /**
-     * @var array
-     */
-    public $cast;
+    public string $cast;
 
     /**
      * Cast as string
-     *
-     * @return self
      */
     public function toBoolean(): self
     {
@@ -23,20 +20,16 @@ trait Casteable
 
     /**
      * Cast as date
-     *
-     * @return self
      */
-    public function toDate(string $format): self
+    public function toDate(string $value): self
     {
-        $this->cast = 'date:' . $format;
+        $this->cast = 'date:' . $value;
 
         return $this;
     }
 
     /**
      * Cast as integer
-     *
-     * @return self
      */
     public function toInteger(): self
     {
@@ -47,8 +40,6 @@ trait Casteable
 
     /**
      * Cast as float
-     *
-     * @return self
      */
     public function toFloat(): self
     {
@@ -59,8 +50,6 @@ trait Casteable
 
     /**
      * Cast as Hash
-     *
-     * @return self
      */
     public function toHash(): self
     {
@@ -71,8 +60,6 @@ trait Casteable
 
     /**
      * Cast as html
-     *
-     * @return self
      */
     public function toHtml(): self
     {
@@ -83,8 +70,6 @@ trait Casteable
 
     /**
      * Cast as json
-     *
-     * @return self
      */
     public function toJson(): self
     {
@@ -95,8 +80,6 @@ trait Casteable
 
     /**
      * Cast as year
-     *
-     * @return self
      */
     public function toYear(): self
     {
@@ -107,8 +90,6 @@ trait Casteable
 
     /**
      * Cast as string
-     *
-     * @return self
      */
     public function toString(): self
     {

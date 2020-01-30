@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Types\Relationships\Traits;
 
 use Daguilarm\Belich\Facades\Helper;
@@ -7,10 +9,7 @@ use Illuminate\Support\Facades\Schema;
 
 trait RelationshipDatabase
 {
-    /**
-     * @var string
-     */
-    public $foreignKey;
+    public string $foreignKey;
 
     /**
      * @var callable
@@ -19,10 +18,6 @@ trait RelationshipDatabase
 
     /**
      * Get the Foreing key to connect the models
-     *
-     * @param string $key
-     *
-     * @return self
      */
     public function foreignKey(string $key): self
     {
@@ -31,6 +26,9 @@ trait RelationshipDatabase
         return $this;
     }
 
+    /**
+     * Custom query
+     */
     public function query(\Closure $value): self
     {
         $this->resolveQuery = $value;
@@ -40,8 +38,6 @@ trait RelationshipDatabase
 
     /**
      * Get the Foreing key from the resource (by default)
-     *
-     * @return string|null
      */
     protected function getForeignKey(): ?string
     {
@@ -58,8 +54,6 @@ trait RelationshipDatabase
 
     /**
      * Populate relationship select
-     *
-     * @return array
      */
     protected function getQuery(): array
     {

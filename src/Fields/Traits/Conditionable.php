@@ -1,16 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Traits;
 
 trait Conditionable
 {
-    /**
-     * @var string
-     */
-    public $dependsOn;
-
-    /**
-     * @var bool|null
-     */
-    public $dependsOnValue;
+    public string $dependsOn = '';
+    public ?bool $dependsOnValue;
 }

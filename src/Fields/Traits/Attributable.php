@@ -1,72 +1,34 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Traits;
 
 trait Attributable
 {
     /**
-     * @var array
-     */
-    public $addClass = [];
-
-    /**
-     * The attribute / column name of the field
-     *
-     * @var string
+     * @var string|array
      */
     public $attribute;
 
     /**
-     * @var string
-     */
-    public $autocomplete;
-
-    /**
-     * @var string
-     */
-    public $autofocus;
-
-    /**
-     * @var array
+     * Warning!: $data must not be accessed before initialization
+     * @var object|null
      */
     public $data;
 
-    /**
-     * @var bool
-     */
-    public $disabled = false;
-
-    /**
-     * @var int
-     */
-    public $maxlength;
-
-    /**
-     * @var string
-     */
-    public $pattern;
-
-    /**
-     * @var string
-     */
-    public $placeholder;
-
-    /**
-     * @var bool
-     */
-    public $readonly = false;
-
-    /**
-     * All the attributes to be removed from $field
-     *
-     * @var array
-     */
-    public $removedAttr = [];
+    public array $removedAttr = [];
+    public array $addClass = [];
+    public string $autocomplete;
+    public bool $autofocus;
+    public bool $disabled = false;
+    public int $maxlength;
+    public string $pattern;
+    public string $placeholder;
+    public bool $readonly = false;
 
     /**
      * Add new css classes to the current field
-     *
-     * @return self
      */
     public function addClass(...$values): self
     {
@@ -79,8 +41,6 @@ trait Attributable
 
     /**
      * Add the autocomplete value: On
-     *
-     * @return self
      */
     public function autocompleteOn(): self
     {
@@ -91,8 +51,6 @@ trait Attributable
 
     /**
      * Add the autocomplete value: Off
-     *
-     * @return self
      */
     public function autocompleteOff(): self
     {
@@ -103,8 +61,6 @@ trait Attributable
 
     /**
      * Add the autofocus value
-     *
-     * @return self
      */
     public function autofocus(): self
     {
@@ -115,8 +71,6 @@ trait Attributable
 
     /**
      * Set data attributes
-     *
-     * @return self
      */
     public function data($attribute, $value): self
     {
@@ -127,10 +81,6 @@ trait Attributable
 
     /**
      * Set the attribute with the attribute 'disabled'
-     *
-     * @param bool $value
-     *
-     * @return self
      */
     public function disabled(bool $value = true): self
     {
@@ -143,10 +93,6 @@ trait Attributable
 
     /**
      * Set the attribute default value
-     *
-     * @param string|null $value
-     *
-     * @return self
      */
     public function defaultValue($value = null): self
     {
@@ -160,22 +106,16 @@ trait Attributable
 
     /**
      * Set the textArea maximum length
-     *
-     * @return  self
      */
-    public function maxlength(int $maxlength): self
+    public function maxlength(int $value): self
     {
-        $this->maxlength = $maxlength;
+        $this->maxlength = $value;
 
         return $this;
     }
 
     /**
      * Set the attribute pattern
-     *
-     * @param string $value
-     *
-     * @return self
      */
     public function pattern(string $value): self
     {
@@ -186,10 +126,6 @@ trait Attributable
 
     /**
      * Set the attribute placeholder
-     *
-     * @param string|null $value [sometimes we need a empty placeholder]
-     *
-     * @return self
      */
     public function placeholder(?string $value = null): self
     {
@@ -200,10 +136,6 @@ trait Attributable
 
     /**
      * Set the field with the attribute 'readonly'
-     *
-     * @param  bool  $value
-     *
-     * @return self
      */
     public function readOnly(bool $value = true): self
     {
@@ -217,10 +149,6 @@ trait Attributable
     /**
      * Remove attributes from $field
      * Just for internal use
-     *
-     * @param array $attributes
-     *
-     * @return self
      */
     protected function removedAttr(array ...$attributes): self
     {

@@ -1,29 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Traits;
 
 trait Helpeable
 {
-    /**
-     * Field help text
-     *
-     * @var string
-     */
-    public $help;
-
-    /**
-     * Field help text
-     *
-     * @var string
-     */
-    public $info;
+    public string $help;
+    public string $info;
 
     /**
      * Set a help text for the field
-     *
-     * @param  string  $text
-     *
-     * @return self
      */
     public function help($value = null): self
     {
@@ -37,10 +24,6 @@ trait Helpeable
 
     /**
      * Set a help text for the field
-     *
-     * @param  string  $text
-     *
-     * @return self
      */
     public function info($value = null): self
     {

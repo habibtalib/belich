@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Traits;
 
 use Daguilarm\Belich\Facades\Belich;
@@ -17,17 +19,13 @@ trait Resolvable
 
     /**
      * Disable $this->displayUsing()
-     *
-     * @var bool
      */
-    public $notDisplayUsing;
+    public bool $notDisplayUsing = true;
 
     /**
      * Disable $this->resolveUsing()
-     *
-     * @var bool
      */
-    public $notResolveUsing;
+    public bool $notResolveUsing = true;
 
     /**
      * For manipulate data
@@ -43,10 +41,6 @@ trait Resolvable
 
     /**
      * Resolving field value in index and detailed
-     *
-     * @param  object  $displayCallback
-     *
-     * @return self
      */
     public function displayUsing(callable $displayCallback): self
     {
@@ -57,10 +51,6 @@ trait Resolvable
 
     /**
      * Resolving field value (before processing) in all the fields
-     *
-     * @param  object  $resolveCallback
-     *
-     * @return self
      */
     public function resolveUsing(callable $resolveCallback): self
     {
@@ -72,11 +62,6 @@ trait Resolvable
     /**
      * Resolve select field using labels
      * This method is helper for $this->resolve()
-     *
-     * @param  Daguilarm\Belich\Fields\Field $field
-     * @param  string|null $value
-     *
-     * @return string|null
      */
     protected function resolveTextArea(Field $field, ?string $value = null): ?string
     {
@@ -99,8 +84,6 @@ trait Resolvable
     /**
      * Not Resolving field value
      * This is (mostly) for hidden fields
-     *
-     * @return self
      */
     protected function notResolveField(): self
     {

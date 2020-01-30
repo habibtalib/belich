@@ -1,29 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Resolves\Handler;
 
 use Closure;
 
 final class AuthorizePolicies
 {
-    /**
-     * @var string
-     */
-    private $action;
+    private string $action;
+    private object $sql;
 
-    /**
-     * @var object
-     */
-    private $sql;
-
-    /**
-     * Init constructor
-     *
-     * @param object $sql
-     * @param string $action
-     *
-     * @return Illuminate\Support\Collection
-     */
     public function __construct(object $sql, string $action)
     {
         $this->sql = $sql;
@@ -32,13 +19,8 @@ final class AuthorizePolicies
 
     /**
      * Handle policies
-     *
-     * @param object $fields
-     * @param Closure $next
-     *
-     * @return Illuminate\Support\Collection
      */
-    public function handle($fields, Closure $next)
+    public function handle($fields, Closure $next): object
     {
         //Authorized access to show action
         if ($this->action === 'show' && ! request()->user()->can('view', $this->sql)) {

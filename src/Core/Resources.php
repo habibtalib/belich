@@ -33,7 +33,7 @@ abstract class Resources
     public static string $model;
     public static string $pluralLabel;
     public static string $redirectTo = 'index';
-    public static array $relationships;
+    public static array $relationships = [];
     public static string $controllerAction;
     public static bool $softDeletes = false;
     public static array $search = [];

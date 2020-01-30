@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Types\Relationships;
 
 use Daguilarm\Belich\Contracts\CrudContract;
@@ -11,20 +13,10 @@ use Illuminate\Support\Str;
 
 class HasMany extends Relationship implements CrudContract, FieldContract, RelationshipContract
 {
-    /**
-     * @var string
-     */
-    public $subType = 'hasOne';
+    public string $subType = 'hasOne';
 
     /**
      * Create a new relationship field
-     *
-     * @param  string  $label
-     * @param  string  $resource [The relational resource in plural]
-     * @param  string|null  $relationship [The relational model]
-     * @param  string|null  $tableColumn [The relational table from the model]
-     *
-     * @return  void
      */
     public function __construct(string $label, string $resource, ?string $tableColumn = null)
     {
@@ -39,10 +31,6 @@ class HasMany extends Relationship implements CrudContract, FieldContract, Relat
 
     /**
      * Resolve value for index
-     *
-     * @param  object $data
-     *
-     * @return string
      */
     public function index(object $field, ?object $data = null): string
     {
@@ -63,10 +51,6 @@ class HasMany extends Relationship implements CrudContract, FieldContract, Relat
 
     /**
      * Resolve value for create
-     *
-     * @param  object $data
-     *
-     * @return string|null
      */
     public function create(object $field, ?object $data = null): ?string
     {
@@ -79,10 +63,6 @@ class HasMany extends Relationship implements CrudContract, FieldContract, Relat
 
     /**
      * Resolve value for edit
-     *
-     * @param  object $data
-     *
-     * @return string|null
      */
     public function edit(object $field, ?object $data = null): ?string
     {
@@ -101,11 +81,6 @@ class HasMany extends Relationship implements CrudContract, FieldContract, Relat
 
     /**
      * Resolve value for show
-     *
-     * @param  object $field
-     * @param  object|null $data
-     *
-     * @return object
      */
     public function show(object $field, ?object $data = null): object
     {

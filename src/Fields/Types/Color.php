@@ -1,25 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
 final class Color extends Field
 {
-    /**
-     * @var string
-     */
-    public $type = 'color';
-
-    /**
-     * @var string
-     */
-    public $asColor = false;
+    public string $type = 'color';
+    public bool $asColor = false;
 
     /**
      * Resolve as color
-     *
-     * @return self
      */
     public function asColor(): self
     {
