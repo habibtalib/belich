@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Daguilarm\Belich\Fields\Types\Relationships;
 
-use Daguilarm\Belich\Contracts\CrudContract;
+use Daguilarm\Belich\Contracts\CustomFieldContract;
 use Daguilarm\Belich\Contracts\FieldContract;
 use Daguilarm\Belich\Contracts\RelationshipContract;
 use Daguilarm\Belich\Fields\Types\Relationship;
@@ -12,7 +12,7 @@ use Daguilarm\Belich\Fields\Types\Relationships\Traits\Relationable;
 use Daguilarm\Belich\Fields\Types\Relationships\Traits\RelationshipDatabase;
 use Illuminate\Support\Str;
 
-class HasOne extends Relationship implements CrudContract, FieldContract, RelationshipContract
+class HasOne extends Relationship implements CustomFieldContract, FieldContract, RelationshipContract
 {
     use Relationable,
         RelationshipDatabase;
@@ -36,27 +36,24 @@ class HasOne extends Relationship implements CrudContract, FieldContract, Relati
     /**
      * Resolve value for index
      */
-    public function index(object $field, ?object $data = null): string
+    public function index(object $field, ?object $data = null): ?object
     {
         // Get values
         $result = optional($data)->{$this->fieldRelationship};
-        $value = optional($result)->{$this->tableColumn};
+        $value = optional($result)->{$this->tableColumn} ?? $this->noResults;
         $url = sprintf(
             '%s/%s/%s',
             config('belich.path'),
             Str::plural($this->resource),
             optional($result)->id
         );
-
-        return $value
-            ? view('belich::fields.hasOne.index', compact('value', 'url'))
-            : $this->noResults;
+        return view('belich::fields.hasOne.index', compact('value', 'url'));
     }
 
     /**
      * Resolve value for create
      */
-    public function create(object $field, ?object $data = null): ?string
+    public function create(object $field, ?object $data = null): ?object
     {
         // Set values
         $field->type = 'text';
@@ -68,7 +65,7 @@ class HasOne extends Relationship implements CrudContract, FieldContract, Relati
     /**
      * Resolve value for edit
      */
-    public function edit(object $field, ?object $data = null): ?string
+    public function edit(object $field, ?object $data = null): ?object
     {
         // Searchable
         if ($this->searchable) {
@@ -86,7 +83,7 @@ class HasOne extends Relationship implements CrudContract, FieldContract, Relati
     /**
      * Resolve value for show
      */
-    public function show(object $field, ?object $data = null): object
+    public function show(object $field, ?object $data = null): ?object
     {
         // Get values
         $value = optional($field)->value;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Validates;
 
 use Daguilarm\Belich\Fields\Validates\Rules;
@@ -9,10 +11,6 @@ final class Values
 {
     /**
      * Get the values from the fields.
-     *
-     * @param Illuminate\Support\Collection $resource
-     *
-     * @return Illuminate\Support\Collection
      */
     public function get(Collection $resource, Rules $rules, string $controllerAction): Collection
     {

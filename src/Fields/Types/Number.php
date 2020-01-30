@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Contracts\FieldNumberContract;
@@ -8,33 +10,18 @@ use Daguilarm\Belich\Fields\Field;
 class Number extends Field implements FieldNumberContract
 {
     /**
-     * @var int
-     */
-    public $max;
-
-    /**
-     * @var int
-     */
-    public $min;
-
-    /**
      * @var int|float
      */
     public $step;
 
-    /**
-     * @var string
-     */
-    public $type = 'number';
+    public int $max;
+    public int $min;
+    public string $type = 'number';
 
     /**
      * Set min value
-     *
-     * @param string $min
-     *
-     * @return self
      */
-    public function min(string $min): self
+    public function min(int $min): self
     {
         $this->min = $min;
 
@@ -43,12 +30,8 @@ class Number extends Field implements FieldNumberContract
 
     /**
      * Set max value
-     *
-     * @param string $max
-     *
-     * @return self
      */
-    public function max(string $max): self
+    public function max(int $max): self
     {
         $this->max = $max;
 
@@ -58,11 +41,9 @@ class Number extends Field implements FieldNumberContract
     /**
      * Set step value
      *
-     * @param string $step
-     *
-     * @return self
+     * @var int|float
      */
-    public function step(string $step): self
+    public function step($step): self
     {
         $this->step = $step;
 

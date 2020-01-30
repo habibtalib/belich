@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Facades\Belich;
@@ -27,29 +29,9 @@ abstract class Relationship extends FieldBase
         Settingable,
         Visibilitable;
 
-    /**
-     * Set the relationship type
-     *
-     * @var bool
-     */
-    public $type = 'relationship';
+    public string $type = 'relationship';
+    public string $noResults;
 
-    /**
-     * Set the no results default
-     *
-     * @var string
-     */
-    public $noResults;
-
-    /**
-     * Create a new relationship field
-     *
-     * @param  string  $label
-     * @param  string  $resource [The relational resource in plural]
-     * @param  string|null  $tableColumn [The relational table from the model]
-     *
-     * @return  void
-     */
     public function __construct(string $label, string $resource, ?string $tableColumn = null)
     {
         // Default table
@@ -64,10 +46,6 @@ abstract class Relationship extends FieldBase
 
     /**
      * Set the field attributes
-     *
-     * @param  string|null  $attributes
-     *
-     * @return Daguilarm\Belich\Fields\Relationship
      */
     public static function make(...$attributes): Relationship
     {
@@ -77,8 +55,6 @@ abstract class Relationship extends FieldBase
 
     /**
      * Show relationship as a searchable datalist
-     *
-     * @return self
      */
     public function searchable(): self
     {
@@ -89,8 +65,6 @@ abstract class Relationship extends FieldBase
 
     /**
      * Populate relationship select
-     *
-     * @return array
      */
     abstract protected function getQuery(): array;
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Facades\Helper;
@@ -10,13 +12,6 @@ class Panels
 {
     /**
      * Create a new panel
-     *
-     * @param  string  $name
-     * @param  \Closure  $fields
-     * @param  string|null  $background
-     * @param  string|null  $color
-     *
-     * @return array
      */
     public static function create(string $name, callable $fields, ?string $background = null, ?string $color = null): array
     {
@@ -35,10 +30,6 @@ class Panels
 
     /**
      * Resolve fields in callback
-     *
-     * @param  \Closure  $fields
-     *
-     * @return Illuminate\Support\Collection
      */
     protected static function getFields(callable $fields): Collection
     {
@@ -49,11 +40,6 @@ class Panels
 
     /**
      * Resolve fields in callback
-     *
-     * @param  string  $name
-     * @param Illuminate\Support\Collection $fields
-     *
-     * @return array
      */
     protected static function createFields(string $name, Collection $fields): array
     {

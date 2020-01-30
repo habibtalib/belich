@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Validates;
 
 use Illuminate\Support\Collection;
@@ -9,10 +11,6 @@ final class Form
     /**
      * Set javascript form values.
      * Just completing the javascript code with the vales from the form fields
-     *
-     * @param Illuminate\Support\Collection $values
-     *
-     * @return string
      */
     public function values(Collection $values): string
     {
@@ -29,12 +27,8 @@ final class Form
     /**
      * Set form validation rules
      * Generate an array with the validation rules for each field
-     *
-     * @param Illuminate\Support\Collection $values
-     *
-     * @return string
      */
-    public function rules(Collection $values): string
+    public function rules(Collection $values): ?object
     {
         return collect($values)
             ->map(static function ($value) {
@@ -48,12 +42,8 @@ final class Form
     /**
      * Set form validation attributes
      * This is helpful for project with localization
-     *
-     * @param Illuminate\Support\Collection $values
-     *
-     * @return string|json
      */
-    public function attributes(Collection $values): string
+    public function attributes(Collection $values): ?object
     {
         return collect($values)
             ->map(static function ($attribute) {

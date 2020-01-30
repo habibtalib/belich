@@ -1,15 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Validates;
 
 final class Rules
 {
     /**
      * Set the validation rules for the field base on the current action
-     *
-     * @param object $field
-     *
-     * @return array
      */
     public function create(object $field, string $controllerAction): array
     {
@@ -22,10 +20,6 @@ final class Rules
     /**
      * Get the current rules for each controller action
      * It is an helper for $this->createRules($field)
-     *
-     * @param object $field
-     *
-     * @return array
      */
     private function currentRules(object $field, string $controllerAction): array
     {

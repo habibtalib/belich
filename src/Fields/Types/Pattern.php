@@ -1,29 +1,16 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
 class Pattern extends Field
 {
-    /**
-     * @var string
-     */
-    public $type = 'pattern';
+    public string $type = 'pattern';
+    public string $mask;
 
-    /**
-     * @var string
-     */
-    public $mask;
-
-    /**
-     * Create a new field.
-     *
-     * @param  string|null  $name
-     * @param  string|null  $attribute
-     *
-     * @return  void
-     */
     public function __construct($name = null, $attribute = null)
     {
         parent::__construct($name, $attribute);
@@ -34,10 +21,6 @@ class Pattern extends Field
 
     /**
      * Set the field mask
-     *
-     * @param  string  $mask
-     *
-     * @return self
      */
     public function mask(string $mask): self
     {

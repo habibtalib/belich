@@ -1,92 +1,39 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields;
 
 abstract class FieldBase
 {
     /**
-     * List of allowed controller actions
+     * The field value (Resolved and updated...)
      *
-     * @var array
+     * @var string|int|float|null
      */
-    public $allowedControllerActions = [
+    public $value;
+
+    public array $allowedControllerActions = [
         'index',
         'create',
         'edit',
         'show',
     ];
-
-    /**
-     * The custom breadcrumbs for the field
-     *
-     * @var string
-     */
-    public $breadcrumbs;
-
-    /**
-     * The field relationship. Mostly for text fields wich want to show a relationship
-     *
-     * @var string
-     */
-    public $fieldRelationship;
-
-    /**
-     * Set the field label tag
-     *
-     * @var string
-     */
-    public $label;
-
-    /**
-     * Group by panel
-     *
-     * @var string
-     */
-    public $panel;
-
-    /**
-     * The model relationships
-     *
-     * @var string
-     */
+    public string $breadcrumbs;
+    public string $fieldRelationship = '';
+    public string $label;
+    public string $panel;
     public array $relationships = [];
-
-    /**
-     * Table text align. Only on controller action: index
-     *
-     * @var string
-     */
-    public $tableTextAlign = 'left';
-
-    /**
-     * The field value (Resolved and updated...)
-     *
-     * @var string|null
-     */
-    public $value;
-
-    /**
-     * The field value for relationships (is the relation ID)
-     *
-     * @var string
-     */
-    public $valueRelationship;
+    public string $tableTextAlign = 'left';
+    public string $valueRelationship;
 
     /**
      * Set the field attributes
-     *
-     * @param  string|null  $attributes
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     abstract public static function make(...$attributes);
 
     /**
      * Group field into panels
-     *
-     * @param  string  $panel
-     *
-     * @return self
      */
     public function panels(string $panel): self
     {

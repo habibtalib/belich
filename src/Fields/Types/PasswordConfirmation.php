@@ -1,24 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Types;
 
-use Daguilarm\Belich\Fields\Field;
+use Daguilarm\Belich\Fields\Types\Password;
 
-final class PasswordConfirmation extends Field
+final class PasswordConfirmation extends Password
 {
-    /**
-     * @var string
-     */
-    public $type = 'password';
-
-    /**
-     * Create a new field
-     *
-     * @param  string  $name
-     * @param  string|null  $attribute
-     *
-     * @return  void
-     */
     public function __construct($label)
     {
         // Set the default value

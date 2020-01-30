@@ -45,8 +45,12 @@ trait Forms
     /**
      * Resolve select field using labels
      * This method is helper for $this->resolve()
+     *
+     * @param string|int|float|null $value
+     *
+     * @return string|int|float|null
      */
-    public function displayUsingLabels(object $field, ?string $value): ?string
+    public function displayUsingLabels(object $field, $value)
     {
         return $field->options[$value] ?? $field->value ?? null;
     }

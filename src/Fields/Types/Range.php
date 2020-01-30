@@ -1,27 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Types\Number;
 
 final class Range extends Number
 {
-    /**
-     * @var string
-     */
-    public $type = 'range';
-
-    /**
-     * @var array
-     */
-    public $options;
+    public string $type = 'range';
+    public array $options = [];
 
     /**
      * Add option values to the select
-     *
-     * @param array $options
-     *
-     * @return self
      */
     public function options(array $options = []): self
     {

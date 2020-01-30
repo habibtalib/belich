@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Validates;
 
 use Daguilarm\Belich\Facades\Belich;
@@ -8,12 +10,7 @@ use MatthiasMullie\Minify;
 
 final class Javascript
 {
-    /**
-     * Stub replace values
-     *
-     * @var array
-     */
-    private $stubReplace = [
+    private array $stubReplace = [
         ':resource',
         ':action',
         ':values',
@@ -24,14 +21,8 @@ final class Javascript
 
     /**
      * Render the javascript code
-     *
-     * @param string $values
-     * @param string $rules
-     * @param string $values
-     *
-     * @return string
      */
-    public function render(string $attributes, string $controllerAction, $resource, string $rules, string $values): string
+    public function render(object $attributes, string $controllerAction, string $resource, object $rules, string $values): string
     {
         //Get the javascript stub
         $stub = File::get(config_path('belich/stubs/validate-form.stub'));
@@ -58,10 +49,6 @@ final class Javascript
 
     /**
      * Minify the javascript
-     *
-     * @param string $script
-     *
-     * @return string
      */
     private function minify(string $script): string
     {

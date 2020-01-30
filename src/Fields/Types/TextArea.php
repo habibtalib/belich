@@ -1,49 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
 
 final class TextArea extends Field
 {
-    /**
-     * @var string
-     */
-    public $type = 'textArea';
+    public string $type = 'textArea';
+    public bool $count = false;
+    public bool $fullText = false;
+    public bool $fullTextOnIndex = false;
+    public bool $fullTextOnShow = false;
+    public int $rows;
 
-    /**
-     * @var bool
-     */
-    public $count;
-
-    /**
-     * @var bool
-     */
-    public $fullText = false;
-
-    /**
-     * @var bool
-     */
-    public $fullTextOnIndex = false;
-
-    /**
-     * @var bool
-     */
-    public $fullTextOnShow = false;
-
-    /**
-     * @var int
-     */
-    public $rows;
-
-    /**
-     * Create a new field
-     *
-     * @param  string  $name
-     * @param  string|null  $attribute
-     *
-     * @return  void
-     */
     public function __construct($label, $attribute = null)
     {
         //Set the values
@@ -55,8 +26,6 @@ final class TextArea extends Field
 
     /**
      * Show textArea full text in index and show views
-     *
-     * @return  self
      */
     public function fullText(): self
     {
@@ -67,8 +36,6 @@ final class TextArea extends Field
 
     /**
      * Show textArea full text on index view
-     *
-     * @return  self
      */
     public function fullTextOnIndex(): self
     {
@@ -79,8 +46,6 @@ final class TextArea extends Field
 
     /**
      * Show textArea full text on show view
-     *
-     * @return  self
      */
     public function fullTextOnShow(): self
     {
@@ -91,8 +56,6 @@ final class TextArea extends Field
 
     /**
      * Show characters count
-     *
-     * @return  self
      */
     public function count(int $chars = 0): self
     {
@@ -104,8 +67,6 @@ final class TextArea extends Field
 
     /**
      * Set the textArea rows
-     *
-     * @return  self
      */
     public function rows(int $rows): self
     {
@@ -117,10 +78,6 @@ final class TextArea extends Field
     /**
      * Disabled method
      * Set the attribute default value
-     *
-     * @param  string|null  $value
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function defaultValue($value = null): Field
     {
@@ -135,10 +92,6 @@ final class TextArea extends Field
     /**
      * Disabled method
      * Resolving field value in index and detailed
-     *
-     * @param  object  $displayCallback
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function displayUsing(callable $displayCallback): Field
     {
@@ -148,11 +101,6 @@ final class TextArea extends Field
     /**
      * Disabled method
      * Prefix for field value
-     *
-     * @param  string  $prefix
-     * @param  bool  $space
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function prefix(string $prefix, bool $space = false): Field
     {
@@ -162,10 +110,6 @@ final class TextArea extends Field
     /**
      * Disabled method
      * Resolving field value (before processing) in all the fields
-     *
-     * @param  object  $resolveCallback
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function resolveUsing(callable $resolveCallback): Field
     {
@@ -175,11 +119,6 @@ final class TextArea extends Field
     /**
      * Disabled method
      * Suffix for field value
-     *
-     * @param  string  $suffix
-     * @param  bool  $space
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public function suffix(string $suffix, bool $space = false): Field
     {

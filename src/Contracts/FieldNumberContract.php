@@ -9,12 +9,12 @@ interface FieldNumberContract
     /**
      * Set min value
      */
-    public function min(string $min): self;
+    public function min(int $min): self;
 
     /**
      * Set max value
      */
-    public function max(string $max): self;
+    public function max(int $max): self;
 
     /**
      * Set step value

@@ -1,13 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Types\Text;
 
 final class Url extends Text
 {
-    /**
-     * @var string
-     */
-    public $type = 'url';
+    public string $type = 'url';
 }

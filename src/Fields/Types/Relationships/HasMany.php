@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Daguilarm\Belich\Fields\Types\Relationships;
 
-use Daguilarm\Belich\Contracts\CrudContract;
+use Daguilarm\Belich\Contracts\CustomFieldContract;
 use Daguilarm\Belich\Contracts\FieldContract;
 use Daguilarm\Belich\Contracts\RelationshipContract;
 use Daguilarm\Belich\Facades\Helper;
 use Daguilarm\Belich\Fields\Types\Relationship;
 use Illuminate\Support\Str;
 
-class HasMany extends Relationship implements CrudContract, FieldContract, RelationshipContract
+class HasMany extends Relationship implements CustomFieldContract, FieldContract, RelationshipContract
 {
     public string $subType = 'hasOne';
 
@@ -32,7 +32,7 @@ class HasMany extends Relationship implements CrudContract, FieldContract, Relat
     /**
      * Resolve value for index
      */
-    public function index(object $field, ?object $data = null): string
+    public function index(object $field, ?object $data = null): ?object
     {
         // Get values
         $result = optional($data)->{$this->fieldRelationship};
@@ -52,7 +52,7 @@ class HasMany extends Relationship implements CrudContract, FieldContract, Relat
     /**
      * Resolve value for create
      */
-    public function create(object $field, ?object $data = null): ?string
+    public function create(object $field, ?object $data = null): ?object
     {
         // Set values
         $field->type = 'text';
@@ -64,7 +64,7 @@ class HasMany extends Relationship implements CrudContract, FieldContract, Relat
     /**
      * Resolve value for edit
      */
-    public function edit(object $field, ?object $data = null): ?string
+    public function edit(object $field, ?object $data = null): ?object
     {
         // Searchable
         if ($this->searchable) {
@@ -82,7 +82,7 @@ class HasMany extends Relationship implements CrudContract, FieldContract, Relat
     /**
      * Resolve value for show
      */
-    public function show(object $field, ?object $data = null): object
+    public function show(object $field, ?object $data = null): ?object
     {
         // Get values
         $value = optional($field)->value;

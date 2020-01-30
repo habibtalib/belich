@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields;
 
 use Daguilarm\Belich\Contracts\FieldContract;
@@ -33,15 +35,6 @@ abstract class Field extends FieldBase implements FieldContract
         Settingable,
         Visibilitable;
 
-    /**
-     * Create a new field
-     *
-     * @param  string  $name
-     * @param  string|null  $attribute
-     * @param  string|null  $model [The relational model]
-     *
-     * @return  void
-     */
     public function __construct(string $label, ?string $attribute = null, ?string $model = null)
     {
         //Set the default value
@@ -58,10 +51,6 @@ abstract class Field extends FieldBase implements FieldContract
 
     /**
      * Set the field attributes
-     *
-     * @param  string|null  $attributes
-     *
-     * @return Daguilarm\Belich\Fields\Field
      */
     public static function make(...$attributes): Field
     {

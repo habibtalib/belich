@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Validates;
 
 use Daguilarm\Belich\Fields\Validates\Form;
@@ -9,10 +11,7 @@ use Illuminate\Support\Collection;
 
 final class Validate
 {
-    /**
-     * @var string
-     */
-    private $controllerAction;
+    private string $controllerAction;
 
     /**
      * @var Daguilarm\Belich\Fields\Validate\Form
@@ -34,9 +33,6 @@ final class Validate
      */
     private $values;
 
-    /**
-     * Init constructor
-     */
     public function __construct(Form $form, Javascript $javascript, Rules $rules, Values $values)
     {
         $this->form = $form;
@@ -47,10 +43,6 @@ final class Validate
 
     /**
      * Return the javascript
-     *
-     * @param Illuminate\Support\Collection $resource
-     *
-     * @return Illuminate\Support\Collection
      */
     public function create(Collection $resource): Collection
     {
