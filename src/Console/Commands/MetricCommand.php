@@ -9,9 +9,9 @@ use Illuminate\Support\Str;
 
 final class MetricCommand extends BelichCommand
 {
-    protected string $signature = 'belich:metric {className}';
-    protected string $description = 'Create a new metric class';
-    protected string $type = 'Metric';
+    protected $signature = 'belich:metric {className}';
+    protected $description = 'Create a new metric class';
+    protected $type = 'Metric';
 
     /**
      * Execute the console command.

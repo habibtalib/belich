@@ -9,9 +9,9 @@ use Illuminate\Support\Str;
 
 final class PolicyCommand extends BelichCommand
 {
-    protected string $signature = 'belich:policy {className}  {--model=}';
-    protected string $description = 'Create a new policy class';
-    protected string $type = 'Policy';
+    protected $signature = 'belich:policy {className}  {--model=}';
+    protected $description = 'Create a new policy class';
+    protected $type = 'Policy';
 
     /**
      * Execute the console command.

@@ -9,9 +9,9 @@ use Illuminate\Support\Str;
 
 final class CardCommand extends BelichCommand
 {
-    protected string $signature = 'belich:card {className}';
-    protected string $description = 'Create a new card class';
-    protected string $type = 'Card';
+    protected $signature = 'belich:card {className}';
+    protected $description = 'Create a new card class';
+    protected $type = 'Card';
 
     /**
      * Execute the console command.

@@ -8,9 +8,9 @@ use Daguilarm\Belich\Console\BelichCommand;
 
 final class ComponentCommand extends BelichCommand
 {
-    protected string $signature = 'belich:component {className}';
-    protected string $description = 'Create a new custom component';
-    protected string $type = 'Component';
+    protected $signature = 'belich:component {className}';
+    protected $description = 'Create a new custom component';
+    protected $type = 'Component';
 
     /**
      * Execute the console command.

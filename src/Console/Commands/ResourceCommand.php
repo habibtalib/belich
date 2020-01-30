@@ -9,9 +9,9 @@ use Illuminate\Support\Str;
 
 final class ResourceCommand extends BelichCommand
 {
-    protected string $signature = 'belich:resource {className}  {--model=} {--create}';
-    protected string $description = 'Create a new resource class';
-    protected string $type = 'Resource';
+    protected $signature = 'belich:resource {className}  {--model=} {--create}';
+    protected $description = 'Create a new resource class';
+    protected $type = 'Resource';
 
     /**
      * Execute the console command.
