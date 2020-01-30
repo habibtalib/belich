@@ -90,8 +90,10 @@ trait Forms
 
     /**
      * Get the attribute name
+     *
+     * @return  string|object|null
      */
-    private function getValue(object $field, string $attribute, ?string $default = null): ?string
+    private function getValue(object $field, string $attribute, ?string $default = null)
     {
         return isset($field->addClass) && is_array($field->addClass) && $attribute === 'class'
             // Css class attribute
@@ -119,8 +121,10 @@ trait Forms
 
     /**
      * Render the attribute
+     *
+     * @param string|object $value
      */
-    private function renderAttribute(string $attribute, ?string $value, ?string $prefix): string
+    private function renderAttribute(string $attribute, $value, ?string $prefix): string
     {
         return $value
             ? sprintf('%s%s="%s"', $prefix, $attribute, $value)
