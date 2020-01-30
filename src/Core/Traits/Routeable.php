@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Core\Traits;
 
 use Daguilarm\Belich\Core\Search\Search;
@@ -9,8 +11,6 @@ trait Routeable
 {
     /**
      * Get Controller action ['index', 'edit', 'create' or 'show'] from the route
-     *
-     * @return string
      */
     public static function action(): string
     {
@@ -27,8 +27,6 @@ trait Routeable
     /**
      * Get route divided in arrays
      * will return an array like: ['dashboard', 'users', 'index']
-     *
-     * @return array
      */
     public static function route(): array
     {
@@ -42,11 +40,6 @@ trait Routeable
 
     /**
      * Get the button action route
-     *
-     * @param string $controllerAction
-     * @param int|object $data
-     *
-     * @return string
      */
     public static function actionRoute(string $controllerAction, $data = null): string
     {

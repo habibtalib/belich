@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Core\Search\Filters;
 
 use Closure;
@@ -19,9 +21,6 @@ final class LiveSearch implements HandleField
      */
     private $search;
 
-    /**
-     * Init constructor
-     */
     public function __construct(Request $request, Search $search)
     {
         $this->request = $request;
@@ -30,11 +29,6 @@ final class LiveSearch implements HandleField
 
     /**
      * Resolve LiveSearch
-     *
-     * @param object $query
-     * @param Closure $next
-     *
-     * @return object
      */
     public function handle(object $query, Closure $next): object
     {
@@ -53,11 +47,6 @@ final class LiveSearch implements HandleField
 
     /**
      * Live search
-     *
-     * @param object $query
-     * @param object $search
-     *
-     * @return array
      */
     private function liveSearch(object $query, object $search)
     {

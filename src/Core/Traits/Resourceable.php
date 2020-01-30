@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Core\Traits;
 
 use Daguilarm\Belich\Core\Search\Database;
@@ -13,8 +15,6 @@ trait Resourceable
 {
     /**
      * Get all the Belich resources for send globaly to the views
-     *
-     * @return Illuminate\Support\Collection
      */
     public function allResources(): Collection
     {
@@ -36,8 +36,6 @@ trait Resourceable
 
     /**
      * Get the current resource
-     *
-     * @return Illuminate\Support\Collection
      */
     public function currentResource(Request $request): Collection
     {
@@ -63,8 +61,6 @@ trait Resourceable
 
     /**
      * Get all the resources grouped and prepare for navigation
-     *
-     * @return Illuminate\Support\Collection
      */
     public function groupResources(): Collection
     {
@@ -89,8 +85,6 @@ trait Resourceable
 
     /**
      * Get all the files from the resources folder (All the resources)
-     *
-     * @return Illuminate\Support\Collection
      */
     private function folderResources(): Collection
     {
@@ -102,10 +96,7 @@ trait Resourceable
     /**
      * Get all the items from a resource
      *
-     * @param string|null $className
      * @param bool $forNavigation [only return the parameters needed for navigation]
-     *
-     * @return Illuminate\Support\Collection
      */
     private function valueResources(?string $className, bool $forNavigation = false): Collection
     {
@@ -129,11 +120,7 @@ trait Resourceable
     /**
      * Helper for basic resource (for navigation). Get only the basic resources.
      *
-     * @param string $className
      * @param bool $forNavigation [only return the parameters needed for navigation]
-     * @param string $class
-     *
-     * @return Illuminate\Support\Collection
      */
     private function getNavigationFields(string $class, string $className, bool $displayInNavigation): Collection
     {
@@ -153,13 +140,9 @@ trait Resourceable
     /**
      * Helper for advanced resource
      *
-     * @param string $className
-     * @param string $accessToResource
-     * @param Illuminate\Support\Collection $resource
-     *
-     * @return Illuminate\Support\Collection
+     * @param string|bool $accessToResource
      */
-    private function getAdvanceFields(string $class, string $accessToResource, Collection $resource): Collection
+    private function getAdvanceFields(string $class, $accessToResource, Collection $resource): Collection
     {
         return $resource->merge([
             'accessToResource' => $accessToResource,
@@ -174,10 +157,6 @@ trait Resourceable
 
     /**
      * Helper for configurate a resource
-     *
-     * @param string $className
-     *
-     * @return Illuminate\Support\Collection
      */
     private function configurationResources(string $class)
     {
@@ -199,10 +178,6 @@ trait Resourceable
     /**
      * Set the table text align
      * Used by getResourceOnlyWithNavigationFields() in Core\Traits\Resourceable
-     *
-     * @param string $class
-     *
-     * @return string
      */
     private function tableTextAlign(string $class): string
     {

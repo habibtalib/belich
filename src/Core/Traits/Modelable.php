@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Core\Traits;
 
 trait Modelable
@@ -16,8 +18,6 @@ trait Modelable
 
     /**
      * Get the resource model path.
-     *
-     * @return string
      */
     public static function getModelPath(): string
     {
@@ -28,8 +28,6 @@ trait Modelable
 
     /**
      * Get the resource model key name.
-     *
-     * @return string
      */
     public static function getModelKeyName(): string
     {

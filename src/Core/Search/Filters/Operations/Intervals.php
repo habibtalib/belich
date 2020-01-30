@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Core\Search\Filters\Operations;
 
 use Closure;
@@ -8,19 +10,9 @@ use Daguilarm\Belich\Contracts\HandleField;
 
 final class Intervals implements ConditionContract, HandleField
 {
-    /**
-     * @var array
-     */
-    private $items;
+    private array $items;
+    private array $interval;
 
-    /**
-     * @var array
-     */
-    private $interval;
-
-    /**
-     * Init constructor
-     */
     public function __construct(array $items)
     {
         $this->items = $items;
@@ -29,11 +21,6 @@ final class Intervals implements ConditionContract, HandleField
 
     /**
      * Show trashed results
-     *
-     * @param object $query
-     * @param Closure $next
-     *
-     * @return object
      */
     public function handle(object $query, Closure $next): object
     {
@@ -47,8 +34,6 @@ final class Intervals implements ConditionContract, HandleField
 
     /**
      * Resolve condition
-     *
-     * @return bool
      */
     public function condition(): bool
     {

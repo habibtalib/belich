@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Core\Search;
 
 use Daguilarm\Belich\Core\Search\Search;
@@ -9,10 +11,7 @@ use Illuminate\Support\Facades\Cookie;
 
 abstract class DatabaseCore
 {
-    /**
-     * @var array
-     */
-    protected $allowedRequestQuery = [
+    protected array $allowedRequestQuery = [
         'orderBy',
         'direction',
         'page',
@@ -21,10 +20,6 @@ abstract class DatabaseCore
 
     /**
      * Get variables
-     *
-     * @param Illuminate\Http\Request $request
-     *
-     * @return array
      */
     protected function getVariables(Request $request): array
     {
@@ -54,8 +49,6 @@ abstract class DatabaseCore
 
     /**
      * Get the pagination url
-     *
-     * @return array
      */
     protected function baseUrl(): string
     {
@@ -64,14 +57,8 @@ abstract class DatabaseCore
 
     /**
      * Get the pagination
-     *
-     * @param object $results
-     * @param string $paginationType
-     * @param string $perPage
-     *
-     * @return array
      */
-    protected function paginate($results, $paginateType, $perPage)
+    protected function paginate(object $results, string $paginateType, string $perPage): object
     {
         return $paginateType === 'simple'
             ? $results

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Core;
 
 use Daguilarm\Belich\Components\Blade;
@@ -19,29 +21,10 @@ final class Belich extends BelichMethods
         Routeable,
         Systemable;
 
-    /**
-     * @var array
-     */
-    public static $allowedActions = [
-        'index',
-        'create',
-        'edit',
-        'show',
-    ];
+    public static array $allowedActions = ['index', 'create', 'edit', 'show'];
+    protected object $request;
+    protected static string $version = '1.1.2';
 
-    /**
-     * @var object
-     */
-    protected $request;
-
-    /**
-     * @var string
-     */
-    protected static $version = '1.0.2';
-
-    /**
-     * Init the constuctor
-     */
     public function __construct()
     {
         $this->request = new Request();
@@ -55,8 +38,6 @@ final class Belich extends BelichMethods
 
     /**
      * Get the allowed actions
-     *
-     * @return array
      */
     public static function allowedActions(): array
     {
@@ -65,11 +46,6 @@ final class Belich extends BelichMethods
 
     /**
      * Prepare the actions for the view
-     *
-     * @param object $model
-     * @param string $view
-     *
-     * @return Illuminate\View\View
      */
     public function actions(object $model, string $view): View
     {
@@ -85,8 +61,6 @@ final class Belich extends BelichMethods
 
     /**
      * Initialize the Cards and the Metrics
-     *
-     * @return string|null
      */
     public function components(Request $request): ?string
     {
@@ -95,10 +69,6 @@ final class Belich extends BelichMethods
 
     /**
      * Get the resource filters() method.
-     *
-     * @param Illuminate\Http\Request $request
-     *
-     * @return array
      */
     public static function filters(Request $request): array
     {
@@ -109,11 +79,6 @@ final class Belich extends BelichMethods
 
     /**
      * Initialize the html helper (for resolving value) in order to be accesible from Belich
-     *
-     * @param object $field
-     * @param object $data
-     *
-     * @return string|null
      */
     public function value(object $field, ?object $data = null): ?string
     {
@@ -122,8 +87,6 @@ final class Belich extends BelichMethods
 
     /**
      * Get the resource $tabs variable.
-     *
-     * @return bool
      */
     public static function tabs(): bool
     {
@@ -134,8 +97,6 @@ final class Belich extends BelichMethods
 
     /**
      * Get the resource relationship table column for render value
-     *
-     * @return string|null
      */
     public static function tableColumn(): ?string
     {

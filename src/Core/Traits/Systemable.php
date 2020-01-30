@@ -1,20 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Core\Traits;
 
 use Illuminate\Support\Facades\Request;
 
 trait Systemable
 {
-    /**
-     * @var array
-     */
-    private $defaultMiddleware = ['https', 'web', 'auth', 'belich', 'minify'];
+    private array $defaultMiddleware = [
+        'https',
+        'web',
+        'auth',
+        'belich',
+        'minify'
+    ];
 
     /**
      * Get the config middleware
-     *
-     * @return array
      */
     public static function middleware(): array
     {
@@ -31,8 +34,6 @@ trait Systemable
 
     /**
      * Get the app name.
-     *
-     * @return string
      */
     public static function name(): string
     {
@@ -41,8 +42,6 @@ trait Systemable
 
     /**
      * Get the app path.
-     *
-     * @return string
      */
     public static function path(): string
     {
@@ -51,8 +50,6 @@ trait Systemable
 
     /**
      * Get the app path name.
-     *
-     * @return string
      */
     public static function pathName(): string
     {
@@ -61,8 +58,6 @@ trait Systemable
 
     /**
      * Get the app url.
-     *
-     * @return string
      */
     public static function url(): string
     {
@@ -71,8 +66,6 @@ trait Systemable
 
     /**
      * Get the app version.
-     *
-     * @return string
      */
     public static function version(): string
     {

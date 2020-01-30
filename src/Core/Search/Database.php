@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Core\Search;
 
 use Daguilarm\Belich\Core\Search\DatabaseCore;
@@ -11,19 +13,9 @@ use Illuminate\Support\Facades\Cookie;
 
 final class Database extends DatabaseCore
 {
-    /**
-     * @var string
-     */
-    private $action;
+    private string $action;
+    private string $withTrashed;
 
-    /**
-     * @var string
-     */
-    private $withTrashed;
-
-    /**
-     * Init Constructor
-     */
     public function __construct()
     {
         $this->action = Belich::action();
@@ -32,11 +24,6 @@ final class Database extends DatabaseCore
 
     /**
      * Handle the Sql Connection
-     *
-     * @param string $class
-     * @param Illuminate\Http\Request $request
-     *
-     * @return object
      */
     public function handle(object $class, Request $request): object
     {
@@ -49,10 +36,6 @@ final class Database extends DatabaseCore
 
     /**
      * Query for edit and show
-     *
-     * @param string $class
-     *
-     * @return object
      */
     private function crudQuery(object $class): object
     {
@@ -65,11 +48,6 @@ final class Database extends DatabaseCore
 
     /**
      * Eloquent query
-     *
-     * @param string $class
-     * @param Illuminate\Http\Request $request
-     *
-     * @return object
      */
     private function indexQuery(object $class, Request $request): object
     {

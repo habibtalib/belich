@@ -23,6 +23,8 @@ interface CrudContract
 
     /**
      * Resolve value for show
+     *
+     * @return  string|object|null
      */
-    public function show(object $field, ?object $data = null): ?string;
+    public function show(object $field, ?object $data = null);
 }

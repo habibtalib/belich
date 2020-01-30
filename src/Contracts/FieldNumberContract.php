@@ -1,27 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Contracts;
 
 interface FieldNumberContract
 {
     /**
      * Set min value
-     *
-     * @param string $min
      */
-    public function min(string $min);
+    public function min(string $min): self;
 
     /**
      * Set max value
-     *
-     * @param string $max
      */
-    public function max(string $max);
+    public function max(string $max): self;
 
     /**
      * Set step value
-     *
-     * @param string $step
      */
-    public function step(string $step);
+    public function step(string $step): self;
 }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Core\Search;
 
 use Daguilarm\Belich\Facades\Belich;
@@ -8,8 +10,6 @@ final class Search
 {
     /**
      * Get the resource search fields as array.
-     *
-     * @return string
      */
     public static function get(): string
     {
@@ -35,8 +35,6 @@ final class Search
 
     /**
      * Set if the request is from a live search
-     *
-     * @return string
      */
     public static function searchRequest(): bool
     {
@@ -56,8 +54,6 @@ final class Search
 
     /**
      * Get the table fields for live search
-     *
-     * @return array
      */
     public static function tableRequest(): array
     {

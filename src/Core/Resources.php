@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Core;
 
 use Daguilarm\Belich\Core\Traits\Modelable;
@@ -16,98 +18,29 @@ abstract class Resources
         Systemable;
 
     /**
-     * @var bool
-     */
-    public static $accessToResource = true;
-
-    /**
-     * @var string
-     */
-    public static $actions = 'default';
-
-    /**
-     * @var bool
-     */
-    public static $displayInNavigation = true;
-
-    /**
-     * @var bool
-     */
-    public static $downloable = false;
-
-    /**
      * @var Illuminate\Support\Collection
      */
     public static $fields;
 
-    /**
-     * @var string
-     */
-    public static $group;
-
-    /**
-     * @var string
-     */
-    public static $icon;
-
-    /**
-     * @var string
-     */
-    public static $imageCss = 'block h-10 rounded-full shadow-md';
-
-    /**
-     * @var string
-     */
-    public static $label;
-
-    /**
-     * Model path
-     *
-     * @var string
-     */
-    public static $model;
-
-    /**
-     * @var string
-     */
-    public static $pluralLabel;
-
-    /**
-     * @var string
-     */
-    public static $redirectTo = 'index';
-
-    /**
-     * @var array
-     */
-    public static $relationships;
-
-    /**
-     * @var string
-     */
-    public static $controllerAction;
-
-    /**
-     * @var array
-     */
-    public static $softDeletes = false;
-
-    /**
-     * @var array
-     */
-    public static $search;
-
-    /**
-     * Show with tabs
-     *
-     * @var bool
-     */
-    public static $tabs;
+    public static bool $accessToResource = true;
+    public static string $actions = 'default';
+    public static bool $displayInNavigation = true;
+    public static bool $downloable = false;
+    public static string $group;
+    public static string $icon;
+    public static string $imageCss = 'block h-10 rounded-full shadow-md';
+    public static string $label;
+    public static string $model;
+    public static string $pluralLabel;
+    public static string $redirectTo = 'index';
+    public static array $relationships;
+    public static string $controllerAction;
+    public static bool $softDeletes = false;
+    public static array $search = [];
+    public static bool $tabs;
 
     /**
      * Default actions
-     *
-     * @return array
      */
     public static function actions(): array
     {
@@ -120,8 +53,6 @@ abstract class Resources
 
     /**
      * Default breadcrumb
-     *
-     * @return array
      */
     public static function breadcrumbs(): array
     {
@@ -147,9 +78,6 @@ abstract class Resources
 
     /**
      * Set the custom metrics cards
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return Illuminate\Support\Collection
      */
     public static function filters(Request $request): array
     {
@@ -158,8 +86,6 @@ abstract class Resources
 
     /**
      * Set the resource model
-     *
-     * @return Illuminate\Database\Eloquent\Builder
      */
     public function model(): object
     {
@@ -173,22 +99,16 @@ abstract class Resources
 
     /**
      * Get the fields displayed by the resource.
-     *
-     * @param \Illuminate\Http\Request $request
      */
     abstract public function fields(Request $request): array;
 
     /**
      * Set the custom cards
-     *
-     * @param  \Illuminate\Http\Request  $request
      */
     abstract public static function cards(Request $request): array;
 
     /**
      * Set the custom metrics cards
-     *
-     * @param  \Illuminate\Http\Request  $request
      */
     abstract public static function metrics(Request $request): array;
 }

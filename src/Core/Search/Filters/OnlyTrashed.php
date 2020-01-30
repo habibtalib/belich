@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Core\Search\Filters;
 
 use Closure;
@@ -11,28 +13,14 @@ use Illuminate\Http\Request;
 final class OnlyTrashed implements ConditionContract, HandleField
 {
     /**
-     * @var object
-     */
-    private $model;
-
-    /**
      * @var Illuminate\Http\Request
      */
     private $request;
 
-    /**
-     * @var string
-     */
-    private $trashed;
+    private object $model;
+    private string $trashed;
+    private bool $policy;
 
-    /**
-     * @var bool
-     */
-    private $policy;
-
-    /**
-     * Init constructor
-     */
     public function __construct(object $model, Request $request, ?string $trashed, bool $policy)
     {
         $this->model = $model;
@@ -43,11 +31,6 @@ final class OnlyTrashed implements ConditionContract, HandleField
 
     /**
      * Show trashed results
-     *
-     * @param object $query
-     * @param Closure $next
-     *
-     * @return object
      */
     public function handle(object $query, Closure $next): object
     {
@@ -60,8 +43,6 @@ final class OnlyTrashed implements ConditionContract, HandleField
 
     /**
      * Resolve condition
-     *
-     * @return bool
      */
     public function condition(): bool
     {

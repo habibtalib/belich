@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Core\Search\Filters;
 
 use Closure;
@@ -14,37 +16,22 @@ final class Filters implements HandleField
     use Date;
 
     /**
-     * @var string|null
+     * @var string|array|null
      */
     private $filters;
 
-    /**
-     * @var string
-     */
-    private $separator = '***';
+    private string $separator = '***';
+    private array $allowed = ['date', 'equal', 'like', 'operations'];
 
-    /**
-     * Operations allowed
-     *
-     * @var array
-     */
-    private $allowed = ['date', 'equal', 'like', 'operations'];
-
-    /**
-     * Init constructor
-     */
-    public function __construct(?string $filters)
+    public function __construct($filters)
     {
-        $this->filters = json_decode($filters);
+        $this->filters = $filters
+            ? json_decode($filters)
+            : '';
     }
 
     /**
      * Resolve LiveSearch
-     *
-     * @param object $query
-     * @param Closure $next
-     *
-     * @return object
      */
     public function handle(object $query, Closure $next): object
     {
@@ -58,9 +45,6 @@ final class Filters implements HandleField
 
     /**
      * Execute all the operations
-     *
-     * @param object $query
-     * @param string $filter
      */
     private function execute(object $query, string $filter)
     {
@@ -81,10 +65,6 @@ final class Filters implements HandleField
 
     /**
      * Get the params...
-     *
-     * @param string $filter
-     *
-     * @return array
      */
     private function getParams(string $filter): array
     {
@@ -98,11 +78,6 @@ final class Filters implements HandleField
 
     /**
      * Equal filter
-     *
-     * @param object $query
-     * @param array $items
-     *
-     * @return void
      */
     private function equal(object $query, array $items): void
     {
@@ -114,11 +89,6 @@ final class Filters implements HandleField
 
     /**
      * Like filter
-     *
-     * @param object $query
-     * @param array $items
-     *
-     * @return void
      */
     private function like(object $query, array $items): void
     {
@@ -130,11 +100,6 @@ final class Filters implements HandleField
 
     /**
      * Operations filter
-     *
-     * @param object $query
-     * @param array $items
-     *
-     * @return void
      */
     private function operations(object $query, array $items): object
     {

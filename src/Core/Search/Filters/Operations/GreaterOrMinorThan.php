@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Core\Search\Filters\Operations;
 
 use Closure;
@@ -8,24 +10,10 @@ use Daguilarm\Belich\Contracts\HandleField;
 
 final class GreaterOrMinorThan implements ConditionContract, HandleField
 {
-    /**
-     * @var array
-     */
-    private $items;
+    private array $items;
+    private string $operator;
+    private array $value;
 
-    /**
-     * @var string
-     */
-    private $operator;
-
-    /**
-     * @var array
-     */
-    private $value;
-
-    /**
-     * Init constructor
-     */
     public function __construct(array $items, string $operator)
     {
         $this->items = $items;
@@ -35,11 +23,6 @@ final class GreaterOrMinorThan implements ConditionContract, HandleField
 
     /**
      * Show trashed results
-     *
-     * @param object $query
-     * @param Closure $next
-     *
-     * @return object
      */
     public function handle(object $query, Closure $next): object
     {
@@ -53,8 +36,6 @@ final class GreaterOrMinorThan implements ConditionContract, HandleField
 
     /**
      * Resolve condition
-     *
-     * @return bool
      */
     public function condition(): bool
     {

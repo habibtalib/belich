@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Core;
 
 use Daguilarm\Belich\Core\Search\Search;
@@ -10,8 +12,6 @@ abstract class BelichResources
 {
     /**
      * Get the resource $accessToResource variable.
-     *
-     * @return bool
      */
     public static function accessToResource(): bool
     {
@@ -27,8 +27,6 @@ abstract class BelichResources
 
     /**
      * Init the current class
-     *
-     * @return object
      */
     public function initResourceClass(): object
     {
@@ -40,8 +38,6 @@ abstract class BelichResources
 
     /**
      * Get the resource name ['users', 'billings',...]
-     *
-     * @return string
      */
     public static function resource(): string
     {
@@ -54,10 +50,6 @@ abstract class BelichResources
 
     /**
      * Get the current resource class path
-     *
-     * @param string|null $className
-     *
-     * @return string
      */
     public static function resourceClassPath(?string $className = null): string
     {
@@ -68,8 +60,6 @@ abstract class BelichResources
 
     /**
      * Get the resource id
-     *
-     * @return int|null
      */
     public static function resourceId(): ?int
     {
@@ -89,8 +79,6 @@ abstract class BelichResources
 
     /**
      * Get the current resource class name: User
-     *
-     * @return string
      */
     public static function resourceName(): string
     {
@@ -101,8 +89,6 @@ abstract class BelichResources
 
     /**
      * Get the resource url.
-     *
-     * @return string
      */
     public static function resourceUrl(): string
     {

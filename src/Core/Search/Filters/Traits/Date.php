@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Core\Search\Filters\Traits;
 
 use Carbon\Carbon;
@@ -8,11 +10,6 @@ trait Date
 {
     /**
      * Handle the dates
-     *
-     * @param object $query
-     * @param array $items
-     *
-     * @return object
      */
     public function date(object $query, array $items)
     {
@@ -27,14 +24,6 @@ trait Date
 
     /**
      * Handle the queries
-     *
-     * @param object $query
-     * @param string $format
-     * @param string $table
-     * @param string|null $start
-     * @param string|null $end
-     *
-     * @return void
      */
     private function queryDates(object $query, string $format, string $table, ?string $start, ?string $end): void
     {
@@ -53,11 +42,6 @@ trait Date
 
     /**
      * Handle the dates
-     *
-     * @param string|null $format
-     * @param string|null $date
-     *
-     * @return array
      */
     private function getDate(?string $format, ?string $date)
     {
@@ -69,10 +53,6 @@ trait Date
 
     /**
      * Handle the dates
-     *
-     * @param array $items
-     *
-     * @return array
      */
     private function handleDates(array $items): array
     {
@@ -86,13 +66,6 @@ trait Date
 
     /**
      * Resolve condition
-     *
-     * @param string|null $start
-     * @param string|null $end
-     * @param string|null $format
-     * @param string|null $table
-     *
-     * @return bool
      */
     private function condition(?string $start, ?string $end, ?string $format, ?string $table): bool
     {

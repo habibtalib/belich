@@ -7,5 +7,5 @@ interface FieldMultipleContract
     /**
      * Add multiple attribute to fields: file or email
      */
-    public function multiple();
+    public function multiple(): self;
 }

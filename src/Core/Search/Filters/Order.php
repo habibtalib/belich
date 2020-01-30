@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Core\Search\Filters;
 
 use Closure;
@@ -10,23 +12,13 @@ use Illuminate\Http\Request;
 final class Order implements ConditionContract, HandleField
 {
     /**
-     * @var string|null
-     */
-    private $direction;
-
-    /**
      * @var Illuminate\Http\Request
      */
     private $request;
 
-    /**
-     * @var string|null
-     */
-    private $order;
+    private ?string $direction;
+    private ?string $order;
 
-    /**
-     * Init constructor
-     */
     public function __construct(?string $direction, Request $request, ?string $order)
     {
         $this->direction = $direction;
@@ -36,11 +28,6 @@ final class Order implements ConditionContract, HandleField
 
     /**
      * Query order
-     *
-     * @param object $query
-     * @param Closure $next
-     *
-     * @return object
      */
     public function handle(object $query, Closure $next): object
     {
@@ -53,8 +40,6 @@ final class Order implements ConditionContract, HandleField
 
     /**
      * Resolve condition
-     *
-     * @return bool
      */
     public function condition(): bool
     {

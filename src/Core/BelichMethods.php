@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Core;
 
 use Daguilarm\Belich\Core\BelichResources;
@@ -9,10 +11,6 @@ abstract class BelichMethods extends BelichResources
 {
     /**
      * Set the class name
-     *
-     * @param string $className
-     *
-     * @return string
      */
     public static function classFormat(string $className): string
     {
@@ -21,8 +19,6 @@ abstract class BelichMethods extends BelichResources
 
     /**
      * Set the class name
-     *
-     * @return string
      */
     public static function className(): string
     {
@@ -33,10 +29,6 @@ abstract class BelichMethods extends BelichResources
 
     /**
      * Get the current resource form action (to Controller)
-     *
-     * @param string|null $className
-     *
-     * @return string|null
      */
     public static function controllerAction(?string $className = null): ?string
     {
@@ -47,11 +39,6 @@ abstract class BelichMethods extends BelichResources
 
     /**
      * Count the total results
-     *
-     * @param  mixed $value
-     * @param  int $initialValue
-     *
-     * @return int
      */
     public static function count($value, int $initialValue = 0): int
     {
@@ -68,10 +55,8 @@ abstract class BelichMethods extends BelichResources
 
     /**
      * Get the resource $downloable variable.
-     *
-     * @return string
      */
-    public static function downloable(): string
+    public static function downloable(): bool
     {
         $class = static::resourceClassPath();
 
@@ -80,8 +65,6 @@ abstract class BelichMethods extends BelichResources
 
     /**
      * Get the resource md5 key
-     *
-     * @return string
      */
     public static function key(): string
     {
@@ -90,8 +73,6 @@ abstract class BelichMethods extends BelichResources
 
     /**
      * Get the resource $redirectTo variable.
-     *
-     * @return string
      */
     public static function redirectTo(): string
     {
