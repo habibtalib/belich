@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Metrics\Eloquent\Traits;
 
 use Carbon\Carbon;
@@ -9,12 +11,14 @@ trait DatesForHumans
 {
     use Dateable;
 
+    private array $dateFormat = [
+        'Y-m-d',
+        'd/m/Y',
+        'Y/m/d'
+    ];
+
     /**
      * Set the start date for the query
-     *
-     * @param Carbon\Carbon $date
-     *
-     * @return self
      */
     public function startDate(Carbon $date): self
     {
@@ -25,10 +29,6 @@ trait DatesForHumans
 
     /**
      * Set the end date for the query
-     *
-     * @param Carbon\Carbon $date
-     *
-     * @return self
      */
     public function endDate(Carbon $date): self
     {
@@ -45,8 +45,6 @@ trait DatesForHumans
 
     /**
      * Set today for the query
-     *
-     * @return self
      */
     public function toDay(): self
     {
@@ -58,12 +56,6 @@ trait DatesForHumans
 
     /**
      * Set one specific day for the query
-     *
-     * @param int $day
-     * @param int $month
-     * @param int $year
-     *
-     * @return self
      */
     public function oneDay(int $day, int $month, int $year): self
     {
@@ -77,8 +69,6 @@ trait DatesForHumans
      * Set last days for the query
      *
      * @param int $number [Set the number of days]
-     *
-     * @return self
      */
     public function lastDays(int $number): self
     {
@@ -96,8 +86,6 @@ trait DatesForHumans
 
     /**
      * Set the last week for the query
-     *
-     * @return self
      */
     public function thisWeek(): self
     {
@@ -115,8 +103,6 @@ trait DatesForHumans
 
     /**
      * Set this month the query
-     *
-     * @return self
      */
     public function thisMonth(): self
     {
@@ -128,8 +114,6 @@ trait DatesForHumans
 
     /**
      * Set last month for the query
-     *
-     * @return self
      */
     public function lastMonth(): self
     {
@@ -143,8 +127,6 @@ trait DatesForHumans
      * Set last months for the query
      *
      * @param int $number [Set the number of months]
-     *
-     * @return self
      */
     public function lastMonths(int $number): self
     {
@@ -162,8 +144,6 @@ trait DatesForHumans
 
     /**
      * Set this year for the query
-     *
-     * @return self
      */
     public function thisYear(): self
     {
@@ -175,8 +155,6 @@ trait DatesForHumans
 
     /**
      * Set list of years for the query
-     *
-     * @return self
      */
     public function lastYear(): self
     {
@@ -187,8 +165,6 @@ trait DatesForHumans
 
     /**
      * Set list of years for the query
-     *
-     * @return self
      */
     public function lastYears(int $years): self
     {
@@ -206,10 +182,6 @@ trait DatesForHumans
 
     /**
      * Filter date base on format
-     *
-     * @param Carbon\Carbon $date
-     *
-     * @return self
      */
     private function filterDateFormat($date): Carbon
     {
@@ -218,19 +190,12 @@ trait DatesForHumans
             return $date;
         }
 
-        //Sql format
-        if (DateTime::createFromFormat('Y-m-d', $date, config('app.timezone'))) {
-            return DateTime::createFromFormat('Y-m-d', $date, config('app.timezone'));
-        }
-
-        //European format
-        if (DateTime::createFromFormat('d/m/Y', $date, config('app.timezone'))) {
-            return DateTime::createFromFormat('d/m/Y', $date, config('app.timezone'));
-        }
-
-        //English format
-        if (DateTime::createFromFormat('Y/m/d', $date, config('app.timezone'))) {
-            return DateTime::createFromFormat('Y/m/d', $date, config('app.timezone'));
-        }
+        // Validate the correct format
+        return collect($this->dateFormat)
+            ->map(static function ($format) use ($date) {
+                if (DateTime::createFromFormat($format, $date, config('app.timezone'))) {
+                    return DateTime::createFromFormat($format, $date, config('app.timezone'));
+                }
+            });
     }
 }
