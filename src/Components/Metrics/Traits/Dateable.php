@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Metrics\Traits;
 
 use Carbon\Carbon;
@@ -8,8 +10,6 @@ trait Dateable
 {
     /**
      * Set an array with all the daily hours
-     *
-     * @return array
      */
     public static function getRangeOfHours(): array
     {
@@ -24,8 +24,6 @@ trait Dateable
 
     /**
      * Get an array with all the days of the current month
-     *
-     * @return array
      */
     protected static function getRangeOfDays(): array
     {
@@ -40,8 +38,6 @@ trait Dateable
 
     /**
      * Get an array with all the month of the year
-     *
-     * @return array
      */
     protected static function getRangeOfMonths(): array
     {
@@ -56,10 +52,6 @@ trait Dateable
 
     /**
      * Get an array with all the month of the year
-     *
-     * @param int $years
-     *
-     * @return array
      */
     protected static function getRangeOfYears(int $years): array
     {
@@ -76,8 +68,6 @@ trait Dateable
 
     /**
      * Get an total number of days from the current month
-     *
-     * @return int
      */
     protected static function getDaysOfTheMonth(): int
     {
@@ -86,8 +76,6 @@ trait Dateable
 
     /**
      * Get the first day of the current month
-     *
-     * @return Carbon\Carbon
      */
     protected static function getFirstDayOfTheMonth(): Carbon
     {
@@ -96,8 +84,6 @@ trait Dateable
 
     /**
      * Get the first day of the last month
-     *
-     * @return Carbon\Carbon
      */
     protected static function getLastDayOfTheMonth(): Carbon
     {
@@ -106,8 +92,6 @@ trait Dateable
 
     /**
      * Get the first day of the last month
-     *
-     * @return Carbon\Carbon
      */
     protected static function getFirstDayOfTheLastMonth(): Carbon
     {
@@ -116,8 +100,6 @@ trait Dateable
 
     /**
      * Get the first day of the last month
-     *
-     * @return Carbon\Carbon
      */
     protected static function getLastDayOfTheLastMonth(): Carbon
     {
@@ -126,8 +108,6 @@ trait Dateable
 
     /**
      * Set the start date for the query
-     *
-     * @return self
      */
     protected function startDate(Carbon $date): self
     {
@@ -138,8 +118,6 @@ trait Dateable
 
     /**
      * Set the end date for the query
-     *
-     * @return self
      */
     protected function endDate(Carbon $date): self
     {
@@ -150,8 +128,6 @@ trait Dateable
 
     /**
      * Set this month the query
-     *
-     * @return self
      */
     protected function thisMonth(): self
     {
@@ -163,8 +139,6 @@ trait Dateable
 
     /**
      * Set last month for the query
-     *
-     * @return self
      */
     protected function lastMonth(): self
     {
@@ -176,10 +150,6 @@ trait Dateable
 
     /**
      * Set last months for the query
-     *
-     * @param int $number
-     *
-     * @return self
      */
     protected function lastMonths(int $number = 3): self
     {
@@ -191,8 +161,6 @@ trait Dateable
 
     /**
      * Set the last week for the query
-     *
-     * @return self
      */
     protected function thisWeek(): self
     {
@@ -204,8 +172,6 @@ trait Dateable
 
     /**
      * Set this year for the query
-     *
-     * @return self
      */
     protected function thisYear(): self
     {
@@ -217,8 +183,6 @@ trait Dateable
 
     /**
      * Set list of years for the query
-     *
-     * @return self
      */
     protected function lastYears(int $years): self
     {
@@ -230,8 +194,6 @@ trait Dateable
 
     /**
      * Set today for the query
-     *
-     * @return self
      */
     protected function toDay(): self
     {

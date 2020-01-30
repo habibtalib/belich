@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Metrics;
 
 use Daguilarm\Belich\Contracts\ComponentContract;
@@ -7,15 +9,22 @@ use Illuminate\Http\Request;
 
 abstract class Graph implements ComponentContract
 {
-    /**
-     * @var object
-     */
-    public $calculate;
+    public array $calculate;
+    public string $color;
+    public array $labels;
+    public string $legend_h;
+    public string $legend_v;
+    public string $name;
+    public string $type;
+    public string $uriKey;
+    public string $width;
+    public bool $withArea = false;
+    public bool $grid = false;
 
     /**
-     * @var string
+     * @var Illuminate\Http\Request
      */
-    public $color;
+    public $request;
 
     /**
      * ['area-color', 'line-color', 'title-color', 'legend-color']
@@ -25,67 +34,12 @@ abstract class Graph implements ComponentContract
     public $defineColors;
 
     /**
-     * @var bool
-     */
-    public $grid;
-
-    /**
-     * @var array
-     */
-    public $labels;
-
-    /**
-     * @var string
-     */
-    public $legend_h;
-
-    /**
-     * @var string
-     */
-    public $legend_v;
-
-    /**
      * ['butt', 'square', 'round']
      *
      * @var string
      */
     public $marker;
 
-    /**
-     * @var string
-     */
-    public $name;
-
-    /**
-     * @var Illuminate\Http\Request
-     */
-    public $request;
-
-    /**
-     * @var string
-     */
-    public $type;
-
-    /**
-     * @var string
-     */
-    public $uriKey;
-
-    /**
-     * @var string
-     */
-    public $width;
-
-    /**
-     * @var string
-     */
-    public $withArea;
-
-    /**
-     * Set the custom metrics cards
-     *
-     * @param  \Illuminate\Http\Request  $request
-     */
     public function __construct(Request $request)
     {
         // Set default values
@@ -100,16 +54,12 @@ abstract class Graph implements ComponentContract
     }
 
     /**
-     * Initialize the metrics
-     *
-     * @return  array
+     * Make metrics calculations
      */
     abstract public function calculate(Request $request): array;
 
     /**
      * Set the labels
-     *
-     * @return  array
      */
     abstract public function labels(Request $request): array;
 
@@ -120,17 +70,11 @@ abstract class Graph implements ComponentContract
 
     /**
      * Set the urikey
-     *
-     * @return  string
      */
     abstract public function urikey(): string;
 
     /**
      * Set the default card width
-     *
-     * @param string $width
-     *
-     * @return self
      */
     public function width(string $width): self
     {
@@ -141,8 +85,6 @@ abstract class Graph implements ComponentContract
 
     /**
      * Set the default line color
-     *
-     * @return string
      */
     private function color(): string
     {
@@ -151,8 +93,6 @@ abstract class Graph implements ComponentContract
 
     /**
      * Set the default line color
-     *
-     * @return string
      */
     private function marker(): string
     {
@@ -161,8 +101,6 @@ abstract class Graph implements ComponentContract
 
     /**
      * Set the default graph type
-     *
-     * @return string
      */
     private function type(): string
     {
@@ -171,8 +109,6 @@ abstract class Graph implements ComponentContract
 
     /**
      * Add a highlight area to graph
-     *
-     * @return string
      */
     private function withArea()
     {

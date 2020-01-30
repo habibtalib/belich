@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Metrics\Eloquent\Traits;
 
 use Illuminate\Support\Collection;
@@ -11,8 +13,6 @@ trait Sql
      * Get the results by type and dateType from storage
      *
      * @param string $dateType ['day', 'month', 'year']
-     *
-     * @return Collection
      */
     private function getDataFromStorage(string $dateType): Collection
     {
@@ -32,10 +32,7 @@ trait Sql
     /**
      * Get the total results filter by date and reset the value to 0 if no results
      *
-     * @param array $total
      * @param string $dateType ['day', 'month', 'year']
-     *
-     * @return array
      */
     private function resultsByDate(array $total, string $dateType): array
     {

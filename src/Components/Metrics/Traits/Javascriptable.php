@@ -1,40 +1,20 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Metrics\Traits;
 
 trait Javascriptable
 {
-    /**
-     * @var array
-     */
-    public $labels;
 
-    /**
-     * @var array
-     */
-    public $series;
-
-    /**
-     * @var string
-     */
-    public $type;
-
-    /**
-     * @var string
-     */
-    public $uriKey;
-
-    /**
-     * @var string
-     */
-    public $withArea;
+    public array $labels;
+    public array $series;
+    public string $type;
+    public string $uriKey;
+    public bool $withArea;
 
     /**
      * Set the labels
-     *
-     * @param  array  $labels
-     *
-     * @return self
      */
     public function labels(array $labels = []): self
     {
@@ -45,10 +25,6 @@ trait Javascriptable
 
     /**
      * Set the serie
-     *
-     * @param  array  $series
-     *
-     * @return self
      */
     public function series(array $series = []): self
     {
@@ -59,10 +35,6 @@ trait Javascriptable
 
     /**
      * Set the type
-     *
-     * @param  string  $type
-     *
-     * @return self
      */
     public function type(string $type): self
     {
@@ -73,10 +45,6 @@ trait Javascriptable
 
     /**
      * Set the uriKey
-     *
-     * @param  string  $uriKey
-     *
-     * @return self
      */
     public function uriKey(string $uriKey): self
     {
@@ -87,10 +55,6 @@ trait Javascriptable
 
     /**
      * Set the withArea
-     *
-     * @param  bool  $withArea
-     *
-     * @return self
      */
     public function withArea(bool $withArea): self
     {

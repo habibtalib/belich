@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Metrics\Eloquent;
 
 use Carbon\Carbon;
@@ -32,21 +34,9 @@ final class Connection
      */
     public $take;
 
-    /**
-     * @var string
-     */
-    private $dateTable = 'created_at';
+    private string $dateTable = 'created_at';
+    private string $model;
 
-    /**
-     * @var string
-     */
-    private $model;
-
-    /**
-     * Initialize the class
-     *
-     * @param string $model
-     */
     public function __construct(string $model)
     {
         $this->model = $model;
@@ -54,10 +44,6 @@ final class Connection
 
     /**
      * Set the end date
-     *
-     * @param string $date
-     *
-     * @return string
      */
     public function endDate(Carbon $date): self
     {
@@ -68,10 +54,6 @@ final class Connection
 
     /**
      * Set the start date
-     *
-     * @param string $date
-     *
-     * @return string
      */
     public function startDate(Carbon $date): self
     {
@@ -83,10 +65,6 @@ final class Connection
     /**
      * Set a different table name for dates.
      * By default 'create_at'
-     *
-     * @param string $date
-     *
-     * @return string
      */
     public function dateTable(string $tableName): self
     {
@@ -97,10 +75,6 @@ final class Connection
 
     /**
      * Get only a number of results from storage
-     *
-     * @param int $take
-     *
-     * @return string
      */
     public function take(int $take): self
     {
@@ -111,10 +85,6 @@ final class Connection
 
     /**
      * Initialize the connection
-     *
-     * @param object $model
-     *
-     * @return  object
      */
     public static function make($model): object
     {

@@ -1,15 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Metrics\Traits;
 
 trait Stylable
 {
     /**
      * Set the labels
-     *
-     * @param  object  $metric
-     *
-     * @return string
      */
     public function css(object $metric): string
     {
