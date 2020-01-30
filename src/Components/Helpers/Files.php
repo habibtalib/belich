@@ -6,11 +6,6 @@ trait Files
 {
     /**
      * Get the name from a file string [file.ext]
-     *
-     * @param string $fileName
-     * @param bool $extension
-     *
-     * @return string
      */
     public function getFileAttributes(string $fileName, bool $extension = false): string
     {

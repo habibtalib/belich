@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Helpers;
 
 use Parsedown;
@@ -7,11 +9,7 @@ use Parsedown;
 trait Markdown
 {
     /**
-     * Hide content base on screen size
-     *
-     * @param array $hideFor
-     *
-     * @return string|null
+     * Format to markdown
      */
     public function markdown(?string $text): string
     {

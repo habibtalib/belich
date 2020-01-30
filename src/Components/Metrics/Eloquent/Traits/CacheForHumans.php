@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Metrics\Eloquent\Traits;
 
 use Carbon\Carbon;
@@ -72,10 +74,6 @@ trait CacheForHumans
 
     /**
      * Set cache key
-     *
-     * @param string $key
-     *
-     * @return  void
      */
     private function initCacheKey(string $key): void
     {

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Helpers;
 
 use Illuminate\Support\Str;
@@ -8,8 +10,6 @@ trait Strings
 {
     /**
      * Set the default value for a empty string or result
-     *
-     * @return string
      */
     public function emptyResults(): string
     {
@@ -18,10 +18,6 @@ trait Strings
 
     /**
      * Set the string into migration format
-     *
-     * @param string $string
-     *
-     * @return string
      */
     public function stringPluralLower(string $string): string
     {
@@ -30,10 +26,6 @@ trait Strings
 
     /**
      * Set the string into table column format
-     *
-     * @param string $string
-     *
-     * @return string
      */
     public function stringSingularLower(string $string): string
     {
@@ -42,10 +34,6 @@ trait Strings
 
     /**
      * Set string into class name format
-     *
-     * @param string $string
-     *
-     * @return string
      */
     public function stringPluralUpper(string $string): string
     {
@@ -54,10 +42,6 @@ trait Strings
 
     /**
      * Set string into model format
-     *
-     * @param string $string
-     *
-     * @return string
      */
     public function stringSingularUpper(string $string): string
     {
@@ -66,10 +50,6 @@ trait Strings
 
     /**
      * Set string into kebab case
-     *
-     * @param string $string
-     *
-     * @return string
      */
     public function stringTokebab(string $string): string
     {
@@ -78,12 +58,6 @@ trait Strings
 
     /**
      * Trim a string up to a maximum number of characters
-     *
-     * @param  string|null $string
-     * @param  int $max
-     * @param  string $end
-     *
-     * @return string|null
      */
     public function stringMaxChars(?string $string, int $max = 0, string $end = '...'): ?string
     {
@@ -96,10 +70,6 @@ trait Strings
 
     /**
      * Set string into kebab case
-     *
-     * @param string $string
-     *
-     * @return string
      */
     public function stringTokebabLower(string $string): string
     {
@@ -108,10 +78,6 @@ trait Strings
 
     /**
      * String has a validad php structure
-     *
-     * @param  string $string
-     *
-     * @return bool
      */
     public function stringIsValidPhp(string $string): bool
     {
@@ -122,10 +88,6 @@ trait Strings
 
     /**
      * Remove stuff that may bother to Mr. php
-     *
-     * @param  string $string
-     *
-     * @return string
      */
     public function stringSanitize(string $string): string
     {

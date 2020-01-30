@@ -62,7 +62,7 @@ final class LiveSearch implements HandleField
     private function liveSearch(object $query, object $search)
     {
         //Get the results
-        return $query->where(function ($query) use ($search) {
+        return $query->where(function ($query) use ($search): void {
             // All the search params from the Resource
             collect($search->tableRequest())
                 ->each(function ($field) use ($query): void {

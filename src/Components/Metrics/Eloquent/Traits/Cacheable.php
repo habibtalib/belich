@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Metrics\Eloquent\Traits;
 
 use Illuminate\Support\Collection;
@@ -8,28 +10,16 @@ use Illuminate\Support\Facades\Cache;
 trait Cacheable
 {
     /**
-     * @var int
+     * @var Carbon\Carbon
      */
     protected $cache;
-
-    /**
-     * @var bool
-     */
-    protected $cacheForEver = false;
-
-    /**
-     * @var string
-     */
-    protected $cacheKey;
+    protected bool $cacheForEver = false;
+    protected string $cacheKey;
 
     /**
      * Get data from cache
-     *
-     * @param string $dateType
-     *
-     * @return string
      */
-    private function getDataFromCache(string $dateType): string
+    private function getDataFromCache(string $dateType): object
     {
         //Cache for ever
         if ($this->cacheForEver === true) {
@@ -46,10 +36,6 @@ trait Cacheable
 
     /**
      * Parse cache
-     *
-     * @param string $dateType
-     *
-     * @return Illuminate\Support\Collection
      */
     private function parseCache($dateType): Collection
     {

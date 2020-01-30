@@ -38,7 +38,7 @@ final class Intervals implements ConditionContract, HandleField
     public function handle(object $query, Closure $next): object
     {
         // Filter the query
-        $query->when($this->condition(), function ($query) {
+        $query->when($this->condition(), function ($query): void {
             $query->whereBetween($this->items[1], [$this->interval[0], $this->interval[1]]);
         });
 

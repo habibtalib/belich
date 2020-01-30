@@ -6,10 +6,6 @@ trait Blade
 {
     /**
      * Hide content base on screen size
-     *
-     * @param array $hideFor
-     *
-     * @return string
      */
     public function hideContainerForScreens(array $hideFor): string
     {
@@ -28,10 +24,6 @@ trait Blade
 
     /**
      * Hide cards or metrics base on screen size
-     *
-     * @param object $request
-     *
-     * @return string
      */
     public function hideComponentsForScreens(): string
     {

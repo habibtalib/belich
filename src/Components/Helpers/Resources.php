@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Helpers;
 
 use Daguilarm\Belich\Facades\Helper;
@@ -10,8 +12,6 @@ trait Resources
     /**
      * Get all the resource names from folder
      * For auto route generation
-     *
-     * @return Illuminate\Support\Collection
      */
     public function getAllTheResourcesFromFolder(): Collection
     {

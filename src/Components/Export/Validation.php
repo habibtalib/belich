@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Export;
 
 use Illuminate\Http\Request;
@@ -9,22 +11,11 @@ use Illuminate\Validation\Validator;
 
 final class Validation
 {
-    /**
-     * @var array
-     */
-    private static $formats = ['xls', 'xlsx', 'csv'];
-
-    /**
-     * @var array
-     */
-    private static $selects = ['all', 'selected'];
+    private static array $formats = ['xls', 'xlsx', 'csv'];
+    private static array $selects = ['all', 'selected'];
 
     /**
      * Do the field validation
-     *
-     * @param Illuminate\Http\Request $request
-     *
-     * @return Illuminate\Validation\Validator
      */
     public static function make(Request $request): Validator
     {

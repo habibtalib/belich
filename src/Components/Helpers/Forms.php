@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Helpers;
 
 use Daguilarm\Belich\Facades\Helper;
@@ -7,22 +9,13 @@ use Illuminate\Support\Facades\Cookie;
 
 trait Forms
 {
-    /**
-     * @var array
-     */
-    private $attributeFilter = [
+    private array $attributeFilter = [
         'addClass' => 'class',
     ];
 
     /**
      * Helper for the blade directive @optionFromArray
      * Set the default value for a empty string or result
-     *
-     * @param array $options
-     * @param string $field
-     * @param bool $emptyField
-     *
-     * @return string
      */
     public function createFormSelectOptions(array $options, string $field, bool $emptyField = false): string
     {
@@ -30,8 +23,13 @@ trait Forms
 
         return collect($options)
             ->map(static function ($label, $value) use ($cache) {
-                //Default values
-                $defaultValue = ! is_array($value) ? strtolower($label) : $value;
+                // Set label
+                $label = is_string($label) ? strtolower($label) : $label;
+                // Default values
+                $defaultValue = ! is_array($value) ? $label : $value;
+                // Strict types
+                $value = (string) $value;
+                $defaultValue = (string) $defaultValue;
 
                 return sprintf(
                     '<option value="%s"%s>%s</option>',
@@ -47,11 +45,6 @@ trait Forms
     /**
      * Resolve select field using labels
      * This method is helper for $this->resolve()
-     *
-     * @param  object $field
-     * @param  string|null $value
-     *
-     * @return string|null
      */
     public function displayUsingLabels(object $field, ?string $value): ?string
     {
@@ -61,12 +54,6 @@ trait Forms
     /**
      * Render the field attribute base on the value
      * Helper for the belich fields: ./resources/fields
-     *
-     * @param object $field
-     * @param string $attribute
-     * @param string|null $default
-     *
-     * @return string
      */
     public function formAttribute(object $field, string $attribute, ?string $default = null, ?string $prefix = null): string
     {
@@ -90,10 +77,6 @@ trait Forms
 
     /**
      * Get the attribute name
-     *
-     * @param string $attribute
-     *
-     * @return string
      */
     private function getAttribute(string $attribute): string
     {
@@ -107,12 +90,6 @@ trait Forms
 
     /**
      * Get the attribute name
-     *
-     * @param object $field
-     * @param string|null $attribute
-     * @param string|null $default
-     *
-     * @return string|null
      */
     private function getValue(object $field, string $attribute, ?string $default = null): ?string
     {
@@ -126,11 +103,7 @@ trait Forms
     /**
      * Render attributes from an array of tasks
      *
-     * @param object $field
-     * @param string|null $attribute
-     * @param $value
-     *
-     * @return string|null
+     * @param mixed $value
      */
     private function renderAttributeFromArray(object $field, string $attribute, $value): ?string
     {
@@ -146,12 +119,6 @@ trait Forms
 
     /**
      * Render the attribute
-     *
-     * @param string $attribute
-     * @param string|null $value
-     * @param string|null $prefix
-     *
-     * @return string
      */
     private function renderAttribute(string $attribute, ?string $value, ?string $prefix): string
     {
@@ -161,13 +128,9 @@ trait Forms
     }
 
     /**
-     * Get the attribute name
-     *
-     * @param Daguilarm\Belich\Fields\Field $field
-     *
-     * @return void
+     * Render the list of countries
      */
-    private function renderCountry($field): void
+    private function renderCountry(object $field): void
     {
         //Value for countries
         if (Helper::objectName($field) === 'Countries') {
@@ -185,12 +148,6 @@ trait Forms
 
     /**
      * Helper for determine a selected option
-     *
-     * @param string|null $cache
-     * @param string $value
-     * @param string|null $defaultValue
-     *
-     * @return string
      */
     private static function selectedValueForOption(?string $cache, string $value, ?string $defaultValue): string
     {

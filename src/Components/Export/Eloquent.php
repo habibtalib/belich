@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Export;
 
 use Daguilarm\Belich\Facades\Helper;
@@ -10,10 +12,6 @@ final class Eloquent
 {
     /**
      * Get collection from model
-     *
-     * @param Illuminate\Http\Request $request
-     *
-     * @return Illuminate\Database\Eloquent\Collection
      */
     public static function query(Request $request): Collection
     {
@@ -37,10 +35,6 @@ final class Eloquent
 
     /**
      * Get table name from model
-     *
-     * @param Illuminate\Http\Request $request
-     *
-     * @return string
      */
     public static function tableName(Request $request): string
     {
@@ -49,10 +43,6 @@ final class Eloquent
 
     /**
      * Get the current model
-     *
-     * @param Illuminate\Http\Request $request
-     *
-     * @return object
      */
     private static function model(Request $request): object
     {
@@ -60,11 +50,7 @@ final class Eloquent
     }
 
     /**
-     * Get the current model
-     *
-     * @param object $model
-     *
-     * @return object
+     * Get the columns from the model
      */
     private static function columns(object $model): array
     {

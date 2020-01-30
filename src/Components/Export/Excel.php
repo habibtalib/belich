@@ -1,13 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Export;
 
 final class Excel
 {
     /**
      * Select driver from config file
-     *
-     * @return object
      */
     public static function make(): object
     {
@@ -34,8 +34,6 @@ final class Excel
 
     /**
      * Get driver from config file
-     *
-     * @return string|null
      */
     public static function getDriver(): ?string
     {

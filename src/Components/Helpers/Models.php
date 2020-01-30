@@ -1,15 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Helpers;
 
 trait Models
 {
     /**
      * Set if the model has the trait softdelete
-     *
-     * @param object $model
-     *
-     * @return bool
      */
     public function hasSoftdelete(object $model): bool
     {
@@ -18,10 +16,6 @@ trait Models
 
     /**
      * Set if the model has softdeleting results
-     *
-     * @param object $model
-     *
-     * @return bool
      */
     public function hasSoftdeletedResults(object $model): bool
     {

@@ -1,15 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Helpers;
 
 trait Paths
 {
     /**
      * Get the package namespace path
-     *
-     * @param string $file
-     *
-     * @return string
      */
     public function namespace_path(string $file): string
     {
@@ -18,10 +16,6 @@ trait Paths
 
     /**
      * Get the resource path
-     *
-     * @param string $file
-     *
-     * @return string
      */
     public function route_path(string $file): string
     {
@@ -30,10 +24,6 @@ trait Paths
 
     /**
      * Built belich urls
-     *
-     * @param string|null $resource
-     *
-     * @return string
      */
     public function belich_path(?string $resource = null): string
     {

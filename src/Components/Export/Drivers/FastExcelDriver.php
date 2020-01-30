@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Export\Drivers;
 
 use Daguilarm\Belich\Components\Export\Eloquent;
@@ -21,18 +23,10 @@ final class FastExcelDriver extends FastExcel implements ExportContract
      * @var Collection
      */
     protected $data;
-
-    /**
-     * @var array
-     */
-    protected $select = [];
+    protected array $select = [];
 
     /**
      * Prepare the file for download
-     *
-     * @param Illuminate\Http\Request $request
-     *
-     * @return array
      */
     public function handle(Request $request): array
     {
@@ -46,8 +40,6 @@ final class FastExcelDriver extends FastExcel implements ExportContract
 
     /**
      * Add collection from model
-     *
-     * @return Daguilarm\Belich\Components\Export\Drivers\FastExcelDriver
      */
     public function collection(Collection $data): FastExcelDriver
     {

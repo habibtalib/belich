@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Helpers;
 
 use Daguilarm\Belich\Core\Search\Search;
@@ -10,10 +12,6 @@ trait Utils
      * Convert a field string (coma separated values) into an array
      * Only works on numeric
      * This is for using mass selection and $model->whereIn($array)
-     *
-     * @param string $values
-     *
-     * @return array
      */
     public function fieldToArray(string $values): array
     {
@@ -32,10 +30,6 @@ trait Utils
 
     /**
      * Get the object name
-     *
-     * @param object $object
-     *
-     * @return string
      */
     public function objectName(object $object): string
     {
@@ -46,8 +40,6 @@ trait Utils
 
     /**
      * Get the search fields
-     *
-     * @return string
      */
     public function searchFields(): string
     {
@@ -56,12 +48,8 @@ trait Utils
 
     /**
      * Validate url
-     *
-     * @param string $url
-     *
-     * @return string
      */
-    public function validateUrl($url)
+    public function validateUrl(?string $url)
     {
         return filter_var($url, FILTER_VALIDATE_URL);
     }

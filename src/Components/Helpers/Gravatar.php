@@ -1,13 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Helpers;
 
 trait Gravatar
 {
-    /**
-     * @var string
-     */
-    private $gravatarUrl = 'https://www.gravatar.com/avatar/%s?s=%s&d=%s&r=%s';
+    private string $gravatarUrl = 'https://www.gravatar.com/avatar/%s?s=%s&d=%s&r=%s';
 
     /**
      * Get either a Gravatar URL or complete image tag for a specified email address.
@@ -18,8 +17,6 @@ trait Gravatar
      * @param string $r Maximum rating (inclusive) [ g | pg | r | x ]
      *
      * @source https://gravatar.com/site/implement/images/php/
-     *
-     * @return  string
      */
     public function gravatar(?string $email = null, int $size = 80, string $imageSet = 'mp', string $rating = 'g'): string
     {

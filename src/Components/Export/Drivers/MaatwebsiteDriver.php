@@ -1,7 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Export\Drivers;
 
+use Daguilarm\Belich\Components\Export\Drivers\MaatwebsiteDriver;
 use Daguilarm\Belich\Components\Export\Eloquent;
 use Daguilarm\Belich\Components\Export\File;
 use Daguilarm\Belich\Components\Export\Validation;
@@ -23,10 +26,6 @@ final class MaatwebsiteDriver implements ExportContract
 
     /**
      * Prepare the file for download
-     *
-     * @param Illuminate\Http\Request $request
-     *
-     * @return array
      */
     public function handle(Request $request): array
     {
@@ -40,8 +39,6 @@ final class MaatwebsiteDriver implements ExportContract
 
     /**
      * Add collection from model
-     *
-     * @return Daguilarm\Belich\Components\Export\Drivers\MaatwebsiteDriver
      */
     public function collection(Collection $data): MaatwebsiteDriver
     {

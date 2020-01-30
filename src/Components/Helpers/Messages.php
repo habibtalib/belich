@@ -1,13 +1,13 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Helpers;
 
 trait Messages
 {
     /**
      * Get the message session
-     *
-     * @return array
      */
     public function messages(string $type): array
     {

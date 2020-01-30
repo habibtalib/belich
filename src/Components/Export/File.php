@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Export;
 
 use Daguilarm\Belich\Components\Export\Eloquent;
@@ -9,10 +11,6 @@ final class File
 {
     /**
      * Exporting format
-     *
-     * @param Illuminate\Http\Request $request
-     *
-     * @return string
      */
     public static function format(Request $request): string
     {
@@ -21,10 +19,6 @@ final class File
 
     /**
      * Get the file name
-     *
-     * @param Illuminate\Http\Request $request
-     *
-     * @return string
      */
     public static function name(Request $request): string
     {

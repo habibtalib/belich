@@ -10,18 +10,8 @@
             "email": "damian.aguilarm@gmail.com"
         }
     ],
-    "repositories": [
-        {
-            "name": "daguilarm/bicons",
-            "type": "path",
-            "url": "../../../../../../../../../.././Users/daguilarm/Sites/Packages/belich-icons",
-            "options": {
-                "symlink": true
-            }
-        }
-    ],
     "require": {
-        "php" : "^7.3",
+        "php" : "^7.4",
         "rap2hpoutre/fast-excel": "dev-master",
         "matthiasmullie/minify": "dev-master",
         "moneyphp/money": "^3.2",

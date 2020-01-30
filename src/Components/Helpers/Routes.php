@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Components\Helpers;
 
 use Daguilarm\Belich\Facades\Belich;
@@ -10,8 +12,6 @@ trait Routes
      * Generate the form route for the action attribute
      *
      * @param string $redirectTo ['index', 'edit', 'update', 'show']
-     *
-     * @return string
      */
     public function toRoute(string $redirectTo): string
     {

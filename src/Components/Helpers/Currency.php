@@ -11,14 +11,8 @@ trait Currency
 {
     /**
      * Format the money
-     *
-     * @param string $value
-     * @param string $currency
-     * @param string $locale
-     *
-     * @return self
      */
-    public function formatMoney($value, $currency, $locale): string
+    public function formatMoney(string $value, string $currency, string $locale): string
     {
         //Configure the currency
         $money = new Money($value * 100, new MoneyCurrency($currency));
