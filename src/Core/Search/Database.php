@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Cookie;
 final class Database extends DatabaseCore
 {
     private string $action;
-    private string $withTrashed;
+    private ?string $withTrashed;
 
     public function __construct()
     {

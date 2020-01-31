@@ -6,7 +6,7 @@ namespace Daguilarm\Belich\Http\Middleware;
 
 use Closure;
 use Daguilarm\Belich\Facades\Belich;
-use Illuminate\Http\Response;
+use Illuminate\Http\Request;
 
 /**
  * @author: https://github.com/nckg/laravel-minify-html
@@ -48,7 +48,7 @@ final class MinifyMiddleware
     /**
      * Handle an incoming request.
      */
-    public function handle($request, Closure $next): object
+    public function handle(Request $request, Closure $next): object
     {
         /** @var Response $response */
         $response = $next($request);
@@ -84,11 +84,17 @@ final class MinifyMiddleware
     /**
      * Check if the header response is text/html.
      */
-    private function isHtml(Response $response): bool
+    private function isHtml(object $response, string $type = ''): bool
     {
-        $type = strtolower(strtok($response->headers->get('Content-Type'), ';'));
+        $content = $response->headers->get('Content-Type');
 
-        return $type === 'text/html';
+        if ($content) {
+            $type = strtolower(strtok($content, ';'));
+
+            return $type === 'text/html';
+        }
+
+        return $type === 'belich/html';
     }
 
     /**

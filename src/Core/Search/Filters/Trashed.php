@@ -18,7 +18,7 @@ final class Trashed implements ConditionContract, HandleField
     private $request;
 
     private object $model;
-    private string $trashed;
+    private ?string $trashed;
     private bool $policy;
 
     /**

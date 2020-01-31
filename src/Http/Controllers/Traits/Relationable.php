@@ -9,7 +9,7 @@ trait Relationable
     /**
      * Redirect back with message
      */
-    protected function updateRelationship(object $model, array $request): string
+    protected function updateRelationship(object $model, array $request): object
     {
         return $this->handleRelationship($model, $request, 'update');
     }
@@ -17,7 +17,7 @@ trait Relationable
     /**
      * Redirect back with message
      */
-    protected function createRelationship(object $model, array $request): string
+    protected function createRelationship(object $model, array $request): object
     {
         return $this->handleRelationship($model, $request, 'create');
     }
@@ -25,7 +25,7 @@ trait Relationable
     /**
      * Handle relationship
      */
-    private function handleRelationship(object $model, array $request, string $type): string
+    private function handleRelationship(object $model, array $request, string $type): object
     {
         return collect($request)
             ->each(static function ($value, $field) use ($model, $type): void {

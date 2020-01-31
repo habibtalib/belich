@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Daguilarm\Belich\Http\Requests\Traits;
 
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 trait Fileable
@@ -68,7 +69,7 @@ trait Fileable
         $disk = $values['disk'];
 
         //Upload file
-        if (Storage::disk($disk)->put($fileName, file_get_contents($file))) {
+        if (Storage::disk($disk)->put($fileName, $this->getFileContent($file))) {
             //Delete the previus file from storage
             $this->deletePrevius($attribute, $disk, $model);
 
@@ -86,9 +87,17 @@ trait Fileable
     private function fileName(object $file): string
     {
         $extension = $file->getClientOriginalExtension();
-        $name = time() . basename($file);
+        $name = Str::random(5) . time();
 
         return sprintf('%s.%s', $name, $extension);
+    }
+
+    /**
+     * Get file content
+     */
+    private function getFileContent(?object $file): string
+    {
+        return file_get_contents($file->getRealPath());
     }
 
     /**

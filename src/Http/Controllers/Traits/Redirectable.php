@@ -12,7 +12,7 @@ trait Redirectable
     /**
      * Redirect back with message
      */
-    protected function redirectToAction($condition, string $success, string $error, string $id = ''): RedirectResponse
+    protected function redirectToAction($condition, string $success, string $error, ?int $id): RedirectResponse
     {
         //Get current Controller action
         $action = Belich::action();
@@ -37,7 +37,7 @@ trait Redirectable
     /**
      * Set the redirection base on action
      */
-    private function createRedirection(string $action, string $redirectTo, string $id = ''): RedirectResponse
+    private function createRedirection(string $action, string $redirectTo, ?int $id): RedirectResponse
     {
         return ! in_array($redirectTo, Belich::allowedActions()) || $action === 'delete' || $action === 'forceDelete' || $action === 'restore'
             //Action not allowed

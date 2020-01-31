@@ -9,10 +9,10 @@ use Daguilarm\Belich\Fields\Field;
 final class Markdown extends Field
 {
     public string  $type = 'markdown';
-    public bool $fullText;
-    public bool $fullTextOnIndex;
-    public bool $fullTextOnShow;
-    public bool $preview;
+    public bool $fullText = false;
+    public bool $fullTextOnIndex = false;
+    public bool $fullTextOnShow = false;
+    public bool $preview = false;
 
     public function __construct($label, $attribute = null)
     {

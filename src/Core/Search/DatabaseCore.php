@@ -42,7 +42,7 @@ abstract class DatabaseCore
                 'page' => $request->query('page'),
                 'DAM' => $request->query('DAM'),
             ],
-            Cookie::get('belich_perPage'),
+            (int) Cookie::get('belich_perPage'),
             config('belich.pagination'),
         ];
     }
@@ -58,7 +58,7 @@ abstract class DatabaseCore
     /**
      * Get the pagination
      */
-    protected function paginate(object $results, string $paginateType, string $perPage): object
+    protected function paginate(object $results, string $paginateType, int $perPage): object
     {
         return $paginateType === 'simple'
             ? $results

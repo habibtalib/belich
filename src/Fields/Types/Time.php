@@ -14,26 +14,38 @@ final class Time extends Text implements FieldNumberContract
      */
     public $step;
 
+    /**
+     * @var string|int
+     */
+    public $max;
+
+    /**
+     * @var string|int
+     */
+    public $min;
+
     public string $type = 'time';
-    public int $max;
-    public int $min;
 
     /**
      * Set min value
+     *
+     * @param string|int $min
      */
-    public function min(string $min): self
+    public function min($min): self
     {
-        $this->min = $min;
+        $this->min = (int) $min;
 
         return $this;
     }
 
     /**
      * Set max value
+     *
+     * @param string|int $min
      */
-    public function max(string $max): self
+    public function max($max): self
     {
-        $this->max = $max;
+        $this->max = (int) $max;
 
         return $this;
     }
@@ -41,7 +53,7 @@ final class Time extends Text implements FieldNumberContract
     /**
      * Set step value
      */
-    public function step(string $step): self
+    public function step($step): self
     {
         $this->step = $step;
 

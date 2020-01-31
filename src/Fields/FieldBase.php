@@ -25,7 +25,7 @@ abstract class FieldBase
     public string $panel;
     public array $relationships = [];
     public string $tableTextAlign = 'left';
-    public string $valueRelationship;
+    public string $valueRelationship = '';
 
     /**
      * Set the field attributes

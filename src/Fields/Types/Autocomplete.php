@@ -10,10 +10,10 @@ class Autocomplete extends Field
 {
     public string $type = 'autocomplete';
     public int $minChars = 2;
-    public array $addVars = [];
+    public string $addVars = '';
     public array $responseArray = [];
     public string $responseUrl = '';
-    public string $store;
+    public string $store = '';
 
     /**
      * Add variables to the url
@@ -36,6 +36,8 @@ class Autocomplete extends Field
 
     /**
      * Set the response from the data
+     *
+     * @param string|array $data
      */
     public function dataFrom($data): self
     {
