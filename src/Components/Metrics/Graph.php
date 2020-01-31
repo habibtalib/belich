@@ -12,12 +12,12 @@ abstract class Graph implements ComponentContract
     public array $calculate;
     public string $color;
     public array $labels;
-    public string $legend_h;
-    public string $legend_v;
+    public string $legend_h = '';
+    public string $legend_v = '';
     public string $name;
     public string $type;
     public string $uriKey;
-    public string $width;
+    public string $width = 'w-1/3';
     public bool $withArea = false;
     public bool $grid = false;
 
@@ -35,10 +35,8 @@ abstract class Graph implements ComponentContract
 
     /**
      * ['butt', 'square', 'round']
-     *
-     * @var string
      */
-    public $marker;
+    public string $marker;
 
     public function __construct(Request $request)
     {

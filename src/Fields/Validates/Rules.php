@@ -24,8 +24,8 @@ final class Rules
     private function currentRules(object $field, string $controllerAction): array
     {
         $rules = [
-            'create' => $field->creationRules ?? $field->rules ?? [],
-            'edit' => $field->updateRules ?? $field->rules ?? [],
+            'create' => $this->getActionRules($field, $field->creationRules),
+            'edit' => $this->getActionRules($field, $field->updateRules),
         ];
 
         return in_array($controllerAction, array_keys($rules))
@@ -33,5 +33,15 @@ final class Rules
             ? $rules[$controllerAction]
             // Default rules
             : $field->rules ?? [];
+    }
+
+    /**
+     * Get the action rules or the normal rules
+     */
+    private function getActionRules(object $field, array $actionRules)
+    {
+        return count($actionRules) > 0
+            ? $actionRules
+            : $field->rules;
     }
 }

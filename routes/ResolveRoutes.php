@@ -16,6 +16,8 @@ Route::group([
     //Validation routes
     Route::post(Belich::pathName() . '/ajax/form/validation', Helper::namespace_path('Http\Controllers\ValidationController'))
         ->name('ajax.form.validation');
+    Route::get(Belich::pathName() . '/ajax/form/validation', Helper::namespace_path('Http\Controllers\ValidationController'))
+        ->name('ajax.form.validation');
 
     //search routes
     Route::get(Belich::pathName() . '/ajax/search', Helper::namespace_path('Http\Controllers\SearchController'))

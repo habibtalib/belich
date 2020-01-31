@@ -6,9 +6,9 @@ namespace Daguilarm\Belich\Fields\Traits;
 
 trait Ruleable
 {
-    public array $rules;
-    public array $creationRules;
-    public array $updateRules;
+    public array $rules = [];
+    public array $creationRules = [];
+    public array $updateRules = [];
 
     /**
      * Set a general rules for validation
