@@ -16,19 +16,19 @@
                 {{ auth()->user()->name }}
             @endif
         </div>
-        <div class="pr-4">{!! Helper::icon('b-down') !!}</div>
+        <div class="pr-4">{!! Helper::icon('b-down', '', 'icon') !!}</div>
     </div>
     <ul class="right-0">
         @if(config('belich.profile'))
             <li class="bg-gray-200">
                 <a href="{{ Belich::url() . '/profiles/' . auth()->user()->id }}" class="text-gray-600 hover:text-black" dusk="logout-profile">
-                    {!! Helper::icon('b-user', 'Profile') !!}
+                    {!! Helper::icon('b-user', 'Profile', 'icon') !!}
                 </a>
             </li>
         @endif
         <li class="bg-gray-200">
             <a href="{{ route('logout') }}" class="text-gray-600 hover:text-black" onclick="event.preventDefault(); document.getElementById('dashboard-logout').submit();"  dusk="logout-session">
-                {!! Helper::icon('b-close-circle', trans('belich::buttons.base.logout')) !!}
+                {!! Helper::icon('b-close-circle', trans('belich::buttons.base.logout'), 'icon') !!}
             </a>
             <form id="dashboard-logout" action="{{ route('logout') }}" method="POST" style="display: none;">
                 @csrf

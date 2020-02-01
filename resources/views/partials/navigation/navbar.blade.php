@@ -30,7 +30,7 @@
                                 @foreach($resource as $item)
                                     <li class="bg-teal-600 hover:bg-teal-700">
                                         <a class="text-white" href="{{ sprintf('%s/%s', Belich::url(), $item->get('resource')) }}" dusk="navbar-{{ strtolower($item->get('name')) }}">
-                                            {!! Helper::icon($item->get('icon'), $item->get('name')) !!}
+                                            {!! Helper::icon($item->get('icon'), $item->get('name'), 'icon') !!}
                                         </a>
                                     </li>
                                 @endforeach

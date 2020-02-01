@@ -13,4 +13,5 @@ final class Email extends Text implements FieldMultipleContract
     use Multiplable;
 
     public bool $multiple = false;
+    public string $type = 'email';
 }
