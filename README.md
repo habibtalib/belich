@@ -2,6 +2,8 @@
 
 # belich (working on it...)
 
+Note: This version is for testing only. At the moment I am working on a new version based on Laravel Livewire and AlpineJS to manage all javascript, but keeping the essence of Belich intact. Belich v2.0 will be release soon...
+
 **Belich** is an administration panel based on [Laravel](https://laravel.com), and that has been influenced by the documentation of [Nova](https://nova.laravel.com), [Laravel Collective](https://laravelcollective.com/) and [Quickadmin](https://github.com/LaravelDaily/quickadmin).
 
 The concept of **Belich**, is totally different, since the main idea is to base the development of the project on the *Back-end*, and therefore, eliminating any **javascript framework**, like [VueJS](https://vuejs.org/), [React](https://reactjs.org) or even [Jquery](https://jquery.com/)}, from the equation. 
