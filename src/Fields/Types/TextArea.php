@@ -5,9 +5,14 @@ declare(strict_types=1);
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
+use Daguilarm\Belich\Fields\Traits\Disabled\NoPrefixable;
+use Daguilarm\Belich\Fields\Traits\Disabled\NoResolvable;
 
 final class TextArea extends Field
 {
+    use NoPrefixable,
+        NoResolvable;
+
     public string $type = 'textArea';
     public bool $count = false;
     public bool $fullText = false;
@@ -86,42 +91,6 @@ final class TextArea extends Field
             $this->value = $value;
         }
 
-        return $this;
-    }
-
-    /**
-     * Disabled method
-     * Resolving field value in index and detailed
-     */
-    public function displayUsing(callable $displayCallback): Field
-    {
-        return $this;
-    }
-
-    /**
-     * Disabled method
-     * Prefix for field value
-     */
-    public function prefix(string $prefix, bool $space = false): Field
-    {
-        return $this;
-    }
-
-    /**
-     * Disabled method
-     * Resolving field value (before processing) in all the fields
-     */
-    public function resolveUsing(callable $resolveCallback): Field
-    {
-        return $this;
-    }
-
-    /**
-     * Disabled method
-     * Suffix for field value
-     */
-    public function suffix(string $suffix, bool $space = false): Field
-    {
         return $this;
     }
 }

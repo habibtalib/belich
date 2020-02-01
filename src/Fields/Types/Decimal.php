@@ -5,9 +5,14 @@ declare(strict_types=1);
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
+use Daguilarm\Belich\Fields\Traits\Disabled\NoDisplayable;
+use Daguilarm\Belich\Fields\Traits\Disabled\NoPrefixable;
 
 class Decimal extends Field
 {
+    use NoDisplayable,
+        NoPrefixable;
+
     public float $decimals;
     public string $type = 'decimal';
 
@@ -26,33 +31,6 @@ class Decimal extends Field
     {
         $this->decimals = $decimals;
 
-        return $this;
-    }
-
-    /**
-     * Disabled method
-     * Resolving field value in index and detailed
-     */
-    public function displayUsing(callable $displayCallback): Field
-    {
-        return $this;
-    }
-
-    /**
-     * Disabled method
-     * Prefix for field value
-     */
-    public function prefix(string $prefix, bool $space = false): Field
-    {
-        return $this;
-    }
-
-    /**
-     * Disabled method
-     * Suffix for field value
-     */
-    public function suffix(string $suffix, bool $space = false): Field
-    {
         return $this;
     }
 }

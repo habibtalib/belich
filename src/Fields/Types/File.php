@@ -6,9 +6,12 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Contracts\FieldMultipleContract;
 use Daguilarm\Belich\Fields\Field;
+use Daguilarm\Belich\Fields\Traits\Multiplable;
 
 class File extends Field implements FieldMultipleContract
 {
+    use Multiplable;
+
     public string $type = 'file';
     public bool $multiple = false;
     public string $disk = 'public';
@@ -69,16 +72,6 @@ class File extends Field implements FieldMultipleContract
     public function asHtml(): Field
     {
         $this->renderImage = true;
-
-        return $this;
-    }
-
-    /**
-     * Allow multiple files
-     */
-    public function multiple(): self
-    {
-        $this->multiple = true;
 
         return $this;
     }

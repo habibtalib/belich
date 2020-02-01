@@ -31,6 +31,9 @@ class HasOne extends Relationship implements CustomFieldContract, FieldContract,
 
         // Show in all
         $this->showInAll();
+
+        // Define default variables
+        $this->responseUrl = '';
     }
 
     /**

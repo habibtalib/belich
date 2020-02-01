@@ -5,10 +5,15 @@ declare(strict_types=1);
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
+use Daguilarm\Belich\Fields\Traits\Disabled\NoPrefixable;
+use Daguilarm\Belich\Fields\Traits\Disabled\NoResolvable;
 use Daguilarm\Belich\Fields\Types\Decimal;
 
 final class Coordenates extends Decimal
 {
+    use NoPrefixable,
+        NoResolvable;
+
     public string $key;
     public string $coordenateType = 'latitude';
     public bool $toDegrees = false;
@@ -36,42 +41,6 @@ final class Coordenates extends Decimal
             $this->coordenateType = 'latitude';
         }
 
-        return $this;
-    }
-
-    /**
-     * Disabled method
-     * Resolving field value in index and detailed
-     */
-    public function displayUsing(callable $displayCallback): Field
-    {
-        return $this;
-    }
-
-    /**
-     * Disabled method
-     * Prefix for field value
-     */
-    public function prefix(string $prefix, bool $space = false): Field
-    {
-        return $this;
-    }
-
-    /**
-     * Disabled method
-     * Resolving field value (before processing) in all the fields
-     */
-    public function resolveUsing(callable $resolveCallback): Field
-    {
-        return $this;
-    }
-
-    /**
-     * Disabled method
-     * Suffix for field value
-     */
-    public function suffix(string $suffix, bool $space = false): Field
-    {
         return $this;
     }
 }

@@ -20,12 +20,12 @@ trait Resolvable
     /**
      * Disable $this->displayUsing()
      */
-    public bool $notDisplayUsing = true;
+    public bool $notDisplayUsing = false;
 
     /**
      * Disable $this->resolveUsing()
      */
-    public bool $notResolveUsing = true;
+    public bool $notResolveUsing = false;
 
     /**
      * For manipulate data

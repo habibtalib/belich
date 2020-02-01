@@ -6,9 +6,14 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Carbon\Carbon;
 use Daguilarm\Belich\Fields\Field;
+use Daguilarm\Belich\Fields\Traits\Disabled\NoDisplayable;
+use Daguilarm\Belich\Fields\Traits\Disabled\NoPrefixable;
 
 final class Date extends Field
 {
+    use NoDisplayable,
+        NoPrefixable;
+
     public string $type = 'date';
     public string $format;
 
@@ -47,33 +52,6 @@ final class Date extends Field
      * Resolve the value as HTML (without scape)
      */
     public function asHtml(): Field
-    {
-        return $this;
-    }
-
-    /**
-     * Disabled method
-     * Resolving field value in index and detailed
-     */
-    public function displayUsing(callable $displayCallback): Field
-    {
-        return $this;
-    }
-
-    /**
-     * Disabled method
-     * Prefix for field value
-     */
-    public function prefix(string $prefix, bool $space = false): Field
-    {
-        return $this;
-    }
-
-    /**
-     * Disabled method
-     * Suffix for field value
-     */
-    public function suffix(string $suffix, bool $space = false): Field
     {
         return $this;
     }

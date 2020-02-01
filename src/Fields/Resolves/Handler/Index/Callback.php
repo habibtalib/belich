@@ -53,7 +53,7 @@ final class Callback
      */
     private function resolveCallback(object $field, ?object $data = null, $value = '')
     {
-        if (! isset($field->resolveCallback) || ! is_callable($field->resolveCallback) || $field->notResolveUsing === false) {
+        if (! isset($field->resolveCallback) || ! is_callable($field->resolveCallback) || $field->notResolveUsing === true) {
             return $value;
         }
 

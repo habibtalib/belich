@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
+use Daguilarm\Belich\Fields\Traits\Disabled\NoPrefixable;
 
 final class Markdown extends Field
 {
+    use NoPrefixable;
+
     public string  $type = 'markdown';
     public bool $fullText = false;
     public bool $fullTextOnIndex = false;
@@ -82,27 +85,9 @@ final class Markdown extends Field
 
     /**
      * Disabled method
-     * Prefix for field value
-     */
-    public function prefix(string $prefix, bool $space = false): Field
-    {
-        return $this;
-    }
-
-    /**
-     * Disabled method
      * Resolving field value (before processing) in all the fields
      */
     public function resolveUsing(callable $resolveCallback): Field
-    {
-        return $this;
-    }
-
-    /**
-     * Disabled method
-     * Suffix for field value
-     */
-    public function suffix(string $suffix, bool $space = false): Field
     {
         return $this;
     }

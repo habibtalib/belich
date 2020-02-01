@@ -5,9 +5,16 @@ declare(strict_types=1);
 namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Fields\Field;
+use Daguilarm\Belich\Fields\Traits\Disabled\NoDisplayable;
+use Daguilarm\Belich\Fields\Traits\Disabled\NoDuskable;
+use Daguilarm\Belich\Fields\Traits\Disabled\NoPrefixable;
 
 class Autocomplete extends Field
 {
+    use NoDisplayable,
+        NoDuskable,
+        NoPrefixable;
+
     public string $type = 'autocomplete';
     public int $minChars = 2;
     public string $addVars = '';
@@ -69,42 +76,6 @@ class Autocomplete extends Field
     {
         $this->store = 'id';
 
-        return $this;
-    }
-
-    /**
-     * Disabled method
-     * Resolving field value in index and detailed
-     */
-    public function displayUsing(callable $displayCallback): Field
-    {
-        return $this;
-    }
-
-    /**
-     * Disabled method
-     * Set the attribute dusk
-     */
-    public function dusk($value = null): Field
-    {
-        return $this;
-    }
-
-    /**
-     * Disabled method
-     * Prefix for field value
-     */
-    public function prefix(string $prefix, bool $space = false): Field
-    {
-        return $this;
-    }
-
-    /**
-     * Disabled method
-     * Suffix for field value
-     */
-    public function suffix(string $suffix, bool $space = false): Field
-    {
         return $this;
     }
 }

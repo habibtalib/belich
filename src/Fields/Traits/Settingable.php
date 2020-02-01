@@ -12,7 +12,7 @@ trait Settingable
     public string $id;
     public string $name;
     public bool $sortable = false;
-    public string $uriKey;
+    public string $uriKey = '';
 
     /**
      * Set the attribute dusk
