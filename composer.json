@@ -7,7 +7,9 @@
     "authors": [
         {
             "name": "daguilarm",
-            "email": "damian.aguilarm@gmail.com"
+            "email": "damian.aguilarm@gmail.com",
+            "homepage": "https://daguilar.dev",
+            "role": "Developer"
         }
     ],
     "require": {
