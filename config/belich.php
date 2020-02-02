@@ -155,12 +155,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | Loading status
+    | Icons
     |--------------------------------------------------------------------------
     |
     | Show the loading icon for ajax queries
     */
-    'loading' => '<i class="fas fa-spinner fa-spin fa-10x text-blue-200"></i>',
+    'icons' => [
+        'font' => 'fontawesome',
+        'loading' => [
+            'icon' => 'spin',
+            'css' => 'fa-10x text-blue-200',
+        ],
+    ],
 
     /*
     |--------------------------------------------------------------------------
