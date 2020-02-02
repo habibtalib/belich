@@ -60,7 +60,7 @@ final class ServiceProvider extends Provider
     protected function registerBootstrap(): void
     {
         //Include the package classmap autoloader
-        require_once __DIR__ . '/../vendor/autoload.php';
+        require_once __DIR__ . '/../../../..vendor/autoload.php';
 
         // Middleware
         $this->app['router']->pushMiddlewareToGroup('https', \Daguilarm\Belich\Http\Middleware\HttpsMiddleware::class);
