@@ -19,20 +19,45 @@ final class Boolean implements HandleField
         }
 
         // Resolve boolean value
-        $field->value = isset($field->trueValue) && isset($field->falseValue)
+        $field->value = $this->condition($field)
             ? $this->fieldValue($field)
-            : sprintf('<i class="fas fa-circle text-%s-500"></i>', $field->value ? $field->color : 'grey');
+            : $this->fieldValueRender($field);
 
         return $next($field);
     }
 
     /**
+     * Field value condition
+     */
+    private function condition(object $field): string
+    {
+        return isset($field->trueValue) && isset($field->falseValue);
+    }
+
+    /**
      * Handle field value
      */
-    private function fieldValue($field): string
+    private function fieldValue(object $field): string
     {
-        return $field->value
-            ? $field->trueValue
-            : $field->falseValue;
+        return $field->value ? $field->trueValue : $field->falseValue;
+    }
+
+    /**
+     * Render the field value
+     */
+    private function fieldValueRender(object $field): string
+    {
+        return sprintf(
+            '<i class="fas fa-circle text-%s-500"></i>',
+            $this->fieldValueRenderColor($field)
+        );
+    }
+
+    /**
+     * Render the field value color
+     */
+    private function fieldValueRenderColor(object $field): string
+    {
+        return $field->value ? $field->color : 'grey';
     }
 }

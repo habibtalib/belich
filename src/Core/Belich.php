@@ -64,7 +64,7 @@ final class Belich extends BelichMethods
      */
     public function components(Request $request): ?string
     {
-        return (new Blade())->render($request);
+        return app(Blade::class)->render($request);
     }
 
     /**

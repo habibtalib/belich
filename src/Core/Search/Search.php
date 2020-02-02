@@ -24,13 +24,9 @@ final class Search
         $searchFields = $class::$search;
 
         //Defeault value: array
-        $fields = is_array($searchFields)
-          ? $searchFields
-          : [];
+        $fields = self::getSearchFields($searchFields);
 
-        return count($fields) > 0
-            ? collect($fields)->implode(',')
-            : '';
+        return self::fieldsAsString($fields);
     }
 
     /**
@@ -64,5 +60,25 @@ final class Search
         })
             ->filter()
             ->toArray();
+    }
+
+    /**
+     * Get the search fields
+     */
+    private static function getSearchFields(?array $fields): array
+    {
+        return is_array($fields)
+          ? $fields
+          : [];
+    }
+
+    /**
+     * Return the search fields as string
+     */
+    private static function fieldsAsString(?array $fields): string
+    {
+        return count($fields) > 0
+            ? collect($fields)->implode(',')
+            : '';
     }
 }

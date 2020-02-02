@@ -40,18 +40,6 @@ abstract class Resources
     public static bool $tabs;
 
     /**
-     * Default actions
-     */
-    public static function actions(): array
-    {
-        return [
-            Utils::icon('eye') => Utils::route('show'),
-            Utils::icon('edit') => Utils::route('edit'),
-            Utils::icon('trash') => Utils::route('destroy'),
-        ];
-    }
-
-    /**
      * Default breadcrumb
      */
     public static function breadcrumbs(): array

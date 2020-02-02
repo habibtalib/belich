@@ -45,14 +45,26 @@ trait Routeable
     {
         $route = sprintf('%s.%s.%s', static::pathName(), static::resource(), $controllerAction);
 
+        return self::actionRouteGenerator($data, $route);
+    }
+
+    /**
+     * Generate the action route
+     *
+     * @param object|int $data
+     */
+    private static function actionRouteGenerator($data, string $route)
+    {
+        // Object data
         if (is_object($data) && optional($data)->id > 0) {
             return route($route, $data->id);
         }
 
-        return is_numeric($data)
-            // Numeric value
-            ? route($route, $data)
-            // Default value
-            : route($route);
+        // Numeric data
+        if (is_numeric($data)) {
+            return route($route, $data);
+        }
+
+        return route($route);
     }
 }
