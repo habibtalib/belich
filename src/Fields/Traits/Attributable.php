@@ -13,6 +13,7 @@ trait Attributable
 
     /**
      * Warning!: $data must not be accessed before initialization
+     *
      * @var object|null
      */
     public $data;

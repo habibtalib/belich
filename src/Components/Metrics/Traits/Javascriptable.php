@@ -6,7 +6,6 @@ namespace Daguilarm\Belich\Components\Metrics\Traits;
 
 trait Javascriptable
 {
-
     public array $labels;
     public array $series;
     public string $type;

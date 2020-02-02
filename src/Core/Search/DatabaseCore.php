@@ -61,11 +61,9 @@ abstract class DatabaseCore
     protected function paginate(object $results, string $paginateType, int $perPage): object
     {
         return $paginateType === 'simple'
-            ? $results
-                // Simple pagination
-                ->simplePaginate($perPage)
-            : $results
-                // Regular link pagination
-                ->paginate($perPage);
+            // Simple pagination
+            ? $results->simplePaginate($perPage)
+            // Regular link pagination
+            : $results->paginate($perPage);
     }
 }

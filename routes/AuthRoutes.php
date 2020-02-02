@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 Route::group(['middleware' => ['web']], static function (): void {
 
     // Authentication Routes...

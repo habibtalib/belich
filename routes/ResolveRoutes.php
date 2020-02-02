@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use Daguilarm\Belich\Facades\Helper;
 use Illuminate\Support\Str;
 

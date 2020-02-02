@@ -64,27 +64,25 @@ abstract class BelichCommand extends Command
     /**
      * Copy file from ... to ...
      */
-    protected function copyFromTo(string $from, string $to)
+    protected function copyFromTo(string $from, string $to): void
     {
         $file = new Filesystem();
-
-        $file->copy($from,$to);
+        $file->copy($from, $to);
     }
 
     /**
      * Move file from ... to ...
      */
-    protected function moveFromTo(string $from, string $to)
+    protected function moveFromTo(string $from, string $to): void
     {
         $file = new Filesystem();
-
-        $file->move($from,$to);
+        $file->move($from, $to);
     }
 
     /**
      * Create a new directory if not exists...
      */
-    protected function makeDirectory(string $folder)
+    protected function makeDirectory(string $folder): void
     {
         if (! File::exists($folder)) {
             File::makeDirectory($folder);

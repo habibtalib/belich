@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Daguilarm\Belich\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use Daguilarm\Belich\Core\Belich;
 use Daguilarm\Belich\Http\Controllers\Traits\Redirectable;
 use Daguilarm\Belich\Http\Controllers\Traits\Relationable;
 use Daguilarm\Belich\Http\Requests\CreateRequest;
@@ -13,7 +14,6 @@ use Daguilarm\Belich\Http\Requests\IndexRequest;
 use Daguilarm\Belich\Http\Requests\ShowRequest;
 use Daguilarm\Belich\Http\Requests\StoreRequest;
 use Daguilarm\Belich\Http\Requests\UpdateRequest;
-use Daguilarm\Belich\Core\Belich;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 

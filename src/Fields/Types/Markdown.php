@@ -11,7 +11,7 @@ final class Markdown extends Field
 {
     use NoPrefixable;
 
-    public string  $type = 'markdown';
+    public string $type = 'markdown';
     public bool $fullText = false;
     public bool $fullTextOnIndex = false;
     public bool $fullTextOnShow = false;

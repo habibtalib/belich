@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Daguilarm\Belich\Fields\Types;
 
-use Daguilarm\Belich\Fields\Field;
 use Daguilarm\Belich\Fields\Traits\Disabled\NoPrefixable;
 use Daguilarm\Belich\Fields\Traits\Disabled\NoResolvable;
 use Daguilarm\Belich\Fields\Types\Decimal;

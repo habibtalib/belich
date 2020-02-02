@@ -11,12 +11,12 @@ trait Date
     /**
      * Handle the dates
      */
-    public function date(object $query, array $items)
+    public function date(object $query, array $items): void
     {
-        list($start, $end, $format, $table) = $this->handleDates($items);
+        [$start, $end, $format, $table] = $this->handleDates($items);
 
         // Filter the query
-        $query->when($this->condition($start, $end, $format, $table), function ($query) use ($start, $end, $format, $table) {
+        $query->when($this->condition($start, $end, $format, $table), function ($query) use ($start, $end, $format, $table): void {
             // Handle the queries
             $this->queryDates($query, $format, $table, $start, $end);
         });
@@ -31,11 +31,11 @@ trait Date
         $start = $this->getDate($format, $start);
         $end = $this->getDate($format, $end);
 
-        if ( ! is_null($start)) {
+        if (! is_null($start)) {
             $query->whereDate($table, '>=', $start);
         }
 
-        if ( ! is_null($end)) {
+        if (! is_null($end)) {
             $query->whereDate($table, '<=', $end);
         }
     }
@@ -45,9 +45,10 @@ trait Date
      */
     private function getDate(?string $format, ?string $date)
     {
-        if($date && $format) {
+        if ($date && $format) {
             return Carbon::createFromFormat($format, $date);
         }
+
         return null;
     }
 

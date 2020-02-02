@@ -13,7 +13,7 @@ trait Systemable
         'web',
         'auth',
         'belich',
-        'minify'
+        'minify',
     ];
 
     /**

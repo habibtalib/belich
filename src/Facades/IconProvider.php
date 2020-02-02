@@ -13,7 +13,6 @@ final class IconProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
     }
 
     /**

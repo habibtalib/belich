@@ -14,7 +14,7 @@ trait DatesForHumans
     private array $dateFormat = [
         'Y-m-d',
         'd/m/Y',
-        'Y/m/d'
+        'Y/m/d',
     ];
 
     /**

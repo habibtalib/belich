@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Daguilarm\Belich\Fields\Resolves\Handler\Crud\Values;
 
 use Closure;

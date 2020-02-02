@@ -4,48 +4,35 @@ declare(strict_types=1);
 
 namespace Daguilarm\Belich\Fields\Types;
 
-use Daguilarm\Belich\Contracts\FieldNumberContract;
 use Daguilarm\Belich\Fields\Types\Text;
 
-final class Time extends Text implements FieldNumberContract
+final class Time extends Text
 {
     /**
      * @var int|float
      */
     public $step;
 
-    /**
-     * @var string|int
-     */
-    public $max;
-
-    /**
-     * @var string|int
-     */
-    public $min;
-
+    public string $max;
+    public string $min;
     public string $type = 'time';
 
     /**
      * Set min value
-     *
-     * @param string|int $min
      */
-    public function min($min): self
+    public function min(string $min): self
     {
-        $this->min = (int) $min;
+        $this->min = (string) $min;
 
         return $this;
     }
 
     /**
      * Set max value
-     *
-     * @param string|int $min
      */
-    public function max($max): self
+    public function max(string $max): self
     {
-        $this->max = (int) $max;
+        $this->max = (string) $max;
 
         return $this;
     }

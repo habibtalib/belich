@@ -7,11 +7,14 @@ namespace Daguilarm\Belich\Fields;
 abstract class FieldBase
 {
     /**
-     * The field value (Resolved and updated...)
-     *
      * @var string|int|float|null
      */
     public $value;
+
+    /**
+     * @var string|int|float|null
+     */
+    public $valueRelationship;
 
     public array $allowedControllerActions = [
         'index',
@@ -25,7 +28,6 @@ abstract class FieldBase
     public string $panel;
     public array $relationships = [];
     public string $tableTextAlign = 'left';
-    public string $valueRelationship = '';
 
     /**
      * Set the field attributes

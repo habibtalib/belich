@@ -106,12 +106,52 @@ trait Fileable
     private function getVariables(string $attribute, array $fileAttributes, string $fileName, object $fileObject, array $values): array
     {
         return [
-            $attribute => empty($fileObject) ? $model->{$attribute} : $fileName,
-            $values['storeSize'] => $fileAttributes['storeSize'] ? $fileObject->getSize() : null,
-            $values['storeName'] => $fileAttributes['storeName'] ? $fileObject->getClientOriginalName() : null,
-            $values['storeMime'] => $fileAttributes['storeMime'] ? $fileObject->getMimeType() : null,
-            'disk' => $fileAttributes[$attribute]['disk'] ?? 'public',
+            $attribute => $fileName,
+            $values['storeSize'] => $this->getVariablesStoreSize($fileAttributes, $fileObject),
+            $values['storeName'] => $this->getVariablesStoreName($fileAttributes, $fileObject),
+            $values['storeMime'] => $this->getVariablesStoreMime($fileAttributes, $fileObject),
+            'disk' => $this->getVariablesStoreDisk($attribute, $fileAttributes),
         ];
+    }
+
+    /**
+     * Get the file size for storage
+     *
+     * @return  string|float|int|null
+     */
+    private function getVariablesStoreSize(array $attributes, object $file)
+    {
+        return $attributes['storeSize']
+            ? $file->getSize()
+            : null;
+    }
+
+    /**
+     * Get the file name for storage
+     */
+    private function getVariablesStoreName(array $attributes, object $file): ?string
+    {
+        return $attributes['storeName']
+            ? $file->getClientOriginalName()
+            : null;
+    }
+
+    /**
+     * Get the file mime for storage
+     */
+    private function getVariablesStoreMime(array $attributes, object $file): ?string
+    {
+        return $attributes['storeMime']
+            ? $file->getMimeType()
+            : null;
+    }
+
+    /**
+     * Get the storage disk
+     */
+    private function getVariablesStoreDisk(string $attribute, array $attributes): string
+    {
+        return $attributes[$attribute]['disk'] ?? 'public';
     }
 
     /**
@@ -119,10 +159,27 @@ trait Fileable
      */
     private function deletePrevius(string $attribute, string $disk, ?object $model): void
     {
-        //Delete the previus file from storage
-        if (isset($model) && is_object($model)) {
-            Storage::disk($disk)
-                ->delete($model->{$attribute});
+        if ($this->isObjectModel($model)) {
+            // Table column to delete
+            $table = $model->{$attribute};
+            // Delete the previus file from storage
+            Storage::disk($disk)->delete($table);
         }
+    }
+
+    /**
+     * Check for the file
+     */
+    private function isEmtpyFile(?object $file): bool
+    {
+        return isset($file) && $file;
+    }
+
+    /**
+     * Check for the file
+     */
+    private function isObjectModel(?object $model): bool
+    {
+        return isset($model) && $model && is_object($model);
     }
 }

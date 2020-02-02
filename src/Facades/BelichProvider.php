@@ -13,7 +13,6 @@ final class BelichProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
     }
 
     /**

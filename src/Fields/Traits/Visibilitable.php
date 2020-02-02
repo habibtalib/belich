@@ -10,7 +10,7 @@ trait Visibilitable
         'index',
         'create',
         'edit',
-        'show'
+        'show',
     ];
     public array $visibility = [
         'index' => true,

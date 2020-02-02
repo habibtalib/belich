@@ -7,8 +7,6 @@ namespace Daguilarm\Belich\Core\Search\Filters;
 use Closure;
 use Daguilarm\Belich\Contracts\HandleField;
 use Daguilarm\Belich\Core\Search\Filters\Traits\Date;
-use Daguilarm\Belich\Core\Search\Search;
-use Illuminate\Http\Request;
 use Illuminate\Pipeline\Pipeline;
 
 final class Filters implements HandleField
@@ -36,7 +34,7 @@ final class Filters implements HandleField
     public function handle(object $query, Closure $next): object
     {
         collect($this->filters)
-            ->each(function ($filter) use ($query) {
+            ->each(function ($filter) use ($query): void {
                 $this->execute($query, $filter);
             });
 
@@ -46,10 +44,10 @@ final class Filters implements HandleField
     /**
      * Execute all the operations
      */
-    private function execute(object $query, string $filter)
+    private function execute(object $query, string $filter): void
     {
         // Get the filter params
-        list($items, $filter) = $this->getParams($filter);
+        [$items, $filter] = $this->getParams($filter);
 
         // No filter
         if (! $filter) {
@@ -82,7 +80,7 @@ final class Filters implements HandleField
     private function equal(object $query, array $items): void
     {
         // Filter the query
-        $query->when(count($items) === 3, static function ($query) use ($items) {
+        $query->when(count($items) === 3, static function ($query) use ($items): void {
             $query->where($items[1], '=', $items[2]);
         });
     }
@@ -93,7 +91,7 @@ final class Filters implements HandleField
     private function like(object $query, array $items): void
     {
         // Filter the query
-        $query->when(count($items) === 3, static function ($query) use ($items) {
+        $query->when(count($items) === 3, static function ($query) use ($items): void {
             $query->where($items[1], 'like', $items[2]);
         });
     }
