@@ -22,10 +22,18 @@ final class Relationship implements HandleField
     public function handle(object $field, Closure $next): object
     {
         // Resolve for relationship or custom fields
-        if ($field->type === 'relationship' || $field->type === 'custom') {
+        if ($this->condition($field)) {
             $field->value = $field->index($field, $this->data);
         }
 
         return $next($field);
+    }
+
+    /**
+     * Check for condition
+     */
+    private function condition(object $field)
+    {
+        return $field->type === 'relationship' || $field->type === 'custom';
     }
 }

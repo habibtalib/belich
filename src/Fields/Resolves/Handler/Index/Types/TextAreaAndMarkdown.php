@@ -12,9 +12,9 @@ final class TextAreaAndMarkdown implements HandleField
 {
     use Resolvable;
 
-    private ?string $value;
+    private $value;
 
-    public function __construct(?string $value)
+    public function __construct($value)
     {
         $this->value = $value;
     }
@@ -25,10 +25,18 @@ final class TextAreaAndMarkdown implements HandleField
     public function handle(object $field, Closure $next): object
     {
         //TextArea or markdown field
-        if ($field->type === 'textArea' || $field->type === 'markdown') {
+        if ($this->condition($field)) {
             $field->value = $this->resolveTextArea($field, $this->value);
         }
 
         return $next($field);
+    }
+
+    /**
+     * Check for condition
+     */
+    private function condition(object $field)
+    {
+        return $field->type === 'textArea' || $field->type === 'markdown';
     }
 }

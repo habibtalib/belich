@@ -56,41 +56,65 @@ final class Values
      * Resolve field values for: relationship
      * This method is helper for $this->resolve()
      */
-    private function resolveValue(object $field, ?object $data, ?string $value): ?string
+    private function resolveValue(object $field, ?object $data, ?string $value)
     {
         //Resolve Relationship
-        return isset($data) && ! $value
-            ? $this->resolveRelationship($field, $data)
+        return isset($data) && (is_null($value) || ! $value)
+            ? $this->resolveValueFromData($field, $data)
             : $value;
     }
 
     /**
-     * Resolve field values for: relationship
+     * Resolve field values for: relationship and non relationship
      * This method is helper for $this->resolve()
      */
-    private function resolveRelationship(object $field, ?object $data): ?string
+    private function resolveValueFromData(object $field, ?object $data)
     {
         // Set attribute
         $attribute = $field->attribute;
 
+        //Resolve Relationship
         if (is_array($attribute)) {
-            //Resolve Relationship
             $relationship = optional($data)->{$attribute[0]};
             $value = optional($relationship)->{$attribute[1]};
+        //Resolve value for non relationships
         } else {
-            //Resolve value for action controller: edit
             $value = optional($data)->{$attribute};
         }
 
-        return $this->resolveToString($value);
+        return $this->resolveToCast($field, $value);
     }
 
     /**
      * Resolve a string value
      *
-     * @param string|int|null $value
+     * @param string|bool|int|float|null $value
      */
-    private function resolveToString($value): string
+    private function resolveToCast(object $field, $value)
+    {
+        return $field->type === 'boolean'
+            ? $this->resolveAsBoolean($value)
+            : $this->resolveAsString($value);
+    }
+
+    /**
+     * Resolve as boolean
+     *
+     * @param string|bool|int|float|null $value
+     */
+    private function resolveAsBoolean($value): bool
+    {
+        return $value
+            ? (bool) $value
+            : (bool) 0;
+    }
+
+    /**
+     * Resolve as string
+     *
+     * @param string|bool|int|float|null $value
+     */
+    private function resolveAsString($value): string
     {
         return $value
             ? (string) $value

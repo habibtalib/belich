@@ -6,9 +6,12 @@ namespace Daguilarm\Belich\Fields\Types;
 
 use Daguilarm\Belich\Core\Belich;
 use Daguilarm\Belich\Fields\Field;
+use Daguilarm\Belich\Fields\Traits\Disabled\NoResolvable;
 
 final class ID extends Field
 {
+    use NoResolvable;
+
     public string $type = 'text';
 
     public function __construct($name = null, $attribute = 'id')

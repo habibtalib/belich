@@ -10,9 +10,9 @@ use Daguilarm\Belich\Facades\Helper;
 
 final class Select implements HandleField
 {
-    private ?string $value;
+    private $value;
 
-    public function __construct(?string $value)
+    public function __construct($value)
     {
         $this->value = $value;
     }
@@ -23,10 +23,18 @@ final class Select implements HandleField
     public function handle(object $field, Closure $next): object
     {
         //Resolve using Display Using Labels
-        if (isset($field->displayUsingLabels) && isset($field->options)) {
+        if ($this->condition($field)) {
             $field->value = Helper::displayUsingLabels($field, $this->value);
         }
 
         return $next($field);
+    }
+
+    /**
+     * Check for condition
+     */
+    private function condition(object $field)
+    {
+        return isset($field->displayUsingLabels) && $field->displayUsingLabels && isset($field->options) && $field->options;
     }
 }

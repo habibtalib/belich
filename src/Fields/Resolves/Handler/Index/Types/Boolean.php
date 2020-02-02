@@ -9,9 +9,10 @@ use Daguilarm\Belich\Contracts\HandleField;
 
 final class Boolean implements HandleField
 {
-    private ?string $value;
+    private string $disabledColor = 'gray';
+    private $value;
 
-    public function __construct(?string $value)
+    public function __construct($value)
     {
         $this->value = $value;
     }
@@ -31,17 +32,38 @@ final class Boolean implements HandleField
     /**
      * Resolve boolean fields
      * This method is helper for $this->resolve()
+     *
+     * @param string|bool|int|float|null $value
      */
     private function resolveBoolean(object $field, $value): ?string
     {
         // With default labels
-        if (isset($field->trueValue) && isset($field->falseValue)) {
+        if ($this->condition($field)) {
             return $value
                 ? $field->trueValue
                 : $field->falseValue;
         }
 
         // With color circles
-        return sprintf('<i class="fas fa-circle text-%s-500"></i>', $value ? $field->color : 'grey');
+        return sprintf(
+            '<i class="fas fa-circle text-%s-500"></i>',
+            $this->resolveColor($field->color, $value)
+        );
+    }
+
+    /**
+     * Check for condition
+     */
+    private function condition(object $field)
+    {
+        return isset($field->trueValue) && isset($field->falseValue);
+    }
+
+    /**
+     * Resolve boolean color
+     */
+    private function resolveColor(string $color, bool $value)
+    {
+        return $value ? $color : $this->disabledColor;
     }
 }

@@ -10,9 +10,9 @@ use Daguilarm\Belich\Fields\Resolves\Handler\Index\File as ImportFile;
 
 final class File implements HandleField
 {
-    private ?string $value;
+    private $value;
 
-    public function __construct(?string $value)
+    public function __construct($value)
     {
         $this->value = $value;
     }
