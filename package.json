@@ -19,7 +19,7 @@
     "chartist": "^0.11.4",
     "easy-autocomplete": "*",
     "fibers": "^4.0.1",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jquery-mask-plugin": "^1.14.16",
     "mem": "^6.0.1",
     "node-sass": "^4.12.0",
