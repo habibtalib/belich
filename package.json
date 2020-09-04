@@ -22,7 +22,7 @@
     "jquery": "^3.4.1",
     "jquery-mask-plugin": "^1.14.16",
     "mem": "^6.0.1",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "serialize-javascript": "^2.1.1",
     "turbolinks": "^5.2.0",
     "vanilla-masker": "^1.2.0"
